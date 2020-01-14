@@ -1,0 +1,197 @@
+/* CSS for editing profile 
+ * Author: Abiy Terefe
+ * */
+div {
+display: block;
+padding: 1px 0 1px 0;
+}
+.LeftNav {
+	width: 18%;
+	float: left;
+	direction: ltr;
+	font-size: 120%;
+	margin-left: 5%;
+}
+
+.LeftNav a:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5
+		), color-stop(1, #79bbff));
+	background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5',
+		endColorstr='#79bbff');
+	background-color: #378de5;
+	color: white;
+}
+
+.LeftNav li {
+	background-color: rgb(81, 66, 57);
+	border: solid 1px #d2d2d2;
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#ededed));
+	background: -moz-linear-gradient(top, #fff, #ededed);
+	filter: progid:           
+	DXImageTransform.Microsoft.gradient(            startColorstr= 
+		          '#ffffff', endColorstr=            '#ededed');
+	-ms-filter: progid:           
+	DXImageTransform.Microsoft.gradient(            startColorstr= 
+		          '#ffffff', endColorstr=            '#ededed');
+	color: #000;
+	border: solid 1px #d2d2d2;
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#ededed));
+	background: -moz-linear-gradient(top, #fff, #ededed);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+		endColorstr='#ededed');
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+		endColorstr='#ededed');
+}
+
+.LeftNav li a {
+	display: block;
+	font-size: 16px;
+	color: black;
+	font-family: Georgia, "Times New Roman", serif !important;
+	/* text-shadow: 0 1px 1px rgba(0, 0, 0, .75); */
+}
+
+.LeftNav li a.selected {
+	background-color: #1F75CC;
+	color: white;
+}
+
+.module {
+	position: relative;
+}
+
+.overview,.eName,.ePass,.ePInfo,.eCMthd,.eCloseAcc {
+	position: absolute;
+	width: 50%;
+	height: 284px;
+	font-size: 16px;
+	border: 1px solid #c2d7ef !important;
+	background-color: #dfefff !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	left: 23.5%;
+	font-size: 16px;
+}
+
+.saveSubmit {
+	-moz-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+	box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff
+		), color-stop(1, #378de5));
+	background: -moz-linear-gradient(center top, #79bbff 5%, #378de5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff',
+		endColorstr='#378de5');
+	background-color: #79bbff;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #84bbf3;
+	display: inline-block;
+	color: #ffffff;
+	font-family: arial;
+	font-size: 15px;
+	padding: 6px 14px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #528ecc;
+	font-family: "Segoe UI Web Semibold", "Segoe UI Web Regular", "Segoe UI",
+		"Helvetica Neue", Arial;
+	cursor: pointer;
+}
+
+.saveSubmit:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5
+		), color-stop(1, #79bbff));
+	background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5',
+		endColorstr='#79bbff');
+	background-color: #378de5;
+}
+
+.saveSubmit:active {
+	position: relative;
+	top: 1px;
+}
+
+.closeSubmit {
+	-moz-box-shadow: inset 0px 1px 0px 0px #f29c93;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #f29c93;
+	box-shadow: inset 0px 1px 0px 0px #f29c93;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fe1a00
+		), color-stop(1, #ce0100));
+	background: -moz-linear-gradient(center top, #fe1a00 5%, #ce0100 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00',
+		endColorstr='#ce0100');
+	background-color: #fe1a00;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #d83526;
+	display: inline-block;
+	color: #ffffff;
+	font-family: arial;
+	font-size: 15px;
+	padding: 6px 14px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #b23e35;
+	font-family: "Segoe UI Web Semibold", "Segoe UI Web Regular", "Segoe UI",
+		"Helvetica Neue", Arial;
+	cursor: pointer;
+}
+
+.closeSubmit:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ce0100
+		), color-stop(1, #fe1a00));
+	background: -moz-linear-gradient(center top, #ce0100 5%, #fe1a00 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100',
+		endColorstr='#fe1a00');
+	background-color: #ce0100;
+}
+
+.closeSubmit:active {
+	position: relative;
+	top: 1px;
+}
+
+.userInfo {
+	padding: 5px;
+	height: 20px;
+}
+
+.moduleInput {
+	text-align: left;
+	padding-left: 10px;
+	font-family: "Segoe UI Web Semibold", "Segoe UI Web Regular", "Segoe UI",
+		"Helvetica Neue", Arial;
+}
+
+.moduleInputButtons {
+	text-align: left;
+	padding-left: 42px;
+}
+
+.moduleLabel {
+	text-align: right;
+}
+
+/* .moduleInput select {
+	font-size: 14px;
+	padding: 4px;
+	border: solid 1px #3399FF;
+	margin: 2px 0 5px 0px;
+	border-radius: 3px;
+	font-family: Georgia, "Times New Roman", serif !important;
+	background: white;
+} */
+
+.headerEn,.headerAm {
+	font-size: 18px;
+	color: #0072C6;
+}
+#email input[type="text"]:disabled {
+	background: #dddddd;
+}

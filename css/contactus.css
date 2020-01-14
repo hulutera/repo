@@ -1,0 +1,106 @@
+#contactUs {
+	border: 1px solid #d1e3f0;
+	border: 1px solid #c2d7ef !important;
+	background-color: #dfefff !important;
+	padding-bottom: 2%;
+}
+
+#contactUs input {
+	font-size: 18px;
+	padding: 2px;
+	width: 200px;
+	height: 24px;
+	/* margin: 2px 0 5px 20px; */
+	font-family: Georgia, "Times New Roman", serif !important;
+	
+}
+
+#contactUs td {
+	vertical-align: bottom;
+	padding-top: 2%;
+	font-size: 110%;
+}
+
+#contactUs .hint {
+	display: none;
+}
+
+#contactUs .input:focus {
+	background-color: #fffc17;
+}
+
+#contactUs input.button {
+	cursor: pointer;
+	font-size: 18px;
+	background: #F7B46D;
+	background: -moz-linear-gradient(top, #F7B46D 0%, #EEA455 51%, #E78A28 51%, #CD8134
+		100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F7B46D),
+		color-stop(51%, #EEA455), color-stop(51%, #E78A28),
+		color-stop(100%, #CD8134));
+	/* 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,
+		StartColorStr='#F7B46D', EndColorStr='#CD8134'); */
+	border: 2px solid #CD8134;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding-right: 6px;
+	width: 126px;
+	height: auto;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-weight: 400;
+	color: white;
+}
+
+#contactUs .error {
+	color: red;
+	background-color: yellow;
+	padding: 4px;
+	margin: 10px;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-weight: bold;
+}
+
+#contactUs .field:hover .hint {
+	position: absolute;
+	display: block;
+	font-size: 15px;
+	color: white;
+	margin-left: 2px;
+	padding: 7px 10px;
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
+
+#contactUs textarea {
+	font-family: Georgia, "Times New Roman", serif !important;
+	height: 100%;
+	width: 68%;
+	font-size: 15px;
+	padding: 2px;
+	color: #505050;
+	border-radius: 5px;
+	float: left;
+}
+
+#contactUs select {
+	font-size: 14px;
+	padding: 0.8%;
+	border: solid 1px #00477d;
+	margin: 0px;
+	width:68%;
+	border-radius: 5px;
+	font-family: Georgia, "Times New Roman", serif !important;
+	background: white;
+	float: left;
+}
+
+#contactUs input {
+	display: block;
+}
+
+#contactUs #buttonInput {
+	padding-left: 50%;
+}
