@@ -7,7 +7,7 @@ require_once $documnetRootPath . '/inc/common.inc.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Katomer | ካቶመር </title>
+<title>hulutera | ሁሉተራ </title>
 <?php commonHeader();?>
 </head>
 <body>
