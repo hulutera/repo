@@ -98,7 +98,7 @@ else if ($actiontype == 'delete') {
 	if ($userType == 'mod')
 		$status = 'modDelete';
 	else
-		$status = 'Deleted';
+		$status = 'deleted';
 	
 	switch ($itemtype) {
 		case 'Car' :

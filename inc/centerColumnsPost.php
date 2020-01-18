@@ -7,16 +7,9 @@ static $maxNumOfImg = 5; //Maximum number of images	per item
 $documnetRootPath   = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/helper/pagination.php';
 require_once $documnetRootPath.'/db/database.class.php';
-/**/
-function noItemToShow()
-{
-	global $emptymsg;
-	echo "<div id=\"mainColumnX\">
-	<div id=\"spanMainColumnX\">
-	$emptymsg
-	</div>
-	</div>";
-}
+require_once $documnetRootPath.'/items/items.common.class.php';
+require_once $documnetRootPath.'/items/car/car.view.class.php';
+
 /* return:
  * array $page:page number
 * $totpage:total pages
@@ -41,19 +34,20 @@ function calculatePage($count)
 function centerColumn()
 {
 	$connect = DatabaseClass::getInstance()->getConnection();
+
 	global $emptymsg, $MAX;
-	$countItems = $connect -> query("SELECT * FROM latestupdate") or die(mysqli_error());
+	$countItems = $connect -> query("SELECT * FROM latestupdate");
 	$totalItems = mysqli_num_rows($countItems);
 	if($totalItems)
 	{
 
-		$featureditems = $connect->query("SELECT * FROM latestupdate ORDER BY LatestTime DESC LIMIT 0,".$MAX) or die(mysqli_error());
+		$featureditems = $connect->query("SELECT * FROM latestupdate ORDER BY LatestTime DESC LIMIT 0,".$MAX);
 
 		while($dfeatureditems = $featureditems -> fetch_assoc())
 		{
 			if($dfeatureditems['cID'] != 0 && $dfeatureditems['status'] == 'active')
-			{				
-				showCar($dfeatureditems['cID'] );
+			{		
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['cID']);				
 			}
 			else if($dfeatureditems['hID'] != 0 && $dfeatureditems['status'] == 'active')
 			{
@@ -86,224 +80,58 @@ function centerColumn()
 	}
 	else if($totalItems == 0)
 	{
-		noItemToShow();
+		ObjectPool::getInstance()->getViewObject("empty")->show(0);		
 	}
 }
-/* To print specific item based on it's name
- * */
-function printItem($Id, $itemName)
-{
-	if($itemName      == "car")         showCar($Id);
-	else if($itemName == "house")       showHouse($Id);
-	else if($itemName == "computer")    showComputer($Id);
-	else if($itemName == "electronics") showElectronics($Id);
-	else if($itemName == "phone")       showPhone($Id);
-	else if($itemName == "household")   showHousehold($Id);
-	else if($itemName == "others")		showOthers($Id);
-}
-/* To identify calling url and populate array elements
- * */
-function findUrl($item)
-{
-	$itemUrl = basename($_SERVER['SCRIPT_NAME']);
-	switch($item)
-	{
-		case "car":
-			$arr = array(1=>"car",2=>"cID");
-			break;
-		case "computer":
-			$arr = array(1=>"computer",2=>"dID");
-			break;
-		case "house":
-			$arr = array(1=>"house",2=>"hID");
-			break;
-		case "phone":
-			$arr = array(1=>"phone",2=>"pID");
-			break;
-		case "electronics":
-			$arr = array(1=>"electronics",2=>"eID");
-			break;
-		case "household":
-			$arr = array(1=>"household",2=>"hhID");
-			break;
-		case "others":
-			$arr = array(1=>"others",2=>"oID");
-			break;
-		default:
-			break;
-	}
-	return $arr;
-}
+
+
 /* To print a single element
  * */
 function oneItemColumn($item)
-{
-	$arr = findUrl($item);
-	global $documnetRootPath,$connect;
-	require_once $documnetRootPath.'/items/'.$arr[1].'/'.$arr[1].'Detailed.php';
-	$Id = $_GET['Id'];
-	if(is_numeric($Id))
+{		
+	$id = $_GET['Id'];
+	if(is_numeric($id))
 	{
-		$queryOneItem = $connect->query("SELECT 1 FROM $arr[1] WHERE $arr[2] = $Id LIMIT 1");
+		$queryOneItem = DatabaseClass::getInstance()->queryGetItemWithId($item, 1 , 1, $id);
 		if(mysqli_num_rows($queryOneItem) == 1)
-		{
-			printItem($Id,$arr[1]);
+		{			
+			ObjectPool::getInstance()->getViewObject($item)->show($id);
 		}
 		else
 		{
-			noItemToShow();
+			ObjectPool::getInstance()->getViewObject("empty")->show($id);
 		}
 	}
 	else
 	{
-		noItemToShow();
+		ObjectPool::getInstance()->getViewObject("empty")->show($id);
 	}
 }
 /**/
 function allItemColumn($item)
 {
-	$arr = findUrl($item);
-	global $documnetRootPath, $MAX;
-	$countTotalCar = calculateTotalItem($arr[1]);
-	if($countTotalCar)
+    global $MAX;
+	$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, ItemStatus::ACTIVE);	
+	if($total > 0)
 	{
-		require_once $documnetRootPath.'/items/'.$arr[1].'/'.$arr[1].'Detailed.php';
-		$calculatePageArray = calculatePage($countTotalCar);
-		$itemstart = $MAX * ($calculatePageArray[0] - 1);
-		$query = queryItem($itemstart, $arr[1]);
+		$calculatePageArray = calculatePage($total);
+		$start = $MAX * ($calculatePageArray[0] - 1);
+		$query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, $MAX, ItemStatus::ACTIVE);
 		while($dquery = $query->fetch_assoc())
 		{
-			printItem($dquery[$arr[2]], $arr[1]);
+			$id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdName()];
+			ObjectPool::getInstance()->getViewObject($item)->show($id);
 		}
 		$query->close();
-		pagination($item,$calculatePageArray[1], $calculatePageArray[0], 0);
+		pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
 	}
 	else
 	{
-		noItemToShow();
+		ObjectPool::getInstance()->getViewObject("empty")->show($id);
 	}
 }
-/**/
-function calculateTotalItem($itemName)
-{
-	$connect = DatabaseClass::getInstance()->getConnection();
-	switch($itemName)
-	{
-		case "car":
-			$total = $connect->query("SELECT cID FROM car LEFT JOIN carcategory ON
-					car.carCategoryID = carcategory.categoryID
-					WHERE cStatus LIKE 'active'")
-					or
-					die(mysqli_error());
-					break;
-		case "computer":
-			$total =$connect->query("SELECT dID FROM computer LEFT JOIN computercategory ON
-					computer.compCategoryID = computercategory.categoryID
-					WHERE dStatus LIKE 'active' ")
-					or
-					die(mysqli_error());
-					break;
-		case "house":
-			$total =$connect->query("SELECT hID FROM house LEFT JOIN housecategory ON
-					house.houseCategoryID = housecategory.categoryID
-					WHERE hStatus LIKE 'active'")
-					or
-					die(mysqli_error());
-					break;
-		case "phone":
-			$total =$connect->query("SELECT pID FROM phone
-					WHERE pStatus = 'active' ")
-					or
-					die(mysqli_error());
-					break;
-		case "electronics":
-			$total = $connect->query("SELECT eID FROM electronics LEFT JOIN electronicscategory ON
-					electronics.electronicsCategoryID = electronicscategory.categoryID
-					WHERE eStatus LIKE 'active' ")
-					or
-					die(mysqli_error());
-					break;
-		case "household":
-			$total = $connect->query("SELECT hhID FROM household LEFT JOIN householdcategory ON
-					household.hhCategoryID = householdcategory.categoryID
-					WHERE hhStatus LIKE 'active' ")
-					or
-					die(mysqli_error());
-					break;
-		case "others":
-			$total = $connect->query("SELECT oID FROM others WHERE oStatus LIKE 'active' ")
-			or
-			die(mysqli_error());
-			break;
-		default:
-			break;
-	}
-	return mysqli_num_rows($total) ;
 
-}
-/**/
-function queryItem($itemstart, $itemName)
-{
-	global $connect, $MAX;
-	switch($itemName)
-	{
-		case "car":
-			$query = $connect->query("SELECT cID FROM car LEFT JOIN carcategory ON
-			car.carCategoryID = carcategory.categoryID
-			WHERE cStatus LIKE 'active' ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX ") or
-			die(mysqli_error());
-			break;
-		case "computer":
-			$query=$connect->query("SELECT dID,UploadedDate FROM computer LEFT JOIN
-			computercategory ON
-			computer.compCategoryID = computercategory.categoryID
-			WHERE dStatus LIKE 'active'
-			ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX ")
-			or
-			die(mysqli_error());
-			break;
-		case "house":
-			$query=$connect ->query("SELECT hID,UploadedDate FROM house
-			LEFT JOIN housecategory ON
-			house.houseCategoryID = housecategory.categoryID
-			WHERE hStatus LIKE 'active' ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX")
-			or
-			die(mysqli_error());
-			break;
-		case "phone":
-			$query=$connect->query("SELECT pID,UploadedDate FROM phone
-			WHERE pStatus = 'active' ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX")
-			or
-			die(mysqli_error());
-			break;
-		case "electronics":
-			$query=$connect->query("SELECT eID FROM electronics LEFT JOIN electronicscategory ON
-			electronics.electronicsCategoryID = electronicscategory.categoryID
-			WHERE eStatus LIKE 'active'
-			ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX")
-			or
-			die(mysqli_error());
-			break;
-		case "household":
-			$query=$connect->query("SELECT hhID,UploadedDate FROM household
-			LEFT JOIN householdcategory ON
-			household.hhCategoryID = householdcategory.categoryID
-			WHERE hhStatus LIKE 'active'
-			ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX ")
-			or
-			die(mysqli_error());
-			break;
-		case "others":
-			$query=$connect->query("SELECT oID,UploadedDate FROM others WHERE oStatus = 'active'
-			ORDER BY UploadedDate DESC LIMIT $itemstart, $MAX ")
-			or
-			die(mysqli_error());
-			break;
-		default:
-			break;
-	}
-	return $query;
-}
+
 /**/
 function centerSearchColumn()
 {
@@ -377,7 +205,7 @@ function centerSearchColumn()
 					$matchingNoOfHousehold.
 					") AS count_row";
 
-			$totalMatch = $connect->query($matchChecker) or die(mysqli_error());
+			$totalMatch = $connect->query($matchChecker);
 			while($dmatchChecker = $totalMatch->fetch_assoc())
 			{
 				$numbreOfMatches = $dmatchChecker['count_row'];
@@ -547,4 +375,3 @@ function whichTable($searchKeyword_tabletype,$searchKeyword_id)
 			break;
 	}
 }
-?>

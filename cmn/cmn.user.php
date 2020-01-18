@@ -1,14 +1,8 @@
 <?php
 session_start();
-define("LOGIN_SUCCESS",             20);
-define("ERR_ENTER_EMAIL",           21);
-define("ERR_ENTER_PASS",            22);
-define("ERR_ENTER_EMAIL_AND_PASS",  23);
-define("ERR_INVALID_EMAIL",         24);
-define("ERR_WORNG_EMAIL_OR_PASS",   25);
-define("ERR_USER_NOT_EXIST",        26);
-
+$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
+require_once $documnetRootPath.'/cmn/global.variable.php';
 
 function userLogin($email, $password)
 {

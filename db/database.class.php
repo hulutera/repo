@@ -2,7 +2,9 @@
 /*@ dataase.class.php 
 	 * input: $obj
 	* */
+global $documnetRootPath;
 require_once $documnetRootPath . '/db/database.config.php';
+
 class DatabaseClass
 {
 	private $_connection;
@@ -12,23 +14,14 @@ class DatabaseClass
 	private $_database = DB_NAME;
 
 	private static $_instance;
-	private static $connect = false;
 
-	static function databaseConnect()
-	{
-		if (self::$_instance == FALSE) {
-			self::$connect = new DatabaseClass();
-		}
-		self::$_instance = true;
-		return self::$connect;
-	}
 	/*
 	Get an instance of the Database
 	@return Instance
 	*/
 	public static function getInstance()
 	{
-		if (!self::$_instance) { // If no instance then make one
+		if (!self::$_instance) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
@@ -57,9 +50,9 @@ class DatabaseClass
 			if (isset($_SESSION['uID'])) {
 				// calculate session remaining time
 				$sessiontimer = time() - $_SESSION['time'];
-				if ($sessiontimer > $SESSION_MAX_INACTIVE_TIME) {
+				if ($sessiontimer > $SESSION_maximum_INACTIVE_TIME) {
 					//redirect to logout since session have expired
-					header('Location: '. $_SERVER['DOCUMENT_ROOT'].'/helper/logout.php');
+					header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/helper/logout.php');
 				} else //session is active continue
 				{
 					//update session time
@@ -85,7 +78,7 @@ class DatabaseClass
 		}
 	}
 
-	// Magic method clone is empty to prevent duplication of connection
+	// prevent duplication of connection
 	private function __clone()
 	{
 	}
@@ -98,7 +91,7 @@ class DatabaseClass
 
 	private $carQuery, $houseQuery, $computerQuery, $householdQuery, $otherQuery, $phoneQuery;
 
-	public function setQuery($obj, $itemId)
+	private function setQuery($obj, $itemId)
 	{
 		switch (get_class($obj)) {
 			case "CarClass":
@@ -194,8 +187,9 @@ class DatabaseClass
 				break;
 		}
 	}
-	public function getQuery($obj)
+	public function getQuery($obj, $itemId)
 	{
+		$this->setQuery($obj, $itemId);
 		switch (get_class($obj)) {
 			case "CarClass":
 				return $this->carQuery;
@@ -221,5 +215,102 @@ class DatabaseClass
 			default:
 				break;
 		}
+	}
+
+	public function queryGetTotalNumberOfItem($item, $status)
+	{
+		$sql = "";
+		switch ($item) {
+			case "car":
+				$sql = "SELECT cID FROM car LEFT JOIN carcategory ON
+					car.carCategoryID = carcategory.categoryID
+					WHERE cStatus LIKE '" . $status . "'";
+				break;
+			case "computer":
+				$sql = "SELECT dID FROM computer LEFT JOIN computercategory ON
+					computer.compCategoryID = computercategory.categoryID
+					WHERE dStatus LIKE '" . $status . "'";
+				break;
+			case "house":
+				$sql = "SELECT hID FROM house 
+				LEFT JOIN housecategory ON	house.houseCategoryID = housecategory.categoryID
+					WHERE hStatus LIKE '" . $status . "'";
+				break;
+			case "phone":
+				$sql = "SELECT pID FROM phone WHERE pStatus = '" . $status . "'";
+				break;
+			case "electronics":
+				$sql = "SELECT eID FROM electronics LEFT JOIN electronicscategory ON
+					electronics.electronicsCategoryID = electronicscategory.categoryID
+					WHERE eStatus LIKE '" . $status . "'";
+				break;
+			case "household":
+				$sql = "SELECT hhID FROM household LEFT JOIN householdcategory ON
+					household.hhCategoryID = householdcategory.categoryID
+					WHERE hhStatus LIKE '" . $status . "'";
+				break;
+			case "others":
+				$sql = "SELECT oID FROM others WHERE oStatus LIKE '" . $status . "'";
+				break;
+			default:
+				break;
+		}
+		return mysqli_num_rows($this->getConnection()->query($sql));
+	}
+
+	public function queryItemWithLimitAndDate($item, $start, $maximum, $status)
+	{
+		$sql = "";
+		switch ($item) {
+			case "car":
+				$sql = "SELECT cID FROM car LEFT JOIN carcategory ON
+				car.carCategoryID = carcategory.categoryID
+				WHERE cStatus LIKE '" . $status . "' ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
+				break;
+			case "computer":
+				$sql = "SELECT dID,UploadedDate FROM computer LEFT JOIN
+				computercategory ON
+				computer.compCategoryID = computercategory.categoryID
+				WHERE dStatus LIKE '" . $status . "'
+				ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
+				break;
+			case "house":
+				$sql = "SELECT hID,UploadedDate FROM house
+				LEFT JOIN housecategory ON
+				house.houseCategoryID = housecategory.categoryID
+				WHERE hStatus LIKE '" . $status . "' ORDER BY UploadedDate DESC LIMIT $start, $maximum";
+				break;
+			case "phone":
+				$sql = "SELECT pID,UploadedDate FROM phone
+				WHERE pStatus = '" . $status . "' ORDER BY UploadedDate DESC LIMIT $start, $maximum";
+				break;
+			case "electronics":
+				$sql = "SELECT eID FROM electronics LEFT JOIN electronicscategory ON
+				electronics.electronicsCategoryID = electronicscategory.categoryID
+				WHERE eStatus LIKE '" . $status . "'
+				ORDER BY UploadedDate DESC LIMIT $start, $maximum";
+				break;
+			case "household":
+				$sql = "SELECT hhID,UploadedDate FROM household
+				LEFT JOIN householdcategory ON
+				household.hhCategoryID = householdcategory.categoryID
+				WHERE hhStatus LIKE '" . $status . "'
+				ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
+				break;
+			case "others":
+				$sql = "SELECT oID,UploadedDate FROM others WHERE oStatus = '" . $status . "'
+				ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
+				break;
+			default:
+				break;
+		}
+		return $this->getConnection()->query($sql);
+	}
+
+	public function queryGetItemWithId($item, $number , $maximum, $id)
+	{
+		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdName();
+		$sql = "SELECT $number FROM $item WHERE $idName = $id LIMIT $maximum";
+		return $this->getConnection()->query($sql);		
 	}
 }

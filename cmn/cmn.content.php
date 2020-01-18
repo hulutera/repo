@@ -107,7 +107,7 @@ function reportedItems(){
 function countRow($status,$Id)
 {
 	if($Id !='')
-		$specific = "'$status' AND uID = '$Id'";
+		$specific = $status . " AND uID = $Id'";
 	else
 		$specific = "'$status'";
 

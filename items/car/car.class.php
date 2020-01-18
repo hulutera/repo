@@ -32,6 +32,10 @@ class CarClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "cID";
+	}
 	public function getRent()
 	{
 		return $this->rent;

@@ -6,7 +6,7 @@ require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/inc/centerColumnsPost.php';
 /**/
 require_once $documnetRootPath.'/items/car/car.class.php';
-require_once $documnetRootPath.'/items/car/carDetailed.php';
+require_once $documnetRootPath.'/items/car/car.view.class.php';
 /**/
 require_once $documnetRootPath.'/items/computer/computer.class.php';
 require_once $documnetRootPath.'/items/computer/computerDetailed.php';
