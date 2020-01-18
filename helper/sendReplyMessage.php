@@ -1,6 +1,6 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
+require_once $documnetRootPath.'/db/database.class.php';
 
 $Email_to = (isset($_GET['useremail'])) ? $_GET['useremail'] : '0' ;
 $idArray = (isset($_GET['idArray'])) ? $_GET['idArray'] : '0' ;

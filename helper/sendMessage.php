@@ -1,6 +1,6 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
+require_once $documnetRootPath.'/db/database.class.php';
 
 global $connect;
         $itemid =$_GET['itemid'];

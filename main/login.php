@@ -1,6 +1,7 @@
 <?php
 global $connect;
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+$errorShow = "";
  $errMsg = array(
      20 => "Login is success",
      21 => "Please enter your e-mail/እባክዎ የኢሜይል አድራሻ ያስገቡ።",
@@ -13,9 +14,15 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
  require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
  require_once $documnetRootPath.'/cmn/cmn.user.php';
  require_once $documnetRootPath.'/cmn/cmn.class.php';
+
+ require_once $documnetRootPath.'/db/database.class.php';
+ 
 if(isset($_POST['submit']))
 {
-	session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE)
+	{
+        session_start();
+    }
 	$result2 = userLogin($_POST['email'], $_POST['password']);
     if($result2 == 20) 
     {
@@ -55,7 +62,7 @@ if(isset($_POST['submit']))
                                         <div class="logInEmailAm">ኢ-ሜይል</div>
                                     </td>
                                     <td><input id="username" name="email"
-                                        value="<?php echo $_POST['email'];?>" type="text"
+                                        value="" type="text"
                                         autocomplete="on" placeholder="e-mail (ኢ-ሜይል)"></td>
                                 </tr>
                                 <tr>

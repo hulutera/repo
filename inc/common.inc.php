@@ -2,10 +2,8 @@
 /***/
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 /**/
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
-
+require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/inc/centerColumnsPost.php';
-require_once $documnetRootPath.'/cmn/cmn.class.php';
 /**/
 require_once $documnetRootPath.'/items/car/car.class.php';
 require_once $documnetRootPath.'/items/car/carDetailed.php';

@@ -1,7 +1,7 @@
 <?php
 global $connect;
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
+require_once $documnetRootPath.'/db/database.class.php';
 $user_id = $_GET['userId'];
 $de_key  = $_GET['de_key'];
 

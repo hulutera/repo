@@ -1,8 +1,8 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . 'hulutera/inc/headerSearchAndFooter.php';
-require_once $documnetRootPath . 'hulutera/inc/common.inc.php';
+require_once $documnetRootPath . '/inc/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/inc/common.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

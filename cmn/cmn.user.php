@@ -7,9 +7,13 @@ define("ERR_ENTER_EMAIL_AND_PASS",  23);
 define("ERR_INVALID_EMAIL",         24);
 define("ERR_WORNG_EMAIL_OR_PASS",   25);
 define("ERR_USER_NOT_EXIST",        26);
+
+require_once $documnetRootPath.'/db/database.class.php';
+
 function userLogin($email, $password)
 {
-    global $connect;
+    $connect = DatabaseClass::getInstance()->getConnection();
+    
     if(empty($email) && empty($password)) {
         return ERR_ENTER_EMAIL_AND_PASS;
     }

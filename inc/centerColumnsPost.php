@@ -6,6 +6,7 @@ static $MAX = 30;        //Maximum number of items per page
 static $maxNumOfImg = 5; //Maximum number of images	per item
 $documnetRootPath   = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/helper/pagination.php';
+require_once $documnetRootPath.'/db/database.class.php';
 /**/
 function noItemToShow()
 {
@@ -39,7 +40,8 @@ function calculatePage($count)
 /**/
 function centerColumn()
 {
-	global $connect, $emptymsg, $MAX;
+	$connect = DatabaseClass::getInstance()->getConnection();
+	global $emptymsg, $MAX;
 	$countItems = $connect -> query("SELECT * FROM latestupdate") or die(mysqli_error());
 	$totalItems = mysqli_num_rows($countItems);
 	if($totalItems)
@@ -184,7 +186,7 @@ function allItemColumn($item)
 /**/
 function calculateTotalItem($itemName)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	switch($itemName)
 	{
 		case "car":
@@ -305,7 +307,8 @@ function queryItem($itemstart, $itemName)
 /**/
 function centerSearchColumn()
 {
-	global $connect, $MAX;
+	global $MAX;
+    $connect = DatabaseClass::getInstance()->getConnection();
 	echo"<div id= \"mainColumn\">";
 
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;

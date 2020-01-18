@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/cmn/cmn.content.php';
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
+require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/helper/pagination.php';
 require_once $documnetRootPath.'/inc/userStatus.php';
 

@@ -1,11 +1,11 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/helper/mysqliConnect.php';
+require_once $documnetRootPath . '/db/database.class.php';
 function commonHeader() {
 	echo '<meta name="viewport" content="width=device-width">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
-	if (in_array($host, array('local', '127.0', '192.1'))) {
+	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
 		$add = "../..";
 	} else {
 		$add = "http://static.katomer.com";

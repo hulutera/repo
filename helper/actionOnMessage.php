@@ -1,6 +1,6 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/helper/mysqliConnect.php';
+require_once $documnetRootPath.'/db/database.class.php';
 // email to send to
 $Email_to = (isset($_GET['useremail'])) ? $_GET['useremail'] : '';
 // the message id in an array
