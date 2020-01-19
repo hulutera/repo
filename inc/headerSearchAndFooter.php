@@ -104,13 +104,13 @@ function activatetab() {
 }
 /*logo*/
 function logo() {
-	echo '<div class ="logo"><a href="../../index.php"><img src=""><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
+	echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
 	//../../img/katomer.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
+
 /*Top Right Links*/
 function topRightLinks() {
-	global $connect;
 	if (!isset($_SESSION['uID'])) {
 		echo '<div class ="toprightlink">';
 		echo '<a href="../../main/login.php" >';
@@ -134,6 +134,7 @@ function topRightLinks() {
 		echo '</div>';
 	} else {
 		$userId = $_SESSION['uID'];
+		$connect = DatabaseClass::getInstance()->getConnection();
 		$result0 = $connect->query("SELECT userName FROM user WHERE uID=$userId");
 		while ($theName = $result0->fetch_assoc()) {
 			$name = $theName['userName'];

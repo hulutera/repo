@@ -52,6 +52,7 @@ $(document).ready(function() {
 							<a href="../template/uploadTemplate.php?type=car">
 								<div id="item_name">
 									Car<br>መኪና <img id="boxIcon" src="../img/car_t1.png">
+									
 								</div>
 							</a>
 						</div>
