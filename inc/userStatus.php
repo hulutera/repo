@@ -97,7 +97,8 @@ function accountLinks()
 }
 function queryStatus($uId, $status)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
+
 	if($uId)
 	{
 		$value = "uID = ".$uId." AND";
@@ -119,55 +120,54 @@ function queryStatus($uId, $status)
 }
 function queryContactUs()
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query("SELECT * FROM contactus");
 	return mysqli_num_rows($result);
 }
 function queryReported()
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result  = $connect->query("SELECT abuseID FROM abuse ");
 	return mysqli_num_rows($result);
 }
 function queryMsgs($uId,$msgTyp)
 {
-	global $connect;
-	$result = $connect->query("SELECT uID FROM messages WHERE receiver = $uId AND status='$msgTyp' ");
+	$connect = DatabaseClass::getInstance()->getConnection();$result = $connect->query("SELECT uID FROM messages WHERE receiver = $uId AND status='$msgTyp' ");
 	return mysqli_num_rows($result);
 }
 function queryUserWithTypeWithIDAndType($uId,$userTyp)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user WHERE uID = $uId AND uRole='$userTyp'");
 	return $result;
 }
 function queryUsersExceptIdButType($uId,$userTyp)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user WHERE uID != '$uId' AND uRole='$userTyp'");
 	return $result;
 }
 function queryUserWithType($userTyp)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user WHERE uRole='$userTyp'");
 	return $result;
 }
 function queryUserWithId($uId)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user WHERE uID = '$uId'");
 	return $result;
 }
 function queryUserWithNotIdButType($uId,$userTyp)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user WHERE uID != '$uId' AND uRole='$userTyp'");
 	return $result;
 }
 function queryUser()
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$result = $connect->query(" SELECT * FROM user");
 	return $result;
 }

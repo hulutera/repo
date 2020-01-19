@@ -102,7 +102,9 @@ th {
 	font-size: 14px;
 	margin: 1% 2% 0 0;
 }
-
+.userSearch {
+	width: 60%;
+}
 .toprightlink a {
 	color: #000;
 	text-decoration: none;

@@ -2,9 +2,10 @@
 global $connect;
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
+$connect = DatabaseClass::getInstance()->getConnection();
 $key = $connect->real_escape_string($_GET['key']);
 $passRecovery = $_GET['newPass'];
-
+var_dump($GET);
 if(!empty($passRecovery) && !empty($key)){
     $result=$connect->query("SELECT uNewPassword FROM user WHERE activation='$key' LIMIT 1") or die(mysqli_error());
     if (mysqli_num_rows($result)==0) {

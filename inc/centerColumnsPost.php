@@ -48,34 +48,33 @@ function centerColumn()
 	{
 
 		$featureditems = $connect->query("SELECT * FROM latestupdate ORDER BY LatestTime DESC LIMIT 0,".$MAX);
-
 		while($dfeatureditems = $featureditems -> fetch_assoc())
 		{
-			if($dfeatureditems['cID'] != 0 && $dfeatureditems['status'] == 'active')
+			if($dfeatureditems['cID'] != 0)
 			{		
 				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['cID']);				
 			}
-			else if($dfeatureditems['hID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['hID'] != 0)
 			{
 				showHouse($dfeatureditems['hID']);
 			}
-			else if($dfeatureditems['dID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['dID'] != 0)
 			{
 				showComputer($dfeatureditems['dID']);
 			}
-			else if($dfeatureditems['pID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['pID'] != 0)
 			{
 				showPhone($dfeatureditems['pID']);
 			}
-			else if($dfeatureditems['eID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['eID'] != 0)
 			{
 				showElectronics($dfeatureditems['eID']);
 			}
-			else if($dfeatureditems['hhID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['hhID'] != 0)
 			{
 				showHousehold($dfeatureditems['hhID']);
 			}
-			else if($dfeatureditems['oID'] != 0 && $dfeatureditems['status'] == 'active')
+			else if($dfeatureditems['oID'] != 0)
 			{
 				showOthers($dfeatureditems['oID']);
 			}
@@ -125,7 +124,7 @@ function allItemColumn($item)
 		$query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, $MAX, ItemStatus::ACTIVE);
 		while($dquery = $query->fetch_assoc())
 		{
-			$id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdName()];
+			$id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
 			ObjectPool::getInstance()->getViewObject($item)->show($id);
 		}
 		$query->close();

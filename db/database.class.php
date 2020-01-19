@@ -1,7 +1,4 @@
 <?php
-/*@ dataase.class.php 
-	 * input: $obj
-	* */
 global $documnetRootPath;
 require_once $documnetRootPath . '/db/database.config.php';
 
@@ -48,12 +45,18 @@ class DatabaseClass
 			}
 			/**/
 			if (isset($_SESSION['uID'])) {
-				// calculate session remaining time
-				$sessiontimer = time() - $_SESSION['time'];
-				if ($sessiontimer > $SESSION_maximum_INACTIVE_TIME) {
-					//redirect to logout since session have expired
-					header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/helper/logout.php');
-				} else //session is active continue
+
+				if (isset($_SESSION["LAST_ACTIVITY"])) {
+					if (time() - $_SESSION["LAST_ACTIVITY"] > 1800) {
+						// last request was more than 30 minutes ago
+						session_unset();     // unset $_SESSION variable for the run-time 
+						session_destroy();   // destroy session data in storage
+						header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/helper/logout.php');
+					} else if (time() - $_SESSION["LAST_ACTIVITY"] > 60) {
+						$_SESSION["LAST_ACTIVITY"] = time(); // update last activity time stamp
+					}
+				}
+				else //session is active continue
 				{
 					//update session time
 					$_SESSION["time"] = time();
@@ -64,7 +67,7 @@ class DatabaseClass
 					if ($userId = $result->fetch_assoc()) {
 						//Check if user is Administrator for error report
 						$admin = $userId['uRole'];
-						if ($admin == $USER_TYPE) {
+						if ($admin == "admin") {
 							error_reporting(-1);
 						} else {
 							error_reporting(0);
@@ -308,8 +311,42 @@ class DatabaseClass
 
 	public function queryGetItemWithId($item, $number , $maximum, $id)
 	{
-		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdName();
+		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
 		$sql = "SELECT $number FROM $item WHERE $idName = $id LIMIT $maximum";
 		return $this->getConnection()->query($sql);		
 	}
+
+	public function querySearch($item, $number , $maximum, $status)
+	{
+		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
+		$fieldStatus = ObjectPool::getInstance()->getClassObject($item)->getStatusFieldName();
+		return $this->getConnection()->query($sql);		
+	}
+
+	public function getFieldName($item, $fieldNumber)
+	{
+		$sql = "SELECT * FROM $item";
+		return $this->getConnection()->query($sql)->fetch_field_direct($fieldNumber)->name;		
+	}
+
+	public function queryUnionAllItemWithStatus($status)
+	{		
+		$sql = "SELECT cID FROM car   WHERE cStatus  LIKE $status
+			UNION ALL
+			SELECT hID  FROM house       WHERE hStatus  LIKE $status
+			UNION ALL
+			SELECT dID  FROM computer    WHERE dStatus  LIKE $status
+			UNION ALL
+			SELECT eID  FROM electronics WHERE eStatus  LIKE $status
+			UNION ALL
+			SELECT pID  FROM phone       WHERE pStatus  LIKE $status
+			UNION ALL
+			SELECT hhID FROM household   WHERE hhStatus LIKE $status
+			UNION ALL
+			SELECT oID  FROM others      WHERE oStatus  LIKE $status";
+		
+		return $this->getConnection()->query($sql);	
+	}
+
+	
 }

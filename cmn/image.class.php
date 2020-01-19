@@ -1,7 +1,7 @@
 <?php
 class ImgHandler
 {
-	public  $nbrOfImgs = 0;
+	public  $nbrOfImgs = 1;
 	private $ctr = 1;
 	private $maxNumOfImg = 5;
 	public  $image = array();

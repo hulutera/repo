@@ -40,7 +40,7 @@ function show($query)
 	}
 }
 function reportedItems(){
-	global $connect,$noItemToShow;
+	global $noItemToShow;
 	$arrayCid  = Array();
 	$arrayHid  = Array();
 	$arrayDid  = Array();
@@ -48,9 +48,8 @@ function reportedItems(){
 	$arrayEid  = Array();
 	$arrayHHid = Array();
 	$arrayOid  = Array();
-
-	$reported = $connect->query("SELECT * FROM abuse ") or
-	die(mysqli_error());
+	$connect = DatabaseClass::getInstance()->getConnection();
+	$reported = $connect->query("SELECT * FROM abuse ");
 	$sum = mysqli_num_rows($reported);
 
 	if($sum >= 1){
@@ -111,29 +110,15 @@ function countRow($status,$Id)
 	else
 		$specific = "'$status'";
 
-	global $connect;
-	$result = $connect->query(
-			"SELECT cID FROM car         WHERE cStatus  LIKE $specific
-			UNION ALL
-			SELECT hID  FROM house       WHERE hStatus  LIKE $specific
-			UNION ALL
-			SELECT dID  FROM computer    WHERE dStatus  LIKE $specific
-			UNION ALL
-			SELECT eID  FROM electronics WHERE eStatus  LIKE $specific
-			UNION ALL
-			SELECT pID  FROM phone       WHERE pStatus  LIKE $specific
-			UNION ALL
-			SELECT hhID FROM household   WHERE hhStatus LIKE $specific
-			UNION ALL
-			SELECT oID  FROM others      WHERE oStatus  LIKE $specific");
+	$result = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($specific); 
+if($result)
+	{return  mysqli_num_rows($result);}
 
-	$sum = mysqli_num_rows($result);
-
-	return $sum;
+	return 0;
 }
 function maxQuery($status,$Id,$start,$MAX)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	if($Id !='')
 		$specific = "'$status' AND uID = '$Id'";
 	else
@@ -301,7 +286,7 @@ function display($query)
 }
 function controlPanel($hash)
 {
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	echo '<div class="controlPanel">';
 	echo '<div class="controlPanelLeft">';
 	
@@ -335,7 +320,7 @@ function controlPanel($hash)
 				}
 			}else{
 
-				echo '<table><tr><td><strong><a href="../content/userList.php">ALL USERS</a></strong></td></tr></table>';
+				echo '<table><tr><td><strong><a target="_blank" href="../content/userList.php">ALL USERS</a></strong></td></tr></table>';
 			}
 		}
 	}
@@ -409,12 +394,13 @@ function controlPanel($hash)
 	else
 	{
 
-		if(crypt(100, $hash) == $hash)
+		//if(crypt(100, $hash) == $hash)
 		{
 			echo '<div id="myform_errorloc" class="error_strings">You are logged as an Andminstrator!';
 			echo ' <br><br>This operation require extra privileges, <br><br>Please contact your Webmaster. </div>';
 		}
-		else {
+		//else 
+		{
 // 			if($noOfUser==0)
 // 			{
 // 				if($noOfMod==0)
@@ -499,4 +485,3 @@ function getSessionId()
 {
 	return $_SESSION['uID'];
 }
-?>

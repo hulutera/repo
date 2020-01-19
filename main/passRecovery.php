@@ -14,14 +14,20 @@ $error_message="";
 		$error[] = 'Your e-mail address or username is invalid. ';
 	}else
 	{
-		$username = $connect->real_escape_string($_POST['username']);
-		$email = $connect->real_escape_string($_POST['email']);
-		if(!empty($email)){
-			$result=$connect->query("SELECT * FROM user WHERE uEmail = '$email' ") or die (mysqli_error());
+		$connect = DatabaseClass::getInstance()->getConnection();
+		
+		if($_POST['username'] !== '')		
+		{
+			var_dump($_POST);	
+			$username = $connect->real_escape_string($_POST['username']);
+			$result=$connect->query("SELECT * FROM user WHERE userName = '$username' ");
 		}
-		else if(!empty($username)){
-			$result=$connect->query("SELECT * FROM user WHERE userName = '$username' ") or die (mysqli_error());
+		else if($_POST['email'] !== '')		
+		{
+			$email = $connect->real_escape_string($_POST['email']);
+			$result=$connect->query("SELECT * FROM user WHERE uEmail = '$email' ");
 		}
+		print($result);
 		if (mysqli_num_rows($result)==0){
 			$error[] = 'There is no user registered with this e-mail or username. ';
 		}

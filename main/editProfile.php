@@ -76,14 +76,11 @@ if(!isset($_SESSION['uID']))
 									echo "style=\"color:#D8000C; background-color:#FFBABA;\">";
 									echo $error_message;
 								}
-							}
-							else
-							{
-								echo ">";
-							}
+							}							
 							if(isset($_SESSION['uID']))
 							{
 								$id = $_SESSION['uID'];
+								$connect = DatabaseClass::getInstance()->getConnection();
 								$result = $connect->query("SELECT * FROM user WHERE uId = $id Limit 1");
 								$row = $result->fetch_array();
 							}

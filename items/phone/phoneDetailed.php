@@ -6,13 +6,13 @@ function showPhone($itemId)
 	global $connect,$maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
 	$objPhone = new PhoneClass;
 	$objUser  = new UserClass;
-	$objDir   = new DirectoryClass;
-	$objDB    = new DatabaseClass;
+	$objDir   = new DirectoryClass;	
 	$objCmn   = new CommonClass;
 	$objImg   = new ImgHandler;
 	$price    = new PriceClass;
-	$objDB->setQuery($objPhone,$itemId);
-	$phoneResult = $connect->query($objDB->getQuery($objPhone));
+	$dbQuery = DatabaseClass::getInstance()->getQuery($objPhone, $itemId);
+	$connect = DatabaseClass::getInstance()->getConnection();
+	$phoneResult = $connect->query($dbQuery);
 	while($phonerow = $phoneResult->fetch_assoc())
 	{
 		$objUser->setUserElements($phonerow);

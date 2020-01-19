@@ -35,7 +35,7 @@ if(isset($_POST['Save']))
 }
 
 function func_changeprevliage($privilege,$uId){
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 	$connect->query("UPDATE user SET uRole ='".$privilege."' WHERE uID = '".$uId."'");
 }
 // echo 'TEST 1:'.

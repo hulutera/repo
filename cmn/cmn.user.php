@@ -26,7 +26,7 @@ function userLogin($email, $password)
         $email_1 = $connect->real_escape_string($email);
         $password_1 = $connect->real_escape_string($password);
         $successLogin = FALSE;
-        $result = $connect->query("SELECT * FROM user WHERE uEmail = '$email_1'") or die (mysqli_error());
+        $result = $connect->query("SELECT * FROM user WHERE uEmail = '$email_1'");
         if (mysqli_num_rows($result) != 0) {
             $row = $result->fetch_array();
             if (crypt($password_1, $row['uPassword']) == $row['uPassword']){

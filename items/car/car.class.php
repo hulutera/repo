@@ -1,7 +1,8 @@
 <?php
 class CarClass
 {
-	private $id,$rent,$sell,$nego,$curr,$rate,$make,$model,$title,$mfg,$fule,$seat,$color,$gear,$info,$time,$mktTyp,$cat,$loc,$cntTyp;
+	private $_tableName = "car";
+	private $id, $rent, $sell, $nego, $curr, $rate, $make, $model, $title, $mfg, $fule, $seat, $color, $gear, $info, $time, $mktTyp, $cat, $loc, $cntTyp;
 	public function setElements($row)
 	{
 		$this->id   = $row['cID'];
@@ -31,10 +32,6 @@ class CarClass
 	public function getId()
 	{
 		return $this->id;
-	}
-	public function getIdName()
-	{
-		return "cID";
 	}
 	public function getRent()
 	{
@@ -109,10 +106,7 @@ class CarClass
 	{
 		return $this->cntTyp;
 	}
-	public function getItemName()
-	{
-		return "Car";
-	}
+
 	public function getUpldTime()
 	{
 		return $this->time;
@@ -123,16 +117,121 @@ class CarClass
 	public function printModel()
 	{
 		echo "<div class=\"MakeandModel\">";
-		if($this->make != "" AND $this->make != "000")
-		{
+		if ($this->make != "" and $this->make != "000") {
 			echo $this->make;
 		}
-		if($this->model != "" AND $this->model != "000")
-		{
-			echo "&nbsp;".$this->model;
+		if ($this->model != "" and $this->model != "000") {
+			echo "&nbsp;" . $this->model;
 		}
-		echo'</div>';
+		echo '</div>';
 	}
 
+	public function getIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 0);
+	}
+	public function getUserIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 1);
+	}
+	public function getCategoryIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 2);
+	}
+	public function getContactMethodCategoryIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 3);
+	}
+	public function getRentFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 4);
+	}
+	public function getSellFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 5);
+	}
+	public function getNegoFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 6);
+	}
+	public function getRateFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 7);
+	}
+	public function getCurrenyFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 8);
+	}
+	public function getMakeFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 9);
+	}
+	public function getModelFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 10);
+	}
+	public function getYearOfMfgFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 11);
+	}
+	public function getNrOfSeatsFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 12);
+	}
+	public function getFuelTypeFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 13);
+	}
+	public function getColorFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 14);
+	}
+	public function getGearFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 15);
+	}
+	public function getMilageFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 16);
+	}
+	public function getLocationFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 17);
+	}
+	public function getExtraInfoFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 18);
+	}
+	public function getTitleFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 19);
+	}
+	public function getUploadedDateFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 20);
+	}
+	public function getTotalViewFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 21);
+	}
+	public function getStatusFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 22);
+	}
+	public function getMarketCategoryFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 23);
+	}
+	public function getTempIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 24);
+	}
+	public function getTableTypeFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 25);
+	}
+	public function getItemName()
+	{
+		return ucwords($this->_tableName);
+	}	
 }
-?>
