@@ -25,6 +25,10 @@ class PhoneClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "pID";
+	}
 	public function getSell()
 	{
 		return $this->sell;

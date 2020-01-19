@@ -105,8 +105,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				car.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				car.cID=$itemId
-				";
+				car.cID=$itemId";
 				break;
 			case "CompClass":
 				$this->computerQuery = "SELECT * FROM computer
@@ -120,7 +119,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				computer.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				computer.dID=$itemId ";
+				computer.dID=$itemId";
 				break;
 			case "ElecClass":
 				$this->electronicsQuery = "SELECT * FROM electronics
@@ -133,7 +132,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				electronics.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				electronics.eID=$itemId ";
+				electronics.eID=$itemId";
 				break;
 			case "HouseClass":
 				$this->houseQuery = "SELECT * FROM house
@@ -146,7 +145,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				house.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				house.hID=$itemId ";
+				house.hID=$itemId";
 				break;
 			case "HouseHoldClass":
 				$this->householdQuery = "SELECT * FROM household
@@ -159,7 +158,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				household.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				household.hhID=$itemId ";
+				household.hhID=$itemId";
 				break;
 			case "PhoneClass":
 				$this->phoneQuery = "SELECT * FROM phone
@@ -181,7 +180,7 @@ class DatabaseClass
 				LEFT JOIN contactmethodcategory ON
 				others.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
-				others.oID=$itemId ";
+				others.oID=$itemId";
 				break;
 			default:
 				break;

@@ -9,6 +9,12 @@ require_once $documnetRootPath.'/helper/pagination.php';
 require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/items/items.common.class.php';
 require_once $documnetRootPath.'/items/car/car.view.class.php';
+require_once $documnetRootPath.'/items/computer/computer.view.class.php';
+require_once $documnetRootPath.'/items/electronics/electronics.view.class.php';
+require_once $documnetRootPath.'/items/phone/phone.view.class.php';
+require_once $documnetRootPath.'/items/household/household.view.class.php';
+require_once $documnetRootPath.'/items/others/others.view.class.php';
+require_once $documnetRootPath.'/items/house/house.view.class.php';
 
 /* return:
  * array $page:page number

@@ -29,6 +29,10 @@ class CompClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "dID";
+	}
 	public function getSell()
 	{
 		return $this->sell;

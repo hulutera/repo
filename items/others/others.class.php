@@ -20,6 +20,10 @@ class OtherClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "oID";
+	}
 	public function getSell()
 	{
 		return $this->sell;

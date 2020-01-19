@@ -27,21 +27,19 @@ class ObjectPool
 
         if ($item == "car") {
             return (new CarView());
-        }
-        //  } else if ($item == "house") {
-        //      return (new HouseView());
-        //  } else if ($item == "computer") {
-        //      return (new ComputerView());
-        //  } else if ($item == "electronics") {
-        //      return (new ElectronicsView());
-        //  } else if ($item == "phone") {
-        //      return (new PhoneView());
-        //  } else if ($item == "household") {
-        //      return (new HouseholdView());
-        //  } else if ($item == "others") {
-        //      return (new OthersView());
-        //  }
-        else {
+        } else if ($item == "house") {
+             return (new HouseView());
+        } else if ($item == "computer") {
+             return (new ComputerView());
+        } else if ($item == "electronics") {
+              return (new ElectronicsView());
+        } else if ($item == "phone") {
+            return (new PhoneView());
+        } else if ($item == "household") {
+            return (new HouseholdView());
+        } else if ($item == "others") {
+            return (new OthersView());
+        } else {
             return (new EmptyView());
         }
     }

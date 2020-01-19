@@ -21,6 +21,10 @@ class HouseHoldClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "hhID";
+	}
 	public function getSell()
 	{
 		return $this->sell;

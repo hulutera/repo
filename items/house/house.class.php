@@ -30,6 +30,10 @@ class HouseClass
 	public function getId(){
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "hID";
+	}
 	public function getRent(){
 		return $this->rent;
 	}

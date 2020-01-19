@@ -21,6 +21,10 @@ class ElecClass
 	{
 		return $this->id;
 	}
+	public function getIdName()
+	{
+		return "eID";
+	}
 	public function getSell()
 	{
 		return $this->sell;
