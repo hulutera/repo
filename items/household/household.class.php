@@ -2,6 +2,7 @@
 class HouseHoldClass
 {
 	private $id,$sell,$nego,$curr,$title,$loc,$info,$time,$mktTyp,$cat,$cntTyp;
+	private $_tableName = "household";
 	public function setElements($row)
 	{
 		$this->id    = $row['hhID'];
@@ -69,6 +70,10 @@ class HouseHoldClass
 	public function getUpldTime()
 	{
 		return $this->time;
+	}
+	public function getIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 0);
 	}
 }
 ?>

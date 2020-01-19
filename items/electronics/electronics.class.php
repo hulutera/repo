@@ -2,6 +2,7 @@
 class ElecClass
 {
 	private $id,$sell,$nego,$curr,$title,$loc,$info,$time,$mktTyp,$cat,$cntTyp;
+	private $_tableName = "electronics";
 	public function setElements($row)
 	{
 		$this->id    = $row['eID'];
@@ -69,6 +70,10 @@ class ElecClass
 	public function getUpldTime()
 	{
 		return $this->time;
+	}
+	public function getIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 0);
 	}
 }
 

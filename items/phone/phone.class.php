@@ -2,6 +2,7 @@
 class PhoneClass
 {
 	private $id,$sell,$nego,$curr,$make,$model,$os,$title,$loc,$info,$time,$mktTyp,$cntTyp;
+	private $_tableName = "phone";
 	public function setElements($row)
 	{
 		$this->id   = $row['pID'];
@@ -85,6 +86,10 @@ class PhoneClass
 	public function getUpldTime()
 	{
 		return $this->time;
+	}
+	public function getIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 0);
 	}
 }
 ?>

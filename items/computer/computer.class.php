@@ -2,6 +2,7 @@
 class CompClass
 {
 	private $id,$sell,$nego,$curr,$title,$make,$os,$pros,$ram,$hd,$color,$info,$time,$mktTyp,$cat,$loc,$cntTyp;
+	private $_tableName = "computer";
 	public function setElements($row)
 	{
 		$this->id   = $row['dID'];
@@ -97,6 +98,10 @@ class CompClass
 	public function getUpldTime()
 	{
 		return $this->time;
+	}
+	public function getIdFieldName()
+	{
+		return DatabaseClass::getInstance()->getFieldName($this->_tableName, 0);
 	}
 }
 ?>
