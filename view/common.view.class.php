@@ -203,18 +203,16 @@ class CommonClass
 		$numimage = $objImg->getNumOfImg();
 		$itemName = $objItem->getItemName();
 		echo "<div class=\"featured_left_side\">";
-		if($numimage == 0)
-		{
-			echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\"$objDir->IMG_NOT_AVAIL\"></div>";
-		}
 		if($numimage == 1)
 		{
-			$image[1] = str_replace('thumbnail','',$image[1]);
+			//echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\"$objDir->IMG_NOT_AVAIL\"></div>";
+			$image[0] = str_replace('thumbnail','',$image[0]);
 			$dir1 = $dir.'original/';
-			$file = $dir1.$image[1];
-			echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\".$file"."\"></div>";
+			global $documnetRootPath;
+			$file = $documnetRootPath . '/img/hulutera.PNG';//;$dir1.$image[0];
+			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="'.$file.'"></div>';;
 		}
-		if($numimage >= 2)
+		if($numimage > 1)
 		{
 			$image[1] = str_replace('thumbnail','',$image[1]);
 			$dir1 = $dir.'original/';
