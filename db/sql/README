@@ -1,0 +1,9 @@
+README
+======
+To avoid conflicts and continues changes to database access
+you can use this steps
+1.Import Database
+	katomer_DB2.sql
+2.Create new MySQL account with full privileges, use this commands
+	mysql> CREATE USER 'katomer_admin'@'localhost' IDENTIFIED BY 'Katomer2013';
+	mysql> GRANT ALL PRIVILEGES ON *.* TO 'katomer_admin'@'localhost' WITH GRANT OPTION;	
