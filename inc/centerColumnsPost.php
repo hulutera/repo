@@ -56,23 +56,23 @@ function centerColumn()
 			}
 			else if($dfeatureditems['hID'] != 0)
 			{
-				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['hID']);
+				ObjectPool::getInstance()->getViewObject("house")->show($dfeatureditems['hID']);
 			}
 			else if($dfeatureditems['dID'] != 0)
 			{
-				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['dID']);
+				ObjectPool::getInstance()->getViewObject("computer")->show($dfeatureditems['dID']);
 			}
 			else if($dfeatureditems['pID'] != 0)
 			{
-				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['pID']);
+				ObjectPool::getInstance()->getViewObject("phone")->show($dfeatureditems['pID']);
 			}
 			else if($dfeatureditems['eID'] != 0)
 			{
-				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['eID']);
+				ObjectPool::getInstance()->getViewObject("electronics")->show($dfeatureditems['eID']);
 			}
 			else if($dfeatureditems['hhID'] != 0)
 			{
-				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['hhID']);
+				ObjectPool::getInstance()->getViewObject("household")->show($dfeatureditems['hhID']);
 			}
 			else if($dfeatureditems['oID'] != 0)
 			{
