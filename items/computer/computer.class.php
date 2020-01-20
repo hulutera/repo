@@ -6,7 +6,7 @@ class CompClass
 	public function setElements($row)
 	{
 		$this->id   = $row['dID'];
-		$this->sell = $row['dPricesell'];
+		$this->sell = $row['dPrice'];
 		$this->nego = $row['dPriceNego'];
 		$this->curr = $row['currency'];
 

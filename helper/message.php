@@ -34,7 +34,7 @@ function boxes($msgid,$userEmail)
 	echo'<div id="divmsgSendClose" class="divmsgSendClose">';
 	echo"<input type=\"button\"  class =\"sendReply\" onclick= \"sendReplyMsg('$userEmail','$youremail','$msgid')\" value =\"Send\">";
 	echo'<a  href="javascript:void(0)" onclick="closeReplyBox('.$msgid.')" >';
-	echo'<img class="msgclose" style="padding-top:8px;" src="http://static.katomer.com/img/del.jpg" /></a>';
+	echo'<img class="msgclose" style="padding-top:8px;" src="http://static.hulutera.com/img/del.jpg" /></a>';
 	echo'</div>';
 	echo'<div id="emptydiv_for_divAds"></div>';
 	echo'</div>';
@@ -106,7 +106,7 @@ function messageList($NumOfmsg,$mailtype)
 		echo'<div id="txtMsgSent'.$msgid.'" class="txtMsgSent"> <span>The Message has been sent.</span></div>';
 		echo'<div id="msgReplyClose'.$msgid.'" class="msgReplyClose">';
 		echo'<a class="msgReply"  href="javascript:void(0)" onclick="showReplyBox('.$msgid.')">Reply</a>';
-		echo'<a  href="javascript:void(0)" onclick="closeMsgBox('.$msgid.')"><img class="msgClose" src="http://static.katomer.com/img/del.jpg"/></a>';
+		echo'<a  href="javascript:void(0)" onclick="closeMsgBox('.$msgid.')"><img class="msgClose" src="http://static.hulutera.com/img/del.jpg"/></a>';
 		echo'</div>';
 		echo'<div id="emptydiv_for_divAds"></div>';
 		echo'</div>';

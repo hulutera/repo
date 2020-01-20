@@ -46,7 +46,7 @@ function centerColumn()
 	$totalItems = mysqli_num_rows($countItems);
 	if($totalItems)
 	{
-
+		
 		$featureditems = $connect->query("SELECT * FROM latestupdate ORDER BY LatestTime DESC LIMIT 0,".$MAX);
 		while($dfeatureditems = $featureditems -> fetch_assoc())
 		{
@@ -56,27 +56,27 @@ function centerColumn()
 			}
 			else if($dfeatureditems['hID'] != 0)
 			{
-				showHouse($dfeatureditems['hID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['hID']);
 			}
 			else if($dfeatureditems['dID'] != 0)
 			{
-				showComputer($dfeatureditems['dID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['dID']);
 			}
 			else if($dfeatureditems['pID'] != 0)
 			{
-				showPhone($dfeatureditems['pID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['pID']);
 			}
 			else if($dfeatureditems['eID'] != 0)
 			{
-				showElectronics($dfeatureditems['eID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['eID']);
 			}
 			else if($dfeatureditems['hhID'] != 0)
 			{
-				showHousehold($dfeatureditems['hhID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['hhID']);
 			}
 			else if($dfeatureditems['oID'] != 0)
 			{
-				showOthers($dfeatureditems['oID']);
+				ObjectPool::getInstance()->getViewObject("others")->show($dfeatureditems['oID']);
 			}
 		}
 		$calculatePageArray = calculatePage($totalItems);

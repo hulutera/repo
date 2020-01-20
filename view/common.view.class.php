@@ -330,4 +330,3 @@ class CommonClass
 	const THUMBNAIL = "thumbnail";
 	const SCALE     = 45;
 }
-?>

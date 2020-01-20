@@ -271,13 +271,13 @@ th {
 }
 
 #sidelist li a:hover {
-	background-color: #c7c7c7;
+	background-color:orange;/* #c7c7c7;*/
 	height: 35px;
 	background-image: none;
 }
 
 #sidelist li a.active {
-	background-color: #0072C6;
+	background-color:#050598;/* #0072C6;*/
 	color: #fff;
 	height: 35px;
 	background-image: none;
@@ -1463,10 +1463,11 @@ div.clear {
 
 .showbutton_hide {
 	float: right;
+	background-color: orange;
 }
 
 .hide,.show {
-	background-color: #1E82CC;
+	background-color:#050598a6;/* #1E82CC;*/
 	border: 1px solid #fff;
 	display: inline-block;
 	color: #fff;
@@ -2862,6 +2863,7 @@ input:focus {
 
 th {
 	text-decoration: none;
+	font-size: xx-large;
 }
 
 .cpheader {

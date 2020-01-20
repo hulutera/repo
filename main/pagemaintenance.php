@@ -1,7 +1,7 @@
 <?php 
 
 function logo(){
-	echo '<div class ="logo"><a href="../main/pagemaintenance.php"><img src="http://static.katomer.com/img/katomer_logo.png"></a></div>';
+	echo '<div class ="logo"><a href="../main/pagemaintenance.php"><img src="http://static.hulutera.com/img/katomer_logo.png"></a></div>';
 	
 }
 
@@ -34,8 +34,8 @@ function maintenancePage(){
 <head>
 <title>Katomer | ካቶመር</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-<link rel="shortcut icon" href="http://static.katomer.com/img/katomer_xx.ico" />
-<link rel="stylesheet" href="http://static.katomer.com/css/main.css">
+<link rel="shortcut icon" href="http://static.hulutera.com/img/katomer_xx.ico" />
+<link rel="stylesheet" href="http://static.hulutera.com/css/main.css">
 </head>
 <body>
 	<div id="whole">

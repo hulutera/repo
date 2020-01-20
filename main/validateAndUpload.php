@@ -794,6 +794,7 @@ function otherUploadfn()
 					'&contact='.$contact);
 			exit;
 		}
+		$connect = DatabaseClass::getInstance()->getConnection();
 		//the fields should be taken care of accordingly
 		$result= $connect->query("INSERT INTO others (
 				uID,oPricesell,oPriceNego,currency,
@@ -803,7 +804,7 @@ function otherUploadfn()
 				VALUES(
 				'$userId','$price','$nego','$currency',
 				'$contact','$region','$description','$title',
-				'','$status','$mrktCat',
+				0,'$status','$mrktCat',
 				'$tempId')")
 				or die(mysqli_error($connect));
 		if($result)

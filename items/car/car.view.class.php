@@ -56,7 +56,7 @@ class CarView
 			echo "<div class=\"divClassified\">";
 			echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
 			echo "<div class=\"col1\">";
-			if ($numimage == 0) {
+			if ($numimage == 1) {
 				echo "<a href=\"javascript:void(0)\" onclick=\"swap($carId,'$itemName')\" >";
 				echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
 			} else {
