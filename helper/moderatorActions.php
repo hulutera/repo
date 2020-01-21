@@ -236,7 +236,7 @@ else if ($actiontype == 'show') {
 	unset ( $arrayId );
 }
 function func_activate($item, $itmeId, $itemIdName, $uid, $itemStatus, $link, $time) {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	$connect->query ( "UPDATE $item SET $itemStatus = 'active' WHERE $itemIdName = $itmeId");
 	$latest       = 'LatestTime';
 	$latestStatus = 'active';
@@ -245,7 +245,7 @@ function func_activate($item, $itmeId, $itemIdName, $uid, $itemStatus, $link, $t
 	return $result;
 }
 function func_delete($item, $itemId, $itemIdName, $uid, $statusName, $status, $link) {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	$connect->query ( "UPDATE $item SET $statusName = '$status' WHERE $itemIdName = $itemId" );
 	$connect->query ( "DELETE FROM latestupdate WHERE $itemIdName = $itemId" );
 	$result = groupQueryfunction ( $link, $uid );
@@ -255,7 +255,7 @@ function func_delete($item, $itemId, $itemIdName, $uid, $statusName, $status, $l
 	return $result;
 }
 function func_remove($item, $itemId, $itemIdName, $uid, $link){
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	global $documnetRootPath;
 	$connect->query ( "DELETE FROM $item WHERE $itemIdName = $itemId" );
 	$result = groupQueryfunction ($link, $uid);
@@ -278,7 +278,7 @@ function rrmdir($dir) {
 	}
 }
 function groupQueryfunction($link, $uid) {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	if ($link == 'userPendingNumb') {
 		$count = groupItemCount ( 'pending', $uid );
 	} else if ($link == 'userActiveNumb') {
@@ -295,7 +295,7 @@ function groupQueryfunction($link, $uid) {
 	return $count;
 }
 function groupItemCount($queryCondition, $uid) {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	$resultDeleted = $connect->query ( "
 			SELECT cID FROM car WHERE cStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
 			SELECT hID FROM house WHERE hStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL

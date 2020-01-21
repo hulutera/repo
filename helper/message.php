@@ -3,6 +3,8 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/helper/pagination.php';
 
+$connect = DatabaseClass::getInstance()->getConnection();
+
 $mailtype = (isset($_GET['mail_type'])) ? $_GET['mail_type'] : '%' ;
 $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 
@@ -119,7 +121,7 @@ function message()
 	$MAX = 30;
 	$mailtype = (isset($_GET['mail_type'])) ? $_GET['mail_type'] : '%' ;
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-	global $connect;
+	$connect = DatabaseClass::getInstance()->getConnection();
 
 	echo'<div id= "mainColumn">';
 	$messagemsg = $connect->query("SELECT * FROM contactus WHERE messageStatus LIKE '$mailtype'");
