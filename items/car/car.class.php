@@ -1,7 +1,10 @@
 <?php
 class CarClass
 {
-	private $_tableName = "car";
+	function __construct()
+	{
+		$this->_tableName = "car";
+	}
 	private $id, $rent, $sell, $nego, $curr, $rate, $make, $model, $title, $mfg, $fule, $seat, $color, $gear, $info, $time, $mktTyp, $cat, $loc, $cntTyp;
 	public function setElements($row)
 	{
@@ -233,5 +236,5 @@ class CarClass
 	public function getItemName()
 	{
 		return ucwords($this->_tableName);
-	}	
+	}
 }

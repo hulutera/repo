@@ -13,7 +13,6 @@ class HouseholdView
         //creating an object
         global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objHouseHold  = new HouseHoldClass;
-        $objUser       = new UserClass;
         $objDir        = new DirectoryClass;
         $objCmn        = new CommonClass;
         $objImg        = new ImgHandler;
@@ -23,12 +22,8 @@ class HouseholdView
 		$householdResult = $connect->query($dbQuery);
         while($householdrow = $householdResult->fetch_assoc())
         {
-            $objUser->setUserElements($householdrow);
-            $userName  = $objUser->getUserName();
-            $userPhone = $objUser->getUserPhone();
-            $userEmail = $objUser->getUserEmail();
-            $userRole  = $objUser->getUserRole();
-            $userId    = $objUser->getUserId();
+            $objUser       = new UserClass($householdrow);
+
             //
             $objHouseHold->setElements($householdrow);
             $householdId   = $objHouseHold->getId();
@@ -103,22 +98,22 @@ class HouseholdView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objHouseHold);
             $price->printPrice($objHouseHold);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$householdId,$itemName,$userName,$userPhone);
+            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$householdId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$householdId,$itemName);
             $objCmn->printReportReq($uniqueId,$householdId,$itemName);
-            $objCmn->printMailForm($uniqueId,$householdId,$itemName,$userEmail);
+            $objCmn->printMailForm($uniqueId,$householdId,$itemName,$objUser);
             $objCmn->printReportCfrm($uniqueId,$householdId,$itemName);
             echo "</div>"; //end_featured_right_side
             echo "</div>"; //end_featured_detailed
             echo "</div>"; //end_divDetail_*
             echo "</div>"; //end_divClassified
+            unset($objUser);
         }
         $householdResult->close();
         unset($objImg);
         unset($objCmn);
         unset($objDB);
-        unset($objDir);
-        unset($objUser);
+        unset($objDir);        
         unset($objHouseHold);
     }
 }
