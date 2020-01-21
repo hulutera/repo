@@ -13,7 +13,6 @@ class PhoneView
 		//creating an object
 		global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
 		$objPhone = new PhoneClass;
-		$objUser  = new UserClass;
 		$objDir   = new DirectoryClass;
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
@@ -23,12 +22,7 @@ class PhoneView
 		$phoneResult = $connect->query($dbQuery);
 		while($phonerow = $phoneResult->fetch_assoc())
 		{
-			$objUser->setUserElements($phonerow);
-			$userName  = $objUser->getUserName();
-			$userPhone = $objUser->getUserPhone();
-			$userEmail = $objUser->getUserEmail();
-			$userRole  = $objUser->getUserRole();
-			$userId    = $objUser->getUserId();
+			$objUser  = new UserClass($phonerow);					
 			//
 			$objPhone->setElements($phonerow);
 			$phoneId = $objPhone->getId();
@@ -102,23 +96,22 @@ class PhoneView
 			$objCmn->printTitle($title,$itemName);
 			$objCmn->printSpecifics($objPhone);
 			$price->printPrice($objPhone);
-			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$phoneId,$itemName,$userName,$userPhone);
+			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$phoneId,$itemName,$objUser);
 			$objCmn->printMailCfrm($uniqueId,$phoneId,$itemName);
 			$objCmn->printReportReq($uniqueId,$phoneId,$itemName);
-			$objCmn->printMailForm($uniqueId,$phoneId,$itemName,$userEmail);
+			$objCmn->printMailForm($uniqueId,$phoneId,$itemName,$objUser);
 			$objCmn->printReportCfrm($uniqueId,$phoneId,$itemName);
 			echo "</div>"; //end_featured_right_side
 			echo "</div>"; //end_featured_detailed
 			echo "</div>"; //end_divDetail_*
 			echo "</div>"; //end_divClassified
+			unset($objUser);
 		}
 		$phoneResult->close();
 		unset($objImg);
 		unset($objCmn);
 		unset($objDB);
 		unset($objDir);
-		unset($objUser);
 		unset($objPhone);
 	}
 }
-?>

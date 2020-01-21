@@ -14,7 +14,6 @@ class ElectronicsView
         //creating an object
         global $connect,$maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objElec  = new ElecClass;
-        $objUser  = new UserClass;
         $objDir   = new DirectoryClass;
         $objCmn   = new CommonClass;
         $objImg   = new ImgHandler;
@@ -24,12 +23,7 @@ class ElectronicsView
 		$electronicsResult = $connect->query($dbQuery);
         while($electronicsrow = $electronicsResult->fetch_assoc())
         {
-            $objUser->setUserElements($electronicsrow);
-            $userName  = $objUser->getUserName();
-            $userPhone = $objUser->getUserPhone();
-            $userEmail = $objUser->getUserEmail();
-            $userRole  = $objUser->getUserRole();
-            $userId    = $objUser->getUserId();
+            $objUser  = new UserClass($electronicsrow);
             //
             $objElec->setElements($electronicsrow);
             $electronicsId = $objElec->getId();
@@ -103,23 +97,22 @@ class ElectronicsView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objElec);
             $price->printPrice($objElec);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$electronicsId,$itemName,$userName,$userPhone);
+            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$electronicsId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$electronicsId,$itemName);
             $objCmn->printReportReq($uniqueId,$electronicsId,$itemName);
-            $objCmn->printMailForm($uniqueId,$electronicsId,$itemName,$userEmail);
+            $objCmn->printMailForm($uniqueId,$electronicsId,$itemName,$objUser);
             $objCmn->printReportCfrm($uniqueId,$electronicsId,$itemName);
             echo "</div>"; //end_featured_right_side
             echo "</div>"; //end_featured_detailed
             echo "</div>"; //end_divDetail_*
             echo "</div>"; //end_divClassified
+            unset($objUser);
         }
         $electronicsResult->close();
         unset($objImg);
         unset($objCmn);
         unset($objDB);
         unset($objDir);
-        unset($objUser);
         unset($objElec);
     }
 }
-?>

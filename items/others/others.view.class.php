@@ -13,7 +13,6 @@ class OthersView
         //creating an object
         global $connect,$maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objOther = new OtherClass;
-        $objUser  = new UserClass;
         $objDir   = new DirectoryClass;
         $objCmn   = new CommonClass;
         $objImg   = new ImgHandler;
@@ -23,12 +22,7 @@ class OthersView
 		$otherResult = $connect->query($dbQuery);
         while($otherrow = $otherResult->fetch_assoc())
         {
-            $objUser->setUserElements($otherrow);
-            $userName  = $objUser->getUserName();
-            $userPhone = $objUser->getUserPhone();
-            $userEmail = $objUser->getUserEmail();
-            $userRole  = $objUser->getUserRole();
-            $userId    = $objUser->getUserId();
+            $objUser  = new UserClass($otherrow);
             //
             $objOther->setElements($otherrow);
             $otherId = $objOther->getId();
@@ -102,22 +96,23 @@ class OthersView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objOther);
             $price->printPrice($objOther);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$otherId,$itemName,$userName,$userPhone);
+            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$otherId,$itemName,$objUser );
             $objCmn->printMailCfrm($uniqueId,$otherId,$itemName);
             $objCmn->printReportReq($uniqueId,$otherId,$itemName);
-            $objCmn->printMailForm($uniqueId,$otherId,$itemName,$userEmail);
+            $objCmn->printMailForm($uniqueId,$otherId,$itemName,$objUser);
             $objCmn->printReportCfrm($uniqueId,$otherId,$itemName);
             echo "</div>"; //end_featured_right_side
             echo "</div>"; //end_featured_detailed
             echo "</div>"; //end_divDetail_*
             echo "</div>"; //end_divClassified
+
+            unset($objUser);
         }
         $otherResult->close();
         unset($objImg);
         unset($objCmn);
         unset($objDB);
-        unset($objDir);
-        unset($objUser);
+        unset($objDir);        
         unset($objOther);
     }
 }
