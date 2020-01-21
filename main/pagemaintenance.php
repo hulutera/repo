@@ -1,7 +1,7 @@
 <?php 
 
 function logo(){
-	echo '<div class ="logo"><a href="../main/pagemaintenance.php"><img src="http://static.hulutera.com/img/katomer_logo.png"></a></div>';
+	echo '<div class ="logo"><a href="../main/pagemaintenance.php"><img src="http://static.hulutera.com/img/hulutera_logo.png"></a></div>';
 	
 }
 
@@ -20,7 +20,7 @@ function maintenancePage(){
 			<div>'.$messageAm.'</div>
 		    </div>		 
 			<div id="maintenancefooter">
-			<div>Katomer Team</div>
+			<div>hulutera Team</div>
 			<div>የካቶመር ቡድን</div>
 			</div>
 			</div>
@@ -32,9 +32,9 @@ function maintenancePage(){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Katomer | ካቶመር</title>
+<title>hulutera | ካቶመር</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-<link rel="shortcut icon" href="http://static.hulutera.com/img/katomer_xx.ico" />
+<link rel="shortcut icon" href="http://static.hulutera.com/img/hulutera_xx.ico" />
 <link rel="stylesheet" href="http://static.hulutera.com/css/main.css">
 </head>
 <body>

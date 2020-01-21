@@ -60,7 +60,7 @@ global $connect;
 	  $iteName=strtolower($itemtype);	
 	  $yourmsg = wordwrap($yourmsg, 70, "\r\n");
 	  $header = "From: ". $yourname . " <" . $youremail . ">\r\n";
-	  $yourmsg .= "To see the item click the link/ንብረቱን ለማየት ይህንን ይጫኑ: www.katomer.com/template/itemTemplate.php?type=$iteName&Id=$itemid";
+	  $yourmsg .= "To see the item click the link/ንብረቱን ለማየት ይህንን ይጫኑ: www.hulutera.com/template/itemTemplate.php?type=$iteName&Id=$itemid";
       mail($uemail, $subject, $yourmsg, $header);
 
 

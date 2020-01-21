@@ -47,7 +47,7 @@ $error_message="";
         $result=$connect->query("UPDATE user SET uNewPassword = '$hashed_newpassword1', activation = '$activation' WHERE uID = '$user_id'") or die (mysqli_error());
 		
 		//Email out the information
-		$recoveryLink= "http://katomer.com/helper/activate.php?key=".$activation."&newPass=yes";
+		$recoveryLink= "http://hulutera.com/helper/activate.php?key=".$activation."&newPass=yes";
 		$subject = "Your New Password"." (አዲሱ የሚስጥር ቃል)";
 		$messageEn.= "Dear Customer\n";
 		$messageEn.= "A password recovery was requested for your account. Please click on the following link to recover your password.";
@@ -55,8 +55,8 @@ $error_message="";
 		$messageEn.= "New-password: ".$newpassword1."\n\n";
 		$messageEn.= "Please remember that after you have logged in with this new password you can always change it using Change Password link.\n\n";
 		$messageEn.= "This email was automatically generated. If you did not request a password recovery please contact the administrator ";
-		$messageEn.= "using email admin@katomer.com \n";
-		$messageEn.= "\nSincerely,\nThe Katomer Team\n";
+		$messageEn.= "using email admin@hulutera.com \n";
+		$messageEn.= "\nSincerely,\nThe hulutera Team\n";
 		$gap = "-----------------------------------------------------------------------------\n";
 		$messageAmh= "ውድ ደንበኛ\n";
 		$messageAmh.= "አዲሲ የሚስጥር ቃል ለመቀየር ጠይቀውን ነበር በዚህ መሰረት የሚከተለውን መሲብ ይጫኑ \n";
@@ -64,14 +64,14 @@ $error_message="";
 		$messageAmh.= "አዲሱ የሚስጥር ቃል: ".$newpassword1."\n\n";
 		$messageAmh.= "ማስታወሻ በአዲሱ የሚስጥር ቃል ተጠቅመው ከገቡ በኃላ የሚስጥር ቃል ለመቀየር የሚለውን መሲብ በመጠቀም መቀየር ይችላሉ\n";
 		$messageAmh.= "ይህ መልዕክት የተላከው ራስሰር(አውቶማቲክ) በሆነ የመልዕክት መላከያ መንገድ ስለሆነ የሚስጥር ቃሉን ለመቀየር የጠየቁ እርስዎ ካልሆኑ ";
-		$messageAmh.= "በዚህ የኢሜይል አድራሻ ይላኩልን  admin@katomer.com\n";
+		$messageAmh.= "በዚህ የኢሜይል አድራሻ ይላኩልን  admin@hulutera.com\n";
 		$messageAmh.= "\nከሰላምታ ጋር \nየካቶመር አስተዳደር\n";
 
 		//combine Amharic and English message
 		$message = $messageEn.$gap.$messageAmh;
 
 		// Send mail 
-		$isMailDelivered = mail($email, $subject, $message, 'From:admin@katomer.com');
+		$isMailDelivered = mail($email, $subject, $message, 'From:admin@hulutera.com');
 
 		//Check if mail Delivered or die
 		if(!$isMailDelivered)

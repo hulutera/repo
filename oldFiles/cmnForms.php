@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-<title>Katomer ካቶመር</title>
+<title>hulutera ካቶመር</title>
 <script type='text/javascript'
 	src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
 <script type="text/javascript">
@@ -343,8 +343,8 @@ a {
 												report suspected fraud/የማጭበርበር ድርጊት ሪፖርት ማረግ ፈልጋለው </
 												option>
 											
-											<option value="Feedback and suggestions for katomer">
-												Feedback and suggestions for katomer/ለካቶመር አስተያየት መስጠት
+											<option value="Feedback and suggestions for hulutera">
+												Feedback and suggestions for hulutera/ለካቶመር አስተያየት መስጠት
 												ፈልጋለው</ option>
 											
 											<option value="General">General comment/አጠቃላይ አስተያየት</option>

@@ -29,7 +29,7 @@ function userLogin($email, $password)
         $result = $connect->query("SELECT * FROM user WHERE uEmail = '$email_1'");
         if (mysqli_num_rows($result) != 0) {
             $row = $result->fetch_array();
-            if (crypt($password_1, $row['uPassword']) == $row['uPassword']){
+            if ($password_1, $row['uPassword']) == $row['uPassword']){
                 $successLogin = TRUE;
             }
             else if($row['activation'] != NULL) { //Allow login before activation for recovered password    

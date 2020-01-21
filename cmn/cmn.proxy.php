@@ -58,10 +58,10 @@ function contact()
 			}
 			else
 			{
-				$message="This is a confirmation mail from www.katomer.com. We appreciate you for taking time to contact us.\n\n
-						Sincerely,Katomer Admin\n\n";
-				$message.="ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.katomer.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።\n\n ከካቶመር አስተዳደር";
-				$isMailDelivered = mail($email, 'Contact confirmation', $message, 'From:noreply@katomer.com');
+				$message="This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n
+						Sincerely,hulutera Admin\n\n";
+				$message.="ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.hulutera.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።\n\n ከካቶመር አስተዳደር";
+				$isMailDelivered = mail($email, 'Contact confirmation', $message, 'From:noreply@hulutera.com');
 
 				if(!$isMailDelivered)
 				{
@@ -124,7 +124,7 @@ function contact()
 	echo '<option value="Technical problems in ad"> Technical problems in Ad/የቴክኒክ ችግር</ option>';
 	echo '<option value="Problems with picture"> Problems with picture/ምስል በደንብ አይታይም</ option>';
 	echo '<option value="I want to report suspected fraud"> I want to report suspected fraud/የማጭበርበር ድርጊት ሪፖርት ማረግ ፈልጋለው </ option>';
-	echo '<option value="Feedback and suggestions for katomer"> Feedback and suggestions for katomer/ለካቶመር አስተያየት መስጠት ፈልጋለው</ option>';
+	echo '<option value="Feedback and suggestions for hulutera"> Feedback and suggestions for hulutera/ለካቶመር አስተያየት መስጠት ፈልጋለው</ option>';
 	echo '<option value="General">General comment/አጠቃላይ አስተያየት</option>';
 	echo '</select>';
 	echo '</td>';
@@ -151,7 +151,7 @@ function aboutUs()
 			<div id="aboutUsEnglish">
 			<p>
 			<p class="aboutus">
-			Katomer.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. Katomer is designed and developed for Ethiopian market with prosperity of large expansion. On Katomer, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:
+			hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:
 			<li class="aboutUsli"><a href="../items/car/car.php">Cars</a></li>
 			<li class="aboutUsli"><a href="../items/house/house.php">Houses</a></li>
 			<li class="aboutUsli"><a href="../items/phone/phone.php">Phones</a></li>
@@ -162,14 +162,14 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">
-			Katomer is designed to fit the needs of the society that we grow up with.  It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.
+			hulutera is designed to fit the needs of the society that we grow up with.  It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.
 			</p>
 			<br>
 			<p class="aboutus">
 			You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.
 			</p>
 			<br>
-			<p class="aboutus">We take our users very seriously and attend their concern with the highest priority, therefore on Katomer, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,
+			<p class="aboutus">We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,
 			<li class="aboutUsli">•for any compliant , improvements or other issues you can use <a href="../../template/proxyTemplate.php?type=contact">Contact Us</a></li>
 			<li class="aboutUsli">•for inappropriate items you can “Report” button </li>
 			<li class="aboutUsli">•If you need help, use <a href="../../template/proxyTemplate.php?type=help">Help</a> </li>
@@ -177,10 +177,10 @@ function aboutUs()
 
 			<br>
 			<p class="aboutus">
-			Finally, we are happy and proud to present Katomer to all Ethiopians and it is up to you to use it as much as you want. Katomer is FREE!
+			Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!
 			</p>
 			<p class="aboutus">
-			Katomer Admin/
+			hulutera Admin/
 			</p>
 			</div>
 			</p>
@@ -241,7 +241,7 @@ function termAndConditions()
 			onclick="englishTerms()" />
 			<div id="termsDivEnglish" style="background-color:#dfefff;">
 			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:14px"> Terms and Conditions</span></br></br>
-			Welcome to katomer.  This website is owned and operated by katomer.  By visiting our website and accessing the information, resources, services, products, and tools we provide, you understand and agree to accept and adhere to the following terms and conditions as stated in this policy (hereafter referred to as "User Agreement").
+			Welcome to hulutera.  This website is owned and operated by hulutera.  By visiting our website and accessing the information, resources, services, products, and tools we provide, you understand and agree to accept and adhere to the following terms and conditions as stated in this policy (hereafter referred to as "User Agreement").
 			<br /><br />
 			This agreement is in effect as of Sep 01, 2013.
 			<br /><br />
@@ -269,13 +269,13 @@ function termAndConditions()
 			i. Is illegal, threatening, defamatory, abusive, harassing, degrading, intimidating, fraudulent, deceptive, invasive, racist, or contains any type of suggestive, inappropriate, or explicit language;<br />
 			ii. Infringes on any trademark, patent, trade secret, copyright, or other proprietary right of any party;<br />
 			Iii. Contains any type of unauthorized or unsolicited advertising;<br />
-			Iiii. Impersonates any person or entity, including any katomer employees or representatives.<br />
+			Iiii. Impersonates any person or entity, including any hulutera employees or representatives.<br />
 			<br /><br />
 			We have the right at our sole discretion to remove any content that, we feel in our judgment does not comply with this User Agreement, along with any content that we feel is otherwise offensive, harmful, objectionable, inaccurate, or violates any 3rd party copyrights or trademarks. We are not responsible for any delay or failure in removing such content. If you post content that we choose to remove, you hereby consent to such removal, and consent to waive any claim against us.
 			<br /><br />
-			h. We do not assume any liability for any content posted by you or any other 3rd party users of our website.  However, any content posted by you using any open communication tools on our website, provided that it doesn"t violate or infringe on any 3rd party copyrights or trademarks, becomes the property of katomer, and as such, gives us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce, modify, adapt, translate, publish, publicly display and/or distribute as we see fit.  This only refers and applies to content posted via open communication tools as described, and does not refer to information that is provided as part of the registration  process, necessary in order to use our Resources.
+			h. We do not assume any liability for any content posted by you or any other 3rd party users of our website.  However, any content posted by you using any open communication tools on our website, provided that it doesn"t violate or infringe on any 3rd party copyrights or trademarks, becomes the property of hulutera, and as such, gives us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce, modify, adapt, translate, publish, publicly display and/or distribute as we see fit.  This only refers and applies to content posted via open communication tools as described, and does not refer to information that is provided as part of the registration  process, necessary in order to use our Resources.
 			<br /><br />
-			i. You agree to indemnify and hold harmless katomer and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfill any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defense of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
+			i. You agree to indemnify and hold harmless hulutera and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfill any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defense of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Warranties</span>
 			<br /><br />
 			By using our website, you understand and agree that all Resources we provide are "as is" and "as available".  This means that we do not represent or warrant to you that:<br />
@@ -284,21 +284,21 @@ function termAndConditions()
 			iii) the information obtained by using our Resources will be accurate or reliable, and<br />
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Liability</span>
 			<br /><br />
-			Katomer will not be liable for any direct, indirect, incidental, consequential or exemplary loss or damages which may be incurred by you as a result of using our Resources, or as a result of any changes, data loss or corruption, cancellation, loss of access, or downtime to the full extent that applicable limitation of liability laws apply.
+			hulutera will not be liable for any direct, indirect, incidental, consequential or exemplary loss or damages which may be incurred by you as a result of using our Resources, or as a result of any changes, data loss or corruption, cancellation, loss of access, or downtime to the full extent that applicable limitation of liability laws apply.
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">Copyrights/Trademarks</span>
 			<br /><br />
-			All content and materials available on katomer, including but not limited to text, graphics, website name, code, images and logos are the intellectual property of katomer, and are protected by applicable copyright and trademark law.  Any inappropriate use, including but not limited to the reproduction, distribution, display or transmission of any content on this site is strictly prohibited, unless specifically authorized by katomer.
+			All content and materials available on hulutera, including but not limited to text, graphics, website name, code, images and logos are the intellectual property of hulutera, and are protected by applicable copyright and trademark law.  Any inappropriate use, including but not limited to the reproduction, distribution, display or transmission of any content on this site is strictly prohibited, unless specifically authorized by hulutera.
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">Termination of Use</span>
 			<br /><br />
 			You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your relationship and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
 			<br /><br />
-			If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@katomer.com or you can send us a message using contact us.
+			If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us.
 			</div>
 
 
 			<div id="termsDivAmharic" style="background-color:#dfefff; ">
 			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:17px"> የመተዳደርያ ደንብ </span></br></br>
-			ወደ katomer.com እንኳን በደህና መጡ። katomer.com ንብረትነቱ የካቶመር ነው።
+			ወደ hulutera.com እንኳን በደህና መጡ። hulutera.com ንብረትነቱ የካቶመር ነው።
 			ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ፤
 			የሚከተለውን የመተዳደርያ ደንብ ተረድተው እና ተስማምተው ነው(ስምምነቱንም የተጠቃሚ ስምምነት በሚል እንገልጸዋለን)።
 			<br /><br />
@@ -355,7 +355,7 @@ function termAndConditions()
 			<br /><br />
 			ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ካቶመር በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
 			<br /><br />
-			በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@katomer.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።
+			በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።
 			</div>
 			</div>
 
@@ -375,7 +375,7 @@ function privacyPolicy()
 			Privacy Policy
 			</p>
 			<p class="aboutus">
-			This privacy policy sets out how katomer uses and protects any information that you give katomer when you use this website.katomer are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. katomer may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.
+			This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.
 			</p>
 			<p class="aboutus"> What we collect
 			<li class="aboutUsli">•Your Name</li>
@@ -396,7 +396,7 @@ function privacyPolicy()
 			Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.
 			</p>
 			<p class="aboutus">
-			Katomer Admin
+			hulutera Admin
 			</p>
 			</div>
 
@@ -1028,8 +1028,8 @@ function register()
 					die('Could not insert into database: '.mysqli_error());
 				}else{
 					$message="To activate your account, please click on the link:\n\n";
-					$message.="http://www.katomer.com/helper/activate.php?key=".$activation;
-					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@katomer.com');
+					$message.="http://www.hulutera.com/helper/activate.php?key=".$activation;
+					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@hulutera.com');
 					redirect("../main/prompt.php?type=1");
 				}
 			}else{
@@ -1045,7 +1045,7 @@ function register()
 			$error_message.="</div>";
 		}
 
-		if ($http_referer=='http://www.katomer.com/main/prompt.php?type=9')
+		if ($http_referer=='http://www.hulutera.com/main/prompt.php?type=9')
 		{
 			ob_start();
 			header('Location: ../main/upload.php');
@@ -1132,7 +1132,7 @@ function registerX()
 {
 	echo '<form action="" method="post">
 			<fieldset>
-			<legend>Join our Katomer</legend>
+			<legend>Join our hulutera</legend>
 			<p></p>
 			<ol>
 			<li>

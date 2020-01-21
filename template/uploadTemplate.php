@@ -20,7 +20,7 @@ require_once $documnetRootPath.'/cmn/cmn.upload.php';
 <script type="text/javascript" src="../../js/upload.min.js"></script>
 <script type="text/javascript" src="../../js/imgUpload.min.js"></script>
 <script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>
-<!-- <script type="text/javascript" src="../../js/katomer.unminified.js"></script> -->
+<!-- <script type="text/javascript" src="../../js/hulutera.unminified.js"></script> -->
 <script type="text/javascript">
     function readURL(input,val) {
 	    if (input.files && input.files[0]) {

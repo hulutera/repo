@@ -15,7 +15,7 @@ function commonHeader() {
 }
 function fileRouter($add) {
 	//css
-	echo '<link rel="stylesheet" href="' . $add . '/css/katomer.unminified.css">';
+	echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
 	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 	//js
 	if ($add != "../..") {
@@ -25,13 +25,13 @@ function fileRouter($add) {
 		//use local minfied jquery lib
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '<script type="text/javascript" src="' . $add . '/js/katomer.unminified.js"></script>';?>
+	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
-	echo '<link rel="shortcut icon" href="' . $add . '/img/katomer_xx_2.ico" />';
+	echo '<link rel="shortcut icon" href="' . $add . '/img/hulutera_xx_2.ico" />';
 }
 /*Code for Header and Search Bar*/
 function headerAndSearchCode($item) {
@@ -105,7 +105,7 @@ function activatetab() {
 /*logo*/
 function logo() {
 	echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
-	//../../img/katomer.png
+	//../../img/hulutera.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
 
@@ -277,9 +277,9 @@ function footerCode() {
 	echo '<div id="followUs_fo" >
 		  <p style="font-weight:bold">FOLLOW US</p>
 		       <ul>
-				<a class="fb" href="https://www.facebook.com/pages/katomercom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../img/fb.png" width="20px" height="20px" /></li></a>
-				<a class="tw" href="https://twitter.com/katomercom" target="_blank"><li class ="tw_icon_class"><img src="../../img/tw.png" width="17px" height="17px" /></li></a>
-				<a class="pInt" href="http://www.pinterest.com/katomer/" target="_blank"><li class ="pint_icon_class"><img src="../../img/pin.png" width="20px" height="20px" /></li></a>
+				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../img/fb.png" width="20px" height="20px" /></li></a>
+				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class"><img src="../../img/tw.png" width="17px" height="17px" /></li></a>
+				<a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class"><img src="../../img/pin.png" width="20px" height="20px" /></li></a>
 				<a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class"><img src="../../img/yt.png" width="20px" height="20px" /></li></a>
 			   </ul>
 		   </div>';

@@ -188,7 +188,7 @@ function userAccount()
 	echo '</p>';
 	echo '<p>';
 	echo '<label for="email">Email</label> <input id="email" name="email"';
-	echo 'placeholder="info@katomer.com" type="email"';
+	echo 'placeholder="info@hulutera.com" type="email"';
 	echo 'AUTOCOMPLETE=OFF />';
 	echo '</p>';
 	echo '<p>';

@@ -34,9 +34,9 @@ else
 		{
 			$result = $connect->query("UPDATE user SET uEmail = '$new_email' WHERE uID  = '$user_id'");
 			//send mail to current email
-			$isMailDelivered = mail($current_email, $subject, $message, 'From:admin@katomer.com');
+			$isMailDelivered = mail($current_email, $subject, $message, 'From:admin@hulutera.com');
 			//send mail to new email
-			$isMailDelivered = mail($new_email, $subject, $message, 'From:admin@katomer.com');
+			$isMailDelivered = mail($new_email, $subject, $message, 'From:admin@hulutera.com');
 			//Check if mail Delivered or die
 			if(!$isMailDelivered)
 			{
@@ -182,29 +182,29 @@ else
 			
 			$de_key=md5(uniqid(rand(),true));
 			
-			$removeLink = "http://katomer.com/helper/remove.php?userId=".$user_id."&de_key=".$de_key;
+			$removeLink = "http://hulutera.com/helper/remove.php?userId=".$user_id."&de_key=".$de_key;
 			
 			$messageEn ="We are sorry to see you go. By closing your account you will be automatically \n";
 			$messageEn .="signed out and all your previous posts will be removed from our database.";
 			$messageEn .= " \n".$removeLink."\n\n";
 			$messageEn .= "According to your request,please follow the link to terminate your account. \n";
 			$messageEn.= "This email was automatically generated. If you did not request account termination\n";
-			$messageEn.= "please contact the administrator using\nemail: admin@katomer.com \n";
-			$messageEn.= "\nSincerely,\nThe Katomer Team\n";
+			$messageEn.= "please contact the administrator using\nemail: admin@hulutera.com \n";
+			$messageEn.= "\nSincerely,\nThe hulutera Team\n";
 			$gap = "-----------------------------------------------------------------------------\n";
 			$messageAmh ="ከእኛ ጋር ባለመቆየትዎ እናዝናለን። ሆኖም ግን ይህንን ሲያደርጉ ወደ ካቶመር ፣ በአዲስ አካውንት በስተቀር መግባት አይችሉም።\n";
 			$messageAmh .="በተጨማሪም በስምዎ ያስገቧቸው ንብረቶችም ከእኛ መዝገብ/ዳታቤዝ /ይደመሰሳሉ። ";
 			$messageAmh .= " \n".$removeLink."\n\n";
 			$messageAmh .= "የካቶመር አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ \n ";
 			$messageAmh.= "ይህ መልዕክት የተላከው ራስሰር(አውቶማቲክ) በሆነ የመልዕክት መላከያ መንገድ ስለሆነ የካቶመር አባልነትዎን ለመዝጋት የጠየቁ እርስዎ ካልሆኑ ";
-			$messageAmh.= "በዚህ የኢሜይል አድራሻ ይላኩልን  admin@katomer.com\n";
+			$messageAmh.= "በዚህ የኢሜይል አድራሻ ይላኩልን  admin@hulutera.com\n";
 			$messageAmh.= "\nከሰላምታ ጋር \nየካቶመር አስተዳደር\n";
 				
 			$message = $messageEn.$gap.$messageAmh;
 				
 			$result = $connect->query("UPDATE user SET deactivation = '$de_key' WHERE uID  = '$user_id'");
 				
-			$isMailDelivered = mail($email, $subject, $message, 'From:admin@katomer.com');
+			$isMailDelivered = mail($email, $subject, $message, 'From:admin@hulutera.com');
 			//Check if mail Delivered or die
 			if(!$isMailDelivered)
 			{
