@@ -8,6 +8,9 @@ $itemtype   = isset($_GET ['itemtype'])  ? $_GET ['itemtype']  : '';
 $time       = isset($_GET ['time'])      ? $_GET ['time']      : '';
 $uid        = isset($_GET ['user'])      ? $_GET ['user']      : '';
 $link       = isset($_GET ['link'])      ? $_GET ['link']      : '';
+
+$connect = DatabaseClass::getInstance()->getConnection();
+
 if ($actiontype == 'activate') {
 	switch ($itemtype) {
 		case 'Car' :
