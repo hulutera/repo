@@ -25,7 +25,6 @@ class HouseView
 		while($houserow = $houseResult->fetch_assoc())
 		{
 			$objUser  = new UserClass($houserow);
-			//
 			$objHouse->setElements($houserow);
 			$houseId     = $objHouse->getId();
 			$itemName    = $objHouse->getItemName();
