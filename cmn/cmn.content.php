@@ -17,22 +17,22 @@ function show($query)
 				ObjectPool::getInstance()->getViewObject("car")->show($result['cID']);
 				break;
 			case 2:
-				ObjectPool::getInstance()->getViewObject("house")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("house")->show($result['hID']);
 				break;
 			case 3:
-				ObjectPool::getInstance()->getViewObject("computer")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("computer")->show($result['dID']);
 				break;
 			case 4:
-				ObjectPool::getInstance()->getViewObject("phone")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("phone")->show($result['pID']);
 				break;
 			case 5:
-				ObjectPool::getInstance()->getViewObject("electronics")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("electronics")->show($result['eID']);
 				break;
 			case 6:
-				ObjectPool::getInstance()->getViewObject("household")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("household")->show($result['hhID']);
 				break;
 			case 7:
-				ObjectPool::getInstance()->getViewObject("others")->show($result['cID']);
+				ObjectPool::getInstance()->getViewObject("others")->show($result['oID']);
 				break;
 		}
 	}
@@ -59,26 +59,19 @@ function reportedItems()
 
 		while ($dRditems = $reported->fetch_assoc()) {
 			if ($dRditems['carID'] != NULL && !in_array($dRditems['carID'], $arrayCid)) {
-				$arrayCid[$dRditems['carID']] = $dRditems['carID'];
-				showCar($dRditems['carID']);
+				ObjectPool::getInstance()->getViewObject("car")->show($dRditems['carID']);
 			} else if ($dRditems['houseID'] != NULL && !in_array($dRditems['houseID'], $arrayHid)) {
-				$arrayHid[$dRditems['houseID']] = $dRditems['houseID'];
-				showHouse($dRditems['houseID']);
+				ObjectPool::getInstance()->getViewObject("house")->show($dRditems['houseID']);
 			} else if ($dRditems['computerID'] != NULL && !in_array($dRditems['computerID'], $arrayDid)) {
-				$arrayDid[$dRditems['computerID']] = $dRditems['computerID'];
-				showComputer($dRditems['computerID']);
+				ObjectPool::getInstance()->getViewObject("computer")->show($dRditems['computerID']);
 			} else if ($dRditems['phoneID'] != NULL && !in_array($dRditems['phoneID'], $arrayPid)) {
-				$arrayPid[$dRditems['phoneID']] = $dRditems['phoneID'];
-				showPhone($dRditems['phoneID']);
+				ObjectPool::getInstance()->getViewObject("phone")->show($dRditems['phoneID']);
 			} else if ($dRditems['electronicsID'] != NULL && !in_array($dRditems['electronicsID'], $arrayEid)) {
-				$arrayEid[$dRditems['electronicsID']] = $dRditems['electronicsID'];
-				showElectronics($dRditems['electronicsID']);
+				ObjectPool::getInstance()->getViewObject("electronics")->show($dRditems['electronicsID']);
 			} else if ($dRditems['householdID'] != NULL && !in_array($dRditems['householdID'], $arrayHHid)) {
-				$arrayHHid[$dRditems['householdID']] = $dRditems['householdID'];
-				showHousehold($dRditems['householdID']);
+				ObjectPool::getInstance()->getViewObject("household")->show($dRditems['householdID']);
 			} else if ($dRditems['othersID'] != NULL && !in_array($dRditems['othersID'], $arrayOid)) {
-				$arrayOid[$dRditems['othersID']] = $dRditems['othersID'];
-				showOthers($dRditems['othersID']);
+				ObjectPool::getInstance()->getViewObject("others")->show($dRditems['othersID']);
 			}
 		}
 	} else if ($sum <= 0) {
