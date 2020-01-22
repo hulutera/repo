@@ -5,6 +5,7 @@ require_once $documnetRootPath . '/inc/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/helper/message.php';
 require_once $documnetRootPath . '/helper/token.php';
 require_once $documnetRootPath . '/inc/common.inc.php';
+$connect = DatabaseClass::getInstance()->getConnection();
 
 $MAX = 30; //== The number of items that will be visible in one page ===//
 $noItemToShow = "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>";
@@ -17,22 +18,22 @@ function show($query)
 				ObjectPool::getInstance()->getViewObject("car")->show($result['cID']);
 				break;
 			case 2:
-				ObjectPool::getInstance()->getViewObject("house")->show($result['hID']);
+				ObjectPool::getInstance()->getViewObject("house")->show($result['cID']);
 				break;
 			case 3:
-				ObjectPool::getInstance()->getViewObject("computer")->show($result['dID']);
+				ObjectPool::getInstance()->getViewObject("computer")->show($result['cID']);
 				break;
 			case 4:
-				ObjectPool::getInstance()->getViewObject("phone")->show($result['pID']);
+				ObjectPool::getInstance()->getViewObject("phone")->show($result['cID']);
 				break;
 			case 5:
-				ObjectPool::getInstance()->getViewObject("electronics")->show($result['eID']);
+				ObjectPool::getInstance()->getViewObject("electronics")->show($result['cID']);
 				break;
 			case 6:
-				ObjectPool::getInstance()->getViewObject("household")->show($result['hhID']);
+				ObjectPool::getInstance()->getViewObject("household")->show($result['cID']);
 				break;
 			case 7:
-				ObjectPool::getInstance()->getViewObject("others")->show($result['oID']);
+				ObjectPool::getInstance()->getViewObject("others")->show($result['cID']);
 				break;
 		}
 	}
@@ -47,7 +48,7 @@ function reportedItems()
 	$arrayEid  = array();
 	$arrayHHid = array();
 	$arrayOid  = array();
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	$reported = $connect->query("SELECT * FROM abuse ");
 	$sum = mysqli_num_rows($reported);
 
@@ -84,7 +85,7 @@ function reportedItems()
 function countRow($status, $Id)
 {
 	if ($Id != '')
-		$specific = $status . " AND uID = $Id'";
+		$specific = "'$status'" . " AND uID = $Id";
 	else
 		$specific = "'$status'";
 
@@ -97,7 +98,7 @@ function countRow($status, $Id)
 }
 function maxQuery($status, $Id, $start, $MAX)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	if ($Id != '')
 		$specific = "'$status' AND uID = '$Id'";
 	else
@@ -267,7 +268,7 @@ function display($query)
 }
 function controlPanel($hash)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
+	global $connect;
 	echo '<div class="controlPanel">';
 	echo '<div class="controlPanelLeft">';
 

@@ -109,12 +109,12 @@ function queryStatus($uId, $status)
 	}
 	$result = $connect->query("
 			SELECT cID            FROM car	       WHERE $value cStatus  = '$status'
-			UNION ALL SELECT hID  FROM house       WHERE $value hStatus  = '$status'
-			UNION ALL SELECT dID  FROM computer    WHERE $value dStatus  = '$status'
-			UNION ALL SELECT eID  FROM electronics WHERE $value eStatus  = '$status'
-			UNION ALL SELECT pID  FROM phone       WHERE $value pStatus  = '$status'
-			UNION ALL SELECT hhID FROM household   WHERE $value hhStatus = '$status'
-			UNION ALL SELECT oID  FROM others      WHERE $value oStatus  = '$status'");
+			UNION SELECT hID  FROM house       WHERE $value hStatus  = '$status'
+			UNION SELECT dID  FROM computer    WHERE $value dStatus  = '$status'
+			UNION SELECT eID  FROM electronics WHERE $value eStatus  = '$status'
+			UNION SELECT pID  FROM phone       WHERE $value pStatus  = '$status'
+			UNION SELECT hhID FROM household   WHERE $value hhStatus = '$status'
+			UNION SELECT oID  FROM others      WHERE $value oStatus  = '$status'");
 
 	return mysqli_num_rows($result);
 }
