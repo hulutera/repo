@@ -40,7 +40,7 @@ class DatabaseClass
 		if ($this->_connection) {
 			/* Check DB connection */
 			if ($this->_connection->connect_errno) {
-				printf("Connect failed: %s\n", mysqli_connect_error());
+				printf("Connect failed: %s<br>", mysqli_connect_error());
 				exit();
 			}
 			/**/
@@ -55,8 +55,7 @@ class DatabaseClass
 					} else if (time() - $_SESSION["LAST_ACTIVITY"] > 60) {
 						$_SESSION["LAST_ACTIVITY"] = time(); // update last activity time stamp
 					}
-				}
-				else //session is active continue
+				} else //session is active continue
 				{
 					//update session time
 					$_SESSION["time"] = time();
@@ -309,28 +308,75 @@ class DatabaseClass
 		return $this->getConnection()->query($sql);
 	}
 
-	public function queryGetItemWithId($item, $number , $maximum, $id)
+	public function queryGetItemWithId($item, $number, $maximum, $id)
 	{
 		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
 		$sql = "SELECT $number FROM $item WHERE $idName = $id LIMIT $maximum";
-		return $this->getConnection()->query($sql);		
+		return $this->getConnection()->query($sql);
 	}
 
-	public function querySearch($item, $number , $maximum, $status)
+	public function querySearch($item, $number, $maximum, $status)
 	{
 		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
 		$fieldStatus = ObjectPool::getInstance()->getClassObject($item)->getStatusFieldName();
-		return $this->getConnection()->query($sql);		
+		return $this->getConnection()->query($sql);
 	}
 
 	public function getFieldName($item, $fieldNumber)
 	{
 		$sql = "SELECT * FROM $item";
-		return $this->getConnection()->query($sql)->fetch_field_direct($fieldNumber)->name;		
+		return $this->getConnection()->query($sql)->fetch_field_direct($fieldNumber)->name;
 	}
 
+	public function getAllFields($item)
+	{
+		$sql = "SELECT * FROM $item";
+		$variable = DatabaseClass::getInstance()->getConnection()->query($sql)->fetch_fields();	
+		$table = array();	
+		foreach ($variable as $val) {
+			$table[] = $val->name;
+		}
+		return $table;
+	}
+	public function printFields($item, $variable)
+	{
+		$sql = "SELECT * FROM $item";
+		$finfo = DatabaseClass::getInstance()->getConnection()->query($sql)->fetch_fields();
+
+		foreach ($finfo as $val) {
+			if ($variable == 'table') {
+				echo $val->table . "<br>";
+				break;
+			}
+			switch ($variable) {
+				case 'name':
+					echo $val->name . "<br>";
+					break;
+				case 'length':
+					echo $val->length . "<br>";
+					break;
+				case 'max_length':
+					echo $val->max_length . "<br>";
+					break;
+				case 'charsetnr':
+					echo $val->charsetnr . "<br>";
+					break;
+				case 'flags':
+					echo $val->flags . "<br>";
+					break;
+				case 'type':
+					echo $val->type . "<br>";
+					break;
+				default:
+					# code...
+					break;
+			}
+		}
+	}
+
+
 	public function queryUnionAllItemWithStatus($status)
-	{		
+	{
 		$sql = "SELECT cID FROM car   WHERE cStatus  LIKE $status
 			UNION ALL
 			SELECT hID  FROM house       WHERE hStatus  LIKE $status
@@ -344,9 +390,7 @@ class DatabaseClass
 			SELECT hhID FROM household   WHERE hhStatus LIKE $status
 			UNION ALL
 			SELECT oID  FROM others      WHERE oStatus  LIKE $status";
-		
-		return $this->getConnection()->query($sql);	
-	}
 
-	
+		return $this->getConnection()->query($sql);
+	}
 }

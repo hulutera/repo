@@ -15,7 +15,6 @@ class ComputerView
         global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objComp =  ObjectPool::getInstance()->getClassObject("computer");
         
-        $objUser  = new UserClass;
         $objDir   = new DirectoryClass;
         $objCmn   = new CommonClass;
         $objImg   = new ImgHandler;
@@ -25,12 +24,7 @@ class ComputerView
 		$compResult = $connect->query($dbQuery);
         while($comprow = $compResult->fetch_assoc())
         {
-            $objUser->setUserElements($comprow);
-            $userName  = $objUser->getUserName();
-            $userPhone = $objUser->getUserPhone();
-            $userEmail = $objUser->getUserEmail();
-            $userRole  = $objUser->getUserRole();
-            $userId    = $objUser->getUserId();
+            $objUser  = new UserClass($comprow);
             //
             $objComp->setElements($comprow);
             $compId     = $objComp->getId();
@@ -104,24 +98,22 @@ class ComputerView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objComp);
             $price->printPrice($objComp);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$compId,$itemName,$userName,$userPhone);
+            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$compId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$compId,$itemName);
             $objCmn->printReportReq($uniqueId,$compId,$itemName);
-            $objCmn->printMailForm($uniqueId,$compId,$itemName,$userEmail);
+            $objCmn->printMailForm($uniqueId,$compId,$itemName,$objUser);
             $objCmn->printReportCfrm($uniqueId,$compId,$itemName);
             echo "</div>"; //end_featured_right_side
             echo "</div>"; //end_featured_detailed
             echo "</div>"; //end_divDetail_*
             echo "</div>"; //end_divClassified
+            unset($objUser);
         }
         $compResult->close();
         unset($objImg);
         unset($objCmn);
         unset($objDB);
         unset($objDir);
-        unset($objUser);
         unset($objComp);
-
     }
 }
-?>

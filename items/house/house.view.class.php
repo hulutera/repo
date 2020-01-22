@@ -14,7 +14,7 @@ class HouseView
 		//creating an object
 		global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
 		$objHouse = new HouseClass;
-		$objUser  = new UserClass;
+	
 		$objDir   = new DirectoryClass;
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
@@ -24,13 +24,7 @@ class HouseView
 		$houseResult = $connect->query($dbQuery);
 		while($houserow = $houseResult->fetch_assoc())
 		{
-			$objUser->setUserElements($houserow);
-			$userName  = $objUser->getUserName();
-			$userPhone = $objUser->getUserPhone();
-			$userEmail = $objUser->getUserEmail();
-			$userRole  = $objUser->getUserRole();
-			$userId    = $objUser->getUserId();
-			//
+			$objUser  = new UserClass($houserow);
 			$objHouse->setElements($houserow);
 			$houseId     = $objHouse->getId();
 			$itemName    = $objHouse->getItemName();
@@ -103,23 +97,22 @@ class HouseView
 			$objCmn->printTitle($title,$itemName);
 			$objCmn->printSpecifics($objHouse);
 			$price->printPrice($objHouse);
-			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$houseId,$itemName,$userName,$userPhone);
+			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$houseId,$itemName,$objUser);
 			$objCmn->printMailCfrm($uniqueId,$houseId,$itemName);
 			$objCmn->printReportReq($uniqueId,$houseId,$itemName);
-			$objCmn->printMailForm($uniqueId,$houseId,$itemName,$userEmail);
+			$objCmn->printMailForm($uniqueId,$houseId,$itemName,$objUser);
 			$objCmn->printReportCfrm($uniqueId,$houseId,$itemName);
 			echo "</div>"; //end_featured_right_side
 			echo "</div>"; //end_featured_detailed
 			echo "</div>"; //end_divDetail_*
 			echo "</div>"; //end_divClassified
+			unset($objUser);
 		}
 		$houseResult->close();
 		unset($objImg);
 		unset($objCmn);
 		unset($objDB);
 		unset($objDir);
-		unset($objUser);
 		unset($objHouse);
 	}
 }
-?>

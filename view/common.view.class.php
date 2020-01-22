@@ -5,7 +5,7 @@ class CommonClass
 	/*@ function to display action to take by admin/moderator/user/
 	 * input: objects $objCar,$objUser
 	* */
-	public function printAction($objCar,$objUser)
+	public function printAction($objCar, $objUser)
 	{
 		$itemId = $objCar->getId();
 		$name   = $objCar->getItemName();
@@ -14,29 +14,28 @@ class CommonClass
 		$userId    = $objUser->getUserId();
 		$userRole  = $objUser->getUserRole();
 
-		echo"<div  class=\"delete_activate\">
+		echo "<div  class=\"delete_activate\">
 		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','%','pendingNumb') \" />
 		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'%','pendingNumb')\" />
 		</div>"; //end_delete_activate
-		echo"<div  class=\"moderatorDelete\">
+		echo "<div  class=\"moderatorDelete\">
 		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','%','deletedNumb') \" />
 		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'%','deletedNumb')\" />
-		</div>";//end_moderatorDelete
+		</div>"; //end_moderatorDelete
 		echo "<div  class=\"delete_ignore\">
 		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" onclick=\"func_moderatorActions('remove','$name',$itemId,'1','%','reportedNumb') \" />
 		<input class=\"modActionActive\" type=\"button\" value=\"Ignore\" id=\"activate_button\" onclick=\"func_moderatorActions('ignore','$name',$itemId,'1','%','reportedNumb')\" />
 		<input class=\"modActionActive\" type=\"button\" value=\"show Report\" onclick=\"func_moderatorShow('show','$name',$itemId) \" />
-		</div>";//end_delete_ignore
+		</div>"; //end_delete_ignore
 		echo "<div class=\"userActiveButton\">";
 		echo "<input  class=\"modActionDelete\"  type=\"button\" value=\"Delete\"   onclick=\"func_moderatorActions('delete','$name',$itemId,'1',$userId,'userActiveNumb') \" />";
-		echo "</div>";//end_userActiveButton
+		echo "</div>"; //end_userActiveButton
 		echo "<div  class=\"userPendingButton\">";
 		echo "<input class=\"modActionDelete\" type=\"button\" value=\"Delete\"   onclick=\"func_moderatorActions('delete','$name',$itemId,'1',$userId,'userPendingNumb') \" />";
-		if($userRole =='admin' || $userRole =='mod')
-		{
+		if ($userRole == 'admin' || $userRole == 'mod') {
 			echo "<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'%','pendingNumb')\" />";
 		}
-		echo "</div>";//end_userPendingButton
+		echo "</div>"; //end_userPendingButton
 	}
 	/*@ function to display uploaded date
 	 * input:$datetime
@@ -47,27 +46,22 @@ class CommonClass
 		$today       = strtotime("today");
 		$yesterday   = strtotime("yesterday");
 		$tomorrow    = strtotime("tomorrow");
-		if( $datetimestr >= $today)
-		{
+		if ($datetimestr >= $today) {
 			echo "<div class=\"date\"> Today </div></br>";
-		}
-		else if($datetimestr >= $yesterday)
-		{
+		} else if ($datetimestr >= $yesterday) {
 			echo "<div class=\"date\">Yesterday</div></br>";
-		}
-		else
-		{
-			echo '<div class="date">'.$datetime.'</div></br>';
+		} else {
+			echo '<div class="date">' . $datetime . '</div></br>';
 		}
 	}
 	/*@ function to display titile of the item
 	 * if found else item category is displayed
 	* input: title, itemName
 	* */
-	public function printTitle($title,$itemName)
+	public function printTitle($title, $itemName)
 	{
 		echo "<div class=\"header\">";
-		echo $title!=null?$title:$itemName;
+		echo $title != null ? $title : $itemName;
 		echo "</div>";
 	}
 	/*@function to display location of item
@@ -75,9 +69,8 @@ class CommonClass
 	* */
 	public function printLocation($loc)
 	{
-		if($loc!="")
-		{
-			echo "<div class=\"location\">".$loc."</div>";
+		if ($loc != "") {
+			echo "<div class=\"location\">" . $loc . "</div>";
 		}
 	}
 	/*@function to display market type /SELL/RENT
@@ -85,23 +78,22 @@ class CommonClass
 	* */
 	public function printMarketType($mkTyp)
 	{
-		if($mkTyp != "No Action")
-		{
-			echo "<div id=\"text_sellRent\">".strtoupper($mkTyp)."</div></br>";
+		if ($mkTyp != "No Action") {
+			echo "<div id=\"text_sellRent\">" . strtoupper($mkTyp) . "</div></br>";
 		}
 	}
-		
+
 	/*@ function to display a dialog to submit abuses
 	 * input:  $uniqueId,$itemId,$itemName
 	* */
-	public function printReportReq($uniqueId,$itemId,$itemName)
+	public function printReportReq($uniqueId, $itemId, $itemName)
 	{
 		echo "<div class = \"reportabuse\">";
 		echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\"></div>";
 		echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
 		echo "<select id=\"selectabuse_$uniqueId\">";
 		echo "<option value=\"000\">Choose/ይምረጡ</option>";
-        echo "<option value=\"Bullying\">Bullying/ማንቋሸሽ</option>";
+		echo "<option value=\"Bullying\">Bullying/ማንቋሸሽ</option>";
 		echo "<option value=\"Copyright\">Copyright/የቅጅ መብት  ስርቆት</option>";
 		echo "<option value=\"Discrimination\">Discrimination/መድልኦ</option>";
 		echo "<option value=\"Spam\">Spam/ግሳንግስ </option>";
@@ -112,7 +104,7 @@ class CommonClass
 		echo "<option value=\"Sexual content\">Sexual Content/ሴሰኛ ይዞታ</option>";
 		echo "<option value=\"Age abuse\">Age abuse/የዕድሜ በደለ</option>";
 		echo "<option value=\"Religious violence\">Religious violence/የሃይማኖት ሁከት</option>";
-		echo "<option value=\"Other\">Other/ከዚህ ዝርዝር ውጪ</option>";	
+		echo "<option value=\"Other\">Other/ከዚህ ዝርዝር ውጪ</option>";
 		echo "</select>";
 		echo "<br>";
 		echo "<input class=\"report\" type=\"button\" onclick=\"swapabuseback($itemId,'$itemName')\" value=\"Report\" />";
@@ -123,7 +115,7 @@ class CommonClass
 	/*@ function to display confirmation for mail sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName
 	* */
-	public function printMailCfrm($uniqueId,$itemId,$itemName)
+	public function printMailCfrm($uniqueId, $itemId, $itemName)
 	{
 		global $sentmsg;
 		echo "<div class=\"msgcompleted\">";
@@ -136,7 +128,7 @@ class CommonClass
 	/*@ function to display confirmation for report sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName
 	* */
-	public function printReportCfrm($uniqueId,$itemId,$itemName)
+	public function printReportCfrm($uniqueId, $itemId, $itemName)
 	{
 		global $abusemsg;
 		echo "<div class=\"reportmsgcompleted\">";
@@ -149,7 +141,7 @@ class CommonClass
 	/*@ function to display mail dialog sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName,$userEmail
 	* */
-	public function printMailForm($uniqueId,$itemId,$itemName,$userEmail)
+	public function printMailForm($uniqueId, $itemId, $itemName, $user)
 	{
 		echo "<div style=\"display:none;\" class=\"message_$uniqueId\">";
 		echo "<form class=\"msgcontainer\" method=\"post\">";
@@ -158,39 +150,39 @@ class CommonClass
 		echo "<div class =\"msgform\">";
 		echo "<div class=\"field\">";
 		echo "<label for=\"name\">Name</label>";
-		echo '<input type="text" class="input" id="name_'.$uniqueId.'" name="name"  maxlength="80"  />';
-		echo "</div>";//end_field
+		echo '<input type="text" class="input" id="name_' . $uniqueId . '" name="name"  maxlength="80"  />';
+		echo "</div>"; //end_field
 		echo "<div class=\"field\">";
 		echo "<label for=\"email\">Email</label>";
-		echo '<input style="text-transform:lowercase;" type="text" class="input" id="email_'.$uniqueId.'" name="email" maxlength="80" />';
-		echo "</div>";//end_field
+		echo '<input style="text-transform:lowercase;" type="text" class="input" id="email_' . $uniqueId . '" name="email" maxlength="80" />';
+		echo "</div>"; //end_field
 		echo "<div class=\"field\">";
 		echo "<label for=\"description\">Message</label>";
-		echo '<textarea name="description" id="description_'.$uniqueId.'"width="309px" rows="4" placeholder="Enter your message here..." ></textarea>';
-		echo "</div>";//end_field
+		echo '<textarea name="description" id="description_' . $uniqueId . '"width="309px" rows="4" placeholder="Enter your message here..." ></textarea>';
+		echo "</div>"; //end_field
 		echo "<div class=\"messageRouter\">";
 		echo "<input class=\"close\" type=\"button\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"Close\" />";
-		echo "<input class=\"send\" type=\"button\" onclick=\"swapmailback($itemId, '$userEmail','$itemName')\" value=\"Send\" />";
+		echo "<input class=\"send\" type=\"button\" onclick=\"swapmailback($itemId, '$user->getEmail()','$itemName')\" value=\"Send\" />";
 		echo "</div>";
 		echo "</div>"; //end_msgform
 		echo "<div class=\"clear\"></div>";
-		echo "</form>";//end_form
+		echo "</form>"; //end_form
 		echo "</div>"; //end_msgcontainer
 	}
 	/*@ function to display contact method /mail/phone/
 	 * input: $objDir,$uniqueId,$contactType,$itemId,$itemName,$userName,$userPhone
 	* */
-	public function printContactMethod($objDir,$uniqueId,$contactType,$itemId,$itemName,$userName,$userPhone)
+	public function printContactMethod($objDir, $uniqueId, $contactType, $itemId, $itemName, $user)
 	{
 		echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
 		echo "</br>";
 		echo "<div class=\"header\"><label>Contact</label></div>";
-		if($contactType == "Email" OR $contactType == "Both")
+		if ($contactType == "Email" or $contactType == "Both")
 			echo "<div class=\"email\">
 			<img src =\"$objDir->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
-		if($contactType == "Phone" OR $contactType == "Both")
+		if ($contactType == "Phone" or $contactType == "Both")
 			echo "<div class=\"phone\">
-			<img src =\"$objDir->PATH_PHN_ICON\"><label>".$userName.":".$userPhone."</label></div>";
+			<img src =\"$objDir->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
 		echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objDir->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
 		echo "</div>";
 	}
@@ -203,29 +195,26 @@ class CommonClass
 		$numimage = $objImg->getNumOfImg();
 		$itemName = $objItem->getItemName();
 		echo "<div class=\"featured_left_side\">";
-		if($numimage == 1)
-		{
+		if ($numimage == 1) {
 			//echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\"$objDir->IMG_NOT_AVAIL\"></div>";
-			$image[0] = str_replace('thumbnail','',$image[0]);
-			$dir1 = $dir.'original/';
+			$image[0] = str_replace('thumbnail', '', $image[0]);
+			$dir1 = $dir . 'original/';
 			global $documnetRootPath;
-			$file = $documnetRootPath . '/img/hulutera.PNG';//;$dir1.$image[0];
-			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="'.$file.'"></div>';;
+			$file = $documnetRootPath . '/img/hulutera.PNG'; //;$dir1.$image[0];
+			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file . '"></div>';;
 		}
-		if($numimage > 1)
-		{
-			$image[1] = str_replace('thumbnail','',$image[1]);
-			$dir1 = $dir.'original/';
-			$file = $dir1.$image[1];
-			echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg$itemName$itemId\" src=\"".$file."\"></div>";
+		if ($numimage > 1) {
+			$image[1] = str_replace('thumbnail', '', $image[1]);
+			$dir1 = $dir . 'original/';
+			$file = $dir1 . $image[1];
+			echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg$itemName$itemId\" src=\"" . $file . "\"></div>";
 			echo "<div id=\"featured_buttom\">";
 			echo "<div class=\"imagesGallery\">";
-			for($i = 1; $i < $numimage; $i++)
-			{
-				$image[$i] = str_replace('thumbnail','',$image[$i]);
-				$dir1 = $dir.'original/';
-				$file = $dir1.$image[1];
-				$divName = 'bottomimg'.$itemName.$itemId.$i;
+			for ($i = 1; $i < $numimage; $i++) {
+				$image[$i] = str_replace('thumbnail', '', $image[$i]);
+				$dir1 = $dir . 'original/';
+				$file = $dir1 . $image[1];
+				$divName = 'bottomimg' . $itemName . $itemId . $i;
 				echo "
 				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"   
 				onMouseOver=\"mouseOver('$dir1','$image[$i]',$itemId, '$itemName','$divName')\">
@@ -243,63 +232,64 @@ class CommonClass
 	* */
 	public function printSpecifics($obj)
 	{
-		switch (get_class($obj))
-		{
+		switch (get_class($obj)) {
 			case "CarClass":
-				echo $obj->getMake()     ? "<p><strong>Make:&nbsp</strong>".$obj->getMake()."</p>":"";
-				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>".$obj->getCategory()."</p>":"";
-				echo $obj->getMfg() != "0000"  	 ? "<p><strong>Year of Make:&nbsp</strong>".$obj->getMfg()."</p>":"";
-				echo $obj->getFuel() 	 ? "<p><strong>Fuel:&nbsp</strong>".$obj->getFuel()."</p>":"";
-				echo $obj->getSeat() 	 ? "<p><strong>Nr of Seats:&nbsp</strong>".$obj->getSeat()."</p>":"";
-				echo $obj->getColor() != "999"	 ? "<p><strong>Color:&nbsp</strong>".$obj->getColor()."</p>":"";
-				echo $obj->getGear() 	 ? "<p><strong>Gear:&nbsp</strong>".$obj->getGear()."</p>":"";
-				echo $obj->getInfo() 	 ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">".$obj->getInfo()."</p>":"";
+				echo $obj->getMake()     ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
+				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
+				echo $obj->getMfg() != "0000"  	 ? "<p><strong>Year of Make:&nbsp</strong>" . $obj->getMfg() . "</p>" : "";
+				echo $obj->getFuel() 	 ? "<p><strong>Fuel:&nbsp</strong>" . $obj->getFuel() . "</p>" : "";
+				echo $obj->getSeat() 	 ? "<p><strong>Nr of Seats:&nbsp</strong>" . $obj->getSeat() . "</p>" : "";
+				echo $obj->getColor() != "999"	 ? "<p><strong>Color:&nbsp</strong>" . $obj->getColor() . "</p>" : "";
+				echo $obj->getGear() 	 ? "<p><strong>Gear:&nbsp</strong>" . $obj->getGear() . "</p>" : "";
+				echo $obj->getInfo() 	 ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
 				break;
 			case "CompClass":
-				echo $obj->getMake()      ? "<p><strong>Make:&nbsp</strong>".$obj->getMake()."</p>":"";
-				echo $obj->getCategory()  ? "<p><strong>Type:&nbsp</strong>".$obj->getCategory()."</p>":"";
-				echo $obj->getOS() 		  ? "<p><strong>OS:&nbsp</strong>".$obj->getOS()."</p>":"";
-				echo $obj->getProcessor() ? "<p><strong>Processor:&nbsp</strong>".$obj->getProcessor()."</p>":"";
-				echo $obj->getRAM() 	  ? "<p><strong>RAM:&nbsp</strong>".$obj->getRAM()."</p>":"";
-				echo $obj->getHardDisk() ? "<p><strong>Hard Drive:&nbsp</strong>".$obj->getHardDisk()."</p>":"";
+				echo $obj->getMake()      ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
+				echo $obj->getCategory()  ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
+				echo $obj->getOS() 		  ? "<p><strong>OS:&nbsp</strong>" . $obj->getOS() . "</p>" : "";
+				echo $obj->getProcessor() ? "<p><strong>Processor:&nbsp</strong>" . $obj->getProcessor() . "</p>" : "";
+				echo $obj->getRAM() 	  ? "<p><strong>RAM:&nbsp</strong>" . $obj->getRAM() . "</p>" : "";
+				echo $obj->getHardDisk() ? "<p><strong>Hard Drive:&nbsp</strong>" . $obj->getHardDisk() . "</p>" : "";
 				//echo $obj->getColor() 	  ? "<p><strong>Color:&nbsp</strong>".$obj->getColor()."</p>":"";
-				echo $obj->getInfo() 	  ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">".$obj->getInfo()."</p>":"";
+				echo $obj->getInfo() 	  ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
 				break;
 			case "ElecClass":
-				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>".$obj->getCategory()."</p>":"";
-				echo $obj->getInfo()     ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">".$obj->getInfo()."</p>":"";
+				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
+				echo $obj->getInfo()     ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
 				break;
 			case "HouseClass":
-				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>".$obj->getCategory()."</p>":"";
-				echo $obj->getWereda()   ? "<p><strong>Wereda:&nbsp</strong>".$obj->getWereda()."</p>":"";
-				echo $obj->getLotSize()  ? "<p><strong>Lot Size:&nbsp</strong>".$obj->getLotSize()."</p>":"";
-				echo $obj->getBedrooms() ? "<p><strong>Bed Rooms:&nbsp</strong>".$obj->getBedrooms()."</p>":"";
-				echo $obj->getToilet()   ? "<p><strong>Toilet:&nbsp</strong>".$obj->getToilet()."</p>":"";
-				echo $obj->getBathrooms()? "<p><strong>Bath Rooms:&nbsp</strong>".$obj->getBathrooms()."</p>":"";
-				echo $obj->getYrOfBlt()  ? "<p><strong>Built Year:&nbsp</strong>".$obj->getYrOfBlt()."</p>":"";
-				if($obj->getWater()){
-					if($obj->getWater() == 1)
+				echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
+				echo $obj->getWereda()   ? "<p><strong>Wereda:&nbsp</strong>" . $obj->getWereda() . "</p>" : "";
+				echo $obj->getLotSize()  ? "<p><strong>Lot Size:&nbsp</strong>" . $obj->getLotSize() . "</p>" : "";
+				echo $obj->getBedrooms() ? "<p><strong>Bed Rooms:&nbsp</strong>" . $obj->getBedrooms() . "</p>" : "";
+				echo $obj->getToilet()   ? "<p><strong>Toilet:&nbsp</strong>" . $obj->getToilet() . "</p>" : "";
+				echo $obj->getBathrooms() ? "<p><strong>Bath Rooms:&nbsp</strong>" . $obj->getBathrooms() . "</p>" : "";
+				echo $obj->getYrOfBlt()  ? "<p><strong>Built Year:&nbsp</strong>" . $obj->getYrOfBlt() . "</p>" : "";
+				if ($obj->getWater()) {
+					if ($obj->getWater() == 1)
 						echo "<p><strong>Water:&nbsp</strong>Yes</p>";
 					else
 						echo "<p><strong>Water:&nbsp</strong>No</p>";
 				}
-				if($obj->getElec()){
-					if($obj->getElec() == 1)
-					echo "<p><strong>Electricity:&nbsp</strong>Yes</p>";
-					else 	
+				if ($obj->getElec()) {
+					if ($obj->getElec() == 1)
+						echo "<p><strong>Electricity:&nbsp</strong>Yes</p>";
+					else
 						echo "<p><strong>Electricity:&nbsp</strong>No</p>";
 				}
-				
-				echo $obj->getInfo()     ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">".$obj->getInfo()."</p>":"";
+
+				echo $obj->getInfo()     ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
 				break;
-			case "HouseHoldClass":break;
+			case "HouseHoldClass":
+				break;
 			case "PhoneClass":
-				echo ($obj->getMake()!="000"   && $obj->getMake())   ? "<p><strong>Make:&nbsp</strong>".$obj->getMake()."</p>":"";
-				echo ($obj->getModel()!="000"  && $obj->getModel())  ? "<p><strong>Model:&nbsp</strong>".$obj->getModel()."</p>":"";
-				echo ($obj->getOS()!="000"     && $obj->getOS())     ? "<p><strong>OS:&nbsp</strong>".$obj->getOS()."</p>":"";
-				echo $obj->getInfo()    ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">".$obj->getInfo()."</p>":"";
+				echo ($obj->getMake() != "000"   && $obj->getMake())   ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
+				echo ($obj->getModel() != "000"  && $obj->getModel())  ? "<p><strong>Model:&nbsp</strong>" . $obj->getModel() . "</p>" : "";
+				echo ($obj->getOS() != "000"     && $obj->getOS())     ? "<p><strong>OS:&nbsp</strong>" . $obj->getOS() . "</p>" : "";
+				echo $obj->getInfo()    ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
 				break;
-			case "OtherClass":break;
+			case "OtherClass":
+				break;
 		}
 	}
 	const rent       = "rent";

@@ -11,24 +11,18 @@ class CarView
 	public function show($itemId)
 	{
 		//creating an object
-		$objCar   = ObjectPool::getInstance()->getClassObject("car");		
-		$objUser  = new UserClass;
+		$objCar   = ObjectPool::getInstance()->getClassObject("car");
 		$objDir   = new DirectoryClass;
-		
+
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
-		$price    = new PriceClass;	
+		$price    = new PriceClass;
 		$dbQuery = DatabaseClass::getInstance()->getQuery($objCar, $itemId);
 		$connect = DatabaseClass::getInstance()->getConnection();
 		$carResult = $connect->query($dbQuery);
 		while ($carrow = $carResult->fetch_assoc()) {
-			$objUser->setUserElements($carrow);
-			$userName  = $objUser->getUserName();
-			$userPhone = $objUser->getUserPhone();
-			$userEmail = $objUser->getUserEmail();
-			$userRole  = $objUser->getUserRole();
-			$userId    = $objUser->getUserId();
-			//
+			//			
+			$objUser  = new UserClass($carrow);
 			$objCar->setElements($carrow);
 			$carId       = $objCar->getId();
 			$itemName    = $objCar->getItemName();
@@ -99,21 +93,21 @@ class CarView
 			$objCmn->printTitle($title, $itemName);
 			$objCmn->printSpecifics($objCar);
 			$price->printPrice($objCar);
-			$objCmn->printContactMethod($objDir, $uniqueId, $contactType, $carId, $itemName, $userName, $userPhone);
+			$objCmn->printContactMethod($objDir, $uniqueId, $contactType, $carId, $itemName, $objUser);
 			$objCmn->printMailCfrm($uniqueId, $carId, $itemName);
 			$objCmn->printReportReq($uniqueId, $carId, $itemName);
-			$objCmn->printMailForm($uniqueId, $carId, $itemName, $userEmail);
+			$objCmn->printMailForm($uniqueId, $carId, $itemName, $objUser);
 			$objCmn->printReportCfrm($uniqueId, $carId, $itemName);
 			echo "</div>"; //end_featured_right_side
 			echo "</div>"; //end_featured_detailed
 			echo "</div>"; //end_divDetail_*
 			echo "</div>"; //end_divClassified
+			unset($objUser);
 		}
 		$carResult->close();
 		unset($objImg);
 		unset($objCmn);
 		unset($objDir);
-		unset($objUser);
 		unset($objCar);
 	}
 }
