@@ -6,6 +6,7 @@ require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
 require_once $documnetRootPath.'/inc/centerColumns.php';
 require_once $documnetRootPath.'/cmn/cmn.class.php';
+$connect = DatabaseClass::getInstance()->getConnection();
 
 if(!isset($_SESSION['uID']) ){
 	header('Location:'. $documnetRootPath.'index.php');
@@ -794,7 +795,7 @@ function otherUploadfn()
 					'&contact='.$contact);
 			exit;
 		}
-		$connect = DatabaseClass::getInstance()->getConnection();
+		global $connect;
 		//the fields should be taken care of accordingly
 		$result= $connect->query("INSERT INTO others (
 				uID,oPricesell,oPriceNego,currency,
@@ -1296,11 +1297,11 @@ function uploadImage($itemArr, $item_ID)
 			if (move_uploaded_file($filename_tmpName, $target_file_path)) {
 				if($m == 1)
 				{
-					$connect->query("INSERT INTO `$itemType` (`itemID`, `picture_".$m."`,`picture_".$m."_type`) VALUES ('$item_ID','$filename_with_rand','$type')");
+					$connect->query("INSERT INTO `$itemType` (`itemID`, `picture_".$m."`) VALUES ('$item_ID','$filename_with_rand')");
 				}
 				else
 				{
-					$connect->query("UPDATE `$itemType` SET `picture_".$m."`= '$filename_with_rand',`picture_".$m."_type` = '$type' WHERE `itemID` = '$item_ID'");
+					$connect->query("UPDATE `$itemType` SET `picture_".$m."`= '$filename_with_rand', WHERE `itemID` = '$item_ID'");
 				}
 				//compress($target_file,$target_file);
 
@@ -1309,7 +1310,7 @@ function uploadImage($itemArr, $item_ID)
 				copy($target_file_path,$static_file_path);
 
 			} else {
-				//header('Location: ../main/prompt.php?type=20');
+				header('Location: ../main/prompt.php?type=20');
 			}
 		}
 	}
