@@ -4,7 +4,7 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/view/price.view.class.php';
 require_once $documnetRootPath . '/classes/cmn.class.php';
 require_once $documnetRootPath . '/db/database.class.php';
-require_once $documnetRootPath . '/object/objectPool.class.php';
+require_once $documnetRootPath . '/classes/objectPool.class.php';
 
 class OthersView
 {
