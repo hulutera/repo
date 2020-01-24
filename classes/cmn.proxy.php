@@ -170,9 +170,9 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,
-			<li class="aboutUsli">•for any compliant , improvements or other issues you can use <a href="../../template/proxyTemplate.php?type=contact">Contact Us</a></li>
+			<li class="aboutUsli">•for any compliant , improvements or other issues you can use <a href="../../includes/template.proxy.php?type=contact">Contact Us</a></li>
 			<li class="aboutUsli">•for inappropriate items you can “Report” button </li>
-			<li class="aboutUsli">•If you need help, use <a href="../../template/proxyTemplate.php?type=help">Help</a> </li>
+			<li class="aboutUsli">•If you need help, use <a href="../../includes/template.proxy.php?type=help">Help</a> </li>
 			</p>
 
 			<br>
@@ -212,9 +212,9 @@ function aboutUs()
 			<br>
 			<p class="aboutus">
 			ካቶመርን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን
-			<li class="aboutUsli">•	ለቅሬታ ፣ ለማሻሻያ ሃሳቦች እንዲሁም ሌሎች ጥቆማዎች ይህንን<a href="../../template/proxyTemplate.php?type=contact"> ሊጠይቁን ይፈልጋሉ </a>የሚለውን ተጭነው ይግለፁ</li>
+			<li class="aboutUsli">•	ለቅሬታ ፣ ለማሻሻያ ሃሳቦች እንዲሁም ሌሎች ጥቆማዎች ይህንን<a href="../../includes/template.proxy.php?type=contact"> ሊጠይቁን ይፈልጋሉ </a>የሚለውን ተጭነው ይግለፁ</li>
 			<li class="aboutUsli">•	ለአላግባብ ለገቡ ምስሎች እና ገለፃዎች ሪፖርት የሚለውን ተጭነው ይግለፁ </li>
-			<li class="aboutUsli">•	ለተጨማሪ መረጃ ካስፈለግዎ <a href="../../template/proxyTemplate.php?type=help">መረጃ</a> የሚለውን ተጭነው እዛ ውስጥ ያገኛሉ</li>
+			<li class="aboutUsli">•	ለተጨማሪ መረጃ ካስፈለግዎ <a href="../../includes/template.proxy.php?type=help">መረጃ</a> የሚለውን ተጭነው እዛ ውስጥ ያገኛሉ</li>
 			</p>
 
 			<br>

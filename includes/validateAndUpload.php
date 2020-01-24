@@ -216,7 +216,7 @@ function carUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=car'.
+			header('Location: ../../includes/template.upload.php?type=car'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e102='.$e102.
@@ -475,7 +475,7 @@ function houseUploadfn()
 		$sell = isset($_POST['h_issell'])?true:false;
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=house'.
+			header('Location: ../../includes/template.upload.php?type=house'.
 					'&e101='.$e101.
 					'&e102='.$e102.
 					'&e103='.$e103.
@@ -655,7 +655,7 @@ function computerUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=computer'.
+			header('Location: ../../includes/template.upload.php?type=computer'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e102='.$e102.
@@ -779,7 +779,7 @@ function otherUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=others'.
+			header('Location: ../../includes/template.upload.php?type=others'.
 					'&e100='.$e100.
 					'&e108='.$e108.
 					'&e109='.$e109.
@@ -919,7 +919,7 @@ function phoneUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=phone'.
+			header('Location: ../../includes/template.upload.php?type=phone'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e102='.$e102.
@@ -1045,7 +1045,7 @@ function householdUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=household'.
+			header('Location: ../../includes/template.upload.php?type=household'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e108='.$e108.
@@ -1165,7 +1165,7 @@ function electronicsUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../template/uploadTemplate.php?type=electronics'.
+			header('Location: ../../includes/template.upload.php?type=electronics'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e108='.$e108.
@@ -1285,7 +1285,7 @@ function uploadImage($itemArr, $item_ID)
 			}
 			if($err)
 			{
-				header('Location: ../../template/uploadTemplate.php?type='.$itemName.
+				header('Location: ../../includes/template.upload.php?type='.$itemName.
 				'&image='.$_FILES['picture_'.$q]['name'].
 				'&e300='.$e300.
 				'&e301='.$e301);

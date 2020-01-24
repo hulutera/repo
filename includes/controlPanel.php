@@ -11,6 +11,6 @@ if(isset($_GET['err']))
 	$err = '&err='.$_GET['err'];
 else
 	$err = '';
-//redirect to itemTemplate file
-header('Location: ../../template/controlPanelTemplate.php?type='.$file.$id.$err);
+//redirect to template.item file
+header('Location: ../../includes/template.cp.php?type='.$file.$id.$err);
 ?>

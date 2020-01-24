@@ -14,6 +14,6 @@ if(isset($_SESSION['item']))
 }
 //set session variable item
 $_SESSION['item'] = $file;
-//redirect to itemTemplate file
-header('Location: ../../template/itemTemplate.php?type='.$file);
+//redirect to template.item file
+header('Location: ../../includes/template.item.php?type='.$file);
 ?>

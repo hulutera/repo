@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
-//redirect to itemTemplate file
+//redirect to template.item file
 if(!isset($_SESSION['uID']))
 {
 	header('Location:../index.php');
@@ -49,7 +49,7 @@ $(document).ready(function() {
 							Choose Item to upload ...<br>ለማስገባት የሚፈልጉትን ንብረት ይምረጡ ...
 						</div>
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=car">
+							<a href="../includes/template.upload.php?type=car">
 								<div id="item_name">
 									Car<br>መኪና <img id="boxIcon" src="../img/car_t1.png">
 									
@@ -57,7 +57,7 @@ $(document).ready(function() {
 							</a>
 						</div>
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=computer">
+							<a href="../includes/template.upload.php?type=computer">
 								<div id="item_name">
 									Computer<br>ኮምፒውተር <img id="boxIcon"
 										src="../img/computer_t1.png">
@@ -65,7 +65,7 @@ $(document).ready(function() {
 							</a>
 						</div>
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=electronics">
+							<a href="../includes/template.upload.php?type=electronics">
 								<div id="item_name">
 									Electronics<br>ኤሌክትሮኒክስ <img id="boxIcon"
 										src="../img/ele_t1.png">
@@ -75,21 +75,21 @@ $(document).ready(function() {
 					</div>
 					<div id="lyr2">
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=house">
+							<a href="../includes/template.upload.php?type=house">
 								<div id="item_name">
 									House<br>ቤት<img id="boxIcon" src="../img/house_t1.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=household">
+							<a href="../includes/template.upload.php?type=household">
 								<div id="item_name">
 									Households<br>ቤት ዕቃዎች <img id="boxIcon" src="../img/hh_t1.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=phone">
+							<a href="../includes/template.upload.php?type=phone">
 								<div id="item_name">
 									Phone<br>ስልክ <img id="boxIcon" src="../img/phone_t1.png">
 								</div>
@@ -98,7 +98,7 @@ $(document).ready(function() {
 					</div>
 					<div id="lyr3">
 						<div id="box">
-							<a href="../template/uploadTemplate.php?type=others">
+							<a href="../includes/template.upload.php?type=others">
 								<div id="item_name">
 									Others<br>ሌሎች<img id="boxIcon" src="../img/other_t1.png">
 								</div>
