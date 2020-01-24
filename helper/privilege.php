@@ -31,7 +31,7 @@ if(isset($_POST['Save']))
 			}
 		}
 	}
-	header('Location: ../content/controlPanel.php?err='.$err.'&uId='.$myId);
+	header('Location: ../includes/controlPanel.php?err='.$err.'&uId='.$myId);
 }
 
 function func_changeprevliage($privilege,$uId){

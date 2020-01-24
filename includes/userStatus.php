@@ -40,14 +40,14 @@ function accountLinks()
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../content/userActive.php\"> ";
+	echo "href=\"../includes/userActive.php\"> ";
 	echo "<span>Active(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></a></li>";
 	echo "<li><a ";
 	if (activatetab() == 15)
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../content/userPending.php\" >";
+	echo "href=\"../includes/userPending.php\" >";
 	echo "<span>Pending(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></a></li>";
 	echo "<li><a ";
 	if (activatetab() == 17)
@@ -62,14 +62,14 @@ function accountLinks()
 		{
 			echo "class=\"active\"";
 		}
-		echo "href=\"../content/pendingItems.php\">";
+		echo "href=\"../includes/pendingItems.php\">";
 		echo "<span>All Pending(<span id=\"pendingNumb\">$pendingItems</span>)</span></a></li>";
 		echo "<li><a ";
 		if (activatetab() == 12)
 		{
 			echo "class=\"active\"";
 		}
-		echo "href=\"../content/reportedItems.php\">";
+		echo "href=\"../includes/reportedItems.php\">";
 		echo "<span>Reported(<span id=\"reportedNumb\">$reportedItems</span>)</span></a></li>";
 		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 		{
@@ -78,17 +78,17 @@ function accountLinks()
 			{
 				echo "class=\"active\"";
 			}
-			echo "href=\"../content/deletedItems.php\">";
+			echo "href=\"../includes/deletedItems.php\">";
 			echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></a></li>";
 			echo "<li><a ";
 			if (activatetab() == 13)
 			{
 				echo "class=\"active\" ";
 			}
-			echo "href=\"../content/userMessages.php\">";
+			echo "href=\"../includes/userMessages.php\">";
 			echo "<span>Messages(<span id=\"msgNumb\">$contactusMessage</span>)</span></a></li>";
 			
-			echo "<li><a href=\"../content/controlPanel.php?err=0\">";
+			echo "<li><a href=\"../includes/controlPanel.php?err=0\">";
 			echo "<span>CONTROL PANEL</span></a></li>";
 			echo "</li>";
 		}			

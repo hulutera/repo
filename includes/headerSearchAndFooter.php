@@ -82,17 +82,17 @@ function activatetab() {
 		$tabactive = 2;
 	} else if ($curPageName == "help.php") {
 		$tabactive = 3;
-	} else if ($curPageName == "content/pendingItems.php") {
+	} else if ($curPageName == "includes/pendingItems.php") {
 		$tabactive = 11;
-	} else if ($curPageName == "content/reportedItems.php") {
+	} else if ($curPageName == "includes/reportedItems.php") {
 		$tabactive = 12;
-	} else if ($curPageName == "content/userMessages.php") {
+	} else if ($curPageName == "includes/userMessages.php") {
 		$tabactive = 13;
-	} else if ($curPageName == "content/userActive.php") {
+	} else if ($curPageName == "includes/userActive.php") {
 		$tabactive = 14;
-	} else if ($curPageName == "content/userPending.php") {
+	} else if ($curPageName == "includes/userPending.php") {
 		$tabactive = 15;
-	} else if ($curPageName == "content/deletedItems.php") {
+	} else if ($curPageName == "includes/deletedItems.php") {
 		$tabactive = 16;
 	} else if ($curPageName == "includes/prompt.php") {
 		$tabactive = 18;
@@ -150,7 +150,7 @@ function topRightLinks() {
 		echo '<div id="topRightAmharic">መዉጣት</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../content/userActive.php">';
+		echo '<a href="../../includes/userActive.php">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">my items</div>';
 		echo '<div id="topRightAmharic">የኔ ንብረቶች</div>';

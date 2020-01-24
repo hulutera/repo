@@ -250,15 +250,15 @@ function display($query)
 		echo '<tr>';
 
 		echo '<td style="width:10%;">';
-		echo '<a href="../content/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uID'] . '</a>';
+		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uID'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../content/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uEmail'] . '</a>';
+		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uEmail'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../content/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uPhone'] . '</a>';
+		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uPhone'] . '</a>';
 		echo '</td>';
 		echo '<td><input type="hidden" name="token"  value="' . Token::generate();
 		echo '"></td></tr>';
@@ -298,7 +298,7 @@ function controlPanel($hash)
 				}
 			} else {
 
-				echo '<table><tr><td><strong><a target="_blank" href="../content/userList.php">ALL USERS</a></strong></td></tr></table>';
+				echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php">ALL USERS</a></strong></td></tr></table>';
 			}
 		}
 	}
@@ -325,17 +325,17 @@ function controlPanel($hash)
 		$delete  = countRow('modDelete', $_GET['ID']);
 
 		if ($active) {
-			echo '<a href="../content/userActive.php?ID=' . $_GET['ID'] . '" target="_blank">ACTIVE(' . $active . ')</a><br>';
+			echo '<a href="../includes/userActive.php?ID=' . $_GET['ID'] . '" target="_blank">ACTIVE(' . $active . ')</a><br>';
 		} else {
 			echo 'ACTIVE(' . $active . ')<br>';
 		}
 		if ($pending) {
-			echo '<a href="../content/pendingItems.php?ID=' . $_GET['ID'] . '" target="_blank">PENDING(' . $pending . ')</a><br>';
+			echo '<a href="../includes/pendingItems.php?ID=' . $_GET['ID'] . '" target="_blank">PENDING(' . $pending . ')</a><br>';
 		} else {
 			echo 'PENDING(' . $pending . ')<br>';
 		}
 		if ($delete) {
-			echo '<a href="../content/deletedItems.php?ID=' . $_GET['ID'] . '" target="_blank">DELETED(' . $delete . ')</a><br>';
+			echo '<a href="../includes/deletedItems.php?ID=' . $_GET['ID'] . '" target="_blank">DELETED(' . $delete . ')</a><br>';
 		} else {
 			echo 'DELETED(' . $delete . ')<br>';
 		}
