@@ -1112,7 +1112,7 @@ function register()
 	echo '<tr>';
 	echo '<p class="termandCond"><input type="checkbox" class="termandCondbox" style="float:left;" name="termandCond">';
 	echo 'I have read and agree to the/የሚቀጥለውን አንብቤ ተስማምቻለሁ';
-	echo '<a href="../proxy/terms.php">Terms & Conditions </a></p>';
+	echo '<a href="../includes/terms.php">Terms & Conditions </a></p>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</div>';

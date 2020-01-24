@@ -125,7 +125,7 @@ function topRightLinks() {
 		echo '<div id="topRightAmharic">ይመዝገቡ</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../proxy/contact.php">';
+		echo '<a href="../../includes/contact.php">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">Contact Us</div>';
 		echo '<div id="topRightAmharic">ሊጠይቁን ይፈልጋሉ</div>';
@@ -206,7 +206,7 @@ function tabMenu() {
 	if (activatetab() == 3) {
 		echo "class=\"active\"";
 	}
-	echo 'href="../../proxy/help.php" >Help<div id="tabsAmharic">መረጃ</div></a></li>';
+	echo 'href="../../includes/help.php" >Help<div id="tabsAmharic">መረጃ</div></a></li>';
 	echo '</div>';
 	miniSearch();
 	echo '</div>';
@@ -263,16 +263,16 @@ function footerCode() {
 		 <p style="font-weight:bold">ABOUT US</p>
 		<a href="../../index.php"><img src="../../img/hulutera.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
 		<p style="text-align:left;font-size:14px">hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.
-			hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click <a href="../../proxy/about.php" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.
+			hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click <a href="../../includes/about.php" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.
 			</p>
 
 		   </div>';
 	echo '<div id="information_fo">
 		  <p style="font-weight:bold">INFORMATION</p>
-		<p ><a href="../../proxy/contact.php">Contact us</a></p>
-		<p><a href="../../proxy/help.php" target="_blank">Help</a></p>
-		<p ><a href="../../proxy/terms.php">Term and Conditions</a></p>
-		<p><a href="../../proxy/privacy.php">Privacy Policy</a></p>
+		<p ><a href="../../includes/contact.php">Contact us</a></p>
+		<p><a href="../../includes/help.php" target="_blank">Help</a></p>
+		<p ><a href="../../includes/terms.php">Term and Conditions</a></p>
+		<p><a href="../../includes/privacy.php">Privacy Policy</a></p>
 		   </div>';
 	echo '<div id="followUs_fo" >
 		  <p style="font-weight:bold">FOLLOW US</p>
