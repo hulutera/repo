@@ -1028,7 +1028,7 @@ function register()
 					die('Could not insert into database: '.mysqli_error());
 				}else{
 					$message="To activate your account, please click on the link:\n\n";
-					$message.="http://www.hulutera.com/helper/activate.php?key=".$activation;
+					$message.="http://www.hulutera.com/includes/activate.php?key=".$activation;
 					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@hulutera.com');
 					redirect("../includes/prompt.php?type=1");
 				}

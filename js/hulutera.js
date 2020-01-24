@@ -433,7 +433,7 @@ function showMsgBox(id,action)
 		$("#nameColumn"+id).css("font-weight", "normal" );
 		$("#subjectColumn"+id).css("font-weight", "normal");
 		$.ajax({
-			url:'/helper/actionOnMessage.php?idArray='+id+'&action='+action,
+			url:'/includes/actionOnMessage.php?idArray='+id+'&action='+action,
 			method:"GET"
 		});
 	}); 
@@ -485,7 +485,7 @@ function sendReplyMsg(useremail,youremail,id)
 			$('#msgReplyClose'+id).show();
 			$('#txtMsgSent'+id).show();	
 			$.ajax({
-				url:'/helper/actionOnMessage.php?msg='+msg+'&useremail='+useremail+'&youremail='+youremail+'&action=reply',
+				url:'/includes/actionOnMessage.php?msg='+msg+'&useremail='+useremail+'&youremail='+youremail+'&action=reply',
 				method:"GET"
 
 			});
@@ -503,7 +503,7 @@ function msgActions(action)
 		$("#nextopButtons").show();
 		stringArray = checkboxArray.join(",");
 		$.ajax({
-			url:'/helper/actionOnMessage.php?idArray='+stringArray+'&action='+action,
+			url:'/includes/actionOnMessage.php?idArray='+stringArray+'&action='+action,
 			method:"GET",
 
 			/*! it sends the number of message to myaccount which was returned from the above file 
@@ -540,7 +540,7 @@ function messagetype(mailtype)
 {
 	$(document).ready(function (){
 		$.ajax({
-			url:'../helper/message.php?mail_type='+mailtype,
+			url:'../includes/message.php?mail_type='+mailtype,
 			method:"GET",
 			success: function(data){ $('#mainColumn').html(data); }
 		});    
@@ -552,7 +552,7 @@ function func_moderatorActions(actionType, itemtype, itemid, time,user,link){
 	$(document).ready(function (){
 		$('.thumblist_'+itemtype+itemid).hide();
 		$.ajax({
-			url:'/helper/moderatorActions.php?actionType='+actionType+'&itemtype='+itemtype+'&itemid='+itemid+'&time='+time+'&user='+user+'&link='+link,
+			url:'/includes/moderatorActions.php?actionType='+actionType+'&itemtype='+itemtype+'&itemid='+itemid+'&time='+time+'&user='+user+'&link='+link,
 			method:"GET",
 			success: function(data){ $('#'+link).html(data); } 
 		});    
@@ -562,7 +562,7 @@ function func_moderatorActions(actionType, itemtype, itemid, time,user,link){
 function func_moderatorShow(actionType, itemtype, itemid){
 	$(document).ready(function (){
 		$.ajax({
-			url:'/helper/moderatorActions.php?actionType='+actionType+'&itemtype='+itemtype+'&itemid='+itemid,
+			url:'/includes/moderatorActions.php?actionType='+actionType+'&itemtype='+itemtype+'&itemid='+itemid,
 			method:"GET",
 			success: function(data){ alert(data); }
 		});    
@@ -640,7 +640,7 @@ function swapmailback(itemId,uemail,itemType){
 			$('.message_'+itemType+itemId).slideUp('fast'); 
 			$('.sent_'+itemType+itemId).slideDown('fast'); 
 			$.ajax({
-				url:'/helper/sendMessage.php?itemid='+itemId+'&name='+name+'&email='+email+'&msg='+msg+'&uemail='+uemail+'&itemtype='+itemType,
+				url:'/includes/sendMessage.php?itemid='+itemId+'&name='+name+'&email='+email+'&msg='+msg+'&uemail='+uemail+'&itemtype='+itemType,
 				method:"GET",	
 				success: function(data){ 
 				}
@@ -703,7 +703,7 @@ function swapabuseback(itemId, itemType){
 		}else{
 			$('.errorabuse_'+itemType+itemId).slideUp('fast');
 			$.ajax({
-				url:'/helper/report.php?itemid='+itemId+'&selected='+choosenAbuse+'&itemtype='+itemType+'ID',
+				url:'/includes/report.php?itemid='+itemId+'&selected='+choosenAbuse+'&itemtype='+itemType+'ID',
 				method:"GET"
 			});
 			$('.reportbox_'+itemType+itemId).slideUp('fast');

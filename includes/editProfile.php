@@ -149,7 +149,7 @@ if(!isset($_SESSION['uID']))
 							<div class="headerEn">Change your email</div>
 							<div class="headerAm">የኢሜይል አድራሻ ለመቀየር</div>
 							<form id="generalform" class="container" method="post"
-								action="../helper/updateProfile.php">
+								action="../includes/updateProfile.php">
 								<table>
 									<tr>
 										<td class="moduleLabel">
@@ -192,7 +192,7 @@ if(!isset($_SESSION['uID']))
 							<div class="headerAm">የምስጢር ቃል ለመቀየር</div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../helper/updateProfile.php">
+								action="../includes/updateProfile.php">
 								<table>
 									<tr>
 										<td class="moduleLabel">
@@ -243,7 +243,7 @@ if(!isset($_SESSION['uID']))
 							<div class="headerAm">የግል መረጃ ለመቀየር</div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../helper/updateProfile.php">
+								action="../includes/updateProfile.php">
 								<table>
 									<tr>
 										<td class="moduleLabel">
@@ -307,7 +307,7 @@ if(!isset($_SESSION['uID']))
 							<div class="headerAm">የመገኛ መንገድ ለመቀየር</div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../helper/updateProfile.php">
+								action="../includes/updateProfile.php">
 								<table>
 									<tr>
 										<td class="moduleLabel">
@@ -362,7 +362,7 @@ if(!isset($_SESSION['uID']))
 							</div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../helper/updateProfile.php">
+								action="../includes/updateProfile.php">
 
 								<table>
 									<tr>

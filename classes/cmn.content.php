@@ -2,8 +2,8 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/userStatus.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/helper/message.php';
-require_once $documnetRootPath . '/helper/token.php';
+require_once $documnetRootPath . '/includes/message.php';
+require_once $documnetRootPath . '/includes/token.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 
@@ -349,7 +349,7 @@ function controlPanel($hash)
 		echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
 		echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
 
-		echo '<form enctype="multipart/form-data" action="../helper/privilege.php" name="myform" id="myform" method="POST">';
+		echo '<form enctype="multipart/form-data" action="../includes/privilege.php" name="myform" id="myform" method="POST">';
 		echo 'Change access to ';
 		echo '<select id="privilege" name="privilege">';
 		echo '<option value="000">[privilege]</option>';

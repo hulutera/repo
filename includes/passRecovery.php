@@ -47,7 +47,7 @@ $error_message="";
         $result=$connect->query("UPDATE user SET uNewPassword = '$hashed_newpassword1', activation = '$activation' WHERE uID = '$user_id'") or die (mysqli_error());
 		
 		//Email out the information
-		$recoveryLink= "http://hulutera.com/helper/activate.php?key=".$activation."&newPass=yes";
+		$recoveryLink= "http://hulutera.com/includes/activate.php?key=".$activation."&newPass=yes";
 		$subject = "Your New Password"." (አዲሱ የሚስጥር ቃል)";
 		$messageEn.= "Dear Customer\n";
 		$messageEn.= "A password recovery was requested for your account. Please click on the following link to recover your password.";

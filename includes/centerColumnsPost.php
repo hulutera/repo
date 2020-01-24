@@ -5,7 +5,7 @@ static $emptymsg = "Sorry! There is no item to display.<div id=spanColumnXamhari
 static $MAX = 30;        //Maximum number of items per page
 static $maxNumOfImg = 5; //Maximum number of images	per item
 $documnetRootPath   = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/helper/pagination.php';
+require_once $documnetRootPath.'/includes/pagination.php';
 require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/items/items.common.class.php';
 require_once $documnetRootPath.'/items/car/car.view.class.php';

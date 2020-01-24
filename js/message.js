@@ -8,7 +8,7 @@ function showMsgBox(id,action)
 		$("#nameColumn"+id).css("font-weight", "normal" );
 		$("#subjectColumn"+id).css("font-weight", "normal");
 		$.ajax({
-			url:'/helper/actionOnMessage.php?idArray='+id+'&action='+action,
+			url:'/includes/actionOnMessage.php?idArray='+id+'&action='+action,
 			method:"GET"
 		});
 	}); 
@@ -60,7 +60,7 @@ function sendReplyMsg(useremail,youremail,id)
 			$('#msgReplyClose'+id).show();
 			$('#txtMsgSent'+id).show();	
 			$.ajax({
-				url:'/helper/actionOnMessage.php?msg='+msg+'&useremail='+useremail+'&youremail='+youremail+'&action=reply',
+				url:'/includes/actionOnMessage.php?msg='+msg+'&useremail='+useremail+'&youremail='+youremail+'&action=reply',
 				method:"GET"
 
 			});
@@ -78,7 +78,7 @@ function msgActions(action)
 		$("#nextopButtons").show();
 		stringArray = checkboxArray.join(",");
 		$.ajax({
-			url:'/helper/actionOnMessage.php?idArray='+stringArray+'&action='+action,
+			url:'/includes/actionOnMessage.php?idArray='+stringArray+'&action='+action,
 			method:"GET",
 			
  /*! it sends the number of message to myaccount which was returned from the above file 
@@ -115,7 +115,7 @@ function messagetype(mailtype)
 {
 	$(document).ready(function (){
 		$.ajax({
-			url:'../helper/message.php?mail_type='+mailtype,
+			url:'../includes/message.php?mail_type='+mailtype,
 			method:"GET",
 			success: function(data){ $('#mainColumn').html(data); }
 		});    

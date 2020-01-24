@@ -121,7 +121,7 @@ function showMsgBox(e, t) {
         $("#nameColumn" + e).css("font-weight", "normal");
         $("#subjectColumn" + e).css("font-weight", "normal");
         $.ajax({
-            url: "/helper/actionOnMessage.php?idArray=" + e + "&action=" + t,
+            url: "/includes/actionOnMessage.php?idArray=" + e + "&action=" + t,
             method: "GET"
         })
     });
@@ -165,7 +165,7 @@ function sendReplyMsg(e, t, n) {
             $("#msgReplyClose" + n).show();
             $("#txtMsgSent" + n).show();
             $.ajax({
-                url: "/helper/actionOnMessage.php?msg=" + r + "&useremail=" + e + "&youremail=" + t + "&action=reply",
+                url: "/includes/actionOnMessage.php?msg=" + r + "&useremail=" + e + "&youremail=" + t + "&action=reply",
                 method: "GET"
             });
             return false
@@ -180,7 +180,7 @@ function msgActions(e) {
         $("#nextopButtons").show();
         t = checkboxArray.join(",");
         $.ajax({
-            url: "/helper/actionOnMessage.php?idArray=" + t + "&action=" + e,
+            url: "/includes/actionOnMessage.php?idArray=" + t + "&action=" + e,
             method: "GET",
             success: function (e) {
                 $("#msgNumb").html(e)
@@ -209,7 +209,7 @@ function msgActions(e) {
 function messagetype(e) {
     $(document).ready(function () {
         $.ajax({
-            url: "../helper/message.php?mail_type=" + e,
+            url: "../includes/message.php?mail_type=" + e,
             method: "GET",
             success: function (e) {
                 $("#mainColumn").html(e)
@@ -222,7 +222,7 @@ function func_moderatorActions(e, t, n, r, i, s) {
     $(document).ready(function () {
         $(".thumblist_" + t + n).hide();
         $.ajax({
-            url: "/helper/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n + "&time=" + r + "&user=" + i + "&link=" + s,
+            url: "/includes/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n + "&time=" + r + "&user=" + i + "&link=" + s,
             method: "GET",
             success: function (e) {
                 $("#" + s).html(e)
@@ -234,7 +234,7 @@ function func_moderatorActions(e, t, n, r, i, s) {
 function func_moderatorShow(e, t, n) {
     $(document).ready(function () {
         $.ajax({
-            url: "/helper/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n,
+            url: "/includes/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n,
             method: "GET",
             success: function (e) {
                 alert(e)
@@ -304,7 +304,7 @@ function swapmailback(e, t, n) {
             $(".message_" + n + e).slideUp("fast");
             $(".sent_" + n + e).slideDown("fast");
             $.ajax({
-                url: "/helper/sendMessage.php?itemid=" + e + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + t + "&itemtype=" + n,
+                url: "/includes/sendMessage.php?itemid=" + e + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + t + "&itemtype=" + n,
                 method: "GET",
                 success: function (e) {}
             });
@@ -364,7 +364,7 @@ function swapabuseback(e, t) {
         } else {
             $(".errorabuse_" + t + e).slideUp("fast");
             $.ajax({
-                url: "/helper/report.php?itemid=" + e + "&selected=" + n + "&itemtype=" + t + "ID",
+                url: "/includes/report.php?itemid=" + e + "&selected=" + n + "&itemtype=" + t + "ID",
                 method: "GET"
             });
             $(".reportbox_" + t + e).slideUp("fast");

@@ -1,7 +1,7 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/helper/pagination.php';
+require_once $documnetRootPath.'/includes/pagination.php';
 
 $connect = DatabaseClass::getInstance()->getConnection();
 

@@ -18,7 +18,7 @@ if ($connect) {
 		$sessiontimer = time() - $_SESSION['time'];
 		if ($sessiontimer > $SESSION_MAX_INACTIVE_TIME) {
 			//redirect to logout since session have expired
-			header('Location: ../helper/logout.php');
+			header('Location: ../includes/logout.php');
 		} else //session is active continue
 		{
 			//update session time

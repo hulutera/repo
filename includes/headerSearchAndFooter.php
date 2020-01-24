@@ -144,7 +144,7 @@ function topRightLinks() {
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' . $name . '</div>';
 		echo '<div id="topRightAmharic" style="color:#0d6aac">&nbsp</div></div>';
-		echo '<a href="../../helper/logout.php">';
+		echo '<a href="../../includes/logout.php">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">log out</div>';
 		echo '<div id="topRightAmharic">መዉጣት</div>';

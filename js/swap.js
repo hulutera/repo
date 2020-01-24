@@ -70,7 +70,7 @@ function swapmailback(itemId,uemail,itemType){
 			$('.message_'+itemType+itemId).slideUp('fast'); 
 			$('.sent_'+itemType+itemId).slideDown('fast'); 
 			$.ajax({
-				url:'/helper/sendMessage.php?itemid='+itemId+'&name='+name+'&email='+email+'&msg='+msg+'&uemail='+uemail+'&itemtype='+itemType,
+				url:'/includes/sendMessage.php?itemid='+itemId+'&name='+name+'&email='+email+'&msg='+msg+'&uemail='+uemail+'&itemtype='+itemType,
 				method:"GET",	
 				success: function(data){ 
 				}
@@ -133,7 +133,7 @@ function swapabuseback(itemId, itemType){
 		}else{
 			$('.errorabuse_'+itemType+itemId).slideUp('fast');
 			$.ajax({
-				url:'/helper/report.php?itemid='+itemId+'&selected='+choosenAbuse+'&itemtype='+itemType+'ID',
+				url:'/includes/report.php?itemid='+itemId+'&selected='+choosenAbuse+'&itemtype='+itemType+'ID',
 				method:"GET"
 			});
 			$('.reportbox_'+itemType+itemId).slideUp('fast');
