@@ -199,8 +199,7 @@ class CommonClass
 		$itemName = $objItem->getItemName();
 		echo "<div class=\"featured_left_side\">";
 		if ($numimage == 1) {
-			//echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\"$objDir->IMG_NOT_AVAIL\"></div>";
-			$file_path = $documnetRootPath . '/img/hulutera.PNG'; //;$dir1.$image[0];
+			$file_path = $documnetRootPath . '/img/hulutera.PNG'; 
 			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '"></div>';
 		}
 		if ($numimage > 1) {
