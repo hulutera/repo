@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/inc/userStatus.php';
+require_once $documnetRootPath.'/includes/userStatus.php';
 
 if(!isset($_SESSION['uID']) ){
 	header('Location:'. $documnetRootPath.'index.php');

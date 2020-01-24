@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
+require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
 //redirect to itemTemplate file
 if(!isset($_SESSION['uID']))
 {

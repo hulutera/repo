@@ -1,6 +1,6 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/inc/common.inc.php';
+require_once $documnetRootPath.'/includes/common.inc.php';
 
 $MAX = 30; //== The number of items that will be visible in one page ===//
 $noItemToShow = "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>";

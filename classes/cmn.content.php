@@ -1,10 +1,10 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/inc/userStatus.php';
-require_once $documnetRootPath . '/inc/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/includes/userStatus.php';
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/helper/message.php';
 require_once $documnetRootPath . '/helper/token.php';
-require_once $documnetRootPath . '/inc/common.inc.php';
+require_once $documnetRootPath . '/includes/common.inc.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 
 $MAX = 30; //== The number of items that will be visible in one page ===//

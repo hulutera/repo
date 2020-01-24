@@ -1,7 +1,7 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/inc/item.inc.php';
+require_once $documnetRootPath.'/includes/item.inc.php';
 //get item name from URL
 $item = $_GET['type'];
 //get array containing itemAmharic and if type variable is valid

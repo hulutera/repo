@@ -11,7 +11,7 @@ $errorShow = "";
      25 => "Invalid e-mail or password. ኢሜይል  ወይም የምስጢር ቃል ትክክል አይደለም።",
      26 => "There is no user registered with this e-mail./ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም ",
 ); 
- require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
+ require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
  require_once $documnetRootPath.'/classes/cmn.user.php';
  require_once $documnetRootPath.'/classes/cmn.class.php';
 

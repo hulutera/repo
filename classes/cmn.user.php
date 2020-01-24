@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/cmn/global.variable.php';
+require_once $documnetRootPath.'/classes/global.variable.php';
 
 function userLogin($email, $password)
 {

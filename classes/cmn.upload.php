@@ -1,7 +1,7 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
-require_once $documnetRootPath.'/inc/centerColumns.php';
+require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath.'/includes/centerColumns.php';
 
 function routerItemUpld($contentType)
 {
