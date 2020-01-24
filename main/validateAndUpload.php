@@ -1301,7 +1301,7 @@ function uploadImage($itemArr, $item_ID)
 				}
 				else
 				{
-					$connect->query("UPDATE `$itemType` SET `picture_".$m."`= '$filename_with_rand', WHERE `itemID` = '$item_ID'");
+					$connect->query("UPDATE `$itemType` SET `picture_".$m."`= '$filename_with_rand' WHERE `itemID` = '$item_ID'");
 				}
 				//compress($target_file,$target_file);
 
