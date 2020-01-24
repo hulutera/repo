@@ -107,16 +107,17 @@ function queryStatus($uId, $status)
 	{
 		$value = "";
 	}
-	$result = $connect->query("
-			SELECT cID            FROM car	       WHERE $value cStatus  = '$status'
-			UNION SELECT hID  FROM house       WHERE $value hStatus  = '$status'
-			UNION SELECT dID  FROM computer    WHERE $value dStatus  = '$status'
-			UNION SELECT eID  FROM electronics WHERE $value eStatus  = '$status'
-			UNION SELECT pID  FROM phone       WHERE $value pStatus  = '$status'
-			UNION SELECT hhID FROM household   WHERE $value hhStatus = '$status'
-			UNION SELECT oID  FROM others      WHERE $value oStatus  = '$status'");
-
-	return mysqli_num_rows($result);
+	$sum = 0;
+	$itemsId = array("cID", "hID", "dID", "eID", "pID", "hhID", "oID");
+	$tablesName = array("car", "house", "computer", "electronics", "phone", "household", "others");
+	$itemStatus = array("cStatus", "hStatus", "dStatus", "eStatus", "pStatus", "hhStatus", "oStatus");
+	
+	for ($i=0; $i<=6; $i++){
+		$qr = $connect->query("SELECT $itemsId[$i] FROM $tablesName[$i] WHERE $value $itemStatus[$i]  = '$status'");
+		$sum_item = mysqli_num_rows($qr);
+        $sum += $sum_item;		
+	}
+	return ($sum);
 }
 function queryContactUs()
 {
