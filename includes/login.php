@@ -47,7 +47,7 @@ if(isset($_POST['submit']))
             <div id="outerLogin">
                 <div id="innerLogin">
                     <form id="generalform" class="signin" method="post"
-                        action="../main/login.php">
+                        action="../includes/login.php">
                         <div id="login-box">
                             <table>
                                 <tr class="logInCol">
@@ -83,12 +83,12 @@ if(isset($_POST['submit']))
                                     <td></td>
                                     <td>
                                         <div class="logInPassRecovery">
-                                            <a class="forgot" href="../main/passRecovery.php">Forgot your
+                                            <a class="forgot" href="../includes/passRecovery.php">Forgot your
                                                 password/የምስጢር ቃሎ ጠፋብዎ?</a>
                                         </div>
 
                                         <div class="logInRegister">
-                                            <a class="forgot" href="../main/register.php">Register/ይመዝገቡ!</a>
+                                            <a class="forgot" href="../includes/register.php">Register/ይመዝገቡ!</a>
                                         </div>
                                     </td>
                                 </tr>

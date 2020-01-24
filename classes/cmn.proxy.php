@@ -69,7 +69,7 @@ function contact()
 				}
 				else
 				{
-					redirect("../main/prompt.php?type=7");
+					redirect("../includes/prompt.php?type=7");
 				}
 			}
 		}
@@ -1030,10 +1030,10 @@ function register()
 					$message="To activate your account, please click on the link:\n\n";
 					$message.="http://www.hulutera.com/helper/activate.php?key=".$activation;
 					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@hulutera.com');
-					redirect("../main/prompt.php?type=1");
+					redirect("../includes/prompt.php?type=1");
 				}
 			}else{
-				redirect("../main/prompt.php?type=2");
+				redirect("../includes/prompt.php?type=2");
 			}
 		}else{
 			$endl = '<br>';
@@ -1045,10 +1045,10 @@ function register()
 			$error_message.="</div>";
 		}
 
-		if ($http_referer=='http://www.hulutera.com/main/prompt.php?type=9')
+		if ($http_referer=='http://www.hulutera.com/includes/prompt.php?type=9')
 		{
 			ob_start();
-			header('Location: ../main/upload.php');
+			header('Location: ../includes/upload.php');
 			ob_end_flash();
 		}
 	}
@@ -1062,7 +1062,7 @@ function register()
 
 	echo '<div id="mainColumn">';
 	echo '<div id="registernow">';
-	echo '<form class="container" method="post" action="../main/register.php">';
+	echo '<form class="container" method="post" action="../includes/register.php">';
 	echo '<br>'. $error_message;
 	echo '<div class="registerInner">';
 	echo '<div class="field">';

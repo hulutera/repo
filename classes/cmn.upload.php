@@ -21,7 +21,7 @@ function routerItemUpld($contentType)
 	
 	if(!isset($_SESSION['uID']) || !$isValidUrl)
 	{
- 		header('Location: ../main/prompt.php?type=404');
+ 		header('Location: ../includes/prompt.php?type=404');
  		exit;		
 	}
 	

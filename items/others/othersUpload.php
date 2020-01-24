@@ -3,7 +3,7 @@ function othersUpld()
 {
 	echo'<div id="othersContent">';
 	echo '<div id="stylized" class="myform">';
-	echo '<form enctype="multipart/form-data" action="../../main/validateAndUpload.php?type=others" name="myform" id="myform" method="POST">';
+	echo '<form enctype="multipart/form-data" action="../../includes/validateAndUpload.php?type=others" name="myform" id="myform" method="POST">';
 	$e100 = isset($_GET['e100'])?$_GET['e100']:'';
 	$e108 = isset($_GET['e108'])?$_GET['e108']:'';
 	$e109 = isset($_GET['e109'])?$_GET['e109']:'';

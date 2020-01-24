@@ -4,7 +4,7 @@ function houseUpld()
 {
 	echo '<div id="houseContent">';
 	echo '<div id="stylized" class="myform">';
-	echo '<form enctype="multipart/form-data" action="../../main/validateAndUpload.php?type=house" name="myform" id="myform" method="POST">';
+	echo '<form enctype="multipart/form-data" action="../../includes/validateAndUpload.php?type=house" name="myform" id="myform" method="POST">';
 	$e100 = isset($_GET['e100'])?$_GET['e100']:'';
 	$e101 = isset($_GET['e101'])?$_GET['e101']:'';
 	$e102 = isset($_GET['e102'])?$_GET['e102']:'';

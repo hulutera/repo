@@ -80,7 +80,7 @@ $error_message="";
 		}
 		else
 		{
-			header('Location: ../main/prompt.php?type=4');
+			header('Location: ../includes/prompt.php?type=4');
 		}
 	}
 	else{
@@ -105,7 +105,7 @@ $error_message="";
 			<?php headerAndSearchCode(""); ?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<form id="passrecovery" class="container" method="post" action="../main/passRecovery.php">
+					<form id="passrecovery" class="container" method="post" action="../includes/passRecovery.php">
 						<div id="passR_title">
 						<div class="passR_title_Eng"><p>To reset your password, please provide username or email.</p></div>
 						<div class="passR_title_Amh"><p>የምስጢር ቃልዎን ለማግኘት የመጠቀምያ ስምዎን ወይም ኢሜይልዎን ያስገቡ</p></div>	

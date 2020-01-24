@@ -43,7 +43,7 @@ else
 				die ("Sending Email Failed. Please Contact Site Admin!");
 			}
 			ob_start();
-			header('Location: ../main/editProfile.php?error=');
+			header('Location: ../includes/editProfile.php?error=');
 			ob_end_flush();
 		}
 		else
@@ -53,7 +53,7 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../main/editProfile.php?error='.$error_message);
+			header('Location: ../includes/editProfile.php?error='.$error_message);
 			ob_end_flush();
 		}
 
@@ -102,7 +102,7 @@ else
 			if($result2)
 			{
 				ob_start();
-				header('Location: ../main/editProfile.php?error=');
+				header('Location: ../includes/editProfile.php?error=');
 				ob_end_flush();
 			}
 		}
@@ -113,7 +113,7 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../main/editProfile.php?error='.$error_message);
+			header('Location: ../includes/editProfile.php?error='.$error_message);
 			ob_end_flush();
 		}
 	}
@@ -132,7 +132,7 @@ else
 				uAddress   = '$new_address'
 				WHERE uID  = '$user_id'");
 		ob_start();
-		header('Location: ../main/editProfile.php?error=');
+		header('Location: ../includes/editProfile.php?error=');
 		ob_end_flush();
 	}
 	elseif($_POST['submit4']) //to handle form for contact method changes
@@ -159,9 +159,9 @@ else
 		$user_id = $_SESSION['uID'];
 		$result = $connect->query("UPDATE user SET	uContactMethod = '$contact'	WHERE uID  = '$user_id'");
 		ob_start();
-		header('Location: ../main/editProfile.php?error=');
+		header('Location: ../includes/editProfile.php?error=');
 		ob_end_flush();
-		header('Location: ../main/editProfile.php');
+		header('Location: ../includes/editProfile.php');
 	}
 	elseif($_POST['submit5'])//to handle form for terminating account
 	{
@@ -217,7 +217,7 @@ else
 			{
 				ob_start();
 				session_destroy();
-				header('Location: ../main/prompt.php?type=16');
+				header('Location: ../includes/prompt.php?type=16');
 				ob_end_flush();
 			}
 		}
@@ -228,7 +228,7 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../main/editProfile.php?error='.$error_message);
+			header('Location: ../includes/editProfile.php?error='.$error_message);
 			ob_end_flush();
 		}
 	}

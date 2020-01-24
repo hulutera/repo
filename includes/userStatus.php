@@ -54,7 +54,7 @@ function accountLinks()
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../main/upload.php\" ><span>Post Items</span></a></li>";
+	echo "href=\"../includes/upload.php\" ><span>Post Items</span></a></li>";
 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 	{
 		echo "<li><a ";

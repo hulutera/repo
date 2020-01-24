@@ -40,7 +40,7 @@ if( !isset($_SESSION['uID']) ){
 			$query = "UPDATE user SET uPassword= '$hashed_newpassword' WHERE uID = '$user_id' ";
 			$result2=$connect->query($query) or die(mysqli_error());
 			if($result2){
-				header('Location: ../main/prompt.php?type=5');
+				header('Location: ../includes/prompt.php?type=5');
 			}
 		}
 		else{
@@ -71,7 +71,7 @@ if( !isset($_SESSION['uID']) ){
 						<?php echo $error_message; ?>
 					</div>
 					<form id="generalform" class="container" method="post"
-						action="main/passChange.php">
+						action="includes/passChange.php">
 						<table>
 							<tr>
 								<div class="field">

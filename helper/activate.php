@@ -9,19 +9,19 @@ var_dump($GET);
 if(!empty($passRecovery) && !empty($key)){
     $result=$connect->query("SELECT uNewPassword FROM user WHERE activation='$key' LIMIT 1") or die(mysqli_error());
     if (mysqli_num_rows($result)==0) {
-        header('Location: ../main/prompt.php?type=14');
+        header('Location: ../includes/prompt.php?type=14');
     }
     else {
         $row=mysqli_fetch_array($result);
         $newPassword=$row['uNewPassword'];
         $result2=$connect->query("UPDATE user SET upassword = '$newPassword', activation= NULL WHERE activation='$key'") or die (mysqli_error());
-        header('Location: ../main/prompt.php?type=3');   
+        header('Location: ../includes/prompt.php?type=3');   
     }
 }
 else if(!empty($key)){        
 	$result=$connect->query("SELECT * FROM tempuser WHERE activation='$key' LIMIT 1") or die(mysqli_error());
 	if (mysqli_num_rows($result)==0) {
-		header('Location: ../main/prompt.php?type=15');
+		header('Location: ../includes/prompt.php?type=15');
 	}
 	else if (mysqli_num_rows($result)==1)  {
 		while ($row= $result->fetch_assoc()){
@@ -42,7 +42,7 @@ else if(!empty($key)){
         $endDate = 2592000 ;
         if ($today - $regDateSrting >= $endDate ){
 			$resulst2= $connect->query("DELETE FROM tempuser WHERE tuID='$user_id'")or die(mysql_error());
-			header ('Location: ../main/prompt.php?type=11');
+			header ('Location: ../includes/prompt.php?type=11');
         }
 		else{
             $result1=$connect->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')")or die(mysql_error());
@@ -51,7 +51,7 @@ else if(!empty($key)){
 			}
 			else{
                 $resulst2=$connect->query("DELETE FROM tempuser WHERE tuID='$user_id'")or die(mysql_error());
-				header('Location: ../main/prompt.php?type=0');
+				header('Location: ../includes/prompt.php?type=0');
             }
 	    }
     }

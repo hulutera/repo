@@ -78,7 +78,7 @@ function activatetab() {
 	$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 	if ($curPageName == "index.php") {
 		$tabactive = 1;
-	} else if ($curPageName == "main/upload.php") {
+	} else if ($curPageName == "includes/upload.php") {
 		$tabactive = 2;
 	} else if ($curPageName == "help.php") {
 		$tabactive = 3;
@@ -94,7 +94,7 @@ function activatetab() {
 		$tabactive = 15;
 	} else if ($curPageName == "content/deletedItems.php") {
 		$tabactive = 16;
-	} else if ($curPageName == "main/prompt.php") {
+	} else if ($curPageName == "includes/prompt.php") {
 		$tabactive = 18;
 	} else {
 		$tabactive = 0;
@@ -113,13 +113,13 @@ function logo() {
 function topRightLinks() {
 	if (!isset($_SESSION['uID'])) {
 		echo '<div class ="toprightlink">';
-		echo '<a href="../../main/login.php" >';
+		echo '<a href="../../includes/login.php" >';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">Log In</div>';
 		echo '<div id="topRightAmharic">ይግቡ</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../main/register.php">';
+		echo '<a href="../../includes/register.php">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">Register</div>';
 		echo '<div id="topRightAmharic">ይመዝገቡ</div>';
@@ -156,7 +156,7 @@ function topRightLinks() {
 		echo '<div id="topRightAmharic">የኔ ንብረቶች</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../main/editProfile.php">';
+		echo '<a href="../../includes/editProfile.php">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">Edit Profile</div>';
 		echo '<div id="topRightAmharic">መረጃ ለማስተካከል</div>';
@@ -168,7 +168,7 @@ function topRightLinks() {
 /*search*/
 function miniSearch() {
 	echo '<div class="miniSearch">';
-	echo '<form class="searchform" action="../../main/search.php" method ="GET">';
+	echo '<form class="searchform" action="../../includes/search.php" method ="GET">';
 	echo '<input name="search_text" class="searchfield" type="text"  placeholder="e.g RAV 4, Toyota, Villa"/>';
 	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="Search ፈልግ" />';
 	echo '</form>';
@@ -191,7 +191,7 @@ function tabMenu() {
 		if (activatetab() == 2) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../main/upload.php">Post Items
+		echo 'href="../../includes/upload.php">Post Items
 				<div id="tabsAmharic">ንብረት ያስገቡ</div></a></li>';
 	} else {
 //go to upload
@@ -199,7 +199,7 @@ function tabMenu() {
 		if (activatetab() == 18) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../main/prompt.php?type=9">Post Items';
+		echo 'href="../../includes/prompt.php?type=9">Post Items';
 		echo '<div id="tabsAmharic">ንብረት ያስገቡ</div></a></li>';
 	}
 	echo '<li class="activeThird"><a ';

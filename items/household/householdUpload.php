@@ -3,7 +3,7 @@ function householdUpld()
 {
 	echo'<div id="householdContent">';
 	echo '<div id="stylized" class="myform">';
-	echo '<form enctype="multipart/form-data" action="../../main/validateAndUpload.php?type=household" name="myform" id="myform" method="POST">';
+	echo '<form enctype="multipart/form-data" action="../../includes/validateAndUpload.php?type=household" name="myform" id="myform" method="POST">';
 	$e100 = isset($_GET['e100'])?$_GET['e100']:'';
 	$e101 = isset($_GET['e101'])?$_GET['e101']:'';
 	$e108 = isset($_GET['e108'])?$_GET['e108']:'';
