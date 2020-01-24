@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/cmn/cmn.content.php';
+require_once $documnetRootPath.'/classes/cmn.content.php';
 $err  = isset($_GET['err'])?$_GET['err']:'';
 $type = isset($_GET['type'])?$_GET['type']:'';
 ?>

@@ -5,7 +5,7 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
 require_once $documnetRootPath.'/inc/centerColumns.php';
-require_once $documnetRootPath.'/cmn/cmn.class.php';
+require_once $documnetRootPath.'/classes/cmn.class.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 
 if(!isset($_SESSION['uID']) ){

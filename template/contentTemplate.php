@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/cmn/cmn.content.php';
+require_once $documnetRootPath.'/classes/cmn.content.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,7 +2,7 @@
 /*latest house from DB*/
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/view/price.view.class.php';
-require_once $documnetRootPath . '/cmn/cmn.class.php';
+require_once $documnetRootPath . '/classes/cmn.class.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/object/objectPool.class.php';
 

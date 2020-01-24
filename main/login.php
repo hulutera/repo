@@ -12,8 +12,8 @@ $errorShow = "";
      26 => "There is no user registered with this e-mail./ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም ",
 ); 
  require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
- require_once $documnetRootPath.'/cmn/cmn.user.php';
- require_once $documnetRootPath.'/cmn/cmn.class.php';
+ require_once $documnetRootPath.'/classes/cmn.user.php';
+ require_once $documnetRootPath.'/classes/cmn.class.php';
 
  require_once $documnetRootPath.'/db/database.class.php';
  

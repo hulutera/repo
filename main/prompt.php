@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
-require_once $documnetRootPath.'/cmn/cmn.class.php';
+require_once $documnetRootPath.'/classes/cmn.class.php';
 $type=$_GET['type'];
 
 function createMessage($type){

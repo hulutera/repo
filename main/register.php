@@ -2,7 +2,7 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/inc/headerSearchAndFooter.php';
-require_once $documnetRootPath.'/cmn/cmn.proxy.php';
+require_once $documnetRootPath.'/classes/cmn.proxy.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
