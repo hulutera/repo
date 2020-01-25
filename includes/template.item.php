@@ -26,7 +26,7 @@ if(!$isValidUrl)
 			<?php headerAndSearchCode($item); ?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php isset($_GET['Id']) ? oneItemColumn($item) : allItemColumn($item);?>
+					<?php allItemColumn($item);?>
 				</div>
 			</div>
 		</div>

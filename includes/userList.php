@@ -1,7 +1,7 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/cmn.content.php';
+require_once $documnetRootPath . '/includes/cmn.content.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/includes/userStatus.php';

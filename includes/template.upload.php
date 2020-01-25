@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/classes/cmn.upload.php';
+require_once $documnetRootPath.'/includes/cmn.upload.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

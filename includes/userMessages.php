@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/classes/cmn.content.php';
+require_once $documnetRootPath.'/includes/cmn.content.php';
 //identify if 'userMessages' is present on the url on the location atleast after 8 characters 
 if(!isset($_SESSION['uID']))
 {
