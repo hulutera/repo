@@ -8,7 +8,7 @@ class Token{
 			$tokenName = $_POST['token'];
 		
 		if(isset($_SESSION['token']) && $token === $_SESSION[$tokenName]){
-			if(self::exists($tokenName)){
+			if(self::check($tokenName)){
 				unset($_SESSION[$tokenName]);
 			}
 			return true;
