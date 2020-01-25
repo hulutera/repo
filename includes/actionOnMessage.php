@@ -11,11 +11,15 @@ $msg = (isset($_GET['msg'])) ? $_GET['msg'] : '';
 $youremail = (isset($_GET['youremail'])) ? $_GET['youremail'] : '';
 //action to be taken
 $action =(isset($_GET['action'])) ? $_GET['action'] : '';
-global $connect;
+$connect = DatabaseClass::getInstance()->getConnection();
 
 // If the message id is one without comma then it treats it as anumeric number, if not it treats it as a string.
 // Then we made an array out of it.
 
+$tableName = "contactus";
+$idType = "kID";
+$updateAction = "UPDATE $tableName SET messageStatus =";
+$deleteAction = "DELETE FROM $tableName";
 
 switch($action)
 {
@@ -28,71 +32,77 @@ switch($action)
 		break;
 
 	case 'delete':
-        
-		if(is_numeric($idArray))
+	
+        if(is_numeric($idArray))
 		{
-			$numeric=$idArray;
-			$deletequery = $connect->query("DELETE FROM contactus WHERE kID = '$numeric' ") or die(mysqli_error());
+			$numeric = $idArray;
+			DatabaseClass::getInstance()->actionOnTables($deleteAction, $idType, $numeric);
 		}
 		else
 		{
 			$id= explode(",", $idArray);
 			for($i=0; $i<count($id); $i++)
 			{
-				$deletequery = $connect->query("DELETE FROM contactus WHERE kID = '$id[$i]'") or die(mysqli_error());
+				if($id[$i] != "") {
+				   DatabaseClass::getInstance()->actionOnTables($deleteAction, $idType, $id[$i]);
+                }
+				
 			}
 
 		}
 		break;
 
 	case 'follow':
-        
         if(is_numeric($idArray)){
 			$numeric=$idArray;
-			$followUpquery = $connect->query("UPDATE contactus SET messageStatus = 'follow up'  WHERE kID = '$numeric'") or die(mysqli_error());
+			DatabaseClass::getInstance()->actionOnTables($updateAction . "'follow up'", $idType, $numeric);
 		}
 		else
 		{
 			$id= explode(",", $idArray);
 			for($i=0; $i<count($id); $i++)
 			{
-				$followUpquery = $connect->query("UPDATE contactus SET messageStatus = 'follow up' WHERE kID = '$id[$i]'") or die(mysqli_error());
-
+				if($id[$i] != "") {
+				echo $action;
+				DatabaseClass::getInstance()->actionOnTables($updateAction . "'follow up'", $idType, $id[$i]);
+                }
 			}
 		}
 		
 		break;
 
 	case 'unfollow':
-		
 		if(is_numeric($idArray))
 		{
 		    $numeric=$idArray;
-			$unfollowquery = $connect->query("UPDATE contactus SET messageStatus = 'read'  WHERE kID = '$numeric'") or die(mysqli_error());
+			DatabaseClass::getInstance()->actionOnTables($updateAction. "'read'", $idType, $numeric);
 		}
 		else
 		{
 			$id = explode(",", $idArray);
 			for($i=0; $i<count($id); $i++)
 			{
-				$unfollowquery = $connect->query("UPDATE contactus SET messageStatus = 'read' WHERE kID = '$id[$i]'") or die(mysqli_error());
+				if($id[$i] != "") {
+				   DatabaseClass::getInstance()->actionOnTables($updateAction. "'read'", $idType, $id[$i]);
+                }
 			}
 		}
 		break;
 	
 	case 'unread':
-	 
-	 if(is_numeric($idArray)){
-	   $numeric=$idArray;
-	   $unreadResult = $connect->query("UPDATE contactus SET messageStatus = 'read' WHERE kID = '$numeric' ") or die(mysqli_error());
-	   }
-	 else {
+	    if(is_numeric($idArray)){
+	        $numeric=$idArray;
+	        DatabaseClass::getInstance()->actionOnTables($updateAction. "'unread'", $idType, $numeric);
+	    }
+	    else {
 	        $id = explode(",", $idArray);
 			for($i=0; $i<count($id); $i++)
 			 {
-			$unreadResult = $connect->query("UPDATE contactus SET messageStatus = 'read' WHERE kID = '$id' ") or die(mysqli_error());
+			    if($id[$i] != "") {
+				   DatabaseClass::getInstance()->actionOnTables($updateAction. "'unread'", $idType, $id[$i]);
+                }
 	         }
-	      }
+	    }
 	    break;
 }
 

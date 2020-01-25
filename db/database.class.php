@@ -393,4 +393,11 @@ class DatabaseClass
 
 		return $this->getConnection()->query($sql);
 	}
+	
+	// Message queries
+	public function actionOnTables($action,$idType, $numeric){
+		$this->getConnection()->query("$action WHERE $idType = $numeric") or die(mysqli_error());
+	}
+	
+	
 }
