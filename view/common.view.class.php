@@ -191,33 +191,25 @@ class CommonClass
 	* */
 	public function printGallery($objImg, $objDir, $image, $objItem, $itemId)
 	{
+		global $documnetRootPath;
 		$dir = $objDir->getDirectory();
+		$dir1 = $dir . 'original/';
+		$file = $dir1 . $image[1];
 		$numimage = $objImg->getNumOfImg();
 		$itemName = $objItem->getItemName();
 		echo "<div class=\"featured_left_side\">";
 		if ($numimage == 1) {
-			//echo "<div id=\"featured_left_side_bigImageOnly\"><img id=\"largeImg\" src=\"$objDir->IMG_NOT_AVAIL\"></div>";
-			$image[0] = str_replace('thumbnail', '', $image[0]);
-			$dir1 = $dir . 'original/';
-			global $documnetRootPath;
-			$file = $documnetRootPath . '/img/hulutera.PNG'; //;$dir1.$image[0];
-			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file . '"></div>';;
+			$file_path = $documnetRootPath . '/img/hulutera.PNG'; 
+			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '"></div>';
 		}
 		if ($numimage > 1) {
-			$image[1] = str_replace('thumbnail', '', $image[1]);
-			$dir1 = $dir . 'original/';
-			$file = $dir1 . $image[1];
 			echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg$itemName$itemId\" src=\"" . $file . "\"></div>";
 			echo "<div id=\"featured_buttom\">";
 			echo "<div class=\"imagesGallery\">";
 			for ($i = 1; $i < $numimage; $i++) {
-				$image[$i] = str_replace('thumbnail', '', $image[$i]);
-				$dir1 = $dir . 'original/';
-				$file = $dir1 . $image[1];
 				$divName = 'bottomimg' . $itemName . $itemId . $i;
 				echo "
-				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"   
-				onMouseOver=\"mouseOver('$dir1','$image[$i]',$itemId, '$itemName','$divName')\">
+				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"\">
 				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\" \" />
 				</a>
 				";

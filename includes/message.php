@@ -45,7 +45,7 @@ function boxes($msgid,$userEmail)
 //To list message
 function messageList($NumOfmsg,$mailtype)
 {
-	global $connect;
+	global $connect, $documnetRootPath;
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 	$MAX = 30;
 	$itemstart = $MAX * ($page -1);
@@ -108,7 +108,7 @@ function messageList($NumOfmsg,$mailtype)
 		echo'<div id="txtMsgSent'.$msgid.'" class="txtMsgSent"> <span>The Message has been sent.</span></div>';
 		echo'<div id="msgReplyClose'.$msgid.'" class="msgReplyClose">';
 		echo'<a class="msgReply"  href="javascript:void(0)" onclick="showReplyBox('.$msgid.')">Reply</a>';
-		echo'<a  href="javascript:void(0)" onclick="closeMsgBox('.$msgid.')"><img class="msgClose" src="http://static.hulutera.com/img/del.jpg"/></a>';
+		echo'<a  href="javascript:void(0)" onclick="closeMsgBox('.$msgid.')"><img class="msgClose" src="/img/cancel.png"/></a>';
 		echo'</div>';
 		echo'<div id="emptydiv_for_divAds"></div>';
 		echo'</div>';

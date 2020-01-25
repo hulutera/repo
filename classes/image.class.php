@@ -10,7 +10,6 @@ class ImgHandler
 	{
 		$k = 1;
 		$i = 1;
-		$this->image[0] = "xxxxxxxxx";
 		while($k <= 5)
 		{
 			if($itemRow['picture_'.$k] != NULL)
