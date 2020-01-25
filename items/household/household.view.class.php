@@ -12,8 +12,7 @@ class HouseholdView
     {
         //creating an object
         global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
-        $objHouseHold  = new HouseHoldClass;
-        $objDir        = new DirectoryClass;
+        $objHouseHold  = new HouseHoldClass;        
         $objCmn        = new CommonClass;
         $objImg        = new ImgHandler;
         $price         = new PriceClass;
@@ -23,7 +22,6 @@ class HouseholdView
         while($householdrow = $householdResult->fetch_assoc())
         {
             $objUser       = new UserClass($householdrow);
-
             //
             $objHouseHold->setElements($householdrow);
             $householdId   = $objHouseHold->getId();
@@ -36,8 +34,7 @@ class HouseholdView
             $contactType   = $objHouseHold->getContactMethod();
 
             //Object for item Directory
-            $dir = $objImg->setDirectory("household",$householdId);
-            
+            $dir = $objImg->setDirectory("household",$householdId);          
             
 
             //Object for item Image
@@ -117,4 +114,3 @@ class HouseholdView
         unset($objHouseHold);
     }
 }
-?>
