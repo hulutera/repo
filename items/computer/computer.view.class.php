@@ -15,7 +15,7 @@ class ComputerView
         global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objComp =  ObjectPool::getInstance()->getClassObject("computer");
         
-        $objDir   = new DirectoryClass;
+        
         $objCmn   = new CommonClass;
         $objImg   = new ImgHandler;
         $price    = new PriceClass;
@@ -37,8 +37,8 @@ class ComputerView
             $contactType = $objComp->getContactMethod();
 
             //Object for item Directory
-            $objDir->setDirectory("computerimages",$compId);
-            $dir = $objDir->getDirectory();
+            $dir = $objImg->setDirectory("computer",$compId);
+            
 
             //Object for item Image
             $image    = $objImg->initImage($comprow);
@@ -56,7 +56,7 @@ class ComputerView
             if($numimage == 1)
             {
                 echo "<a href=\"javascript:void(0)\" onclick=\"swap($compId,'$itemName')\" >";
-                echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+                echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
             }
             else
             {
@@ -90,7 +90,7 @@ class ComputerView
             //---------------------------------------------------------
             echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">";//start_divDetail_*
             echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-            $objCmn->printGallery($objImg,$objDir,$image,$objComp,$compId);
+            $objCmn->printGallery($objImg,$image,$objComp,$compId);
             echo "<div class=\"showbutton_hide\">
             <input class=\"hide\" type=\"button\"  onclick=\"swapback($compId,'$itemName')\"
             value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
@@ -98,7 +98,7 @@ class ComputerView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objComp);
             $price->printPrice($objComp);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$compId,$itemName,$objUser);
+            $objCmn->printContactMethod($objImg,$uniqueId,$contactType,$compId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$compId,$itemName);
             $objCmn->printReportReq($uniqueId,$compId,$itemName);
             $objCmn->printMailForm($uniqueId,$compId,$itemName,$objUser);

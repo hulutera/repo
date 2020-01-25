@@ -5,18 +5,10 @@
 class DirectoryClass
 {
 	public $host;
-	public $IMG_NOT_AVAIL        = "http://static.hulutera.com/images/mk.png";
-	public $IMG_NOT_AVAIL_THMBNL = "http://static.hulutera.com/images/mkThumbnail.png";
-	public $PATH_MAIL_ICON       = "http://static.hulutera.com/images/mail.ico";
-	public $PATH_PHN_ICON 		 = "http://static.hulutera.com/images/phone.ico";
-	public $PATH_RPT_ICON 		 = "http://static.hulutera.com/images/report.ico";
-	public $PATH_ITEM_CAR 		 = "http://static.hulutera.com/uploads/carimages/";
-	public $PATH_ITEM_CMP        = "http://static.hulutera.com/uploads/computerimages/";
-	public $PATH_ITEM_ELR        = "http://static.hulutera.com/uploads/electronicsimages/";
-	public $PATH_ITEM_HUS        = "http://static.hulutera.com/uploads/houseimages/";
-	public $PATH_ITEM_HLD        = "http://static.hulutera.com/uploads/householdimages/";
-	public $PATH_ITEM_PHN        = "http://static.hulutera.com/uploads/phoneimages/";
-	public $PATH_ITEM_THR        = "http://static.hulutera.com/uploads/othersimages/";
+	public $IMG_NOT_AVAIL_THMBNL = "";
+	public $PATH_MAIL_ICON       = "../images/mail.ico";
+	public $PATH_PHN_ICON 		 = "../images/phone.ico";
+	public $PATH_RPT_ICON 		 = "../images/report.ico";
 	public $dir ="";
 
 	public function getDirectory()
@@ -25,14 +17,15 @@ class DirectoryClass
 	}
 	public function setDirectory($type,$itemId)
 	{
-		$this->host = substr($_SERVER['HTTP_HOST'],0,5);
-		if(in_array($this->host, array('local','127.0','192.1')) || $_SERVER['HTTP_HOST']=='hulutera')
+		$this->host = $_SERVER['HTTP_HOST'];
+		if(in_array(substr($this->host,0,5), array('local','127.0','192.1')) || $this->host =='hulutera')
 		{
-			$this->dir = "../../uploads/".$type."/".$itemId."/";
+			$this->dir = "../images/uploads/".$type."/".$itemId."/";
+			$this->IMG_NOT_AVAIL_THMBNL = "../images/uploads/".$type."/". $type;
 		}
 		else
 		{
-			$this->dir = "http://static.hulutera.com/uploads/".$type."/".$itemId."/";
+			$this->dir = "http://static.hulutera.com/images/upload/".$type."/".$itemId."/";
 		}
 	}
 }

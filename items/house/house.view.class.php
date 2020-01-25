@@ -15,7 +15,7 @@ class HouseView
 		global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
 		$objHouse = new HouseClass;
 	
-		$objDir   = new DirectoryClass;
+		
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
 		$price    = new PriceClass;
@@ -36,8 +36,8 @@ class HouseView
 			$contactType = $objHouse->getContactMethod();
 
 			//Object for item Directory
-			$objDir->setDirectory("houseimages",$houseId);
-			$dir = $objDir->getDirectory();
+			$dir = $objImg->setDirectory("house",$houseId);
+			
 
 			//Object for item Image
 			$image    = $objImg->initImage($houserow);
@@ -55,7 +55,7 @@ class HouseView
 			if($numimage == 1)
 			{
 				echo "<a href=\"javascript:void(0)\" onclick=\"swap($houseId,'$itemName')\" >";
-				echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+				echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
 			}
 			else
 			{
@@ -80,24 +80,24 @@ class HouseView
 			echo "</div>"; //end_detail
 			//---------------------------------------------------------
 			echo "<div class=\"showbutton_show\">
-			<input title=\"???? ???\"  class=\"show\" type=\"button\"
+			<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
 			onclick=\"swap($houseId,'$itemName'), insertimg('$dir',$houseId,'$itemName','$jsImg')\"
-			value=\"Show Detail ???? ???\"/></div>";
+			value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
 			echo "</div>"; //end_col1
 			echo "</div>"; //end_thumblist_*
 			echo "<div class=\"clear\"></div>";
 			//---------------------------------------------------------
 			echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">";//start_divDetail_*
 			echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-			$objCmn->printGallery($objImg,$objDir,$image,$objHouse,$houseId);
+			$objCmn->printGallery($objImg,$image,$objHouse,$houseId);
 			echo "<div class=\"showbutton_hide\">
 			<input class=\"hide\" type=\"button\"  onclick=\"swapback($houseId,'$itemName')\"
-			value=\"Hide Detail ???? ???\"/></div>";
+			value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
 			echo "<div id=\"featured_right_side\">";						 //start_featured_right_side
 			$objCmn->printTitle($title,$itemName);
 			$objCmn->printSpecifics($objHouse);
 			$price->printPrice($objHouse);
-			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$houseId,$itemName,$objUser);
+			$objCmn->printContactMethod($objImg,$uniqueId,$contactType,$houseId,$itemName,$objUser);
 			$objCmn->printMailCfrm($uniqueId,$houseId,$itemName);
 			$objCmn->printReportReq($uniqueId,$houseId,$itemName);
 			$objCmn->printMailForm($uniqueId,$houseId,$itemName,$objUser);

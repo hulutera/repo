@@ -172,35 +172,35 @@ class CommonClass
 	/*@ function to display contact method /mail/phone/
 	 * input: $objDir,$uniqueId,$contactType,$itemId,$itemName,$userName,$userPhone
 	* */
-	public function printContactMethod($objDir, $uniqueId, $contactType, $itemId, $itemName, $user)
+	public function printContactMethod($objImg, $uniqueId, $contactType, $itemId, $itemName, $user)
 	{
 		echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
 		echo "</br>";
 		echo "<div class=\"header\"><label>Contact</label></div>";
 		if ($contactType == "Email" or $contactType == "Both")
 			echo "<div class=\"email\">
-			<img src =\"$objDir->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
+			<img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
 		if ($contactType == "Phone" or $contactType == "Both")
 			echo "<div class=\"phone\">
-			<img src =\"$objDir->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
-		echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objDir->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
+			<img src =\"$objImg->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
+		echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
 		echo "</div>";
 	}
 	/*@ function to display image gallery
 	 * input: $objImg, $objDir, $image, $objItem, $itemId
 	* */
-	public function printGallery($objImg, $objDir, $image, $objItem, $itemId)
+	public function printGallery($objImg, $image, $objItem, $itemId)
 	{
 		global $documnetRootPath;
-		$dir = $objDir->getDirectory();
+		
 		$dir1 = $dir . 'original/';
 		$file = $dir1 . $image[1];
 		$numimage = $objImg->getNumOfImg();
 		$itemName = $objItem->getItemName();
 		echo "<div class=\"featured_left_side\">";
 		if ($numimage == 1) {
-			$file_path = $documnetRootPath . '/images/hulutera.PNG'; 
-			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '"></div>';
+			$file_path = '../images/hulutera.png'; 
+			echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
 		}
 		if ($numimage > 1) {
 			echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg$itemName$itemId\" src=\"" . $file . "\"></div>";

@@ -12,8 +12,6 @@ class CarView
 	{
 		//creating an object
 		$objCar   = ObjectPool::getInstance()->getClassObject("car");
-		$objDir   = new DirectoryClass;
-
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
 		$price    = new PriceClass;
@@ -34,8 +32,7 @@ class CarView
 			$contactType = $objCar->getContactMethod();
 
 			//Object for item Directory
-			$objDir->setDirectory("carimages", $carId);
-			$dir = $objDir->getDirectory();
+			$dir = $objImg->setDirectory("car", $carId);
 
 			//Object for item Image
 			$image    = $objImg->initImage($carrow);
@@ -52,7 +49,7 @@ class CarView
 			echo "<div class=\"col1\">";
 			if ($numimage == 1) {
 				echo "<a href=\"javascript:void(0)\" onclick=\"swap($carId,'$itemName')\" >";
-				echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+				echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
 			} else {
 				$thmbNlImg  = $dir . 'original/' . $image[1];
 				echo "<a href=\"javascript:void(0)\"
@@ -85,7 +82,7 @@ class CarView
 			//---------------------------------------------------------
 			echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
 			echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-			$objCmn->printGallery($objImg, $objDir, $image, $objCar, $carId);
+			$objCmn->printGallery($objImg, $image, $objCar, $carId);
 			echo "<div class=\"showbutton_hide\">
 		<input class=\"hide\" type=\"button\"  onclick=\"swapback($carId,'$itemName')\"
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
@@ -93,7 +90,7 @@ class CarView
 			$objCmn->printTitle($title, $itemName);
 			$objCmn->printSpecifics($objCar);
 			$price->printPrice($objCar);
-			$objCmn->printContactMethod($objDir, $uniqueId, $contactType, $carId, $itemName, $objUser);
+			$objCmn->printContactMethod($objImg, $uniqueId, $contactType, $carId, $itemName, $objUser);
 			$objCmn->printMailCfrm($uniqueId, $carId, $itemName);
 			$objCmn->printReportReq($uniqueId, $carId, $itemName);
 			$objCmn->printMailForm($uniqueId, $carId, $itemName, $objUser);

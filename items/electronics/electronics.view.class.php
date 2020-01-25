@@ -14,7 +14,7 @@ class ElectronicsView
         //creating an object
         global $connect,$maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
         $objElec  = new ElecClass;
-        $objDir   = new DirectoryClass;
+        
         $objCmn   = new CommonClass;
         $objImg   = new ImgHandler;
         $price    = new PriceClass;
@@ -36,8 +36,8 @@ class ElectronicsView
             $contactType   = $objElec->getContactMethod();
 
             //Object for item Directory
-            $objDir->setDirectory("electronicsimages",$electronicsId);
-            $dir = $objDir->getDirectory();
+            $dir = $objImg->setDirectory("electronics",$electronicsId);
+            
 
             //Object for item Image
             $image    = $objImg->initImage($electronicsrow);
@@ -55,7 +55,7 @@ class ElectronicsView
             if($numimage == 1)
             {
                 echo "<a href=\"javascript:void(0)\" onclick=\"swap($electronicsId,'$itemName')\" >";
-                echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+                echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
             }
             else
             {
@@ -89,7 +89,7 @@ class ElectronicsView
             //---------------------------------------------------------
             echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">";//start_divDetail_*
             echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-            $objCmn->printGallery($objImg,$objDir,$image,$objElec,$electronicsId);
+            $objCmn->printGallery($objImg,$image,$objElec,$electronicsId);
             echo "<div class=\"showbutton_hide\">
             <input class=\"hide\" type=\"button\"  onclick=\"swapback($electronicsId,'$itemName')\"
             value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
@@ -97,7 +97,7 @@ class ElectronicsView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objElec);
             $price->printPrice($objElec);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$electronicsId,$itemName,$objUser);
+            $objCmn->printContactMethod($objImg,$uniqueId,$contactType,$electronicsId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$electronicsId,$itemName);
             $objCmn->printReportReq($uniqueId,$electronicsId,$itemName);
             $objCmn->printMailForm($uniqueId,$electronicsId,$itemName,$objUser);

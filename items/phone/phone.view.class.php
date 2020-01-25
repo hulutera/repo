@@ -13,7 +13,7 @@ class PhoneView
 		//creating an object
 		global $maxNumOfImg,$divCommon,$sentmsg,$abusemsg;
 		$objPhone = new PhoneClass;
-		$objDir   = new DirectoryClass;
+		
 		$objCmn   = new CommonClass;
 		$objImg   = new ImgHandler;
 		$price    = new PriceClass;
@@ -35,8 +35,8 @@ class PhoneView
 			$contactType   = $objPhone->getContactMethod();
 
 			//Object for item Directory
-			$objDir->setDirectory("phoneimages",$phoneId);
-			$dir = $objDir->getDirectory();
+			$dir = $objImg->setDirectory("phone",$phoneId);
+			
 
 			//Object for item Image
 			$image    = $objImg->initImage($phonerow);
@@ -54,7 +54,7 @@ class PhoneView
 			if($numimage == 1)
 			{
 				echo "<a href=\"javascript:void(0)\" onclick=\"swap($phoneId,'$itemName')\" >";
-				echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+				echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
 			}
 			else
 			{
@@ -77,26 +77,29 @@ class PhoneView
 			$objCmn->printAction($objPhone,$objUser);
 			echo "</div>"; //end_leftcol
 			echo "</div>"; //end_detail
+
 			//---------------------------------------------------------
 			echo "<div class=\"showbutton_show\">
-			<input title=\"???? ???\"  class=\"show\" type=\"button\"
+			<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
 			onclick=\"swap($phoneId,'$itemName'), insertimg('$dir',$phoneId,'$itemName','$jsImg')\"
-			value=\"Show Detail ???? ???\"/></div>";
+			value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
 			echo "</div>"; //end_col1
 			echo "</div>"; //end_thumblist_*
 			echo "<div class=\"clear\"></div>";
 			//---------------------------------------------------------
 			echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">";//start_divDetail_*
 			echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-			$objCmn->printGallery($objImg,$objDir,$image,$objPhone,$phoneId);
+			$objCmn->printGallery($objImg,$image,$objPhone,$phoneId);
 			echo "<div class=\"showbutton_hide\">
 			<input class=\"hide\" type=\"button\"  onclick=\"swapback($phoneId,'$itemName')\"
-			value=\"Hide Detail ???? ???\"/></div>";
+			value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
+
+
 			echo "<div id=\"featured_right_side\">";						 //start_featured_right_side
 			$objCmn->printTitle($title,$itemName);
 			$objCmn->printSpecifics($objPhone);
 			$price->printPrice($objPhone);
-			$objCmn->printContactMethod($objDir,$uniqueId,$contactType,$phoneId,$itemName,$objUser);
+			$objCmn->printContactMethod($objImg,$uniqueId,$contactType,$phoneId,$itemName,$objUser);
 			$objCmn->printMailCfrm($uniqueId,$phoneId,$itemName);
 			$objCmn->printReportReq($uniqueId,$phoneId,$itemName);
 			$objCmn->printMailForm($uniqueId,$phoneId,$itemName,$objUser);

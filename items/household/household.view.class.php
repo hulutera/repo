@@ -36,8 +36,8 @@ class HouseholdView
             $contactType   = $objHouseHold->getContactMethod();
 
             //Object for item Directory
-            $objDir->setDirectory("householdimages",$householdId);
-            $dir = $objDir->getDirectory();
+            $dir = $objImg->setDirectory("household",$householdId);
+            
             
 
             //Object for item Image
@@ -56,7 +56,7 @@ class HouseholdView
             if($numimage == 1)
             {
                 echo "<a href=\"javascript:void(0)\" onclick=\"swap($householdId,'$itemName')\" >";
-                echo "<div class=\"image\"><img src=\"$objDir->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+                echo "<div class=\"image\"><img src=\"$objImg->IMG_NOT_AVAIL_THMBNL\"></div></a>";
             }
             else
             {
@@ -90,7 +90,7 @@ class HouseholdView
             //---------------------------------------------------------
             echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">";//start_divDetail_*
             echo "<div id=\"featured_detailed\">";							 //start_featured_detailed
-            $objCmn->printGallery($objImg,$objDir,$image,$objHouseHold,$householdId);
+            $objCmn->printGallery($objImg,$image,$objHouseHold,$householdId);
             echo "<div class=\"showbutton_hide\">
             <input class=\"hide\" type=\"button\"  onclick=\"swapback($householdId,'$itemName')\"
             value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
@@ -98,7 +98,7 @@ class HouseholdView
             $objCmn->printTitle($title,$itemName);
             $objCmn->printSpecifics($objHouseHold);
             $price->printPrice($objHouseHold);
-            $objCmn->printContactMethod($objDir,$uniqueId,$contactType,$householdId,$itemName,$objUser);
+            $objCmn->printContactMethod($objImg,$uniqueId,$contactType,$householdId,$itemName,$objUser);
             $objCmn->printMailCfrm($uniqueId,$householdId,$itemName);
             $objCmn->printReportReq($uniqueId,$householdId,$itemName);
             $objCmn->printMailForm($uniqueId,$householdId,$itemName,$objUser);
