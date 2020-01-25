@@ -383,7 +383,7 @@ function controlPanel($hash)
 			// 						if($noOfMaster==0)
 			// 						{
 
-			// 							echo 'No users for operation. Redirecting in 5 seconds!<br> <img id="progress" src="../img/redirect.gif">';
+			// 							echo 'No users for operation. Redirecting in 5 seconds!<br> <img id="progress" src="../images/redirect.gif">';
 			// 							header( "refresh:5; url=../index.php" );
 			// 						}
 			// 						else

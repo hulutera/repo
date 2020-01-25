@@ -51,7 +51,7 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=car">
 								<div id="item_name">
-									Car<br>መኪና <img id="boxIcon" src="../img/car_t1.png">
+									Car<br>መኪና <img id="boxIcon" src="../images/car_t1.png">
 									
 								</div>
 							</a>
@@ -60,7 +60,7 @@ $(document).ready(function() {
 							<a href="../includes/template.upload.php?type=computer">
 								<div id="item_name">
 									Computer<br>ኮምፒውተር <img id="boxIcon"
-										src="../img/computer_t1.png">
+										src="../images/computer_t1.png">
 								</div>
 							</a>
 						</div>
@@ -68,7 +68,7 @@ $(document).ready(function() {
 							<a href="../includes/template.upload.php?type=electronics">
 								<div id="item_name">
 									Electronics<br>ኤሌክትሮኒክስ <img id="boxIcon"
-										src="../img/ele_t1.png">
+										src="../images/ele_t1.png">
 								</div>
 							</a>
 						</div>
@@ -77,21 +77,21 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=house">
 								<div id="item_name">
-									House<br>ቤት<img id="boxIcon" src="../img/house_t1.png">
+									House<br>ቤት<img id="boxIcon" src="../images/house_t1.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
 							<a href="../includes/template.upload.php?type=household">
 								<div id="item_name">
-									Households<br>ቤት ዕቃዎች <img id="boxIcon" src="../img/hh_t1.png">
+									Households<br>ቤት ዕቃዎች <img id="boxIcon" src="../images/hh_t1.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
 							<a href="../includes/template.upload.php?type=phone">
 								<div id="item_name">
-									Phone<br>ስልክ <img id="boxIcon" src="../img/phone_t1.png">
+									Phone<br>ስልክ <img id="boxIcon" src="../images/phone_t1.png">
 								</div>
 							</a>
 						</div>
@@ -100,7 +100,7 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=others">
 								<div id="item_name">
-									Others<br>ሌሎች<img id="boxIcon" src="../img/other_t1.png">
+									Others<br>ሌሎች<img id="boxIcon" src="../images/other_t1.png">
 								</div>
 							</a>
 						</div>

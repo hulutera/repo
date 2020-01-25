@@ -129,7 +129,7 @@ function rightcolumn(){
 echo '
 <!--#### RIGHT COLUMN ##### -->
 	<div id="rightColumn">		
-		<div class ="logo"><a href="../index.php"><img src="http://static.hulutera.com/img/mytest2.gif"></a></div>
+		<div class ="logo"><a href="../index.php"><img src="http://static.hulutera.com/images/mytest2.gif"></a></div>
 	</div>
 ';
 }

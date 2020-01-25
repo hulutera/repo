@@ -1,7 +1,7 @@
 <?php 
 
 function logo(){
-	echo '<div class ="logo"><a href="../includes/pagemaintenance.php"><img src="http://static.hulutera.com/img/hulutera_logo.png"></a></div>';
+	echo '<div class ="logo"><a href="../includes/pagemaintenance.php"><img src="http://static.hulutera.com/images/hulutera_logo.png"></a></div>';
 	
 }
 
@@ -34,7 +34,7 @@ function maintenancePage(){
 <head>
 <title>hulutera | ካቶመር</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-<link rel="shortcut icon" href="http://static.hulutera.com/img/hulutera_xx.ico" />
+<link rel="shortcut icon" href="http://static.hulutera.com/images/hulutera_xx.ico" />
 <link rel="stylesheet" href="http://static.hulutera.com/css/main.css">
 </head>
 <body>

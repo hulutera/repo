@@ -5,11 +5,11 @@
 class DirectoryClass
 {
 	public $host;
-	public $IMG_NOT_AVAIL        = "http://static.hulutera.com/img/mk.png";
-	public $IMG_NOT_AVAIL_THMBNL = "http://static.hulutera.com/img/mkThumbnail.png";
-	public $PATH_MAIL_ICON       = "http://static.hulutera.com/img/mail.ico";
-	public $PATH_PHN_ICON 		 = "http://static.hulutera.com/img/phone.ico";
-	public $PATH_RPT_ICON 		 = "http://static.hulutera.com/img/report.ico";
+	public $IMG_NOT_AVAIL        = "http://static.hulutera.com/images/mk.png";
+	public $IMG_NOT_AVAIL_THMBNL = "http://static.hulutera.com/images/mkThumbnail.png";
+	public $PATH_MAIL_ICON       = "http://static.hulutera.com/images/mail.ico";
+	public $PATH_PHN_ICON 		 = "http://static.hulutera.com/images/phone.ico";
+	public $PATH_RPT_ICON 		 = "http://static.hulutera.com/images/report.ico";
 	public $PATH_ITEM_CAR 		 = "http://static.hulutera.com/uploads/carimages/";
 	public $PATH_ITEM_CMP        = "http://static.hulutera.com/uploads/computerimages/";
 	public $PATH_ITEM_ELR        = "http://static.hulutera.com/uploads/electronicsimages/";

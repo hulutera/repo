@@ -533,7 +533,7 @@ function help()
 			</p>
 			<p>
 			<img style="margin-left:10%;border:2px solid orange;width:80%"
-			src="http://static.hulutera.com/img/register.png">
+			src="http://static.hulutera.com/images/register.png">
 			</p>
 
 			</div>
@@ -651,7 +651,7 @@ function help()
 
 			<p>
 			<img style="margin-left:10%;border:2px solid orange;width:80%"
-			src="http://static.hulutera.com/img/login.png">
+			src="http://static.hulutera.com/images/login.png">
 			</p>
 			</div>
 			<div
@@ -691,7 +691,7 @@ function help()
 
 			<p>
 			<img style="margin-left:10%;width:80%;border:2px solid orange"
-			src="http://static.hulutera.com/img/items.png">
+			src="http://static.hulutera.com/images/items.png">
 			</p>
 
 			<p class="helpEnglish" style="margin-left: 30px;">If you have
@@ -716,7 +716,7 @@ function help()
 			pictures.Click the <strong style="color: blue;"> Choose file</strong>
 			button to select images.You can upload upto five pictures.
 			You can use the button <img width="15px" height="15px"
-			src="http://static.hulutera.com/img/removeImage.png"> to
+			src="http://static.hulutera.com/images/removeImage.png"> to
 			remove the picture you do not want. To complete proceed to
 			step 4 ...
 
@@ -727,7 +727,7 @@ function help()
 			<p class="helpAmharic" style="margin-left: 30px;">
 			ፎርሙን ከሞሉ በኃላ ፎቶዎችን ያስገቡ. 5 ፎቶዎች ድረስ ማስገባት ይችላሉ. </br>ለመቀየር
 			ወይም ማጥፋት ከፈለጉ ይሄን <img width="15px" height="15px"
-			src="http://static.hulutera.com/img/removeImage.png"> ይጫኑ.
+			src="http://static.hulutera.com/images/removeImage.png"> ይጫኑ.
 			አስገብተው ለመጨረስ የሚቀጥለውን ይመልከቱ...
 
 
@@ -797,7 +797,7 @@ function help()
 
 			<p>
 			<img style="margin-left:10%;width:80%;border:2px solid orange"
-			src="http://static.hulutera.com/img/contactus.png">
+			src="http://static.hulutera.com/images/contactus.png">
 			</p>
 
 			<p class="helpEnglish" style="margin-left: 30px;">
@@ -898,7 +898,7 @@ function help()
 			<p class="helpAmharic" style="margin-left: 30px;">ከድህረ ገፃችን
 			ከላይ በስተቀኝ በኩል ያለውን መፈለጊያ ሳጥኑን ያገኛሉ</p>
 			</br> <img style="margin-left:10%;width:80%;border:2px solid orange"
-			src="http://static.hulutera.com/img/search_help_2.png">
+			src="http://static.hulutera.com/images/search_help_2.png">
 			<p class="helpEnglish" style="margin-left: 10px;">
 			<strong>Step 2: </strong>
 			</p>

@@ -31,7 +31,7 @@ function fileRouter($add) {
 	<![endif]-->
 	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
-	echo '<link rel="shortcut icon" href="' . $add . '/img/hulutera_xx_2.ico" />';
+	echo '<link rel="shortcut icon" href="' . $add . '/images/hulutera_xx_2.ico" />';
 }
 /*Code for Header and Search Bar*/
 function headerAndSearchCode($item) {
@@ -105,7 +105,7 @@ function activatetab() {
 /*logo*/
 function logo() {
 	echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
-	//../../img/hulutera.png
+	//../../images/hulutera.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
 
@@ -215,7 +215,7 @@ function tabMenu() {
 function sidelist($item) {
 	echo '<div id="sidelist">
 
-			<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../img/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
+			<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
 			<ul>
 			<li><a ';
 	if (activatItemTabs($item) == 1) {
@@ -261,7 +261,7 @@ function footerCode() {
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
 		 <p style="font-weight:bold">ABOUT US</p>
-		<a href="../../index.php"><img src="../../img/hulutera.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
+		<a href="../../index.php"><img src="../../images/hulutera.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
 		<p style="text-align:left;font-size:14px">hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.
 			hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click <a href="../../includes/about.php" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.
 			</p>
@@ -277,10 +277,10 @@ function footerCode() {
 	echo '<div id="followUs_fo" >
 		  <p style="font-weight:bold">FOLLOW US</p>
 		       <ul>
-				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../img/fb.png" width="20px" height="20px" /></li></a>
-				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class"><img src="../../img/tw.png" width="17px" height="17px" /></li></a>
-				<a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class"><img src="../../img/pin.png" width="20px" height="20px" /></li></a>
-				<a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class"><img src="../../img/yt.png" width="20px" height="20px" /></li></a>
+				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../images/fb.png" width="20px" height="20px" /></li></a>
+				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class"><img src="../../images/tw.png" width="17px" height="17px" /></li></a>
+				<a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class"><img src="../../images/pin.png" width="20px" height="20px" /></li></a>
+				<a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class"><img src="../../images/yt.png" width="20px" height="20px" /></li></a>
 			   </ul>
 		   </div>';
 	echo '<div id="utility">';
