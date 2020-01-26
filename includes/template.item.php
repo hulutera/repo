@@ -26,7 +26,7 @@ if(!$isValidUrl)
 			<?php headerAndSearchCode($item); ?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php allItemColumn($item);?>
+					<?php showItem($item);?>
 				</div>
 			</div>
 		</div>

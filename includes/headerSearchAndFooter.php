@@ -258,6 +258,7 @@ function tabMenu()
 /*sidelist*/
 function sidelist($item)
 {
+	global $documnetRootPath;
 	echo '<div id="sidelist">
 
 			<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
@@ -266,7 +267,7 @@ function sidelist($item)
 	if (activatItemTabs($item) == 1) {
 		echo "class=\"active\"";
 	}
-	echo 'href="../../items/car/car.php">Car';
+	echo 'href="'.$documnetRootPath.'/includes/template.item.php?type='.$item.'">'.ucwords($item);
 	echo '<div id="tabsAmharic">መኪና</div></a></li><li><a ';
 	if (activatItemTabs($item) == 2) {
 		echo "class=\"active\"";
@@ -334,5 +335,6 @@ function footerCode()
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
+	
 }
 ?>

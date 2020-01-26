@@ -282,7 +282,7 @@ class CommonClass
 				break;
 			case "OtherClass":
 				break;
-		}
+		}		
 	}
 	const rent       = "rent";
 	const sell       = "sell";

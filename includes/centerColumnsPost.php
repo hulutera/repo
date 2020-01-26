@@ -66,7 +66,7 @@ function centerColumn()
 		pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
 	} else if ($totalItems == 0) {
 		ObjectPool::getInstance()->getViewObject("empty")->show(0);
-	}
+	}	
 }
 
 
@@ -86,7 +86,7 @@ function oneItemColumn($id, $item)
 	}
 }
 /**/
-function allItemColumn($item)
+function showItem($item)
 {
 	if (isset($_GET['Id'])) {
 		oneItemColumn($_GET['Id'], $item);

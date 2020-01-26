@@ -8,24 +8,24 @@ function showSection(e) {
         $(".eCloseAcc").slideUp("fast");
         $(".overview").slideUp("fast");
         switch (t) {
-        case 100:
-            $(".eName").slideDown("fast");
-            break;
-        case 200:
-            $(".ePass").slideDown("fast");
-            break;
-        case 300:
-            $(".ePInfo").slideDown("fast");
-            break;
-        case 400:
-            $(".eCMthd").slideDown("fast");
-            break;
-        case 500:
-            $(".eCloseAcc").slideDown("fast");
-            break;
-        default:
-            $(".overview").slideDown("fast");
-            break
+            case 100:
+                $(".eName").slideDown("fast");
+                break;
+            case 200:
+                $(".ePass").slideDown("fast");
+                break;
+            case 300:
+                $(".ePInfo").slideDown("fast");
+                break;
+            case 400:
+                $(".eCMthd").slideDown("fast");
+                break;
+            case 500:
+                $(".eCloseAcc").slideDown("fast");
+                break;
+            default:
+                $(".overview").slideDown("fast");
+                break
         }
     })
 }
@@ -87,23 +87,22 @@ function englishPrivacyPo() {
 }
 
 function imgnumber(e, t, n, r) {
-	var i = "largeImg" + r + n;
-	var des = e + t;
+    var i = "largeImg" + r + n;
+    var des = e + t;
     document.getElementById(i).src = des;
 }
-function mouseOver(e, t, n, r,s) 
-{
-	var i = "largeImg" + r + n;
-	var des = e + t;
-	$( "#"+s )
-	  .mouseover(function() {
-		  document.getElementById(i).src = des;	    
-	  });
+function mouseOver(e, t, n, r, s) {
+    var i = "largeImg" + r + n;
+    var des = e + t;
+    $("#" + s)
+        .mouseover(function () {
+            document.getElementById(i).src = des;
+        });
 }
 
 function insertimg(e, t, n, r) {
     var i = r.split(",");
-    var bottom = "bottomimg" + n + t ;
+    var bottom = "bottomimg" + n + t;
     var z = 0;
     for (var s = 0; s < i.length; s++) {
         j = s + 1;
@@ -190,15 +189,15 @@ function msgActions(e) {
             if ($(this).is(":checked") == true) {
                 var n = $(this).val();
                 switch (e) {
-                case "delete":
-                    $("#divListbox" + n).hide();
-                    break;
-                case "follow":
-                    $("#followSign" + n).show();
-                    break;
-                case "unfollow":
-                    $("#followSign" + n).hide();
-                    break
+                    case "delete":
+                        $("#divListbox" + n).hide();
+                        break;
+                    case "follow":
+                        $("#followSign" + n).show();
+                        break;
+                    case "unfollow":
+                        $("#followSign" + n).hide();
+                        break
                 }
             }
         })
@@ -306,7 +305,7 @@ function swapmailback(e, t, n) {
             $.ajax({
                 url: "/includes/sendMessage.php?itemid=" + e + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + t + "&itemtype=" + n,
                 method: "GET",
-                success: function (e) {}
+                success: function (e) { }
             });
             $("#name_" + n + e).val("");
             $("#email_" + n + e).val("");
@@ -358,7 +357,7 @@ function closeAbusebox(e, t) {
 function swapabuseback(e, t) {
     $(document).ready(function () {
         var n = $("#selectabuse_" + t + e).val();
-       if (n === "000") {
+        if (n === "000") {
             $(".errorabuse_" + t + e).slideDown("fast").replaceWith('<div style="background-color: #FFBABA; color: #D8000C;"class="errorabuse_' + t + e + '">You forgort to choose Report type. የሪፖርት ዓይነት መምረጥ ረስተዋል።	</div>');
             $("#selectabuse_" + t + e).css("border", "1px solid #D8000C");
         } else {
@@ -401,355 +400,355 @@ function userAccount() {
 function validateForm() {
     var e = document.getElementById("Item").value;
     switch (e) {
-    case "000":
-        clearError("myform_errorloc");
-        $(document).ready(function () {
-            $("#commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF")
-        });
-        var t = "Please choose Item type<br>የንብረት ዓይነት መምረጥ ረስተዋል <br><br>";
-        $("#myform_errorloc").append("<li>" + t + "</li>");
-        return false;
-        break;
-    case "phoneClass":
-    case "computerClass":
-    case "electronicsClass":
-    case "householdClass":
-    case "otherClass":
-        clearError("myform_errorloc");
-        var n = document.getElementById("commonprice").value;
-        var r = document.getElementById("title").value;
-        var i = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
-        var s = "Please enter your Title<br>ርዕስ ማስገባት ረስተዋል <br><br>";
-        var o = n == "" || n == null ? true : false;
-        var u = r == "" ? true : false;
-        if (!o & !u) {
-            return true
-        } else if (o & !u) {
+        case "000":
             clearError("myform_errorloc");
             $(document).ready(function () {
-                $("#title").css("border", "1px solid #3399FF");
-                $("#commonprice").css("border", "1px solid #D8000C");
-                $("#myform_errorloc").append("<li>" + i + "</li>")
-            });
-            return false
-        } else if (!o & u) {
-            clearError("myform_errorloc");
-            $(document).ready(function () {
-                $("#title").css("border", "1px solid #D8000C");
                 $("#commonprice").css("border", "1px solid #3399FF");
-                $("#myform_errorloc").append("<li>" + s + "</li>")
+                $("#title").css("border", "1px solid #3399FF")
             });
-            return false
-        } else {
+            var t = "Please choose Item type<br>የንብረት ዓይነት መምረጥ ረስተዋል <br><br>";
+            $("#myform_errorloc").append("<li>" + t + "</li>");
+            return false;
+            break;
+        case "phoneClass":
+        case "computerClass":
+        case "electronicsClass":
+        case "householdClass":
+        case "otherClass":
             clearError("myform_errorloc");
-            $(document).ready(function () {
-                $("#commonprice").css("border", "1px solid #D8000C");
-                $("#title").css("border", "1px solid #D8000C");
-                $("#myform_errorloc").append("<li>" + i + "</li>");
-                $("#myform_errorloc").append("<li>" + s + "</li>")
-            });
-            return false
-        }
-        break;
-    case "carClass":
-        clearError("myform_errorloc");
-        var a = document.getElementById("c_isrent").checked ? true : false;
-        var f = document.getElementById("c_issell").checked ? true : false;
-        var l = document.getElementById("c_isnego").checked ? true : false;
-        var c = "Please Rent enter price<br>የኪራይ ዋጋ ማስገባት ረስተዋል <br><br>";
-        var h = "Please enter Rent rate<br>የኪራይ እግድ መምረጥ ረስተዋል <br><br>";
-        if (a || f || l) {
-            if (a && f) {
+            var n = document.getElementById("commonprice").value;
+            var r = document.getElementById("title").value;
+            var i = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
+            var s = "Please enter your Title<br>ርዕስ ማስገባት ረስተዋል <br><br>";
+            var o = n == "" || n == null ? true : false;
+            var u = r == "" ? true : false;
+            if (!o & !u) {
+                return true
+            } else if (o & !u) {
                 clearError("myform_errorloc");
-                var p = document.getElementById("c_rent_amt_input").value;
-                var d = document.getElementById("c_rate_select").value;
-                var v = p == "" || p == null ? true : false;
-                var m = d == "000" ? true : false;
-                var g = document.getElementById("c_sell_amt_input").value;
-                var y = g == "" || g == null ? true : false;
-                var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
-                if (!v && !m && !y) {
-                    clearError("myform_errorloc");
-                    return true
-                } else if (v && !m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rate_select").css("border", "1px solid #3399FF");
-                        $("#c_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (v && !m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#c_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#c_rate_select").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + c + "</li>")
-                    });
-                    return false
-                } else if (!v && !m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#c_rate_select").css("border", "1px solid #3399FF");
-                        $("#c_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (!v && m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#c_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + h + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (!v && m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#c_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#c_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#c_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                }
-            }
-            if (!a && f) {
+                $(document).ready(function () {
+                    $("#title").css("border", "1px solid #3399FF");
+                    $("#commonprice").css("border", "1px solid #D8000C");
+                    $("#myform_errorloc").append("<li>" + i + "</li>")
+                });
+                return false
+            } else if (!o & u) {
                 clearError("myform_errorloc");
-                var g = document.getElementById("c_sell_amt_input").value;
-                var y = g == "" || g == null ? true : false;
-                var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
-                if (y) {
-                    $(document).ready(function () {
-                        $("#c_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else {
-                    return true
-                }
-            }
-            if (a && !f) {
+                $(document).ready(function () {
+                    $("#title").css("border", "1px solid #D8000C");
+                    $("#commonprice").css("border", "1px solid #3399FF");
+                    $("#myform_errorloc").append("<li>" + s + "</li>")
+                });
+                return false
+            } else {
                 clearError("myform_errorloc");
-                var p = document.getElementById("c_rent_amt_input").value;
-                var d = document.getElementById("c_rate_select").value;
-                var v = p == "" || p == null ? true : false;
-                var m = d == "000" ? true : false;
-                if (!v && !m) {
-                    clearError("myform_errorloc");
-                    return true
-                } else if (v && !m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rate_select").css("border", "1px solid #3399FF");
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>")
-                    });
-                    return false
-                } else if (!v && m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#c_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#c_rate_select").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                }
+                $(document).ready(function () {
+                    $("#commonprice").css("border", "1px solid #D8000C");
+                    $("#title").css("border", "1px solid #D8000C");
+                    $("#myform_errorloc").append("<li>" + i + "</li>");
+                    $("#myform_errorloc").append("<li>" + s + "</li>")
+                });
+                return false
             }
-        } else {
+            break;
+        case "carClass":
             clearError("myform_errorloc");
-            var w = "Please Select at least 1 option for Price (Rent,sell or Negotiable) <br>" + " ቢያንስ አንድ የመሸጫ መንገድ ይምረጡ (ከሚከተሉት ኪራይ፣ ሽያጭ ወይም በዋጋው እንስማማለን) <br> ";
-            $("#myform_errorloc").append("<li>" + w + "</li>");
-            return false
-        }
-        break;
-    case "houseClass":
-        clearError("myform_errorloc");
-        var a = document.getElementById("h_isrent").checked ? true : false;
-        var f = document.getElementById("h_issell").checked ? true : false;
-        var l = document.getElementById("h_isnego").checked ? true : false;
-        var c = "Please Rent enter price<br>የኪራይ ዋጋ ማስገባት ረስተዋል <br><br>";
-        var h = "Please enter Rent rate<br>የኪራይ እግድ መምረጥ ረስተዋል <br><br>";
-        if (a || f || l) {
-            if (a && f) {
-                clearError("myform_errorloc");
-                var p = document.getElementById("h_rent_amt_input").value;
-                var d = document.getElementById("h_rate_select").value;
-                var v = p == "" || p == null ? true : false;
-                var m = d == "000" ? true : false;
-                var g = document.getElementById("h_sell_amt_input").value;
-                var y = g == "" || g == null ? true : false;
-                var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
-                if (!v && !m && !y) {
+            var a = document.getElementById("c_isrent").checked ? true : false;
+            var f = document.getElementById("c_issell").checked ? true : false;
+            var l = document.getElementById("c_isnego").checked ? true : false;
+            var c = "Please Rent enter price<br>የኪራይ ዋጋ ማስገባት ረስተዋል <br><br>";
+            var h = "Please enter Rent rate<br>የኪራይ እግድ መምረጥ ረስተዋል <br><br>";
+            if (a || f || l) {
+                if (a && f) {
                     clearError("myform_errorloc");
-                    return true
-                } else if (v && !m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rate_select").css("border", "1px solid #3399FF");
-                        $("#h_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (v && !m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#h_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#h_rate_select").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + c + "</li>")
-                    });
-                    return false
-                } else if (!v && !m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#h_rate_select").css("border", "1px solid #3399FF");
-                        $("#h_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (!v && m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#h_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + h + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else if (!v && m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#h_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m && !y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#h_sell_amt_input").css("border", "1px solid #3399FF");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m && y) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#h_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
+                    var p = document.getElementById("c_rent_amt_input").value;
+                    var d = document.getElementById("c_rate_select").value;
+                    var v = p == "" || p == null ? true : false;
+                    var m = d == "000" ? true : false;
+                    var g = document.getElementById("c_sell_amt_input").value;
+                    var y = g == "" || g == null ? true : false;
+                    var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
+                    if (!v && !m && !y) {
+                        clearError("myform_errorloc");
+                        return true
+                    } else if (v && !m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rate_select").css("border", "1px solid #3399FF");
+                            $("#c_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (v && !m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#c_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#c_rate_select").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + c + "</li>")
+                        });
+                        return false
+                    } else if (!v && !m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#c_rate_select").css("border", "1px solid #3399FF");
+                            $("#c_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (!v && m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#c_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + h + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (!v && m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#c_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#c_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#c_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    }
                 }
-            }
-            if (!a && f) {
-                clearError("myform_errorloc");
-                var g = document.getElementById("h_sell_amt_input").value;
-                var y = g == "" || g == null ? true : false;
-                var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
-                if (y) {
-                    $(document).ready(function () {
-                        $("#h_sell_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + b + "</li>")
-                    });
-                    return false
-                } else {
-                    return true
+                if (!a && f) {
+                    clearError("myform_errorloc");
+                    var g = document.getElementById("c_sell_amt_input").value;
+                    var y = g == "" || g == null ? true : false;
+                    var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
+                    if (y) {
+                        $(document).ready(function () {
+                            $("#c_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else {
+                        return true
+                    }
                 }
-            }
-            if (a && !f) {
-                clearError("myform_errorloc");
-                var p = document.getElementById("h_rent_amt_input").value;
-                var d = document.getElementById("h_rate_select").value;
-                var v = p == "" || p == null ? true : false;
-                var m = d == "000" ? true : false;
-                if (!v && !m) {
+                if (a && !f) {
                     clearError("myform_errorloc");
-                    return true
-                } else if (v && !m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rate_select").css("border", "1px solid #3399FF");
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>")
-                    });
-                    return false
-                } else if (!v && m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #3399FF");
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
-                } else if (v && m) {
-                    clearError("myform_errorloc");
-                    $(document).ready(function () {
-                        $("#h_rent_amt_input").css("border", "1px solid #D8000C");
-                        $("#h_rate_select").css("border", "1px solid #D8000C");
-                        $("#myform_errorloc").append("<li>" + c + "</li>");
-                        $("#myform_errorloc").append("<li>" + h + "</li>")
-                    });
-                    return false
+                    var p = document.getElementById("c_rent_amt_input").value;
+                    var d = document.getElementById("c_rate_select").value;
+                    var v = p == "" || p == null ? true : false;
+                    var m = d == "000" ? true : false;
+                    if (!v && !m) {
+                        clearError("myform_errorloc");
+                        return true
+                    } else if (v && !m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rate_select").css("border", "1px solid #3399FF");
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>")
+                        });
+                        return false
+                    } else if (!v && m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#c_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#c_rate_select").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    }
                 }
+            } else {
+                clearError("myform_errorloc");
+                var w = "Please Select at least 1 option for Price (Rent,sell or Negotiable) <br>" + " ቢያንስ አንድ የመሸጫ መንገድ ይምረጡ (ከሚከተሉት ኪራይ፣ ሽያጭ ወይም በዋጋው እንስማማለን) <br> ";
+                $("#myform_errorloc").append("<li>" + w + "</li>");
+                return false
             }
-        } else {
+            break;
+        case "houseClass":
             clearError("myform_errorloc");
-            var w = "Please Select at least 1 option for Price (Rent,sell or Negotiable) <br>" + " ቢያንስ አንድ የመሸጫ መንገድ ይምረጡ (ከሚከተሉት ኪራይ፣ ሽያጭ ወይም በዋጋው እንስማማለን) <br> ";
-            $("#myform_errorloc").append("<li>" + w + "</li>");
-            return false
-        }
-        break;
-    default:
-        break
+            var a = document.getElementById("h_isrent").checked ? true : false;
+            var f = document.getElementById("h_issell").checked ? true : false;
+            var l = document.getElementById("h_isnego").checked ? true : false;
+            var c = "Please Rent enter price<br>የኪራይ ዋጋ ማስገባት ረስተዋል <br><br>";
+            var h = "Please enter Rent rate<br>የኪራይ እግድ መምረጥ ረስተዋል <br><br>";
+            if (a || f || l) {
+                if (a && f) {
+                    clearError("myform_errorloc");
+                    var p = document.getElementById("h_rent_amt_input").value;
+                    var d = document.getElementById("h_rate_select").value;
+                    var v = p == "" || p == null ? true : false;
+                    var m = d == "000" ? true : false;
+                    var g = document.getElementById("h_sell_amt_input").value;
+                    var y = g == "" || g == null ? true : false;
+                    var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
+                    if (!v && !m && !y) {
+                        clearError("myform_errorloc");
+                        return true
+                    } else if (v && !m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rate_select").css("border", "1px solid #3399FF");
+                            $("#h_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (v && !m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#h_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#h_rate_select").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + c + "</li>")
+                        });
+                        return false
+                    } else if (!v && !m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#h_rate_select").css("border", "1px solid #3399FF");
+                            $("#h_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (!v && m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#h_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + h + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else if (!v && m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#h_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m && !y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#h_sell_amt_input").css("border", "1px solid #3399FF");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m && y) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#h_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    }
+                }
+                if (!a && f) {
+                    clearError("myform_errorloc");
+                    var g = document.getElementById("h_sell_amt_input").value;
+                    var y = g == "" || g == null ? true : false;
+                    var b = "Please enter price<br>የመሸጫ ዋጋ ማስገባት ረስተዋል <br><br>";
+                    if (y) {
+                        $(document).ready(function () {
+                            $("#h_sell_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + b + "</li>")
+                        });
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+                if (a && !f) {
+                    clearError("myform_errorloc");
+                    var p = document.getElementById("h_rent_amt_input").value;
+                    var d = document.getElementById("h_rate_select").value;
+                    var v = p == "" || p == null ? true : false;
+                    var m = d == "000" ? true : false;
+                    if (!v && !m) {
+                        clearError("myform_errorloc");
+                        return true
+                    } else if (v && !m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rate_select").css("border", "1px solid #3399FF");
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>")
+                        });
+                        return false
+                    } else if (!v && m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #3399FF");
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    } else if (v && m) {
+                        clearError("myform_errorloc");
+                        $(document).ready(function () {
+                            $("#h_rent_amt_input").css("border", "1px solid #D8000C");
+                            $("#h_rate_select").css("border", "1px solid #D8000C");
+                            $("#myform_errorloc").append("<li>" + c + "</li>");
+                            $("#myform_errorloc").append("<li>" + h + "</li>")
+                        });
+                        return false
+                    }
+                }
+            } else {
+                clearError("myform_errorloc");
+                var w = "Please Select at least 1 option for Price (Rent,sell or Negotiable) <br>" + " ቢያንስ አንድ የመሸጫ መንገድ ይምረጡ (ከሚከተሉት ኪራይ፣ ሽያጭ ወይም በዋጋው እንስማማለን) <br> ";
+                $("#myform_errorloc").append("<li>" + w + "</li>");
+                return false
+            }
+            break;
+        default:
+            break
     }
     return true
 }
@@ -1015,77 +1014,77 @@ $(document).ready(function () {
         $(".h_issell").hide();
         var e = $(this).val();
         switch (e) {
-        case "carClass":
-            $("#carContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "computerClass":
-            $("#compContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $("#priceCommon").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "houseClass":
-            $("#houseContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "electronicsClass":
-            $("#electronicContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $("#priceCommon").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "phoneClass":
-            $("#phoneContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $("#priceCommon").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "householdClass":
-            $("#householdContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $("#priceCommon").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        case "otherClass":
-            $("#othersContent").slideDown("fast");
-            $("#uploadImgBox").slideDown("fast");
-            $("#priceCommon").slideDown("fast");
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break;
-        default:
-            $(".commonprice").css("border", "1px solid #3399FF");
-            $("#title").css("border", "1px solid #3399FF");
-            break
+            case "carClass":
+                $("#carContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "computerClass":
+                $("#compContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $("#priceCommon").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "houseClass":
+                $("#houseContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "electronicsClass":
+                $("#electronicContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $("#priceCommon").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "phoneClass":
+                $("#phoneContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $("#priceCommon").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "householdClass":
+                $("#householdContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $("#priceCommon").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            case "otherClass":
+                $("#othersContent").slideDown("fast");
+                $("#uploadImgBox").slideDown("fast");
+                $("#priceCommon").slideDown("fast");
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break;
+            default:
+                $(".commonprice").css("border", "1px solid #3399FF");
+                $("#title").css("border", "1px solid #3399FF");
+                break
         }
     });
     $("input[type=checkbox]").change(function () {
         var e = $(this).attr("id");
         if ($(this).is(":checked")) {
             switch (e) {
-            case "c_isrent":
-                $("." + e).show();
-                break;
-            case "c_issell":
-                $("." + e).show();
-                break;
-            case "h_isrent":
-                $("." + e).show();
-                break;
-            case "h_issell":
-                $("." + e).show();
-                break;
-            default:
-                break
+                case "c_isrent":
+                    $("." + e).show();
+                    break;
+                case "c_issell":
+                    $("." + e).show();
+                    break;
+                case "h_isrent":
+                    $("." + e).show();
+                    break;
+                case "h_issell":
+                    $("." + e).show();
+                    break;
+                default:
+                    break
             }
         } else {
             $("." + e).hide()
@@ -1095,14 +1094,14 @@ $(document).ready(function () {
         var e = $(this).attr("id");
         if ($(this).is(":checked")) {
             switch (e) {
-            case "c_isAdvanced":
-                $("." + e).slideDown();
-                break;
-            case "h_isAdvanced":
-                $("." + e).slideDown();
-                break;
-            default:
-                break
+                case "c_isAdvanced":
+                    $("." + e).slideDown();
+                    break;
+                case "h_isAdvanced":
+                    $("." + e).slideDown();
+                    break;
+                default:
+                    break
             }
         } else {
             $("." + e).slideUp()
@@ -1111,63 +1110,63 @@ $(document).ready(function () {
     $("#hcategory").change(function () {
         var e = $(this).val();
         switch (e) {
-        case "4":
-            $("#lotsize").show();
-            $("#metersquare").show();
-            $("#condeminiumFloor").hide();
-            break;
-        case "3":
-            $("#lotsize").hide();
-            $("#metersquare").hide();
-            $("#condeminiumFloor").show();
-            break;
-        default:
-            $("#lotsize").hide();
-            $("#metersquare").hide();
-            $("#condeminiumFloor").hide();
-            break
+            case "4":
+                $("#lotsize").show();
+                $("#metersquare").show();
+                $("#condeminiumFloor").hide();
+                break;
+            case "3":
+                $("#lotsize").hide();
+                $("#metersquare").hide();
+                $("#condeminiumFloor").show();
+                break;
+            default:
+                $("#lotsize").hide();
+                $("#metersquare").hide();
+                $("#condeminiumFloor").hide();
+                break
         }
     });
     $("#computer").change(function () {
         var e = $(this).val();
         switch (e) {
-        case "1":
-            $("#computerBrand").show();
-            $("#computeracc").hide();
-            $("#computerBrand").slideDown("fast");
-            $("#ram").slideDown("fast");
-            $("#harddisk").slideDown("fast");
-            $("#processor").slideDown("fast");
-            $("#OS").slideDown("fast");
-        case "2":
-            $("#computerBrand").show();
-            $("#computeracc").hide();
-            $("#computerBrand").slideDown("fast");
-            $("#ram").slideDown("fast");
-            $("#harddisk").slideDown("fast");
-            $("#processor").slideDown("fast");
-            $("#OS").slideDown("fast");
-        case "3":
-            $("#computerBrand").show();
-            $("#computeracc").hide();
-            $("#computerBrand").slideDown("fast");
-            $("#ram").slideDown("fast");
-            $("#harddisk").slideDown("fast");
-            $("#processor").slideDown("fast");
-            $("#OS").slideDown("fast");
-            break;
-        case "4":
-            $("#computeracc").slideDown("fast");
-            $("#computerBrand").slideUp("fast");
-            $("#ram").slideUp("fast");
-            $("#harddisk").slideUp("fast");
-            $("#processor").slideUp("fast");
-            $("#OS").slideUp("fast");
-            break;
-        default:
-            $("#computeracc").slideUp("fast");
-            $("#computerBrand").slideUp("fast");
-            break
+            case "1":
+                $("#computerBrand").show();
+                $("#computeracc").hide();
+                $("#computerBrand").slideDown("fast");
+                $("#ram").slideDown("fast");
+                $("#harddisk").slideDown("fast");
+                $("#processor").slideDown("fast");
+                $("#OS").slideDown("fast");
+            case "2":
+                $("#computerBrand").show();
+                $("#computeracc").hide();
+                $("#computerBrand").slideDown("fast");
+                $("#ram").slideDown("fast");
+                $("#harddisk").slideDown("fast");
+                $("#processor").slideDown("fast");
+                $("#OS").slideDown("fast");
+            case "3":
+                $("#computerBrand").show();
+                $("#computeracc").hide();
+                $("#computerBrand").slideDown("fast");
+                $("#ram").slideDown("fast");
+                $("#harddisk").slideDown("fast");
+                $("#processor").slideDown("fast");
+                $("#OS").slideDown("fast");
+                break;
+            case "4":
+                $("#computeracc").slideDown("fast");
+                $("#computerBrand").slideUp("fast");
+                $("#ram").slideUp("fast");
+                $("#harddisk").slideUp("fast");
+                $("#processor").slideUp("fast");
+                $("#OS").slideUp("fast");
+                break;
+            default:
+                $("#computeracc").slideUp("fast");
+                $("#computerBrand").slideUp("fast");
+                break
         }
     });
     $("#ccolor").change(function () {
@@ -1188,15 +1187,13 @@ $(document).ready(function () {
     })
 })
 
-function mobSidelist(){
-$(document).ready(function () {
-	$('#sidelist ul').toggle();		
-})}
-function mobMyItem(){
-	$(document).ready(function () {
-		$('#modnav ul').toggle();		
-    })}
-    
-    $('.locale').change(function() {
-        window.location = "samepage.php?update=tv_taken&update_id=" + $(this).val();
-    });
+function mobSidelist() {
+    $(document).ready(function () {
+        $('#sidelist ul').toggle();
+    })
+}
+function mobMyItem() {
+    $(document).ready(function () {
+        $('#modnav ul').toggle();
+    })
+}
