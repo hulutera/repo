@@ -1195,4 +1195,8 @@ $(document).ready(function () {
 function mobMyItem(){
 	$(document).ready(function () {
 		$('#modnav ul').toggle();		
-	})}
+    })}
+    
+    $('.locale').change(function() {
+        window.location = "samepage.php?update=tv_taken&update_id=" + $(this).val();
+    });

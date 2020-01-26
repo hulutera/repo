@@ -1,7 +1,36 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
-function commonHeader() {
+require_once $documnetRootPath . '/includes/locale/locale.php';
+if (isset($_GET['lan'])) {
+
+	$lan = $_GET['lan'];
+	if ($lan == "am") {
+		require_once $documnetRootPath . '/includes/locale/am.php';		
+	}
+	 else if ($lan == "ao")
+	{
+		require_once $documnetRootPath . '/includes/locale/ao.php';
+	}
+	else if ($lan == "tg")
+	{
+		require_once $documnetRootPath . '/includes/locale/tg.php';
+    }
+    else if ($lan == "so")
+	{
+		require_once $documnetRootPath . '/includes/locale/so.php';
+	}
+	else
+	{
+		require_once $documnetRootPath . '/includes/locale/en.php';
+	}
+}
+else
+{
+	require_once $documnetRootPath . '/includes/locale/en.php';
+}
+function commonHeader()
+{
 	echo '<meta name="viewport" content="width=device-width">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
@@ -13,7 +42,8 @@ function commonHeader() {
 
 	fileRouter($add);
 }
-function fileRouter($add) {
+function fileRouter($add)
+{
 	//css
 	echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
 	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
@@ -25,16 +55,17 @@ function fileRouter($add) {
 		//use local minfied jquery lib
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';?>
+	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
+<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
 	echo '<link rel="shortcut icon" href="' . $add . '/images/hulutera_xx_2.ico" />';
 }
 /*Code for Header and Search Bar*/
-function headerAndSearchCode($item) {
+function headerAndSearchCode($item)
+{
 	$defaultText = "";
 	echo '<div id= "head"><div class="header">';
 	logo();
@@ -44,7 +75,8 @@ function headerAndSearchCode($item) {
 	sidelist($item);
 }
 /*Code for Header and Search Bar*/
-function uploadHeaderAndSearchCode($item) {
+function uploadHeaderAndSearchCode($item)
+{
 	$defaultText = "";
 	echo '<div id= "head"><div class="header">';
 	logo();
@@ -52,7 +84,8 @@ function uploadHeaderAndSearchCode($item) {
 	echo '</div></div>';
 	tabMenu();
 }
-function activatItemTabs($item) {
+function activatItemTabs($item)
+{
 	if ($item == "car") {
 		$tabactive = 1;
 	} else if ($item == "house") {
@@ -74,7 +107,8 @@ function activatItemTabs($item) {
 	return $tabactive;
 }
 /*Fetch the active URL*/
-function activatetab() {
+function activatetab()
+{
 	$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 	if ($curPageName == "index.php") {
 		$tabactive = 1;
@@ -103,16 +137,20 @@ function activatetab() {
 	return $tabactive;
 }
 /*logo*/
-function logo() {
+function logo()
+{
 	echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
 	//../../images/hulutera.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
 
 /*Top Right Links*/
-function topRightLinks() {
+function topRightLinks()
+{
+	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	if (!isset($_SESSION['uID'])) {
 		echo '<div class ="toprightlink">';
+		locale($current_link);
 		echo '<a href="../../includes/login.php" >';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">Log In</div>';
@@ -141,6 +179,7 @@ function topRightLinks() {
 		}
 		$result0->close();
 		echo '<div class ="toprightlink">';
+		locale($current_link);
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' . $name . '</div>';
 		echo '<div id="topRightAmharic" style="color:#0d6aac">&nbsp</div></div>';
@@ -165,8 +204,10 @@ function topRightLinks() {
 		echo '</div>';
 	}
 }
+
 /*search*/
-function miniSearch() {
+function miniSearch()
+{
 	echo '<div class="miniSearch">';
 	echo '<form class="searchform" action="../../includes/search.php" method ="GET">';
 	echo '<input name="search_text" class="searchfield" type="text"  placeholder="e.g RAV 4, Toyota, Villa"/>';
@@ -175,14 +216,17 @@ function miniSearch() {
 	echo '</div>';
 }
 /*tabmenu home/PostyourItem/Help*/
-function tabMenu() {
+function tabMenu()
+{
+	//require_once $documnetRootPath . '/includes/locale/tg.php';
+
 	echo '<div class="tabsAndSearch"><div class="tabs">
 			<li  class="activeFirst"><a ';
 	if (activatetab() == 1) {
 		echo "class=\"active\"";
 	}
-	echo ' href="../../index.php">All Items';
-	echo '<div id="tabsAmharic">ሁሉም ንብረቶች</div></a></li>';
+	echo ' href="../../index.php"> ';
+	echo '<div id="tabsAmharic">' . LOCALE_ALL_ITEMS . '</div></a></li>';
 
 	if (isset($_SESSION['uID'])) {
 		//ask login prompt before post
@@ -194,7 +238,7 @@ function tabMenu() {
 		echo 'href="../../includes/upload.php">Post Items
 				<div id="tabsAmharic">ንብረት ያስገቡ</div></a></li>';
 	} else {
-//go to upload
+		//go to upload
 		echo '<li class="activeSecond"><a ';
 		if (activatetab() == 18) {
 			echo "class=\"active\"";
@@ -209,10 +253,11 @@ function tabMenu() {
 	echo 'href="../../includes/help.php" >Help<div id="tabsAmharic">መረጃ</div></a></li>';
 	echo '</div>';
 	miniSearch();
-	echo '</div>';
+	echo '</div>';	
 }
 /*sidelist*/
-function sidelist($item) {
+function sidelist($item)
+{
 	echo '<div id="sidelist">
 
 			<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
@@ -256,7 +301,8 @@ function sidelist($item) {
 	echo '</ul>	</div>';
 }
 /*footer*/
-function footerCode() {
+function footerCode()
+{
 	echo '<div id="footer">';
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
