@@ -1,5 +1,4 @@
 <?php
-global $connect;
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
 $connect = DatabaseClass::getInstance()->getConnection();
@@ -7,19 +6,23 @@ $key = $connect->real_escape_string($_GET['key']);
 $passRecovery = $_GET['newPass'];
 var_dump($GET);
 if(!empty($passRecovery) && !empty($key)){
-    $result=$connect->query("SELECT uNewPassword FROM user WHERE activation='$key' LIMIT 1") or die(mysqli_error());
+	$userTable = "user";
+	$filter = "uNewPassword";
+    $result = DatabaseClass::getInstance()->userPassword($userTable, $filter, $key);
     if (mysqli_num_rows($result)==0) {
         header('Location: ../includes/prompt.php?type=14');
     }
     else {
         $row=mysqli_fetch_array($result);
         $newPassword=$row['uNewPassword'];
-        $result2=$connect->query("UPDATE user SET upassword = '$newPassword', activation= NULL WHERE activation='$key'") or die (mysqli_error());
+        $result2 = DatabaseClass::getInstance()->updateUserPass($newPassword, $key);
         header('Location: ../includes/prompt.php?type=3');   
     }
 }
-else if(!empty($key)){        
-	$result=$connect->query("SELECT * FROM tempuser WHERE activation='$key' LIMIT 1") or die(mysqli_error());
+else if(!empty($key)){ 
+    $userTable = "tempuser";
+	$filter = "*";      
+	$result = DatabaseClass::getInstance()->userPassword($userTable, $filter, $key);
 	if (mysqli_num_rows($result)==0) {
 		header('Location: ../includes/prompt.php?type=15');
 	}
@@ -41,16 +44,16 @@ else if(!empty($key)){
         $regDateSrting =strtotime($regDate);
         $endDate = 2592000 ;
         if ($today - $regDateSrting >= $endDate ){
-			$resulst2= $connect->query("DELETE FROM tempuser WHERE tuID='$user_id'")or die(mysql_error());
+			$resulst2 = DatabaseClass::getInstance()->updateTempUser($user_id);
 			header ('Location: ../includes/prompt.php?type=11');
         }
 		else{
-            $result1=$connect->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')")or die(mysql_error());
+            $result1 = DatabaseClass::getInstance()-> insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address);
 			if(!$result1){
 				echo "Sorry! Your account could not be activated, please contact the administrator.";
 			}
 			else{
-                $resulst2=$connect->query("DELETE FROM tempuser WHERE tuID='$user_id'")or die(mysql_error());
+                $resulst2 = DatabaseClass::getInstance()->updateTempUser($user_id);
 				header('Location: ../includes/prompt.php?type=0');
             }
 	    }

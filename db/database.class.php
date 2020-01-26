@@ -394,9 +394,27 @@ class DatabaseClass
 		return $this->getConnection()->query($sql);
 	}
 	
-	// Message queries
+	// Action on messages queries
 	public function actionOnTables($action,$idType, $numeric){
 		$this->getConnection()->query("$action WHERE $idType = $numeric") or die(mysqli_error());
+	}
+	
+	/// User information
+	// Password recovery
+	public function userPassword($userTable, $filter, $key){
+		 return $this->getConnection()->query("SELECT $filter FROM $userTable WHERE activation='$key' LIMIT 1") or die(mysqli_error());
+	}
+	// User password recovery
+	public function passwordActivation($newPassword, $key){
+		 $this->getConnection()->query("UPDATE user SET upassword = '$newPassword', activation= NULL WHERE activation='$key'") or die(mysqli_error());
+	}
+	// PempUser update
+	public function updateTempUser($user_id){
+		 $this->getConnection()->query("DELETE FROM tempuser WHERE tuID='$user_id'") or die(mysqli_error());
+	} 
+	// PempUser update
+	public function insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address){
+		 $this->getConnection()->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
 	}
 	
 	
