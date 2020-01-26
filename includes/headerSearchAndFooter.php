@@ -267,7 +267,7 @@ function sidelist($item)
 	if (activatItemTabs($item) == 1) {
 		echo "class=\"active\"";
 	}
-	echo 'href="'.$documnetRootPath.'/includes/template.item.php?type='.$item.'">'.ucwords($item);
+	echo 'href="../../items/car/car.php">Car';
 	echo '<div id="tabsAmharic">መኪና</div></a></li><li><a ';
 	if (activatItemTabs($item) == 2) {
 		echo "class=\"active\"";
