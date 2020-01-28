@@ -11,7 +11,7 @@ class CommonClass
 		$name   = $objCar->getItemName();
 		$time   = $objCar->getUpldTime();
 		$time   = strtotime($time);
-		$userId    = $objUser->getUserId();
+		$userId    = isset($_SESSION ['uID']) ? $_SESSION ['uID'] : '';
 		$userRole  = $objUser->getUserRole();
 
 		echo "<div  class=\"delete_activate\">
