@@ -416,6 +416,27 @@ class DatabaseClass
 	public function insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address){
 		 $this->getConnection()->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
 	}
+	// return the total number of stored items from tables
+	public function findTotalItemNumb($id, $table, $condition) {
+		return $this->getConnection->query("SELECT $id FROM $table $condition");
+	}
 	
+	// query for pagination
+	public function queryForPagination($itemStatus) {
+		return $this->getConnection->query("SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE '$itemStatus'
+				UNION ALL
+				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE '$itemStatus'
+				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX");
+	}
 	
 }

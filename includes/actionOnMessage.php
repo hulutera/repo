@@ -11,7 +11,6 @@ $msg = (isset($_GET['msg'])) ? $_GET['msg'] : '';
 $youremail = (isset($_GET['youremail'])) ? $_GET['youremail'] : '';
 //action to be taken
 $action =(isset($_GET['action'])) ? $_GET['action'] : '';
-$connect = DatabaseClass::getInstance()->getConnection();
 
 // If the message id is one without comma then it treats it as anumeric number, if not it treats it as a string.
 // Then we made an array out of it.
@@ -107,8 +106,11 @@ switch($action)
 }
 
 // we return the number of message found in the table
-$contactusresult = $connect->query("SELECT kID FROM contactus");
-$contactusMessage= mysqli_num_rows($contactusresult);
+$id = "kID";
+$table = "contactus";
+$condition = "";
+$contactusresult =  DatabaseClass::getInstance()->findTotalItemNumb($id, $table, $condition);
+$contactusMessage = mysqli_num_rows($contactusresult);
 echo $contactusMessage;
 
 

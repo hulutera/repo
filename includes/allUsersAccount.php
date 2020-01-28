@@ -8,23 +8,9 @@ $noItemToShow = "Sorry! There is no item to display.<div id=\"spanColumnXamharic
 /**/
 function deletedItems()
 {
-	global $connect,$noItemToShow,$MAX ;
+	global $noItemToShow,$MAX ;
 	$modDelete    = 'modDelete';
-	//$adminDeleted = 'modDelete';
-	$querySum = $connect->query(
-			"SELECT cID FROM car WHERE cStatus LIKE '$deletedStatus' 
-			UNION ALL
-			SELECT hID FROM house WHERE hStatus LIKE '$deletedStatus'
-			UNION ALL
-			SELECT dID FROM computer WHERE dStatus LIKE '$deletedStatus'
-			UNION ALL
-			SELECT eID FROM electronics WHERE eStatus LIKE '$deletedStatus'
-			UNION ALL
-			SELECT pID FROM phone WHERE pStatus LIKE '$deletedStatus'
-			UNION ALL
-			SELECT hhID FROM household WHERE hhStatus LIKE '$deletedStatus'
-			UNION ALL
-			SELECT oID FROM others WHERE oStatus LIKE '$deletedStatus'");
+	$querySum = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($modDelete);
 	$sum = mysqli_num_rows($querySum);
 
 
@@ -37,23 +23,7 @@ function deletedItems()
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-
-		$query = $connect->query(
-				"SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE '$deletedStatus'
-				UNION ALL
-				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE '$deletedStatus'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX ");
-
+        $query = DatabaseClass::getInstance()->queryForPagination($modDelete);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -104,22 +74,9 @@ function deletedItems()
 }
 /**/
 function pendingItems(){
-	global $connect,$noItemToShow,$MAX;
-
-	$querySum = $connect->query(
-			"SELECT cID FROM car WHERE cStatus LIKE 'pending'
-			UNION ALL
-			SELECT hID FROM house WHERE hStatus LIKE 'pending'
-			UNION ALL
-			SELECT dID FROM computer WHERE dStatus LIKE 'pending'
-			UNION ALL
-			SELECT eID FROM electronics WHERE eStatus LIKE 'pending'
-			UNION ALL
-			SELECT pID FROM phone WHERE pStatus LIKE 'pending'
-			UNION ALL
-			SELECT hhID FROM household WHERE hhStatus LIKE 'pending'
-			UNION ALL
-			SELECT oID FROM others WHERE oStatus LIKE 'pending'");
+	global $noItemToShow,$MAX;
+    $itemStatus = "pending";
+	$querySum = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($itemStatus);
 	$sum = mysqli_num_rows($querySum);
 
 
@@ -132,23 +89,7 @@ function pendingItems(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-
-		$query = $connect->query(
-				"SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE 'pending'
-				UNION ALL
-				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE 'pending'
-				UNION ALL
-				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE 'pending'
-				UNION ALL
-				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE 'pending'
-				UNION ALL
-				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE 'pending'
-				UNION ALL
-				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE 'pending'
-				UNION ALL
-				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE 'pending'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX ");
-
+        $query = DatabaseClass::getInstance()->queryForPagination($itemStatus);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -204,7 +145,7 @@ function pendingItems(){
 }
 /**/
 function reportedItems(){
-	global $connect,$noItemToShow;
+	global $noItemToShow;
 	$arrayCid = Array();
 	$arrayHid = Array();
 	$arrayDid = Array();
@@ -212,17 +153,13 @@ function reportedItems(){
 	$arrayEid = Array();
 	$arrayHHid = Array();
 	$arrayOid = Array();
-
-	$reported = $connect->query("SELECT * FROM abuse ") or
-	die(mysqli_error());
+    $table = "abuse";
+	$filterId = "*";
+	$condition = "";
+	$reported = DatabaseClass::getInstance()->findTotalItemNumb($filterId, $table, $condition);
 	$sum = mysqli_num_rows($reported);
 
-
 	if($sum >= 1){
-
-
-		$reported = $connect->query("SELECT * FROM abuse ") or
-		die(mysqli_error());
 
 		while($dRditems = $reported -> fetch_assoc()){
 			if($dRditems['carID'] != NULL && !in_array($dRditems['carID'],$arrayCid))
@@ -279,25 +216,11 @@ function reportedItems(){
 }
 /**/
 function userActive(){
-	global $connect,$noItemToShow,$MAX;
+	global $noItemToShow,$MAX;
 	$user= $_SESSION['uID'];
-
-	$querySum = $connect->query(
-			"SELECT cID FROM car WHERE cStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT hID FROM house WHERE hStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT dID FROM computer WHERE dStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT eID FROM electronics WHERE eStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT pID FROM phone WHERE pStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT hhID FROM household WHERE hhStatus LIKE 'active' AND uID = '$user'
-			UNION ALL
-			SELECT oID FROM others WHERE oStatus LIKE 'active' AND uID = '$user'");
+	$activeItemStatus = "'active' AND uID = ".$user;
+    $querySum = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($activeItemStatus);
 	$sum = mysqli_num_rows($querySum);
-
 
 	if($sum >= 1){
 		$totpage = ceil($sum/$MAX);
@@ -308,23 +231,7 @@ function userActive(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-
-		$query = $connect->query(
-				"SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE 'active' AND uID = '$user'
-				UNION ALL
-				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE 'active' AND uID = '$user'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX ");
-
+        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -375,25 +282,11 @@ function userActive(){
 }
 /**/
 function userPending(){
-	global $connect,$noItemToShow,$MAX;
+	global $noItemToShow,$MAX;
 	$user= $_SESSION['uID'];
-
-	$querySum = $connect->query(
-			"SELECT cID FROM car WHERE cStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT hID FROM house WHERE hStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT dID FROM computer WHERE dStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT eID FROM electronics WHERE eStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT pID FROM phone WHERE pStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT hhID FROM household WHERE hhStatus LIKE 'pending'  AND uID = '$user'
-			UNION ALL
-			SELECT oID FROM others WHERE oStatus LIKE 'pending'  AND uID = '$user'");
+	$activeItemStatus = "'pending' AND uID = ".$user;
+    $querySum = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($activeItemStatus);
 	$sum = mysqli_num_rows($querySum);
-
 
 	if($sum >= 1){
 		$totpage = ceil($sum/$MAX);
@@ -404,23 +297,7 @@ function userPending(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-
-		$query = $connect->query(
-				"SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE 'pending'  AND uID = '$user'
-				UNION ALL
-				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE 'pending'  AND uID = '$user'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX ");
-
+        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus);
 		while($result=$query->fetch_assoc())
 		{
 
