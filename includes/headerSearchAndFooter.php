@@ -246,7 +246,7 @@ function sidelist($item)
 		if ($value['table_name'] == $item) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../items/'.$value['table_name'].'/'.$value['table_name'].'.php">'. ucwords($value['table_name']);
+		echo 'href="../../includes/template.item.php?type='.$value['table_name'].'">'. ucwords($value['table_name']);
 		echo '</a></li>';
 	}
 	echo '</ul>	</div>';
