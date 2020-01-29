@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.5
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 06, 2014 at 05:35 PM
--- Server version: 5.5.33-31.1
--- PHP Version: 5.3.17
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 29, 2020 at 10:27 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `hulutera`
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `abuse`
 --
 
+DROP TABLE IF EXISTS `abuse`;
 CREATE TABLE IF NOT EXISTS `abuse` (
   `abuseID` int(40) NOT NULL AUTO_INCREMENT,
   `abuseCategoryID` int(40) NOT NULL,
@@ -49,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `abuse` (
   KEY `phoneID` (`phoneID`),
   KEY `householdID` (`householdID`),
   KEY ` othersID` (`othersID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `abuse`
@@ -64,11 +67,12 @@ INSERT INTO `abuse` (`abuseID`, `abuseCategoryID`, `userID`, `carID`, `computerI
 -- Table structure for table `abusecategory`
 --
 
+DROP TABLE IF EXISTS `abusecategory`;
 CREATE TABLE IF NOT EXISTS `abusecategory` (
   `abuseCategoryID` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`abuseCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `abusecategory`
@@ -94,6 +98,7 @@ INSERT INTO `abusecategory` (`abuseCategoryID`, `name`) VALUES
 -- Table structure for table `car`
 --
 
+DROP TABLE IF EXISTS `car`;
 CREATE TABLE IF NOT EXISTS `car` (
   `cID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -124,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `car` (
   PRIMARY KEY (`cID`),
   KEY `uID_FK1` (`uID`),
   KEY `ccategoryID_FK` (`carCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `car`
@@ -145,17 +150,18 @@ INSERT INTO `car` (`cID`, `uID`, `carCategoryID`, `contactMethodCategoryId`, `cP
 (13, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '4545', '2013-12-18 11:04:30', NULL, 'pending', 'No Action', 36316, 1),
 (14, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '54545', '2013-12-18 11:04:57', NULL, 'pending', 'No Action', 53847, 1),
 (15, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'vdfvdf', '2013-12-18 11:06:25', NULL, 'pending', 'No Action', 84930, 1),
-(16, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'gdgd', '2013-12-18 16:36:02', NULL, 'pending', 'No Action', 78247, 1),
-(17, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'tttt', '2013-12-18 16:46:35', NULL, 'pending', 'No Action', 1018, 1),
-(18, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'ttty', '2013-12-18 16:46:58', NULL, 'pending', 'No Action', 19614, 1),
-(19, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5656', '2013-12-18 16:55:20', NULL, 'pending', 'No Action', 60415, 1),
-(20, 2, 17, 0, '', '', 'Negotiable', 'month', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fgerge', '2013-12-19 10:26:53', NULL, 'pending', 'No Action', 342, 1),
-(21, 2, 17, 0, '', '54545', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fsfs', '2013-12-19 10:30:33', NULL, 'pending', 'sell', 9267, 1),
-(22, 2, 17, 0, '5600', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5ffhfh', '2013-12-19 10:31:48', NULL, 'pending', 'rent', 30312, 1),
-(23, 2, 17, 0, '', '5555', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'car final check', '2013-12-19 11:55:39', NULL, 'pending', 'sell', 78817, 1),
-(24, 10, 14, 0, '', '10000', '', '000', 'Birr', 'porsche', '', 1980, 0, '', 'yellow', 'Manual', '', 'Addis Ababa', '', 'porche for sell', '2013-12-21 18:35:46', NULL, 'pending', 'sell', 29635, 1),
-(25, 1, 17, 0, '', '', 'Negotiable', '000', 'Birr', '', '', 0000, 0, '', '', 'semiAuto', '', 'Addis Ababa', '', 'myTestCar', '2013-12-29 15:18:29', NULL, 'pending', 'No Action', 692, 1),
-(26, 2, 17, 0, '', '', '', '000', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'hdvchdsgv', '2014-01-06 15:30:16', NULL, 'pending', 'No Action', 18342, 1);
+(16, 2, 17, 3, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'gdgd', '2020-01-25 09:52:55', NULL, 'active', 'No Action', 78247, 1),
+(17, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 1018, 1),
+(18, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'ttty', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 19614, 1),
+(19, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5656', '2020-01-24 16:15:49', NULL, 'active', 'No Action', 60415, 1),
+(20, 2, 17, 0, '', '', 'Negotiable', 'month', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fgerge', '2020-01-24 16:15:42', NULL, 'active', 'No Action', 342, 1),
+(21, 2, 17, 0, '', '54545', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fsfs', '2020-01-24 16:15:38', NULL, 'active', 'sell', 9267, 1),
+(22, 2, 17, 0, '5600', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5ffhfh', '2020-01-24 16:15:38', NULL, 'active', 'rent', 30312, 1),
+(23, 2, 17, 0, '', '5555', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'car final check', '2020-01-24 16:15:36', NULL, 'active', 'sell', 78817, 1),
+(24, 10, 14, 0, '', '10000', '', '000', 'Birr', 'porsche', '', 1980, 0, '', 'yellow', 'Manual', '', 'Addis Ababa', '', 'porche for sell', '2020-01-24 16:15:32', NULL, 'active', 'sell', 29635, 1),
+(25, 1, 17, 0, '', '', 'Negotiable', '000', 'Birr', '', '', 0000, 0, '', '', 'semiAuto', '', 'Addis Ababa', '', 'myTestCar', '2020-01-24 16:15:31', NULL, 'active', 'No Action', 692, 1),
+(26, 2, 17, 0, '', '', '', '000', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'hdvchdsgv', '2020-01-24 16:15:30', NULL, 'active', 'No Action', 18342, 1),
+(27, 11, 11, 3, '100000', '2000', '1', 'hour', 'Birr', 'acura', 'Mads', 1940, 10, 'Besine', 'white', 'Automatic', '21', 'Addis Ababa', 'asdsdsd', 'My car', '2020-01-24 16:15:28', NULL, 'active', 'sell or Rent', 91231, 1);
 
 -- --------------------------------------------------------
 
@@ -163,11 +169,12 @@ INSERT INTO `car` (`cID`, `uID`, `carCategoryID`, `contactMethodCategoryId`, `cP
 -- Table structure for table `carcategory`
 --
 
+DROP TABLE IF EXISTS `carcategory`;
 CREATE TABLE IF NOT EXISTS `carcategory` (
   `categoryID` int(40) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(40) NOT NULL,
   PRIMARY KEY (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `carcategory`
@@ -198,6 +205,7 @@ INSERT INTO `carcategory` (`categoryID`, `categoryName`) VALUES
 -- Table structure for table `carimages`
 --
 
+DROP TABLE IF EXISTS `carimages`;
 CREATE TABLE IF NOT EXISTS `carimages` (
   `imageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -208,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `carimages` (
   `picture_5` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`imageID`),
   KEY `item_ID` (`ItemID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `carimages`
@@ -227,6 +235,7 @@ INSERT INTO `carimages` (`imageID`, `ItemID`, `picture_1`, `picture_2`, `picture
 -- Table structure for table `computer`
 --
 
+DROP TABLE IF EXISTS `computer`;
 CREATE TABLE IF NOT EXISTS `computer` (
   `dID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -254,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `computer` (
   PRIMARY KEY (`dID`),
   KEY `uID_FK2` (`uID`),
   KEY `d_CategoryID_FK` (`compCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `computer`
@@ -291,19 +300,19 @@ INSERT INTO `computer` (`dID`, `uID`, `compCategoryID`, `contactMethodCategoryId
 (40, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', '5454', '2013-12-17 16:28:02', NULL, 'pending', 'No Action', 42819, 3),
 (41, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, 'Addis Ababa', '', 'nnnn', '2013-12-17 16:41:18', NULL, 'pending', 'No Action', 1421, 3),
 (42, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, 'Addis Ababa', '', 'sfdfd', '2013-12-17 16:45:45', NULL, 'pending', 'sell', 79748, 3),
-(43, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'cfsd', '2013-12-18 16:40:04', NULL, 'pending', 'sell', 29735, 3),
-(44, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'yyyy', '2013-12-18 16:40:36', NULL, 'pending', 'sell', 1296, 3),
-(45, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wefe', '2013-12-19 09:16:24', NULL, 'pending', 'sell', 22015, 3),
-(46, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdg', '2013-12-19 11:05:09', NULL, 'pending', 'sell', 94215, 3),
-(47, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', '545', '2013-12-19 11:52:08', NULL, 'pending', 'sell', 36639, 3),
-(48, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'tttt', '2013-12-19 12:17:42', NULL, 'pending', 'sell', 37521, 3),
-(49, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdfg', '2013-12-19 12:18:35', NULL, 'pending', 'sell', 72825, 3),
-(50, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'erwer', '2013-12-19 12:19:48', NULL, 'pending', 'sell', 9212, 3),
-(51, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'dawf', '2013-12-19 12:25:03', NULL, 'pending', 'sell', 1745, 3),
-(52, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wetwe', '2013-12-19 12:26:47', NULL, 'pending', 'sell', 32611, 3),
-(53, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'afew', '2013-12-19 12:28:27', NULL, 'pending', 'sell', 52117, 3),
-(54, 2, 1, 0, '4545', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'ertert', '2013-12-19 12:30:26', NULL, 'pending', 'sell', 4049, 3),
-(55, 2, 1, 0, '5656', 'Negotiable', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'com', '2013-12-19 12:31:12', NULL, 'pending', 'sell', 95542, 3),
+(43, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'cfsd', '2020-01-24 16:15:53', NULL, 'active', 'sell', 29735, 3),
+(44, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'yyyy', '2020-01-24 16:15:52', NULL, 'active', 'sell', 1296, 3),
+(45, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wefe', '2020-01-24 16:15:46', NULL, 'active', 'sell', 22015, 3),
+(46, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdg', '2020-01-24 16:15:38', NULL, 'active', 'sell', 94215, 3),
+(47, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', '545', '2020-01-24 16:15:37', NULL, 'active', 'sell', 36639, 3),
+(48, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:35', NULL, 'active', 'sell', 37521, 3),
+(49, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdfg', '2020-01-24 16:15:35', NULL, 'active', 'sell', 72825, 3),
+(50, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'erwer', '2020-01-24 16:15:34', NULL, 'active', 'sell', 9212, 3),
+(51, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'dawf', '2020-01-24 16:15:34', NULL, 'active', 'sell', 1745, 3),
+(52, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wetwe', '2020-01-24 16:15:34', NULL, 'active', 'sell', 32611, 3),
+(53, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'afew', '2020-01-24 16:15:33', NULL, 'active', 'sell', 52117, 3),
+(54, 2, 1, 0, '4545', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'ertert', '2020-01-24 16:15:33', NULL, 'active', 'sell', 4049, 3),
+(55, 2, 1, 0, '5656', 'Negotiable', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'com', '2020-01-24 16:15:32', NULL, 'active', 'sell', 95542, 3),
 (56, 1, 1, 0, '12321', 'Negotiable', 'Birr', '', 'windows', NULL, '2.5 - 2.99GHz', '1.0 - 1.9GB', '300 - 499GB', NULL, 'Addis Ababa', 'TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer ', 'TestComputer', '2013-12-21 14:30:49', NULL, 'active', 'sell', 17650, 3);
 
 -- --------------------------------------------------------
@@ -312,11 +321,12 @@ INSERT INTO `computer` (`dID`, `uID`, `compCategoryID`, `contactMethodCategoryId
 -- Table structure for table `computercategory`
 --
 
+DROP TABLE IF EXISTS `computercategory`;
 CREATE TABLE IF NOT EXISTS `computercategory` (
   `categoryID` int(40) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(40) NOT NULL,
   PRIMARY KEY (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `computercategory`
@@ -336,6 +346,7 @@ INSERT INTO `computercategory` (`categoryID`, `categoryName`) VALUES
 -- Table structure for table `computerimages`
 --
 
+DROP TABLE IF EXISTS `computerimages`;
 CREATE TABLE IF NOT EXISTS `computerimages` (
   `ImageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -346,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `computerimages` (
   `picture_5` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`ImageID`),
   UNIQUE KEY `item_ID` (`ItemID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `computerimages`
@@ -367,11 +378,12 @@ INSERT INTO `computerimages` (`ImageID`, `ItemID`, `picture_1`, `picture_2`, `pi
 -- Table structure for table `contactmethodcategory`
 --
 
+DROP TABLE IF EXISTS `contactmethodcategory`;
 CREATE TABLE IF NOT EXISTS `contactmethodcategory` (
   `Id` int(3) NOT NULL AUTO_INCREMENT,
   `contactMethod` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `contactmethodcategory`
@@ -388,6 +400,7 @@ INSERT INTO `contactmethodcategory` (`Id`, `contactMethod`) VALUES
 -- Table structure for table `contactus`
 --
 
+DROP TABLE IF EXISTS `contactus`;
 CREATE TABLE IF NOT EXISTS `contactus` (
   `kID` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(125) NOT NULL,
@@ -399,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   `messageStatus` varchar(10) NOT NULL,
   `timeReceived` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`kID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contactus`
@@ -419,6 +432,7 @@ INSERT INTO `contactus` (`kID`, `name`, `company`, `email`, `subject`, `purpose`
 -- Table structure for table `electronics`
 --
 
+DROP TABLE IF EXISTS `electronics`;
 CREATE TABLE IF NOT EXISTS `electronics` (
   `eID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -439,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `electronics` (
   PRIMARY KEY (`eID`),
   KEY `uID_FK1` (`uID`),
   KEY `electronicsCategrogyID` (`electronicsCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `electronics`
@@ -452,11 +466,11 @@ INSERT INTO `electronics` (`eID`, `uID`, `electronicsCategoryID`, `contactMethod
 (7, 1, 8, 0, '0', '', 'Birr', 'Addis Ababa', '', 'adsadsad', '2013-11-17 19:51:53', NULL, '', 'No Action', 55622, 5),
 (8, 2, 1, 0, '0', 'Negotiable', 'Birr', 'Dire Dawa', '', 'my tv for you', '2013-12-11 14:36:17', NULL, 'pending', 'No Action', 28731, 5),
 (9, 2, 8, 0, '0', '', 'Birr', 'Addis Ababa', '', 'sdfsdfsd', '2013-12-17 16:04:56', NULL, 'pending', 'No Action', 92420, 5),
-(10, 2, 8, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'fdsf', '2013-12-18 16:41:13', NULL, 'pending', 'sell', 54729, 5),
-(11, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'gggg', '2013-12-18 16:41:34', NULL, 'pending', 'sell', 50623, 5),
-(12, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfd', '2013-12-18 16:57:04', NULL, 'pending', 'sell', 12320, 5),
-(13, 2, 8, 0, '4444', 'Negotiable', 'Birr', 'Addis Ababa', '', 'Elect', '2013-12-19 11:56:13', NULL, 'pending', 'sell', 8026, 5),
-(14, 2, 8, 0, '6565', '', 'Birr', 'Addis Ababa', '', 'dgsg', '2013-12-19 12:21:39', NULL, 'pending', 'sell', 4935, 5);
+(10, 2, 8, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'fdsf', '2020-01-24 16:15:52', NULL, 'active', 'sell', 54729, 5),
+(11, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'gggg', '2020-01-24 16:15:52', NULL, 'active', 'sell', 50623, 5),
+(12, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfd', '2020-01-24 16:15:48', NULL, 'active', 'sell', 12320, 5),
+(13, 2, 8, 0, '4444', 'Negotiable', 'Birr', 'Addis Ababa', '', 'Elect', '2020-01-24 16:15:36', NULL, 'active', 'sell', 8026, 5),
+(14, 2, 8, 0, '6565', '', 'Birr', 'Addis Ababa', '', 'dgsg', '2020-01-24 16:15:34', NULL, 'active', 'sell', 4935, 5);
 
 -- --------------------------------------------------------
 
@@ -464,6 +478,7 @@ INSERT INTO `electronics` (`eID`, `uID`, `electronicsCategoryID`, `contactMethod
 -- Table structure for table `electronicscategory`
 --
 
+DROP TABLE IF EXISTS `electronicscategory`;
 CREATE TABLE IF NOT EXISTS `electronicscategory` (
   `CategoryID` int(40) NOT NULL,
   `categoryName` varchar(20) NOT NULL,
@@ -490,6 +505,7 @@ INSERT INTO `electronicscategory` (`CategoryID`, `categoryName`) VALUES
 -- Table structure for table `electronicsimages`
 --
 
+DROP TABLE IF EXISTS `electronicsimages`;
 CREATE TABLE IF NOT EXISTS `electronicsimages` (
   `ImageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -501,7 +517,7 @@ CREATE TABLE IF NOT EXISTS `electronicsimages` (
   PRIMARY KEY (`ImageID`),
   UNIQUE KEY `ItemID` (`ItemID`),
   UNIQUE KEY `electronics_eID` (`ImageID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `electronicsimages`
@@ -516,6 +532,7 @@ INSERT INTO `electronicsimages` (`ImageID`, `ItemID`, `picture_1`, `picture_2`, 
 -- Table structure for table `house`
 --
 
+DROP TABLE IF EXISTS `house`;
 CREATE TABLE IF NOT EXISTS `house` (
   `hID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -547,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `house` (
   PRIMARY KEY (`hID`),
   KEY `uID_FK3` (`uID`),
   KEY `hCategoryID_FK` (`houseCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `house`
@@ -561,14 +578,14 @@ INSERT INTO `house` (`hID`, `uID`, `houseCategoryID`, `contactMethodCategoryId`,
 (5, 2, 1, 0, '50000 birr', '', '', '6month', 'Birr', 'Adama', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'House', '2013-12-11 14:35:12', NULL, 'pending', 'Rent', 41748, 2),
 (6, 2, 5, 0, '', '', '', 'month', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'wwwww', '2013-12-18 16:47:27', NULL, 'Birr', 'No Action', 74318, 2),
 (7, 2, 5, 0, '', '', '', 'month', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'gdgf', '2013-12-18 16:48:38', NULL, 'Birr', 'No Action', 797, 2),
-(8, 2, 5, 0, '', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fsd', '2013-12-18 16:52:42', NULL, 'pending', 'No Action', 27910, 2),
-(9, 2, 5, 0, '', '6565', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdfgdfg', '2013-12-18 16:53:32', NULL, 'pending', 'sell', 75723, 2),
-(10, 2, 5, 0, '56565', '', 'Negotiable', '12month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gfgfg', '2013-12-18 16:54:18', NULL, 'pending', 'Rent', 7310, 2),
-(11, 2, 5, 0, '567', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'hou', '2013-12-19 09:15:48', NULL, 'pending', 'Rent', 43115, 2),
-(12, 2, 5, 0, '50', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdghdf', '2013-12-19 09:41:36', NULL, 'pending', 'Rent', 147, 2),
-(13, 2, 5, 0, '', '454', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'ffdw', '2013-12-19 10:09:06', NULL, 'pending', 'sell', 37313, 2),
+(8, 2, 5, 0, '', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fsd', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 27910, 2),
+(9, 2, 5, 0, '', '6565', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdfgdfg', '2020-01-24 16:15:50', NULL, 'active', 'sell', 75723, 2),
+(10, 2, 5, 0, '56565', '', 'Negotiable', '12month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gfgfg', '2020-01-24 16:15:50', NULL, 'active', 'Rent', 7310, 2),
+(11, 2, 5, 0, '567', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'hou', '2020-01-24 16:15:47', NULL, 'active', 'Rent', 43115, 2),
+(12, 2, 5, 0, '50', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdghdf', '2020-01-24 16:15:45', NULL, 'active', 'Rent', 147, 2),
+(13, 2, 5, 0, '', '454', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'ffdw', '2020-01-24 16:15:43', NULL, 'active', 'sell', 37313, 2),
 (14, 2, 5, 0, '', 'csdfsd', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'adadfw', '2013-12-19 10:17:40', NULL, '', 'sell', 97113, 2),
-(15, 2, 5, 0, '', '4545', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fdfd', '2013-12-19 10:22:18', NULL, 'pending', 'sell', 24813, 2),
+(15, 2, 5, 0, '', '4545', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fdfd', '2020-01-24 16:15:43', NULL, 'active', 'sell', 24813, 2),
 (16, 2, 5, 0, '', '5656', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'efewgte', '2013-12-24 20:33:59', NULL, 'active', 'sell', 35118, 2);
 
 -- --------------------------------------------------------
@@ -577,11 +594,12 @@ INSERT INTO `house` (`hID`, `uID`, `houseCategoryID`, `contactMethodCategoryId`,
 -- Table structure for table `housecategory`
 --
 
+DROP TABLE IF EXISTS `housecategory`;
 CREATE TABLE IF NOT EXISTS `housecategory` (
   `categoryID` int(40) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(40) NOT NULL,
   PRIMARY KEY (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `housecategory`
@@ -601,6 +619,7 @@ INSERT INTO `housecategory` (`categoryID`, `categoryName`) VALUES
 -- Table structure for table `household`
 --
 
+DROP TABLE IF EXISTS `household`;
 CREATE TABLE IF NOT EXISTS `household` (
   `hhID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -622,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `household` (
   KEY `uID_FK1` (`uID`),
   KEY `hhcategoryID_FK` (`hhCategoryID`),
   KEY `marketCategory` (`marketCategory`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `household`
@@ -645,15 +664,15 @@ INSERT INTO `household` (`hhID`, `uID`, `hhCategoryID`, `contactMethodCategoryId
 (15, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sdasdas', '2013-12-18 12:45:48', 0, 'pending', 'sell', 19336, 6),
 (16, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'dasdas', 'dsd', '2013-12-18 13:15:53', 0, 'pending', 'sell', 57844, 6),
 (17, 2, 4, 0, '', '', 'Birr', 'Addis Ababa', '', 'dcsdfsd', '2013-12-18 13:17:56', 0, 'pending', 'sell', 50318, 6),
-(18, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sffwfe', '2013-12-18 15:25:55', 0, 'pending', 'sell', 56636, 6),
-(19, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'ggggg', '2013-12-18 16:06:40', 0, 'pending', 'sell', 70436, 6),
-(20, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dgdg', '2013-12-18 16:07:37', 0, 'pending', 'sell', 85441, 6),
-(21, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'gfgf', '2013-12-18 16:08:10', 0, 'pending', 'sell', 8138, 6),
-(22, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dvdsgvd', '2013-12-18 16:56:15', 0, 'pending', 'sell', 40324, 6),
-(23, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'gge', '2013-12-19 11:10:42', 0, 'pending', 'sell', 1916, 6),
+(18, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sffwfe', '2020-01-24 16:15:57', 0, 'active', 'sell', 56636, 6),
+(19, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'ggggg', '2020-01-24 16:15:55', 0, 'active', 'sell', 70436, 6),
+(20, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dgdg', '2020-01-24 16:15:55', 0, 'active', 'sell', 85441, 6),
+(21, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'gfgf', '2020-01-24 16:15:54', 0, 'active', 'sell', 8138, 6),
+(22, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dvdsgvd', '2020-01-24 16:15:48', 0, 'active', 'sell', 40324, 6),
+(23, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'gge', '2020-01-24 16:15:37', 0, 'active', 'sell', 1916, 6),
 (24, 2, 1, 0, '5555', '', 'USD', 'Addis Ababa', '', 'HH', '2013-12-25 15:08:12', 0, 'active', 'sell', 81431, 6),
 (25, 2, 1, 0, '565656', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hh', '2013-12-25 15:00:13', 0, 'active', 'sell', 135, 6),
-(26, 2, 1, 0, '56656', '', 'USD', 'Addis Ababa', '', '6556565gfdgdf', '2013-12-19 12:21:09', 0, 'pending', 'sell', 734, 6);
+(26, 2, 1, 0, '56656', '', 'USD', 'Addis Ababa', '', '6556565gfdgdf', '2020-01-24 16:15:34', 0, 'active', 'sell', 734, 6);
 
 -- --------------------------------------------------------
 
@@ -661,11 +680,12 @@ INSERT INTO `household` (`hhID`, `uID`, `hhCategoryID`, `contactMethodCategoryId
 -- Table structure for table `householdcategory`
 --
 
+DROP TABLE IF EXISTS `householdcategory`;
 CREATE TABLE IF NOT EXISTS `householdcategory` (
   `categoryID` int(40) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(40) NOT NULL,
   PRIMARY KEY (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `householdcategory`
@@ -684,6 +704,7 @@ INSERT INTO `householdcategory` (`categoryID`, `categoryName`) VALUES
 -- Table structure for table `householdimages`
 --
 
+DROP TABLE IF EXISTS `householdimages`;
 CREATE TABLE IF NOT EXISTS `householdimages` (
   `ImageID` int(40) DEFAULT NULL,
   `ItemID` int(40) NOT NULL AUTO_INCREMENT,
@@ -693,7 +714,7 @@ CREATE TABLE IF NOT EXISTS `householdimages` (
   `picture_4` varchar(125) DEFAULT NULL,
   `picture_5` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`ItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -701,6 +722,7 @@ CREATE TABLE IF NOT EXISTS `householdimages` (
 -- Table structure for table `houseimages`
 --
 
+DROP TABLE IF EXISTS `houseimages`;
 CREATE TABLE IF NOT EXISTS `houseimages` (
   `ImagesID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -711,7 +733,34 @@ CREATE TABLE IF NOT EXISTS `houseimages` (
   `picture_5` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`ImagesID`),
   KEY `house_hID` (`ItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item`
+--
+
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE IF NOT EXISTS `item` (
+  `id` int(50) NOT NULL,
+  `table_id` int(50) NOT NULL,
+  `table_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `table_id`, `table_name`) VALUES
+(1, 1, 'car'),
+(2, 3, 'computer'),
+(3, 5, 'electronics'),
+(4, 2, 'house'),
+(5, 6, 'household'),
+(6, 7, 'others'),
+(7, 4, 'phone');
 
 -- --------------------------------------------------------
 
@@ -719,6 +768,7 @@ CREATE TABLE IF NOT EXISTS `houseimages` (
 -- Table structure for table `latestupdate`
 --
 
+DROP TABLE IF EXISTS `latestupdate`;
 CREATE TABLE IF NOT EXISTS `latestupdate` (
   `latestID` int(40) NOT NULL AUTO_INCREMENT,
   `cID` int(40) DEFAULT NULL,
@@ -737,7 +787,7 @@ CREATE TABLE IF NOT EXISTS `latestupdate` (
   KEY `dID_FK` (`dID`),
   KEY `cID_FK` (`cID`),
   KEY `eID` (`eID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `latestupdate`
@@ -769,6 +819,7 @@ INSERT INTO `latestupdate` (`latestID`, `cID`, `dID`, `hID`, `hhID`, `eID`, `pID
 -- Table structure for table `messages`
 --
 
+DROP TABLE IF EXISTS `messages`;
 CREATE TABLE IF NOT EXISTS `messages` (
   `uID` int(11) NOT NULL,
   `receiver` int(11) NOT NULL,
@@ -786,6 +837,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 -- Table structure for table `otherimages`
 --
 
+DROP TABLE IF EXISTS `otherimages`;
 CREATE TABLE IF NOT EXISTS `otherimages` (
   `ImageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -797,7 +849,7 @@ CREATE TABLE IF NOT EXISTS `otherimages` (
   PRIMARY KEY (`ImageID`),
   UNIQUE KEY `oImage_oID` (`ImageID`),
   UNIQUE KEY `ItemID` (`ItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -805,6 +857,7 @@ CREATE TABLE IF NOT EXISTS `otherimages` (
 -- Table structure for table `others`
 --
 
+DROP TABLE IF EXISTS `others`;
 CREATE TABLE IF NOT EXISTS `others` (
   `oID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -823,7 +876,7 @@ CREATE TABLE IF NOT EXISTS `others` (
   `tableType` int(10) NOT NULL DEFAULT '7',
   PRIMARY KEY (`oID`),
   KEY `uID_FK1` (`uID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `others`
@@ -854,12 +907,12 @@ INSERT INTO `others` (`oID`, `uID`, `oPricesell`, `oPriceNego`, `currency`, `con
 (29, 2, '454', '', 'USD', 0, 'Addis Ababa', '', 'vdsvsdv', '2013-12-18 10:50:47', 0, 'pending', 'sell', 73424, 7),
 (30, 2, '56565', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'cscssds', '2013-12-18 10:52:22', 0, 'pending', 'sell', 80550, 7),
 (31, 2, '5665', '', 'USD', 0, 'Addis Ababa', '', 'cdsv', '2013-12-18 13:15:19', 0, 'pending', 'sell', 25229, 7),
-(32, 2, '4545', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'cgfcgf', '2013-12-18 15:30:59', 0, 'pending', 'sell', 73944, 7),
-(33, 2, '676767', '', 'Birr', 0, 'Addis Ababa', '', 'cgfccgf', '2013-12-18 15:31:20', 0, 'pending', 'sell', 14912, 7),
-(34, 2, '45', '', 'Birr', 0, 'Addis Ababa', '', 'ffw', '2013-12-18 16:06:06', 0, 'pending', 'sell', 20910, 7),
+(32, 2, '4545', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'cgfcgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 73944, 7),
+(33, 2, '676767', '', 'Birr', 0, 'Addis Ababa', '', 'cgfccgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 14912, 7),
+(34, 2, '45', '', 'Birr', 0, 'Addis Ababa', '', 'ffw', '2020-01-24 16:15:55', 0, 'active', 'sell', 20910, 7),
 (35, 2, '6565', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'fwerwe', '2013-12-24 20:34:15', 0, 'active', 'sell', 77145, 7),
 (36, 1, '100000', 'Negotiable', 'USD', 0, 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', 0, 'active', 'sell', 8939, 7),
-(37, 2, '78', '', 'Birr', 0, 'Addis Ababa', '', 'big img', '2014-01-06 11:57:34', 0, 'pending', 'sell', 6025, 7),
+(37, 2, '78', '', 'Birr', 0, 'Addis Ababa', '', 'big img', '2020-01-24 16:15:30', 0, 'active', 'sell', 6025, 7),
 (38, 1, '12345', '', 'Birr', 1, 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', 'sell', 6959, 7);
 
 -- --------------------------------------------------------
@@ -868,6 +921,7 @@ INSERT INTO `others` (`oID`, `uID`, `oPricesell`, `oPriceNego`, `currency`, `con
 -- Table structure for table `othersimages`
 --
 
+DROP TABLE IF EXISTS `othersimages`;
 CREATE TABLE IF NOT EXISTS `othersimages` (
   `ImageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -880,7 +934,7 @@ CREATE TABLE IF NOT EXISTS `othersimages` (
   PRIMARY KEY (`ImageID`),
   UNIQUE KEY `oImage_oID` (`ImageID`),
   UNIQUE KEY `ItemID` (`ItemID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `othersimages`
@@ -902,6 +956,7 @@ INSERT INTO `othersimages` (`ImageID`, `ItemID`, `picture_1`, `picture_2`, `pict
 -- Table structure for table `phone`
 --
 
+DROP TABLE IF EXISTS `phone`;
 CREATE TABLE IF NOT EXISTS `phone` (
   `pID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
@@ -924,7 +979,7 @@ CREATE TABLE IF NOT EXISTS `phone` (
   `contactMethodCategoryId` int(3) NOT NULL,
   PRIMARY KEY (`pID`),
   KEY `uID_FK1` (`uID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `phone`
@@ -947,15 +1002,15 @@ INSERT INTO `phone` (`pID`, `uID`, `pCamera`, `pMake`, `pModel`, `pOS`, `pPrices
 (17, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'price', '2013-12-17 14:16:20', NULL, 'pending', 'sell', 91448, 4, 0),
 (18, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'price check', '2013-12-17 14:17:47', NULL, 'pending', 'sell', 9, 4, 0),
 (19, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dsfdsfd', '2013-12-17 16:04:25', NULL, 'pending', 'sell', 53616, 4, 0),
-(20, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'ghhg', '2013-12-18 16:23:31', NULL, 'pending', 'sell', 12420, 4, 0),
-(21, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hhhh', '2013-12-18 16:23:46', NULL, 'pending', 'sell', 60815, 4, 0),
-(22, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'reerrr', '2013-12-18 16:24:34', NULL, 'pending', 'sell', 47839, 4, 0),
-(23, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dcsc', '2013-12-18 16:57:42', NULL, 'pending', 'sell', 3440, 4, 0),
+(20, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'ghhg', '2020-01-24 16:15:54', NULL, 'active', 'sell', 12420, 4, 0),
+(21, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hhhh', '2020-01-24 16:15:54', NULL, 'active', 'sell', 60815, 4, 0),
+(22, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'reerrr', '2020-01-24 16:15:54', NULL, 'active', 'sell', 47839, 4, 0),
+(23, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dcsc', '2020-01-24 16:15:47', NULL, 'active', 'sell', 3440, 4, 0),
 (24, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'fghh', '2013-12-25 15:08:55', NULL, 'active', 'sell', 57910, 4, 0),
-(25, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dfaf', '2013-12-19 11:03:45', NULL, 'pending', 'sell', 18742, 4, 0),
-(26, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'pho', '2013-12-19 11:05:59', NULL, 'pending', 'sell', 92814, 4, 0),
-(27, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'now', '2013-12-19 11:06:55', NULL, 'pending', 'sell', 74139, 4, 0),
-(28, 2, '000', '000', '', '000', '5656', '', 'USD', 'Addis Ababa', '', 'fsdfds', '2013-12-19 11:54:54', NULL, 'pending', 'sell', 8002, 4, 0),
+(25, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dfaf', '2020-01-24 16:15:38', NULL, 'active', 'sell', 18742, 4, 0),
+(26, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'pho', '2020-01-24 16:15:37', NULL, 'active', 'sell', 92814, 4, 0),
+(27, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'now', '2020-01-24 16:15:37', NULL, 'active', 'sell', 74139, 4, 0),
+(28, 2, '000', '000', '', '000', '5656', '', 'USD', 'Addis Ababa', '', 'fsdfds', '2020-01-24 16:15:37', NULL, 'active', 'sell', 8002, 4, 0),
 (29, 2, '000', '000', '', '000', '5656', '', 'Birr', 'Addis Ababa', '', 'dgdfgdf', '2013-12-24 20:34:39', NULL, 'active', 'sell', 24629, 4, 0),
 (30, 1, '4.0 - 4.9 megapixles', '13', 'WxS32', 'android', '4230', 'Negotiable', 'Birr', 'Addis Ababa', 'TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE ', 'TESTPHONE', '2013-12-21 14:43:17', NULL, 'active', 'sell', 61813, 4, 0);
 
@@ -965,6 +1020,7 @@ INSERT INTO `phone` (`pID`, `uID`, `pCamera`, `pMake`, `pModel`, `pOS`, `pPrices
 -- Table structure for table `phoneimages`
 --
 
+DROP TABLE IF EXISTS `phoneimages`;
 CREATE TABLE IF NOT EXISTS `phoneimages` (
   `ImageID` int(40) NOT NULL AUTO_INCREMENT,
   `ItemID` int(40) NOT NULL,
@@ -975,7 +1031,7 @@ CREATE TABLE IF NOT EXISTS `phoneimages` (
   `picture_5` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`ItemID`),
   UNIQUE KEY `phone_pID` (`ImageID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `phoneimages`
@@ -992,6 +1048,7 @@ INSERT INTO `phoneimages` (`ImageID`, `ItemID`, `picture_1`, `picture_2`, `pictu
 -- Table structure for table `tempuser`
 --
 
+DROP TABLE IF EXISTS `tempuser`;
 CREATE TABLE IF NOT EXISTS `tempuser` (
   `tuID` int(40) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
@@ -1005,7 +1062,7 @@ CREATE TABLE IF NOT EXISTS `tempuser` (
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uTermAndCond` tinyint(1) NOT NULL,
   PRIMARY KEY (`tuID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tempuser`
@@ -1020,6 +1077,7 @@ INSERT INTO `tempuser` (`tuID`, `username`, `email`, `password`, `firstname`, `l
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `uID` int(40) NOT NULL AUTO_INCREMENT,
   `userName` varchar(50) NOT NULL,
@@ -1036,7 +1094,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `uNewPassword` varchar(100) DEFAULT NULL,
   `activation` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`uID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -1051,7 +1109,7 @@ INSERT INTO `user` (`uID`, `userName`, `uFirstName`, `uLastName`, `uEmail`, `uPh
 (8, 'yidne', 'yidne', 'john', 'yidnekachew@gmail.com', '704353114', 'Solna', '$1$hVe9l8y4$hhQ3XeFX7Q3zFaeIwiwjm0', 'user', 'both', 0, '2014-01-14 14:28:10', '$1$XhUbKZt1$txhMiPX8Wh0ZyjdIwQx.z0', NULL),
 (9, 'jemil', 's', 'b', 'jemilsh@gmail.com', '70405817', 'Sweden', '$1$UvWBigNj$wsThR3gxariqeixJDxR450', 'user', 'both', 0, '2014-01-13 20:34:27', '$1$zQdd51vI$UdcGl/HangAHmjQjjKqDV1', 'f986bbe2ec3bc5d92e5fbf5d715911b9'),
 (10, 'negadiew', 'daniel', 'a', 'dan_assefa@yahoo.com', '0', '', 'leseitye2+', 'user', 'both', 0, '0000-00-00 00:00:00', NULL, NULL),
-(11, 'abiy', 'Terefe', 'teshome', 'dochoex@gmail.com', '12121', 'aad', '$1$cPFgGknF$xwzIXuwNjpQY7EEpD1Ovc0', 'user', 'both', 0, '2014-01-09 06:42:08', '$1$cPFgGknF$xwzIXuwNjpQY7EEpD1Ovc0', NULL);
+(11, 'abiy', 'Terefe', 'teshome', 'dochoex@gmail.com', '12121', 'aad', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', 'webmaster', 'both', 0, '2020-01-24 16:05:10', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL);
 
 --
 -- Constraints for dumped tables
@@ -1177,6 +1235,7 @@ ALTER TABLE `phone`
 --
 ALTER TABLE `phoneimages`
   ADD CONSTRAINT `phoneimages_ibfk_1` FOREIGN KEY (`ItemID`) REFERENCES `phone` (`pID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

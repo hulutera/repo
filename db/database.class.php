@@ -12,6 +12,8 @@ class DatabaseClass
 
 	private static $_instance;
 
+	private $_allItem ;
+
 	/*
 	Get an instance of the Database
 	@return Instance
@@ -74,6 +76,7 @@ class DatabaseClass
 					}
 				}
 			}
+			$this->_allItem = $this->queryAllItem();
 		} else {
 			error_reporting(0);
 			die('Could not connect:' . mysqli_connect_errno());
@@ -315,18 +318,28 @@ class DatabaseClass
 		return $this->getConnection()->query($sql);
 	}
 
-	public function querySearch($item, $number, $maximum, $status)
-	{
-		$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
-		$fieldStatus = ObjectPool::getInstance()->getClassObject($item)->getStatusFieldName();
-		return $this->getConnection()->query($sql);
-	}
+	// public function querySearch($item, $number, $maximum, $status)
+	// {
+	// 	$idName = ObjectPool::getInstance()->getClassObject($item)->getIdFieldName();
+	// 	$fieldStatus = ObjectPool::getInstance()->getClassObject($item)->getStatusFieldName();
+	// 	return $this->getConnection()->query($sql);
+	// }
 
 	public function getFieldName($item, $fieldNumber)
 	{
 		$sql = "SELECT * FROM $item";
 		return $this->getConnection()->query($sql)->fetch_field_direct($fieldNumber)->name;
 	}
+	public function getAllItem()
+	{		
+		return $this->_allItem;
+	}
+	public function queryAllItem()
+	{
+		$sql = "SELECT * FROM item";
+		return $this->getConnection()->query($sql)->fetch_all(MYSQLI_ASSOC);
+	}
+	
 
 	public function getAllFields($item)
 	{

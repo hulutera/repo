@@ -84,28 +84,7 @@ function uploadHeaderAndSearchCode($item)
 	echo '</div></div>';
 	tabMenu();
 }
-function activatItemTabs($item)
-{
-	if ($item == "car") {
-		$tabactive = 1;
-	} else if ($item == "house") {
-		$tabactive = 2;
-	} else if ($item == "computer") {
-		$tabactive = 3;
-	} else if ($item == "phone") {
-		$tabactive = 4;
-	} else if ($item == "electronics") {
-		$tabactive = 5;
-	} else if ($item == "household") {
-		$tabactive = 6;
-	} else if ($item == "others") {
-		$tabactive = 7;
-	} else {
-		$tabactive = 0;
-	}
 
-	return $tabactive;
-}
 /*Fetch the active URL*/
 function activatetab()
 {
@@ -114,7 +93,7 @@ function activatetab()
 		$tabactive = 1;
 	} else if ($curPageName == "includes/upload.php") {
 		$tabactive = 2;
-	} else if ($curPageName == "help.php") {
+	} else if ($curPageName == "includes/help.php") {
 		$tabactive = 3;
 	} else if ($curPageName == "includes/pendingItems.php") {
 		$tabactive = 11;
@@ -258,47 +237,18 @@ function tabMenu()
 /*sidelist*/
 function sidelist($item)
 {
-	global $documnetRootPath;
+	$arr = (DatabaseClass::getInstance()->getAllItem());
 	echo '<div id="sidelist">
-
-			<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
-			<ul>
-			<li><a ';
-	if (activatItemTabs($item) == 1) {
-		echo "class=\"active\"";
+	<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
+	<ul>';
+	foreach ($arr as $key => $value) {
+		echo '<li><a ';
+		if ($value['table_name'] == $item) {
+			echo "class=\"active\"";
+		}
+		echo 'href="../../items/'.$value['table_name'].'/'.$value['table_name'].'.php">'. ucwords($value['table_name']);
+		echo '</a></li>';
 	}
-	echo 'href="../../items/car/car.php">Car';
-	echo '<div id="tabsAmharic">መኪና</div></a></li><li><a ';
-	if (activatItemTabs($item) == 2) {
-		echo "class=\"active\"";
-	}
-	echo 'href="../../items/house/house.php">House';
-	echo '<div id="tabsAmharic">ቤት</div></a></li><li><a ';
-	if (activatItemTabs($item) == 3) {
-		echo "class=\"active\"";
-	}
-	echo 'href="../../items/computer/computer.php">Computer';
-	echo '<div id="tabsAmharic">ኮምፒዩተር</div></a></li><li><a ';
-	if (activatItemTabs($item) == 4) {
-		echo "class=\"active\"";
-	}
-	echo 'href="../../items/phone/phone.php">Phone';
-	echo '<div id="tabsAmharic">ስልክ</div></a></li><li><a ';
-	if (activatItemTabs($item) == 5) {
-		echo "class=\"active\"";
-	}
-	echo ' href="../../items/electronics/electronics.php">Electronics';
-	echo '<div id="tabsAmharic">ኤሌክትሮኒክስ</div></a></li><li><a ';
-	if (activatItemTabs($item) == 6) {
-		echo "class=\"active\"";
-	}
-	echo ' href="../../items/household/household.php">Households';
-	echo '<div id="tabsAmharic">የቤት ዕቃዎች</div></a></li><li><a ';
-	if (activatItemTabs($item) == 7) {
-		echo "class=\"active\"";
-	}
-	echo ' href="../../items/others/others.php">Others';
-	echo '<div id="tabsAmharic">ሌሎች</div></a></li>';
 	echo '</ul>	</div>';
 }
 /*footer*/
