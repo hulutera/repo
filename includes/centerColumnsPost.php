@@ -309,25 +309,32 @@ function whichTable($searchKeyword_tabletype, $searchKeyword_id)
 {
 	switch ($searchKeyword_tabletype) {
 		case 1:
-			showCar($searchKeyword_id);
+		    $car = new CarView;
+			$car->show($searchKeyword_id);
 			break;
 		case 2:
-			showHouse($searchKeyword_id);
+		    $house = new HouseView;
+			$house->show($searchKeyword_id);
 			break;
 		case 3:
-			showComputer($searchKeyword_id);
+		    $comp = new ComputerView();
+			$comp->show($searchKeyword_id);
 			break;
 		case 4:
-			showPhone($searchKeyword_id);
+		    $phone = new PhoneView();
+			$phone->show($searchKeyword_id);
 			break;
 		case 5:
-			showElectronics($searchKeyword_id);
+		    $elec = new ElectronicsView();
+			$elec->show($searchKeyword_id);
 			break;
 		case 6:
-			showHousehold($searchKeyword_id);
+		    $hh = new HouseholdView();
+			$hh->show($searchKeyword_id);
 			break;
 		case 7:
-			showOthers($searchKeyword_id);
+		    $others = new OthersView();
+			$others->show($searchKeyword_id);
 			break;
 		default:
 			break;
