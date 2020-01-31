@@ -8,13 +8,8 @@ $documnetRootPath   = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/items/items.common.class.php';
-require_once $documnetRootPath . '/items/car/car.view.class.php';
-require_once $documnetRootPath . '/items/computer/computer.view.class.php';
-require_once $documnetRootPath . '/items/electronics/electronics.view.class.php';
-require_once $documnetRootPath . '/items/phone/phone.view.class.php';
-require_once $documnetRootPath . '/items/household/household.view.class.php';
-require_once $documnetRootPath . '/items/others/others.view.class.php';
-require_once $documnetRootPath . '/items/house/house.view.class.php';
+require_once $documnetRootPath . '/classes/objectPool.class.php';
+
 
 /* return:
  * array $page:page number
@@ -44,7 +39,7 @@ function centerColumn()
 	$totalItems = mysqli_num_rows($countItems);
 	if ($totalItems) {
 
-		$condition1 = "ORDER BY LatestTime DESC LIMIT 0,". $MAX;
+		$condition1 = "ORDER BY LatestTime DESC LIMIT 0," . $MAX;
 		$featureditems = DatabaseClass::getInstance()->findTotalItemNumb($queryFilter, $table, $condition1);
 		while ($dfeatureditems = $featureditems->fetch_assoc()) {
 			if ($dfeatureditems['cID'] != 0) {
@@ -68,7 +63,7 @@ function centerColumn()
 		pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
 	} else if ($totalItems == 0) {
 		ObjectPool::getInstance()->getViewObject("empty")->show(0);
-	}	
+	}
 }
 
 
@@ -90,9 +85,11 @@ function oneItemColumn($id, $item)
 /**/
 function showItem($item)
 {
+
 	if (isset($_GET['Id'])) {
 		oneItemColumn($_GET['Id'], $item);
 	} else {
+
 		global $MAX;
 		$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, ItemStatus::ACTIVE);
 		if ($total > 0) {
@@ -249,9 +246,9 @@ function centerSearchColumn()
 
 				$searchResult = DatabaseClass::getInstance()->runQuery($querySearch);
 				while ($dsearchResult = $searchResult->fetch_assoc()) {
-					$searchKeyword_id = $dsearchResult['cID'];
-					$searchKeyword_tabletype = $dsearchResult['tableType'];
-					whichTable($searchKeyword_tabletype, $searchKeyword_id);
+					$id = $dsearchResult['cID'];
+					$tabletype = $dsearchResult['tableType'];
+					whichTable($tabletype, $id);
 				}
 
 				echo "<div id=\"pagination\"><ul>";
@@ -307,38 +304,8 @@ function centerSearchColumn()
 	echo "</div>";
 }
 /**/
-function whichTable($searchKeyword_tabletype, $searchKeyword_id)
+function whichTable($tabletype, $id)
 {
-	switch ($searchKeyword_tabletype) {
-		case 1:
-		    $car = new CarView;
-			$car->show($searchKeyword_id);
-			break;
-		case 2:
-		    $house = new HouseView;
-			$house->show($searchKeyword_id);
-			break;
-		case 3:
-		    $comp = new ComputerView();
-			$comp->show($searchKeyword_id);
-			break;
-		case 4:
-		    $phone = new PhoneView();
-			$phone->show($searchKeyword_id);
-			break;
-		case 5:
-		    $elec = new ElectronicsView();
-			$elec->show($searchKeyword_id);
-			break;
-		case 6:
-		    $hh = new HouseholdView();
-			$hh->show($searchKeyword_id);
-			break;
-		case 7:
-		    $others = new OthersView();
-			$others->show($searchKeyword_id);
-			break;
-		default:
-			break;
-	}
+	$name = DatabaseClass::getInstance()->getTableNameById($tabletype);
+	ObjectPool::getInstance()->getViewObject($name)->show($id);
 }
