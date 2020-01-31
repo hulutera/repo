@@ -431,7 +431,7 @@ class DatabaseClass
 	}
 	// return the total number of stored items from tables
 	public function findTotalItemNumb($id, $table, $condition) {
-		return $this->getConnection->query("SELECT $id FROM $table $condition");
+		return $this->getConnection()->query("SELECT $id FROM $table $condition");
 	}
 	
 	// query for pagination
@@ -452,4 +452,10 @@ class DatabaseClass
 				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX");
 	}
 	
+	// Run query
+	public function runQuery($sql){
+		return $this->getConnection()->query($sql);
+	}
+	
 }
+

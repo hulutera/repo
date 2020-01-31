@@ -36,14 +36,16 @@ function calculatePage($count)
 /**/
 function centerColumn()
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-
 	global $emptymsg, $MAX;
-	$countItems = $connect->query("SELECT * FROM latestupdate");
+	$queryFilter = "*";
+	$table = "latestupdate";
+	$condition = "";
+	$countItems = DatabaseClass::getInstance()->findTotalItemNumb($queryFilter, $table, $condition);
 	$totalItems = mysqli_num_rows($countItems);
 	if ($totalItems) {
 
-		$featureditems = $connect->query("SELECT * FROM latestupdate ORDER BY LatestTime DESC LIMIT 0," . $MAX);
+		$condition1 = "ORDER BY LatestTime DESC LIMIT 0,". $MAX;
+		$featureditems = DatabaseClass::getInstance()->findTotalItemNumb($queryFilter, $table, $condition1);
 		while ($dfeatureditems = $featureditems->fetch_assoc()) {
 			if ($dfeatureditems['cID'] != 0) {
 				ObjectPool::getInstance()->getViewObject("car")->show($dfeatureditems['cID']);
@@ -180,7 +182,7 @@ function centerSearchColumn()
 				$matchingNoOfHousehold .
 				") AS count_row";
 
-			$totalMatch = $connect->query($matchChecker);
+			$totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
 			while ($dmatchChecker = $totalMatch->fetch_assoc()) {
 				$numbreOfMatches = $dmatchChecker['count_row'];
 			}
@@ -245,7 +247,7 @@ function centerSearchColumn()
 					$searchElectronics . " UNION ALL " .
 					$searchHouseHold . " ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX";
 
-				$searchResult = $connect->query($querySearch);
+				$searchResult = DatabaseClass::getInstance()->runQuery($querySearch);
 				while ($dsearchResult = $searchResult->fetch_assoc()) {
 					$searchKeyword_id = $dsearchResult['cID'];
 					$searchKeyword_tabletype = $dsearchResult['tableType'];
