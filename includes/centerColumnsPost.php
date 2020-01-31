@@ -7,7 +7,7 @@ static $maxNumOfImg = 5; //Maximum number of images	per item
 $documnetRootPath   = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/db/database.class.php';
-require_once $documnetRootPath . '/items/items.common.class.php';
+require_once $documnetRootPath . '/classes/global.variable.class.php';
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 
 
@@ -67,7 +67,7 @@ function centerColumn()
 }
 
 
-/* To print a single element
+/* To display a single element
  * */
 function oneItemColumn($id, $item)
 {
@@ -91,11 +91,11 @@ function showItem($item)
 	} else {
 
 		global $MAX;
-		$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, ItemStatus::ACTIVE);
+		$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
 		if ($total > 0) {
 			$calculatePageArray = calculatePage($total);
 			$start = $MAX * ($calculatePageArray[0] - 1);
-			$query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, $MAX, ItemStatus::ACTIVE);
+			$query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, $MAX, HtGlobal::get('ACTIVE'));
 			while ($dquery = $query->fetch_assoc()) {
 				$id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
 				ObjectPool::getInstance()->getViewObject($item)->show($id);

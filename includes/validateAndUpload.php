@@ -5,6 +5,7 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
 require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath.'/includes/centerColumns.php';
+require_once $documnetRootPath.'/classes/global.variable.class.php';
 require_once $documnetRootPath.'/classes/cmn.class.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 
@@ -50,7 +51,7 @@ function carUploadfn()
 	{
 		global $connect;
 		$userId      = $_SESSION['uID'];
-		$status      = CommonClass::status;
+		$status      = htGlobal::get('status');
 
 		//price
 		$isRent      = isset($_POST['c_isrent']) ? $rentVal = $_POST['rent_car_input'] : $rentVal = '';
@@ -58,13 +59,13 @@ function carUploadfn()
 
 
 		if($isRent && !$issell)	{
-			$mrktCat = CommonClass::rent;
+			$mrktCat = htGlobal::get('rent');
 		}else if(!$isRent && $issell){
-			$mrktCat = CommonClass::sell;    /*sell*/
+			$mrktCat = htGlobal::get('sell');    /*sell*/
 		}else if($isRent && $issell)	{
-			$mrktCat = CommonClass::rentOrSell;  /*sell or rent*/
+			$mrktCat = htGlobal::get('rentOrSell');  /*sell or rent*/
 		}else{
-			$mrktCat = CommonClass::noAction;    /*no action*/
+			$mrktCat = htGlobal::get('noAction');    /*no action*/
 		}
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
@@ -164,7 +165,7 @@ function carUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -174,7 +175,7 @@ function carUploadfn()
 			$rate = '';
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego');
 		}
 		if(!isset($_POST['c_isrent']) && !isset($_POST['c_issell']) && !isset($_POST['nego'])){
 			$e112 = crypt(112);
@@ -276,7 +277,7 @@ function carUploadfn()
 				or die(mysqli_error($connect));
 		if($result)
 		{
-			$tblArray = array(1=>"cID", 2=>"car",3=>$tempId,4=>CommonClass::CImage);
+			$tblArray = array(1=>"cID", 2=>"car",3=>$tempId,4=>htGlobal::get('CImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -301,7 +302,7 @@ function houseUploadfn()
 	{
 		global $connect;
 		$userId      = $_SESSION['uID'];
-		$status      = CommonClass::status;
+		$status      = htGlobal::get('status');
 
 		//price
 		$isRent = isset($_POST['h_isrent']) ? $rentVal = $_POST['rent_amt_input'] :$rentVal = '';
@@ -309,13 +310,13 @@ function houseUploadfn()
 
 
 		if($isRent && !$issell)	{
-			$mrktCat = CommonClass::rent;
+			$mrktCat = htGlobal::get('rent');
 		}else if(!$isRent && $issell){
-			$mrktCat = CommonClass::sell;    /*sell*/
+			$mrktCat = htGlobal::get('sell');    /*sell*/
 		}else if($isRent && $issell)	{
-			$mrktCat = CommonClass::rentOrSell;  /*sell or rent*/
+			$mrktCat = htGlobal::get('rentOrSell');  /*sell or rent*/
 		}else{
-			$mrktCat = CommonClass::noAction;    /*no action*/
+			$mrktCat = htGlobal::get('noAction');    /*no action*/
 		}
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
@@ -394,13 +395,13 @@ function houseUploadfn()
 		}
 
 		if($isRent && !$issell){
-			$mrktCat = CommonClass::rent;
+			$mrktCat = htGlobal::get('rent');
 		}elseif(!$isRent && $issell){
-			$mrktCat = CommonClass::sell;    /*sell*/
+			$mrktCat = htGlobal::get('sell');    /*sell*/
 		}elseif($isRent && $issell){
-			$mrktCat = CommonClass::rentOrSell;  /*sell or rent*/
+			$mrktCat = htGlobal::get('rentOrSell');  /*sell or rent*/
 		}else{
-			$mrktCat = CommonClass::noAction;    /*no action*/
+			$mrktCat = htGlobal::get('noAction');    /*no action*/
 		}
 		//
 		if(empty($_POST['title'])){
@@ -421,7 +422,7 @@ function houseUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -431,7 +432,7 @@ function houseUploadfn()
 			$rate = '';
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego');
 		}
 		if(!isset($_POST['h_isrent']) && !isset($_POST['h_issell']) && !isset($_POST['nego'])){
 			$e112 = crypt(112);
@@ -538,7 +539,7 @@ function houseUploadfn()
 				or die(mysqli_error());
 		if($result)
 		{
-			$tblArray = array(1=>"hID", 2=>"house",3=>$tempId,4=>CommonClass::HImage);
+			$tblArray = array(1=>"hID", 2=>"house",3=>$tempId,4=>htGlobal::get('HImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -555,8 +556,8 @@ function computerUploadfn()
 	{
 		global $connect;
 		$userId      = $_SESSION['uID'];
-		$status  = CommonClass::status;
-		$mrktCat = CommonClass::sell;
+		$status  = htGlobal::get('status');
+		$mrktCat = htGlobal::get('sell');
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
 		$subcity     = $_POST['subcity']!='Addis Ababa'?$_POST['subcity']:0;
@@ -567,7 +568,7 @@ function computerUploadfn()
 		if(empty($_POST['priceCommon'])){
 			$e100 = crypt(100);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			if(ctype_digit(sanitize($_POST['priceCommon'])))
 			{
@@ -581,7 +582,7 @@ function computerUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -589,7 +590,7 @@ function computerUploadfn()
 			$nego = 1;
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego');
 		}
 		if(empty($_POST['title'])){
 			$e108 = crypt(108);
@@ -701,7 +702,7 @@ function computerUploadfn()
 				or die(mysqli_error());
 		if($result)
 		{
-			$tblArray = array(1=>"dID", 2=>"computer",3=>$tempId,4=>CommonClass::DImage);
+			$tblArray = array(1=>"dID", 2=>"computer",3=>$tempId,4=>htGlobal::get('DImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -717,8 +718,8 @@ function otherUploadfn()
 	{
 		global $connect;
 		$userId  = $_SESSION['uID'];
-		$status  = CommonClass::status;
-		$mrktCat = CommonClass::sell;
+		$status  = htGlobal::get('status');
+		$mrktCat = htGlobal::get('sell');
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
 		$subcity     = $_POST['subcity']!='Addis Ababa'?$_POST['subcity']:0;
@@ -728,7 +729,7 @@ function otherUploadfn()
 		if(empty($_POST['priceCommon'])){
 			$e100 = crypt(100);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			if(ctype_digit(sanitize($_POST['priceCommon'])))
 			{
@@ -743,7 +744,7 @@ function otherUploadfn()
 			$nego = 1;
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego;
 		}
 		if(empty($_POST['title'])){
 			$e108 = crypt(108);
@@ -773,7 +774,7 @@ function otherUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -810,7 +811,7 @@ function otherUploadfn()
 				or die(mysqli_error($connect));
 		if($result)
 		{
-			$tblArray = array(1=>"oID", 2=>"others",3=>$tempId,4=>CommonClass::OImage);
+			$tblArray = array(1=>"oID", 2=>"others",3=>$tempId,4=>htGlobal::get('OImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -827,8 +828,8 @@ function phoneUploadfn()
 	{
 		global $connect;
 		$userId      = $_SESSION['uID'];
-		$status      = CommonClass::status;
-		$mrktCat = CommonClass::sell;
+		$status      = htGlobal::get('status');
+		$mrktCat = htGlobal::get('sell');
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
 		$subcity     = $_POST['subcity']!='Addis Ababa'?$_POST['subcity']:0;
@@ -838,7 +839,7 @@ function phoneUploadfn()
 		if(empty($_POST['priceCommon'])){
 			$e100 = crypt(100);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			if(ctype_digit(sanitize($_POST['priceCommon'])))
 			{
@@ -853,7 +854,7 @@ function phoneUploadfn()
 			$nego = 1;
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego;
 		}
 		if(empty($_POST['title'])){
 			$e108 = crypt(108);
@@ -883,7 +884,7 @@ function phoneUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -956,7 +957,7 @@ function phoneUploadfn()
 				or die(mysqli_error($connect));
 		if($result)
 		{
-			$tblArray = array(1=>"pID", 2=>"phone",3=>$tempId,4=>CommonClass::PImage);
+			$tblArray = array(1=>"pID", 2=>"phone",3=>$tempId,4=>htGlobal::get('PImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -976,8 +977,8 @@ function householdUploadfn()
 	{
 		global $connect;
 		$userId  = $_SESSION['uID'];
-		$status  = CommonClass::status;
-		$mrktCat = CommonClass::sell;
+		$status  = htGlobal::get('status');
+		$mrktCat = htGlobal::get('sell');
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
 		$subcity     = $_POST['subcity']!='Addis Ababa'?$_POST['subcity']:0;
@@ -988,7 +989,7 @@ function householdUploadfn()
 		if(empty($_POST['priceCommon'])){
 			$e100 = crypt(100);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			if(ctype_digit(sanitize($_POST['priceCommon'])))
 			{
@@ -1003,7 +1004,7 @@ function householdUploadfn()
 			$nego = 1;
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego;
 		}
 		if(empty($_POST['title'])){
 			$e108 = crypt(108);
@@ -1033,7 +1034,7 @@ function householdUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -1078,7 +1079,7 @@ function householdUploadfn()
 				or die(mysqli_error($connect));
 		if($result)
 		{
-			$tblArray = array(1=>"hhID", 2=>"household",3=>$tempId,4=>CommonClass::HHImage);
+			$tblArray = array(1=>"hhID", 2=>"household",3=>$tempId,4=>htGlobal::get('HHImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -1096,8 +1097,8 @@ function electronicsUploadfn()
 	{
 		global $connect;
 		$userId  = $_SESSION['uID'];
-		$status  = CommonClass::status;
-		$mrktCat = CommonClass::sell;
+		$status  = htGlobal::get('status');
+		$mrktCat = htGlobal::get('sell');
 		//location
 		$city        = $_POST['region']!='000'?$_POST['region']:0;
 		$subcity     = $_POST['subcity']!='Addis Ababa'?$_POST['subcity']:0;
@@ -1108,7 +1109,7 @@ function electronicsUploadfn()
 		if(empty($_POST['priceCommon'])){
 			$e100 = crypt(100);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone;
 		}else{
 			if(ctype_digit(sanitize($_POST['priceCommon'])))
 			{
@@ -1123,7 +1124,7 @@ function electronicsUploadfn()
 			$nego = 1;
 		}else{
 			$nego = 0;
-			//$nego =  CommonClass::nego;
+			//$nego =  htGlobal::get('nego;
 		}
 		if(empty($_POST['title'])){
 			$e108 = crypt(108);
@@ -1153,7 +1154,7 @@ function electronicsUploadfn()
 		if($_POST['contactMethod'] =='000'){
 			$e111 = crypt(111);
 			$err = true;
-			//			$contact = CommonClass::emailAndPhone;
+			//			$contact = htGlobal::get('emailAndPhone');
 		}else{
 			$contact = $_POST['contactMethod'];
 		}
@@ -1196,7 +1197,7 @@ function electronicsUploadfn()
 				or die(mysqli_error($connect));
 		if($result)
 		{
-			$tblArray = array(1=>"eID", 2=>"electronics",3=>$tempId,4=>CommonClass::EImage);
+			$tblArray = array(1=>"eID", 2=>"electronics",3=>$tempId,4=>htGlobal::get('EImage'));
 			imageHandler($tblArray);
 		}
 	}
@@ -1371,7 +1372,7 @@ function createThumbNail($imgPath,$orignalImgPath,$imgName)
 	$originalImgHeight = $originalImgSize[1];
 	$type              = $originalImgSize['mime'];
 
-	$scale  =  ($originalImgWidth + $originalImgHeight)/($originalImgWidth * ($originalImgHeight/CommonClass::SCALE));
+	$scale  =  ($originalImgWidth + $originalImgHeight)/($originalImgWidth * ($originalImgHeight/htGlobal::get('SCALE')));
 	
 	$newImgWidth  = $scale * $originalImgWidth;
 	$newImgHeight = $scale * $originalImgHeight;
@@ -1388,7 +1389,7 @@ function createThumbNail($imgPath,$orignalImgPath,$imgName)
 		$oldImg = imagecreatefrombmp($originalImg);
 	}
 	imagecopyresized($newImg, $oldImg, 0, 0, 0, 0, $newImgWidth, $newImgHeight, $originalImgWidth, $originalImgHeight);
-	$thumbNailImg = $imgPath.CommonClass::THUMBNAIL.$imgName;
+	$thumbNailImg = $imgPath.htGlobal::get('THUMBNAIL').$imgName;
 	imagejpeg($newImg, $thumbNailImg);
 
 	return $thumbNailImg;

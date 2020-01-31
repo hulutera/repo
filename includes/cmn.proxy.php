@@ -49,9 +49,9 @@ function contact()
 
 		if(empty($error))
 		{
-			$sql = "INSERT INTO contactus (name, company, email, subject ,purpose, description, messageStatus)
-					VALUES ('$name','$company','$email','$subject','$contactpurpose','$description','unread')";
-			$result = DatabaseClass::getInstance()->runQuery($sql);
+			$result = $connect->query("INSERT INTO contactus (name, company, email, subject ,purpose, description, messageStatus)
+					VALUES ('$name','$company','$email','$subject','$contactpurpose','$description','unread')")
+					or die (mysqli_error());
 			if(!$result)
 			{
 				die('Could not insert into database: '.mysqli_error());
@@ -1013,21 +1013,17 @@ function register()
 			}
 		}
 		if(empty ($error)){
-			$filter = "*";
-			$tableUser = "user";
-			$tableTmpuser = "tempuser";
-			$condition = "WHERE uEmail = " . $email;
-			$resUser = DatabaseClass::getInstance()->findTotalItemNumb($filter, $tableUser, $condition);
-			$resTemp = DatabaseClass::getInstance()->findTotalItemNumb($filter, $tableTmpuser, $condition);
-			if (mysqli_num_rows($resUser)==0){
-				if(mysqli_num_rows($resTemp) > 0) {
+			$result=$connect->query("SELECT * FROM user WHERE uEmail = '$email' ") or die (mysqli_error());
+			$result3=$connect->query("SELECT * FROM tempuser WHERE email = '$email' ") or die (mysqli_error());
+			if (mysqli_num_rows($result)==0){
+				if(mysqli_num_rows($result3)) {
 					//user exist in tempUser table, delete & create again
-					$resulst4 = DatabaseClass::getInstance()->deleteUser($tableTmpuser, $condition);
+					$resulst4= $connect->query("DELETE FROM tempuser WHERE email = '$email' ") or die (mysqli_error());
 				}
 
 				$activation=md5(uniqid(rand(),true));
 				$hashed_password = crypt($password);
-				$result2 = DatabaseClass::getInstance()->insertUserInfo($tableTmpuser, $username, $email, $hashed_password, $firstname, $lastname, $address, $phone, $activation);
+				$result2=$connect->query("INSERT INTO tempuser (username, email, password, firstname, lastname, address, phone, activation) VALUES ('$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation')") or die (mysqli_error());
 				if(!$result2){
 					die('Could not insert into database: '.mysqli_error());
 				}else{

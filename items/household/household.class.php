@@ -18,7 +18,7 @@ class HouseHoldClass
 		$this->cat    = $row['categoryName'];
 		$this->cntTyp = $row['contactMethod'];
 	}
-	public function printItemSpecific()
+	public function displayItemSpecific()
 	{
 	}
 	public function getId()

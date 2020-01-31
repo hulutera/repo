@@ -117,7 +117,7 @@ final class CarClass extends Item
 	/*@ function to display make and model of item
  	 * input: make and model
  	* */
-	public function printItemSpecific()
+	public function displayItemSpecific()
 	{
 		echo "<div class=\"MakeandModel\">";
 		if ($this->make != "" and $this->make != "000") {

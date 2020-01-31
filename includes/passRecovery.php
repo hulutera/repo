@@ -27,7 +27,7 @@ $error_message="";
 			$email = $connect->real_escape_string($_POST['email']);
 			$result=$connect->query("SELECT * FROM user WHERE uEmail = '$email' ");
 		}
-		print($result);
+		display($result);
 		if (mysqli_num_rows($result)==0){
 			$error[] = 'There is no user registered with this e-mail or username. ';
 		}

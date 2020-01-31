@@ -2,25 +2,25 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/includes/global.variable.php';
+require_once $documnetRootPath.'/classes/global.variable.class.php';
 
 function userLogin($email, $password)
 {
     $connect = DatabaseClass::getInstance()->getConnection();
-    
+
     if(empty($email) && empty($password)) {
-        return ERR_ENTER_EMAIL_AND_PASS;
+        return htGlobal::get('ERR_ENTER_EMAIL_AND_PASS');
     }
     else if (empty($email) || empty($password)) {
         if (empty($password)) {
-            return ERR_ENTER_PASS;
+            return htGlobal::get('ERR_ENTER_PASS');
         }
         else {
-            return ERR_ENTER_EMAIL;                
+            return htGlobal::get('ERR_ENTER_EMAIL');                
         }
     }
     else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return ERR_INVALID_EMAIL;
+        return htGlobal::get('ERR_INVALID_EMAIL');
     }
     else {
         $email_1 = $connect->real_escape_string($email);
@@ -42,14 +42,14 @@ function userLogin($email, $password)
             if($successLogin == TRUE) {
                 $_SESSION['uID'] = $row['uID'];
                 $_SESSION['time'] = time();
-                return LOGIN_SUCCESS;                
+                return htGlobal::get('LOGIN_SUCCESS');                
             }
             else {
-                return ERR_WORNG_EMAIL_OR_PASS;
+                return htGlobal::get('ERR_WORNG_EMAIL_OR_PASS');
             }
         }
         else {
-            return ERR_USER_NOT_EXIST;
+            return htGlobal::get('ERR_USER_NOT_EXIST');
         }
     }
 }

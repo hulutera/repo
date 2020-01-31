@@ -5,6 +5,7 @@ require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/includes/token.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
+$connect = DatabaseClass::getInstance()->getConnection();
 
 $MAX = 30; //== The number of items that will be visible in one page ===//
 $noItemToShow = "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>";
@@ -47,13 +48,15 @@ function reportedItems()
 	$arrayEid  = array();
 	$arrayHHid = array();
 	$arrayOid  = array();
-	$queryFilter = "*";
-	$table = "abuse";
-	$condition = "";
-	$reported = DatabaseClass::getInstance()->findTotalItemNumb($queryFilter, $table, $condition);
+	global $connect;
+	$reported = $connect->query("SELECT * FROM abuse ");
 	$sum = mysqli_num_rows($reported);
 
 	if ($sum >= 1) {
+
+
+		$reported = $connect->query("SELECT * FROM abuse ") or
+			die(mysqli_error());
 
 		while ($dRditems = $reported->fetch_assoc()) {
 			if ($dRditems['carID'] != NULL && !in_array($dRditems['carID'], $arrayCid)) {
@@ -95,16 +98,34 @@ function countRow($status, $Id)
 }
 function maxQuery($status, $Id, $start, $MAX)
 {
+	global $connect;
 	if ($Id != '')
 		$specific = "'$status' AND uID = '$Id'";
 	else
 		$specific = "'$status'";
-    $result = DatabaseClass::getInstance()->queryForPagination($specific, $start, $MAX);
+
+	$result = $connect->query(
+		"SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
+			UNION ALL
+			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
+			UNION ALL
+			SELECT dID, tableType, UploadedDate FROM computer    WHERE dStatus LIKE  $specific
+			UNION ALL
+			SELECT eID, tableType, UploadedDate FROM electronics WHERE eStatus LIKE  $specific
+			UNION ALL
+			SELECT pID, tableType, UploadedDate FROM phone       WHERE pStatus LIKE  $specific
+			UNION ALL
+			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
+			UNION ALL
+			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
+			ORDER BY UploadedDate DESC LIMIT $start,$MAX "
+	);
+
 	return $result;
 }
 function userActive()
 {
-	global $noItemToShow, $MAX;
+	global $connect, $noItemToShow, $MAX;
 	$Id  = $_SESSION['uID'];
 	$sum = countRow('active', $Id);
 
@@ -131,7 +152,7 @@ function userActive()
 }
 function userPending()
 {
-	global $noItemToShow, $MAX;
+	global $connect, $noItemToShow, $MAX;
 	$Id  = $_SESSION['uID'];
 	$sum = countRow('pending', $Id);
 
@@ -247,6 +268,7 @@ function display($query)
 }
 function controlPanel($hash)
 {
+	global $connect;
 	echo '<div class="controlPanel">';
 	echo '<div class="controlPanelLeft">';
 

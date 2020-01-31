@@ -38,7 +38,8 @@ class UserClass
 	}
 	public function getUserId()
 	{
-		return $this->_id;
+		$name = $this->getUserIdFieldName();
+		return isset($_SESSION[$name]) ? $_SESSION[$name] : $this->_id;
 	}
 	public function getUserName()
 	{

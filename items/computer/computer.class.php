@@ -26,7 +26,7 @@ class CompClass
 		$this->cntTyp = $row['contactMethod'];
 	}
 
-	public function printItemSpecific()
+	public function displayItemSpecific()
 	{
 	}
 	public function getId()
