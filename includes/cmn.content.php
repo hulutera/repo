@@ -232,7 +232,7 @@ function pendingItems()
 }
 function display($query)
 {
-	echo '<table style="width: 70%;font-size: 16px;text-align: left; font-family: Arial, Helvetica, sans-serif; ">';
+	echo '<table style="font-family: Arial, Helvetica, sans-serif; ">';
 	echo '<tr class="cpheader">';
 	echo '<th>';
 	echo 'ID';

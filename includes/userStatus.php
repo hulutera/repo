@@ -34,66 +34,78 @@ function accountLinks()
 	$result = queryUserWithTypeWithIDAndType($uId,"webmaster");
 	$webmasterTotal = mysqli_num_rows($result);
 	
-	echo "<div id=\"modnav\" ><ul class=\"menu\">";
-	echo "<li><a ";
+	echo "<div id=\"modnav\" ><div class=\"item-list-by-status\">";
+	echo "<a ";
 	if (activatetab() == 14)
 	{
 		echo "class=\"active\"";
 	}
 	echo "href=\"../includes/userActive.php\"> ";
-	echo "<span>Active(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></a></li>";
-	echo "<li><a ";
+	echo "<div class='item-list'>";
+	echo "<span>Active(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
+	echo "<a ";
 	if (activatetab() == 15)
 	{
 		echo "class=\"active\"";
 	}
 	echo "href=\"../includes/userPending.php\" >";
-	echo "<span>Pending(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></a></li>";
-	echo "<li><a ";
+	echo "<div class='item-list'>";
+	echo "<span>Pending(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
+	echo "<a ";
 	if (activatetab() == 17)
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../includes/upload.php\" ><span>Post Items</span></a></li>";
+	echo "href=\"../includes/upload.php\" >";
+	echo "<div class='item-list'>";
+	echo "<span>Post Items</span></div></a>";
+	echo "</div>";
+
 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 	{
-		echo "<li><a ";
+		echo "<div class=\"item-list-by-status-admin\">";
+		echo "<a ";
 		if (activatetab() == 11)
 		{
 			echo "class=\"active\"";
 		}
 		echo "href=\"../includes/pendingItems.php\">";
-		echo "<span>All Pending(<span id=\"pendingNumb\">$pendingItems</span>)</span></a></li>";
-		echo "<li><a ";
+		echo "<div class='item-list'>";
+		echo "<span>All Pending(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
+		echo "<a ";
 		if (activatetab() == 12)
 		{
 			echo "class=\"active\"";
 		}
 		echo "href=\"../includes/reportedItems.php\">";
-		echo "<span>Reported(<span id=\"reportedNumb\">$reportedItems</span>)</span></a></li>";
+		echo "<div class='item-list'>";
+		echo "<span>Reported(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
 		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 		{
-			echo "<li><a ";
+			echo "<a ";
 			if (activatetab() == 16)
 			{
 				echo "class=\"active\"";
 			}
 			echo "href=\"../includes/deletedItems.php\">";
-			echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></a></li>";
-			echo "<li><a ";
+			echo "<div class='item-list'>";
+			echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
+			echo "<a ";
 			if (activatetab() == 13)
 			{
 				echo "class=\"active\" ";
 			}
 			echo "href=\"../includes/userMessages.php\">";
-			echo "<span>Messages(<span id=\"msgNumb\">$contactusMessage</span>)</span></a></li>";
+			echo "<div class='item-list'>";
+			echo "<span>Messages(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 			
-			echo "<li><a href=\"../includes/controlPanel.php?err=0\">";
-			echo "<span>CONTROL PANEL</span></a></li>";
-			echo "</li>";
+			echo "<a class='item-list-cp' href=\"../includes/controlPanel.php?err=0\">";
+			echo "<div class='item-list-cp'>";
+			echo "<span>CONTROL PANEL</span></div></a>";
+			echo "</div>";
 		}			
 	}
-	echo "</ul></div>";
+	echo "</div>";
 }
 function queryStatus($uId, $status)
 {
