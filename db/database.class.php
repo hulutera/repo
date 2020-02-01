@@ -461,40 +461,45 @@ class DatabaseClass
     }
 
     // PempUser update
-    public function updateTempUser($user_id)
+    public function deleteUser($table, $condition)
     {
-        $this->getConnection()->query("DELETE FROM tempuser WHERE tuID='$user_id'") or die(mysqli_error());
+        $this->getConnection()->query("DELETE FROM $table $condition") or die(mysqli_error());
     }
 
     // PempUser update
-    public function insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address)
+    public function insertUserInfo($table, $username, $email, $password, $firstname, $lastname, $phone, $address, $activationInfo)
     {
-        $this->getConnection()->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
+		if ($activationInfo == ""){
+			$this->getConnection()->query("INSERT INTO $table (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
+		} else {
+			$this->getConnection()->query("INSERT INTO $table (username, email, password, firstname, lastname, phone, address, activation) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', '$activationInfo')") or die(mysqli_error());
+		}
     }
 
     // return the total number of stored items from tables
-    public function findTotalItemNumb($id, $table, $condition)
+    public function findTotalItemNumb($queryFilter, $table, $condition)
     {
-        return $this->getConnection()->query("SELECT $id FROM $table $condition");
+        return $this->getConnection()->query("SELECT $queryFilter FROM $table $condition");
     }
 
     // query for pagination
-    public function queryForPagination($itemStatus)
+    public function queryForPagination($itemStatus, $start, $MAX)
     {
-        return $this->getConnection->query("SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE '$itemStatus'
+        $query = $this->getConnection()->query("SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE $itemStatus
 				UNION ALL
-				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE '$itemStatus'
+				SELECT hID,tableType,UploadedDate FROM house WHERE hStatus LIKE $itemStatus
 				UNION ALL
-				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE '$itemStatus'
+				SELECT dID,tableType,UploadedDate FROM computer WHERE dStatus LIKE $itemStatus
 				UNION ALL
-				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE '$itemStatus'
+				SELECT eID,tableType,UploadedDate FROM electronics WHERE eStatus LIKE $itemStatus
 				UNION ALL
-				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE '$itemStatus'
+				SELECT pID,tableType,UploadedDate FROM phone WHERE pStatus LIKE $itemStatus
 				UNION ALL
-				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE '$itemStatus'
+				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE $itemStatus
 				UNION ALL
-				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE '$itemStatus'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX");
+				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE $itemStatus
+				ORDER BY UploadedDate DESC LIMIT $start, $MAX") or die(mysqli_error());
+		return $query;
     }
 
     // Run query
@@ -502,4 +507,10 @@ class DatabaseClass
     {
         return $this->getConnection()->query($sql);
     }
+}
+
+// new class
+class DbQueryClass extends DatabaseClass {
+	
+	
 }

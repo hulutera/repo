@@ -23,7 +23,7 @@ function deletedItems()
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-        $query = DatabaseClass::getInstance()->queryForPagination($modDelete);
+        $query = DatabaseClass::getInstance()->queryForPagination($modDelete, $itemstart, $MAX);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -89,7 +89,7 @@ function pendingItems(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-        $query = DatabaseClass::getInstance()->queryForPagination($itemStatus);
+        $query = DatabaseClass::getInstance()->queryForPagination($itemStatus, $itemstart, $MAX);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -231,7 +231,7 @@ function userActive(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus);
+        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus, $itemstart, $MAX);
 		while($result=$query->fetch_assoc())
 		{
 
@@ -297,7 +297,7 @@ function userPending(){
 		$page = 1;
 
 		$itemstart = $MAX * ($page -1);
-        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus);
+        $query = DatabaseClass::getInstance()->queryForPagination($activeItemStatus, $itemstart, $MAX);
 		while($result=$query->fetch_assoc())
 		{
 
