@@ -5,7 +5,7 @@ final class CarClass extends Item
 {
 	function __construct()
 	{
-		$this->itemName = "car";
+		$this->itemName = "Car";
 	}
 
 	private $id, $rent, $sell, $nego, $curr, $rate, $make, $model, $title, $mfg, $fule, $seat, $color, $gear, $info, $time, $mktTyp, $cat, $loc, $cntTyp;
