@@ -45,7 +45,7 @@ class DatabaseClass
         if ($this->_connection) {
             /* Check DB connection */
             if ($this->_connection->connect_errno) {
-                displayf('Connect failed: %s<br>', mysqli_connect_error());
+                printf('Connect failed: %s<br>', mysqli_connect_error());
                 exit();
             }
 

@@ -9,7 +9,7 @@ $connect = new mysqli($MASTER[0], $MASTER[1], $MASTER[2], $MASTER[3]);
 if ($connect) {
 	/* Check DB connection */
 	if ($connect->connect_errno) {
-		displayf("Connect failed: %s\n", mysqli_connect_error());
+		printf("Connect failed: %s\n", mysqli_connect_error());
 		exit();
 	}
 	/**/
