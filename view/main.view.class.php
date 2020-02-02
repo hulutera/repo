@@ -342,6 +342,7 @@ class MainView
             }
             echo "</div>";
             echo "</div>";
+            
         }
         echo "</div>";
     }
@@ -544,6 +545,24 @@ class MainView
             ObjectPool::getInstance()->getViewObject("empty")->show($id);
         }
     }
+    private function displayAllActive()
+    {
+        $item = $this->_itemName;
+        $total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
+        if ($total > 0) {
+            $calculatePageArray = calculatePage($total);
+            $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
+            $query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, HtGlobal::get('itemPerPage'), HtGlobal::get('ACTIVE'));
+            while ($dquery = $query->fetch_assoc()) {
+                $id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
+                ObjectPool::getInstance()->getViewObject($item)->show($id);
+            }
+            $query->close();
+            pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
+        } else {
+            ObjectPool::getInstance()->getViewObject("empty")->show($id);
+        }
+    }
     /**/
     public function displayItem()
     {
@@ -557,23 +576,7 @@ class MainView
             if (isset($_GET['Id'])) {
                 $this->displayOneItem($_GET['Id']);
             } else {
-
-
-                $item = $this->_itemName;
-                $total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
-                if ($total > 0) {
-                    $calculatePageArray = calculatePage($total);
-                    $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
-                    $query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, HtGlobal::get('itemPerPage'), HtGlobal::get('ACTIVE'));
-                    while ($dquery = $query->fetch_assoc()) {
-                        $id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
-                        ObjectPool::getInstance()->getViewObject($item)->show($id);
-                    }
-                    $query->close();
-                    pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
-                } else {
-                    ObjectPool::getInstance()->getViewObject("empty")->show($id);
-                }
+                $this->displayAllActive();
             }
         }
     }
