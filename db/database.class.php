@@ -465,9 +465,9 @@ class DatabaseClass
     }
 
     // PempUser update
-    public function updateTempUser($table, $condition)
+    public function updateUser($table, $condition)
     {
-        $this->getConnection()->query("DELETE FROM $table '$condition'") or die(mysqli_error());
+        $this->getConnection()->query("DELETE FROM $table $condition") or die(mysqli_error());
     }
 
     // PempUser update

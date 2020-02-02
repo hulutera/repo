@@ -10,7 +10,7 @@ html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	background-color: whitesmoke;
+	background-color: #f5f5dc;
 }
 
 body {
@@ -46,7 +46,7 @@ th {
 	margin-left: 10%;
 	margin-right: 10%;
 	overflow: hidden;
-	background-color: whitesmoke;
+	background-color: #f5f5dc;
 }
 
 #wrapper {

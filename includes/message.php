@@ -22,8 +22,10 @@ function boxes($msgid,$userEmail)
 	///$youremail The email address of the person who is logged in to see the account
 	///$userEmail is the email address of the person who sent the message
 	$uid = $_SESSION['uID'];
-	$userQuery = $connect->query("SELECT uEmail FROM user WHERE uID = '$uid' ");
-
+	$filter = "uEmail";
+	$table = "user";
+	$cond = "WHERE uID = '$uid'";
+	$userQuery = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond);
 	while($user= $userQuery->fetch_assoc())
 	{
 		$youremail =$user['uEmail'];
@@ -48,9 +50,13 @@ function messageList($NumOfmsg,$mailtype)
 	global $connect, $documnetRootPath;
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 	$itemstart = HtGlobal::get('itemPerPage') * ($page -1);
-	$message = $connect->query("SELECT * FROM contactus WHERE messageStatus LIKE '$mailtype'
-			ORDER BY timeReceived DESC LIMIT $itemstart," . HtGlobal::get('itemPerPage') ) or die(mysqli_error($message));
-
+	$itemPerPage = HtGlobal::get('itemPerPage');
+	$filter = "*";
+	$table = "contactus";
+	$cond = "WHERE messageStatus LIKE '$mailtype'
+			ORDER BY timeReceived DESC LIMIT $itemstart, $itemPerPage";
+	$message = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond);
+	
 	while($dmessage= $message->fetch_assoc())
 	{
 		$msgid =$dmessage['kID'];
@@ -122,7 +128,10 @@ function message()
 	$connect = DatabaseClass::getInstance()->getConnection();
 
 	echo'<div id= "mainColumn">';
-	$messagemsg = $connect->query("SELECT * FROM contactus WHERE messageStatus LIKE '$mailtype'");
+	$filter = "*";
+	$table = "contactus";
+	$cond = "WHERE messageStatus LIKE '$mailtype'";
+	$messagemsg = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond);
 	$NumOfmsg =  mysqli_num_rows($messagemsg);
 
 	if($NumOfmsg >= 1){

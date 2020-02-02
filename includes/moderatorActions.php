@@ -51,39 +51,49 @@ if ($actiontype == 'activate') {
 } 
 
 else if ($actiontype == 'ignore') {
-	
+	$table = "abuse";
 	switch ($itemtype) {
 		case 'Car' :
-			$connect->query ( "DELETE FROM abuse WHERE carID = '$itemid' " );
+		    $cond1 = "WHERE carID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 		
 		case 'House' :
-			$connect->query ( "DELETE FROM abuse WHERE houseID = '$itemid' " );
+		    $cond1 = "WHERE houseID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
-		
+					
 		case 'Computer' :
-			$connect->query ( "DELETE FROM abuse WHERE computerID = '$itemid' " );
+			$cond1 = "WHERE computerID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 		
 		case 'Phone' :
-			$connect->query ( "DELETE FROM abuse WHERE phoneID = '$itemid' " );
+			$cond1 = "WHERE phoneID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 		
 		case 'Electronics' :
-			$connect->query ( "DELETE FROM abuse WHERE electronicsID = '$itemid' " );
+			$cond1 = "WHERE electronicsID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 		
 		case 'Household' :
-			$connect->query ( "DELETE FROM abuse WHERE householdID = '$itemid' " );
+		    $cond1 = "WHERE householdID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 		
 		case 'Others' :
-			$connect->query ( "DELETE FROM abuse WHERE `othersID` = '$itemid' " );
+			$cond1 = "WHERE othersID = '$itemid'";
+		    DatabaseClass::getInstance()->updateUser($table, $cond1);
 			break;
 	}
 	
-	$resultReported = $connect->query ( "SELECT abuseID FROM abuse " );
-	
+	$id = "abuseID";
+    $table = "abuse";
+    $condition = "";
+    $resultReported =  DatabaseClass::getInstance()->findTotalItemNumb($id, $table, $condition);
+		
 	$numb = mysqli_num_rows ( $resultReported );
 	
 	echo $numb;
@@ -92,7 +102,10 @@ else if ($actiontype == 'ignore') {
 else if ($actiontype == 'delete') {
 	
 	$status = '';
-	$user = $connect->query ( "SELECT uRole FROM user WHERE uID = '$uid'" );
+	$id = "uRole";
+    $table = "user";
+    $condition = "WHERE uID = '$uid'";
+    $user =  DatabaseClass::getInstance()->findTotalItemNumb($id, $table, $condition);
 	while ( $userQuery = $user->fetch_assoc () ) {
 		$userType = $userQuery ['uRole'];
 	}
@@ -211,10 +224,12 @@ else if ($actiontype == 'show') {
 			$item = 'othersID';
 			break;
 	}
-	$showreport = $connect->query ( "SELECT abuse.abuseCategoryID AS abuseCategoryID,name FROM `abuse`
+	$sql = "SELECT abuse.abuseCategoryID AS abuseCategoryID,name FROM `abuse`
 			LEFT JOIN abusecategory ON
 			abuse.abuseCategoryID = abusecategory.abuseCategoryID
-			WHERE $item = $itemid " );
+			WHERE $item = $itemid ";
+	$showreport = DatabaseClass::getInstance()->runQuery($sql);
+	
 	$arrayReport = array ();
 	$arrayId = array ();
 	$count = 0;
@@ -224,8 +239,10 @@ else if ($actiontype == 'show') {
 		
 		if (! in_array ( $abuseCategoryID, $arrayId )) {
 			$arrayId [$abuseCategoryID] = $abuseCategoryID;
-			$countAbuse = $connect->query ( "SELECT COUNT(abuseCategoryID) AS abuseCategoryID FROM abuse
-	  		WHERE $item = $itemid && abuseCategoryID = $abuseCategoryID" );
+			$sql1 = "SELECT COUNT(abuseCategoryID) AS abuseCategoryID FROM abuse
+	  		WHERE $item = $itemid && abuseCategoryID = $abuseCategoryID";
+			$numbAbuse = DatabaseClass::getInstance()->runQuery($sql1);
+			
 			while ( $numbAbuse = $countAbuse->fetch_assoc () ) {
 				$count = $numbAbuse ['abuseCategoryID'];
 			}
