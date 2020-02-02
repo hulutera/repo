@@ -125,7 +125,7 @@ class MainView
         unset($pUser);
         unset($pCommon);
         unset($pImage);
-        backTrace($row);
+        //backTrace($row);
     }
 
     /*@ function to display action to take by admin/moderator/user/
@@ -711,6 +711,5 @@ class MainView
         }
 
         echo "</div>";
-        backTrace($_GET);
     }
 }
