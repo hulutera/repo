@@ -82,14 +82,16 @@ function accountLinks()
 		echo "<span>Reported(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
 		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 		{
-			echo "<a ";
-			if (activatetab() == 16)
-			{
-				echo "class=\"active\"";
+			if($adminTotal == 1 || $webmasterTotal == 1) {
+				echo "<a ";
+				if (activatetab() == 16)
+				{
+					echo "class=\"active\"";
+				}
+				echo "href=\"../includes/deletedItems.php\">";
+				echo "<div class='item-list'>";
+				echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
 			}
-			echo "href=\"../includes/deletedItems.php\">";
-			echo "<div class='item-list'>";
-			echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
 			echo "<a ";
 			if (activatetab() == 13)
 			{

@@ -43,17 +43,19 @@ else if(!empty($key)){
         $today = strtotime("tomorrow");		
         $regDateSrting =strtotime($regDate);
         $endDate = 2592000 ;
+		$table = "tempuser";
+		$cond = "WHERE tuID ='$user_id'";
         if ($today - $regDateSrting >= $endDate ){
-			$resulst2 = DatabaseClass::getInstance()->updateTempUser($user_id);
+			$resulst2 = DatabaseClass::getInstance()->updateUser($table, $cond);
 			header ('Location: ../includes/prompt.php?type=11');
         }
 		else{
-            $result1 = DatabaseClass::getInstance()-> insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address);
+            $result1 = DatabaseClass::getInstance()-> insertUser("user", $username, $email, $password, $firstname, $lastname, $phone, $address, "");
 			if(!$result1){
 				echo "Sorry! Your account could not be activated, please contact the administrator.";
 			}
 			else{
-                $resulst2 = DatabaseClass::getInstance()->updateTempUser($user_id);
+                $resulst2 = DatabaseClass::getInstance()->updateUser($table, $cond);
 				header('Location: ../includes/prompt.php?type=0');
             }
 	    }

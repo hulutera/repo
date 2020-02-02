@@ -1013,17 +1013,22 @@ function register()
 			}
 		}
 		if(empty ($error)){
-			$result=$connect->query("SELECT * FROM user WHERE uEmail = '$email' ") or die (mysqli_error());
-			$result3=$connect->query("SELECT * FROM tempuser WHERE email = '$email' ") or die (mysqli_error());
+			$filter = "*";
+			$table1 = "user";
+			$table2 = "tempuser";
+			$cond1 = "WHERE uEmail = '$email'";
+			$cond2 = "WHERE email = '$email'";
+			$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table1, $cond1);
+			$result3 = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table2, $cond2);
 			if (mysqli_num_rows($result)==0){
 				if(mysqli_num_rows($result3)) {
 					//user exist in tempUser table, delete & create again
-					$resulst4= $connect->query("DELETE FROM tempuser WHERE email = '$email' ") or die (mysqli_error());
+					$resulst4= DatabaseClass::getInstance()->updateUser($table2, $cond2);
 				}
 
 				$activation=md5(uniqid(rand(),true));
 				$hashed_password = crypt($password);
-				$result2=$connect->query("INSERT INTO tempuser (username, email, password, firstname, lastname, address, phone, activation) VALUES ('$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation')") or die (mysqli_error());
+				$result2 = DatabaseClass::getInstance()->insertUser("tempuser", '$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation');
 				if(!$result2){
 					die('Could not insert into database: '.mysqli_error());
 				}else{

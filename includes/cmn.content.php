@@ -48,14 +48,14 @@ function reportedItems()
 	$arrayHHid = array();
 	$arrayOid  = array();
 	global $connect;
-	$reported = $connect->query("SELECT * FROM abuse ");
+	$filter = "*";
+	$table = "abuse";
+	$condition = "";
+	$reported = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $condition);
 	$sum = mysqli_num_rows($reported);
 
 	if ($sum >= 1) {
 
-
-		$reported = $connect->query("SELECT * FROM abuse ") or
-			die(mysqli_error($reported));
 
 		while ($dRditems = $reported->fetch_assoc()) {
 			if ($dRditems['carID'] != NULL && !in_array($dRditems['carID'], $arrayCid)) {
@@ -95,14 +95,12 @@ function countRow($status, $Id)
 }
 function maxQuery($status, $Id, $start)
 {
-	global $connect;
 	if ($Id != '')
 		$specific = "'$status' AND uID = '$Id'";
 	else
 		$specific = "'$status'";
-
-	$result = $connect->query(
-		"SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
+    $itemPerPage = HtGlobal::get('itemPerPage');
+	$sql = "SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
 			UNION ALL
 			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
 			UNION ALL
@@ -115,8 +113,8 @@ function maxQuery($status, $Id, $start)
 			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
 			UNION ALL
 			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
-			ORDER BY UploadedDate DESC LIMIT $start,". HtGlobal::get('itemPerPage'));
-
+			ORDER BY UploadedDate DESC LIMIT $start, $itemPerPage";
+    $result = DatabaseClass::getInstance()->runQuery($sql);
 	return $result;
 }
 function userActive()

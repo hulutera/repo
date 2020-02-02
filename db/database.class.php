@@ -465,21 +465,26 @@ class DatabaseClass
     }
 
     // PempUser update
-    public function updateTempUser($user_id)
+    public function updateTempUser($table, $condition)
     {
-        $this->getConnection()->query("DELETE FROM tempuser WHERE tuID='$user_id'") or die(mysqli_error());
+        $this->getConnection()->query("DELETE FROM $table '$condition'") or die(mysqli_error());
     }
 
     // PempUser update
-    public function insertUserInfo($username, $email, $password, $firstname, $lastname, $phone, $address)
+    public function insertUser($table, $username, $email, $password, $firstname, $lastname, $phone, $address, $activation)
     {
-        $this->getConnection()->query("INSERT INTO user (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
+		if ( $table == "user") {
+			$this->getConnection()->query("INSERT INTO $table (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
+		} else {
+			$this->getConnection()->query("INSERT INTO tempuser (username, email, password, firstname, lastname, address, phone, activation) VALUES ('$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation')") or die(mysqli_error());
+		}
+		
     }
 
     // return the total number of stored items from tables
-    public function findTotalItemNumb($id, $table, $condition)
+    public function findTotalItemNumb($filter, $table, $condition)
     {
-        return $this->getConnection()->query("SELECT $id FROM $table $condition");
+        return $this->getConnection()->query("SELECT $filter FROM $table $condition");
     }
 
     // query for pagination

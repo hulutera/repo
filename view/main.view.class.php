@@ -137,20 +137,20 @@ class MainView
         $name   = $pItem->getItemName();
         $time   = $pItem->getUpldTime();
         $time   = strtotime($time);
-        $userId    = $pUser->getUserId();
+        $userId    = (isset($_SESSION['uID'])) ? $_SESSION['uID'] : "";
         $userRole  = $pUser->getUserRole();
 
         echo "<div  class=\"delete_activate\">
-		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','%','pendingNumb') \" />
-		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'%','pendingNumb')\" />
+		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','$userId','pendingNumb') \" />
+		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'$userId','pendingNumb')\" />
 		</div>"; //end_delete_activate
         echo "<div  class=\"moderatorDelete\">
-		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','%','deletedNumb') \" />
-		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'%','deletedNumb')\" />
+		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','$userId','deletedNumb') \" />
+		<input class=\"modActionActive\" type=\"button\" value=\"Activate\" id=\"activate_button\" onclick=\"func_moderatorActions('activate','$name',$itemId,$time,'$userId','deletedNumb')\" />
 		</div>"; //end_moderatorDelete
         echo "<div  class=\"delete_ignore\">
-		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" onclick=\"func_moderatorActions('remove','$name',$itemId,'1','%','reportedNumb') \" />
-		<input class=\"modActionActive\" type=\"button\" value=\"Ignore\" id=\"activate_button\" onclick=\"func_moderatorActions('ignore','$name',$itemId,'1','%','reportedNumb')\" />
+		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" onclick=\"func_moderatorActions('remove','$name',$itemId,'1','$userId','reportedNumb') \" />
+		<input class=\"modActionActive\" type=\"button\" value=\"Ignore\" id=\"activate_button\" onclick=\"func_moderatorActions('ignore','$name',$itemId,'1','$userId','reportedNumb')\" />
 		<input class=\"modActionActive\" type=\"button\" value=\"show Report\" onclick=\"func_moderatorShow('show','$name',$itemId) \" />
 		</div>"; //end_delete_ignore
         echo "<div class=\"userActiveButton\">";
