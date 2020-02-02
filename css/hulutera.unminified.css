@@ -2348,7 +2348,9 @@ input:focus, textarea:focus {
 	border: 1px solid #d1e3f0;
 	border: 1px solid #c2d7ef !important;
 	background-color: #dfefff !important;
-	padding-bottom: 2%
+	padding-bottom: 2%;
+	font-size: 18px;
+	font-family: sans-serif, Arial, Helvetica;
 }
 
 #contactUs input {

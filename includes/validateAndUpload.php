@@ -31,7 +31,7 @@ if(isset($_POST['Submit']))
 	}
 	else
 	{
-		header('Location: ../main/prompt.php?type=9');
+		header('Location: ../includes/prompt.php?type=9');
 	}
 }
 /**/
@@ -1214,7 +1214,7 @@ function imageHandler($tblArry)
 
 	$m = uploadImage($tblArry,$itemID);
 	
-	header('Location: ../main/prompt.php?type=10');
+	header('Location: ../includes/prompt.php?type=10');
 	$result   = $connect->query("SELECT * FROM `$tblArry[4]` WHERE `ItemID` = $itemID") or die(mysqli_error($connect)) ;
 	$rows = mysqli_num_rows($result);
 	$images = $result->fetch_assoc();		
@@ -1311,7 +1311,7 @@ function uploadImage($itemArr, $item_ID)
 				copy($target_file_path,$static_file_path);
 
 			} else {
-				header('Location: ../main/prompt.php?type=20');
+				header('Location: ../includes/prompt.php?type=20');
 			}
 		}
 	}

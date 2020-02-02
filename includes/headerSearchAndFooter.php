@@ -261,7 +261,7 @@ function footerCode()
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
 		 <p style="font-weight:bold">ABOUT US</p>
-		<a href="../../index.php"><img src="../../images/hulutera.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
+		<a href="../../index.php"><img src="../../images/icons/ht_logo_2.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
 		<p style="text-align:left;font-size:14px">hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.
 			hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click <a href="../../includes/about.php" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.
 			</p>
