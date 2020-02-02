@@ -61,7 +61,7 @@ function fileRouter($add)
 	<![endif]-->
 <?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
-	echo '<link rel="shortcut icon" href="' . $add . '/images/hulutera_xx_2.ico" />';
+	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
 }
 /*Code for Header and Search Bar*/
 function headerAndSearchCode($item)
