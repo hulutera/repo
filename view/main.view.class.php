@@ -3,6 +3,9 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/cmn.class.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/classes/objectPool.class.php';
+require_once $documnetRootPath . '/classes/global.variable.class.php';
+require_once $documnetRootPath . '/includes/pagination.php';
+
 require_once $documnetRootPath . '/test/backtracer.php';
 
 class MainView
@@ -487,5 +490,227 @@ class MainView
                 break;
         }
         echo "</div>";
+    }
+
+
+    /**/
+    public function displayAllItem()
+    {
+        $table = "latestupdate";
+        $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");
+        $totalItems = mysqli_num_rows($countItems);
+
+        if ($totalItems == 0) {
+            ObjectPool::getInstance()->getViewObject("empty")->show(0);
+            return;
+        }
+        $filter = " ORDER BY LatestTime DESC LIMIT 0," . HtGlobal::get('itemPerPage');
+        $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, $filter);
+        while ($row = $result->fetch_assoc()) {
+            if ($row['cID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("car")->show($row['cID']);
+            } else if ($row['hID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("house")->show($row['hID']);
+            } else if ($row['dID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("computer")->show($row['dID']);
+            } else if ($row['pID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("phone")->show($row['pID']);
+            } else if ($row['eID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("electronics")->show($row['eID']);
+            } else if ($row['hhID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("household")->show($row['hhID']);
+            } else if ($row['oID'] != 0) {
+                ObjectPool::getInstance()->getViewObject("others")->show($row['oID']);
+            }
+        }
+        $calculatePageArray = calculatePage($totalItems);
+        $result->close();
+        pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
+    }
+
+
+    /* To display a single element
+ * */
+    private function displayOneItem($id)
+    {
+        if (is_numeric($id)) {
+            $queryOneItem = DatabaseClass::getInstance()->queryGetItemWithId($this->_itemName, 1, 1, $id);
+            if (mysqli_num_rows($queryOneItem) == 1) {
+                ObjectPool::getInstance()->getViewObject($this->_itemName)->show($id);
+            } else {
+                ObjectPool::getInstance()->getViewObject("empty")->show($id);
+            }
+        } else {
+            ObjectPool::getInstance()->getViewObject("empty")->show($id);
+        }
+    }
+    /**/
+    public function displayItem()
+    {
+        if ($this->_itemName == "all") {
+            $this->displayAllItem();
+            return;
+        } else if ($this->_itemName == "search") {
+            $this->displaySearch();
+            return;
+        } else {
+            if (isset($_GET['Id'])) {
+                $this->displayOneItem($_GET['Id']);
+            } else {
+
+
+                $item = $this->_itemName;
+                $total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
+                if ($total > 0) {
+                    $calculatePageArray = calculatePage($total);
+                    $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
+                    $query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, HtGlobal::get('itemPerPage'), HtGlobal::get('ACTIVE'));
+                    while ($dquery = $query->fetch_assoc()) {
+                        $id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
+                        ObjectPool::getInstance()->getViewObject($item)->show($id);
+                    }
+                    $query->close();
+                    pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
+                } else {
+                    ObjectPool::getInstance()->getViewObject("empty")->show($id);
+                }
+            }
+        }
+    }
+
+    private function displaySearch()
+    {
+        $searchWordRaw = $_GET['search_text'];
+        $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+
+        $searchWordSanitized = DatabaseClass::getInstance()->getConnection()->real_escape_string($searchWordRaw);
+
+        if ($searchWordSanitized == "") {
+            echo " <div id=\"mainColumnX\">
+                <div id=\"spanMainColumnX\">
+                Enter the displaySearch word.<div id=\"spanColumnXamharic\">
+                እባክዎ እንዲፈለግልዎት የፈለጉትን ያስገቡ።
+                </div>
+                </div>
+                </div>";
+            return;
+        }
+        
+        $bigQuery = "";
+        $itemToStatus = array(
+            "car" => "cStatus",
+            "house" => "hStatus",
+            "computer" => "dStatus",
+            "electronics" => "eStatus",
+            "phone" => "pStatus",
+            "household" => "hhStatus",
+            "others" => "oStatus"
+        );
+        $allItem = DatabaseClass::getInstance()->getAllItem();
+        foreach ($allItem as $key => $value) {
+            $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
+            $tmpStr = "";
+            for ($i = 0; $i < sizeof($tableName); $i++) {
+                if ($i == 0) {
+                    $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " LEFT JOIN ";
+                    $tmpStr .= $value['table_name'] . "category ON ";
+                    $tmpStr .= $value['table_name'] . "category.categoryID = ";
+                    $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
+                    $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND ";
+                }
+                $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+            }
+            $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+            $tmpStrFinal .=  "')";
+            $bigQuery .= " + " . $tmpStrFinal;
+            //break;
+        }
+        $finalStr = rtrim($bigQuery, 'OR ');
+        $finalStr2 = ltrim($finalStr, '+ ');
+        $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
+
+        echo "<div id= \"mainColumn\">";
+
+        $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
+        while ($dmatchChecker = $totalMatch->fetch_assoc()) {
+            $numbreOfMatches = $dmatchChecker['count_row'];
+        }
+        if ($numbreOfMatches >= 1) {
+            $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
+            $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
+            $bigQuery ="";
+            foreach ($allItem as $key => $value) {
+                $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
+                $tmpStr = "";
+                for ($i = 0; $i < sizeof($tableName); $i++) {
+                    if ($i == 0) {
+                        $tmpStr .= "SELECT " . $tableName[$i] . ",UploadedDate,tableType FROM " . $value['table_name'] . " INNER JOIN ";
+                        $tmpStr .= $value['table_name'] . "category ON ";
+                        $tmpStr .= $value['table_name'] . "category.categoryID = ";
+                        $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
+                        $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND ";
+                    }
+                    $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+                    //break;
+                }
+                $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+                $tmpStrFinal .=  "'";
+                $bigQuery .= " UNION ALL " . $tmpStrFinal;
+            }
+            $finalStr = rtrim($bigQuery, 'OR ');
+            $finalStr2 = ltrim($finalStr, ' UNION ALL ');
+            $finalStr2 .= " ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
+            $querySearch =  $finalStr2;  
+            $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
+            while ($ddisplaySearchResult = $displaySearchResult->fetch_assoc()) {
+                $id = $ddisplaySearchResult['cID'];
+                $tabletype = $ddisplaySearchResult['tableType'];
+                $name = DatabaseClass::getInstance()->getTableNameById($tabletype);
+                ObjectPool::getInstance()->getViewObject($name)->show($id);
+            }
+
+            echo "<div id=\"pagination\"><ul>";
+            /*====a variable which describes the page bar*/
+
+            $pagerange = 4;
+            $nextpage = $page + 1;
+            $previouspage = $page - 1;
+
+            if ($page > 1) {
+                echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
+                echo '<li><a href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
+            } else {
+                echo '<li class = "previous-off"> <b>First Page </b></li>';
+                echo '<li class = "previous-off"><b> previous</b></li>';
+            }
+
+            for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
+                if ($i > 0 && $i <= $totpage) {
+                    echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
+                        '<li><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
+                }
+            }
+
+            if ($page < $totpage) {
+                echo '<li><a href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
+                echo '<li><a href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
+            } else {
+                echo '<li class = "previous-off"> <b> Next </b></li>';
+                echo '<li class = "previous-off"> <b> Last Page</b></li>';
+            }
+            echo "</ul></div>";
+        } else if ($numbreOfMatches < 1) {
+            echo '<div id="mainColumnX">
+                            <div id="spanMainColumnX">
+                            Sorry!There is no match found,try again.</br>
+                            <div style="font-size:14px">
+                            ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a  style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
+                            </div>
+                            </div>
+                            </div>';
+        }
+
+        echo "</div>";
+        backTrace($_GET);
     }
 }

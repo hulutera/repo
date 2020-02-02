@@ -47,10 +47,9 @@ function messageList($NumOfmsg,$mailtype)
 {
 	global $connect, $documnetRootPath;
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-	$MAX = 30;
-	$itemstart = $MAX * ($page -1);
+	$itemstart = HtGlobal::get('itemPerPage') * ($page -1);
 	$message = $connect->query("SELECT * FROM contactus WHERE messageStatus LIKE '$mailtype'
-			ORDER BY timeReceived DESC LIMIT $itemstart,$MAX ") or die(mysqli_error());
+			ORDER BY timeReceived DESC LIMIT $itemstart," . HtGlobal::get('itemPerPage') ) or die(mysqli_error($message));
 
 	while($dmessage= $message->fetch_assoc())
 	{
@@ -118,7 +117,6 @@ function messageList($NumOfmsg,$mailtype)
 //
 function message()
 {
-	$MAX = 30;
 	$mailtype = (isset($_GET['mail_type'])) ? $_GET['mail_type'] : '%' ;
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 	$connect = DatabaseClass::getInstance()->getConnection();
@@ -128,7 +126,7 @@ function message()
 	$NumOfmsg =  mysqli_num_rows($messagemsg);
 
 	if($NumOfmsg >= 1){
-		$totpage = ceil($NumOfmsg/$MAX);
+		$totpage = ceil($NumOfmsg/HtGlobal::get('itemPerPage'));
 
 		if($page > $totpage )
 			$page = $totpage;

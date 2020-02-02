@@ -16,10 +16,10 @@ $role = 'user';
 
 function query($role, $start)
 {
-	global $MAX;
+	
 	$connect = DatabaseClass::getInstance()->getConnection();
-	$MAXUsers = $connect->query("SELECT * FROM user WHERE uRole='$role' LIMIT $start,$MAX ");
-	return $MAXUsers;
+	$users = $connect->query("SELECT * FROM user WHERE uRole='$role' LIMIT $start,". HtGlobal::get('itemPerPage'));
+	return $users;
 }
 
 function searchResult($search)
@@ -45,17 +45,17 @@ function searchResult($search)
 	if (!empty($clauses)) {
 		$filter = '(' . implode(' AND ', $clauses) . ')';
 
-		$MAXUsers = $connect->query("SELECT * FROM `user` WHERE `uRole`='$role' AND $filter");
+		$users = $connect->query("SELECT * FROM `user` WHERE `uRole`='$role' AND $filter");
 
-		return $MAXUsers;
+		return $users;
 	}
 }
 function displayALL()
 {
-	global $MAX, $page, $role;
+	global $page, $role;
 	$allUser = queryUser();
 	$sum = mysqli_num_rows($allUser);
-	$totpage = ceil($sum / $MAX);
+	$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 
 
 	if ($page > $totpage)
@@ -63,9 +63,9 @@ function displayALL()
 	elseif ($page < 1)
 		$page = 1;
 
-	$start = $MAX * ($page - 1);
+	$start = HtGlobal::get('itemPerPage') * ($page - 1);
 	//
-	$result = query($role, $start, $MAX);
+	$result = query($role, $start);
 
 	display($result);
 

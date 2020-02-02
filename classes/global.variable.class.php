@@ -74,7 +74,20 @@ class HtGlobal
             "PENDING"
             => 'pending',
             "DELETED"
-            => 'deleted'
+            => 'deleted',
+            "sentmsg"
+            => 'Your message has been sent. Please close to contuine ...',
+            "abusemsg"
+            => 'Thank you for your cooperation. We take missuse of our service seriously. Please close to contuine ... ',
+            "emptymsg"
+            => 'Sorry! There is no item to display.<div id=spanColumnXamharic>ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
+            "itemPerPage"
+            => 30,
+            "imagePerItem"
+            => 5,
+            "noItemToShow"
+             => "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>"
+
         );
     }
 }

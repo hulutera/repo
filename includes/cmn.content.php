@@ -4,11 +4,10 @@ require_once $documnetRootPath . '/includes/userStatus.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/includes/token.php';
-require_once $documnetRootPath . '/includes/common.inc.php';
+require_once $documnetRootPath.'/db/database.class.php';
+require_once $documnetRootPath.'/view/main.view.class.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 
-$MAX = 30; //== The number of items that will be visible in one page ===//
-$noItemToShow = "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>";
 function show($query)
 {
 	while ($result = $query->fetch_assoc()) {
@@ -40,7 +39,7 @@ function show($query)
 }
 function reportedItems()
 {
-	global $noItemToShow;
+	
 	$arrayCid  = array();
 	$arrayHid  = array();
 	$arrayDid  = array();
@@ -56,7 +55,7 @@ function reportedItems()
 
 
 		$reported = $connect->query("SELECT * FROM abuse ") or
-			die(mysqli_error());
+			die(mysqli_error($reported));
 
 		while ($dRditems = $reported->fetch_assoc()) {
 			if ($dRditems['carID'] != NULL && !in_array($dRditems['carID'], $arrayCid)) {
@@ -76,9 +75,7 @@ function reportedItems()
 			}
 		}
 	} else if ($sum <= 0) {
-		echo "<div id=\"mainColumnX\">
-		$noItemToShow
-		</div>";
+		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_ignore").show();});</script>';
 }
@@ -96,7 +93,7 @@ function countRow($status, $Id)
 
 	return 0;
 }
-function maxQuery($status, $Id, $start, $MAX)
+function maxQuery($status, $Id, $start)
 {
 	global $connect;
 	if ($Id != '')
@@ -118,115 +115,104 @@ function maxQuery($status, $Id, $start, $MAX)
 			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
 			UNION ALL
 			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
-			ORDER BY UploadedDate DESC LIMIT $start,$MAX "
-	);
+			ORDER BY UploadedDate DESC LIMIT $start,". HtGlobal::get('itemPerPage'));
 
 	return $result;
 }
 function userActive()
 {
-	global $connect, $noItemToShow, $MAX;
+	global $connect;
 	$Id  = $_SESSION['uID'];
 	$sum = countRow('active', $Id);
 
 	if ($sum >= 1) {
-		$totpage = ceil($sum / $MAX);
+		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
 			$page = $totpage;
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = $MAX * ($page - 1);
+		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
-		$result = maxQuery('active', $Id, $itemstart, $MAX);
+		$result = maxQuery('active', $Id, $itemstart);
 		show($result);
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
-		echo "<div id=\"mainColumnX\">
-		$noItemToShow
-		</div>";
+		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userActiveButton").show();});</script>';
 }
 function userPending()
 {
-	global $connect, $noItemToShow, $MAX;
+	global $connect;
 	$Id  = $_SESSION['uID'];
 	$sum = countRow('pending', $Id);
 
 	if ($sum >= 1) {
-		$totpage = ceil($sum / $MAX);
+		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
 			$page = $totpage;
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = $MAX * ($page - 1);
+		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
-		$result = maxQuery('pending', $Id, $itemstart, $MAX);
+		$result = maxQuery('pending', $Id, $itemstart);
 		show($result);
 		pagination('userPending', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
-		echo "<div id=\"mainColumnX\">
-		$noItemToShow
-		</div>";
+		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userPendingButton").show();});</script>';
 }
 function deletedItems()
-{
-	global $noItemToShow, $MAX;
+{	
 	$deletedStatus = 'modDelete';
 	$sum = countRow($deletedStatus, '');
 
 	if ($sum >= 1) {
-		$totpage = ceil($sum / $MAX);
+		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
 			$page = $totpage;
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = $MAX * ($page - 1);
+		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
-		$result = maxQuery($deletedStatus, '', $itemstart, $MAX);
+		$result = maxQuery($deletedStatus, '', $itemstart);
 		show($result);
 		pagination('deletedItems', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
-		echo "<div id=\"mainColumnX\">
-		$noItemToShow
-		</div>";
+		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".moderatorDelete").show();});</script>';
 }
-function pendingItems()
-{
-	global $noItemToShow, $MAX;
-	$sum = countRow('pending', '');
 
+function pendingItems()
+{	
+	$sum = countRow('pending', '');
 	if ($sum >= 1) {
-		$totpage = ceil($sum / $MAX);
+		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
 			$page = $totpage;
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = $MAX * ($page - 1);
+		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
-		$result = maxQuery('pending', '', $itemstart, $MAX);
+		$result = maxQuery('pending', '', $itemstart);
 		show($result);
 		pagination('pendingItems', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
-		echo "<div id=\"mainColumnX\">
-		$noItemToShow
-		</div>";
+		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_activate").show();});</script>';
 }

@@ -691,7 +691,7 @@ function computerUploadfn()
 		}
 		//the fields should be taken care of accordingly
 		$result= $connect->query("INSERT INTO computer (
-				uID,compCategoryID,	contactMethodCategoryId,dPricesell,
+				uID,computerCategoryID,	contactMethodCategoryId,dPricesell,
 				dPriceNego,	currency,dMade,dOS,dProcessor,dRAM,dHardDrive,
 				dLocation,dExtraInfo,dTitle,dStatus,marketCategory,tempID)
 				VALUES(
@@ -1067,7 +1067,7 @@ function householdUploadfn()
 
 		//There is a bug here, when uploading
 		$result= $connect->query("INSERT INTO household (
-				uID,hhCategoryID,contactMethodCategoryId,
+				uID,householdCategoryID,contactMethodCategoryId,
 				hhPricesell,hhPriceNego,currency,hhLocation,
 				hhExtraInfo,hhTitle,hhTotalView,hhStatus,
 				marketCategory,tempID)

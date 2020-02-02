@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 29, 2020 at 10:27 PM
+-- Generation Time: Feb 02, 2020 at 03:16 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -239,7 +239,7 @@ DROP TABLE IF EXISTS `computer`;
 CREATE TABLE IF NOT EXISTS `computer` (
   `dID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
-  `compCategoryID` int(40) NOT NULL,
+  `computerCategoryID` int(40) NOT NULL,
   `contactMethodCategoryId` int(3) NOT NULL,
   `dPrice` varchar(40) DEFAULT NULL,
   `dPriceNego` varchar(20) DEFAULT NULL,
@@ -262,14 +262,14 @@ CREATE TABLE IF NOT EXISTS `computer` (
   `tableType` int(10) NOT NULL DEFAULT '3',
   PRIMARY KEY (`dID`),
   KEY `uID_FK2` (`uID`),
-  KEY `d_CategoryID_FK` (`compCategoryID`)
+  KEY `d_CategoryID_FK` (`computerCategoryID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `computer`
 --
 
-INSERT INTO `computer` (`dID`, `uID`, `compCategoryID`, `contactMethodCategoryId`, `dPrice`, `dPriceNego`, `currency`, `dMade`, `dOS`, `dModel`, `dProcessor`, `dRAM`, `dHardDrive`, `dColor`, `dLocation`, `dExtraInfo`, `dTitle`, `UploadedDate`, `dTotalView`, `dStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
+INSERT INTO `computer` (`dID`, `uID`, `computerCategoryID`, `contactMethodCategoryId`, `dPrice`, `dPriceNego`, `currency`, `dMade`, `dOS`, `dModel`, `dProcessor`, `dRAM`, `dHardDrive`, `dColor`, `dLocation`, `dExtraInfo`, `dTitle`, `UploadedDate`, `dTotalView`, `dStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
 (5, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '1', '', NULL, 'Addis Ababa', 'Test ', 'Checking', '2013-12-01 15:12:37', NULL, 'pending', 'No Action', 97839, 3),
 (6, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '3', '2', NULL, 'Addis Ababa', 'new', 'Test items', '2013-11-29 22:16:14', NULL, 'Deleted', 'No Action', 77726, 3),
 (7, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, 'Addis Ababa', 'Another one', 'mini', '2013-11-29 22:04:09', NULL, 'Deleted', 'No Action', 4612, 3),
@@ -623,7 +623,7 @@ DROP TABLE IF EXISTS `household`;
 CREATE TABLE IF NOT EXISTS `household` (
   `hhID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
-  `hhCategoryID` int(40) NOT NULL,
+  `householdCategoryID` int(40) NOT NULL,
   `contactMethodCategoryId` int(3) NOT NULL,
   `hhPricesell` varchar(50) DEFAULT NULL,
   `hhPriceNego` varchar(50) DEFAULT 'Negotiable',
@@ -639,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `household` (
   `tableType` int(10) NOT NULL DEFAULT '6',
   PRIMARY KEY (`hhID`),
   KEY `uID_FK1` (`uID`),
-  KEY `hhcategoryID_FK` (`hhCategoryID`),
+  KEY `hhcategoryID_FK` (`householdCategoryID`),
   KEY `marketCategory` (`marketCategory`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
@@ -647,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `household` (
 -- Dumping data for table `household`
 --
 
-INSERT INTO `household` (`hhID`, `uID`, `hhCategoryID`, `contactMethodCategoryId`, `hhPricesell`, `hhPriceNego`, `currency`, `hhLocation`, `hhExtraInfo`, `hhTitle`, `UploadedDate`, `hhTotalView`, `hhStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
+INSERT INTO `household` (`hhID`, `uID`, `householdCategoryID`, `contactMethodCategoryId`, `hhPricesell`, `hhPriceNego`, `currency`, `hhLocation`, `hhExtraInfo`, `hhTitle`, `UploadedDate`, `hhTotalView`, `hhStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
 (2, 1, 1, 0, '123456878', '', 'Birr', 'Addis Ababa', '', 'my hh', '2013-09-06 11:24:42', 0, '', 'Sale', 27715, 6),
 (3, 1, 1, 0, '123124124123', '', 'Birr', 'Addis Ababa', '', 'my hh', '2013-09-06 11:31:53', 0, '', 'Sale', 50225, 6),
 (4, 2, 1, 0, '555', '', 'Birr', 'Addis Ababa', '', 'household check', '2013-11-29 17:51:17', 0, '', 'Sale', 72615, 6),
@@ -658,12 +658,12 @@ INSERT INTO `household` (`hhID`, `uID`, `hhCategoryID`, `contactMethodCategoryId
 (9, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'hh pr', '2013-12-18 10:26:07', 0, 'pending', 'No Action', 74815, 6),
 (10, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'dss', '2013-12-18 10:26:47', 0, 'pending', 'No Action', 840, 6),
 (11, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'ffff', '2013-12-18 10:29:04', 0, 'pending', 'sell', 14012, 6),
-(12, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'sadsa', 'fsfs', '2013-12-18 11:14:18', 0, 'pending', 'sell', 50749, 6),
-(13, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'fdf', '2013-12-18 11:33:15', 0, 'pending', 'sell', 26714, 6),
-(14, 2, 2, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfdsf', '2013-12-18 11:37:06', 0, 'pending', 'sell', 77831, 6),
-(15, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sdasdas', '2013-12-18 12:45:48', 0, 'pending', 'sell', 19336, 6),
-(16, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'dasdas', 'dsd', '2013-12-18 13:15:53', 0, 'pending', 'sell', 57844, 6),
-(17, 2, 4, 0, '', '', 'Birr', 'Addis Ababa', '', 'dcsdfsd', '2013-12-18 13:17:56', 0, 'pending', 'sell', 50318, 6),
+(12, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'sadsa', 'fsfs', '2020-02-01 15:12:18', 0, 'active', 'sell', 50749, 6),
+(13, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'fdf', '2020-02-01 15:12:15', 0, 'active', 'sell', 26714, 6),
+(14, 2, 2, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfdsf', '2020-02-01 15:12:13', 0, 'active', 'sell', 77831, 6),
+(15, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sdasdas', '2020-02-01 15:12:11', 0, 'active', 'sell', 19336, 6),
+(16, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'dasdas', 'dsd', '2020-02-01 15:12:06', 0, 'active', 'sell', 57844, 6),
+(17, 2, 4, 0, '', '', 'Birr', 'Addis Ababa', '', 'dcsdfsd', '2020-02-01 15:11:56', 0, 'active', 'sell', 50318, 6),
 (18, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sffwfe', '2020-01-24 16:15:57', 0, 'active', 'sell', 56636, 6),
 (19, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'ggggg', '2020-01-24 16:15:55', 0, 'active', 'sell', 70436, 6),
 (20, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dgdg', '2020-01-24 16:15:55', 0, 'active', 'sell', 85441, 6),
@@ -861,6 +861,7 @@ DROP TABLE IF EXISTS `others`;
 CREATE TABLE IF NOT EXISTS `others` (
   `oID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
+  `othersCategoryID` int(11) NOT NULL,
   `oPricesell` varchar(40) DEFAULT NULL,
   `oPriceNego` varchar(40) DEFAULT 'Negotiable',
   `currency` varchar(40) NOT NULL DEFAULT 'Birr',
@@ -882,38 +883,51 @@ CREATE TABLE IF NOT EXISTS `others` (
 -- Dumping data for table `others`
 --
 
-INSERT INTO `others` (`oID`, `uID`, `oPricesell`, `oPriceNego`, `currency`, `contactMethodCategoryId`, `oLocation`, `oExtraInfo`, `oTitle`, `UploadedDate`, `oTotalView`, `oStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
-(8, 1, '9000', '', 'Birr', 0, 'Addis Ababa', '', 'my other 1', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 1011, 7),
-(9, 1, '123232', '', 'Birr', 0, 'Addis Ababa', '', 'tetet', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 810, 7),
-(10, 1, '121323', '', 'Birr', 0, 'Addis Ababa', '', 'my tt', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 534, 7),
-(11, 1, '12323', '', 'Birr', 0, 'Addis Ababa', '', 'dsdsdsda', '2013-09-08 13:28:41', 0, 'active', 'Sale', 5330, 7),
-(12, 2, '8000', '', 'Birr', 0, 'Addis Ababa', '', 'others check', '2013-09-12 14:29:43', 0, '', 'Sale', 28038, 7),
-(13, 2, '5666', '', 'Birr', 0, 'Addis Ababa', 'ggu', 'nice item', '2013-11-06 14:54:27', 0, 'Deleted', 'Sale', 9600, 7),
-(14, 1, '0', '', 'Birr', 0, 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', 'Sale', 13550, 7),
-(15, 2, '0', '', 'Birr', 0, 'Addis Ababa', '', 'others price check', '2013-11-30 09:34:06', 0, 'active', 'Sale', 40139, 7),
-(16, 1, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'newother', '2013-12-04 20:01:00', 0, 'pending', 'sell', 1214, 7),
-(17, 9, '0', 'Negotiable', 'Birr', 0, 'Dire Dawa', 'help moving house... call us.\r\n\r\nor leave sms\r\nwe have different types of cars', 'help moving', '2013-12-07 22:44:01', 0, 'Deleted', 'sell', 6743, 7),
-(18, 9, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', 'cheap price', 'We make moving home as easy as possible', '2013-12-08 01:02:14', 0, 'Deleted', 'sell', 41344, 7),
-(19, 9, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', 'We make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possible', 'We make moving home as easy as possible', '2013-12-08 01:03:44', 0, 'pending', 'sell', 10732, 7),
-(20, 9, '99', '', 'Birr', 0, 'Addis Ababa', '999', 'We make moving home as easy as possible', '2013-12-08 01:10:39', 0, 'pending', 'sell', 4919, 7),
-(21, 1, '13123123', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'myother', '2013-12-08 12:59:46', 0, 'pending', 'sell', 38846, 7),
-(22, 2, '1000', '', 'USD', 0, 'Addis Ababa', '', 'biycle', '2013-12-11 15:04:40', 0, 'pending', 'sell', 25442, 7),
-(23, 9, '333', '', 'Birr', 0, 'Addis Ababa', 'selling tre......', 'tre ', '2013-12-14 21:11:26', 0, 'pending', 'sell', 2823, 7),
-(24, 2, '6565', '', 'Birr', 0, 'Addis Ababa', '', 'gfgdfg', '2013-12-17 16:06:35', 0, 'pending', 'sell', 28440, 7),
-(25, 2, '5656', '', 'USD', 0, 'Addis Ababa', '', 'sdfsdf', '2013-12-17 16:24:02', 0, 'pending', 'sell', 6444, 7),
-(26, 2, '4434', '', 'USD', 0, 'Debre Zeit', '', 'asdasdas', '2013-12-17 16:26:14', 0, 'pending', 'sell', 515, 7),
-(27, 2, '5656', '', 'USD', 0, 'Addis Ababa', '', 'ryery', '2013-12-17 16:43:13', 0, 'pending', 'sell', 13732, 7),
-(28, 2, '4344 dollar', '', 'USD', 0, 'Addis Ababa', '', 'sxadas', '2013-12-18 10:05:54', 0, 'pending', 'sell', 86324, 7),
-(29, 2, '454', '', 'USD', 0, 'Addis Ababa', '', 'vdsvsdv', '2013-12-18 10:50:47', 0, 'pending', 'sell', 73424, 7),
-(30, 2, '56565', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'cscssds', '2013-12-18 10:52:22', 0, 'pending', 'sell', 80550, 7),
-(31, 2, '5665', '', 'USD', 0, 'Addis Ababa', '', 'cdsv', '2013-12-18 13:15:19', 0, 'pending', 'sell', 25229, 7),
-(32, 2, '4545', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'cgfcgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 73944, 7),
-(33, 2, '676767', '', 'Birr', 0, 'Addis Ababa', '', 'cgfccgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 14912, 7),
-(34, 2, '45', '', 'Birr', 0, 'Addis Ababa', '', 'ffw', '2020-01-24 16:15:55', 0, 'active', 'sell', 20910, 7),
-(35, 2, '6565', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'fwerwe', '2013-12-24 20:34:15', 0, 'active', 'sell', 77145, 7),
-(36, 1, '100000', 'Negotiable', 'USD', 0, 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', 0, 'active', 'sell', 8939, 7),
-(37, 2, '78', '', 'Birr', 0, 'Addis Ababa', '', 'big img', '2020-01-24 16:15:30', 0, 'active', 'sell', 6025, 7),
-(38, 1, '12345', '', 'Birr', 1, 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', 'sell', 6959, 7);
+INSERT INTO `others` (`oID`, `uID`, `othersCategoryID`, `oPricesell`, `oPriceNego`, `currency`, `contactMethodCategoryId`, `oLocation`, `oExtraInfo`, `oTitle`, `UploadedDate`, `oTotalView`, `oStatus`, `marketCategory`, `tempID`, `tableType`) VALUES
+(8, 1, 0, '9000', '', 'Birr', 0, 'Addis Ababa', '', 'my other 1', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 1011, 7),
+(9, 1, 0, '123232', '', 'Birr', 0, 'Addis Ababa', '', 'tetet', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 810, 7),
+(10, 1, 0, '121323', '', 'Birr', 0, 'Addis Ababa', '', 'my tt', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 534, 7),
+(11, 1, 0, '12323', '', 'Birr', 0, 'Addis Ababa', '', 'dsdsdsda', '2013-09-08 13:28:41', 0, 'active', 'Sale', 5330, 7),
+(12, 2, 0, '8000', '', 'Birr', 0, 'Addis Ababa', '', 'others check', '2013-09-12 14:29:43', 0, '', 'Sale', 28038, 7),
+(13, 2, 0, '5666', '', 'Birr', 0, 'Addis Ababa', 'ggu', 'nice item', '2013-11-06 14:54:27', 0, 'Deleted', 'Sale', 9600, 7),
+(14, 1, 0, '0', '', 'Birr', 0, 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', 'Sale', 13550, 7),
+(15, 2, 0, '0', '', 'Birr', 0, 'Addis Ababa', '', 'others price check', '2013-11-30 09:34:06', 0, 'active', 'Sale', 40139, 7),
+(16, 1, 0, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'newother', '2013-12-04 20:01:00', 0, 'pending', 'sell', 1214, 7),
+(17, 9, 0, '0', 'Negotiable', 'Birr', 0, 'Dire Dawa', 'help moving house... call us.\r\n\r\nor leave sms\r\nwe have different types of cars', 'help moving', '2013-12-07 22:44:01', 0, 'Deleted', 'sell', 6743, 7),
+(18, 9, 0, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', 'cheap price', 'We make moving home as easy as possible', '2013-12-08 01:02:14', 0, 'Deleted', 'sell', 41344, 7),
+(19, 9, 0, '0', 'Negotiable', 'Birr', 0, 'Addis Ababa', 'We make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possible', 'We make moving home as easy as possible', '2013-12-08 01:03:44', 0, 'pending', 'sell', 10732, 7),
+(20, 9, 0, '99', '', 'Birr', 0, 'Addis Ababa', '999', 'We make moving home as easy as possible', '2013-12-08 01:10:39', 0, 'pending', 'sell', 4919, 7),
+(21, 1, 0, '13123123', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'myother', '2013-12-08 12:59:46', 0, 'pending', 'sell', 38846, 7),
+(22, 2, 0, '1000', '', 'USD', 0, 'Addis Ababa', '', 'biycle', '2013-12-11 15:04:40', 0, 'pending', 'sell', 25442, 7),
+(23, 9, 0, '333', '', 'Birr', 0, 'Addis Ababa', 'selling tre......', 'tre ', '2013-12-14 21:11:26', 0, 'pending', 'sell', 2823, 7),
+(24, 2, 0, '6565', '', 'Birr', 0, 'Addis Ababa', '', 'gfgdfg', '2013-12-17 16:06:35', 0, 'pending', 'sell', 28440, 7),
+(25, 2, 0, '5656', '', 'USD', 0, 'Addis Ababa', '', 'sdfsdf', '2013-12-17 16:24:02', 0, 'pending', 'sell', 6444, 7),
+(26, 2, 0, '4434', '', 'USD', 0, 'Debre Zeit', '', 'asdasdas', '2013-12-17 16:26:14', 0, 'pending', 'sell', 515, 7),
+(27, 2, 0, '5656', '', 'USD', 0, 'Addis Ababa', '', 'ryery', '2013-12-17 16:43:13', 0, 'pending', 'sell', 13732, 7),
+(28, 2, 0, '4344 dollar', '', 'USD', 0, 'Addis Ababa', '', 'sxadas', '2013-12-18 10:05:54', 0, 'pending', 'sell', 86324, 7),
+(29, 2, 0, '454', '', 'USD', 0, 'Addis Ababa', '', 'vdsvsdv', '2013-12-18 10:50:47', 0, 'pending', 'sell', 73424, 7),
+(30, 2, 0, '56565', 'Negotiable', 'Birr', 0, 'Addis Ababa', '', 'cscssds', '2013-12-18 10:52:22', 0, 'pending', 'sell', 80550, 7),
+(31, 2, 0, '5665', '', 'USD', 0, 'Addis Ababa', '', 'cdsv', '2020-02-01 15:12:09', 0, 'active', 'sell', 25229, 7),
+(32, 2, 0, '4545', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'cgfcgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 73944, 7),
+(33, 2, 0, '676767', '', 'Birr', 0, 'Addis Ababa', '', 'cgfccgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 14912, 7),
+(34, 2, 0, '45', '', 'Birr', 0, 'Addis Ababa', '', 'ffw', '2020-01-24 16:15:55', 0, 'active', 'sell', 20910, 7),
+(35, 2, 0, '6565', 'Negotiable', 'USD', 0, 'Addis Ababa', '', 'fwerwe', '2013-12-24 20:34:15', 0, 'active', 'sell', 77145, 7),
+(36, 1, 0, '100000', 'Negotiable', 'USD', 0, 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', 0, 'active', 'sell', 8939, 7),
+(37, 2, 0, '78', '', 'Birr', 0, 'Addis Ababa', '', 'big img', '2020-01-24 16:15:30', 0, 'active', 'sell', 6025, 7),
+(38, 1, 0, '12345', '', 'Birr', 1, 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', 'sell', 6959, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otherscategory`
+--
+
+DROP TABLE IF EXISTS `otherscategory`;
+CREATE TABLE IF NOT EXISTS `otherscategory` (
+  `categoryID` int(40) NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(40) NOT NULL,
+  PRIMARY KEY (`categoryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -960,6 +974,7 @@ DROP TABLE IF EXISTS `phone`;
 CREATE TABLE IF NOT EXISTS `phone` (
   `pID` int(40) NOT NULL AUTO_INCREMENT,
   `uID` int(40) NOT NULL,
+  `phoneCategoryID` int(11) NOT NULL,
   `pCamera` varchar(40) DEFAULT NULL,
   `pMake` varchar(20) DEFAULT NULL,
   `pModel` varchar(20) DEFAULT NULL,
@@ -985,34 +1000,47 @@ CREATE TABLE IF NOT EXISTS `phone` (
 -- Dumping data for table `phone`
 --
 
-INSERT INTO `phone` (`pID`, `uID`, `pCamera`, `pMake`, `pModel`, `pOS`, `pPricesell`, `pPriceNego`, `currency`, `pLocation`, `pExtraInfo`, `pTitle`, `UploadedDate`, `pTotalView`, `pStatus`, `marketCategory`, `tempID`, `tableType`, `contactMethodCategoryId`) VALUES
-(4, 1, '000', '000', '', '', '123456789', '', 'Birr', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 23115, 4, 0),
-(5, 1, '', '000', '', '000', '312321312132', '', 'Birr', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 43832, 4, 0),
-(6, 2, '000', '000', '', '000', '3000', 'Negotiable', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 15728, 4, 0),
-(7, 9, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'one birr', '2013-12-08 01:02:13', NULL, 'Deleted', 'No Action', 41742, 4, 0),
-(8, 9, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '333', '333', '2013-12-08 01:02:12', NULL, 'Deleted', 'No Action', 5029, 4, 0),
-(9, 9, '12', '000', '', 'iphone', '', 'Negotiable', 'Birr', 'Addis Ababa', 'coooooooool ', 'phone nice ', '2013-12-08 01:02:55', NULL, 'pending', 'No Action', 84138, 4, 0),
-(10, 2, '000', '2', '', '000', '', 'Negotiable', 'Birr', 'Gambela', '', 'BB for U', '2013-12-11 15:06:30', NULL, 'pending', 'sell', 8034, 4, 0),
-(11, 9, '34', '009', 'latest 5s', 'iphone', '222', 'Negotiable', 'Birr', 'Addis Ababa', 'iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3', 'iphone 3', '2013-12-16 13:11:20', NULL, 'active', 'sell', 3514, 4, 0),
-(12, 9, '000', '000', 'tt', '000', '', '', 'Birr', 'Addis Ababa', '', 'f', '2013-12-16 13:27:52', NULL, 'active', 'sell', 35249, 4, 0),
-(13, 2, 'check', 'check', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:39:00', NULL, 'pending', 'sell', 67018, 4, 0),
-(14, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:39:21', NULL, 'pending', 'sell', 56813, 4, 0),
-(15, 2, '34', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'checking the specs', '2013-12-17 14:02:34', NULL, 'pending', 'sell', 8647, 4, 0),
-(16, 2, '6.0 - 6.9 megapixles', '000', '', 'iphone', '', '', 'Birr', 'Addis Ababa', '', 'checking the spec', '2013-12-17 14:15:12', NULL, 'pending', 'sell', 95330, 4, 0),
-(17, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'price', '2013-12-17 14:16:20', NULL, 'pending', 'sell', 91448, 4, 0),
-(18, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'price check', '2013-12-17 14:17:47', NULL, 'pending', 'sell', 9, 4, 0),
-(19, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dsfdsfd', '2013-12-17 16:04:25', NULL, 'pending', 'sell', 53616, 4, 0),
-(20, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'ghhg', '2020-01-24 16:15:54', NULL, 'active', 'sell', 12420, 4, 0),
-(21, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hhhh', '2020-01-24 16:15:54', NULL, 'active', 'sell', 60815, 4, 0),
-(22, 2, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'reerrr', '2020-01-24 16:15:54', NULL, 'active', 'sell', 47839, 4, 0),
-(23, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dcsc', '2020-01-24 16:15:47', NULL, 'active', 'sell', 3440, 4, 0),
-(24, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'fghh', '2013-12-25 15:08:55', NULL, 'active', 'sell', 57910, 4, 0),
-(25, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dfaf', '2020-01-24 16:15:38', NULL, 'active', 'sell', 18742, 4, 0),
-(26, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'pho', '2020-01-24 16:15:37', NULL, 'active', 'sell', 92814, 4, 0),
-(27, 2, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'now', '2020-01-24 16:15:37', NULL, 'active', 'sell', 74139, 4, 0),
-(28, 2, '000', '000', '', '000', '5656', '', 'USD', 'Addis Ababa', '', 'fsdfds', '2020-01-24 16:15:37', NULL, 'active', 'sell', 8002, 4, 0),
-(29, 2, '000', '000', '', '000', '5656', '', 'Birr', 'Addis Ababa', '', 'dgdfgdf', '2013-12-24 20:34:39', NULL, 'active', 'sell', 24629, 4, 0),
-(30, 1, '4.0 - 4.9 megapixles', '13', 'WxS32', 'android', '4230', 'Negotiable', 'Birr', 'Addis Ababa', 'TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE ', 'TESTPHONE', '2013-12-21 14:43:17', NULL, 'active', 'sell', 61813, 4, 0);
+INSERT INTO `phone` (`pID`, `uID`, `phoneCategoryID`, `pCamera`, `pMake`, `pModel`, `pOS`, `pPricesell`, `pPriceNego`, `currency`, `pLocation`, `pExtraInfo`, `pTitle`, `UploadedDate`, `pTotalView`, `pStatus`, `marketCategory`, `tempID`, `tableType`, `contactMethodCategoryId`) VALUES
+(4, 1, 0, '000', '000', '', '', '123456789', '', 'Birr', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 23115, 4, 0),
+(5, 1, 0, '', '000', '', '000', '312321312132', '', 'Birr', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 43832, 4, 0),
+(6, 2, 0, '000', '000', '', '000', '3000', 'Negotiable', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 15728, 4, 0),
+(7, 9, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'one birr', '2013-12-08 01:02:13', NULL, 'Deleted', 'No Action', 41742, 4, 0),
+(8, 9, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '333', '333', '2013-12-08 01:02:12', NULL, 'Deleted', 'No Action', 5029, 4, 0),
+(9, 9, 0, '12', '000', '', 'iphone', '', 'Negotiable', 'Birr', 'Addis Ababa', 'coooooooool ', 'phone nice ', '2013-12-08 01:02:55', NULL, 'pending', 'No Action', 84138, 4, 0),
+(10, 2, 0, '000', '2', '', '000', '', 'Negotiable', 'Birr', 'Gambela', '', 'BB for U', '2013-12-11 15:06:30', NULL, 'pending', 'sell', 8034, 4, 0),
+(11, 9, 0, '34', '009', 'latest 5s', 'iphone', '222', 'Negotiable', 'Birr', 'Addis Ababa', 'iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3', 'iphone 3', '2013-12-16 13:11:20', NULL, 'active', 'sell', 3514, 4, 0),
+(12, 9, 0, '000', '000', 'tt', '000', '', '', 'Birr', 'Addis Ababa', '', 'f', '2013-12-16 13:27:52', NULL, 'active', 'sell', 35249, 4, 0),
+(13, 2, 0, 'check', 'check', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:39:00', NULL, 'pending', 'sell', 67018, 4, 0),
+(14, 2, 0, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'phone check', '2013-12-16 12:39:21', NULL, 'pending', 'sell', 56813, 4, 0),
+(15, 2, 0, '34', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'checking the specs', '2013-12-17 14:02:34', NULL, 'pending', 'sell', 8647, 4, 0),
+(16, 2, 0, '6.0 - 6.9 megapixles', '000', '', 'iphone', '', '', 'Birr', 'Addis Ababa', '', 'checking the spec', '2013-12-17 14:15:12', NULL, 'pending', 'sell', 95330, 4, 0),
+(17, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'price', '2013-12-17 14:16:20', NULL, 'pending', 'sell', 91448, 4, 0),
+(18, 2, 0, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'price check', '2013-12-17 14:17:47', NULL, 'pending', 'sell', 9, 4, 0),
+(19, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dsfdsfd', '2013-12-17 16:04:25', NULL, 'pending', 'sell', 53616, 4, 0),
+(20, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'ghhg', '2020-01-24 16:15:54', NULL, 'active', 'sell', 12420, 4, 0),
+(21, 2, 0, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hhhh', '2020-01-24 16:15:54', NULL, 'active', 'sell', 60815, 4, 0),
+(22, 2, 0, '000', '000', '', '000', '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'reerrr', '2020-01-24 16:15:54', NULL, 'active', 'sell', 47839, 4, 0),
+(23, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dcsc', '2020-01-24 16:15:47', NULL, 'active', 'sell', 3440, 4, 0),
+(24, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'fghh', '2013-12-25 15:08:55', NULL, 'active', 'sell', 57910, 4, 0),
+(25, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'dfaf', '2020-01-24 16:15:38', NULL, 'active', 'sell', 18742, 4, 0),
+(26, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'pho', '2020-01-24 16:15:37', NULL, 'active', 'sell', 92814, 4, 0),
+(27, 2, 0, '000', '000', '', '000', '', '', 'Birr', 'Addis Ababa', '', 'now', '2020-01-24 16:15:37', NULL, 'active', 'sell', 74139, 4, 0),
+(28, 2, 0, '000', '000', '', '000', '5656', '', 'USD', 'Addis Ababa', '', 'fsdfds', '2020-01-24 16:15:37', NULL, 'active', 'sell', 8002, 4, 0),
+(29, 2, 0, '000', '000', '', '000', '5656', '', 'Birr', 'Addis Ababa', '', 'dgdfgdf', '2013-12-24 20:34:39', NULL, 'active', 'sell', 24629, 4, 0),
+(30, 1, 0, '4.0 - 4.9 megapixles', '13', 'WxS32', 'android', '4230', 'Negotiable', 'Birr', 'Addis Ababa', 'TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE TESTPHONE ', 'TESTPHONE', '2013-12-21 14:43:17', NULL, 'active', 'sell', 61813, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phonecategory`
+--
+
+DROP TABLE IF EXISTS `phonecategory`;
+CREATE TABLE IF NOT EXISTS `phonecategory` (
+  `categoryID` int(40) NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(40) NOT NULL,
+  PRIMARY KEY (`categoryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1147,7 +1175,7 @@ ALTER TABLE `carimages`
 --
 ALTER TABLE `computer`
   ADD CONSTRAINT `computer_ibfk_1` FOREIGN KEY (`uID`) REFERENCES `user` (`uID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `computer_ibfk_2` FOREIGN KEY (`compCategoryID`) REFERENCES `computercategory` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `computer_ibfk_2` FOREIGN KEY (`computerCategoryID`) REFERENCES `computercategory` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `computerimages`
@@ -1180,7 +1208,7 @@ ALTER TABLE `house`
 --
 ALTER TABLE `household`
   ADD CONSTRAINT `household_ibfk_1` FOREIGN KEY (`uID`) REFERENCES `user` (`uID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `household_ibfk_2` FOREIGN KEY (`hhCategoryID`) REFERENCES `householdcategory` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `household_ibfk_2` FOREIGN KEY (`householdCategoryID`) REFERENCES `householdcategory` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `householdimages`

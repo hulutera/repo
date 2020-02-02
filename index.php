@@ -1,7 +1,6 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
 ?>
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ require_once $documnetRootPath . '/includes/common.inc.php';
 			<?php headerAndSearchCode("");?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php centerColumn();?>
+					<?php (new MainView("all"))->displayItem();?>
 				</div>
 			</div>
 		</div>

@@ -129,7 +129,7 @@ class DatabaseClass
 				ON	computer.uID = user.uID
 				LEFT JOIN
 				computercategory ON
-				computer.compCategoryID = computercategory.categoryID
+				computer.computerCategoryID = computercategory.categoryID
 				LEFT JOIN contactmethodcategory ON
 				computer.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
@@ -168,7 +168,7 @@ class DatabaseClass
 				LEFT JOIN user
 				ON	household.uID = user.uID
 				LEFT JOIN householdcategory ON
-				household.hhCategoryID = householdcategory.categoryID
+				household.householdCategoryID = householdcategory.categoryID
 				LEFT JOIN contactmethodcategory ON
 				household.contactMethodCategoryId = contactmethodcategory.Id
 				WHERE
@@ -242,7 +242,7 @@ class DatabaseClass
                 break;
             case 'computer':
                 $sql = "SELECT dID FROM computer LEFT JOIN computercategory ON
-					computer.compCategoryID = computercategory.categoryID
+					computer.computerCategoryID = computercategory.categoryID
 					WHERE dStatus LIKE '" . $status . "'";
                 break;
             case 'house':
@@ -260,7 +260,7 @@ class DatabaseClass
                 break;
             case 'household':
                 $sql = "SELECT hhID FROM household LEFT JOIN householdcategory ON
-					household.hhCategoryID = householdcategory.categoryID
+					household.householdCategoryID = householdcategory.categoryID
 					WHERE hhStatus LIKE '" . $status . "'";
                 break;
             case 'others':
@@ -285,7 +285,7 @@ class DatabaseClass
             case 'computer':
                 $sql = "SELECT dID,UploadedDate FROM computer LEFT JOIN
 				computercategory ON
-				computer.compCategoryID = computercategory.categoryID
+				computer.computerCategoryID = computercategory.categoryID
 				WHERE dStatus LIKE '" . $status . "'
 				ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
                 break;
@@ -308,7 +308,7 @@ class DatabaseClass
             case 'household':
                 $sql = "SELECT hhID,UploadedDate FROM household
 				LEFT JOIN householdcategory ON
-				household.hhCategoryID = householdcategory.categoryID
+				household.householdCategoryID = householdcategory.categoryID
 				WHERE hhStatus LIKE '" . $status . "'
 				ORDER BY UploadedDate DESC LIMIT $start, $maximum ";
                 break;
@@ -483,7 +483,7 @@ class DatabaseClass
     }
 
     // query for pagination
-    public function queryForPagination($itemStatus)
+    public function queryForPagination($start, $itemStatus)
     {
         return $this->getConnection->query("SELECT cID,tableType,UploadedDate FROM car WHERE cStatus LIKE '$itemStatus'
 				UNION ALL
@@ -498,7 +498,7 @@ class DatabaseClass
 				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE '$itemStatus'
 				UNION ALL
 				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE '$itemStatus'
-				ORDER BY UploadedDate DESC LIMIT $itemstart,$MAX");
+				ORDER BY UploadedDate DESC LIMIT $start ,".  HtGlobal::get('itemPerPage'));
     }
 
     // Run query
