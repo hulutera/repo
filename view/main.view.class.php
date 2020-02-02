@@ -325,7 +325,7 @@ class MainView
         $itemName = $objItem->getItemName();
         echo "<div class=\"featured_left_side\">";
         if ($numimage == 1) {
-            $file_path = '../images/hulutera.png';
+            $file_path = '../../images/icons/ht_logo_2.png';
             echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
         }
         if ($numimage > 1) {

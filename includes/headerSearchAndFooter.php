@@ -67,9 +67,11 @@ function fileRouter($add)
 function headerAndSearchCode($item)
 {
 	$defaultText = "";
-	echo '<div id= "head"><div class="header">';
+	echo '<div id= "head">';
+	echo '<div class="header">';
 	logo();
 	topRightLinks();
+	echo '</div>';
 	echo '</div></div>';
 	tabMenu();
 	sidelist($item);
@@ -81,7 +83,7 @@ function uploadHeaderAndSearchCode($item)
 	echo '<div id= "head"><div class="header">';
 	logo();
 	topRightLinks();
-	echo '</div></div>';
+	echo '</div></div></div>';
 	tabMenu();
 }
 
@@ -118,7 +120,8 @@ function activatetab()
 /*logo*/
 function logo()
 {
-	echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
+	// echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
+	echo '<div class ="logo"><a href="../../index.php"><img src="../../images/icons/ht_logo_2.png"></a></div>';
 	//../../images/hulutera.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
