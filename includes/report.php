@@ -1,7 +1,6 @@
 <?php 
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
-global $connect;
 session_start();
 $oMessage = NULL;
 $Item_id  = $_GET['itemid'];
@@ -52,7 +51,7 @@ switch($Selected){
 	default:
 		break;
 }
-
-$connect->query("INSERT INTO abuse (`$Itemtype`, `abuseCategoryID`,`userID`, `otherMessage`)
-		VALUES ('$Item_id', '$selectedIndex','$user_ID','$oMessage')");
+$sql = "INSERT INTO abuse (`$Itemtype`, `abuseCategoryID`,`userID`, `otherMessage`)
+VALUES ('$Item_id', '$selectedIndex','$user_ID','$oMessage')";
+DatabaseClass::getInstance()->runQuery($sql);
 ?>

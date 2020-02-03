@@ -137,7 +137,7 @@ class MainView
         $name   = $pItem->getItemName();
         $time   = $pItem->getUpldTime();
         $time   = strtotime($time);
-        $userId    = (isset($_SESSION['uID'])) ? $_SESSION['uID'] : "";
+        $userId    =  $pUser->userId;
         $userRole  = $pUser->getUserRole();
 
         echo "<div  class=\"delete_activate\">

@@ -459,9 +459,9 @@ class DatabaseClass
     }
 
     // User password recovery
-    public function passwordActivation($newPassword, $key)
+    public function updateTable($table, $condition)
     {
-        $this->getConnection()->query("UPDATE user SET upassword = '$newPassword', activation= NULL WHERE activation='$key'") or die(mysqli_error());
+        $this->getConnection()->query("UPDATE $table SET $condition") or die(mysqli_error());
     }
 
     // PempUser update
@@ -510,5 +510,18 @@ class DatabaseClass
     public function runQuery($sql)
     {
         return $this->getConnection()->query($sql);
+    }
+
+    // Find deleted items
+    public function findIteamWithUser($queryCondition, $uid)
+    {
+        return $this->getConnection()->query(
+        "SELECT cID FROM car WHERE cStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT hID FROM house WHERE hStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT dID FROM computer WHERE dStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT eID FROM electronics WHERE eStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT pID FROM phone WHERE pStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT hhID FROM household WHERE hhStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+        SELECT oID FROM others WHERE oStatus LIKE '$queryCondition' AND uID LIKE '$uid'");
     }
 }

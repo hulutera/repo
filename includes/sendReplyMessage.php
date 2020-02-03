@@ -7,6 +7,7 @@ $idArray = (isset($_GET['idArray'])) ? $_GET['idArray'] : '0' ;
 $msg = (isset($_GET['msg'])) ? $_GET['msg'] : '0' ;
 $youremail = (isset($_GET['youremail'])) ? $_GET['youremail'] : '0' ;
 $action =$_GET['action'];
+$table = "contactus";
 switch($action)
 {
 	case 'reply':
@@ -21,14 +22,16 @@ switch($action)
 		if(is_numeric($idArray))
 		{
 			$id=$idArray;
-			$deletequery = $connect->query("DELETE FROM contactus WHERE kID = '$id' ") or die(mysqli_error());
+			$cond1 = "WHERE kID = '$id'";
+	        DatabaseClass::getInstance()->updateUser($table, $cond1);
 		}
 		else
 		{
 			$id= explode(',', $idArray);
 			for($i=0; $i<count($id); $i++)
 			{
-				$deletequery = $connect->query("DELETE FROM contactus WHERE kID = '$id[$i]'") or die(mysqli_error());
+				$cond1 = "WHERE kID = '$id[$i]'";
+	            DatabaseClass::getInstance()->updateUser($table, $cond1);
 			}
 		}
 		break;
@@ -37,15 +40,16 @@ switch($action)
 
 		if(is_numeric($idArray))
 		{
-			$followUpquery = $connect->query("UPDATE contactus SET messageStatus = 'follow up'  WHERE kID = '$idArray'") or die(mysqli_error());
+			$cond1 = "messageStatus = 'follow up'  WHERE kID = '$idArray'";
+	        DatabaseClass::getInstance()->updateTable($table, $cond1);
 		}
 		else
 		{
 			$id= explode(',', $idArray);
 			for($i=0; $i<count($id); $i++)
 			{
-				$followUpquery = $connect->query("UPDATE contactus SET messageStatus = 'follow up' WHERE kID = '$id[$i]'") or die(mysqli_error());
-
+				$cond1 = "messageStatus = 'follow up' WHERE kID = '$id[$i]'";
+	            DatabaseClass::getInstance()->updateTable($table, $cond1);
 			}
 		}
 		break;
@@ -53,14 +57,16 @@ switch($action)
 	case 'unfollow':
 		if(is_numeric($idArray))
 		{
-			$unfollowquery = $connect->query("UPDATE contactus SET messageStatus = 'read'  WHERE kID = '$idArray'") or die(mysqli_error());
+			$cond1 = "messageStatus = 'read'  WHERE kID = '$idArray'";
+	        DatabaseClass::getInstance()->updateTable($table, $cond1);
 		}
 		else
 		{
 			$id = explode(',', $idArray);
 			for($i=0; $i<count($id); $i++)
-			{
-				$unfollowquery = $connect->query("UPDATE contactus SET messageStatus = 'read' WHERE kID = '$id[$i]'") or die(mysqli_error());
+			{   
+				$cond1 = "messageStatus = 'read' WHERE kID = '$id[$i]'";
+	            DatabaseClass::getInstance()->updateTable($table, $cond1);
 			}
 		}
 		break;

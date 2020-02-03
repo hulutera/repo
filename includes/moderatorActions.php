@@ -253,31 +253,35 @@ else if ($actiontype == 'show') {
 	unset ( $arrayId );
 }
 function func_activate($item, $itmeId, $itemIdName, $uid, $itemStatus, $link, $time) {
-	global $connect;
-	$connect->query ( "UPDATE $item SET $itemStatus = 'active' WHERE $itemIdName = $itmeId");
+	$sql = "UPDATE $item SET $itemStatus = 'active' WHERE $itemIdName = $itmeId";
+	DatabaseClass::getInstance()->runQuery($sql);
 	$latest       = 'LatestTime';
 	$latestStatus = 'active';
-	$connect->query ( "INSERT INTO latestupdate (`$itemIdName`, `$latest`,status) VALUES('$itmeId', '$time','$latestStatus')" );
+	$sql1 = "INSERT INTO latestupdate (`$itemIdName`, `$latest`,status) VALUES('$itmeId', '$time','$latestStatus')";
+	DatabaseClass::getInstance()->runQuery($sql1);
 	$result = groupQueryfunction ($link, $uid);
 	return $result;
 }
 function func_delete($item, $itemId, $itemIdName, $uid, $statusName, $status, $link) {
-	global $connect;
-	$connect->query ( "UPDATE $item SET $statusName = '$status' WHERE $itemIdName = $itemId" );
-	$connect->query ( "DELETE FROM latestupdate WHERE $itemIdName = $itemId" );
+	$sql = "UPDATE $item SET $statusName = '$status' WHERE $itemIdName = $itemId";
+	DatabaseClass::getInstance()->runQuery($sql);
+	$table = "latestupdate";
+	$cond = "WHERE $itemIdName = '$itemId'";
+	DatabaseClass::getInstance()->updateUser($table, $cond);
 	$result = groupQueryfunction ( $link, $uid );
 	$item = strtolower($item);
-	$dir  = $documnetRootPath.'/uploads/'.$item.'images/'.$itemId;
+	$dir  = $documnetRootPath.'/uploads/'.$item.'/'.$itemId;
 	rrmdir($dir);
 	return $result;
 }
 function func_remove($item, $itemId, $itemIdName, $uid, $link){
-	global $connect;
 	global $documnetRootPath;
-	$connect->query ( "DELETE FROM $item WHERE $itemIdName = $itemId" );
+	$table = "$item";
+	$cond = "WHERE $itemIdName = '$itemId'";
+	DatabaseClass::getInstance()->updateUser($table, $cond);
 	$result = groupQueryfunction ($link, $uid);
 	$item = strtolower($item);
-	$dir  = $documnetRootPath.'/uploads/'.$item.'images/'.$itemId;
+	$dir  = $documnetRootPath.'/uploads/'.$item.'/'.$itemId;
 	rrmdir($dir);
 	return $result;
 }
@@ -306,22 +310,17 @@ function groupQueryfunction($link, $uid) {
 		$count = groupItemCount ( 'modDelete', '%' );
 	} else if ($link == 'reportedNumb') {
 		
-		$reported = $connect->query ( "SELECT * FROM abuse " );
+		$filter = "*";
+		$table = "abuse";
+		$cond = "";
+		$reported = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond);
 		$count = mysqli_num_rows ( $reported );
 	}
 	return $count;
 }
 function groupItemCount($queryCondition, $uid) {
-	global $connect;
-	$resultDeleted = $connect->query ( "
-			SELECT cID FROM car WHERE cStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT hID FROM house WHERE hStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT dID FROM computer WHERE dStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT eID FROM electronics WHERE eStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT pID FROM phone WHERE pStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT hhID FROM household WHERE hhStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-			SELECT oID FROM others WHERE oStatus LIKE '$queryCondition' AND uID LIKE '$uid' " );
-	$numb = mysqli_num_rows ( $resultDeleted );
+	$iteamsRes = DatabaseClass::getInstance()->findIteamWithUser($queryCondition, $uid);
+	$numb = mysqli_num_rows ($iteamsRes);
 	return $numb;
 }
 ?>
