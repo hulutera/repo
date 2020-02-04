@@ -1185,7 +1185,7 @@ function electronicsUploadfn()
 			exit;
 		}
 		//the fields should be taken care of accordingly
-		$result= $connect->query("INSERT INTO electronics (
+		$sql = "INSERT INTO electronics (
 				uID,electronicsCategoryID,contactMethodCategoryId,
 				ePricesell,ePriceNego,currency,eLocation,eExtraInfo,
 				eTitle,eStatus,marketCategory,tempID)
@@ -1193,8 +1193,8 @@ function electronicsUploadfn()
 				'$userId','$category','$contact',
 				'$price','$nego','$currency','$region',
 				'$description','$title','$status','$mrktCat',
-				'$tempId')")
-				or die(mysqli_error($connect));
+				'$tempId')";
+		$result = DatabaseClass::getInstance()->runQuery($sql);
 		if($result)
 		{
 			$tblArray = array(1=>"eID", 2=>"electronics",3=>$tempId,4=>htGlobal::get('EImage'));
@@ -1205,9 +1205,11 @@ function electronicsUploadfn()
 /**/
 function imageHandler($tblArry)
 {
-	global $connect;
 	// select cID , tempID from car where tempID = 47821
-	$getID = $connect->query("SELECT `$tblArry[1]`, `tempID`  FROM `$tblArry[2]` WHERE `tempID` = '$tblArry[3]'");
+	$cond2 = "WHERE tempID = '$tblArry[3]'";
+	$table = $tblArry[2];
+	$filter = "$tblArry[1], tempID";
+	$getID = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	$row   = $getID->fetch_array();
 	//This was a bug
 	$itemID = $row[$tblArry[1]];
@@ -1215,7 +1217,10 @@ function imageHandler($tblArry)
 	$m = uploadImage($tblArry,$itemID);
 	
 	header('Location: ../includes/prompt.php?type=10');
-	$result   = $connect->query("SELECT * FROM `$tblArry[4]` WHERE `ItemID` = $itemID") or die(mysqli_error($connect)) ;
+	$cond2 = "ItemID = '$itemID'";
+	$table = $tblArry[4];
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	$rows = mysqli_num_rows($result);
 	$images = $result->fetch_assoc();		
 	for($i=1;$i<=$m;$i++)
@@ -1291,18 +1296,23 @@ function uploadImage($itemArr, $item_ID)
 				'&e300='.$e300.
 				'&e301='.$e301);
 				rrmdir($target_dir);
-				$connect->query("DELETE FROM {$itemName} WHERE `oID` = {$item_ID} AND `uID` = {$_SESSION['uID']} limit 1 ") or die (mysqli_error());
+				$cond2 = "WHERE `oID` = {$item_ID} AND `uID` = {$_SESSION['uID']} limit 1";
+	            $table = $tblArry[2];
+	            DatabaseClass::getInstance()->updateUser($itemName, $cond2);
 				exit;
 			}
 
 			if (move_uploaded_file($filename_tmpName, $target_file_path)) {
 				if($m == 1)
 				{
-					$connect->query("INSERT INTO `$itemType` (`itemID`, `picture_".$m."`) VALUES ('$item_ID','$filename_with_rand')");
+					$sql1 = "INSERT INTO `$itemType` (`itemID`, `picture_".$m."`) VALUES ('$item_ID','$filename_with_rand')";
+					DatabaseClass::getInstance()->runQuery($sql1);
 				}
 				else
 				{
-					$connect->query("UPDATE `$itemType` SET `picture_".$m."`= '$filename_with_rand' WHERE `itemID` = '$item_ID'");
+					$condition3 = "picture_".$m."= $filename_with_rand WHERE itemID = '$item_ID'";
+					$table = $itemType;
+					$result = DatabaseClass::getInstance()->updateTable($table, $condition3);
 				}
 				//compress($target_file,$target_file);
 

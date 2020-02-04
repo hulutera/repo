@@ -127,7 +127,10 @@ function queryStatus($uId, $status)
 	$itemStatus = array("cStatus", "hStatus", "dStatus", "eStatus", "pStatus", "hhStatus", "oStatus");
 	
 	for ($i=0; $i<=6; $i++){
-		$qr = $connect->query("SELECT $itemsId[$i] FROM $tablesName[$i] WHERE $value $itemStatus[$i]  = '$status'");
+		$cond2 = "WHERE $value $itemStatus[$i]  = '$status'";
+		$table = $tablesName[$i];
+		$filter = $itemsId[$i];
+	    $qr = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 		$sum_item = mysqli_num_rows($qr);
         $sum += $sum_item;		
 	}
@@ -135,55 +138,74 @@ function queryStatus($uId, $status)
 }
 function queryContactUs()
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query("SELECT * FROM contactus");
+	$cond2 = "";
+	$table = "contactus";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return mysqli_num_rows($result);
 }
 function queryReported()
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result  = $connect->query("SELECT abuseID FROM abuse ");
+	$cond2 = "";
+	$table = "abuse";
+	$filter = "abuseID";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return mysqli_num_rows($result);
 }
 function queryMsgs($uId,$msgTyp)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();$result = $connect->query("SELECT uID FROM messages WHERE receiver = $uId AND status='$msgTyp' ");
+	$cond2 = "WHERE receiver = '$uId' AND status='$msgTyp'";
+	$table = "messages";
+	$filter = "uID";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return mysqli_num_rows($result);
 }
 function queryUserWithTypeWithIDAndType($uId,$userTyp)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user WHERE uID = $uId AND uRole='$userTyp'");
+	$cond2 = "WHERE uID = '$uId' AND uRole ='$userTyp'";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function queryUsersExceptIdButType($uId,$userTyp)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user WHERE uID != '$uId' AND uRole='$userTyp'");
+	$cond2 = "WHERE uID != '$uId' AND uRole='$userTyp'";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function queryUserWithType($userTyp)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user WHERE uRole='$userTyp'");
+	$cond2 = "WHERE uRole ='$userTyp'";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function queryUserWithId($uId)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user WHERE uID = '$uId'");
+	$cond2 = "WHERE uID = '$uId'";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function queryUserWithNotIdButType($uId,$userTyp)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user WHERE uID != '$uId' AND uRole='$userTyp'");
+	$cond2 = "WHERE uID != '$uId' AND uRole='$userTyp'";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function queryUser()
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$result = $connect->query(" SELECT * FROM user");
+	$cond2 = "";
+	$table = "user";
+	$filter = "*";
+	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $result;
 }
 function found($role)

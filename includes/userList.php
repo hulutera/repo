@@ -17,8 +17,11 @@ $role = 'user';
 function query($role, $start)
 {
 	
-	$connect = DatabaseClass::getInstance()->getConnection();
-	$users = $connect->query("SELECT * FROM user WHERE uRole='$role' LIMIT $start,". HtGlobal::get('itemPerPage'));
+	$itemPerPage =  HtGlobal::get('itemPerPage');
+	$cond2 = "WHERE uRole='$role' LIMIT $start, $itemPerPage";
+	$table = "user";
+	$filter = "*";
+	$users = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 	return $users;
 }
 
@@ -44,9 +47,10 @@ function searchResult($search)
 
 	if (!empty($clauses)) {
 		$filter = '(' . implode(' AND ', $clauses) . ')';
-
-		$users = $connect->query("SELECT * FROM `user` WHERE `uRole`='$role' AND $filter");
-
+        $cond3 = "WHERE `uRole`='$role' AND $filter";
+	    $table = "user";
+	    $filter = "*";
+	    $users = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond3);
 		return $users;
 	}
 }

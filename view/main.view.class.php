@@ -67,8 +67,7 @@ class MainView
         $jsImg = implode(',', array_values($jsonImgobj));
 
         //---------------------------------------------------------
-        echo "<div class=\"divClassified\">";
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
+       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
         echo "<div class=\"col1\">";
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
@@ -121,7 +120,6 @@ class MainView
         echo "</div>"; //end_featured_right_side
         echo "</div>"; //end_featured_detailed
         echo "</div>"; //end_divDetail_*
-        echo "</div>"; //end_divClassified
         unset($pUser);
         unset($pCommon);
         unset($pImage);

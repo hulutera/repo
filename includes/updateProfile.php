@@ -17,6 +17,11 @@ else
 		$current_email 		= $_POST["email"];
 		$new_email 		    = $_POST["newemail"];
 		$user_id 		    = $_SESSION['uID'];
+
+		$filter = "uEmail";
+		$table = "user";
+		$cond2 = "WHERE uEmail = '$new_email'";
+		$res = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 		if(empty($_POST['newemail']))
 		{
 			$error[] = 'Please enter your e-mail/እባክዎ የኢሜይል አድራሻ ያስገቡ።';
@@ -25,14 +30,16 @@ else
 		{
 			$error[]  = 'Your e-mail is invalid./ያስገቡት ኢሜይል ትክክል አይደለም።';
 		}
-		else if(mysqli_num_rows($connect->query("SELECT uEmail FROM user WHERE uEmail = '$new_email'"))!=0)
+		else if(mysqli_num_rows($connect->query($res))!=0)
 		{
 			$error[]  = 'e-mail already exists./በዚህ የኢሜይል አድራሻ የተመዘገበ ደንበኛ አለ።';
 		}
 		
 		if(empty($error))
 		{
-			$result = $connect->query("UPDATE user SET uEmail = '$new_email' WHERE uID  = '$user_id'");
+			$cond1 = " uEmail = '$new_email' WHERE uID  = '$user_id'";
+			$table = "user";
+	        $result = DatabaseClass::getInstance()->updateTable($table, $cond1);
 			//send mail to current email
 			$isMailDelivered = mail($current_email, $subject, $message, 'From:admin@hulutera.com');
 			//send mail to new email
@@ -82,7 +89,10 @@ else
 			$hashed_newpassword = crypt($newpassword);
 			$repeatpassword = $connect->real_escape_string($_POST['repeatpassword']);
 
-			$result=$connect->query("SELECT * FROM user WHERE uID = '$user_id' ") or die (mysqli_error());
+			$cond1 = "WHERE uID = '$user_id'";
+			$table = "user";
+			$filter = "*";
+	        $result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond1);
 			$row=mysqli_fetch_array($result);
 			$original_password = $row['uPassword'];
 
@@ -97,8 +107,9 @@ else
 		}
 		if(empty($error))
 		{
-			$query = "UPDATE user SET uPassword= '$hashed_newpassword' WHERE uID = '$user_id' ";
-			$result2=$connect->query($query) or die(mysqli_error());
+			$condition = "uPassword = '$hashed_newpassword' WHERE uID = '$user_id'";
+			$table = "user";
+	        $result2 = DatabaseClass::getInstance()->updateTable($table, $condition);
 			if($result2)
 			{
 				ob_start();
@@ -157,7 +168,9 @@ else
 			$contact = "Not mentioned";
 		}
 		$user_id = $_SESSION['uID'];
-		$result = $connect->query("UPDATE user SET	uContactMethod = '$contact'	WHERE uID  = '$user_id'");
+        $condition = "uContactMethod = '$contact'	WHERE uID  = '$user_id'";
+		$table = "user";
+	    $result = DatabaseClass::getInstance()->updateTable($table, $condition);
 		ob_start();
 		header('Location: ../includes/editProfile.php?error=');
 		ob_end_flush();
@@ -175,7 +188,10 @@ else
 		}
 		if(empty($error))
 		{
-			$result = $connect->query("SELECT uEmail FROM user WHERE uID = '$user_id' ") or die (mysqli_error());
+			$cond2 = "WHERE uID = '$user_id'";
+			$table = "user";
+			$filter = "uEmail";
+	        $result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
 			$row = mysqli_fetch_array($result);
 			$email = $row['uEmail'];
 			$subject = "Account Termination/የካቶመር አካውንት ስለመዝጋት";
@@ -201,9 +217,11 @@ else
 			$messageAmh.= "\nከሰላምታ ጋር \nየካቶመር አስተዳደር\n";
 				
 			$message = $messageEn.$gap.$messageAmh;
-				
-			$result = $connect->query("UPDATE user SET deactivation = '$de_key' WHERE uID  = '$user_id'");
-				
+			
+			$condition3 = "deactivation = '$de_key' WHERE uID  = '$user_id'";
+		    $table = "user";
+	        $result = DatabaseClass::getInstance()->updateTable($table, $condition3);
+							
 			$isMailDelivered = mail($email, $subject, $message, 'From:admin@hulutera.com');
 			//Check if mail Delivered or die
 			if(!$isMailDelivered)
