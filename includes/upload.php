@@ -51,7 +51,7 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=car">
 								<div id="item_name">
-									Car<br>መኪና <img id="boxIcon" src="../images/uploads/car/car.png">
+									Car<br>መኪና <img id="boxIcon" src="../images/uploads/carimages/car.png">
 									
 								</div>
 							</a>
@@ -60,7 +60,7 @@ $(document).ready(function() {
 							<a href="../includes/template.upload.php?type=computer">
 								<div id="item_name">
 									Computer<br>ኮምፒውተር <img id="boxIcon"
-										src="../images/uploads/computer/computer.png">
+										src="../images/uploads/computerimages/computer.png">
 								</div>
 							</a>
 						</div>
@@ -68,7 +68,7 @@ $(document).ready(function() {
 							<a href="../includes/template.upload.php?type=electronics">
 								<div id="item_name">
 									Electronics<br>ኤሌክትሮኒክስ <img id="boxIcon"
-										src="../images/uploads/electronics/electronics.png">
+										src="../images/uploads/electronicsimages/electronics.png">
 								</div>
 							</a>
 						</div>
@@ -77,21 +77,21 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=house">
 								<div id="item_name">
-									House<br>ቤት<img id="boxIcon" src="../images/uploads/house/house.png">
+									House<br>ቤት<img id="boxIcon" src="../images/uploads/houseimages/house.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
 							<a href="../includes/template.upload.php?type=household">
 								<div id="item_name">
-									Households<br>ቤት ዕቃዎች <img id="boxIcon" src="../images/uploads/household/household.png">
+									Households<br>ቤት ዕቃዎች <img id="boxIcon" src="../images/uploads/householdimages/household.png">
 								</div>
 							</a>
 						</div>
 						<div id="box">
 							<a href="../includes/template.upload.php?type=phone">
 								<div id="item_name">
-									Phone<br>ስልክ <img id="boxIcon" src="../images/uploads/phone/phone.png">
+									Phone<br>ስልክ <img id="boxIcon" src="../images/uploads/phoneimages/phone.png">
 								</div>
 							</a>
 						</div>
@@ -100,7 +100,7 @@ $(document).ready(function() {
 						<div id="box">
 							<a href="../includes/template.upload.php?type=others">
 								<div id="item_name">
-									Others<br>ሌሎች<img id="boxIcon" src="../images/uploads/others/others.png">
+									Others<br>ሌሎች<img id="boxIcon" src="../images/uploads/othersimages/others.png">
 								</div>
 							</a>
 						</div>
@@ -114,4 +114,5 @@ $(document).ready(function() {
 	<?php footerCode(); ?>
 </body>
 </html>
+
 

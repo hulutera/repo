@@ -1217,11 +1217,10 @@ function imageHandler($tblArry)
 	$m = uploadImage($tblArry,$itemID);
 	
 	header('Location: ../includes/prompt.php?type=10');
-	$cond2 = "ItemID = '$itemID'";
+	$cond2 = "WHERE ItemID = '$itemID'";
 	$table = $tblArry[4];
 	$filter = "*";
 	$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
-	$rows = mysqli_num_rows($result);
 	$images = $result->fetch_assoc();		
 	for($i=1;$i<=$m;$i++)
 	{
@@ -1229,15 +1228,16 @@ function imageHandler($tblArry)
 		if($originalImageName)
 		{
 			//create thumbnail in local upload
-			$imagePathToUpload = "../uploads/".$tblArry[4]."/".$itemID."/thumbnail/";
+			$imagePathToUpload = "../images/uploads/".$tblArry[4]."/".$itemID."/thumbnail";
 			mkdir($imagePathToUpload);
-			$originalImagePath = "../uploads/".$tblArry[4]."/".$itemID."/original/";
-			$x = createThumbNail($imagePathToUpload,$originalImagePath, $originalImageName);
+			$pathToThumbnail = $imagePathToUpload . "/";
+			$originalImagePath = "../images/uploads/".$tblArry[4]."/".$itemID."/original/";
+			$x = createThumbNail($pathToThumbnail, $originalImagePath, $originalImageName);
 
 			//create thumbnail in  static
-			$imagePathToStatic = "../static/uploads/".$tblArry[4]."/".$itemID."/thumbnail/";
+			$imagePathToStatic = "../static/images/uploads/".$tblArry[4]."/".$itemID."/thumbnail/";
 			mkdir($imagePathToStatic);
-			$originalImagePath = "../static/uploads/".$tblArry[4]."/".$itemID."/original/";
+			$originalImagePath = "../static/images/uploads/".$tblArry[4]."/".$itemID."/original/";
 			createThumbNail($imagePathToStatic,$originalImagePath,$originalImageName);
 		}
 	}
@@ -1249,16 +1249,18 @@ function uploadImage($itemArr, $item_ID)
 	$itemName = $itemArr[2];
 	//direcory of image
 	$itemType = $itemArr[4];
+	//tempId
+	$tempId = $itemArr[3];
 	global $connect;
 	$e300=$e301='';
-	$target_dir = '../uploads/'.$itemType.'/'.$item_ID;
+	$target_dir = '../images/uploads/'.$itemType.'/'.$item_ID;
 	$static_dir = '../static/uploads/'.$itemType.'/'.$item_ID;
 	mkdir($target_dir);
 	mkdir($static_dir);
 	
-	$target_dir = '../uploads/'.$itemType.'/'.$item_ID.'/original';
+	$target_dir = '../images/uploads/'.$itemType.'/'.$item_ID.'/original';
 	$static_dir = '../static/uploads/'.$itemType.'/'.$item_ID.'/original';
-	
+		
 	mkdir($target_dir);
 	mkdir($static_dir);
 	
@@ -1296,21 +1298,21 @@ function uploadImage($itemArr, $item_ID)
 				'&e300='.$e300.
 				'&e301='.$e301);
 				rrmdir($target_dir);
-				$cond2 = "WHERE `oID` = {$item_ID} AND `uID` = {$_SESSION['uID']} limit 1";
+				$cond2 = "WHERE tempId = '$tempId' AND uID = {$_SESSION['uID']} limit 1";
 	            $table = $tblArry[2];
-	            DatabaseClass::getInstance()->updateUser($itemName, $cond2);
+	            DatabaseClass::getInstance()->updateUser($table, $cond2);
 				exit;
 			}
 
 			if (move_uploaded_file($filename_tmpName, $target_file_path)) {
 				if($m == 1)
 				{
-					$sql1 = "INSERT INTO `$itemType` (`itemID`, `picture_".$m."`) VALUES ('$item_ID','$filename_with_rand')";
+					$sql1 = "INSERT INTO `$itemType` (`ItemID`, `picture_".$m."`) VALUES ('$item_ID','$filename_with_rand')";
 					DatabaseClass::getInstance()->runQuery($sql1);
 				}
 				else
 				{
-					$condition3 = "picture_".$m."= $filename_with_rand WHERE itemID = '$item_ID'";
+					$condition3 = "picture_".$m." = '$filename_with_rand' WHERE ItemID = '$item_ID'";
 					$table = $itemType;
 					$result = DatabaseClass::getInstance()->updateTable($table, $condition3);
 				}
@@ -1374,7 +1376,7 @@ function compress($src,$des)
 	return $des;
 }
 
-function createThumbNail($imgPath,$orignalImgPath,$imgName)
+function createThumbNail($imgPath, $orignalImgPath, $imgName)
 {
 	$originalImg       = $orignalImgPath . $imgName;
 	$originalImgSize   = getimagesize($originalImg);

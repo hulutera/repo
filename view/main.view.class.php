@@ -53,9 +53,11 @@ class MainView
         $location = $this->_pItem->getLoc();
         $mkTyp = $this->_pItem->getMktType();
         $contactType = $this->_pItem->getContactMethod();
-
+        
+        // image directory per item
+        $itemImageDir = $itemName."images";
         //Object for item Directory
-        $dir = $pImage->setDirectory($itemName, $id);
+        $dir = $pImage->setDirectory($itemImageDir, $id);
 
         //Object for item Image
         $image    = $pImage->initImage($row);
@@ -104,7 +106,7 @@ class MainView
         //---------------------------------------------------------
         echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
-        $this->displayGallery($pImage, $image, $this->_pItem, $id);
+        $this->displayGallery($pImage, $image, $this->_pItem, $id, $dir);
         echo "<div class=\"showbutton_hide\">
 		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
@@ -312,12 +314,12 @@ class MainView
     }
     /*@ function to display image gallery
 	 * input: $objImg, $objDir, $image, $objItem, $itemId
-	* */
-    private function displayGallery($objImg, $image, $objItem, $itemId)
+    * */
+    private function displayGallery($objImg, $image, $objItem, $itemId, $dir)
     {
         global $documnetRootPath;
 
-        $dir1 = 'original/';
+        $dir1 = $dir . 'original/';
         $file = $dir1 . $image[1];
         $numimage = $objImg->getNumOfImg();
         $itemName = $objItem->getItemName();

@@ -26,16 +26,21 @@ function userLogin($email, $password)
         $email_1 = $connect->real_escape_string($email);
         $password_1 = $connect->real_escape_string($password);
         $successLogin = FALSE;
-        $result = $connect->query("SELECT * FROM user WHERE uEmail = '$email_1'");
+        $cond2 = "WHERE uEmail = '$email_1'";
+        $filter = "*";
+        $table = "user";
+	    $result =   DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
         if (mysqli_num_rows($result) != 0) {
             $row = $result->fetch_array();
-            if (crypt($password_1, $row['uPassword']) == $row['uPassword']){
+            if (crypt($password_1, $row['uNewPassword']) == $row['uPassword']){
                 $successLogin = TRUE;
             }
             else if($row['activation'] != NULL) { //Allow login before activation for recovered password    
                 if (crypt($password_1, $row['uNewPassword']) == $row['uNewPassword']) {
                     $newPassword=$row['uNewPassword'];
-                    $result2=$connect->query("UPDATE user SET upassword = '$newPassword', uNewPassword = NULL, activation= NULL WHERE uEmail = '$email'") or die (mysqli_error());
+                    $cond1 = "upassword = '$newPassword', uNewPassword = NULL, activation = NULL WHERE uEmail = '$email'";
+                    $table = "user";
+	                $result2 = DatabaseClass::getInstance()->updateTable($table, $cond1);
                     $successLogin = TRUE;
                 }
             }
