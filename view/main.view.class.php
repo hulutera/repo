@@ -619,7 +619,7 @@ class MainView
                     $tmpStr .= $value['table_name'] . "category ON ";
                     $tmpStr .= $value['table_name'] . "category.categoryID = ";
                     $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                    $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND ";
+                    $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
                 }
                 $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
             }
@@ -651,7 +651,7 @@ class MainView
                         $tmpStr .= $value['table_name'] . "category ON ";
                         $tmpStr .= $value['table_name'] . "category.categoryID = ";
                         $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                        $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND ";
+                        $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
                     }
                     $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                     //break;
