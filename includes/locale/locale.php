@@ -36,7 +36,7 @@ function locale($current_link)
     echo '<option value = "' . $am. '">AMHARIC</option>';
     echo '<option value = "' . $ao. '">AFAN OROMO</option>';
     echo '<option value = "' . $so. '">SOMALI</option>';
-    echo '<option value = "' . $tg. '">TIGRIGAN</option>';
+    echo '<option value = "' . $tg. '">TIGRIGNA</option>';
     echo '</select>';
     echo '<div>';
 }

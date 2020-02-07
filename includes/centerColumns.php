@@ -152,10 +152,6 @@ function description($hash)
 	echo '<label for="description">Description<div id="uploadAmharic">ገለጻ</div></label>';
 	echo '<textarea id="styled" name="description" rows="8">';
 	echo $description; echo '</textarea>';
-	if(crypt(109, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">Description is required</div>';
-	}
 	echo '</div>';
 }
 function pictureForm()

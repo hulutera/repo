@@ -101,10 +101,6 @@ function computerProcessor($hash)
 	echo '<option value="Over 3.0GHz" ';if($processor=="Over 3.0GHz") echo " selected"; echo '>Over 3.0GHz</option>';
 	echo '<option value="999" ';if($processor=="999") echo " selected"; echo '>Not known</option>';	
 	echo '</select>';
-	if(crypt(107, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">Processor is required</div>';
-	}
 	echo '</div>';
 
 }
@@ -121,10 +117,6 @@ function computerOS($hash)
 	echo '<option value="unix"';if($os=="unix") echo " selected"; echo '>Mac</option>';
 	echo '<option value="999"';if($os=="999") echo " selected"; echo '>Other</option>';
 	echo '</select>';
-	if(crypt(104, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">Os is required</div>';
-	}
 	echo '</div>';
 
 }

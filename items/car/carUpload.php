@@ -302,10 +302,6 @@ function seat($max,$hash)
 	echo '<select name="seat" class="smallselect">';
 	echo '<option value="000">seat</option>';
 	seatList(1,$max);
-	if(crypt(103, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">Number of seat is required</div>';
-	}
 	echo '</div>';
 }
 
@@ -366,10 +362,6 @@ function milage($max,$hash)
 		echo '<option value = "'.$i.'"'; if($milage==$i) echo " selected"; echo '>'.$x.' - '.$y.'</option>';
 	}
 	echo '</select>';
-	if(crypt(107, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">milage is required</div>';
-	}
 	echo '</div>';
 }
 /**/

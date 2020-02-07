@@ -268,7 +268,7 @@ th {
 	padding: 0 0 5px;
 	width: 100%;
 	z-index: 100;
-	background-color: #f1f1f1;
+	background-color: #f5f5dc;
 }
 
 #sidelist ul li {
@@ -284,24 +284,22 @@ th {
 	text-decoration: none;
 	font-size: 18px;
 	color: #000;
-	height: 35px;
-	background-color: #f1f1f1;
+	background-color: #f5f5dc;
 	text-align: center;
 	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #sidelist li a:hover {
 	background-color: orange;
 	/* #c7c7c7;*/
-	height: 35px;
 	background-image: none;
 }
 
 #sidelist li a.active {
-	background-color: #050598;
+	background-color: #0080ff;
 	/* #0072C6;*/
 	color: #fff;
-	height: 35px;
 	background-image: none;
 }
 

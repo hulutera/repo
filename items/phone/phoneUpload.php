@@ -43,10 +43,6 @@ function phoneModel($hash)
 	$phoneModel = isset($_GET['phoneModel'])?$_GET['phoneModel']:'';
 	echo'<label>Model<div id="uploadAmharic">ሞዴል</div></label>';
 	echo '<input name="phoneModel" style="width:160px;" type="text" placeholder="optional" value= "'.$phoneModel.'"/>';
-	if(crypt(102, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">Phone model is required</div>';
-	}
 }
 function phoneMake($hash)
 {
@@ -122,10 +118,6 @@ function phoneOS($hash)
 	echo '<option value="symbian" ';if($phoneOS=="symbian") echo " selected"; echo '>Symbian OS</option>';
 	echo '<option value="999" ';if($phoneOS=="999") echo " selected"; echo '>Other</option>';
 	echo '</select>';
-	if(crypt(104, $hash) == $hash)
-	{
-		echo '<div id="myform_errorloc" class="error_strings">OS is required</div>';
-	}
 	echo '</div>';
 
 }
