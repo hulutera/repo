@@ -5,7 +5,6 @@ require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/classes/global.variable.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
-require_once $documnetRootPath . '/classes/page.printout.php';
 
 require_once $documnetRootPath . '/test/backtracer.php';
 
@@ -44,9 +43,6 @@ class MainView
     {
         $pImage = new ImgHandler;
         $pUser  = new UserClass($row);
-        
-        // To be done later and temporarily english
-        $printObj = new CarPrintout("en");
 
         $this->_pItem->setElements($row);
         $id = $this->_pItem->getId();
@@ -101,9 +97,9 @@ class MainView
         echo "</div>"; //end_detail
         //---------------------------------------------------------
         echo "<div class=\"showbutton_show\">
-        <input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
-        onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\"";
-		echo 'value="'.$printObj->showDetail().'"></div>';
+		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
+		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\"
+		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
         echo "<div class=\"clear\"></div>";
@@ -112,8 +108,8 @@ class MainView
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
         $this->displayGallery($pImage, $image, $this->_pItem, $id, $dir);
         echo "<div class=\"showbutton_hide\">
-		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id, '$itemName')\"";
-		echo 'value="'.$printObj->hideDetail().'"></div>';
+		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $this->displayTitle($title, $itemName);
         $this->displaySpecifics($this->_pItem);
@@ -304,20 +300,16 @@ class MainView
 	* */
     private function displayContactMethod($objImg, $uniqueId, $contactType, $itemId, $itemName, $user)
     {
-        // To be changed and temporarily english
-        $printObj = new CarPrintout("en");
         echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
         echo "</br>";
-        echo '<div class=\"header\"><label>'.$printObj->contact().'</label></div>';
+        echo "<div class=\"header\"><label>Contact</label></div>";
         if ($contactType == "Email" or $contactType == "Both")
             echo "<div class=\"email\">
-            <img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">";
-            echo $printObj->sendMsg()."</a></div>";
+			<img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
         if ($contactType == "Phone" or $contactType == "Both")
             echo "<div class=\"phone\">
 			<img src =\"$objImg->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">";
-        echo $printObj->reportAbuse()."</a></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -361,18 +353,14 @@ class MainView
     {
         switch (get_class($obj)) {
             case "CarClass":
-                //To be done for language switcher
-                //temporarily english
-                $lang = "en";
-                $printObj = new CarPrintout($lang);
-                echo $obj->getMake()     ? "<p><strong>".$printObj->make().":&nbsp</strong>" . $obj->getMake() . "</p>" : "";
-                echo $obj->getCategory() ? "<p><strong>".$printObj->type().":&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
-                echo $obj->getMfg() != "0000"       ? "<p><strong>".$printObj->yearOfMake().":&nbsp</strong>" . $obj->getMfg() . "</p>" : "";
-                echo $obj->getFuel()      ? "<p><strong>".$printObj->fuel().":&nbsp</strong>" . $obj->getFuel() . "</p>" : "";
-                echo $obj->getSeat()      ? "<p><strong>".$printObj->numbOfSeat().":&nbsp</strong>" . $obj->getSeat() . "</p>" : "";
-                echo $obj->getColor() != "999"     ? "<p><strong>".$printObj->color().":&nbsp</strong>" . $obj->getColor() . "</p>" : "";
-                echo $obj->getGear()      ? "<p><strong>".$printObj->gear().":&nbsp</strong>" . $obj->getGear() . "</p>" : "";
-                echo $obj->getInfo()      ? "<p><p><strong>".$printObj->extraInfo().":</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
+                echo $obj->getMake()     ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
+                echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
+                echo $obj->getMfg() != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $obj->getMfg() . "</p>" : "";
+                echo $obj->getFuel()      ? "<p><strong>Fuel:&nbsp</strong>" . $obj->getFuel() . "</p>" : "";
+                echo $obj->getSeat()      ? "<p><strong>Nr of Seats:&nbsp</strong>" . $obj->getSeat() . "</p>" : "";
+                echo $obj->getColor() != "999"     ? "<p><strong>Color:&nbsp</strong>" . $obj->getColor() . "</p>" : "";
+                echo $obj->getGear()      ? "<p><strong>Gear:&nbsp</strong>" . $obj->getGear() . "</p>" : "";
+                echo $obj->getInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
                 break;
             case "CompClass":
                 echo $obj->getMake()      ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
@@ -432,10 +420,7 @@ class MainView
                 $rentValue = $obj->getRent();
                 $sellValue = $obj->getSell();
                 $negoValue = $obj->getNego();
-                
-                // To be done later and temporarily for english
-                $printObj = new CarPrintout("en");
-                $negoDisplay = ($negoValue == 1) ? $printObj->negotiable() : "";
+                $negoDisplay = ($negoValue == 1) ? "Negotiable" : "";
                 $curr  = $obj->getCurr();
                 $rate  = $obj->getRate();
 
@@ -450,10 +435,10 @@ class MainView
                 $nego          =  !$rentValue && !$sellValue &&  $negoValue;
 
                 //display var
-                $rent_var = "<p style=\"text-indent: 10px;\"><strong>".$printObj->rent().":&nbsp</strong>" . $rentValue . " " . $curr . "/" . $rate . "</p>";
-                $sell_var = "<p style=\"text-indent: 10px;\"><strong>".$printObj->sell().":&nbsp</strong>" . $sellValue . " " . $curr . "</p>";
-                $nego_var = "<p style=\"text-indent: 10px;\">" . $negoDisplay . "</p>";
-                echo "<p><strong>".$printObj->price().":</strong></p>";
+                $rent_var = "<p style=\"text-indent: 10px;\"><strong>Rent:&nbsp</strong>" . $rentValue . " " . $curr . "/" . $rate . "</p>";
+                $sell_var = "<p style=\"text-indent: 10px;\"><strong>Sell:&nbsp</strong>" . $sellValue . " " . $curr . "</p>";
+                $nego_var = "<p style=\"text-indent: 10px;\">" . $negoDisplay . "/መደራደር ይቻላል/</p>";
+                echo "<p><strong>Price:</strong></p>";
 
                 if ($rentsellwnego) {
                     echo $rent_var . $sell_var . $nego_var;
@@ -470,7 +455,7 @@ class MainView
                 } else if ($sell) {
                     echo $sell_var;
                 } else if ($noprice) {
-                    echo "<p style=\"text-indent: 10px;\">".$printObj->noPriceInfo()."</p>";
+                    echo "<p style=\"text-indent: 10px;\">No price information Available</p>";
                 }
                 break;
             case "CompClass":
