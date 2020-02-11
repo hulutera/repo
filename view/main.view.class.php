@@ -103,7 +103,7 @@ class MainView
         echo "<div class=\"showbutton_show\">
         <input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
         onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\"";
-		echo 'value="'.$printObj->showDetail().'"></div>';
+		echo 'value="'.$printObj->showDetail().'"/></div>';
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
         echo "<div class=\"clear\"></div>";
@@ -311,8 +311,7 @@ class MainView
         echo '<div class=\"header\"><label>'.$printObj->contact().'</label></div>';
         if ($contactType == "Email" or $contactType == "Both")
             echo "<div class=\"email\">
-            <img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">";
-            echo $printObj->sendMsg()."</a></div>";
+            <img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">".$printObj->sendMsg()."</a></div>";
         if ($contactType == "Phone" or $contactType == "Both")
             echo "<div class=\"phone\">
 			<img src =\"$objImg->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
