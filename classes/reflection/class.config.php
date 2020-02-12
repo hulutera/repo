@@ -62,4 +62,3 @@ define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
 global $documnetRootPath;
 require_once $documnetRootPath . "/classes/reflection/Model.php";
 require_once $documnetRootPath . "/classes/reflection/MySqlRecord.php";
-

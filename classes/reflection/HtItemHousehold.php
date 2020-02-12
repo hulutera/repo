@@ -703,6 +703,8 @@ class HtItemHousehold extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
+        }else {
+            $this->selectAll();
         }
     }
 
@@ -762,6 +764,26 @@ class HtItemHousehold extends MySqlRecord
         }
         return $this->affected_rows;
     }
+
+   /**
+     * Fetchs all table row of item_household into the object.
+     *
+     * Fetched all table fields values are assigned to class attributes and they can be managed by using
+     * the accessors/modifiers methods of the class.
+     * @return int affected selected row
+     * @category DML
+     */
+    public function selectAll()
+    {
+        $sql = <<< SQL
+            SELECT * FROM {$this->getTableName()}
+SQL;
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+    }
+
 
     /**
      * Deletes a specific row from the table item_household
@@ -893,5 +915,29 @@ SQL;
         }
     }
 
+    /**
+     * Facility for getting relational row of item_household
+     *
+     * @category DML Helper
+     * @return mixed MySQLi join result
+     */
+    public function leftJoin()
+    {
+        $sql = <<< SQL
+            SELECT * FROM item_household
+            LEFT JOIN image_household    ON  item_household.id = image_household.id
+            LEFT JOIN user_all     ON  item_household.id_user = user_all.id
+            LEFT JOIN category_household ON  item_household.id_category = category_household.id
+            LEFT JOIN category_contact ON item_household.id_contact_category = category_contact.id
+            WHERE
+            item_household.id={$this->parseValue($this->id, 'int')}
+SQL;
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->resultSet;
+    }
 }
 ?>

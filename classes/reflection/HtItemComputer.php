@@ -983,6 +983,8 @@ class HtItemComputer extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
+        }else {
+            $this->selectAll();
         }
     }
 
@@ -1049,6 +1051,26 @@ class HtItemComputer extends MySqlRecord
         }
         return $this->affected_rows;
     }
+
+   /**
+     * Fetchs all table row of item_computer into the object.
+     *
+     * Fetched all table fields values are assigned to class attributes and they can be managed by using
+     * the accessors/modifiers methods of the class.
+     * @return int affected selected row
+     * @category DML
+     */
+    public function selectAll()
+    {
+        $sql = <<< SQL
+            SELECT * FROM {$this->getTableName()}
+SQL;
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+    }
+
 
     /**
      * Deletes a specific row from the table item_computer
@@ -1194,5 +1216,29 @@ SQL;
         }
     }
 
+    /**
+     * Facility for getting relational row of item_computer
+     *
+     * @category DML Helper
+     * @return mixed MySQLi join result
+     */
+    public function leftJoin()
+    {
+        $sql = <<< SQL
+            SELECT * FROM item_computer
+            LEFT JOIN image_computer    ON  item_computer.id = image_computer.id
+            LEFT JOIN user_all     ON  item_computer.id_user = user_all.id
+            LEFT JOIN category_computer ON  item_computer.id_category = category_computer.id
+            LEFT JOIN category_contact ON item_computer.id_contact_category = category_contact.id
+            WHERE
+            item_computer.id={$this->parseValue($this->id, 'int')}
+SQL;
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->resultSet;
+    }
 }
 ?>

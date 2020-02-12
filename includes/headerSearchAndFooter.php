@@ -29,6 +29,7 @@ else
 {
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
+
 function commonHeader()
 {
 	echo '<meta name="viewport" content="width=device-width">';

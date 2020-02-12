@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 10, 2020 at 07:31 PM
+-- Generation Time: Feb 12, 2020 at 11:45 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -293,6 +293,32 @@ INSERT INTO `image_computer` (`id`, `id_item`, `field_image_string`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image_electronic`
+--
+
+DROP TABLE IF EXISTS `image_electronic`;
+CREATE TABLE IF NOT EXISTS `image_electronic` (
+  `id` int(40) NOT NULL AUTO_INCREMENT,
+  `id_item` int(40) NOT NULL,
+  `field_image_string` longtext,
+  PRIMARY KEY (`id`),
+  KEY `item_ID` (`id_item`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image_electronic`
+--
+
+INSERT INTO `image_electronic` (`id`, `id_item`, `field_image_string`) VALUES
+(1, 1, '809images_055.jpeg'),
+(2, 3, '152images_047.jpeg'),
+(4, 5, '736images_054.jpeg'),
+(5, 6, '420images_054.jpeg'),
+(6, 8, '193images_054.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `image_house`
 --
 
@@ -503,7 +529,7 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
-  `id_catergory` int(40) NOT NULL,
+  `id_category` int(40) NOT NULL,
   `id_contact_category` int(3) NOT NULL,
   `field_price` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(20) DEFAULT NULL,
@@ -525,14 +551,14 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
   `field_table_type` int(10) NOT NULL DEFAULT '3',
   PRIMARY KEY (`id`),
   KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_catergory`)
+  KEY `d_CategoryID_FK` (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_computer`
 --
 
-INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_catergory`, `id_contact_category`, `field_price`, `field_price_nego`, `field_price_currency`, `field_made`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price`, `field_price_nego`, `field_price_currency`, `field_made`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
 (5, 97839, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '1', '', NULL, 'Addis Ababa', 'Test ', 'Checking', '2020-02-04 22:22:29', NULL, 'active', 'No Action', 3),
 (6, 77726, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '3', '2', NULL, 'Addis Ababa', 'new', 'Test items', '2013-11-29 22:16:14', NULL, 'Deleted', 'No Action', 3),
 (7, 4612, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, 'Addis Ababa', 'Another one', 'mini', '2013-11-29 22:04:09', NULL, 'Deleted', 'No Action', 3),
@@ -542,7 +568,6 @@ INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_catergory`, `id_con
 (14, 5729, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sfwef', '2013-12-01 15:12:14', NULL, 'active', 'No Action', 3),
 (20, 14425, 1, 1, 0, '3232321312', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'myc', '2013-12-01 15:12:06', NULL, 'active', 'Sale', 3),
 (21, 47542, 2, 1, 0, '10,000', 'Negotiable', 'Birr', '', 'windows', NULL, '3', '', '', NULL, 'Addis Ababa', '', 'Comp title', '2013-12-04 18:43:43', NULL, 'Deleted', 'Sale', 3),
-(22, 82950, 9, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '3', '3', '3', NULL, 'Addis Ababa', 'Nice PC with Windows 8', 'Nice PC with Windows 8', '2013-12-02 15:23:10', NULL, 'Deleted', 'No Action', 3),
 (23, 94313, 1, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sdsadasd', '2013-12-01 15:11:41', NULL, 'active', 'Sale', 3),
 (24, 97130, 2, 4, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Awassa', '', 'LCD', '2020-02-04 22:22:22', NULL, 'active', 'sell', 3),
 (25, 57836, 2, 2, 0, '0', 'Negotiable', 'Birr', 'apple', 'unix', 'macbookAir', '', '', '', NULL, 'Addis Ababa', '', 'apple', '2020-02-04 22:22:20', NULL, 'active', 'sell', 3),
@@ -756,46 +781,34 @@ INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `id_con
 DROP TABLE IF EXISTS `item_latest_update`;
 CREATE TABLE IF NOT EXISTS `item_latest_update` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_car` int(40) DEFAULT NULL,
-  `id_computer` int(40) DEFAULT NULL,
-  `id_house` int(40) DEFAULT NULL,
-  `id_household` int(40) DEFAULT NULL,
-  `id_electronic` int(40) DEFAULT NULL,
-  `id_phone` int(40) DEFAULT NULL,
-  `id_other` int(40) DEFAULT NULL,
+  `id_item` int(40) NOT NULL,
+  `field_item_name` varchar(50) NOT NULL,
   `field_upload_time` int(40) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `oID` (`id_other`),
-  UNIQUE KEY `pID` (`id_phone`),
-  UNIQUE KEY `hhID` (`id_household`,`id_phone`,`id_other`),
-  KEY `hID_FK` (`id_house`),
-  KEY `dID_FK` (`id_computer`),
-  KEY `cID_FK` (`id_car`),
-  KEY `eID` (`id_electronic`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_latest_update`
 --
 
-INSERT INTO `item_latest_update` (`id`, `id_car`, `id_computer`, `id_house`, `id_household`, `id_electronic`, `id_phone`, `id_other`, `field_upload_time`) VALUES
-(13, NULL, NULL, NULL, NULL, NULL, NULL, 11, 1378612439),
-(14, NULL, NULL, NULL, NULL, NULL, 4, NULL, 1379522330),
-(15, NULL, NULL, NULL, NULL, NULL, NULL, 13, 1379177100),
-(23, 8, NULL, NULL, NULL, NULL, NULL, NULL, 1378650938),
-(33, 2, NULL, NULL, NULL, NULL, NULL, NULL, 1385751600),
-(34, 3, NULL, NULL, NULL, NULL, NULL, NULL, 1385751598),
-(36, NULL, NULL, NULL, NULL, 2, NULL, NULL, 1385751595),
-(37, NULL, NULL, NULL, NULL, NULL, 6, NULL, 1385751594),
-(38, NULL, NULL, NULL, NULL, NULL, NULL, 15, 1385804018),
-(39, NULL, NULL, NULL, NULL, NULL, NULL, 36, 1387633662),
-(40, NULL, 56, NULL, NULL, NULL, NULL, NULL, 1387636240),
-(42, 16, NULL, NULL, NULL, NULL, NULL, NULL, 1387455782),
-(43, NULL, NULL, NULL, NULL, NULL, NULL, 35, 1387455755),
-(44, NULL, NULL, NULL, NULL, NULL, 29, NULL, 1387455729),
-(45, NULL, NULL, NULL, 25, NULL, NULL, NULL, 1387455629),
-(46, NULL, NULL, NULL, 24, NULL, NULL, NULL, 1387454205),
-(47, NULL, NULL, NULL, NULL, NULL, 24, NULL, 1387449177);
+INSERT INTO `item_latest_update` (`id`, `id_item`, `field_item_name`, `field_upload_time`) VALUES
+(13, 11, 'other', 1378612439),
+(14, 4, 'phone', 1379522330),
+(15, 13, 'other', 1379177100),
+(23, 8, 'car', 1378650938),
+(33, 2, 'car', 1385751600),
+(34, 3, 'car', 1385751598),
+(36, 2, 'electronic', 1385751595),
+(37, 6, 'phone', 1385751594),
+(38, 15, 'other', 1385804018),
+(39, 36, 'other', 1387633662),
+(40, 56, 'computer', 1387636240),
+(42, 16, 'car', 1387455782),
+(43, 35, 'other', 1387455755),
+(44, 29, 'phone', 1387455729),
+(45, 25, 'household', 1387455629),
+(46, 24, 'household', 1387454205),
+(47, 24, 'phone', 1387449177);
 
 -- --------------------------------------------------------
 
@@ -839,13 +852,8 @@ INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact
 (14, 13550, 1, 0, 0, '0', '', 'Birr', 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', 'Sale', 7),
 (15, 40139, 2, 0, 0, '0', '', 'Birr', 'Addis Ababa', '', 'others price check', '2013-11-30 09:34:06', 0, 'active', 'Sale', 7),
 (16, 1214, 1, 0, 0, '0', 'Negotiable', 'Birr', 'Addis Ababa', '', 'newother', '2020-02-04 22:22:29', 0, 'active', 'sell', 7),
-(17, 6743, 9, 0, 0, '0', 'Negotiable', 'Birr', 'Dire Dawa', 'help moving house... call us.\r\n\r\nor leave sms\r\nwe have different types of cars', 'help moving', '2013-12-07 22:44:01', 0, 'Deleted', 'sell', 7),
-(18, 41344, 9, 0, 0, '0', 'Negotiable', 'Birr', 'Addis Ababa', 'cheap price', 'We make moving home as easy as possible', '2013-12-08 01:02:14', 0, 'Deleted', 'sell', 7),
-(19, 10732, 9, 0, 0, '0', 'Negotiable', 'Birr', 'Addis Ababa', 'We make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possibleWe make moving home as easy as possible', 'We make moving home as easy as possible', '2020-02-04 22:22:25', 0, 'active', 'sell', 7),
-(20, 4919, 9, 0, 0, '99', '', 'Birr', 'Addis Ababa', '999', 'We make moving home as easy as possible', '2020-02-04 22:22:24', 0, 'active', 'sell', 7),
 (21, 38846, 1, 0, 0, '13123123', 'Negotiable', 'Birr', 'Addis Ababa', '', 'myother', '2020-02-04 22:22:24', 0, 'active', 'sell', 7),
 (22, 25442, 2, 0, 0, '1000', '', 'USD', 'Addis Ababa', '', 'biycle', '2020-02-04 22:22:22', 0, 'active', 'sell', 7),
-(23, 2823, 9, 0, 0, '333', '', 'Birr', 'Addis Ababa', 'selling tre......', 'tre ', '2020-02-04 22:22:21', 0, 'active', 'sell', 7),
 (24, 28440, 2, 0, 0, '6565', '', 'Birr', 'Addis Ababa', '', 'gfgdfg', '2020-02-02 20:16:33', 0, 'active', 'sell', 7),
 (25, 6444, 2, 0, 0, '5656', '', 'USD', 'Addis Ababa', '', 'sdfsdf', '2020-02-02 20:14:25', 0, 'active', 'sell', 7),
 (26, 515, 2, 0, 0, '4434', '', 'USD', 'Debre Zeit', '', 'asdasdas', '2020-02-02 20:14:24', 0, 'active', 'sell', 7),
@@ -904,12 +912,7 @@ INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact
 (4, 23115, 1, 0, 0, '123456789', '', 'Birr', '000', '', '', '000', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 4),
 (5, 43832, 1, 0, 0, '312321312132', '', 'Birr', '000', '', '000', '', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 4),
 (6, 15728, 2, 0, 0, '3000', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 4),
-(7, 41742, 9, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'one birr', '2013-12-08 01:02:13', NULL, 'Deleted', 'No Action', 4),
-(8, 5029, 9, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '333', '333', '2013-12-08 01:02:12', NULL, 'Deleted', 'No Action', 4),
-(9, 84138, 9, 0, 0, '', 'Negotiable', 'Birr', '000', '', 'iphone', '12', 'Addis Ababa', 'coooooooool ', 'phone nice ', '2020-02-04 22:22:29', NULL, 'active', 'No Action', 4),
 (10, 8034, 2, 0, 0, '', 'Negotiable', 'Birr', '2', '', '000', '000', 'Gambela', '', 'BB for U', '2020-02-04 22:22:22', NULL, 'active', 'sell', 4),
-(11, 3514, 9, 0, 0, '222', 'Negotiable', 'Birr', '009', 'latest 5s', 'iphone', '34', 'Addis Ababa', 'iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3iphone 3', 'iphone 3', '2013-12-16 13:11:20', NULL, 'active', 'sell', 4),
-(12, 35249, 9, 0, 0, '', '', 'Birr', '000', 'tt', '000', '000', 'Addis Ababa', '', 'f', '2013-12-16 13:27:52', NULL, 'active', 'sell', 4),
 (13, 67018, 2, 0, 0, '', '', 'Birr', 'check', '', '000', 'check', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
 (14, 56813, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
 (15, 8647, 2, 0, 0, '', '', 'Birr', '000', '', '000', '34', 'Addis Ababa', '', 'checking the specs', '2020-02-04 22:22:18', NULL, 'active', 'sell', 4),
@@ -1000,12 +1003,8 @@ CREATE TABLE IF NOT EXISTS `user_all` (
 INSERT INTO `user_all` (`id`, `field_user_name`, `field_first_name`, `field_last_name`, `field_email`, `field_phone_nr`, `field_address`, `field_password`, `field_privilege`, `field_contact_method`, `field_term_and_condition`, `field_register_date`, `field_new_password`, `field_activation`) VALUES
 (1, 'Abiy ', 'Terefe', 'Teshome', 'abiy.terefe@hotmail.com', '00727242210', 'Addis Ababa', '$1$HMyfjD80$zA.feICBx9eSMxF5hTmoF/', 'admin', 'Phone and Email', 0, '2014-01-08 18:44:35', '$1$Z3ePGkQZ$vxa/jfEHmvmKOz1E0nFj8.', '1def0fabca76ef6dcac4fb163de00ceb'),
 (2, 'www', 'www', 'www', 'wendeworku@gmail.com', '1', 'ADD', '$1$I05KWw3Y$JkO3l5NRdMmNuK7eRMy8q0', 'admin', '', 0, '2014-01-02 19:28:46', '$1$znTU3uwD$0giEwL8TrMDZT1pHsyaPF0', NULL),
-(3, 'jjj', 'jjj', 'jjj', 'jjj@hulutera.com', '1', 'ADD', '123', 'admin', '', 0, '2020-02-05 06:36:20', NULL, NULL),
-(4, 'yyy', 'yyy', 'yyy', 'yyy@hulutera.com', '1', 'ADD', '123', 'mod', '', 0, '2020-02-06 07:00:23', NULL, NULL),
 (7, 'www', 'wende', 'wefewfew', 'wendeworku@yahoo.com', '0', '', '123', 'user', 'both', 0, '2013-11-06 15:01:11', NULL, NULL),
-(8, 'yidne', 'yidne', 'john', 'yidnekachew@gmail.com', '704353114', 'Solna', '$1$hVe9l8y4$hhQ3XeFX7Q3zFaeIwiwjm0', 'user', 'both', 0, '2014-01-14 14:28:10', '$1$XhUbKZt1$txhMiPX8Wh0ZyjdIwQx.z0', NULL),
-(9, 'jemil', 's', 'b', 'jemilsh@gmail.com', '70405817', 'Sweden', '$1$UvWBigNj$wsThR3gxariqeixJDxR450', 'user', 'both', 0, '2014-01-13 20:34:27', '$1$zQdd51vI$UdcGl/HangAHmjQjjKqDV1', 'f986bbe2ec3bc5d92e5fbf5d715911b9'),
-(10, 'negadiew', 'daniel', 'a', 'dan_assefa@yahoo.com', '0', '', 'leseitye2+', 'user', 'both', 0, '2020-02-06 04:19:00', NULL, NULL),
+(10, 'negadiew', 'daniel', 'assefa', 'dan_assefa@yahoo.com', '0', '', 'leseitye2+', 'user', 'both', 0, '2020-02-10 20:17:30', NULL, NULL),
 (11, 'abiy', 'Terefe', 'teshome', 'dochoex@gmail.com', '12121', 'aad', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', 'webmaster', 'both', 0, '2020-01-24 16:05:10', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL);
 
 -- --------------------------------------------------------
@@ -1137,7 +1136,7 @@ ALTER TABLE `item_car`
 --
 ALTER TABLE `item_computer`
   ADD CONSTRAINT `item_computer_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_all` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_computer_ibfk_2` FOREIGN KEY (`id_catergory`) REFERENCES `category_computer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `item_computer_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category_computer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `item_electronic`
@@ -1159,18 +1158,6 @@ ALTER TABLE `item_house`
 ALTER TABLE `item_household`
   ADD CONSTRAINT `item_household_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_all` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `item_household_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category_household` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `item_latest_update`
---
-ALTER TABLE `item_latest_update`
-  ADD CONSTRAINT `item_latest_update_ibfk_10` FOREIGN KEY (`id_household`) REFERENCES `item_household` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_11` FOREIGN KEY (`id_phone`) REFERENCES `item_phone` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_12` FOREIGN KEY (`id_other`) REFERENCES `item_other` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_13` FOREIGN KEY (`id_electronic`) REFERENCES `item_electronic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_7` FOREIGN KEY (`id_car`) REFERENCES `item_car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_8` FOREIGN KEY (`id_computer`) REFERENCES `item_computer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `item_latest_update_ibfk_9` FOREIGN KEY (`id_house`) REFERENCES `item_house` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `item_other`

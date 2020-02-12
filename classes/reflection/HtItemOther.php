@@ -703,6 +703,8 @@ class HtItemOther extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
+        }else {
+            $this->selectAll();
         }
     }
 
@@ -762,6 +764,26 @@ class HtItemOther extends MySqlRecord
         }
         return $this->affected_rows;
     }
+
+   /**
+     * Fetchs all table row of item_other into the object.
+     *
+     * Fetched all table fields values are assigned to class attributes and they can be managed by using
+     * the accessors/modifiers methods of the class.
+     * @return int affected selected row
+     * @category DML
+     */
+    public function selectAll()
+    {
+        $sql = <<< SQL
+            SELECT * FROM {$this->getTableName()}
+SQL;
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+    }
+
 
     /**
      * Deletes a specific row from the table item_other
@@ -893,5 +915,29 @@ SQL;
         }
     }
 
+    /**
+     * Facility for getting relational row of item_other
+     *
+     * @category DML Helper
+     * @return mixed MySQLi join result
+     */
+    public function leftJoin()
+    {
+        $sql = <<< SQL
+            SELECT * FROM item_other
+            LEFT JOIN image_other    ON  item_other.id = image_other.id
+            LEFT JOIN user_all     ON  item_other.id_user = user_all.id
+            LEFT JOIN category_other ON  item_other.id_category = category_other.id
+            LEFT JOIN category_contact ON item_other.id_contact_category = category_contact.id
+            WHERE
+            item_other.id={$this->parseValue($this->id, 'int')}
+SQL;
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->resultSet;
+    }
 }
 ?>

@@ -104,7 +104,7 @@ if (isset($_GET["build"])) {
     echo "<script>$('#results').append('" . $msg . "&#xA;" . "');</script>";
 
     // Destination path for the generated classes
-    $destinationPath = dirname(__FILE__) . "/classes/";
+    $destinationPath = dirname(__FILE__) . "/temp/";
     // $destinationPath = "source/";
 
     // Create reflection object and invoke classes generation from the specified schema into mysql_connection.inc.php

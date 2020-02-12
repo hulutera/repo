@@ -203,6 +203,25 @@ class HtItemAll extends MySqlRecord
     }
 
     /**
+     * Fetchs all table row of item_all into the object.
+     *
+     * Fetched table fields values are assigned to class attributes and they can be managed by using
+     * the accessors/modifiers methods of the class.
+     * @param int $id the primary key id value of table item_all which identifies the row to select.
+     * @return int affected selected row
+     * @category DML
+     */
+    public function selectAll()
+    {
+        $sql =  "SELECT * FROM item_all";
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet=$result;
+        $this->lastSql = $sql;
+        return $this->resultSet;
+    }
+
+        /**
      * Fetchs a table row of item_all into the object.
      *
      * Fetched table fields values are assigned to class attributes and they can be managed by using

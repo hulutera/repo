@@ -3,12 +3,11 @@ global $documnetRootPath;
 
 require_once $documnetRootPath . "/classes/reflection/class.config.php";
 
-
 /**
  * Class HtItemLatestUpdate
  * @extends MySqlRecord
  * @filesource HtItemLatestUpdate.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -136,6 +135,34 @@ class HtItemLatestUpdate extends MySqlRecord
     private $idOther;
 
     /**
+     * Class attribute for mapping table field id_item
+     *
+     * Comment for field id_item: Not specified.<br>
+     * Field information:
+     *  - Data type: int(40)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var int $idItem
+     */
+    private $idItem;
+
+    /**
+     * Class attribute for mapping table field field_item_name
+     *
+     * Comment for field field_item_name: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(50)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $fieldItemName
+     */
+    private $fieldItemName;
+
+    /**
      * Class attribute for mapping table field field_upload_time
      *
      * Comment for field field_upload_time: Not specified.<br>
@@ -153,7 +180,7 @@ class HtItemLatestUpdate extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_latest_update
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2xhdGVzdF91cGRhdGVgICgKICBgaWRgIGludCg0MCkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX2NhcmAgaW50KDQwKSBERUZBVUxUIE5VTEwsCiAgYGlkX2NvbXB1dGVyYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBgaWRfaG91c2VgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9ob3VzZWhvbGRgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9lbGVjdHJvbmljYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBgaWRfcGhvbmVgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9vdGhlcmAgaW50KDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF90aW1lYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBQUklNQVJZIEtFWSAoYGlkYCksCiAgVU5JUVVFIEtFWSBgb0lEYCAoYGlkX290aGVyYCksCiAgVU5JUVVFIEtFWSBgcElEYCAoYGlkX3Bob25lYCksCiAgVU5JUVVFIEtFWSBgaGhJRGAgKGBpZF9ob3VzZWhvbGRgLGBpZF9waG9uZWAsYGlkX290aGVyYCksCiAgS0VZIGBoSURfRktgIChgaWRfaG91c2VgKSwKICBLRVkgYGRJRF9GS2AgKGBpZF9jb21wdXRlcmApLAogIEtFWSBgY0lEX0ZLYCAoYGlkX2NhcmApLAogIEtFWSBgZUlEYCAoYGlkX2VsZWN0cm9uaWNgKSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma18xMGAgRk9SRUlHTiBLRVkgKGBpZF9ob3VzZWhvbGRgKSBSRUZFUkVOQ0VTIGBpdGVtX2hvdXNlaG9sZGAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzExYCBGT1JFSUdOIEtFWSAoYGlkX3Bob25lYCkgUkVGRVJFTkNFUyBgaXRlbV9waG9uZWAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzEyYCBGT1JFSUdOIEtFWSAoYGlkX290aGVyYCkgUkVGRVJFTkNFUyBgaXRlbV9vdGhlcmAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzEzYCBGT1JFSUdOIEtFWSAoYGlkX2VsZWN0cm9uaWNgKSBSRUZFUkVOQ0VTIGBpdGVtX2VsZWN0cm9uaWNgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma183YCBGT1JFSUdOIEtFWSAoYGlkX2NhcmApIFJFRkVSRU5DRVMgYGl0ZW1fY2FyYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9sYXRlc3RfdXBkYXRlX2liZmtfOGAgRk9SRUlHTiBLRVkgKGBpZF9jb21wdXRlcmApIFJFRkVSRU5DRVMgYGl0ZW1fY29tcHV0ZXJgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma185YCBGT1JFSUdOIEtFWSAoYGlkX2hvdXNlYCkgUkVGRVJFTkNFUyBgaXRlbV9ob3VzZWAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD00OCBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2xhdGVzdF91cGRhdGVgICgKICBgaWRgIGludCg0MCkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX2NhcmAgaW50KDQwKSBERUZBVUxUIE5VTEwsCiAgYGlkX2NvbXB1dGVyYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBgaWRfaG91c2VgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9ob3VzZWhvbGRgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9lbGVjdHJvbmljYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBgaWRfcGhvbmVgIGludCg0MCkgREVGQVVMVCBOVUxMLAogIGBpZF9vdGhlcmAgaW50KDQwKSBERUZBVUxUIE5VTEwsCiAgYGlkX2l0ZW1gIGludCg0MCkgTk9UIE5VTEwsCiAgYGZpZWxkX2l0ZW1fbmFtZWAgdmFyY2hhcig1MCkgTk9UIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF90aW1lYCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBQUklNQVJZIEtFWSAoYGlkYCksCiAgVU5JUVVFIEtFWSBgb0lEYCAoYGlkX290aGVyYCksCiAgVU5JUVVFIEtFWSBgcElEYCAoYGlkX3Bob25lYCksCiAgVU5JUVVFIEtFWSBgaGhJRGAgKGBpZF9ob3VzZWhvbGRgLGBpZF9waG9uZWAsYGlkX290aGVyYCksCiAgS0VZIGBoSURfRktgIChgaWRfaG91c2VgKSwKICBLRVkgYGRJRF9GS2AgKGBpZF9jb21wdXRlcmApLAogIEtFWSBgY0lEX0ZLYCAoYGlkX2NhcmApLAogIEtFWSBgZUlEYCAoYGlkX2VsZWN0cm9uaWNgKSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma18xMGAgRk9SRUlHTiBLRVkgKGBpZF9ob3VzZWhvbGRgKSBSRUZFUkVOQ0VTIGBpdGVtX2hvdXNlaG9sZGAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzExYCBGT1JFSUdOIEtFWSAoYGlkX3Bob25lYCkgUkVGRVJFTkNFUyBgaXRlbV9waG9uZWAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzEyYCBGT1JFSUdOIEtFWSAoYGlkX290aGVyYCkgUkVGRVJFTkNFUyBgaXRlbV9vdGhlcmAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFLAogIENPTlNUUkFJTlQgYGl0ZW1fbGF0ZXN0X3VwZGF0ZV9pYmZrXzEzYCBGT1JFSUdOIEtFWSAoYGlkX2VsZWN0cm9uaWNgKSBSRUZFUkVOQ0VTIGBpdGVtX2VsZWN0cm9uaWNgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma183YCBGT1JFSUdOIEtFWSAoYGlkX2NhcmApIFJFRkVSRU5DRVMgYGl0ZW1fY2FyYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9sYXRlc3RfdXBkYXRlX2liZmtfOGAgRk9SRUlHTiBLRVkgKGBpZF9jb21wdXRlcmApIFJFRkVSRU5DRVMgYGl0ZW1fY29tcHV0ZXJgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2xhdGVzdF91cGRhdGVfaWJma185YCBGT1JFSUdOIEtFWSAoYGlkX2hvdXNlYCkgUkVGRVJFTkNFUyBgaXRlbV9ob3VzZWAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD00OCBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -165,7 +192,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -178,7 +205,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdCar($idCar)
     {
-        $this->idCar = (int)$idCar;
+        $this->idCar = (int) $idCar;
     }
 
     /**
@@ -191,7 +218,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdComputer($idComputer)
     {
-        $this->idComputer = (int)$idComputer;
+        $this->idComputer = (int) $idComputer;
     }
 
     /**
@@ -204,7 +231,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdHouse($idHouse)
     {
-        $this->idHouse = (int)$idHouse;
+        $this->idHouse = (int) $idHouse;
     }
 
     /**
@@ -217,7 +244,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdHousehold($idHousehold)
     {
-        $this->idHousehold = (int)$idHousehold;
+        $this->idHousehold = (int) $idHousehold;
     }
 
     /**
@@ -230,7 +257,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdElectronic($idElectronic)
     {
-        $this->idElectronic = (int)$idElectronic;
+        $this->idElectronic = (int) $idElectronic;
     }
 
     /**
@@ -243,7 +270,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdPhone($idPhone)
     {
-        $this->idPhone = (int)$idPhone;
+        $this->idPhone = (int) $idPhone;
     }
 
     /**
@@ -256,7 +283,33 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdOther($idOther)
     {
-        $this->idOther = (int)$idOther;
+        $this->idOther = (int) $idOther;
+    }
+
+    /**
+     * setIdItem Sets the class attribute idItem with a given value
+     *
+     * The attribute idItem maps the field id_item defined as int(40).<br>
+     * Comment for field id_item: Not specified.<br>
+     * @param int $idItem
+     * @category Modifier
+     */
+    public function setIdItem($idItem)
+    {
+        $this->idItem = (int)$idItem;
+    }
+
+    /**
+     * setFieldItemName Sets the class attribute fieldItemName with a given value
+     *
+     * The attribute fieldItemName maps the field field_item_name defined as varchar(50).<br>
+     * Comment for field field_item_name: Not specified.<br>
+     * @param string $fieldItemName
+     * @category Modifier
+     */
+    public function setFieldItemName($fieldItemName)
+    {
+        $this->fieldItemName = (string) $fieldItemName;
     }
 
     /**
@@ -269,7 +322,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setFieldUploadTime($fieldUploadTime)
     {
-        $this->fieldUploadTime = (int)$fieldUploadTime;
+        $this->fieldUploadTime = (int) $fieldUploadTime;
     }
 
     /**
@@ -377,6 +430,32 @@ class HtItemLatestUpdate extends MySqlRecord
     }
 
     /**
+     * getIdItem gets the class attribute idItem value
+     *
+     * The attribute idItem maps the field id_item defined as int(40).<br>
+     * Comment for field id_item: Not specified.
+     * @return int $idItem
+     * @category Accessor of $idItem
+     */
+    public function getIdItem()
+    {
+        return $this->idItem;
+    }
+
+    /**
+     * getFieldItemName gets the class attribute fieldItemName value
+     *
+     * The attribute fieldItemName maps the field field_item_name defined as varchar(50).<br>
+     * Comment for field field_item_name: Not specified.
+     * @return string $fieldItemName
+     * @category Accessor of $fieldItemName
+     */
+    public function getFieldItemName()
+    {
+        return $this->fieldItemName;
+    }
+
+    /**
      * getFieldUploadTime gets the class attribute fieldUploadTime value
      *
      * The attribute fieldUploadTime maps the field field_upload_time defined as int(40).<br>
@@ -400,10 +479,10 @@ class HtItemLatestUpdate extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "item_latest_update";
@@ -423,6 +502,8 @@ class HtItemLatestUpdate extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
+        } else {
+            $this->selectAll();
         }
     }
 
@@ -439,7 +520,6 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -456,9 +536,9 @@ class HtItemLatestUpdate extends MySqlRecord
         $sql =  "SELECT * FROM item_latest_update WHERE id={$this->parseValue($id,'int')}";
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
             @$this->id = (integer)$rowObject->id;
             @$this->idCar = (integer)$rowObject->id_car;
@@ -468,12 +548,34 @@ class HtItemLatestUpdate extends MySqlRecord
             @$this->idElectronic = (integer)$rowObject->id_electronic;
             @$this->idPhone = (integer)$rowObject->id_phone;
             @$this->idOther = (integer)$rowObject->id_other;
+            @$this->idItem = (integer)$rowObject->id_item;
+            @$this->fieldItemName = $this->replaceAposBackSlash($rowObject->field_item_name);
             @$this->fieldUploadTime = (integer)$rowObject->field_upload_time;
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
+    }
+
+
+    /**
+     * Fetchs all table row of item_latest_update into the object.
+     *
+     * Fetched all table fields values are assigned to class attributes and they can be managed by using
+     * the accessors/modifiers methods of the class.
+     * @return int affected selected row
+     * @category DML
+     */
+    public function selectAll()
+    {
+        $sql = <<< SQL
+            SELECT * FROM item_latest_update 
+SQL;
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
     }
 
     /**
@@ -484,12 +586,12 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM item_latest_update WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM item_latest_update WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -509,7 +611,7 @@ class HtItemLatestUpdate extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_latest_update
-            (id_car,id_computer,id_house,id_household,id_electronic,id_phone,id_other,field_upload_time)
+            (id_car,id_computer,id_house,id_household,id_electronic,id_phone,id_other,id_item,field_item_name,field_upload_time)
             VALUES(
 			{$this->parseValue($this->idCar)},
 			{$this->parseValue($this->idComputer)},
@@ -518,13 +620,15 @@ class HtItemLatestUpdate extends MySqlRecord
 			{$this->parseValue($this->idElectronic)},
 			{$this->parseValue($this->idPhone)},
 			{$this->parseValue($this->idOther)},
+			{$this->parseValue($this->idItem)},
+			{$this->parseValue($this->fieldItemName,'notNumber')},
 			{$this->parseValue($this->fieldUploadTime)})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -558,14 +662,16 @@ SQL;
 				id_electronic={$this->parseValue($this->idElectronic)},
 				id_phone={$this->parseValue($this->idPhone)},
 				id_other={$this->parseValue($this->idOther)},
+				id_item={$this->parseValue($this->idItem)},
+				field_item_name={$this->parseValue($this->fieldItemName,'notNumber')},
 				field_upload_time={$this->parseValue($this->fieldUploadTime)}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -592,5 +698,50 @@ SQL;
         }
     }
 
+
+    /*
+             if(!empty($test->getIdCar()))
+            {
+               $test->setFieldItemName('car'); 
+               $tmpId=$test->getIdCar();
+               $test->setIdItem($tmpId);               
+            }
+            if(!empty($test->getIdComputer()))
+            {
+               $test->setFieldItemName('computer'); 
+               $tmpId=$test->getIdComputer();
+               $test->setIdItem($tmpId);                 
+            }
+            if(!empty($test->getIdHouse()))
+            {
+               $test->setFieldItemName('house');  
+               $tmpId=$test->getIdHouse();
+               $test->setIdItem($tmpId);                
+            }
+            if(!empty($test->getIdPhone()))
+            {
+               $test->setFieldItemName('phone'); 
+               $tmpId=$test->getIdPhone();
+               $test->setIdItem($tmpId);                 
+            }
+            if(!empty($test->getIdHousehold()))
+            {
+               $test->setFieldItemName('household'); 
+               $tmpId=$test->getIdHousehold();
+               $test->setIdItem($tmpId);                 
+            }
+            if(!empty($test->getIdOther()))
+            {
+               $test->setFieldItemName('other'); 
+               $tmpId=$test->getIdOther();
+               $test->setIdItem($tmpId);                 
+            }
+            if(!empty($test->getIdElectronic()))
+            {
+               $test->setFieldItemName('electronic'); 
+               $tmpId=$test->getIdElectronic();
+               $test->setIdItem($tmpId);                 
+            }
+            $test->updateCurrent();
+    */
 }
-?>
