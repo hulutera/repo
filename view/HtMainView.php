@@ -90,15 +90,24 @@ class HtMainView
         while ($row = $result->fetch_assoc()) {
             $id = $row['id'];
             $itemObject = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $id);
-            if (!empty($itemObject)) {
-                $itemObject->leftJoin();
-                $itemResult = $itemObject->getResultSet();
-                while ($p = $itemResult->fetch_assoc()) {
-                    foreach ($p as $key => $value) {
-                        echo '<div class="' . $this->_runnerName . '_' . $id . '">' . $value . '</div>';
-                    }
-                }
-            }
+            $itemObject->display();//Specific();
+            return;
+            // $test = $itemObject->__toString();
+            // $test2 = json_decode($test, true);
+            // var_dump($test2[0]['CONTROL']);
+            // var_dump($test2[1]['PRICE']);
+            // var_dump($test2[2]['SPECIFIC']);
+            // var_dump($test2[3]['COMMON']);
+            // if (!empty($itemObject)) {
+            //     $itemObject->leftJoin();
+            //     $itemResult = $itemObject->getResultSet();
+            //     while ($p = $itemResult->fetch_assoc()) {
+            //         foreach ($p as $key => $value) {
+            //             $p['id'] = $id;
+            //             echo '<div class="' . $this->_runnerName . '_' . $id . '">'.$key.'=' . $value . '</div>';
+            //         }
+            //     }
+            // }
         }
     }
 

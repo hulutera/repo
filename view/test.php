@@ -15,7 +15,7 @@ require_once $documnetRootPath . '/includes/common.inc.php';
 			<?php headerAndSearchCode("");?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php (new HtMainView("all",null))->showAll(); // select * from all items * ?>
+					<?php (new HtMainView("car",null))->show(); // select * from all items * ?>
 					<?php //(new MainView2("car",null))->show(); // select * car?>
 					<?php //(new MainView2("car",13))->show();   // select * car where id=13?>
 					<?php //(new MainView2("latest",null))->show(); //select * latestupdate ?>

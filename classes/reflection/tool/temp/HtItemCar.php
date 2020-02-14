@@ -2,16 +2,12 @@
 global $documnetRootPath;
 
 require_once $documnetRootPath . "/classes/reflection/class.config.php";
-require_once $documnetRootPath . "/classes/reflection/HtCategoryCar.php";
-require_once $documnetRootPath . "/classes/reflection/HtUserAll.php";
-
-
 
 /**
  * Class HtItemCar
  * @extends MySqlRecord
  * @filesource HtItemCar.php
- */
+*/
 
 // namespace hulutera;
 
@@ -420,7 +416,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int) $id;
+        $this->id = (int)$id;
     }
 
     /**
@@ -433,7 +429,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setIdTemp($idTemp)
     {
-        $this->idTemp = (int) $idTemp;
+        $this->idTemp = (int)$idTemp;
     }
 
     /**
@@ -446,7 +442,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setIdUser($idUser)
     {
-        $this->idUser = (int) $idUser;
+        $this->idUser = (int)$idUser;
     }
 
     /**
@@ -459,7 +455,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setIdCategory($idCategory)
     {
-        $this->idCategory = (int) $idCategory;
+        $this->idCategory = (int)$idCategory;
     }
 
     /**
@@ -472,7 +468,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->fieldContactMethod = (string) $fieldContactMethod;
+        $this->fieldContactMethod = (string)$fieldContactMethod;
     }
 
     /**
@@ -485,7 +481,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldPriceRent($fieldPriceRent)
     {
-        $this->fieldPriceRent = (string) $fieldPriceRent;
+        $this->fieldPriceRent = (string)$fieldPriceRent;
     }
 
     /**
@@ -498,7 +494,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldPriceSell($fieldPriceSell)
     {
-        $this->fieldPriceSell = (string) $fieldPriceSell;
+        $this->fieldPriceSell = (string)$fieldPriceSell;
     }
 
     /**
@@ -511,7 +507,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldPriceNego($fieldPriceNego)
     {
-        $this->fieldPriceNego = (string) $fieldPriceNego;
+        $this->fieldPriceNego = (string)$fieldPriceNego;
     }
 
     /**
@@ -524,7 +520,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldPriceRate($fieldPriceRate)
     {
-        $this->fieldPriceRate = (string) $fieldPriceRate;
+        $this->fieldPriceRate = (string)$fieldPriceRate;
     }
 
     /**
@@ -537,7 +533,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldPriceCurrency($fieldPriceCurrency)
     {
-        $this->fieldPriceCurrency = (string) $fieldPriceCurrency;
+        $this->fieldPriceCurrency = (string)$fieldPriceCurrency;
     }
 
     /**
@@ -550,7 +546,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldMake($fieldMake)
     {
-        $this->fieldMake = (string) $fieldMake;
+        $this->fieldMake = (string)$fieldMake;
     }
 
     /**
@@ -563,7 +559,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldModel($fieldModel)
     {
-        $this->fieldModel = (string) $fieldModel;
+        $this->fieldModel = (string)$fieldModel;
     }
 
     /**
@@ -576,7 +572,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldModelYear($fieldModelYear)
     {
-        $this->fieldModelYear = (int) $fieldModelYear;
+        $this->fieldModelYear = (int)$fieldModelYear;
     }
 
     /**
@@ -589,7 +585,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldNoOfSeat($fieldNoOfSeat)
     {
-        $this->fieldNoOfSeat = (int) $fieldNoOfSeat;
+        $this->fieldNoOfSeat = (int)$fieldNoOfSeat;
     }
 
     /**
@@ -602,7 +598,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldFuelType($fieldFuelType)
     {
-        $this->fieldFuelType = (string) $fieldFuelType;
+        $this->fieldFuelType = (string)$fieldFuelType;
     }
 
     /**
@@ -615,7 +611,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldColor($fieldColor)
     {
-        $this->fieldColor = (string) $fieldColor;
+        $this->fieldColor = (string)$fieldColor;
     }
 
     /**
@@ -628,7 +624,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldGearType($fieldGearType)
     {
-        $this->fieldGearType = (string) $fieldGearType;
+        $this->fieldGearType = (string)$fieldGearType;
     }
 
     /**
@@ -641,7 +637,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldMilage($fieldMilage)
     {
-        $this->fieldMilage = (string) $fieldMilage;
+        $this->fieldMilage = (string)$fieldMilage;
     }
 
     /**
@@ -654,7 +650,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldImage($fieldImage)
     {
-        $this->fieldImage = (string) $fieldImage;
+        $this->fieldImage = (string)$fieldImage;
     }
 
     /**
@@ -667,7 +663,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldLocation($fieldLocation)
     {
-        $this->fieldLocation = (string) $fieldLocation;
+        $this->fieldLocation = (string)$fieldLocation;
     }
 
     /**
@@ -680,7 +676,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldExtraInfo($fieldExtraInfo)
     {
-        $this->fieldExtraInfo = (string) $fieldExtraInfo;
+        $this->fieldExtraInfo = (string)$fieldExtraInfo;
     }
 
     /**
@@ -693,7 +689,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldTitle($fieldTitle)
     {
-        $this->fieldTitle = (string) $fieldTitle;
+        $this->fieldTitle = (string)$fieldTitle;
     }
 
     /**
@@ -706,7 +702,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldUploadDate($fieldUploadDate)
     {
-        $this->fieldUploadDate = (string) $fieldUploadDate;
+        $this->fieldUploadDate = (string)$fieldUploadDate;
     }
 
     /**
@@ -719,7 +715,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldTotalView($fieldTotalView)
     {
-        $this->fieldTotalView = (int) $fieldTotalView;
+        $this->fieldTotalView = (int)$fieldTotalView;
     }
 
     /**
@@ -732,7 +728,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldStatus($fieldStatus)
     {
-        $this->fieldStatus = (string) $fieldStatus;
+        $this->fieldStatus = (string)$fieldStatus;
     }
 
     /**
@@ -745,7 +741,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldMarketCategory($fieldMarketCategory)
     {
-        $this->fieldMarketCategory = (string) $fieldMarketCategory;
+        $this->fieldMarketCategory = (string)$fieldMarketCategory;
     }
 
     /**
@@ -758,7 +754,7 @@ class HtItemCar extends MySqlRecord
      */
     public function setFieldTableType($fieldTableType)
     {
-        $this->fieldTableType = (int) $fieldTableType;
+        $this->fieldTableType = (int)$fieldTableType;
     }
 
     /**
@@ -1123,10 +1119,10 @@ class HtItemCar extends MySqlRecord
     }
 
     /**
-     * Gets the name of the managed table
-     * @return string
-     * @category Accessor
-     */
+    * Gets the name of the managed table
+    * @return string
+    * @category Accessor
+    */
     public function getTableName()
     {
         return "item_car";
@@ -1146,8 +1142,6 @@ class HtItemCar extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
-        } else {
-            $this->selectAll();
         }
     }
 
@@ -1164,51 +1158,7 @@ class HtItemCar extends MySqlRecord
      */
     public function close()
     {
-    }
-
-    /** */
-    public function __toString()
-    {
-        $result = [
-            ["CONTROL" => [
-                "id" => $this->id,
-                "idTemp" => $this->idTemp,
-                "idUser" => $this->idUser,
-                "idCategory" => $this->idCategory,
-                "fieldContactMethod" => $this->fieldContactMethod,
-                "fieldMarketCategory" => $this->fieldMarketCategory,
-                "fieldTableType" => $this->fieldTableType,
-                "allowUpdate" => $this->allowUpdate
-            ]],
-            ["PRICE" => [
-                "fieldPriceRent" => $this->fieldPriceRent,
-                "fieldPriceSell" => $this->fieldPriceSell,
-                "fieldPriceNego" => $this->fieldPriceNego,
-                "fieldPriceRate" => $this->fieldPriceRate,
-                "fieldPriceCurrency" => $this->fieldPriceCurrency
-            ]],
-            ["SPECIFIC" => [
-                "fieldMake" => $this->fieldMake,
-                "fieldModel" => $this->fieldModel,
-                "fieldModelYear" => $this->fieldModelYear,
-                "fieldNoOfSeat" => $this->fieldNoOfSeat,
-                "fieldFuelType" => $this->fieldFuelType,
-                "fieldColor" => $this->fieldColor,
-                "fieldGearType" => $this->fieldGearType,
-                "fieldMilage" => $this->fieldMilage,
-                "fieldImage" => $this->fieldImage
-            ]],
-            ["COMMON" => [
-                "fieldLocation" => $this->fieldLocation,
-                "fieldExtraInfo" => $this->fieldExtraInfo,
-                "fieldTitle" => $this->fieldTitle,
-                "fieldUploadDate" => $this->fieldUploadDate,
-                "fieldTotalView" => $this->fieldTotalView,
-                "fieldStatus" => $this->fieldStatus
-            ]]
-        ];
-
-        return  json_encode($result);
+        unset($this);
     }
 
     /**
@@ -1222,17 +1172,17 @@ class HtItemCar extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
+        $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id,'int')}";
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet = $result;
+        $this->resultSet=$result;
         $this->lastSql = $sql;
-        if ($result) {
+        if ($result){
             $rowObject = $result->fetch_object();
-            @$this->id = (int) $rowObject->id;
-            @$this->idTemp = (int) $rowObject->id_temp;
-            @$this->idUser = (int) $rowObject->id_user;
-            @$this->idCategory = (int) $rowObject->id_category;
+            @$this->id = (integer)$rowObject->id;
+            @$this->idTemp = (integer)$rowObject->id_temp;
+            @$this->idUser = (integer)$rowObject->id_user;
+            @$this->idCategory = (integer)$rowObject->id_category;
             @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
             @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
@@ -1242,7 +1192,7 @@ class HtItemCar extends MySqlRecord
             @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
             @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
             @$this->fieldModelYear = $rowObject->field_model_year;
-            @$this->fieldNoOfSeat = (int) $rowObject->field_no_of_seat;
+            @$this->fieldNoOfSeat = (integer)$rowObject->field_no_of_seat;
             @$this->fieldFuelType = $this->replaceAposBackSlash($rowObject->field_fuel_type);
             @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
             @$this->fieldGearType = $this->replaceAposBackSlash($rowObject->field_gear_type);
@@ -1252,34 +1202,15 @@ class HtItemCar extends MySqlRecord
             @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
             @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
             @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (int) $rowObject->field_total_view;
+            @$this->fieldTotalView = (integer)$rowObject->field_total_view;
             @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
             @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (int) $rowObject->field_table_type;
+            @$this->fieldTableType = (integer)$rowObject->field_table_type;
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
-    }
-
-    /**
-     * Fetchs all table row of item_car into the object.
-     *
-     * Fetched all table fields values are assigned to class attributes and they can be managed by using
-     * the accessors/modifiers methods of the class.
-     * @return int affected selected row
-     * @category DML
-     */
-    public function selectAll()
-    {
-        $sql = <<< SQL
-            SELECT * FROM {$this->getTableName()}
-SQL;
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
     }
 
     /**
@@ -1290,12 +1221,12 @@ SQL;
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM item_car WHERE id={$this->parseValue($id, 'int')}";
+        $sql = "DELETE FROM item_car WHERE id={$this->parseValue($id,'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
     }
@@ -1320,35 +1251,35 @@ SQL;
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
 			{$this->parseValue($this->idCategory)},
-			{$this->parseValue($this->fieldContactMethod, 'notNumber')},
-			{$this->parseValue($this->fieldPriceRent, 'notNumber')},
-			{$this->parseValue($this->fieldPriceSell, 'notNumber')},
-			{$this->parseValue($this->fieldPriceNego, 'notNumber')},
-			{$this->parseValue($this->fieldPriceRate, 'notNumber')},
-			{$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-			{$this->parseValue($this->fieldMake, 'notNumber')},
-			{$this->parseValue($this->fieldModel, 'notNumber')},
+			{$this->parseValue($this->fieldContactMethod,'notNumber')},
+			{$this->parseValue($this->fieldPriceRent,'notNumber')},
+			{$this->parseValue($this->fieldPriceSell,'notNumber')},
+			{$this->parseValue($this->fieldPriceNego,'notNumber')},
+			{$this->parseValue($this->fieldPriceRate,'notNumber')},
+			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+			{$this->parseValue($this->fieldMake,'notNumber')},
+			{$this->parseValue($this->fieldModel,'notNumber')},
 			{$this->parseValue($this->fieldModelYear)},
 			{$this->parseValue($this->fieldNoOfSeat)},
-			{$this->parseValue($this->fieldFuelType, 'notNumber')},
-			{$this->parseValue($this->fieldColor, 'notNumber')},
-			{$this->parseValue($this->fieldGearType, 'notNumber')},
-			{$this->parseValue($this->fieldMilage, 'notNumber')},
-			{$this->parseValue($this->fieldImage, 'notNumber')},
-			{$this->parseValue($this->fieldLocation, 'notNumber')},
-			{$this->parseValue($this->fieldExtraInfo, 'notNumber')},
-			{$this->parseValue($this->fieldTitle, 'notNumber')},
-			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
+			{$this->parseValue($this->fieldFuelType,'notNumber')},
+			{$this->parseValue($this->fieldColor,'notNumber')},
+			{$this->parseValue($this->fieldGearType,'notNumber')},
+			{$this->parseValue($this->fieldMilage,'notNumber')},
+			{$this->parseValue($this->fieldImage,'notNumber')},
+			{$this->parseValue($this->fieldLocation,'notNumber')},
+			{$this->parseValue($this->fieldExtraInfo,'notNumber')},
+			{$this->parseValue($this->fieldTitle,'notNumber')},
+			{$this->parseValue($this->fieldUploadDate,'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
-			{$this->parseValue($this->fieldStatus, 'notNumber')},
-			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
+			{$this->parseValue($this->fieldStatus,'notNumber')},
+			{$this->parseValue($this->fieldMarketCategory,'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -1378,36 +1309,36 @@ SQL;
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
-				field_contact_method={$this->parseValue($this->fieldContactMethod, 'notNumber')},
-				field_price_rent={$this->parseValue($this->fieldPriceRent, 'notNumber')},
-				field_price_sell={$this->parseValue($this->fieldPriceSell, 'notNumber')},
-				field_price_nego={$this->parseValue($this->fieldPriceNego, 'notNumber')},
-				field_price_rate={$this->parseValue($this->fieldPriceRate, 'notNumber')},
-				field_price_currency={$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-				field_make={$this->parseValue($this->fieldMake, 'notNumber')},
-				field_model={$this->parseValue($this->fieldModel, 'notNumber')},
+				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
+				field_price_rent={$this->parseValue($this->fieldPriceRent,'notNumber')},
+				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
+				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
+				field_price_rate={$this->parseValue($this->fieldPriceRate,'notNumber')},
+				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+				field_make={$this->parseValue($this->fieldMake,'notNumber')},
+				field_model={$this->parseValue($this->fieldModel,'notNumber')},
 				field_model_year={$this->parseValue($this->fieldModelYear)},
 				field_no_of_seat={$this->parseValue($this->fieldNoOfSeat)},
-				field_fuel_type={$this->parseValue($this->fieldFuelType, 'notNumber')},
-				field_color={$this->parseValue($this->fieldColor, 'notNumber')},
-				field_gear_type={$this->parseValue($this->fieldGearType, 'notNumber')},
-				field_milage={$this->parseValue($this->fieldMilage, 'notNumber')},
-				field_image={$this->parseValue($this->fieldImage, 'notNumber')},
-				field_location={$this->parseValue($this->fieldLocation, 'notNumber')},
-				field_extra_info={$this->parseValue($this->fieldExtraInfo, 'notNumber')},
-				field_title={$this->parseValue($this->fieldTitle, 'notNumber')},
-				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
+				field_fuel_type={$this->parseValue($this->fieldFuelType,'notNumber')},
+				field_color={$this->parseValue($this->fieldColor,'notNumber')},
+				field_gear_type={$this->parseValue($this->fieldGearType,'notNumber')},
+				field_milage={$this->parseValue($this->fieldMilage,'notNumber')},
+				field_image={$this->parseValue($this->fieldImage,'notNumber')},
+				field_location={$this->parseValue($this->fieldLocation,'notNumber')},
+				field_extra_info={$this->parseValue($this->fieldExtraInfo,'notNumber')},
+				field_title={$this->parseValue($this->fieldTitle,'notNumber')},
+				field_upload_date={$this->parseValue($this->fieldUploadDate,'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
-				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
-				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
+				field_status={$this->parseValue($this->fieldStatus,'notNumber')},
+				field_market_category={$this->parseValue($this->fieldMarketCategory,'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE
-                id={$this->parseValue($id, 'int')}
+                id={$this->parseValue($id,'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -1434,56 +1365,5 @@ SQL;
         }
     }
 
-    /**
-     * Facility for getting relational row of item_car
-     *
-     * @category DML Helper
-     * @return mixed MySQLi join result
-     */
-    public function leftJoin()
-    {
-        $sql = <<< SQL
-            SELECT  * FROM item_car
-            LEFT JOIN image_car    ON  item_car.id = image_car.id
-            LEFT JOIN user_all     ON  item_car.id_user = user_all.id
-            LEFT JOIN category_car ON  item_car.id_category = category_car.id
-            LEFT JOIN category_contact ON item_car.id_contact_category = category_contact.id
-            WHERE
-            item_car.id={$this->parseValue($this->id, 'int')}
-SQL;
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        return $this->resultSet;
-    }
-
-
-    public function display()
-    {
-        $test = $this->__toString();
-        $test2 = json_decode($test, true);
-        echo $test2[0]['CONTROL']['fieldContactMethod'];
-        $user = new HtUserAll($test2[0]['CONTROL']['idUser']);
-        echo $user->getFieldFirstName();
-        var_dump($test2[0]['CONTROL']);
-        var_dump($test2[1]['PRICE']);
-        var_dump($test2[2]['SPECIFIC']);
-        var_dump($test2[3]['COMMON']);
-        $xxx = json_decode($test2[2]['SPECIFIC']['fieldImage']);
-        global $documnetRootPath;
-        foreach ($xxx as $key => $value) {
-            echo '<img src="../../images/icons/' . $value . '"><br>';
-        }
-        //$catergoy->getFieldName(); 
-        // $this->leftJoin();
-        // $itemResult = $this->resultSet;
-        // while ($p = $itemResult->fetch_assoc()) {
-        //     foreach ($p as $key => $value) {
-        //         $p['id'] = $id;
-        //         echo '<div class="' . $this->getTableName() . '_' . $id . '">' . $key . '=' . $value . '</div>';
-        //     }
-        // }
-    }
 }
+?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 12, 2020 at 11:45 PM
+-- Generation Time: Feb 14, 2020 at 05:20 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -459,7 +459,7 @@ CREATE TABLE IF NOT EXISTS `item_car` (
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
-  `id_contact_category` int(3) NOT NULL,
+  `field_contact_method` varchar(50) NOT NULL DEFAULT 'phone',
   `field_price_rent` varchar(40) DEFAULT NULL,
   `field_price_sell` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(20) DEFAULT 'Negotiable',
@@ -473,6 +473,7 @@ CREATE TABLE IF NOT EXISTS `item_car` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_gear_type` varchar(20) DEFAULT NULL,
   `field_milage` varchar(20) DEFAULT NULL,
+  `field_image` longtext,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` longtext,
   `field_title` varchar(125) NOT NULL,
@@ -490,33 +491,33 @@ CREATE TABLE IF NOT EXISTS `item_car` (
 -- Dumping data for table `item_car`
 --
 
-INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_make`, `field_model`, `field_model_year`, `field_no_of_seat`, `field_fuel_type`, `field_color`, `field_gear_type`, `field_milage`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(1, 13348, 2, 17, 0, '', '', '', 'month', 'Birr', 'aston-martin', 'ddf', 1991, 13, 'Diesel', 'white', 'Automatic', '160', 'Addis Ababa', '', 'egfg', '2013-12-01 13:28:36', NULL, 'Deleted', 'rent or sell', 1),
-(2, 3633, 2, 17, 0, '', '', '', 'month', 'Birr', 'gmc', 'ghgh', 2006, 4, 'Diesel', 'black', 'Automatic', '130', 'Addis Ababa', 'My car is on sale.', 'Nice car for you', '2013-11-30 09:31:00', NULL, 'active', 'rent', 1),
-(3, 12022, 2, 11, 0, '2000', '400000', 'negotiable', 'month', 'Birr', 'aston-martin', '', 2009, 0, '', '', 'Automatic', '', 'Addis Ababa', 'Nice ride. dshvhgsdvshgvghdv sdyvhdgvgshdv dghvsdghvshdgvs dghvshdvdhgvds dvshdvshgdv dyvsdvdshsdv yvsdsdvh dyvdhv', 'My ride to you!', '2013-12-11 16:21:54', NULL, 'active', 'sell', 1),
-(5, 3867, 2, 14, 0, '', '', '', '', 'Birr', 'ford', '', 2000, 0, '', 'white', 'Manual', '40', 'Mekele', 'Beautiful car for you.', 'What a car!', '2013-08-31 14:18:21', NULL, '', 'No Action', 1),
-(6, 5226, 2, 17, 0, '', '', '', '', 'Birr', 'acura', '', 2000, 0, '', '', 'Manual', '', 'Addis Ababa', 'Buy my car.', 'Car for sale.', '2013-09-06 09:37:20', NULL, '', 'No Action', 1),
-(7, 2157, 1, 17, 0, '', '', '', '', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'myh', '2013-09-06 11:32:21', NULL, '', 'No Action', 1),
-(8, 46721, 2, 1, 0, '', '', '', '', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'Checking', '2013-11-29 17:28:47', NULL, 'Deleted', 'No Action', 1),
-(9, 77020, 2, 17, 0, '', '', '', 'month', 'Birr', '', 'bfn', 2005, 4, 'Diesel', 'gray', 'Manual', '110', 'Bahir Dar', 'Please buy my car', 'my fine car', '2013-12-11 14:33:25', NULL, 'pending', 'No Action', 1),
-(10, 3356, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'Test car', '2013-12-16 11:22:55', NULL, 'pending', 'No Action', 1),
-(11, 21924, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'Test car', '2013-12-17 13:10:19', NULL, 'pending', 'No Action', 1),
-(12, 12449, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'test with price sell 2000 USD only', '2013-12-17 13:36:25', NULL, 'pending', 'No Action', 1),
-(13, 36316, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '4545', '2013-12-18 11:04:30', NULL, 'pending', 'No Action', 1),
-(14, 53847, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '54545', '2013-12-18 11:04:57', NULL, 'pending', 'No Action', 1),
-(15, 84930, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'vdfvdf', '2013-12-18 11:06:25', NULL, 'pending', 'No Action', 1),
-(16, 78247, 2, 17, 3, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'gdgd', '2020-01-25 09:52:55', NULL, 'active', 'No Action', 1),
-(17, 1018, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 1),
-(18, 19614, 2, 17, 0, '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'ttty', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 1),
-(19, 60415, 2, 17, 0, '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5656', '2020-01-24 16:15:49', NULL, 'active', 'No Action', 1),
-(20, 342, 2, 17, 0, '', '', 'Negotiable', 'month', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fgerge', '2020-01-24 16:15:42', NULL, 'active', 'No Action', 1),
-(21, 9267, 2, 17, 0, '', '54545', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'fsfs', '2020-01-24 16:15:38', NULL, 'active', 'sell', 1),
-(22, 30312, 2, 17, 0, '5600', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', '5ffhfh', '2020-01-24 16:15:38', NULL, 'active', 'rent', 1),
-(23, 78817, 2, 17, 0, '', '5555', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'car final check', '2020-01-24 16:15:36', NULL, 'active', 'sell', 1),
-(24, 29635, 10, 14, 0, '', '10000', '', '000', 'Birr', 'porsche', '', 1980, 0, '', 'yellow', 'Manual', '', 'Addis Ababa', '', 'porche for sell', '2020-01-24 16:15:32', NULL, 'active', 'sell', 1),
-(25, 692, 1, 17, 0, '', '', 'Negotiable', '000', 'Birr', '', '', 0000, 0, '', '', 'semiAuto', '', 'Addis Ababa', '', 'myTestCar', '2020-01-24 16:15:31', NULL, 'active', 'No Action', 1),
-(26, 18342, 2, 17, 0, '', '', '', '000', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', 'Addis Ababa', '', 'hdvchdsgv', '2020-01-24 16:15:30', NULL, 'active', 'No Action', 1),
-(27, 91231, 11, 11, 3, '100000', '2000', '1', 'hour', 'Birr', 'acura', 'some new model', 1940, 10, 'Besine', 'white', 'Automatic', '21', 'Addis Ababa', 'asdsdsd', 'My car', '2020-01-24 16:15:28', NULL, 'active', 'sell or Rent', 1);
+INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_make`, `field_model`, `field_model_year`, `field_no_of_seat`, `field_fuel_type`, `field_color`, `field_gear_type`, `field_milage`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(1, 13348, 2, 17, 'email', '1000', '135000', 'yes', 'month', 'Birr', 'Toyota', 'RAV4', 2002, 5, 'Diesel', 'grey', 'Automatic', '5000', '[\"ht_logo_2.png\", \"ht_logo.png\"]', 'Addis Ababa', '', 'egfg', '2020-02-14 05:18:46', NULL, 'Deleted', 'rent or sell', 1),
+(2, 3633, 2, 17, '0', '', '', '', 'month', 'Birr', 'gmc', 'ghgh', 2006, 4, 'Diesel', 'black', 'Automatic', '130', NULL, 'Addis Ababa', 'My car is on sale.', 'Nice car for you', '2013-11-30 09:31:00', NULL, 'active', 'rent', 1),
+(3, 12022, 2, 11, '0', '2000', '400000', 'negotiable', 'month', 'Birr', 'aston-martin', '', 2009, 0, '', '', 'Automatic', '', NULL, 'Addis Ababa', 'Nice ride. dshvhgsdvshgvghdv sdyvhdgvgshdv dghvsdghvshdgvs dghvshdvdhgvds dvshdvshgdv dyvsdvdshsdv yvsdsdvh dyvdhv', 'My ride to you!', '2013-12-11 16:21:54', NULL, 'active', 'sell', 1),
+(5, 3867, 2, 14, '0', '', '', '', '', 'Birr', 'ford', '', 2000, 0, '', 'white', 'Manual', '40', NULL, 'Mekele', 'Beautiful car for you.', 'What a car!', '2013-08-31 14:18:21', NULL, '', 'No Action', 1),
+(6, 5226, 2, 17, '0', '', '', '', '', 'Birr', 'acura', '', 2000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', 'Buy my car.', 'Car for sale.', '2013-09-06 09:37:20', NULL, '', 'No Action', 1),
+(7, 2157, 1, 17, '0', '', '', '', '', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'myh', '2013-09-06 11:32:21', NULL, '', 'No Action', 1),
+(8, 46721, 2, 1, '0', '', '', '', '', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'Checking', '2013-11-29 17:28:47', NULL, 'Deleted', 'No Action', 1),
+(9, 77020, 2, 17, '0', '', '', '', 'month', 'Birr', '', 'bfn', 2005, 4, 'Diesel', 'gray', 'Manual', '110', NULL, 'Bahir Dar', 'Please buy my car', 'my fine car', '2013-12-11 14:33:25', NULL, 'pending', 'No Action', 1),
+(10, 3356, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'Test car', '2013-12-16 11:22:55', NULL, 'pending', 'No Action', 1),
+(11, 21924, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'Test car', '2013-12-17 13:10:19', NULL, 'pending', 'No Action', 1),
+(12, 12449, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'test with price sell 2000 USD only', '2013-12-17 13:36:25', NULL, 'pending', 'No Action', 1),
+(13, 36316, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', '4545', '2013-12-18 11:04:30', NULL, 'pending', 'No Action', 1),
+(14, 53847, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', '54545', '2013-12-18 11:04:57', NULL, 'pending', 'No Action', 1),
+(15, 84930, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'vdfvdf', '2013-12-18 11:06:25', NULL, 'pending', 'No Action', 1),
+(16, 78247, 2, 17, '3', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'gdgd', '2020-01-25 09:52:55', NULL, 'active', 'No Action', 1),
+(17, 1018, 2, 17, '0', '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 1),
+(18, 19614, 2, 17, '0', '', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'ttty', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 1),
+(19, 60415, 2, 17, '0', '', '', 'Negotiable', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', '5656', '2020-01-24 16:15:49', NULL, 'active', 'No Action', 1),
+(20, 342, 2, 17, '0', '', '', 'Negotiable', 'month', 'USD', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'fgerge', '2020-01-24 16:15:42', NULL, 'active', 'No Action', 1),
+(21, 9267, 2, 17, '0', '', '54545', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'fsfs', '2020-01-24 16:15:38', NULL, 'active', 'sell', 1),
+(22, 30312, 2, 17, '0', '5600', '', '', 'month', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', '5ffhfh', '2020-01-24 16:15:38', NULL, 'active', 'rent', 1),
+(23, 78817, 2, 17, '0', '', '5555', '', '000', 'USD', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'car final check', '2020-01-24 16:15:36', NULL, 'active', 'sell', 1),
+(24, 29635, 10, 14, '0', '', '10000', '', '000', 'Birr', 'porsche', '', 1980, 0, '', 'yellow', 'Manual', '', NULL, 'Addis Ababa', '', 'porche for sell', '2020-01-24 16:15:32', NULL, 'active', 'sell', 1),
+(25, 692, 1, 17, '0', '', '', 'Negotiable', '000', 'Birr', '', '', 0000, 0, '', '', 'semiAuto', '', NULL, 'Addis Ababa', '', 'myTestCar', '2020-01-24 16:15:31', NULL, 'active', 'No Action', 1),
+(26, 18342, 2, 17, '0', '', '', '', '000', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'hdvchdsgv', '2020-01-24 16:15:30', NULL, 'active', 'No Action', 1),
+(27, 91231, 11, 11, '3', '100000', '2000', '1', 'hour', 'Birr', 'acura', 'some new model', 1940, 10, 'Besine', 'white', 'Automatic', '21', NULL, 'Addis Ababa', 'asdsdsd', 'My car', '2020-01-24 16:15:28', NULL, 'active', 'sell or Rent', 1);
 
 -- --------------------------------------------------------
 
