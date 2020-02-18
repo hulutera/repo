@@ -1,7 +1,7 @@
 <!-- BEGIN PhpHeader --><?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class {ClassName}
@@ -90,7 +90,7 @@ class {ClassName} extends {ClassParent}
      */
     public function close()
     {
-        unset($this);
+        
     }
 <!-- END Constructor -->
 <!-- BEGIN ConstructorForMultiplePK -->
@@ -124,7 +124,7 @@ class {ClassName} extends {ClassParent}
     */
     public function close()
     {
-        unset($this);
+        
     }
 <!-- END ConstructorForMultiplePK -->
 <!-- BEGIN Setters -->
@@ -189,7 +189,12 @@ class {ClassName} extends {ClassParent}
      */
     public function select(${ClassPkAttributeName})
     {
-        $sql =  "SELECT * FROM {TableName} WHERE {TablePkName}={$this->parseValue(${ClassPkAttributeName},'{ClassPkAttributeType}')}";
+        if(${ClassPkAttributeName} == "*"){
+            $sql = "SELECT * FROM {TableName}";
+        } else { //id
+            $sql =  "SELECT * FROM {TableName} WHERE {TablePkName}={$this->parseValue(${ClassPkAttributeName},'{ClassPkAttributeType}')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -202,6 +207,7 @@ class {ClassName} extends {ClassParent}
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
 <!-- END Select -->
 <!-- BEGIN SelectForMultiplePK -->
@@ -414,6 +420,31 @@ SQL;
         } else {
             return false;
         }
+    }
+    
+    /**
+    * Facility for display a row for {TableName} previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
+    {
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+    
+    /**
+    * Facility for upload a new row into {TableName}.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
 <!-- END UpdateCurrent -->
 <!-- BEGIN UpdateCurrentForMultiplePK -->

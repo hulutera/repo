@@ -1,13 +1,8 @@
 <?php
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/reflection/HtItemCar.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemComputer.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemHouse.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemHousehold.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemElectronic.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemPhone.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemOther.php';
-require_once $documnetRootPath . '/classes/reflection/HtItemLatestUpdate.php';
+
+spl_autoload_register(function($className) {
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+});
 
 class ObjectPool
 {
@@ -79,24 +74,22 @@ class ObjectPool
                 return (new HtItemOther($id));
             case 'latest':
                 return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
-            case 'latest':
-                return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
             default:
                 echo '<p style="color:red;">ERROR:Object for item = ' . $item . ' Not found!!</p>';
                 return null;
         }
     }
 
-    public function getObjectSpecial($item)
+    public function getObjectSpecial($item, $id)
     {
         $objects = array(
-            'car' => (new HtItemCar()),
-            'computer' => (new HtItemComputer()),
-            'house' => (new HtItemHouse()),
-            'household' => (new HtItemHousehold()),
-            'electronic' => (new HtItemElectronic()),
-            'phone' => (new HtItemPhone()),
-            'other' => (new HtItemOther())
+            'car' => (new HtItemCar($id)),
+            'computer' => (new HtItemComputer($id)),
+            'house' => (new HtItemHouse($id)),
+            'household' => (new HtItemHousehold($id)),
+            'electronic' => (new HtItemElectronic($id)),
+            'phone' => (new HtItemPhone($id)),
+            'other' => (new HtItemOther($id))
         );
         if (!empty($item) && $item !== 'all') {
             return array($objects[$item]);

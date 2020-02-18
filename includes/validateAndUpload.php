@@ -217,7 +217,7 @@ function carUploadfn()
 		}
 		if($err)
 		{
-			header('Location: ../../includes/template.upload.php?type=car'.
+			header('Location: ../../view/upload.php?type=car'.
 					'&e100='.$e100.
 					'&e101='.$e101.
 					'&e102='.$e102.

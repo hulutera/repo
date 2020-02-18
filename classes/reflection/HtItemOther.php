@@ -1,8 +1,7 @@
 <?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class HtItemOther
@@ -136,6 +135,20 @@ class HtItemOther extends MySqlRecord
     private $fieldPriceCurrency;
 
     /**
+     * Class attribute for mapping table field field_image
+     *
+     * Comment for field field_image: Not specified.<br>
+     * Field information:
+     *  - Data type: longtext
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $fieldImage
+     */
+    private $fieldImage;
+
+    /**
      * Class attribute for mapping table field field_location
      *
      * Comment for field field_location: Not specified.<br>
@@ -251,7 +264,7 @@ class HtItemOther extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_other
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX290aGVyYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCgxMSkgREVGQVVMVCBOVUxMLAogIGBpZF9jb250YWN0X2NhdGVnb3J5YCBpbnQoMykgTk9UIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcig0MCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX2N1cnJlbmN5YCB2YXJjaGFyKDQwKSBOT1QgTlVMTCBERUZBVUxUICdCaXJyJywKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBOT1QgTlVMTCwKICBgZmllbGRfdXBsb2FkX2RhdGVgIHRpbWVzdGFtcCBOT1QgTlVMTCBERUZBVUxUIENVUlJFTlRfVElNRVNUQU1QIE9OIFVQREFURSBDVVJSRU5UX1RJTUVTVEFNUCwKICBgZmllbGRfdG90YWxfdmlld2AgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3N0YXR1c2AgdmFyY2hhcigxMCkgTk9UIE5VTEwgREVGQVVMVCAncGVuZGluZycsCiAgYGZpZWxkX21hcmtldF9jYXRlZ29yeWAgdmFyY2hhcigxMCkgTk9UIE5VTEwsCiAgYGZpZWxkX3RhYmxlX3R5cGVgIGludCgxMCkgTk9UIE5VTEwgREVGQVVMVCAnNycsCiAgUFJJTUFSWSBLRVkgKGBpZGApLAogIEtFWSBgdUlEX0ZLMWAgKGBpZF91c2VyYCksCiAgQ09OU1RSQUlOVCBgaXRlbV9vdGhlcl9pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTQzIERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX290aGVyYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCgxMSkgREVGQVVMVCBOVUxMLAogIGBpZF9jb250YWN0X2NhdGVnb3J5YCBpbnQoMykgTk9UIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcig0MCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX2N1cnJlbmN5YCB2YXJjaGFyKDQwKSBOT1QgTlVMTCBERUZBVUxUICdCaXJyJywKICBgZmllbGRfaW1hZ2VgIGxvbmd0ZXh0IE5PVCBOVUxMLAogIGBmaWVsZF9sb2NhdGlvbmAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9leHRyYV9pbmZvYCBtZWRpdW10ZXh0LAogIGBmaWVsZF90aXRsZWAgdmFyY2hhcigxMjUpIE5PVCBOVUxMLAogIGBmaWVsZF91cGxvYWRfZGF0ZWAgdGltZXN0YW1wIE5PVCBOVUxMIERFRkFVTFQgQ1VSUkVOVF9USU1FU1RBTVAgT04gVVBEQVRFIENVUlJFTlRfVElNRVNUQU1QLAogIGBmaWVsZF90b3RhbF92aWV3YCBpbnQoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfc3RhdHVzYCB2YXJjaGFyKDEwKSBOT1QgTlVMTCBERUZBVUxUICdwZW5kaW5nJywKICBgZmllbGRfbWFya2V0X2NhdGVnb3J5YCB2YXJjaGFyKDEwKSBOT1QgTlVMTCwKICBgZmllbGRfdGFibGVfdHlwZWAgaW50KDEwKSBOT1QgTlVMTCBERUZBVUxUICc3JywKICBQUklNQVJZIEtFWSAoYGlkYCksCiAgS0VZIGB1SURfRksxYCAoYGlkX3VzZXJgKSwKICBDT05TVFJBSU5UIGBpdGVtX290aGVyX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9NDMgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -355,6 +368,19 @@ class HtItemOther extends MySqlRecord
     public function setFieldPriceCurrency($fieldPriceCurrency)
     {
         $this->fieldPriceCurrency = (string)$fieldPriceCurrency;
+    }
+
+    /**
+     * setFieldImage Sets the class attribute fieldImage with a given value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.<br>
+     * @param string $fieldImage
+     * @category Modifier
+     */
+    public function setFieldImage($fieldImage)
+    {
+        $this->fieldImage = (string)$fieldImage;
     }
 
     /**
@@ -566,6 +592,19 @@ class HtItemOther extends MySqlRecord
     }
 
     /**
+     * getFieldImage gets the class attribute fieldImage value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.
+     * @return string $fieldImage
+     * @category Accessor of $fieldImage
+     */
+    public function getFieldImage()
+    {
+        return $this->fieldImage;
+    }
+
+    /**
      * getFieldLocation gets the class attribute fieldLocation value
      *
      * The attribute fieldLocation maps the field field_location defined as varchar(40).<br>
@@ -703,8 +742,6 @@ class HtItemOther extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
-        }else {
-            $this->selectAll();
         }
     }
 
@@ -735,7 +772,12 @@ class HtItemOther extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM item_other WHERE id={$this->parseValue($id,'int')}";
+        if($id == "*"){
+            $sql = "SELECT * FROM item_other";
+        } else { //id
+            $sql =  "SELECT * FROM item_other WHERE id={$this->parseValue($id,'int')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -750,6 +792,7 @@ class HtItemOther extends MySqlRecord
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
             @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
             @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
             @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
             @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
@@ -763,27 +806,8 @@ class HtItemOther extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
-
-   /**
-     * Fetchs all table row of item_other into the object.
-     *
-     * Fetched all table fields values are assigned to class attributes and they can be managed by using
-     * the accessors/modifiers methods of the class.
-     * @return int affected selected row
-     * @category DML
-     */
-    public function selectAll()
-    {
-        $sql = <<< SQL
-            SELECT * FROM {$this->getTableName()}
-SQL;
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-    }
-
 
     /**
      * Deletes a specific row from the table item_other
@@ -818,7 +842,7 @@ SQL;
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_other
-            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -827,6 +851,7 @@ SQL;
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+			{$this->parseValue($this->fieldImage,'notNumber')},
 			{$this->parseValue($this->fieldLocation,'notNumber')},
 			{$this->parseValue($this->fieldExtraInfo,'notNumber')},
 			{$this->parseValue($this->fieldTitle,'notNumber')},
@@ -874,6 +899,7 @@ SQL;
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+				field_image={$this->parseValue($this->fieldImage,'notNumber')},
 				field_location={$this->parseValue($this->fieldLocation,'notNumber')},
 				field_extra_info={$this->parseValue($this->fieldExtraInfo,'notNumber')},
 				field_title={$this->parseValue($this->fieldTitle,'notNumber')},
@@ -914,30 +940,31 @@ SQL;
             return false;
         }
     }
-
+    
     /**
-     * Facility for getting relational row of item_other
-     *
-     * @category DML Helper
-     * @return mixed MySQLi join result
-     */
-    public function leftJoin()
+    * Facility for display a row for item_other previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
     {
-        $sql = <<< SQL
-            SELECT * FROM item_other
-            LEFT JOIN image_other    ON  item_other.id = image_other.id
-            LEFT JOIN user_all     ON  item_other.id_user = user_all.id
-            LEFT JOIN category_other ON  item_other.id_category = category_other.id
-            LEFT JOIN category_contact ON item_other.id_contact_category = category_contact.id
-            WHERE
-            item_other.id={$this->parseValue($this->id, 'int')}
-SQL;
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        return $this->resultSet;
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
+    
+    /**
+    * Facility for upload a new row into item_other.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+
 }
 ?>

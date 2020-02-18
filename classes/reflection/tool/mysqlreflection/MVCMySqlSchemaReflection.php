@@ -42,8 +42,8 @@ class MVCMySqlSchemaReflection extends  mysqli
      * @param null $path Output for the generated classes
      */
     public function generateClassesFromSchema($path=null){
-        //$sql = "show full tables where Table_Type != 'VIEW'";
-        $sql = "show full tables where Tables_in_hulutera_db = 'item_car'";
+        $sql = "show full tables where Table_Type != 'VIEW'";
+        //$sql = "show full tables where Tables_in_hulutera_db = 'item_car'";
 
         $result = $this->query($sql);
         $this->totalTables = $result->num_rows;

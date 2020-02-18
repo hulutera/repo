@@ -1,8 +1,7 @@
 <?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class HtItemHousehold
@@ -136,6 +135,20 @@ class HtItemHousehold extends MySqlRecord
     private $fieldPriceCurrency;
 
     /**
+     * Class attribute for mapping table field field_image
+     *
+     * Comment for field field_image: Not specified.<br>
+     * Field information:
+     *  - Data type: longtext
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $fieldImage
+     */
+    private $fieldImage;
+
+    /**
      * Class attribute for mapping table field field_location
      *
      * Comment for field field_location: Not specified.<br>
@@ -251,7 +264,7 @@ class HtItemHousehold extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_household
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlaG9sZGAgKAogIGBpZGAgaW50KDQwKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgaWRfdGVtcGAgaW50KDIwKSBERUZBVUxUIE5VTEwsCiAgYGlkX3VzZXJgIGludCg0MCkgTk9UIE5VTEwsCiAgYGlkX2NhdGVnb3J5YCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jb250YWN0X2NhdGVnb3J5YCBpbnQoMykgTk9UIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcig1MCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX2N1cnJlbmN5YCB2YXJjaGFyKDEwKSBOT1QgTlVMTCBERUZBVUxUICdCaXJyJywKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ1NhbGUnLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzYnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIEtFWSBgaGhjYXRlZ29yeUlEX0ZLYCAoYGlkX2NhdGVnb3J5YCksCiAgS0VZIGBtYXJrZXRDYXRlZ29yeWAgKGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgKSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlaG9sZF9pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9ob3VzZWhvbGRfaWJma18yYCBGT1JFSUdOIEtFWSAoYGlkX2NhdGVnb3J5YCkgUkVGRVJFTkNFUyBgY2F0ZWdvcnlfaG91c2Vob2xkYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTI3IERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlaG9sZGAgKAogIGBpZGAgaW50KDQwKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgaWRfdGVtcGAgaW50KDIwKSBERUZBVUxUIE5VTEwsCiAgYGlkX3VzZXJgIGludCg0MCkgTk9UIE5VTEwsCiAgYGlkX2NhdGVnb3J5YCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jb250YWN0X2NhdGVnb3J5YCBpbnQoMykgTk9UIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcig1MCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX2N1cnJlbmN5YCB2YXJjaGFyKDEwKSBOT1QgTlVMTCBERUZBVUxUICdCaXJyJywKICBgZmllbGRfaW1hZ2VgIGxvbmd0ZXh0IE5PVCBOVUxMLAogIGBmaWVsZF9sb2NhdGlvbmAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9leHRyYV9pbmZvYCBtZWRpdW10ZXh0LAogIGBmaWVsZF90aXRsZWAgdmFyY2hhcigxMjUpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfdXBsb2FkX2RhdGVgIHRpbWVzdGFtcCBOT1QgTlVMTCBERUZBVUxUIENVUlJFTlRfVElNRVNUQU1QIE9OIFVQREFURSBDVVJSRU5UX1RJTUVTVEFNUCwKICBgZmllbGRfdG90YWxfdmlld2AgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3N0YXR1c2AgdmFyY2hhcigxMCkgTk9UIE5VTEwgREVGQVVMVCAncGVuZGluZycsCiAgYGZpZWxkX21hcmtldF9jYXRlZ29yeWAgdmFyY2hhcigxMCkgTk9UIE5VTEwgREVGQVVMVCAnU2FsZScsCiAgYGZpZWxkX3RhYmxlX3R5cGVgIGludCgxMCkgTk9UIE5VTEwgREVGQVVMVCAnNicsCiAgUFJJTUFSWSBLRVkgKGBpZGApLAogIEtFWSBgdUlEX0ZLMWAgKGBpZF91c2VyYCksCiAgS0VZIGBoaGNhdGVnb3J5SURfRktgIChgaWRfY2F0ZWdvcnlgKSwKICBLRVkgYG1hcmtldENhdGVnb3J5YCAoYGZpZWxkX21hcmtldF9jYXRlZ29yeWApLAogIENPTlNUUkFJTlQgYGl0ZW1faG91c2Vob2xkX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlaG9sZF9pYmZrXzJgIEZPUkVJR04gS0VZIChgaWRfY2F0ZWdvcnlgKSBSRUZFUkVOQ0VTIGBjYXRlZ29yeV9ob3VzZWhvbGRgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9MjcgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -355,6 +368,19 @@ class HtItemHousehold extends MySqlRecord
     public function setFieldPriceCurrency($fieldPriceCurrency)
     {
         $this->fieldPriceCurrency = (string)$fieldPriceCurrency;
+    }
+
+    /**
+     * setFieldImage Sets the class attribute fieldImage with a given value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.<br>
+     * @param string $fieldImage
+     * @category Modifier
+     */
+    public function setFieldImage($fieldImage)
+    {
+        $this->fieldImage = (string)$fieldImage;
     }
 
     /**
@@ -566,6 +592,19 @@ class HtItemHousehold extends MySqlRecord
     }
 
     /**
+     * getFieldImage gets the class attribute fieldImage value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.
+     * @return string $fieldImage
+     * @category Accessor of $fieldImage
+     */
+    public function getFieldImage()
+    {
+        return $this->fieldImage;
+    }
+
+    /**
      * getFieldLocation gets the class attribute fieldLocation value
      *
      * The attribute fieldLocation maps the field field_location defined as varchar(40).<br>
@@ -703,8 +742,6 @@ class HtItemHousehold extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
-        }else {
-            $this->selectAll();
         }
     }
 
@@ -735,7 +772,12 @@ class HtItemHousehold extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id,'int')}";
+        if($id == "*"){
+            $sql = "SELECT * FROM item_household";
+        } else { //id
+            $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id,'int')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -750,6 +792,7 @@ class HtItemHousehold extends MySqlRecord
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
             @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
             @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
             @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
             @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
@@ -763,27 +806,8 @@ class HtItemHousehold extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
-
-   /**
-     * Fetchs all table row of item_household into the object.
-     *
-     * Fetched all table fields values are assigned to class attributes and they can be managed by using
-     * the accessors/modifiers methods of the class.
-     * @return int affected selected row
-     * @category DML
-     */
-    public function selectAll()
-    {
-        $sql = <<< SQL
-            SELECT * FROM {$this->getTableName()}
-SQL;
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-    }
-
 
     /**
      * Deletes a specific row from the table item_household
@@ -818,7 +842,7 @@ SQL;
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_household
-            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -827,6 +851,7 @@ SQL;
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+			{$this->parseValue($this->fieldImage,'notNumber')},
 			{$this->parseValue($this->fieldLocation,'notNumber')},
 			{$this->parseValue($this->fieldExtraInfo,'notNumber')},
 			{$this->parseValue($this->fieldTitle,'notNumber')},
@@ -874,6 +899,7 @@ SQL;
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
+				field_image={$this->parseValue($this->fieldImage,'notNumber')},
 				field_location={$this->parseValue($this->fieldLocation,'notNumber')},
 				field_extra_info={$this->parseValue($this->fieldExtraInfo,'notNumber')},
 				field_title={$this->parseValue($this->fieldTitle,'notNumber')},
@@ -914,30 +940,31 @@ SQL;
             return false;
         }
     }
-
+    
     /**
-     * Facility for getting relational row of item_household
-     *
-     * @category DML Helper
-     * @return mixed MySQLi join result
-     */
-    public function leftJoin()
+    * Facility for display a row for item_household previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
     {
-        $sql = <<< SQL
-            SELECT * FROM item_household
-            LEFT JOIN image_household    ON  item_household.id = image_household.id
-            LEFT JOIN user_all     ON  item_household.id_user = user_all.id
-            LEFT JOIN category_household ON  item_household.id_category = category_household.id
-            LEFT JOIN category_contact ON item_household.id_contact_category = category_contact.id
-            WHERE
-            item_household.id={$this->parseValue($this->id, 'int')}
-SQL;
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        return $this->resultSet;
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
+    
+    /**
+    * Facility for upload a new row into item_household.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+
 }
 ?>

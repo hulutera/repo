@@ -1,8 +1,7 @@
 <?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class HtCategoryAbuse
@@ -173,7 +172,12 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id,'int')}";
+        if($id == "*"){
+            $sql = "SELECT * FROM category_abuse";
+        } else { //id
+            $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id,'int')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -187,6 +191,7 @@ class HtCategoryAbuse extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
 
     /**
@@ -289,6 +294,31 @@ SQL;
         } else {
             return false;
         }
+    }
+    
+    /**
+    * Facility for display a row for category_abuse previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
+    {
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+    
+    /**
+    * Facility for upload a new row into category_abuse.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
 
 }

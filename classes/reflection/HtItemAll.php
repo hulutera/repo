@@ -1,8 +1,7 @@
 <?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class HtItemAll
@@ -203,25 +202,6 @@ class HtItemAll extends MySqlRecord
     }
 
     /**
-     * Fetchs all table row of item_all into the object.
-     *
-     * Fetched table fields values are assigned to class attributes and they can be managed by using
-     * the accessors/modifiers methods of the class.
-     * @param int $id the primary key id value of table item_all which identifies the row to select.
-     * @return int affected selected row
-     * @category DML
-     */
-    public function selectAll()
-    {
-        $sql =  "SELECT * FROM item_all";
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet=$result;
-        $this->lastSql = $sql;
-        return $this->resultSet;
-    }
-
-        /**
      * Fetchs a table row of item_all into the object.
      *
      * Fetched table fields values are assigned to class attributes and they can be managed by using
@@ -232,7 +212,12 @@ class HtItemAll extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM item_all WHERE id={$this->parseValue($id,'int')}";
+        if($id == "*"){
+            $sql = "SELECT * FROM item_all";
+        } else { //id
+            $sql =  "SELECT * FROM item_all WHERE id={$this->parseValue($id,'int')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -247,6 +232,7 @@ class HtItemAll extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
 
     /**
@@ -351,6 +337,31 @@ SQL;
         } else {
             return false;
         }
+    }
+    
+    /**
+    * Facility for display a row for item_all previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
+    {
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+    
+    /**
+    * Facility for upload a new row into item_all.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
 
 }

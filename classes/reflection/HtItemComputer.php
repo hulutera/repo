@@ -1,8 +1,7 @@
 <?php
-global $documnetRootPath;
 
-require_once $documnetRootPath . "/classes/reflection/class.config.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 
 /**
  * Class HtItemComputer
@@ -66,18 +65,18 @@ class HtItemComputer extends MySqlRecord
     private $idUser;
 
     /**
-     * Class attribute for mapping table field id_catergory
+     * Class attribute for mapping table field id_category
      *
-     * Comment for field id_catergory: Not specified.<br>
+     * Comment for field id_category: Not specified.<br>
      * Field information:
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
      *  - Default: 
      *  - Extra:  
-     * @var int $idCatergory
+     * @var int $idCategory
      */
-    private $idCatergory;
+    private $idCategory;
 
     /**
      * Class attribute for mapping table field id_contact_category
@@ -234,6 +233,20 @@ class HtItemComputer extends MySqlRecord
     private $fieldColor;
 
     /**
+     * Class attribute for mapping table field field_image
+     *
+     * Comment for field field_image: Not specified.<br>
+     * Field information:
+     *  - Data type: longtext
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $fieldImage
+     */
+    private $fieldImage;
+
+    /**
      * Class attribute for mapping table field field_location
      *
      * Comment for field field_location: Not specified.<br>
@@ -349,7 +362,7 @@ class HtItemComputer extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_computer
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2NvbXB1dGVyYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZXJnb3J5YCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jb250YWN0X2NhdGVnb3J5YCBpbnQoMykgTk9UIE5VTEwsCiAgYGZpZWxkX3ByaWNlYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX25lZ29gIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMjApIE5PVCBOVUxMIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9tYWRlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX29zYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3Byb2Nlc3NvcmAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9yYW1gIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfaGFyZF9kcml2ZWAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9jb2xvcmAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9sb2NhdGlvbmAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9leHRyYV9pbmZvYCBtZWRpdW10ZXh0LAogIGBmaWVsZF90aXRsZWAgdmFyY2hhcigxMjUpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfdXBsb2FkX2RhdGVgIHRpbWVzdGFtcCBOT1QgTlVMTCBERUZBVUxUIENVUlJFTlRfVElNRVNUQU1QIE9OIFVQREFURSBDVVJSRU5UX1RJTUVTVEFNUCwKICBgZmllbGRfdG90YWxfdmlld2AgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3N0YXR1c2AgdmFyY2hhcigxMCkgTk9UIE5VTEwgREVGQVVMVCAncGVuZGluZycsCiAgYGZpZWxkX21hcmtldF9jYXRlZ29yeWAgdmFyY2hhcigxMCkgTk9UIE5VTEwsCiAgYGZpZWxkX3RhYmxlX3R5cGVgIGludCgxMCkgTk9UIE5VTEwgREVGQVVMVCAnMycsCiAgUFJJTUFSWSBLRVkgKGBpZGApLAogIEtFWSBgdUlEX0ZLMmAgKGBpZF91c2VyYCksCiAgS0VZIGBkX0NhdGVnb3J5SURfRktgIChgaWRfY2F0ZXJnb3J5YCksCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzJgIEZPUkVJR04gS0VZIChgaWRfY2F0ZXJnb3J5YCkgUkVGRVJFTkNFUyBgY2F0ZWdvcnlfY29tcHV0ZXJgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9NTcgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2NvbXB1dGVyYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCg0MCkgTk9UIE5VTEwsCiAgYGlkX2NvbnRhY3RfY2F0ZWdvcnlgIGludCgzKSBOT1QgTlVMTCwKICBgZmllbGRfcHJpY2VgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9wcmljZV9jdXJyZW5jeWAgdmFyY2hhcigyMCkgTk9UIE5VTEwgREVGQVVMVCAnQmlycicsCiAgYGZpZWxkX21hZGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfb3NgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbW9kZWxgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJvY2Vzc29yYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3JhbWAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9oYXJkX2RyaXZlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NvbG9yYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2ltYWdlYCBsb25ndGV4dCBOT1QgTlVMTCwKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzMnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzJgIChgaWRfdXNlcmApLAogIEtFWSBgZF9DYXRlZ29yeUlEX0ZLYCAoYGlkX2NhdGVnb3J5YCksCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzJgIEZPUkVJR04gS0VZIChgaWRfY2F0ZWdvcnlgKSBSRUZFUkVOQ0VTIGBjYXRlZ29yeV9jb21wdXRlcmAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD01NyBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -391,16 +404,16 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
-     * setIdCatergory Sets the class attribute idCatergory with a given value
+     * setIdCategory Sets the class attribute idCategory with a given value
      *
-     * The attribute idCatergory maps the field id_catergory defined as int(40).<br>
-     * Comment for field id_catergory: Not specified.<br>
-     * @param int $idCatergory
+     * The attribute idCategory maps the field id_category defined as int(40).<br>
+     * Comment for field id_category: Not specified.<br>
+     * @param int $idCategory
      * @category Modifier
      */
-    public function setIdCatergory($idCatergory)
+    public function setIdCategory($idCategory)
     {
-        $this->idCatergory = (int)$idCatergory;
+        $this->idCategory = (int)$idCategory;
     }
 
     /**
@@ -547,6 +560,19 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+     * setFieldImage Sets the class attribute fieldImage with a given value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.<br>
+     * @param string $fieldImage
+     * @category Modifier
+     */
+    public function setFieldImage($fieldImage)
+    {
+        $this->fieldImage = (string)$fieldImage;
+    }
+
+    /**
      * setFieldLocation Sets the class attribute fieldLocation with a given value
      *
      * The attribute fieldLocation maps the field field_location defined as varchar(40).<br>
@@ -690,16 +716,16 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
-     * getIdCatergory gets the class attribute idCatergory value
+     * getIdCategory gets the class attribute idCategory value
      *
-     * The attribute idCatergory maps the field id_catergory defined as int(40).<br>
-     * Comment for field id_catergory: Not specified.
-     * @return int $idCatergory
-     * @category Accessor of $idCatergory
+     * The attribute idCategory maps the field id_category defined as int(40).<br>
+     * Comment for field id_category: Not specified.
+     * @return int $idCategory
+     * @category Accessor of $idCategory
      */
-    public function getIdCatergory()
+    public function getIdCategory()
     {
-        return $this->idCatergory;
+        return $this->idCategory;
     }
 
     /**
@@ -846,6 +872,19 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+     * getFieldImage gets the class attribute fieldImage value
+     *
+     * The attribute fieldImage maps the field field_image defined as longtext.<br>
+     * Comment for field field_image: Not specified.
+     * @return string $fieldImage
+     * @category Accessor of $fieldImage
+     */
+    public function getFieldImage()
+    {
+        return $this->fieldImage;
+    }
+
+    /**
      * getFieldLocation gets the class attribute fieldLocation value
      *
      * The attribute fieldLocation maps the field field_location defined as varchar(40).<br>
@@ -983,8 +1022,6 @@ class HtItemComputer extends MySqlRecord
         parent::__construct();
         if (!empty($id)) {
             $this->select($id);
-        }else {
-            $this->selectAll();
         }
     }
 
@@ -1015,7 +1052,12 @@ class HtItemComputer extends MySqlRecord
      */
     public function select($id)
     {
-        $sql =  "SELECT * FROM item_computer WHERE id={$this->parseValue($id,'int')}";
+        if($id == "*"){
+            $sql = "SELECT * FROM item_computer";
+        } else { //id
+            $sql =  "SELECT * FROM item_computer WHERE id={$this->parseValue($id,'int')}";
+        }
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
@@ -1025,7 +1067,7 @@ class HtItemComputer extends MySqlRecord
             @$this->id = (integer)$rowObject->id;
             @$this->idTemp = (integer)$rowObject->id_temp;
             @$this->idUser = (integer)$rowObject->id_user;
-            @$this->idCatergory = (integer)$rowObject->id_catergory;
+            @$this->idCategory = (integer)$rowObject->id_category;
             @$this->idContactCategory = (integer)$rowObject->id_contact_category;
             @$this->fieldPrice = $this->replaceAposBackSlash($rowObject->field_price);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
@@ -1037,6 +1079,7 @@ class HtItemComputer extends MySqlRecord
             @$this->fieldRam = $this->replaceAposBackSlash($rowObject->field_ram);
             @$this->fieldHardDrive = $this->replaceAposBackSlash($rowObject->field_hard_drive);
             @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
+            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
             @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
             @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
             @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
@@ -1050,27 +1093,8 @@ class HtItemComputer extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        
     }
-
-   /**
-     * Fetchs all table row of item_computer into the object.
-     *
-     * Fetched all table fields values are assigned to class attributes and they can be managed by using
-     * the accessors/modifiers methods of the class.
-     * @return int affected selected row
-     * @category DML
-     */
-    public function selectAll()
-    {
-        $sql = <<< SQL
-            SELECT * FROM {$this->getTableName()}
-SQL;
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-    }
-
 
     /**
      * Deletes a specific row from the table item_computer
@@ -1105,11 +1129,11 @@ SQL;
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_computer
-            (id_temp,id_user,id_catergory,id_contact_category,field_price,field_price_nego,field_price_currency,field_made,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,id_contact_category,field_price,field_price_nego,field_price_currency,field_made,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
-			{$this->parseValue($this->idCatergory)},
+			{$this->parseValue($this->idCategory)},
 			{$this->parseValue($this->idContactCategory)},
 			{$this->parseValue($this->fieldPrice,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
@@ -1121,6 +1145,7 @@ SQL;
 			{$this->parseValue($this->fieldRam,'notNumber')},
 			{$this->parseValue($this->fieldHardDrive,'notNumber')},
 			{$this->parseValue($this->fieldColor,'notNumber')},
+			{$this->parseValue($this->fieldImage,'notNumber')},
 			{$this->parseValue($this->fieldLocation,'notNumber')},
 			{$this->parseValue($this->fieldExtraInfo,'notNumber')},
 			{$this->parseValue($this->fieldTitle,'notNumber')},
@@ -1163,7 +1188,7 @@ SQL;
             SET 
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
-				id_catergory={$this->parseValue($this->idCatergory)},
+				id_category={$this->parseValue($this->idCategory)},
 				id_contact_category={$this->parseValue($this->idContactCategory)},
 				field_price={$this->parseValue($this->fieldPrice,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
@@ -1175,6 +1200,7 @@ SQL;
 				field_ram={$this->parseValue($this->fieldRam,'notNumber')},
 				field_hard_drive={$this->parseValue($this->fieldHardDrive,'notNumber')},
 				field_color={$this->parseValue($this->fieldColor,'notNumber')},
+				field_image={$this->parseValue($this->fieldImage,'notNumber')},
 				field_location={$this->parseValue($this->fieldLocation,'notNumber')},
 				field_extra_info={$this->parseValue($this->fieldExtraInfo,'notNumber')},
 				field_title={$this->parseValue($this->fieldTitle,'notNumber')},
@@ -1215,30 +1241,31 @@ SQL;
             return false;
         }
     }
-
+    
     /**
-     * Facility for getting relational row of item_computer
-     *
-     * @category DML Helper
-     * @return mixed MySQLi join result
-     */
-    public function leftJoin()
+    * Facility for display a row for item_computer previously loaded.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function display()
     {
-        $sql = <<< SQL
-            SELECT * FROM item_computer
-            LEFT JOIN image_computer    ON  item_computer.id = image_computer.id
-            LEFT JOIN user_all     ON  item_computer.id_user = user_all.id
-            LEFT JOIN category_computer ON  item_computer.id_category = category_computer.id
-            LEFT JOIN category_contact ON item_computer.id_contact_category = category_contact.id
-            WHERE
-            item_computer.id={$this->parseValue($this->id, 'int')}
-SQL;
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        return $this->resultSet;
+        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
+    
+    /**
+    * Facility for upload a new row into item_computer.
+    *
+    * All class attribute values defined for mapping all table fields are automatically used during updating.
+    * @category DML Helper
+    * @return mixed MySQLi update result
+    */
+    public function upload()
+    {
+        global $documnetRootPath;
+        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+
 }
 ?>
