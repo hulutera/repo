@@ -202,6 +202,7 @@ function miniSearch()
 function tabMenu()
 {
 	//require_once $documnetRootPath . '/includes/locale/tg.php';
+	global $lang;
 
 	echo '<div class="tabsAndSearch"><div class="tabs">
 			<li  class="activeFirst"><a ';
@@ -209,7 +210,7 @@ function tabMenu()
 		echo "class=\"active\"";
 	}
 	echo ' href="../../index.php"> ';
-	echo '<div id="tabsAmharic">' . LOCALE_ALL_ITEMS . '</div></a></li>';
+	echo '<div id="tabsAmharic">' . $lang['All Items'] . '</div></a></li>';
 
 	if (isset($_SESSION['uID'])) {
 		//ask login prompt before post
