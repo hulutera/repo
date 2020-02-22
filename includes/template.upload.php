@@ -3,6 +3,7 @@ session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/includes/cmn.upload.php';
+require_once $documnetRootPath . '/includes/common.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,6 @@ require_once $documnetRootPath.'/includes/cmn.upload.php';
 <script type="text/javascript" src="../../js/upload.min.js"></script>
 <script type="text/javascript" src="../../js/imgUpload.min.js"></script>
 <script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>
-<!-- <script type="text/javascript" src="../../js/hulutera.unminified.js"></script> -->
 <script type="text/javascript">
     function readURL(input,val) {
 	    if (input.files && input.files[0]) {
@@ -32,15 +32,16 @@ require_once $documnetRootPath.'/includes/cmn.upload.php';
 	            $('#deleteBtn'+val).show();
 	            
 	        }
+			input.files[0] = '';
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
 	function removeImg(target,val)
 	{
-		$(target).hide();
-		$('#preview_'+val).attr('src','');
-		$('#preview_'+val).hide();
-		$('#picture_'+val).replaceWith($('#picture_'+val).clone());
+		$(target).remove();
+		//$('#preview_'+val).attr('src','');
+		$('#preview_'+val).remove();
+		$('#picture_'+val).replaceWith($('#picture_'+val).clone(true));
 		
 	}
 
@@ -62,7 +63,8 @@ require_once $documnetRootPath.'/includes/cmn.upload.php';
 		<div id="wrapper">
 			<?php uploadHeaderAndSearchCode("");?>
 			<div id="main_section">
-				<?php routerItemUpld($_GET['type']);?>
+				<?php (new HtMainView($_GET['type'],null))->upload();
+				?>
 			</div>
 		</div>
 		<div class="push"></div>

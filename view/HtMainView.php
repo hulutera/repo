@@ -129,6 +129,7 @@ class HtMainView
      */
     public function upload()
     {
+        echo $this->_runnerName;
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
         $this->_pItem->upload();
     }

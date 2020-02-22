@@ -76,6 +76,7 @@ class ObjectPool
                 return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
             default:
                 echo '<p style="color:red;">ERROR:Object for item = ' . $item . ' Not found!!</p>';
+                backTrace($item);
                 return null;
         }
     }

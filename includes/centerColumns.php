@@ -166,7 +166,7 @@ function description($hash)
 	echo $description; echo '</textarea>';
 	echo '</div>';
 }
-function pictureForm()
+function pictureForm($item)
 {	
 	$maxNoOfImage = 5;
 	global $lang;

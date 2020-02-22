@@ -222,3 +222,33 @@ footer {
     padding: 20px 10px;
     background-color: #232f3e;
 }
+
+.c-color-swatch {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    max-width: 250px;
+  
+    &__item {
+      display: table-cell;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      user-select: none;
+      position: relative;
+      transition: transform 0.25s;
+  
+      &:hover {
+        z-index: 1;
+        transform: scale(1.5);
+      }
+    }
+  
+    [type="checkbox"]:checked + label:after {
+      content: "\f00c";
+      font-size: 9px;
+      vertical-align: top;
+      color: #fff;
+      font-family: FontAwesome;
+    }
+  }
