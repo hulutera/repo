@@ -3,27 +3,8 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
 if (isset($_GET['lan'])) {
-
 	$lan = $_GET['lan'];
-	if ($lan == "am") {
-		require_once $documnetRootPath . '/includes/locale/am.php';		
-	}
-	 else if ($lan == "ao")
-	{
-		require_once $documnetRootPath . '/includes/locale/ao.php';
-	}
-	else if ($lan == "tg")
-	{
-		require_once $documnetRootPath . '/includes/locale/tg.php';
-    }
-    else if ($lan == "so")
-	{
-		require_once $documnetRootPath . '/includes/locale/so.php';
-	}
-	else
-	{
-		require_once $documnetRootPath . '/includes/locale/en.php';
-	}
+	require_once $documnetRootPath . '/includes/locale/' . $lan . '.php';	
 }
 else
 {
