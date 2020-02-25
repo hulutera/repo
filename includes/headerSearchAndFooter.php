@@ -200,22 +200,20 @@ function tabMenu()
 		if (activatetab() == 2) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../includes/upload.php">Post Items
-				<div id="tabsAmharic">ንብረት ያስገቡ</div></a></li>';
+		echo 'href="../../includes/upload.php">' . $lang['Post Items'] .'</a></li>';
 	} else {
 		//go to upload
 		echo '<li class="activeSecond"><a ';
 		if (activatetab() == 18) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../includes/prompt.php?type=9">Post Items';
-		echo '<div id="tabsAmharic">ንብረት ያስገቡ</div></a></li>';
+		echo 'href="../../includes/prompt.php?type=9">' . $lang['Post Items'] .'</a></li>';
 	}
 	echo '<li class="activeThird"><a ';
 	if (activatetab() == 3) {
 		echo "class=\"active\"";
 	}
-	echo 'href="../../includes/help.php" >Help<div id="tabsAmharic">መረጃ</div></a></li>';
+	echo 'href="../../includes/help.php" >' . $lang['Help'] .'</a></li>';
 	echo '</div>';
 	miniSearch();
 	echo '</div>';	

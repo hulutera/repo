@@ -1,6 +1,8 @@
 <?php
 $lang = array (
     'All Items' => 'ሁሉም ንብረቶች',
+    'Post Items' => 'ንብረት ያስገቡ',
+    'Help' => 'መረጃ',
     'Car' => 'መኪና',
     'House' => 'ቤት',
     'Computer' => 'ኮምፒዩተር',
@@ -57,7 +59,7 @@ $lang = array (
     'Debre Birhan' => 'ደብረ ብርሃን',
     'Debre Markos' => 'ደብረ ማርቆስ',
     'Dessie' => 'ደሴ',
-    'Gondar' => 'ጎንደር',
+    'Gonder' => 'ጎንደር',
     'Gambela' => 'ጋንቤላ',
     'Harar' => 'ሐረር',
     'Asella' => 'አሰላ',
@@ -69,7 +71,7 @@ $lang = array (
     'Arba Minch' => 'አርባ ምንጭ',
     'Dila' => 'ዲላ',
     'Hosaena' => 'ሆሳና',
-    'Wolayita Sodo' => 'ወላይታ ሶዶ',
+    'Sodo' => 'ሶዶ',
     'Jijiga' => 'ጅጅጋ',
     'Axum' => 'አክሱም',
     'Adigrat' => 'አዲግራት',
