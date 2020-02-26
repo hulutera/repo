@@ -2,73 +2,74 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/includes/cmn.upload.php';
+require_once $documnetRootPath . '/includes/cmn.upload.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Upload | ንብረቱን ያስገቡ</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-<?php commonHeader();?>
-<style type="text/css">
+	<title>Upload | ንብረቱን ያስገቡ</title>
+	<?php commonHeader(); ?>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 
-  #preview_ie_1,#preview_ie_2,#preview_ie_3,#preview_ie_4,#preview_ie_5 {
-    FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)
-  }
+	<!-- fonts -->
 
-</style>
-<script type="text/javascript" src="../../js/upload.min.js"></script>
-<script type="text/javascript" src="../../js/imgUpload.min.js"></script>
-<script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>
-<script type="text/javascript">
-    function readURL(input,val) {
-	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
+	<link href="../../includes/dist/font/font-fileuploader.css" rel="stylesheet">
 
-	        reader.onload = function (e) {
-	            $('#preview_'+val).attr('src', e.target.result);
-	            $('#preview_'+val).show();
-	            $('#deleteBtn'+val).show();
-	            
-	        }
-			input.files[0] = '';
-	        reader.readAsDataURL(input.files[0]);
-	    }
-	}
-	function removeImg(target,val)
-	{
-		$(target).remove();
-		//$('#preview_'+val).attr('src','');
-		$('#preview_'+val).remove();
-		$('#picture_'+val).replaceWith($('#picture_'+val).clone(true));
-		
-	}
+	<!-- styles -->
+	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
+	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 
-	</script>
-<!--[if gte IE 7]> 
-<script type="text/javascript">
-  function readURL(imgFile,val)
-  {    
-      var newPreview = document.getElementById("preview_ie_"+val);
-      newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgFile.value;
-      newPreview.style.width = "100px";
-      newPreview.style.height = "100px";
-  }   
-</script>
-<![endif]-->
+	<!-- js -->
+	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+	<script src="../../includes/thumbnails/js/custom.js" type="text/javascript"></script>
+	<script src="../../includes/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
+
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			font-size: 14px;
+			line-height: normal;
+			background-color: #fff;
+
+			margin: 0;
+		}
+
+		form {
+			margin: 15px;
+		}
+
+		.fileuploader {
+			max-width: 560px;
+		}
+	</style>
 </head>
+</head>
+
 <body>
 	<div id="whole">
 		<div id="wrapper">
-			<?php uploadHeaderAndSearchCode("");?>
+			<?php uploadHeaderAndSearchCode(""); ?>
 			<div id="main_section">
-				<?php (new HtMainView($_GET['type'],null))->upload();
-				?>
+
+				<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php" method="post" enctype="multipart/form-data">
+					<h1>IN PROGRESS</h1>
+					<?php				
+					    (new HtMainView($_GET['type'], null))->upload();
+					?>
+					<div class="form-group row">
+						<div class="col-xs-offset-4 col-xs-8">
+							<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 		<div class="push"></div>
 	</div>
 	<?php footerCode(); ?>
 </body>
+
 </html>

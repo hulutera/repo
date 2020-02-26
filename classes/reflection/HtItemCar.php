@@ -1391,39 +1391,67 @@ SQL;
      */
     public function upload()
     {
-        echo '<link rel="stylesheet" href="../../css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">        
-        <form class="form-horizontal">';
         $this->inputCarType();
         $this->inputCarMake();
         $this->inputCarModel();
         $this->inputCarYear();
         $this->inputCarGearType();
         $this->inputCarFuelType();
+        $this->inputCarPlateType();
         $this->inputCarMilage();
         $this->inputCarSeat();
         $this->inputCarColor();
         $this->contactMeWith($this->getTableName());
-        $this->pictureForm();
-
-        echo ' 
-          <div class="form-group row">
-            <div class="col-xs-offset-4 col-xs-8">
-              <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </form>';
+        $this->inputItemLocation();
+        $this->inputItemImages();       
     }
-    private function pictureForm()
+    private function inputItemLocation()
+    {
+        $location = array(
+        "Addis Ababa" => "Addis Ababa",         
+        "Dire Dawa" =>"Dire Dawa",
+        "Adama"  => "Adama"  ,
+        "Bahir Dar"  => "Bahir Dar"  ,
+        "Mekele"  => "Mekele"  ,
+        "Awassa"  => "Awassa"  ,
+        "Asaita"  => "Asaita"  ,
+        "Debre Berhan"=>"Debre Berhan",
+        "Dessie"  => "Dessie"  ,
+        "Gondar"  => "Gondar"  ,
+        "Gambela"  => "Gambela"  ,
+        "Harar"  => "Harar"  ,
+        "Asella"  => "Asella"  ,
+        "Debre Zeit" =>  "Debre Zeit",
+        "Jimma"  => "Jimma"  ,
+        "Nekemte"  => "Nekemte"  ,
+        "Shashemene" => "Shashemene",
+        "Arba Minch" => "Arba Minch",
+        "Dila"  => "Dila"  ,
+        "Hosaena"  => "Hosaena"  ,
+        "Sodo"  => "Sodo"  ,
+        "Somali-Jijig" =>"Somali-Jijig",
+        "Axum"  => "Axum"  ,
+        "Other"  => "Other"  ,
+        );
+        echo '
+        <div class="form-group">
+           <label for="car_make" class="control-label col-xs-4">Item Location</label> 
+           <div class="col-xs-8">
+             <select id="car_make" name="car_region" class="select form-control" required="required">
+             <option value="0">Choose Region</option>';
+
+        foreach ($location as $key => $value) {
+            echo '<option value="' . $key . '">' . $value . '</option>';
+        }
+        echo '</select></div></div>';
+    }
+    private function inputItemImages()
     {
         echo '<div class="form-group">
-            <label for="car_image" class="control-label col-xs-4"></label>
+            <label for="car_image" class="control-label col-xs-4"><br><br><br><br>Choose Images here</label>
             <div class="col-xs-8">
-                <form action="php/form_upload.php" method="post" enctype="multipart/form-data">
                     <!-- file input -->
                     <input type="file" name="files">
-                    <input type="submit">
-                </form>
             </div>
         </div>';
     }
@@ -1439,7 +1467,6 @@ SQL;
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
         while ($row = $result->fetch_assoc()) {
-            var_dump($row);
             echo '<option value="' . $row['id'] . '">' . $row['field_name'] . '</option>';
         }
         echo '</select></div></div>';
@@ -1507,11 +1534,11 @@ SQL;
     </div>';
     }
 
-    private function inputCarGearType()
+    private function inputCarFuelType()
     {
         echo '
         <div class="form-group">
-        <label for="car_gear" class="control-label col-xs-4">Gear Type</label> 
+        <label for="car_gear" class="control-label col-xs-4">Fuel Type</label> 
         <div class="col-xs-8">
           <label class="radio-inline">
             <input type="radio" name="car_gear" value="1">
@@ -1538,27 +1565,46 @@ SQL;
         ';
     }
 
-    private function inputCarFuelType()
+    private function inputCarPlateType()
     {
         echo '
         <div class="form-group">
-          <label for="car_fuel" class="control-label col-xs-4">Fuel Type</label> 
+        <label for="car_registered" class="control-label col-xs-4">Registered</label> 
+        <div class="col-xs-8">
+          <label class="radio-inline">
+            <input type="radio" name="car_plate_yes" value="1">
+                  Yes
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="car_plate_no" value="2">
+                  No
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="car_plate_process" value="3">
+                  Processing
+          </label>
+        </div>
+      </div>
+        ';
+        
+    }
+    private function inputCarGearType()
+    {
+        echo '
+        <div class="form-group">
+          <label for="car_fuel" class="control-label col-xs-4">Gear Type</label> 
           <div class="col-xs-8">
-            <label class="checkbox-inline">
-              <input type="checkbox" name="car_fuel" value="1">
-                    Bensine
+            <label class="radio-inline">
+              <input type="radio" name="car_fuel" value="1">
+                    Manual
             </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="car_fuel" value="2">
-                    Diesel
+            <label class="radio-inline">
+              <input type="radio" name="car_fuel" value="2">
+                    Automatic
             </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="car_fuel" value="3">
-                    Bio
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="car_fuel" value="4">
-                    Electric
+            <label class="radio-inline">
+              <input type="radio" name="car_fuel" value="3">
+                    Semi-automatic
             </label>
           </div>
         </div>
