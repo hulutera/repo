@@ -1404,7 +1404,7 @@ SQL;
         $this->inputCarSeat();
         $this->inputCarColor();
         $this->contactMeWith($this->getTableName());
-        pictureForm($this->getTableName());
+        $this->pictureForm();
 
         echo ' 
           <div class="form-group row">
@@ -1414,7 +1414,19 @@ SQL;
           </div>
         </form>';
     }
-
+    private function pictureForm()
+    {
+        echo '<div class="form-group">
+            <label for="car_image" class="control-label col-xs-4"></label>
+            <div class="col-xs-8">
+                <form action="php/form_upload.php" method="post" enctype="multipart/form-data">
+                    <!-- file input -->
+                    <input type="file" name="files">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>';
+    }
     private function inputCarType()
     {
         echo '
