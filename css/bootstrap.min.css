@@ -28,4 +28,8 @@
 .container img {
     max-width: 250px;
     max-height: 250px;
-  }
+  } 
+
+  .my-group .form-control{
+    width:50%;
+}

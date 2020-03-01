@@ -3127,3 +3127,20 @@ th {
 		height: 50px;
 	}
 }
+
+
+.square-radio {
+    border: 1px solid black;
+    margin-top: 20px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    
+}
+/* 
+.custom-input-group {
+	width: 70%;
+}
+.custom-form-control{
+	width: 50%;
+} */

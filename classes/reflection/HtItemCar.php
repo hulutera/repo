@@ -1383,6 +1383,40 @@ SQL;
     }
 
     /**
+     * Class attribute for storing default upload values from upload functionality     
+     */
+    private $uploadOption = array(
+        'fieldLocation' => 'option' ,
+        'idCategory' => 'option' ,
+        'fieldMake' => 'input' ,
+        'fieldModel' => 'input' ,
+        'fieldModelYear' => 'option' ,
+        'fieldGearType' => 'option' ,
+        'fieldFuelType' => 'option' ,
+        'fieldMilage' => 'option' ,
+        'fieldNoOfSeat' => 'option' ,
+        'fieldColor' => 'option',
+        'fieldPriceRent' => 'input' ,
+        'fieldPriceRate' => 'option',
+        'fieldPriceSell' => 'input' ,
+        'fieldPriceCurrency' => 'option',
+        'fieldPriceNego' => 'option',
+        'fieldTitle' => 'input' ,
+        'fieldExtraInfo' => 'input',
+        'fieldContactMethod' => 'option',
+        'fileuploader-list-files' => 'input'
+    );
+    /**
+     * Facility for access upload options
+     * @category DML Helper
+     * @return uploadOptions
+     */
+    public function getUploadOption()
+    {
+        return $this->uploadOption;
+    }
+
+    /**
      * Facility for upload a new row into item_car.
      *
      * All class attribute values defined for mapping all table fields are automatically used during updating.
@@ -1391,54 +1425,63 @@ SQL;
      */
     public function upload()
     {
+        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">
+        <h1>IN PROGRESS</h1>';
+        $this->inputItemLocation();
         $this->inputCarType();
         $this->inputCarMake();
         $this->inputCarModel();
         $this->inputCarYear();
         $this->inputCarGearType();
         $this->inputCarFuelType();
-        $this->inputCarPlateType();
+        //$this->inputCarPlateType();
         $this->inputCarMilage();
         $this->inputCarSeat();
         $this->inputCarColor();
-        $this->contactMeWith($this->getTableName());
-        $this->inputItemLocation();
-        $this->inputItemImages();       
+        $this->inputItemPrice();
+        $this->inputItemContactMeWith($this->getTableName());
+        $this->inputItemImages();
+        echo '<div class="form-group row no-gutters">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+             </div>
+        </form>';
     }
     private function inputItemLocation()
     {
         $location = array(
-        "Addis Ababa" => "Addis Ababa",         
-        "Dire Dawa" =>"Dire Dawa",
-        "Adama"  => "Adama"  ,
-        "Bahir Dar"  => "Bahir Dar"  ,
-        "Mekele"  => "Mekele"  ,
-        "Awassa"  => "Awassa"  ,
-        "Asaita"  => "Asaita"  ,
-        "Debre Berhan"=>"Debre Berhan",
-        "Dessie"  => "Dessie"  ,
-        "Gondar"  => "Gondar"  ,
-        "Gambela"  => "Gambela"  ,
-        "Harar"  => "Harar"  ,
-        "Asella"  => "Asella"  ,
-        "Debre Zeit" =>  "Debre Zeit",
-        "Jimma"  => "Jimma"  ,
-        "Nekemte"  => "Nekemte"  ,
-        "Shashemene" => "Shashemene",
-        "Arba Minch" => "Arba Minch",
-        "Dila"  => "Dila"  ,
-        "Hosaena"  => "Hosaena"  ,
-        "Sodo"  => "Sodo"  ,
-        "Somali-Jijig" =>"Somali-Jijig",
-        "Axum"  => "Axum"  ,
-        "Other"  => "Other"  ,
+            "Addis Ababa" => "Addis Ababa",
+            "Dire Dawa" => "Dire Dawa",
+            "Adama"  => "Adama",
+            "Bahir Dar"  => "Bahir Dar",
+            "Mekele"  => "Mekele",
+            "Awassa"  => "Awassa",
+            "Asaita"  => "Asaita",
+            "Debre Berhan" => "Debre Berhan",
+            "Dessie"  => "Dessie",
+            "Gondar"  => "Gondar",
+            "Gambela"  => "Gambela",
+            "Harar"  => "Harar",
+            "Asella"  => "Asella",
+            "Debre Zeit" =>  "Debre Zeit",
+            "Jimma"  => "Jimma",
+            "Nekemte"  => "Nekemte",
+            "Shashemene" => "Shashemene",
+            "Arba Minch" => "Arba Minch",
+            "Dila"  => "Dila",
+            "Hosaena"  => "Hosaena",
+            "Sodo"  => "Sodo",
+            "Somali-Jijig" => "Somali-Jijig",
+            "Axum"  => "Axum",
+            "Other"  => "Other",
         );
         echo '
         <div class="form-group">
-           <label for="car_make" class="control-label col-xs-4">Item Location</label> 
+           <label for="fieldLocation" class="control-label col-xs-4">Item Location</label> 
            <div class="col-xs-8">
-             <select id="car_make" name="car_region" class="select form-control" required="required">
-             <option value="0">Choose Region</option>';
+             <select id="fieldLocation" name="fieldLocation" class="select form-control" required="required">
+             <option value="'.$_SESSION['POST']['fieldLocation'].'">'.$_SESSION['POST']['fieldLocation'].'</option>';
 
         foreach ($location as $key => $value) {
             echo '<option value="' . $key . '">' . $value . '</option>';
@@ -1448,10 +1491,10 @@ SQL;
     private function inputItemImages()
     {
         echo '<div class="form-group">
-            <label for="car_image" class="control-label col-xs-4"><br><br><br><br>Choose Images here</label>
+            <label for="fieldImage" class="control-label col-xs-4"><br><br><br><br>Choose Images here</label>
             <div class="col-xs-8">
                     <!-- file input -->
-                    <input type="file" name="files">
+                    <input type="file" name="files" required="required">
             </div>
         </div>';
     }
@@ -1459,10 +1502,10 @@ SQL;
     {
         echo '
         <div class="form-group">
-            <label for="car_type" class="control-label col-xs-4">Type</label> 
+            <label for="idCategory" class="control-label col-xs-4">Type</label> 
         <div class="col-xs-8">
-        <select id="car_type" name="car_type" class="select form-control" required="required">
-        <option value="0">Choose Type</option>
+        <select id="idCategory" name="idCategory" class="select form-control" required="required">
+        <option value="'.$_SESSION['POST']['idCategory'].'">'.$_SESSION['POST']['idCategory'].'</option>
         ';
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
@@ -1476,10 +1519,10 @@ SQL;
     {
         echo '
         <div class="form-group">
-           <label for="car_make" class="control-label col-xs-4">Make</label> 
+           <label for="fieldMake" class="control-label col-xs-4">Make</label> 
            <div class="col-xs-8">
-             <select id="car_make" name="car_make" class="select form-control" required="required">
-             <option value="0">Choose Make</option>';
+             <select id="fieldMake" name="fieldMake" class="select form-control" required="required">
+             <option value="'.$_SESSION['POST']['fieldMake'].'">'.$_SESSION['POST']['fieldMake'].'</option>';
         $make = array(
             "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
             "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
@@ -1504,9 +1547,9 @@ SQL;
     {
         echo '
         <div class="form-group">
-          <label for="car_model" class="control-label col-xs-4">Model</label> 
+          <label for="fieldModel" class="control-label col-xs-4">Model</label> 
           <div class="col-xs-8">
-            <input id="car_model" name="car_model" type="text" class="form-control" required="required">
+            <input id="fieldModel" name="fieldModel" type="text" value="'.$_SESSION['POST']['fieldModel'].'" class="form-control" required="required" >
           </div>
         </div>';
     }
@@ -1515,10 +1558,10 @@ SQL;
     {
         echo '
         <div class="form-group">
-        <label for="car_year" class="control-label col-xs-4">Year Made</label> 
+        <label for="fieldModelYear" class="control-label col-xs-4">Year Made</label> 
         <div class="col-xs-8">
-        <select id="car_year" name="car_year" class="select form-control" required="required">
-          <option value="0">Choose Year</option>';
+        <select id="fieldModelYear" name="fieldModelYear" class="select form-control" required="required">
+          <option value="'.$_SESSION['POST']['fieldModelYear'].'">'.$_SESSION['POST']['fieldModelYear'].'</option>';
 
 
         for ($i = date('Y'); $i >= 1980; --$i) {
@@ -1538,26 +1581,26 @@ SQL;
     {
         echo '
         <div class="form-group">
-        <label for="car_gear" class="control-label col-xs-4">Fuel Type</label> 
+        <label for="fieldFuelType" class="control-label col-xs-4">Fuel Type</label> 
         <div class="col-xs-8">
           <label class="radio-inline">
-            <input type="radio" name="car_gear" value="1">
+            <input type="radio" name="fieldFuelType" value="1" required="required" '.($_SESSION['POST']['fieldFuelType'] == 1?"checked":"").'>
                   Besine
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_gear" value="2">
+            <input type="radio" name="fieldFuelType" value="2" '.($_SESSION['POST']['fieldFuelType'] == 2?"checked":"").'>
                   Diesel
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_gear" value="3">
+            <input type="radio" name="fieldFuelType" value="3" '.($_SESSION['POST']['fieldFuelType'] == 3?"checked":"").'>
                   Bio-gas
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_gear" value="4">
+            <input type="radio" name="fieldFuelType" value="4" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
                   Besine/Electric (Hybrid)
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_gear" value="5">
+            <input type="radio" name="fieldFuelType" value="5" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
                   Electric
           </label>
         </div>
@@ -1565,6 +1608,7 @@ SQL;
         ';
     }
 
+    //temporary disabled no database reflection, need generation
     private function inputCarPlateType()
     {
         echo '
@@ -1572,38 +1616,37 @@ SQL;
         <label for="car_registered" class="control-label col-xs-4">Registered</label> 
         <div class="col-xs-8">
           <label class="radio-inline">
-            <input type="radio" name="car_plate_yes" value="1">
+            <input type="radio" name="car_registered" value="1" required="required">
                   Yes
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_plate_no" value="2">
+            <input type="radio" name="car_registered" value="2">
                   No
           </label>
           <label class="radio-inline">
-            <input type="radio" name="car_plate_process" value="3">
+            <input type="radio" name="car_registered" value="3">
                   Processing
           </label>
         </div>
       </div>
         ';
-        
     }
     private function inputCarGearType()
     {
         echo '
         <div class="form-group">
-          <label for="car_fuel" class="control-label col-xs-4">Gear Type</label> 
+          <label for="fieldGearType" class="control-label col-xs-4">Gear Type</label> 
           <div class="col-xs-8">
             <label class="radio-inline">
-              <input type="radio" name="car_fuel" value="1">
+              <input type="radio" name="fieldGearType" value="1" required="required" '.($_SESSION['POST']['fieldGearType'] == 1?"checked":"").'>
                     Manual
             </label>
             <label class="radio-inline">
-              <input type="radio" name="car_fuel" value="2">
+              <input type="radio" name="fieldGearType" value="2" '.($_SESSION['POST']['fieldGearType'] == 2?"checked":"").'>
                     Automatic
             </label>
             <label class="radio-inline">
-              <input type="radio" name="car_fuel" value="3">
+              <input type="radio" name="fieldGearType" value="3" '.($_SESSION['POST']['fieldGearType'] == 3?"checked":"").'>
                     Semi-automatic
             </label>
           </div>
@@ -1614,13 +1657,13 @@ SQL;
     {
         echo '
         <div class="form-group">
-        <label for="car_milage" class="control-label col-xs-4">Milage</label> 
+        <label for="fieldMilage" class="control-label col-xs-4">Milage [km]</label> 
         <div class="col-xs-8">
-        <select id="car_milage" name="car_milage" required="required" class="select form-control">
-        <option value="0">Choose Milage [Km]</option>';
+        <select id="fieldMilage" name="fieldMilage" required="required" class="select form-control">
+        <option value="'.$_SESSION['POST']['fieldMilage'].'">'.$_SESSION['POST']['fieldMilage'].'</option>';
         for ($i = 0; $i <= 40000;) {
             $j = $i + 4999;
-            echo '<option value="' . $i . '">' . $i . '-' . $j . '</option>';
+            echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5000;
         }
         echo '</select></div></div>';
@@ -1630,13 +1673,13 @@ SQL;
     {
         echo '
         <div class="form-group">
-          <label for="car_seat" class="control-label col-xs-4">Number of Seat</label> 
+          <label for="fieldNoOfSeat" class="control-label col-xs-4">Number of Seat</label> 
           <div class="col-xs-8">
-            <select id="car_seat" name="car_seat" class="select form-control" required="required">
-              <option value="1">Choose Seat</option>';
-        for ($i = 0; $i <= 100;) {
-            $j = $i + 5;
-            echo '<option value="' . $i . '">' . $i . '-' . $j . '</option>';
+            <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control" required="required">
+            <option value="'.$_SESSION['POST']['fieldNoOfSeat'].'">'.$_SESSION['POST']['fieldNoOfSeat'].'</option>';
+            for ($i = 1; $i <= 100;) {
+            $j = $i-1 + 5;
+            echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5;
         }
         echo '</select></div></div>';
@@ -1646,8 +1689,10 @@ SQL;
     {
         echo '
         <div class="form-group">
-        <label for="car_color" class="control-label col-xs-4">Color</label> 
-        <div class="col-xs-8">';
+        <label for="fieldColor" class="control-label col-xs-4">Color</label> 
+        <div class="col-xs-8"><div class="row">
+		<div class="col-md-12">	<div class="btn-group" role="group">';
+
         $colors = [
             "black" => "#000000",
             "green" => "#009f6b",
@@ -1659,53 +1704,98 @@ SQL;
             "silver" => "#c0c0c0"
         ];
         foreach ($colors as $key => $value) {
-            # code...
-
             echo
                 '
-          <label class="radio-inline" style="border:1px solid black; background-color:' . $value . ';">
-            <input type="radio" name="car_color" value=' . $key . ' >                  
-          </label>';
+                <button class="btn btn-secondary" type="button" style="background-color:' . $value . ';">
+                <input type="radio" class="square-radio" class="form-control" required="required" name="fieldColor" 
+                value="' . $value . '" ' . $key . ' '.($_SESSION['POST']['fieldColor'] == $value?"checked":"").'>    </button>';
         }
-
-        echo '</div></div>';
+        echo '</div></div></div></div></div>';
     }
 
-    private function contactMeWith($item)
+    private function inputItemContactMeWith($item)
     {
         echo '
         <div class="form-group">
-        <label for="' . $item . '_title" class="control-label col-xs-4">Title</label> 
+        <label for="fieldTitle" class="control-label col-xs-4">Title</label> 
         <div class="col-xs-8">
-          <input id="' . $item . '_title" name="' . $item . '_title" type="text" class="form-control" required="required">
+          <input id="fieldTitle" name="fieldTitle" type="text" class="form-control" required="required" value="'.$_SESSION['POST']['fieldTitle'].'">
         </div>
       </div>
       <div class="form-group">
-        <label for="' . $item . '_description" class="control-label col-xs-4">Description</label> 
+        <label for="fieldExtraInfo" class="control-label col-xs-4">Extra Info</label> 
         <div class="col-xs-8">
-          <textarea id="' . $item . '_description" name="' . $item . '_description" cols="40" rows="5" class="form-control"></textarea>
+          <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control" required="required">'.$_SESSION['POST']['fieldExtraInfo'].'</textarea>
         </div>
       </div>
-        <div class="form-group">
-        <label for="' . $item . '_contact_me" class="control-label col-xs-4">Contact Me With</label> 
+      <div class="form-group">
+        <label for="fieldContactMethod" class="control-label col-xs-4">Contact Me With</label> 
         <div class="col-xs-8">
-          <label class="checkbox-inline">
-            <input type="checkbox" name="' . $item . '_contact_me" value="1">
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="1" required="required" '.($_SESSION['POST']['fieldContactMethod'] == 1?"checked":"").'>
                   Phone
           </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="' . $item . '_contact_me" value="2">
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="2" '.($_SESSION['POST']['fieldContactMethod'] == 2?"checked":"").'>
                   E-mail
           </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="' . $item . '_contact_me" value="3">
-                  Both
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="3" '.($_SESSION['POST']['fieldContactMethod'] == 3?"checked":"").'>
+                  All
           </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="' . $item . '_contact_me" value="4">
-                  Message
-          </label>
+
         </div>
-      </div>';
+      </div>
+      <div class="form-group">
+        <label for="fieldContactMethod" class="control-label col-xs-4">Addtional Telephone</label>
+        <div class="col-xs-8">
+        <input class="form-control" type="tel" value="251-(555)-555-5555" id="example-tel-input">
+      </div>     
+      ';
+    }
+
+    private function inputItemPrice()
+    {
+        echo '<div class="form-group">
+                    <label for="fieldPriceRent" class="control-label col-xs-4">Price</label> 
+                    <div class="col-xs-8">
+                        <div class="col-xs-6">
+                             <div class="input-group my-group"> 
+                                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="rental is 0" value="'.$_SESSION['POST']['fieldPriceRent'].'" class="form-control" required="required">
+                                <select id="fieldPriceRate" name="fieldPriceRate" class="select form-control rate" required="required">
+                                <option value="'.$_SESSION['POST']['fieldPriceRate'].'">'.$_SESSION['POST']['fieldPriceRate'].'</option>';
+        $colors = [
+            "not_rental" => "Not for rental",
+            "hour" => "hourly",
+            "day" => "daily",
+            "month" => "monthly",
+            "year" => "yearly"
+        ];
+        foreach ($colors as $key => $value) {
+            echo '<option value="' . $value . '">' . $value . '</option>';
+        }
+        echo '</select>
+                            <input id="fieldPriceSell" name="fieldPriceSell" type="text"  placeholder="sell is 0" value="'.$_SESSION['POST']['fieldPriceSell'].'" class="form-control" required="required">
+                            <select id="fieldPriceCurrency" name="fieldPriceCurrency" required="required" class="select form-control">
+                              <option value="'.$_SESSION['POST']['fieldPriceCurrency'].'">'.$_SESSION['POST']['fieldPriceCurrency'].'</option>
+                              <option value="ETB">ETB</option>
+                              <option value="USD">$USD</option>
+                            </select>
+                            <div class="form-group">
+                            <label  class="control-label col-xs-6">Price is negotiable</label>
+                            <div class="col-xs-6">
+                            <label class="radio-inline">
+                            <input type="radio" name="fieldPriceNego" value="1" required="required" '.($_SESSION['POST']['fieldPriceNego'] == 1?"checked":"").'>
+                                  Yes
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="fieldPriceNego" value="2" '.($_SESSION['POST']['fieldPriceNego'] == 2?"checked":"").'>
+                                  No
+                          </label>
+                          </div></div>
+                       </div>
+                   </div>
+              </div>
+                </div>';
     }
 }

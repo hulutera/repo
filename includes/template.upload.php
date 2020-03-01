@@ -4,6 +4,8 @@ ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/cmn.upload.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
+require_once $documnetRootPath . '/includes/validate.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,18 +55,20 @@ require_once $documnetRootPath . '/includes/common.inc.php';
 		<div id="wrapper">
 			<?php uploadHeaderAndSearchCode(""); ?>
 			<div id="main_section">
+				
+				<?php
+				if(isset($_SESSION['error']))
+				{
+					$crptor = new Cryptor();
+					$out = $crptor->decryptor($_SESSION['error']);
 
-				<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php" method="post" enctype="multipart/form-data">
-					<h1>IN PROGRESS</h1>
-					<?php				
-					    (new HtMainView($_GET['type'], null))->upload();
-					?>
-					<div class="form-group row">
-						<div class="col-xs-offset-4 col-xs-8">
-							<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</div>
-				</form>
+					echo '<div class="alert-danger">
+					<strong>'. $out .'</strong>					
+				</div>';
+				}
+				(new HtMainView($_GET['type'], null))->upload();
+
+				?>
 			</div>
 		</div>
 		<div class="push"></div>

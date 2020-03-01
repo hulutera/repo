@@ -4,6 +4,7 @@ require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
 if (isset($_GET['lan'])) {
 	$lan = $_GET['lan'];
+	var_dump($_GET);
 	require_once $documnetRootPath . '/includes/locale/' . $lan . '.php';	
 }
 else

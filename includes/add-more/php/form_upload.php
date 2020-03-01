@@ -1,6 +1,7 @@
 <?php
     $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
     require_once $documnetRootPath . '/classes/class.fileuploader.php';
+    require_once $documnetRootPath . '/view/HtMainView.php';
 
 	
 	// initialize FileUploader

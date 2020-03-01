@@ -2,6 +2,7 @@
 
 function locale($current_link)
 {
+    $ln = 0;
     $en = null;
     $am = null;
     $ao = null;
@@ -10,7 +11,7 @@ function locale($current_link)
     $gu = null;
     $si = null;
     $wo = null;
-    if (isset($_GET['type'])) {
+    if (isset($_GET['lan'])) {
         $arr = array("&lan=am", "&lan=en", "&lan=ao", "&lan=tg", "&lan=so", "&lan=gu", "&lan=si", "&lan=wo");
         foreach ($arr as $key => $value) {
             if (strpos($current_link, $value) !== false) {
@@ -26,30 +27,34 @@ function locale($current_link)
         $gu = $current_link . '&lan=gu';
         $si = $current_link . '&lan=si';
         $wo = $current_link . '&lan=wo';
-    }
-    else
-    {
+    } else {
         $en = $current_link . '?&lan=en';
         $am = $current_link . '?&lan=am';
         $ao = $current_link . '?&lan=ao';
-        $tg = $current_link . '&lan=tg';
-        $so = $current_link . '&lan=so';
-        $gu = $current_link . '&lan=gu';
-        $si = $current_link . '&lan=si';
-        $wo = $current_link . '&lan=wo';
+        $tg = $current_link . '?&lan=tg';
+        $so = $current_link . '?&lan=so';
+        $gu = $current_link . '?&lan=gu';
+        $si = $current_link . '?&lan=si';
+        $wo = $current_link . '?&lan=wo';
     }
 
+    $language = [
+        $ln => "LANGUAGE",
+        $en => "ENGLISH",
+        $am => "አማርኛ",
+        $ao => "AFAN OROMO",
+        $tg => "ትግርኛ",
+        $so => "SOMALI",
+        $si => "SIDAAMU AFOO",
+        $gu => "ጉራግኛ",
+        $wo => "ወላይትኛ"
+    ];
     echo '<div id="toplinktexts">';
     echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale">';
-    echo '<option value = "">LANGUAGE</option>';
-    echo '<option value = "' . $en. '">ENGLISH</option>';
-    echo '<option value = "' . $am. '">አማርኛ</option>';
-    echo '<option value = "' . $ao. '">AFAN OROMO</option>';
-    echo '<option value = "' . $tg. '">ትግርኛ</option>';
-    echo '<option value = "' . $so. '">SOMALI</option>';
-    echo '<option value = "' . $si. '">SIDAAMU AFOO</option>';
-    echo '<option value = "' . $gu. '">ጉራግኛ</option>';
-    echo '<option value = "' . $wo. '">ወላይትኛ</option>';
+    foreach ($language as $key => $value) {
+        //use mb_substr($value,0,2) to get the first two characters
+        echo '<option value = "' . $key . '">'.$value.'</option>';
+    }
     echo '</select>';
     echo '<div>';
 }

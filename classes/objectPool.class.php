@@ -57,7 +57,8 @@ class ObjectPool
 
     public function getObjectWithId($item, $id)
     {
-        switch ($item) {
+        $itemName = str_replace("item_","",$item); 
+        switch ($itemName) {
             case 'car':
                 return (new HtItemCar($id));
             case 'computer':
@@ -83,6 +84,8 @@ class ObjectPool
 
     public function getObjectSpecial($item, $id)
     {
+        $itemName = str_replace("item_","",$item); 
+
         $objects = array(
             'car' => (new HtItemCar($id)),
             'computer' => (new HtItemComputer($id)),
@@ -92,8 +95,8 @@ class ObjectPool
             'phone' => (new HtItemPhone($id)),
             'other' => (new HtItemOther($id))
         );
-        if (!empty($item) && $item !== 'all') {
-            return array($objects[$item]);
+        if (!empty($itemName) && $itemName !== 'all') {
+            return array($objects[$itemName]);
         }
         else {
             return $objects;
