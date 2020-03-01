@@ -1,6 +1,4 @@
 <?php
-
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption 
@@ -15,15 +13,11 @@ class Cryptor
     // Use OpenSSl Encryption method 
     //private $iv_length = openssl_cipher_iv_length($this->ciphering);
     private $options = 0;
-    
 
-        /**
+    /**
      * __construct method
      *
-     * @public
-     * @param $name {$_FILES key}
-     * @param $options {null, Array}
-     */
+    */
     public function __construct()
     {
         
@@ -57,9 +51,7 @@ class Cryptor
 }
 class ValidateForm
 {
-    private $runnerName;
     private $default_options = [];
-
 
     /**
      * __construct method
@@ -72,12 +64,17 @@ class ValidateForm
     {
         $this->_runnerName = ObjectPool::getInstance()->getObjectWithId($item, null);
         $this->default_options = $this->_runnerName->getUploadOption();
+        
+        //check if all fields are set
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key]) && $value == 'input') {
                 $_POST[$key] = filter_var($_POST[$key], FILTER_SANITIZE_STRING);
                 echo $key . ' =  ' . $_POST[$key] . '<br>';
             }
         }
+
+        // checks if input text fields are set and are valid type
+        // Special handling of price inputs 
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key]) && $value == 'input' && ($key == 'fieldPriceRent' || $key == 'fieldPriceSell')) {
                 $value = $_POST[$key];

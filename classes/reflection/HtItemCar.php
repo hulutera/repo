@@ -1761,7 +1761,7 @@ SQL;
                     <div class="col-xs-8">
                         <div class="col-xs-6">
                              <div class="input-group my-group"> 
-                                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="rental is 0" value="'.$_SESSION['POST']['fieldPriceRent'].'" class="form-control" required="required">
+                                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="write 0 if not rental" value="'.$_SESSION['POST']['fieldPriceRent'].'" class="form-control" required="required">
                                 <select id="fieldPriceRate" name="fieldPriceRate" class="select form-control rate" required="required">
                                 <option value="'.$_SESSION['POST']['fieldPriceRate'].'">'.$_SESSION['POST']['fieldPriceRate'].'</option>';
         $colors = [
@@ -1775,7 +1775,7 @@ SQL;
             echo '<option value="' . $value . '">' . $value . '</option>';
         }
         echo '</select>
-                            <input id="fieldPriceSell" name="fieldPriceSell" type="text"  placeholder="sell is 0" value="'.$_SESSION['POST']['fieldPriceSell'].'" class="form-control" required="required">
+                            <input id="fieldPriceSell" name="fieldPriceSell" type="text"  placeholder="write 0 if not sell" value="'.$_SESSION['POST']['fieldPriceSell'].'" class="form-control" required="required">
                             <select id="fieldPriceCurrency" name="fieldPriceCurrency" required="required" class="select form-control">
                               <option value="'.$_SESSION['POST']['fieldPriceCurrency'].'">'.$_SESSION['POST']['fieldPriceCurrency'].'</option>
                               <option value="ETB">ETB</option>
