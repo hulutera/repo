@@ -7,7 +7,7 @@ function location($hash)
 	echo '<div id="region">';
 	echo '<label>'. $lang['City'] .'</label>';
 	echo '<select name="region" id="city">';
-	echo '<option value="000" selected>[' . $lang['Choose'] . ' ' . $lang['City'] .']</option>';
+	echo '<option value="000" selected>[' . $lang['City'] . ' ' . $lang['Choose'] .']</option>';
 	echo '<option value = "Addis Ababa" ';if($region=="Addis Ababa") echo " selected"; echo '>' . $lang['Addis Ababa'] . '</option>';
 	echo '<option value = "Dire Dawa" ';if($region=="Dire Dawa") echo " selected"; echo '>' . $lang['Dire Dawa'] . '</option>';
 	echo '<option value = "Adama" ';if($region=="Adama") echo " selected"; echo '>' . $lang['Adama'] . '</option>';
@@ -200,7 +200,7 @@ function centerPicture($hash)
 	}
 	if(crypt(301, $hash["301"]) == $hash["301"])
 	{
-		echo '<div id="myform_errorloc" class="error_strings"> <bold>'.$image.'</bold>'.$lang['is not of type jpeg ,bmp,gif,jpg or png'].'</div>';
+		echo '<div id="myform_errorloc" class="error_strings"> <bold>'.$image.'</bold>'.$lang['is not of type jpeg ,bmp,gif,jpg or pnggit '].'</div>';
 	}
 	echo ' </div>';
 

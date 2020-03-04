@@ -1,7 +1,14 @@
 <?php
+
+if(isset($_GET['lan'])) { 
+	$lang_url = "?&lan=" . $_GET['lan'];		
+} else{
+	$lang_url = "";	
+}
+
 function contact()
 {
-	global $connect;
+	global $connect, $lang, $lang_url;
 	$error_message="";	
 	if(isset($_POST['submit']))
 	{
@@ -9,20 +16,20 @@ function contact()
 			
 		/*check name*/
 		if(empty($_POST['name'])){
-			$error[] = 'Please enter your name/ስምዎን ያስገቡ.';
+			$error[] = $lang['Please enter your name'];
 		}else if(ctype_alpha($_POST['name'])){
 			$name = $_POST['name'];
 		}else{
-			$error[] = 'Enter only your first name/ስምዎን ብቻ ያስገቡ. ';
+			$error[] = $lang['Enter only your first name'];
 		}
 
 		//email
 		if(empty($_POST['email'])){
-			$error[] = 'Please enter your email/ኢሜይልዎን ያስገቡ.';
+			$error[] = $lang['Please enter your email'];
 		}else if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 			$email = $connect->real_escape_string($_POST['email']);
 		}else{
-			$error[] = 'Your e-mail address is invalid/ኢሜይሉ ልክ አይደለም. ';
+			$error[] = $lang['Your e-mail address is invalid'];
 		}
 
 		/*check message*/
@@ -31,14 +38,14 @@ function contact()
 		}
 		/*check subject*/
 		if(empty($_POST['subject'])){
-			$error[] = 'Please enter a subject/የመልእክቱን ዓላማ ያስገቡ.';
+			$error[] = $lang['Please enter a subject'];
 		}else
 		{
 			$subject=$connect->real_escape_string($_POST['subject']);
 		}
 		/*check purpose*/
 		if($_POST['contactpurpose']=="000"){
-			$error[] = 'Please state choose your purpose/ስለምን ሊያገኙን ፈለጉ.';
+			$error[] = $lang['Please state choose your purpose'];
 		}else{
 			$contactpurpose=$connect->real_escape_string($_POST['contactpurpose']);
 		}
@@ -58,9 +65,7 @@ function contact()
 			}
 			else
 			{
-				$message="This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n
-						Sincerely,hulutera Admin\n\n";
-				$message.="ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.hulutera.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።\n\n ከካቶመር አስተዳደር";
+				$message= $lang ['This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n'];
 				$isMailDelivered = mail($email, 'Contact confirmation', $message, 'From:noreply@hulutera.com');
 
 				if(!$isMailDelivered)
@@ -91,49 +96,53 @@ function contact()
 	$emailValue = (isset($_POST['email'])) ? $_POST['email'] : '';
 	$subjectValue = (isset($_POST['subject'])) ? $_POST['subject'] : '';
 	$descriptionValue = (isset($_POST['description'])) ? $_POST['description'] : '';
+	
+	if($lang_url !== NULL) {
+		$str_url = str_replace("?", "", $lang_url);
+	}
 	echo '<div id="mainColumn">';
 	echo '<div id="contactUs">';
-	echo '<form class="container" method="POST" action="">';
+	echo '<form class="container" method="POST" action="../includes/template.proxy.php?type=contact' . $str_url . '">';
 	echo '<br>';
 	echo  $error_message;
 	echo '<table>';
 	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>Name</div><div>ስም</div></td>';
+	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Your name'].'</div></td>';
 	echo '<td><input type="text" class="input" id="name" name="name" maxlength="80" value="'.$nameValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>Email</div><div>ኢሜይል</div></td>';
+	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Email'].'</div></td>';
 	echo '<td><input type="text" style="text-transform:lowercase"class="input" id="email" name="email" maxlength="80" value="'.$emailValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>Company</div><div>ድርጅት</div></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Company'].'</div></td>';
 	echo '<td><input type="text" class="input" id="company" name="company" maxlength="80" value="'.$companyValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>Subject</div><div>ርዕስ</div></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Subject'].'</div></td>';
 	echo '<td><input type="text" class="input" id="subject" name="subject" maxlength="80" value="'.$subjectValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>Contact Purpose</div><div>ሊያናግሩን የፈለጉበት ምክንያት</div></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Contact Purpose'].'</div></td>';
 	echo '<td>';
 	echo '<select name="contactpurpose" id="contactpurpose">';
-	echo '<option value="000"> [choose your puropse/ሊያናግሩነ የፈለጉበት ምክንያት ይምረጡ]</ option>';
-	echo '<option value="I can not find my ad"> I can not find my Ad /ያስተዋወኩት ንብረት ላገኘው አልቻልኩም</ option>';
-	echo '<option value="My ad is not approved"> My Ad is not approved/ያስተዋወኩት ንብረት አልጸደቀም </ option>';
-	echo '<option value="My ad is still pending"> My Ad is still pending/ያስተዋወኩት ንብረት አክቲቭ አልሆነም</ option>';
-	echo '<option value="Technical problems in ad"> Technical problems in Ad/የቴክኒክ ችግር</ option>';
-	echo '<option value="Problems with picture"> Problems with picture/ምስል በደንብ አይታይም</ option>';
-	echo '<option value="I want to report suspected fraud"> I want to report suspected fraud/የማጭበርበር ድርጊት ሪፖርት ማረግ ፈልጋለው </ option>';
-	echo '<option value="Feedback and suggestions for hulutera"> Feedback and suggestions for hulutera/ለካቶመር አስተያየት መስጠት ፈልጋለው</ option>';
-	echo '<option value="General">General comment/አጠቃላይ አስተያየት</option>';
+	echo '<option value="000"> ' . $lang['choose your puropse'] . '</ option>';
+	echo '<option value="I can not find my Ad">' . $lang['I can not find my Ad'] . '</ option>';
+	echo '<option value="My Ad is not approved">' . $lang['My Ad is not approved'] . '</ option>';
+	echo '<option value="My Ad is still pending">' . $lang['My Ad is still pending'] . ' </ option>';
+	echo '<option value="Technical problems in Ad"> ' . $lang['Technical problems in Ad'] . '</ option>';
+	echo '<option value="Problems with picture">'.$lang['Problems with picture'].'</ option>';
+	echo '<option value="I want to report suspected fraud"> '.$lang['I want to report suspected fraud'].' </ option>';
+	echo '<option value="Feedback and suggestions for hulutera"> '.$lang['Feedback and suggestions for hulutera'].'</ option>';
+	echo '<option value="General">'.$lang['General comment'] .'</option>';
 	echo '</select>';
 	echo '</td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>Message</div><div>መልዕክት</div></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Message'].'</div></td>';
 	echo '<td><textarea name="description" id="description" rows="8" value="Enter your message here...">'.$descriptionValue.'</textarea></td>';
 	echo '</tr>';
-	echo '<tr><td colspan="2"><div id="buttonInput"><input type="submit" name="submit" id="submit" class="button" value="Send"/></div></td>';
+	echo '<tr><td colspan="2"><div id="buttonInput"><input type="submit" name="submit" id="submit" class="button" value="'.$lang['Send'].'"/></div></td>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</form>';
@@ -187,9 +196,9 @@ function aboutUs()
 			<div id="aboutUsAmharic">
 			<p>
 			<p class="aboutus">
-			ካቶመር ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ።
-			በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ካቶመር በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል።
-			ካቶመር ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው
+			ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ።
+			በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል።
+			ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው
 			<li class="aboutUsli"><a href="../items/car/car.php">መኪና</a></li>
 			<li class="aboutUsli"><a href="../items/house/house.php">ቤት</a></li>
 			<li class="aboutUsli"><a href="../items/phone/phone.php">ስልክ</a></li>
@@ -200,7 +209,7 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">
-			ካቶመር የህብረተሰባችንን ፍላጎት እንዲያሟላ በማሰብ የተሰራ ድህረገፅ ነው። ለመጠቀም ቀለል ያለ ሲሆን በፈለጉት መልኩ ሊጠቀሙበት ይችላሉ።
+			ሁሉተራ የህብረተሰባችንን ፍላጎት እንዲያሟላ በማሰብ የተሰራ ድህረገፅ ነው። ለመጠቀም ቀለል ያለ ሲሆን በፈለጉት መልኩ ሊጠቀሙበት ይችላሉ።
 			ንብረት ለማስገባት ካሰቡ በቅድሚያ መመዝገብ ሲኖሩቦት፤ ምዝገባውንም በቀላሉ ማከናወን ይችላሉ።ንብረት ለማስገባትም ሆነ ያስገቡትን ንብረት ለመቆጣጠር በጣም ቀላል ነው።
 			ሰፋ ያለ የአጠቃቀም  ዝርዝር ካስፈለግዎ መረጃ የሚለው ውስጥ ያገኛሉ።
 			</p>
@@ -211,7 +220,7 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">
-			ካቶመርን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን
+			ሁሉተራን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን
 			<li class="aboutUsli">•	ለቅሬታ ፣ ለማሻሻያ ሃሳቦች እንዲሁም ሌሎች ጥቆማዎች ይህንን<a href="../../includes/template.proxy.php?type=contact"> ሊጠይቁን ይፈልጋሉ </a>የሚለውን ተጭነው ይግለፁ</li>
 			<li class="aboutUsli">•	ለአላግባብ ለገቡ ምስሎች እና ገለፃዎች ሪፖርት የሚለውን ተጭነው ይግለፁ </li>
 			<li class="aboutUsli">•	ለተጨማሪ መረጃ ካስፈለግዎ <a href="../../includes/template.proxy.php?type=help">መረጃ</a> የሚለውን ተጭነው እዛ ውስጥ ያገኛሉ</li>
@@ -219,11 +228,11 @@ function aboutUs()
 
 			<br>
 			<p class="aboutus">
-			በመጨረሻም ካቶመርን ለኢትዮጵያውያን ይፋ ስናደርግ በሙሉ ኩራት እና ልባዊ ደስታ ሲሆን ድሕረገፁን እንዲጠቀሙበት በትህትና እንጠይቆታለን
+			በመጨረሻም ሁሉተራን ለኢትዮጵያውያን ይፋ ስናደርግ በሙሉ ኩራት እና ልባዊ ደስታ ሲሆን ድሕረገፁን እንዲጠቀሙበት በትህትና እንጠይቆታለን
 
 			</p>
 			<p class="aboutus">
-			ከካቶመር አስተዳደር
+			ከሁሉተራ አስተዳደር
 			</p>
 
 			</p>
@@ -298,7 +307,7 @@ function termAndConditions()
 
 			<div id="termsDivAmharic" style="background-color:#dfefff; ">
 			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:17px"> የመተዳደርያ ደንብ </span></br></br>
-			ወደ hulutera.com እንኳን በደህና መጡ። hulutera.com ንብረትነቱ የካቶመር ነው።
+			ወደ hulutera.com እንኳን በደህና መጡ። hulutera.com ንብረትነቱ የሁሉተራ ነው።
 			ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ፤
 			የሚከተለውን የመተዳደርያ ደንብ ተረድተው እና ተስማምተው ነው(ስምምነቱንም የተጠቃሚ ስምምነት በሚል እንገልጸዋለን)።
 			<br /><br />
@@ -315,7 +324,7 @@ function termAndConditions()
 			<br /><br />
 			ሀ)  ድሕረ ገጹን በሚጠቀሙበት ወቅት ስለ እርስዎ መረጃ ማስገባት ሊኖርቦት ይችላል፤ የሚያስገቡ መረጃ ትክክለኛ እና እውነተኛ ስለ መሆኑ ተስማምተው ነው።
 			<br /><br />
-			ለ)  ካቶመር ላይ እንደተጠቃሚ ተመዝግበው ከሆነ የመግብያ መረጃዎትን በምስጢር የመያዝ ሀላፊነት የእርስዎ ነው። በእርስዎ የመግብያ መረጃዎች የሚደረጉ ማናቸውም ተግባራት ሀላፊነቱ የእርስዎ ነው።
+			ለ)  ሁሉተራ ላይ እንደተጠቃሚ ተመዝግበው ከሆነ የመግብያ መረጃዎትን በምስጢር የመያዝ ሀላፊነት የእርስዎ ነው። በእርስዎ የመግብያ መረጃዎች የሚደረጉ ማናቸውም ተግባራት ሀላፊነቱ የእርስዎ ነው።
 			<br /><br />
 			ሐ) እኛ ካቀረብነው የመጠቀሚያ መንገዶች ውጪ ድሕረ ገጹን መጠቀም በጥብቅ የተከለከለ ነው። ይህንንም ለማድረግ ተስማምተዋል።
 			<br /><br />
@@ -340,20 +349,20 @@ function termAndConditions()
 
 			<span class="tosTitle" style="font-size:14pt;">የዋስትና ገደብ</span>
 			<br/><br />
-			እንደተገለፀው በካቶመር ላይ የሚታዩት መረጃዎች የቀረቡት በራሱ በተጠቃሚው የገባ ነው።<br />
+			እንደተገለፀው በሁሉተራ ላይ የሚታዩት መረጃዎች የቀረቡት በራሱ በተጠቃሚው የገባ ነው።<br />
 			ስለሆነም <br />
 			፩)  ሁሉም ተጠቃሚ የፈለገውን ሙሉ በሙሉ ያገኛል ብለን ዋስትና አንሰጥም<br />
 			፪)  የሚታዩት ንብረቶች ከስተት ነጻ፣ እጅግ ወቅታዊ እና የማይቆራረጡ ናቸው ብለን ዋስትና አንሰጥም<br />
 			፫)  በድሕረ ገጹ ላይ የሚገኙት መረጃዎች ሙሉ በሙሉ እውነተኛ ናቸው ብለን ዋስትና አንሰጥም
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">ኮፒ ራይት አና የንግድ ምልክት</span>
 			<br /><br />
-			ካቶመር ላይ የሚታዩት ማናቸውም ነገሮች ማለትም ጽሁፎች፣ ምስሎች፣ የድሕረ ገጹ ስም፣ ሎጎ እንዲሁም የመሳሰሉት ንብረትነታቸው የካቶመር ነው።
-			እነዚህን ይዘቶች ለማንኛውም ያልተገባ ተግባራት ከካቶመር እውቅና ውጪ መጠቀም በጥብቅ የተከለከለ ነው።
+			ሁሉተራ ላይ የሚታዩት ማናቸውም ነገሮች ማለትም ጽሁፎች፣ ምስሎች፣ የድሕረ ገጹ ስም፣ ሎጎ እንዲሁም የመሳሰሉት ንብረትነታቸው የሁሉተራ ነው።
+			እነዚህን ይዘቶች ለማንኛውም ያልተገባ ተግባራት ከሁሉተራ እውቅና ውጪ መጠቀም በጥብቅ የተከለከለ ነው።
 			<br /><br /><span class="tosTitle" style="font-size:14pt;">የመጠቀም ውል መቋረጥ</span>
 			<br /><br />
 			ይህንን የተጠቃሚ ስምምነት ውል የሚጥስ ማንኛውም ተግባር ከፈፀሙ እንደሁኔታው በከፊል ወይም ሙሉ በሙሉ ከመጠቀም ልናግዶት እንደምንችል ተስማምተዋል።
 			<br /><br />
-			ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ካቶመር በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
+			ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
 			<br /><br />
 			በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።
 			</div>
@@ -365,73 +374,35 @@ function termAndConditions()
 
 function privacyPolicy()
 {
+	global $lang;
 	echo '
 			<div id="aboutUs">
-			Language: <input type="button" value="በአማርኛ"
-			onclick="amharicPrivacyPo()" /> <input type="button"
-			value="English" onclick="englishPrivacyPo()" />
 			<div id="privacyPolicyEnglish">
 			<p class="aboutus">
 			Privacy Policy
 			</p>
-			<p class="aboutus">
-			This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.
-			</p>
-			<p class="aboutus"> What we collect
-			<li class="aboutUsli">•Your Name</li>
-			<li class="aboutUsli">•Contact Information including email address.</li>
+			<p class="aboutus">' . $lang['This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.'] . '	</p>
+			<p class="aboutus"> ' . $lang['What we collect'] . '
+			<li class="aboutUsli">•' . $lang['Your name'] . '</li>
+			<li class="aboutUsli">•' . $lang['Contact Information including email address'] . '</li>
 			</p>
 			<p class="aboutus">
-			<big><strong>What we do with the information we gather:</strong></big>
-			<li class="aboutUsli">•We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen. </li>
-			<li class="aboutUsli">•We may use the information to improve our services.</li>
-			<li class="aboutUsli">•We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.</li>
-			<li class="aboutUsli">•From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.
-			</li>
+			<big><strong>' . $lang['What we do with the information we gather:'] . '</strong></big>
+			<li class="aboutUsli">•' . $lang['Your name'] . 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen. </li>
+			<li class="aboutUsli">•' . $lang['We may use the information to improve our services.'] . '</li>
+			<li class="aboutUsli">•' . $lang['We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.'] .'</li>
+			<li class="aboutUsli">•' . $lang['From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.'] . '</li>
 			</p>
 			<p class="aboutus">
-			<big><strong>Links to other websites</strong></big>
+			<big><strong>' . $lang['Links to other websites'] . '</strong></big>
 			</p>
 			<p class="aboutus">
-			Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.
+			' . $lang['Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.'] . '
 			</p>
 			<p class="aboutus">
-			hulutera Admin
+			' . $lang['hulutera Admin'] . '
 			</p>
-			</div>
-
-			<div id="privacyPolicyAmharic">
-			<p class="aboutus">
-			ግላዊ መርህ
-			</p>
-			<p class="aboutus">
-			በዚህ ግላዊ መርህ ተጠቃሚው በካቶመር ላይ ያስገባውን ማንኛውም ነገር እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን።ካቶመር የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል።
-			ካቶመር ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።
-			</p>
-			<p class="aboutus"> እንዲያስገቡ የምንጠይቆት
-			<li class="aboutUsli">•ስምዎን</li>
-			<li class="aboutUsli">•የሚገኙበት መረጃ ማለትም ስልክ፣ኢሜይል ወዘተ</li>
-			</p>
-			<p class="aboutus">
-			<big><strong>ያስገቧቸውን መረጃዎች</strong></big>
-			<li class="aboutUsli">•አንሸጥም፣ አናከፋፍልም እንዲሁም በሕግ ካልተገደድን ወይመ እርሶ ካላዘዙን በቀር ለሶስተኛ አካል አሳልፈን አንሰጥም።
-			መረጃዎትን አንዳንድ ማስታወቂያ ከፈለጉ እንድንልክልዎ ልንጠቀምባቸው እንችላለን</li>
-			<li class="aboutUsli">•አገልግሎታችንን ለማሻሻል ልንጠቀምባቸው እንችላለን</li>
-			<li class="aboutUsli">•የተለያዩ አዳዲስ ውጤቶች እና ለእርሶ ይጠቅማሉ ብለን ያሰብናቸውን ነገሮች ለመላክ ልንጠቀምባቸው እንችላለን</li>
-			<li class="aboutUsli">•ድሕረ ገፁ ከጊዜው ጋር የሚራመድ እና የርሶን ፍላጎት ያሟላ ስለመሆኑ ልንጠይቆት ልንጠቀምባቸው እንችላለን	</li>
-			</p>
-			<p class="aboutus">
-			<big><strong>ሌሎች ድሕረ ገፆች</strong></big>
-			</p>
-			<p class="aboutus">
-			በድሕረ ገፃችን ላይ ሌሎች ድሕረ ገፆች ሊታዩ ይችላሉ በማናቸውም ጊዜያት እነዚህ ድሕረ ገፆችን ተጭነው ወደነሱ ገፅ ላይ ከሄደ፤ ከዛ ወዲያ ካቶመር ምንም አይነት ሀላፊነት የለበትም።
-			</p>
-			<p class="aboutus">
-			የካቶመር አስተዳደር
-			</p>
-			</div>
-			</div>
-
+			</div>			
 			';
 }
 
@@ -944,62 +915,62 @@ function help()
 function register()
 {
 	$http_referer= $_SERVER['HTTP_REFERER'];
-	global $connect;
+	global $connect, $lang, $lang_url;
 	$error_message="";
 	if(isset($_POST['submit'])){
 		$error = array();
 
 		if(!isset($_POST['termandCond'])){
-			$error[] = 'Please Agree to the Terms and Conditions/በመተዳደርያ ደንቡ መስማማቶን የሚያሳየውን ይምረጡ.';
+			$error[] = $lang['Please Agree to the Terms and Conditions'];
 		}
 
 		//username
 		if(empty($_POST['username'])){
-			$error[] = 'Please enter a username/የመጠቀምያ ስምዎን ያስገቡ.';
+			$error[] = $lang['Please enter a username'];
 		}else if( ctype_alnum($_POST['username']) ){
 			$username = $_POST['username'];
 		}else{
-			$error[] = 'Username must consist of letters and numbers only/የመጠቀምያ ስሙ ፊደል እና ቁጥር ብቻ ነው ሊኖረው የሚገባው. ';
+			$error[] = $lang['Username must consist of letters and numbers only'];
 		}
 
 		//email
 		if(empty($_POST['email'])){
-			$error[] = 'Please enter your email/ኢሜይልዎን ያስገቡ.';
+			$error[] = $lang['Please enter your email'];
 		}else if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 			$email = $connect->real_escape_string($_POST['email']);
 		}else{
-			$error[] = 'Your e-mail address is invalid/ኢሜይሉ ልክ አይደለም.';
+			$error[] = $lang['Your e-mail address is invalid'];
 		}
 
 		//password
 		if(empty($_POST['password'])||empty($_POST['password2'])){
-			$error[] = 'Please enter a password/የምስጢር ቃል ያስገቡ. ';
+			$error[] = $lang['Please enter a password'];
 		}else if($_POST['password']==$_POST['password2']){
 			$password = $connect->real_escape_string($_POST['password']);
 		}else {
-			$error[] = 'Passwords do not match/የምስጢር ቃሎቹ ተመሳሳይ መሆን አለባቸው.';
+			$error[] = $lang['Passwords do not match'];
 		}
 
 		if(!empty($_POST['name'])){
 			if(ctype_alnum($_POST['name']))
 				$firstname = $_POST['name'];
 			else{
-				$error[] = 'Firstname must consist of letters and numbers only/ስምዎን ብቻ ያስገቡ. ';
+				$error[] = $lang['Firstname must consist of letters and numbers only'];
 			}
 		}
 		else{
-			$error[] = 'Enter your Firstname/ስምዎን ያስገቡ. ';
+			$error[] = $lang['Enter your Firstname'];
 		}
 
 		if(!empty($_POST['lastName'])){
 			if(ctype_alnum($_POST['lastName']))
 				$lastname = $_POST['lastName'];
 			else{
-				$error[] = 'Lastname must consist of letters and numbers only/የአባትዎን ስም ብቻ ያስገቡ. ';
+				$error[] = $lang['Lastname must consist of letters and numbers only'];
 			}
 		}
 		else{
-			$error[] = 'Enter your Lastname/የአባትዎን ስም ያስገቡ. ';
+			$error[] = $lang['Enter your Lastname'];
 		}
 
 		if(!empty($_POST['address'])){
@@ -1009,7 +980,7 @@ function register()
 			if(ctype_digit($_POST['phone']))
 				$phone= $_POST['phone'];
 			else{
-				$error[] = 'Phone must be a number/ቁጥሩን ብቻ ያስገቡ ';
+				$error[] = $lang['Phone must be a number'];
 			}
 		}
 		if(empty ($error)){
@@ -1064,26 +1035,27 @@ function register()
 	$addressValue = (isset($_POST['address'])) ? $_POST['address'] : '';
 	$emailValue = (isset($_POST['email'])) ? $_POST['email'] : '';
 	$phoneValue = (isset($_POST['phone'])) ? $_POST['phone'] : '';
-
+    
+    
 	echo '<div id="mainColumn">';
 	echo '<div id="registernow">';
-	echo '<form class="container" method="post" action="../includes/register.php">';
+	echo '<form class="container" method="post" action="../includes/register.php' . $lang_url . '">';
 	echo '<br>'. $error_message;
 	echo '<div class="registerInner">';
 	echo '<div class="field">';
 	echo '<table>';
 	echo '<tr>';
-	echo '<td><label for="username">Username<div id="registerAmh">መጠቀምያ ስም</div></label></td>';
+	echo '<td><label for="username">' . $lang['Username'] . '</label></td>';
 	echo '<td>';
 	echo '<input type="text" class="input" id="username" name="username" maxlength="20" value="'.$usernameValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td><label for="name">First Name<div id="registerAmh">ስም</div></label></td>';
+	echo '<td><label for="name">' . $lang['First Name'] . '</label></td>';
 	echo '<td>';
 	echo '<input type="text" class="input" id="name" name="name" maxlength="80" value="'.$nameValue.'"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td><label for="lastName">Last Name<div id="registerAmh">የአባት ስም</div></label></td>';
+	echo '<td><label for="lastName">' . $lang['Last Name'] . '</label></td>';
 	echo '<td><input type="text" class="input" id="lastName" name="lastName" maxlength="80" value="'.$lastNameValue.'"/></td>';
 	echo '</tr>';
 	echo '</table>';
@@ -1091,10 +1063,10 @@ function register()
 	echo '<div class="field">';
 	echo '<table>';
 	echo '<tr>';
-	echo '<td><label for="email">Email<div id="registerAmh">ኢሜይል</div></label></td>';
+	echo '<td><label for="email">' . $lang['Email'] . '</label></td>';
 	echo '<td><input style="text-transform:lowercase;" type="email" class="input" id="email" name="email" maxlength="80" value="'.$emailValue.'"/></td>';
 	echo '</tr><tr>';
-	echo '<td><label for="phone">Phone<div id="registerAmh">ስልክ</div></label></td>';
+	echo '<td><label for="phone">' . $lang['Phone'] . '</label></td>';
 	echo '<td><input type="tel" class="input" id="phone" name="phone" maxlength="20" value="'.$phoneValue.'"/></td>';
 	echo '</tr><tr>';
 	locationRegion();
@@ -1104,10 +1076,10 @@ function register()
 	echo '<div class="field">';
 	echo '<table>';
 	echo '<tr>';
-	echo '<td><label for="password">Password<div id="registerAmh">የምስጢር ቃል</div></label></td>';
+	echo '<td><label for="password">' . $lang['Password'] . '</label></td>';
 	echo '<td><input type="password" class="input" id="password" name="password" maxlength="20"/></td>';
 	echo '</tr><tr>';
-	echo '<td><label for="password">Password Again<div id="registerAmh">በድጋሚ</div></label></td>';
+	echo '<td><label for="password">' . $lang['Password Again'] . '</label></td>';
 	echo '<td><input type="password" class="input" id="password" name="password2" maxlength="20"/></td>';
 	echo '</tr>';
 	echo '</table>';
@@ -1116,13 +1088,13 @@ function register()
 	echo '<table>';
 	echo '<tr>';
 	echo '<p class="termandCond"><input type="checkbox" class="termandCondbox" style="float:left;" name="termandCond">';
-	echo 'I have read and agree to the/የሚቀጥለውን አንብቤ ተስማምቻለሁ';
-	echo '<a href="../includes/terms.php">Terms & Conditions </a></p>';
+	echo $lang['I have read and agree to the terms and conditions'];
+	echo '<a href="../includes/terms.php">' . $lang['click to see'] . '</a></p>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</div>';
 	echo '<div class="fieldbutton">';
-	echo '<input  type="submit" name="submit" id="submit" class="button" value="Register"/>';
+	echo '<input  type="submit" name="submit" id="submit" class="button" value="' . $lang['Register'] . '"/>';
 	echo '</div>';
 	echo '</div>';
 	echo '</form>';
@@ -1135,55 +1107,60 @@ function register()
 
 function registerX()
 {
+	global $lang;
 	echo '<form action="" method="post">
 			<fieldset>
-			<legend>Join our hulutera</legend>
+			<legend>' . $lang['Join to hulutera'] . '</legend>
 			<p></p>
 			<ol>
 			<li>
-			<label>Username<div id="registerAmh">መጠቀምያ ስም</div></label>
+			<label>' . $lang['Username'] . '</label>
 			<input type="text" class="input" id="username" name="username" maxlength="20" value="'.$usernameValue.'"/>
 
 					</li>
 					<li>
-					<label for="email">Email:</label>
+					<label for="email">' . $lang['Email'] . '</label>
 					<input type="text" name="email" id="email">
 					</li>
 					</ol>
-					<input type="submit" value="submit">
+					<input type="submit" value="' . $lang['Submit'] . '">
 					</fieldset>
 					</form>';
 }
 
 function locationRegion()
 {
-	echo '<td><label>City<div id="registerAmh">አድራሻ</div></label></td>
+	global $lang;
+	echo '<td><label>' . $lang['City'] . '</label></td>
 			<td><select name="Region" id="city">
-			<option value="000" selected>[choose City]</option>
-			<option value = "Addis Ababa">Addis Ababa*/አዲስ አበባ</option>
-			<option value = "Dire Dawa">Dire Dawa*/ድሬ ዳዋ</option>
-			<option value = "Adama">Adama*/አዳማ</option>
-			<option value = "Bahir Dar">Bahir Dar*/ባሕር ዳር</option>
-			<option value = "Mekele">Mekele*/መቀሌ</option>
-			<option value = "Awassa">Awassa*/አዋሳ</option>
-			<option value = "Asaita">Afar-Asaita/አሳይታ</option>
-			<option value = "Debre Berhan">Amhara-Debre Brhane/ደብረ ብርሃን</option>
-			<option value = "Dessie">Amhara-Dessie/ደሴ</option>
-			<option value = "Gondar">Amhara-Gondar/ጎንደር</option>
-			<option value = "Gambela">Gambela-Gambela/ጋንቤላ</option>
-			<option value = "Harar">Harari-Harar/ሐረር</option>
-			<option value = "Asella">Oromia-Asella/አሰላ</option>
-			<option value = "Debre Zeit">Oromia-Debre Zeit/ደብረ ዘይት</option>
-			<option value = "Jimma">Oromia-Jimma/ጅማ</option>
-			<option value = "Nekemte">Oromia-Nekemte/ነቀምት</option>
-			<option value = "Shashemene">Oromia-Shashemene/ሻሸመኔ</option>
-			<option value = "Arba Minch">SNNP-Arba Minch/አርባ ምንጭ</option>
-			<option value = "Dila">SNNP-Dila/ዲላ</option>
-			<option value = "Hosaena">SNNP-Hosaena/ሆሳና</option>
-			<option value = "Sodo">SNNP-Sodo/ሶዶ</option>
-			<option value = "Somali-Jijiga">Somali-Jijiga/ጅጅጋ</option>
-			<option value = "Axum">Tigray-Axum/አክሱም</option>
-			<option value = "Other">Other/ሌሎች</option>
+			<option value="000" selected>[' . $lang['City'] . ' ' . $lang['Choose'] .']</option>
+			<option value = "Addis Ababa">' . $lang['Addis Ababa'] . '</option>
+			<option value = "Dire Dawa">' . $lang['Dire Dawa'] . '</option>
+			<option value = "Adama">' . $lang['Adama'] . '</option>
+			<option value = "Bahir Dar">' . $lang['Bahir Dar'] . '</option>
+			<option value = "Mekele">' . $lang['Mekele'] . '</option>
+			<option value = "Awassa">' . $lang['Awassa'] . '</option>
+			<option value = "Asaita">' . $lang['Asaita'] . '</option>
+			<option value = "Debre Birhan">' . $lang['Debre Birhan'] . '</option>
+			<option value = "Dessie">' . $lang['Dessie'] . '</option>
+			<option value = "Gondar">' . $lang['Gonder'] . '</option>
+			<option value = "Gambela">' . $lang['Gambela'] . '</option>
+			<option value = "Harar">' . $lang['Harar'] . '</option>
+			<option value = "Asella">' . $lang['Asella'] . '</option>
+			<option value = "Debre Zeit">' . $lang['Bishoftu'] . '</option>
+			<option value = "Jimma">' . $lang['Jimma'] . '</option>
+			<option value = "Nekemte">' . $lang['Nekemte'] . '</option>
+			<option value = "Shashemene">' . $lang['Shashemene'] . '</option>
+			<option value = "Arba Minch">' . $lang['Arba Minch'] . '</option>
+			<option value = "Dila">' . $lang['Dila'] . '</option>
+			<option value = "Hosaena">' . $lang['Hosaena'] . '</option>
+			<option value = "Sodo">' . $lang['Sodo'] . '</option>
+			<option value = "Jijiga">' . $lang['Jijiga'] . '</option>
+			<option value = "Axum">' . $lang['Adigrat'] . '</option> 
+			<option value = "Axum">' . $lang['Ambo'] . '</option>
+			<option value = "Axum">' . $lang['Axum'] . '</option>
+			<option value = "Axum">' . $lang['Debre Markos'] . '</option>
+			<option value = "Other">' . $lang['Other'] . '</option>
 			</select></td>';
 }
 
