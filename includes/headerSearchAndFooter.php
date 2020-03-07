@@ -8,7 +8,8 @@ if (isset($_GET['lan'])) {
 	require_once $documnetRootPath . '/includes/locale/' . $lan . '.php';	
 }
 else
-{
+{ 
+	$lan = "";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
 
@@ -103,8 +104,14 @@ function activatetab()
 /*logo*/
 function logo()
 {
+	global $lan;
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "?&lan=" . $lan;
+	}
 	// echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
-	echo '<div class ="logo"><a href="../../index.php"><img src="../../images/icons/ht_logo_2.png"></a></div>';
+	echo '<div class ="logo"><a href="../../index.php' . $lang_url. '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
 	//../../images/hulutera.png
 	// <span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>
 }
@@ -112,26 +119,29 @@ function logo()
 /*Top Right Links*/
 function topRightLinks()
 {
+	global $lan, $lang;
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "?&lan=" . $lan;
+	}
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	if (!isset($_SESSION['uID'])) {
 		echo '<div class ="toprightlink">';
 		locale($current_link);
-		echo '<a href="../../includes/login.php" >';
+		echo '<a href="../../includes/login.php' .$lang_url. '" >';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">Log In</div>';
-		echo '<div id="topRightAmharic">ይግቡ</div>';
+		echo '<div id="topRightEnglish">' .$lang['Login']. '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/register.php">';
+		echo '<a href="../../includes/register.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">Register</div>';
-		echo '<div id="topRightAmharic">ይመዝገቡ</div>';
+		echo '<div id="topRightEnglish">' . $lang['Register'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/contact.php">';
+		echo '<a href="../../includes/contact.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">Contact Us</div>';
-		echo '<div id="topRightAmharic">ሊጠይቁን ይፈልጋሉ</div>';
+		echo '<div id="topRightEnglish">' .$lang['Contact Us']. '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '</div>';
@@ -148,22 +158,19 @@ function topRightLinks()
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' . $name . '</div>';
 		echo '<div id="topRightAmharic" style="color:#0d6aac">&nbsp</div></div>';
-		echo '<a href="../../includes/logout.php">';
+		echo '<a href="../../includes/logout.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">log out</div>';
-		echo '<div id="topRightAmharic">መዉጣት</div>';
+		echo '<div id="topRightEnglish">' .$lang['Logout']. '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/userActive.php">';
+		echo '<a href="../../includes/userActive.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">my items</div>';
-		echo '<div id="topRightAmharic">የኔ ንብረቶች</div>';
+		echo '<div id="topRightEnglish">' .$lang['My Items']. '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/editProfile.php">';
+		echo '<a href="../../includes/editProfile.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">Edit Profile</div>';
-		echo '<div id="topRightAmharic">መረጃ ለማስተካከል</div>';
+		echo '<div id="topRightEnglish">' .$lang['Edit Profile']. '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '</div>';
@@ -173,25 +180,39 @@ function topRightLinks()
 /*search*/
 function miniSearch()
 {
+	global $lang, $lan;
+
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "?&lan=" . $lan;
+	}
+
 	echo '<div class="miniSearch">';
-	echo '<form class="searchform" action="../../includes/search.php" method ="GET">';
-	echo '<input name="search_text" class="searchfield" type="text"  placeholder="e.g RAV 4, Toyota, Villa"/>';
-	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="Search ፈልግ" />';
+	echo '<form class="searchform" action="../../includes/search.php' .$lang_url. '" method ="GET">';
+	echo '<input name="search_text" class="searchfield" type="text"  placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
+	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="' . $lang['Search'] . '" />';
 	echo '</form>';
 	echo '</div>';
 }
 /*tabmenu home/PostyourItem/Help*/
 function tabMenu()
 {
+    global $lang, $lan;	
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "?&lan=" . $lan;
+	}
 	//require_once $documnetRootPath . '/includes/locale/tg.php';
-	global $lang;
+	
 
 	echo '<div class="tabsAndSearch"><div class="tabs">
 			<li  class="activeFirst"><a ';
 	if (activatetab() == 1) {
 		echo "class=\"active\"";
 	}
-	echo ' href="../../index.php"> ';
+	echo ' href="../../index.php' .$lang_url. '"> ';
 	echo '<div id="tabsAmharic">' . $lang['All Items'] . '</div></a></li>';
 
 	if (isset($_SESSION['uID'])) {
@@ -201,20 +222,26 @@ function tabMenu()
 		if (activatetab() == 2) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../includes/upload.php">' . $lang['Post Items'] .'</a></li>';
+		echo 'href="../../includes/upload.php' .$lang_url. '">' . $lang['Post Items'] .'</a></li>';
 	} else {
 		//go to upload
 		echo '<li class="activeSecond"><a ';
 		if (activatetab() == 18) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../includes/prompt.php?type=9">' . $lang['Post Items'] .'</a></li>';
+		// Remove '?' from language url
+		if($lang_url !== NULL) {
+			$str_url = str_replace("?", "", $lang_url);
+		} else{
+			$str_url = "";
+		}
+		echo 'href="../../includes/prompt.php?type=9' .$str_url. '">' . $lang['Post Items'] .'</a></li>';
 	}
 	echo '<li class="activeThird"><a ';
 	if (activatetab() == 3) {
 		echo "class=\"active\"";
 	}
-	echo 'href="../../includes/help.php" >' . $lang['Help'] .'</a></li>';
+	echo 'href="../../includes/help.php' .$lang_url. '" >' . $lang['Help'] .'</a></li>';
 	echo '</div>';
 	miniSearch();
 	echo '</div>';	
@@ -222,9 +249,16 @@ function tabMenu()
 /*sidelist*/
 function sidelist($item)
 {
+	global $lang, $lan;
+
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "&lan=" . $lan;
+	}
 	$arr = (DatabaseClass::getInstance()->getAllItem());
 	echo '<div id="sidelist">
-	<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">MENU</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
+	<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">' .$lang['MENU']. '</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
 	<ul>';
 	foreach ($arr as $key => $value) {
 		echo '<li><a ';
@@ -232,7 +266,7 @@ function sidelist($item)
 			echo "class=\"active\"";
 		}
 		$itemName = $value['table_name'];
-		echo 'href="../../includes/template.item.php?type='.$value['table_name'].'">';
+		echo 'href="../../includes/template.item.php?type=' . $value['table_name'] . $lang_url. '">';
 		echo '<img src="../images/uploads/'.$itemName.'images/'.$itemName.'.png" style="width:50px; height:50px" /><br/>'. $itemName;
 		echo '</a></li>';
 	}
@@ -241,25 +275,37 @@ function sidelist($item)
 /*footer*/
 function footerCode()
 {
+	global $lang, $lan;
+
+	if($lan == ""){
+		$lang_url = "";
+	} else {
+		$lang_url = "?&lan=" . $lan;
+	}
+
+	// Remove'?' from the language url
+	if($lang_url !== NULL) {
+		$str_url = str_replace("?", "", $lang_url);
+	} else {
+		$str_url = "";
+	}
 	echo '<div id="footer">';
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
-		 <p style="font-weight:bold">ABOUT US</p>
-		<a href="../../index.php"><img src="../../images/icons/ht_logo_2.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
-		<p style="text-align:left;font-size:14px">hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.
-			hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click <a href="../../includes/about.php" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.
-			</p>
-
-		   </div>';
+		 <p style="font-weight:bold">'  .$lang['ABOUT US']. '</p>
+		<a href="../../index.php' .$lang_url. '"><img src="../../images/icons/ht_logo_2.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
+		<p style="text-align:left;font-size:14px">' .$lang['hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click']. ' <a href="../../includes/template.proxy.php?type=about' .$str_url. '" style="color:#97caf0;font-weight:bold">'.$lang['here'].'</a>' .$lang['to know more about hulutera.com']. ' 
+		</p>
+        </div>';
 	echo '<div id="information_fo">
-		  <p style="font-weight:bold">INFORMATION</p>
-		<p ><a href="../../includes/contact.php">Contact us</a></p>
-		<p><a href="../../includes/help.php" target="_blank">Help</a></p>
-		<p ><a href="../../includes/terms.php">Term and Conditions</a></p>
-		<p><a href="../../includes/privacy.php">Privacy Policy</a></p>
-		   </div>';
+		<p style="font-weight:bold">' .$lang['INFORMATION']. '</p>
+		<p ><a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' .$lang['Contact Us']. '</a></p>
+		<p><a href="../../includes/template.proxy.php?type=help' .$str_url.'" target="_blank">' .$lang['Help']. '</a></p>
+		<p ><a href="../../includes/template.proxy.php?type=terms' .$str_url.'">'.$lang['Terms and Conditions'].'</a></p>
+		<p><a href="../../includes/template.proxy.php?type=privacy' .$str_url.'">'.$lang['Privacy Policy'].'</a></p>
+		</div>';
 	echo '<div id="followUs_fo" >
-		  <p style="font-weight:bold">FOLLOW US</p>
+		  <p style="font-weight:bold">' .$lang['FOLLOW US']. '</p>
 		       <ul>
 				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../images/fb.png" width="20px" height="20px" /></li></a>
 				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class"><img src="../../images/tw.png" width="17px" height="17px" /></li></a>
@@ -268,7 +314,7 @@ function footerCode()
 			   </ul>
 		   </div>';
 	echo '<div id="utility">';
-	echo '<p class="copyright">&copy; 2020 hulutera. All Rights Reserved.</p>';
+	echo '<p class="copyright">&copy; ' .$lang['2020 hulutera. All Rights Reserved.']. ' </p>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';

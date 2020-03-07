@@ -99,6 +99,8 @@ function contact()
 	
 	if($lang_url !== NULL) {
 		$str_url = str_replace("?", "", $lang_url);
+	} else {
+		$str_url = "";
 	}
 	echo '<div id="mainColumn">';
 	echo '<div id="contactUs">';
@@ -155,6 +157,8 @@ function aboutUs()
 	global $lang, $lang_url;
 	if($lang_url !== NULL) {
 		$str_url = str_replace("?", "", $lang_url);
+	} else {
+		$str_url = "";
 	}
 	echo '
 			<div id="aboutUs">

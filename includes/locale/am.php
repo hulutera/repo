@@ -300,6 +300,28 @@ $lang = array (
     <br /><br />
     ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
     <br /><br />
-    በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።'
+    በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
+    'Login' => 'ይግቡ',
+    'Logout' => 'መዉጣት',
+    'My Items' => 'የኔ ንብረቶች',
+    'Edit Profile' => 'መረጃ ለማስተካከል',
+    'Search' => 'ፈልግ',
+    'e.g' => 'ለምሳሌ',
+    'MENU' => 'ማውጫ',
+    'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click'
+    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል።',
+    'here' => 'እዚህ',
+    'to know more about hulutera.com' => ' ተጭነው የበለጠ መረጃ ያግኙ',
+    'ABOUT US' => 'ስለ እኛ',
+    'INFORMATION' => 'መረጃ',
+    'Privacy Policy' => 'ግላዊ መርህ',
+    'FOLLOW US' => 'ይከተሉን',
+    '2020 hulutera. All Rights Reserved.' => '2012 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።'
+
+
+
+
+
  
+
 );

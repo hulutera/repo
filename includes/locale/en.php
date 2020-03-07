@@ -313,7 +313,26 @@ $lang = array (
     <br /><br />
     You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your relationship and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
     <br /><br />
-    If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us'
+    If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us',
+    'Login' => 'Login',
+    'Logout' => 'Logout',
+    'My Items' => 'My Items',
+    'Edit Profile' => 'Edit Profile',
+    'Search' => 'Search',
+    'e.g' => 'e.g',
+    'MENU' => 'MENU',
+    'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click'
+    => 'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click ',
+    'here' => 'here',
+    'to know more about hulutera.com' => ' to know more about hulutera.com',
+    'ABOUT US' => 'ABOUT US',
+    'INFORMATION' => 'INFORMATION',
+    'Privacy Policy' => 'Privacy Policy',
+    'FOLLOW US' => 'FOLLOW US',
+    '2020 hulutera. All Rights Reserved.' => '2012 hulutera. All Rights Reserved.'
+
+
+
     
 
 );
