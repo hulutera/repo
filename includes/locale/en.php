@@ -1,16 +1,17 @@
 <?php
 
 $lang = array (
+    'LANGUAGE' => 'LANGUAGE',
     'All Items' => 'All Items',
     'Post Items' => 'Post Items',
     'Help' => 'Help',
-    'Car' => 'Car',
-    'House' => 'House',
-    'Computer' => 'Computer',
-    'Phone' => 'Phone',
-    'Electronics' => 'Electronics',
-    'Household' => 'Household',
-    'Others' => 'Others',
+    'car' => 'Car',
+    'house' => 'House',
+    'computer' => 'Computer',
+    'phone' => 'Phone',
+    'electronics' => 'Electronics',
+    'household' => 'Household',
+    'others' => 'Others',
     'Extra Info' => 'Extra Info',
     'Price' => 'Price',
     'Negotiable' => 'Negotiable',
@@ -24,7 +25,7 @@ $lang = array (
     'Contact' => 'Contact',
     'Contact method' => 'Contact method',
     'e-mail' => 'e-mail',
-    'phone' => 'phone',
+    'with phone' => 'phone',
     'both' => 'both',
     'Picture' => 'Picture',
     'Item Pictures' => 'Item Pictures',
@@ -329,7 +330,11 @@ $lang = array (
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',
     'FOLLOW US' => 'FOLLOW US',
-    '2020 hulutera. All Rights Reserved.' => '2012 hulutera. All Rights Reserved.'
+    '2020 hulutera. All Rights Reserved.' => '2012 hulutera. All Rights Reserved.',
+    'Choose Item' => 'Choose Item',
+    'Choose City' => 'Choose City',
+    'All Cities' => 'All Cities'
+    
 
 
 

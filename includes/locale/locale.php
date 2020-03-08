@@ -2,6 +2,7 @@
 
 function locale($current_link)
 {
+    global $lang;
     $ln = 0;
     $en = null;
     $am = null;
@@ -47,7 +48,7 @@ function locale($current_link)
     }
 
     $language = [
-        $ln => "LANGUAGE",
+        $ln => $lang['LANGUAGE'],
         $en => "ENGLISH",
         $am => "አማርኛ",
         $ao => "AFAN OROMO",

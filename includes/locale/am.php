@@ -1,15 +1,16 @@
 <?php
 $lang = array (
+    'LANGUAGE' => 'ቋንቋ',
     'All Items' => 'ሁሉም ንብረቶች',
     'Post Items' => 'ንብረት ያስገቡ',
     'Help' => 'መረጃ',
-    'Car' => 'መኪና',
-    'House' => 'ቤት',
-    'Computer' => 'ኮምፒዩተር',
-    'Phone' => 'ስልክ',
-    'Electronics' => 'ኤሌክትሮኒክስ',
-    'Household' => 'የቤት ዕቃዎች',
-    'Others' => 'ሌሎች',
+    'car' => 'መኪና',
+    'house' => 'ቤት',
+    'computer' => 'ኮምፒዩተር',
+    'phone' => 'ስልክ',
+    'electronics' => 'ኤሌክትሮኒክስ',
+    'household' => 'የቤት ዕቃዎች',
+    'others' => 'ሌሎች',
     'Extra Info' => 'ተጨማሪ መረጃ',
     'Price' => 'ዋጋ',
     'Negotiable' => 'መደራደር ይቻላል',
@@ -23,7 +24,7 @@ $lang = array (
     'Contact' => 'ባለንብረትን ማግኘት',
     'contact method' => 'የመገናኛ መንገድ',
     'e-mail' => 'በኢሜይል',
-    'phone' => 'በስልክ',
+    'with phone' => 'በስልክ',
     'with both' => 'በሁለቱም',
     'Picture' => 'ፎቶ',
     'Item Pictures' => 'የንብረቱ ፎቶ',
@@ -310,13 +311,16 @@ $lang = array (
     'MENU' => 'ማውጫ',
     'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click'
     => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል።',
-    'here' => 'እዚህ',
-    'to know more about hulutera.com' => ' ተጭነው የበለጠ መረጃ ያግኙ',
+    'here' => 'ይሄን',
+    'to know more about hulutera.com' => ' ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
     'ABOUT US' => 'ስለ እኛ',
     'INFORMATION' => 'መረጃ',
     'Privacy Policy' => 'ግላዊ መርህ',
     'FOLLOW US' => 'ይከተሉን',
-    '2020 hulutera. All Rights Reserved.' => '2012 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።'
+    '2020 hulutera. All Rights Reserved.' => '2012 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።',
+    'Choose Item' => 'ንብረት ይምረጡ',
+    'Choose City' => 'ከተማ ይምረጡ',
+    'All Cities' => 'በሁሉም ከተሞች'
 
 
 

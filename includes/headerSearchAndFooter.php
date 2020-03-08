@@ -3,15 +3,20 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
 if (isset($_GET['lan'])) {
-	$lan = $_GET['lan'];
 	//var_dump($_GET);
-	require_once $documnetRootPath . '/includes/locale/' . $lan . '.php';	
+	// url exetention for language on hyperlinks without "?"
+	$lang_url = "?&lan=" . $_GET['lan'];
+	// url exetention for language on hyperlinks with "?"
+	$str_url = str_replace("?", "", $lang_url);
+	require_once $documnetRootPath . '/includes/locale/' . $_GET['lan'] . '.php';	
 }
 else
 { 
-	$lan = "";
+	$lang_url = "";
+	$str_url = "";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
+
 
 function commonHeader()
 {
@@ -57,7 +62,8 @@ function headerAndSearchCode($item)
 	topRightLinks();
 	echo '</div>';
 	echo '</div></div>';
-	tabMenu();
+	//tabMenu();
+	miniSearch();
 	sidelist($item);
 }
 /*Code for Header and Search Bar*/
@@ -104,12 +110,8 @@ function activatetab()
 /*logo*/
 function logo()
 {
-	global $lan;
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "?&lan=" . $lan;
-	}
+	global $lang_url, $str_url;
+	
 	// echo '<div class ="logo"><a href="../../index.php"><span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span><br></a></div>';
 	echo '<div class ="logo"><a href="../../index.php' . $lang_url. '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
 	//../../images/hulutera.png
@@ -119,12 +121,8 @@ function logo()
 /*Top Right Links*/
 function topRightLinks()
 {
-	global $lan, $lang;
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "?&lan=" . $lan;
-	}
+	global $lang_url, $str_url, $lang;
+
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	if (!isset($_SESSION['uID'])) {
 		echo '<div class ="toprightlink">';
@@ -139,9 +137,14 @@ function topRightLinks()
 		echo '<div id="topRightEnglish">' . $lang['Register'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/contact.php' .$lang_url. '">';
+		echo '<a href="../../includes/template.proxy.php?type=help' .$str_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' .$lang['Contact Us']. '</div>';
+		echo '<div id="topRightEnglish">' .$lang['Help']. '</div>';
+		echo '</div>';
+		echo '</a>';
+		echo '<a href="../../includes/upload.php' .$lang_url. '">';
+		echo '<div id="toplinktexts">';
+		echo '<div id="topRightEnglish">' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '</div>';
@@ -155,9 +158,9 @@ function topRightLinks()
 		$result0->close();
 		echo '<div class ="toprightlink">';
 		locale($current_link);
+		echo '<br /><br />';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' . $name . '</div>';
-		echo '<div id="topRightAmharic" style="color:#0d6aac">&nbsp</div></div>';
+		echo '<div id="topRightEnglish">' . $name . '</div></div>';
 		echo '<a href="../../includes/logout.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' .$lang['Logout']. '</div>';
@@ -180,30 +183,36 @@ function topRightLinks()
 /*search*/
 function miniSearch()
 {
-	global $lang, $lan;
-
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "?&lan=" . $lan;
-	}
-
+	global $lang, $lang_url, $str_url;
+    echo '<div class="tabsAndSearch">';
 	echo '<div class="miniSearch">';
 	echo '<form class="searchform" action="../../includes/search.php' .$lang_url. '" method ="GET">';
 	echo '<input name="search_text" class="searchfield" type="text"  placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
+	echo ' <select id="city" name="cities">
+				  <option value="000">' . $lang['Choose City'] . '</option>
+				  <option value="000">' .$lang['All Cities']. '</option>
+	              <option value="Addis Ababa">' .$lang['Addis Ababa']. '</option>
+	              <option value="Adama">' .$lang['Adama']. '</option>
+	              <option value="Awassa">' .$lang['Awassa']. '</option>
+	              <option value="Bahir Dar">' .$lang['Bahir Dar']. '</option>
+			  </select>
+			<select id="item" name="item">
+			  <option value="000">' .$lang['Choose Item']. '</option>
+			  <option value="Car">' .$lang['All Items']. '</option>
+			  <option value="Car">' .$lang['car']. '</option>
+			  <option value="House">' .$lang['house']. '</option>
+			  <option value="Phone">' .$lang['phone']. '</option>
+			  <option value="Electronics">' .$lang['electronics']. '</option>
+		    </select>';
 	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="' . $lang['Search'] . '" />';
 	echo '</form>';
-	echo '</div>';
+	echo '</div></div>';
 }
 /*tabmenu home/PostyourItem/Help*/
 function tabMenu()
 {
-    global $lang, $lan;	
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "?&lan=" . $lan;
-	}
+    global $lang, $lang_url, $str_url;
+	
 	//require_once $documnetRootPath . '/includes/locale/tg.php';
 	
 
@@ -212,9 +221,8 @@ function tabMenu()
 	if (activatetab() == 1) {
 		echo "class=\"active\"";
 	}
-	echo ' href="../../index.php' .$lang_url. '"> ';
-	echo '<div id="tabsAmharic">' . $lang['All Items'] . '</div></a></li>';
-
+	echo ' href="../../index.php' .$lang_url. '">' . $lang['All Items'] . '</a></li>';
+	
 	if (isset($_SESSION['uID'])) {
 		//ask login prompt before post
 
@@ -230,11 +238,6 @@ function tabMenu()
 			echo "class=\"active\"";
 		}
 		// Remove '?' from language url
-		if($lang_url !== NULL) {
-			$str_url = str_replace("?", "", $lang_url);
-		} else{
-			$str_url = "";
-		}
 		echo 'href="../../includes/prompt.php?type=9' .$str_url. '">' . $lang['Post Items'] .'</a></li>';
 	}
 	echo '<li class="activeThird"><a ';
@@ -249,13 +252,8 @@ function tabMenu()
 /*sidelist*/
 function sidelist($item)
 {
-	global $lang, $lan;
+	global $lang, $lang_url, $str_url;
 
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "&lan=" . $lan;
-	}
 	$arr = (DatabaseClass::getInstance()->getAllItem());
 	echo '<div id="sidelist">
 	<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">' .$lang['MENU']. '</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()"><img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span></div>
@@ -266,8 +264,8 @@ function sidelist($item)
 			echo "class=\"active\"";
 		}
 		$itemName = $value['table_name'];
-		echo 'href="../../includes/template.item.php?type=' . $value['table_name'] . $lang_url. '">';
-		echo '<img src="../images/uploads/'.$itemName.'images/'.$itemName.'.png" style="width:50px; height:50px" /><br/>'. $itemName;
+		echo 'href="../../includes/template.item.php?type=' . $value['table_name'] . $str_url. '">';
+		echo '<img src="../images/uploads/'.$itemName.'images/'.$itemName.'.png" style="width:50px; height:50px" /><br/>'. $lang[$itemName];
 		echo '</a></li>';
 	}
 	echo '</ul>	</div>';
@@ -275,20 +273,8 @@ function sidelist($item)
 /*footer*/
 function footerCode()
 {
-	global $lang, $lan;
+	global $lang, $lang_url, $str_url;
 
-	if($lan == ""){
-		$lang_url = "";
-	} else {
-		$lang_url = "?&lan=" . $lan;
-	}
-
-	// Remove'?' from the language url
-	if($lang_url !== NULL) {
-		$str_url = str_replace("?", "", $lang_url);
-	} else {
-		$str_url = "";
-	}
 	echo '<div id="footer">';
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
