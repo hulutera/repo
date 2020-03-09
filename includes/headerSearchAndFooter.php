@@ -183,27 +183,22 @@ function topRightLinks()
 /*search*/
 function miniSearch()
 {
-	global $lang, $lang_url, $str_url;
-    echo '<div class="tabsAndSearch">';
+	global $lang, $lang_url, $str_url, $city_lang_arr;
+	global $item_lang_arr;
+	echo '<div class="tabsAndSearch">';
 	echo '<div class="miniSearch">';
 	echo '<form class="searchform" action="../../includes/search.php' .$lang_url. '" method ="GET">';
 	echo '<input name="search_text" class="searchfield" type="text"  placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
-	echo ' <select id="city" name="cities">
-				  <option value="000">' . $lang['Choose City'] . '</option>
-				  <option value="000">' .$lang['All Cities']. '</option>
-	              <option value="Addis Ababa">' .$lang['Addis Ababa']. '</option>
-	              <option value="Adama">' .$lang['Adama']. '</option>
-	              <option value="Awassa">' .$lang['Awassa']. '</option>
-	              <option value="Bahir Dar">' .$lang['Bahir Dar']. '</option>
-			  </select>
-			<select id="item" name="item">
-			  <option value="000">' .$lang['Choose Item']. '</option>
-			  <option value="Car">' .$lang['All Items']. '</option>
-			  <option value="Car">' .$lang['car']. '</option>
-			  <option value="House">' .$lang['house']. '</option>
-			  <option value="Phone">' .$lang['phone']. '</option>
-			  <option value="Electronics">' .$lang['electronics']. '</option>
-		    </select>';
+	echo ' <select id="city" name="cities">';
+	foreach ($city_lang_arr as $key => $value){
+		echo '<option value = "' . $key . '">'.$value.'</option>';
+	}	  
+	echo '</select>';
+	echo '<select id="item" name="item">';
+	foreach ($item_lang_arr as $key => $value){
+		echo '<option value = "' . $key . '">'.$value.'</option>';
+	}		
+	echo '</select>';
 	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="' . $lang['Search'] . '" />';
 	echo '</form>';
 	echo '</div></div>';

@@ -321,11 +321,49 @@ $lang = array (
     'Choose Item' => 'ንብረት ይምረጡ',
     'Choose City' => 'ከተማ ይምረጡ',
     'All Cities' => 'በሁሉም ከተሞች'
-
-
-
-
-
- 
-
 );
+
+$city_lang_arr = array (
+    '000' => 'ከተማ ይምረጡ',
+    'All' => 'በሁሉም ከተሞች',
+    'Addis Ababa' => 'አዲስ አበባ',
+    'Dire Dawa' => 'ድሬ ዳዋ',
+    'Adama' => 'አዳማ',
+    'Bahir Dar' => 'ባሕር ዳር',
+    'Mekele' => 'መቀሌ',
+    'Awassa' => 'አዋሳ',
+    'Asaita' => 'አሳይታ',
+    'Asossa' => 'አሶሳ',
+    'Debre Birhan' => 'ደብረ ብርሃን',
+    'Debre Markos' => 'ደብረ ማርቆስ',
+    'Dessie' => 'ደሴ',
+    'Gonder' => 'ጎንደር',
+    'Gambela' => 'ጋንቤላ',
+    'Harar' => 'ሐረር',
+    'Asella' => 'አሰላ',
+    'Bishoftu' => 'ቢሾፍቱ',
+    'Jimma' => 'ጅማ',
+    'Nekemte' => 'ነቀምት',
+    'Ambo' => 'አምቦ',
+    'Shashemene' => 'ሻሸመኔ',
+    'Arba Minch' => 'አርባ ምንጭ',
+    'Dila' => 'ዲላ',
+    'Hosaena' => 'ሆሳና',
+    'Sodo' => 'ሶዶ',
+    'Jijiga' => 'ጅጅጋ',
+    'Axum' => 'አክሱም',
+    'Adigrat' => 'አዲግራት',
+    'Other' => 'ሌላ');
+
+$item_lang_arr = array(
+    '000' => 'ንብረት ይምረጡ',
+    'All' => 'ሁሉም ንብረቶች',
+    'car' => 'መኪና',
+    'house' => 'ቤት',
+    'computer' => 'ኮምፒዩተር',
+    'phone' => 'ስልክ',
+    'electronics' => 'ኤሌክትሮኒክስ',
+    'household' => 'የቤት ዕቃዎች',
+    'others' => 'ሌሎች'
+);
+

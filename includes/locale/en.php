@@ -334,10 +334,51 @@ $lang = array (
     'Choose Item' => 'Choose Item',
     'Choose City' => 'Choose City',
     'All Cities' => 'All Cities'
-    
+
+);
+
+$city_lang_arr = array(
+    '000' => 'Choose City',
+    'All' => 'All Cities',    
+    'Addis Ababa' => 'Addis Ababa',
+    'Dire Dawa' => 'Dire Dawa',
+    'Adama' => 'Adama',
+    'Bahir Dar' => 'Bahir Dar',
+    'Mekele' => 'Mekele',
+    'Awassa' => 'Awassa',
+    'Asaita' => 'Asaita',
+    'Asossa' => 'Asossa',
+    'Debre Birhan' => 'Debre Birhan',
+    'Debre Markos' => 'Debre Markos',
+    'Dessie' => 'Dessie',
+    'Gonder' => 'Gonder',
+    'Gambela' => 'Gambela',
+    'Harar' => 'Harar',
+    'Asella' => 'Asella',
+    'Bishoftu' => 'Bishoftu',
+    'Jimma' => 'Jimma',
+    'Nekemte' => 'Nekemte',
+    'Ambo' => 'Ambo',
+    'Shashemene' => 'Shashemene',
+    'Arba Minch' => 'Arba Minch',
+    'Dila' => 'Dila',
+    'Hosaena' => 'Hosaena',
+    'Sodo' => 'Sodo',
+    'Jijiga' => 'Jijiga',
+    'Axum' => 'Axum',
+    'Adigrat' => 'Adigrat',
+    'Other' => 'Other'
+);
 
 
-
-    
-
+$item_lang_arr = array(
+    '000' => 'Choose Item',
+    'All' => 'All Items',
+    'car' => 'Car',
+    'house' => 'House',
+    'computer' => 'Computer',
+    'phone' => 'Phone',
+    'electronics' => 'Electronics',
+    'household' => 'Household',
+    'others' => 'Others'
 );
