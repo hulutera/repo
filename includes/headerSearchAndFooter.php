@@ -74,7 +74,8 @@ function uploadHeaderAndSearchCode($item)
 	logo();
 	topRightLinks();
 	echo '</div></div></div>';
-	tabMenu();
+	miniSearch();
+	//tabMenu();
 }
 
 /*Fetch the active URL*/
@@ -174,6 +175,11 @@ function topRightLinks()
 		echo '<a href="../../includes/editProfile.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' .$lang['Edit Profile']. '</div>';
+		echo '</div>';
+		echo '</a>';
+		echo '<a href="../../includes/upload.php' .$lang_url. '">';
+		echo '<div id="toplinktexts">';
+		echo '<div id="topRightEnglish">' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '</div>';
