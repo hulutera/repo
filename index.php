@@ -15,7 +15,7 @@ require_once $documnetRootPath . '/includes/common.inc.php';
 			<?php headerAndSearchCode("");?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php (new MainView("all"))->displayItem();?>
+					<?php (new  HtCommonView("all"))->displayItem();?>
 				</div>
 			</div>
 		</div>

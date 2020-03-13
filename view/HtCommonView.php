@@ -694,8 +694,13 @@ class HtCommonView{
             $result->close();
             pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
         } else{
-        
-                if($city == "All" or $city == "000" ){
+
+                //To avoid a wildcard value for search word
+                if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
+                    $searchWordSanitized = "No searchword given";
+                }
+               
+                if($city == "All" or $city == "000"){
                     $location = "%";
                 } else{
                     $location = $city;
@@ -718,20 +723,20 @@ class HtCommonView{
                             $tmpStr .= $value['table_name'] . "category ON ";
                             $tmpStr .= $value['table_name'] . "category.categoryID = ";
                             $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                            $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
-                            $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' OR ";
+                            $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' AND ";
+                            $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' OR ( categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
+                            
                         }
                         $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                     }
                     $tmpStrFinal = rtrim($tmpStr, '\' OR ');
-                    $tmpStrFinal .=  "')";
+                    $tmpStrFinal .=  "'))";
                     $bigQuery .= " + " . $tmpStrFinal;
                     //break;
                 }
                 $finalStr = rtrim($bigQuery, 'OR ');
                 $finalStr2 = ltrim($finalStr, '+ ');
                 $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
-                        
                 echo "<div id= \"mainColumn\">";
                 $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
                 while ($dmatchChecker = $totalMatch->fetch_assoc()) {
@@ -750,8 +755,8 @@ class HtCommonView{
                                 $tmpStr .= $value['table_name'] . "category ON ";
                                 $tmpStr .= $value['table_name'] . "category.categoryID = ";
                                 $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
-                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' OR ";
+                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' AND ";
+                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' OR ( categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
                             }
                             $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                             //break;
@@ -763,7 +768,7 @@ class HtCommonView{
                     //$finalStr = rtrim($bigQuery, 'OR ');
                     $finalStr = rtrim($tmpStrFinal, 'OR ');
                     //$finalStr2 = ltrim($finalStr, ' UNION ALL ');
-                    $finalStr .= " ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
+                    $finalStr .= ") ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
                     $querySearch =  $finalStr;
                     $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
                     while ($ddisplaySearchResult = $displaySearchResult->fetch_assoc()) {
