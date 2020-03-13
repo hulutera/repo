@@ -378,6 +378,27 @@ class DatabaseClass
         return "";
     }
 
+    public function getItemIdField($table)
+    {
+        if ($table == "car"){
+            return "cID";
+         } elseif ($table == "house") {
+            return "hID";
+         } elseif ($table == "computer") {
+             return "dID";
+         } elseif ($table == "electronics"){
+            return "eID";
+         } elseif ($table == "household") {
+            return "hhID";
+         } elseif ($table == "phone") {
+             return "pID";
+         } elseif ($table == "others") {
+            return "oID";
+         } else {
+             return "";
+         }
+    }
+
     public function getAllFields($item)
     {
         $sql = "SELECT * FROM $item";

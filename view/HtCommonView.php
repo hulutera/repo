@@ -9,6 +9,13 @@ require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/test/backtracer.php';
 class HtCommonView{
 
+    private $_itemName;
+    
+    function __construct($itemName)
+    {
+        $this->_itemName = $itemName;
+    }
+
     /**/
     public function show($itemId)
     {
@@ -567,24 +574,27 @@ class HtCommonView{
         }
     }
 
+    public function searchFieldInTables($id, $table, $value)
+    {
+        global $locationPerTable;
+        $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "WHERE $id = $value");
+        $res = $result->fetch_assoc();
+        $locField = $locationPerTable[$table];
+        $itemPostedLocation = $res[$locField];
+        return $itemPostedLocation;
+    }
+
+
     private function displaySearch()
     {
+        global $locationPerTable;
         $searchWordRaw = $_GET['search_text'];
+        $city = $_GET['cities'];
+        $item = $_GET['item'];
+
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 
         $searchWordSanitized = DatabaseClass::getInstance()->getConnection()->real_escape_string($searchWordRaw);
-
-        if ($searchWordSanitized == "") {
-            echo " <div id=\"mainColumnX\">
-                <div id=\"spanMainColumnX\">
-                Enter the displaySearch word.<div id=\"spanColumnXamharic\">
-                እባክዎ እንዲፈለግልዎት የፈለጉትን ያስገቡ።
-                </div>
-                </div>
-                </div>";
-            return;
-        }
-        
         $bigQuery = "";
         $itemToStatus = array(
             "car" => "cStatus",
@@ -595,110 +605,217 @@ class HtCommonView{
             "household" => "hhStatus",
             "others" => "oStatus"
         );
-        $allItem = DatabaseClass::getInstance()->getAllItem();
-        foreach ($allItem as $key => $value) {
-            $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
-            $tmpStr = "";
-            for ($i = 0; $i < sizeof($tableName); $i++) {
-                if ($i == 0) {
-                    $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " LEFT JOIN ";
-                    $tmpStr .= $value['table_name'] . "category ON ";
-                    $tmpStr .= $value['table_name'] . "category.categoryID = ";
-                    $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                    $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
-                }
-                $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+
+        $locationPerTable = array(
+            "car" => "cLocation",
+            "house" => "hLocation",
+            "computer" => "dLocation",
+            "electronics" => "eLocation",
+            "phone" => "pLocation",
+            "household" => "hhLocation",
+            "others" => "oLocation"
+        );
+
+        if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
+            echo " <div id=\"mainColumnX\">
+                <div id=\"spanMainColumnX\">
+                Enter the displaySearch word.<div id=\"spanColumnXamharic\">
+                እባክዎ እንዲፈለግልዎት የፈለጉትን ያስገቡ።
+                </div>
+                </div>
+                </div>";
+            return;
+        } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
+            $this->displayAllItem();
+        } elseif ($searchWordSanitized == "" and $item == "All"){
+            $table = "latestupdate";
+            $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");
+            $totalItems = mysqli_num_rows($countItems);
+    
+            if ($totalItems == 0) {
+                ObjectPool::getInstance()->getViewObject("empty")->show(0);
+                return;
             }
-            $tmpStrFinal = rtrim($tmpStr, '\' OR ');
-            $tmpStrFinal .=  "')";
-            $bigQuery .= " + " . $tmpStrFinal;
-            //break;
-        }
-        $finalStr = rtrim($bigQuery, 'OR ');
-        $finalStr2 = ltrim($finalStr, '+ ');
-        $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
-
-        echo "<div id= \"mainColumn\">";
-
-        $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
-        while ($dmatchChecker = $totalMatch->fetch_assoc()) {
-            $numbreOfMatches = $dmatchChecker['count_row'];
-        }
-        if ($numbreOfMatches >= 1) {
-            $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
-            $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
-            $bigQuery ="";
-            foreach ($allItem as $key => $value) {
-                $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
-                $tmpStr = "";
-                for ($i = 0; $i < sizeof($tableName); $i++) {
-                    if ($i == 0) {
-                        $tmpStr .= "SELECT " . $tableName[$i] . ",UploadedDate,tableType FROM " . $value['table_name'] . " INNER JOIN ";
-                        $tmpStr .= $value['table_name'] . "category ON ";
-                        $tmpStr .= $value['table_name'] . "category.categoryID = ";
-                        $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                        $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
+            $condition = " ORDER BY LatestTime DESC LIMIT 0," . HtGlobal::get('itemPerPage');
+            $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, $condition);
+            while ($row = $result->fetch_assoc()) {
+                if ($row['cID'] != 0) {
+                    $location = $this -> searchFieldInTables("cID", "car", $row['cID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("car")->show($row['cID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
                     }
-                    $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+                } else if ($row['hID'] != 0) {
+                    $location = $this -> searchFieldInTables("hID", "house", $row['hID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("house")->show($row['hID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                } else if ($row['dID'] != 0) {
+                    $location = $this -> searchFieldInTables("dID", "computer", $row['dID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("computer")->show($row['dID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                } else if ($row['pID'] != 0) {
+                    $location = $this -> searchFieldInTables("pID", "phone", $row['pID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("phone")->show($row['pID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                } else if ($row['eID'] != 0) {
+                    $location = $this -> searchFieldInTables("eID", "electronics", $row['eID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("electronics")->show($row['eID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                } else if ($row['hhID'] != 0) {
+                    $location = $this -> searchFieldInTables("hhID", "household", $row['hhID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("household")->show($row['hhID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                } else if ($row['oID'] != 0) {
+                    $location = $this -> searchFieldInTables("oID", "others", $row['oID']);
+                    if($city == $location){
+                        ObjectPool::getInstance()->getViewObject("others")->show($row['oID']);
+                    }else{
+                        $totalItems = $totalItems - 1;
+                    }
+                }
+            }
+            $calculatePageArray = calculatePage($totalItems);
+            $result->close();
+            pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
+        } else{
+        
+                if($city == "All" or $city == "000" ){
+                    $location = "%";
+                } else{
+                    $location = $city;
+                }
+                
+                if ($item == "All" or $item == "000") {
+                    $allItem = DatabaseClass::getInstance()->getAllItem();
+                } else {
+                    $allItem = array(
+                        'array' => array('table_name' => $item)
+                    );
+                }
+
+                foreach ($allItem as $key => $value) { 
+                    $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
+                    $tmpStr = "";
+                    for ($i = 0; $i < sizeof($tableName); $i++) {
+                        if ($i == 0) {
+                            $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " LEFT JOIN ";
+                            $tmpStr .= $value['table_name'] . "category ON ";
+                            $tmpStr .= $value['table_name'] . "category.categoryID = ";
+                            $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
+                            $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
+                            $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' OR ";
+                        }
+                        $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+                    }
+                    $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+                    $tmpStrFinal .=  "')";
+                    $bigQuery .= " + " . $tmpStrFinal;
                     //break;
                 }
-                $tmpStrFinal = rtrim($tmpStr, '\' OR ');
-                $tmpStrFinal .=  "'";
-                $bigQuery .= " UNION ALL " . $tmpStrFinal;
-            }
-            $finalStr = rtrim($bigQuery, 'OR ');
-            $finalStr2 = ltrim($finalStr, ' UNION ALL ');
-            $finalStr2 .= " ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
-            $querySearch =  $finalStr2;  
-            $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
-            while ($ddisplaySearchResult = $displaySearchResult->fetch_assoc()) {
-                $id = $ddisplaySearchResult['cID'];
-                $tabletype = $ddisplaySearchResult['tableType'];
-                $name = DatabaseClass::getInstance()->getTableNameById($tabletype);
-                ObjectPool::getInstance()->getViewObject($name)->show($id);
-            }
-
-            echo "<div id=\"pagination\"><ul>";
-            /*====a variable which describes the page bar*/
-
-            $pagerange = 4;
-            $nextpage = $page + 1;
-            $previouspage = $page - 1;
-
-            if ($page > 1) {
-                echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
-                echo '<li><a href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
-            } else {
-                echo '<li class = "previous-off"> <b>First Page </b></li>';
-                echo '<li class = "previous-off"><b> previous</b></li>';
-            }
-
-            for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
-                if ($i > 0 && $i <= $totpage) {
-                    echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
-                        '<li><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
+                $finalStr = rtrim($bigQuery, 'OR ');
+                $finalStr2 = ltrim($finalStr, '+ ');
+                $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
+                        
+                echo "<div id= \"mainColumn\">";
+                $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
+                while ($dmatchChecker = $totalMatch->fetch_assoc()) {
+                    $numbreOfMatches = $dmatchChecker['count_row'];
                 }
-            }
+                if ($numbreOfMatches >= 1) {
+                    $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
+                    $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
+                    $bigQuery ="";
+                    foreach ($allItem as $key => $value) {
+                        $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
+                        $tmpStr = "";
+                        for ($i = 0; $i < sizeof($tableName); $i++) {
+                            if ($i == 0) {
+                                $tmpStr .= "SELECT " . $tableName[$i] . ",UploadedDate,tableType FROM " . $value['table_name'] . " INNER JOIN ";
+                                $tmpStr .= $value['table_name'] . "category ON ";
+                                $tmpStr .= $value['table_name'] . "category.categoryID = ";
+                                $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
+                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
+                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' OR ";
+                            }
+                            $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+                            //break;
+                        }
+                        $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+                        $tmpStrFinal .=  "'";
+                        //$bigQuery .= " UNION ALL" . $tmpStrFinal;
+                    //}
+                    //$finalStr = rtrim($bigQuery, 'OR ');
+                    $finalStr = rtrim($tmpStrFinal, 'OR ');
+                    //$finalStr2 = ltrim($finalStr, ' UNION ALL ');
+                    $finalStr .= " ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
+                    $querySearch =  $finalStr;
+                    $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
+                    while ($ddisplaySearchResult = $displaySearchResult->fetch_assoc()) {
+                        $tabletype = $ddisplaySearchResult['tableType'];
+                        $name = DatabaseClass::getInstance()->getTableNameById($tabletype);
+                        $tableId = DatabaseClass::getInstance()->getItemIdField($name);
+                        $id = $ddisplaySearchResult[$tableId];            
+                        ObjectPool::getInstance()->getViewObject($name)->show($id);
+                    } }
 
-            if ($page < $totpage) {
-                echo '<li><a href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
-                echo '<li><a href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
-            } else {
-                echo '<li class = "previous-off"> <b> Next </b></li>';
-                echo '<li class = "previous-off"> <b> Last Page</b></li>';
-            }
-            echo "</ul></div>";
-        } else if ($numbreOfMatches < 1) {
-            echo '<div id="mainColumnX">
-                            <div id="spanMainColumnX">
-                            Sorry!There is no match found,try again.</br>
-                            <div style="font-size:14px">
-                            ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a  style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
-                            </div>
-                            </div>
-                            </div>';
-        }
+                    echo "<div id=\"pagination\"><ul>";
+                    /*====a variable which describes the page bar*/
 
-        echo "</div>";
-    }
+                    $pagerange = 4;
+                    $nextpage = $page + 1;
+                    $previouspage = $page - 1;
+
+                    if ($page > 1) {
+                        echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
+                        echo '<li><a href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
+                    } else {
+                        echo '<li class = "previous-off"> <b>First Page </b></li>';
+                        echo '<li class = "previous-off"><b> previous</b></li>';
+                    }
+
+                    for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
+                        if ($i > 0 && $i <= $totpage) {
+                            echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
+                                '<li><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
+                        }
+                    }
+
+                    if ($page < $totpage) {
+                        echo '<li><a href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
+                        echo '<li><a href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
+                    } else {
+                        echo '<li class = "previous-off"> <b> Next </b></li>';
+                        echo '<li class = "previous-off"> <b> Last Page</b></li>';
+                    }
+                    echo "</ul></div>";
+                } else if ($numbreOfMatches < 1) {
+                    echo '<div id="mainColumnX">
+                                    <div id="spanMainColumnX">
+                                    Sorry!There is no match found,try again.</br>
+                                    <div style="font-size:14px">
+                                    ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a  style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
+                                    </div>
+                                    </div>
+                                    </div>';
+                }
+
+                echo "</div>";
+            }
+  }
 }
