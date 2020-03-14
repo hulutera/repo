@@ -755,13 +755,12 @@ class HtCommonView{
                 $finalStr = rtrim($bigQuery, 'OR ');
                 $finalStr2 = ltrim($finalStr, '+ ');
                 $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
-                echo $matchChecker;
                 echo "<div id= \"mainColumn\">";
                 $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
                 while ($dmatchChecker = $totalMatch->fetch_assoc()) {
                     $numbreOfMatches = $dmatchChecker['count_row'];
                 }
-                echo $numbreOfMatches;
+      
                 if ($numbreOfMatches >= 1) {
                     $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
                     $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
