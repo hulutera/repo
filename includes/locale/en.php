@@ -333,7 +333,10 @@ $lang = array (
     '2020 hulutera. All Rights Reserved.' => '2012 hulutera. All Rights Reserved.',
     'Choose Item' => 'Choose Item',
     'Choose City' => 'Choose City',
-    'All Cities' => 'All Cities'
+    'All Cities' => 'All Cities',
+    'hulutera' => 'Hulutera',
+    'failed search' => 'Please enter the search word </br> or select City </br> or select Item </br>',
+    'no match for search' => 'Sorry!There is no match found, please try again. </br> Shall you need more information on how to search, you can find '
 
 );
 

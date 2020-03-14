@@ -191,8 +191,7 @@ function miniSearch()
 {
 	global $lang, $lang_url, $str_url, $city_lang_arr;
 	global $item_lang_arr;
-	echo '<div class="tabsAndSearch">';
-	echo '<div class="miniSearch">';
+	echo '<div style="width:100%">';
 	echo '<form class="searchform" action="../../includes/search.php' .$lang_url. '" method ="GET">';
 	echo '<input name="search_text" class="searchfield" type="text"  placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
 	echo ' <select id="city" name="cities">';
@@ -207,7 +206,7 @@ function miniSearch()
 	echo '</select>';
 	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="' . $lang['Search'] . '" />';
 	echo '</form>';
-	echo '</div></div>';
+	echo '</div>';
 }
 /*tabmenu home/PostyourItem/Help*/
 function tabMenu()

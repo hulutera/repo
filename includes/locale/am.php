@@ -320,7 +320,10 @@ $lang = array (
     '2020 hulutera. All Rights Reserved.' => '2012 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።',
     'Choose Item' => 'ንብረት ይምረጡ',
     'Choose City' => 'ከተማ ይምረጡ',
-    'All Cities' => 'በሁሉም ከተሞች'
+    'All Cities' => 'በሁሉም ከተሞች',
+    'hulutera' => 'ሁሉተራ',
+    'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ። </br> ወይም ከተማ ይምረጡ </br> ወይም የንብረት ዓይነት ይምረጡ',
+    'no match for search' => 'ይቅርታ እንዲፈለግልዎት ያሰቡት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ ይሄን የሚለው ተጭነው ያገኛሉ። '
 );
 
 $city_lang_arr = array (

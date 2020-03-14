@@ -587,7 +587,13 @@ class HtCommonView{
 
     private function displaySearch()
     {
-        global $locationPerTable;
+        global $locationPerTable, $lang;
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        }
+        else { 
+            $lang_url = "";
+        }
         $searchWordRaw = $_GET['search_text'];
         $city = $_GET['cities'];
         $item = $_GET['item'];
@@ -617,13 +623,11 @@ class HtCommonView{
         );
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            echo " <div id=\"mainColumnX\">
-                <div id=\"spanMainColumnX\">
-                Enter the displaySearch word.<div id=\"spanColumnXamharic\">
-                እባክዎ እንዲፈለግልዎት የፈለጉትን ያስገቡ።
+            echo ' <div id="mainColumnX">
+                <div id="spanMainColumnX" style="color: red;background-color: #ff0">
+                ' . $lang['failed search'] . '                
                 </div>
-                </div>
-                </div>";
+                </div>';
             return;
         } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
             $this->displayAllItem();
@@ -631,7 +635,6 @@ class HtCommonView{
             $table = "latestupdate";
             $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");
             $totalItems = mysqli_num_rows($countItems);
-    
             if ($totalItems == 0) {
                 ObjectPool::getInstance()->getViewObject("empty")->show(0);
                 return;
@@ -690,16 +693,29 @@ class HtCommonView{
                     }
                 }
             }
+            
+            if ($totalItems == 0) {
+                echo '<div id="mainColumnX">
+                <div id="spanMainColumnX" style="color: red;background-color: #ff0">
+                    ' .
+                    $lang['no match for search'] 
+                    . '<a  style="text-decoration:none; font-size:15px;" href="../../includes/template.proxy.php?type=help' .$lang_url. '">' .$lang['here']. '</a>
+                    
+                </div></div>';
+            }
             $calculatePageArray = calculatePage($totalItems);
             $result->close();
             pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
         } else{
 
                 //To avoid a wildcard value for search word
-                if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
+                if($searchWordSanitized == NULL and ($city != "000" or $item != "000")){
                     $searchWordSanitized = "No searchword given";
+                    $connector = "OR";
+                } elseif ($searchWordSanitized != "" and $city != "000"){
+                    $connector = "AND";
                 }
-               
+
                 if($city == "All" or $city == "000"){
                     $location = "%";
                 } else{
@@ -719,12 +735,14 @@ class HtCommonView{
                     $tmpStr = "";
                     for ($i = 0; $i < sizeof($tableName); $i++) {
                         if ($i == 0) {
-                            $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " LEFT JOIN ";
+                            $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " INNER JOIN ";
                             $tmpStr .= $value['table_name'] . "category ON ";
                             $tmpStr .= $value['table_name'] . "category.categoryID = ";
                             $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                            $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' AND ";
-                            $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' OR ( categoryName LIKE '%" . $searchWordSanitized . "%' AND ";
+                            $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND (";
+                            $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%'";
+                            $tmpStr .= " " . $connector;
+                            $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%') OR (";
                             
                         }
                         $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
@@ -737,11 +755,13 @@ class HtCommonView{
                 $finalStr = rtrim($bigQuery, 'OR ');
                 $finalStr2 = ltrim($finalStr, '+ ');
                 $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
+                echo $matchChecker;
                 echo "<div id= \"mainColumn\">";
                 $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
                 while ($dmatchChecker = $totalMatch->fetch_assoc()) {
                     $numbreOfMatches = $dmatchChecker['count_row'];
                 }
+                echo $numbreOfMatches;
                 if ($numbreOfMatches >= 1) {
                     $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
                     $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
@@ -755,8 +775,10 @@ class HtCommonView{
                                 $tmpStr .= $value['table_name'] . "category ON ";
                                 $tmpStr .= $value['table_name'] . "category.categoryID = ";
                                 $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%' AND ";
-                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' OR ( categoryName LIKE '%" . $searchWordSanitized . "%' OR ";
+                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND (";
+                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%'"; 
+                                $tmpStr .= " " . $connector;
+                                $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%' ) OR (";
                             }
                             $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                             //break;
@@ -811,12 +833,11 @@ class HtCommonView{
                     echo "</ul></div>";
                 } else if ($numbreOfMatches < 1) {
                     echo '<div id="mainColumnX">
-                                    <div id="spanMainColumnX">
-                                    Sorry!There is no match found,try again.</br>
-                                    <div style="font-size:14px">
-                                    ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a  style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
-                                    </div>
-                                    </div>
+                                    <div id="spanMainColumnX" style="color: red;background-color: #ff0">
+                                    ' .
+                                    $lang['no match for search'] 
+                                    . '<a  style="text-decoration:none; font-size:15px;" href="../../includes/template.proxy.php?type=help' .$lang_url. '">' .$lang['here']. '</a>
+                                    
                                     </div>';
                 }
 
