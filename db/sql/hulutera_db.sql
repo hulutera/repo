@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 14, 2020 at 05:20 AM
+-- Generation Time: Mar 15, 2020 at 04:25 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -117,28 +117,6 @@ INSERT INTO `category_computer` (`id`, `field_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_contact`
---
-
-DROP TABLE IF EXISTS `category_contact`;
-CREATE TABLE IF NOT EXISTS `category_contact` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `field_method` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `category_contact`
---
-
-INSERT INTO `category_contact` (`id`, `field_method`) VALUES
-(1, 'Email'),
-(2, 'Phone'),
-(3, 'Both');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `category_electronic`
 --
 
@@ -241,188 +219,6 @@ CREATE TABLE IF NOT EXISTS `category_phone` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image_car`
---
-
-DROP TABLE IF EXISTS `image_car`;
-CREATE TABLE IF NOT EXISTS `image_car` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_car`
---
-
-INSERT INTO `image_car` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_computer`
---
-
-DROP TABLE IF EXISTS `image_computer`;
-CREATE TABLE IF NOT EXISTS `image_computer` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_computer`
---
-
-INSERT INTO `image_computer` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_electronic`
---
-
-DROP TABLE IF EXISTS `image_electronic`;
-CREATE TABLE IF NOT EXISTS `image_electronic` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_electronic`
---
-
-INSERT INTO `image_electronic` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_house`
---
-
-DROP TABLE IF EXISTS `image_house`;
-CREATE TABLE IF NOT EXISTS `image_house` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_house`
---
-
-INSERT INTO `image_house` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_household`
---
-
-DROP TABLE IF EXISTS `image_household`;
-CREATE TABLE IF NOT EXISTS `image_household` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_household`
---
-
-INSERT INTO `image_household` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_other`
---
-
-DROP TABLE IF EXISTS `image_other`;
-CREATE TABLE IF NOT EXISTS `image_other` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_other`
---
-
-INSERT INTO `image_other` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image_phone`
---
-
-DROP TABLE IF EXISTS `image_phone`;
-CREATE TABLE IF NOT EXISTS `image_phone` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `id_item` int(40) NOT NULL,
-  `field_image_string` longtext,
-  PRIMARY KEY (`id`),
-  KEY `item_ID` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image_phone`
---
-
-INSERT INTO `image_phone` (`id`, `id_item`, `field_image_string`) VALUES
-(1, 1, '809images_055.jpeg'),
-(2, 3, '152images_047.jpeg'),
-(4, 5, '736images_054.jpeg'),
-(5, 6, '420images_054.jpeg'),
-(6, 8, '193images_054.jpeg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `item_all`
 --
 
@@ -485,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `item_car` (
   PRIMARY KEY (`id`),
   KEY `uID_FK1` (`id_user`),
   KEY `ccategoryID_FK` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_car`
@@ -517,7 +313,91 @@ INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `field_contac
 (24, 29635, 10, 14, '0', '', '10000', '', '000', 'Birr', 'porsche', '', 1980, 0, '', 'yellow', 'Manual', '', NULL, 'Addis Ababa', '', 'porche for sell', '2020-01-24 16:15:32', NULL, 'active', 'sell', 1),
 (25, 692, 1, 17, '0', '', '', 'Negotiable', '000', 'Birr', '', '', 0000, 0, '', '', 'semiAuto', '', NULL, 'Addis Ababa', '', 'myTestCar', '2020-01-24 16:15:31', NULL, 'active', 'No Action', 1),
 (26, 18342, 2, 17, '0', '', '', '', '000', 'Birr', '', '', 0000, 0, '', '', 'Manual', '', NULL, 'Addis Ababa', '', 'hdvchdsgv', '2020-01-24 16:15:30', NULL, 'active', 'No Action', 1),
-(27, 91231, 11, 11, '3', '100000', '2000', '1', 'hour', 'Birr', 'acura', 'some new model', 1940, 10, 'Besine', 'white', 'Automatic', '21', NULL, 'Addis Ababa', 'asdsdsd', 'My car', '2020-01-24 16:15:28', NULL, 'active', 'sell or Rent', 1);
+(27, 91231, 12, 11, '3', '100000', '2000', '1', 'hour', 'Birr', 'acura', 'some new model', 1940, 10, 'Besine', 'white', 'Automatic', '21', NULL, 'Addis Ababa', 'asdsdsd', 'My car', '2020-01-24 16:15:28', NULL, 'active', 'sell or Rent', 1),
+(28, 73725, 12, 1, 'email', '1000', '40000', 'yes', '400', 'BIRR', 'ZZZZZ', 'xxxxxx', 1982, 5, 'xxxxxx', 'xxxxxx', 'xxxxxx', 'xxxxxx', '{xxxxxx}', 'xxxxxx', 'xxxxxx', 'xxxxxx', '2020-02-16 10:49:10', NULL, 'xxxxxx', 'xxxxxx', 1),
+(29, 20010, 12, 1, 'email', '1000', '40000', 'yes', '400', 'BIRR', 'ZZZZZ', 'xxxxxx', 1982, 5, 'xxxxxx', 'xxxxxx', 'xxxxxx', 'xxxxxx', '{xxxxxx}', 'xxxxxx', 'xxxxxx', 'xxxxxx', '2020-02-16 10:56:54', NULL, 'xxxxxx', 'xxxxxx', 1),
+(30, 967, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:30:29', NULL, 'pending', 'rent and sell', 1),
+(31, 824, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:32:12', NULL, 'pending', 'rent and sell', 1),
+(32, 744, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:32:25', NULL, 'pending', 'rent and sell', 1),
+(33, 959, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:33:42', NULL, 'pending', 'rent and sell', 1),
+(34, 222, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:36:04', NULL, 'pending', 'rent and sell', 1),
+(35, 842, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:36:19', NULL, 'pending', 'rent and sell', 1),
+(36, 937, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:36:24', NULL, 'pending', 'rent and sell', 1),
+(37, 110, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:36:27', NULL, 'pending', 'rent and sell', 1),
+(38, 74, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-09 22:36:30', NULL, 'pending', 'rent and sell', 1),
+(39, 754, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-11 02:23:37', NULL, 'pending', 'rent and sell', 1),
+(40, 484, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-11 02:26:04', NULL, 'pending', 'rent and sell', 1),
+(41, 34393335, 12, 2, '1', '121212', '545456', '1', 'hourly', 'USD', 'aston-martin', 'gg', 2012, 21, '3', '#009f6b', '2', '5000-9999', '[{&#34;file&#34;:&#34;0:/register.png&#34;}]', 'Dire Dawa', NULL, 'asdasds', '2020-03-11 08:23:05', NULL, 'pending', 'rent and sell', 1),
+(43, 34353331, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 07:31:56', NULL, 'pending', 'rent and sell', 1),
+(44, 35303430, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 07:33:41', NULL, 'pending', 'rent and sell', 1),
+(45, 34373332, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:19:17', NULL, 'pending', 'rent and sell', 1),
+(46, 33353339, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:25:05', NULL, 'pending', 'rent and sell', 1),
+(47, 34383439, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:28:45', NULL, 'pending', 'rent and sell', 1),
+(48, 34363432, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:29:42', NULL, 'pending', 'rent and sell', 1),
+(49, 32363233, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:32:51', NULL, 'pending', 'rent and sell', 1),
+(50, 32313334, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:35:27', NULL, 'pending', 'rent and sell', 1),
+(51, 32363330, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:40:16', NULL, 'pending', 'rent and sell', 1),
+(52, 33373439, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:41:07', NULL, 'pending', 'rent and sell', 1),
+(53, 33373237, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:41:38', NULL, 'pending', 'rent and sell', 1),
+(54, 34383331, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:42:26', NULL, 'pending', 'rent and sell', 1),
+(55, 32333331, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:43:13', NULL, 'pending', 'rent and sell', 1),
+(56, 32303239, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:43:35', NULL, 'pending', 'rent and sell', 1),
+(57, 32383232, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:47:09', NULL, 'pending', 'rent and sell', 1),
+(58, 33393433, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:48:49', NULL, 'pending', 'rent and sell', 1),
+(59, 34393438, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:49:12', NULL, 'pending', 'rent and sell', 1),
+(60, 32393335, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:51:05', NULL, 'pending', 'rent and sell', 1),
+(61, 34373337, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:52:08', NULL, 'pending', 'rent and sell', 1),
+(62, 34373431, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:53:56', NULL, 'pending', 'rent and sell', 1),
+(63, 32363434, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:55:57', NULL, 'pending', 'rent and sell', 1),
+(64, 32353232, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:57:15', NULL, 'pending', 'rent and sell', 1),
+(65, 33363338, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 08:59:03', NULL, 'pending', 'rent and sell', 1),
+(66, 32313434, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:01:44', NULL, 'pending', 'rent and sell', 1),
+(67, 33353336, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:02:08', NULL, 'pending', 'rent and sell', 1),
+(68, 34313236, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:04:07', NULL, 'pending', 'rent and sell', 1),
+(69, 33323438, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:04:27', NULL, 'pending', 'rent and sell', 1),
+(70, 32303339, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:04:42', NULL, 'pending', 'rent and sell', 1),
+(71, 32303239, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:10:52', NULL, 'pending', 'rent and sell', 1),
+(72, 35303230, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:11:05', NULL, 'pending', 'rent and sell', 1),
+(73, 32333530, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:12:04', NULL, 'pending', 'rent and sell', 1),
+(74, 34343334, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:12:30', NULL, 'pending', 'rent and sell', 1),
+(75, 33343237, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:13:27', NULL, 'pending', 'rent and sell', 1),
+(76, 33323338, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:15:01', NULL, 'pending', 'rent and sell', 1),
+(77, 33343430, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[{&#34;file&#34;:&#34;0:/imgNotAvail.jpg&#34;},{&#34;file&#34;:&#34;0:/items.png&#34;},{&#34;file&#34;:&#34;0:/login.png&#34;},{&#34;file&#34;:&#34;0:/myList.jpg&#34;},{&#34;file&#34;:&#34;0:/removeImage.png&#34;}]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:15:36', NULL, 'pending', 'rent and sell', 1),
+(78, 32373438, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[\"hulutera_user_id_11_item_temp_id_32373438_imgNotAvail.jpg\",\"hulutera_user_id_11_item_temp_id_32373438_items.png\",\"hulutera_user_id_11_item_temp_id_32373438_login.png\",\"hulutera_user_id_11_item_temp_id_32373438_myList.jpg\",\"hulutera_user_id_11_item_temp_id_32373438_removeImage.png\"]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:21:31', NULL, 'pending', 'rent and sell', 1),
+(79, 34333237, 12, 2, '1', '1234', '234', '1', 'hourly', 'ETB', 'aston-martin', 'dfdf', 2008, 16, '1', '#FFD300', '1', '20000-24999', '[\"hulutera_user_id_11_item_temp_id_34333237_imgNotAvail.jpg\",\"hulutera_user_id_11_item_temp_id_34333237_items.png\",\"hulutera_user_id_11_item_temp_id_34333237_login.png\",\"hulutera_user_id_11_item_temp_id_34333237_myList.jpg\",\"hulutera_user_id_11_item_temp_id_34333237_removeImage.png\"]', 'Addis Ababa', NULL, 'hi', '2020-03-11 09:23:25', NULL, 'pending', 'rent and sell', 1),
+(80, 32303334, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[\"hulutera_user_id_11_item_temp_id_32303334_README.txt\"]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:28:14', NULL, 'pending', 'rent and sell', 1),
+(81, 33323239, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:33:04', NULL, 'pending', 'rent and sell', 1),
+(82, 34303435, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'asdsads', '2020-03-11 09:33:33', NULL, 'pending', 'rent and sell', 1),
+(83, 34363236, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'asdsads', '2020-03-11 09:33:54', NULL, 'pending', 'rent and sell', 1),
+(84, 33303234, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:34:39', NULL, 'pending', 'rent and sell', 1),
+(85, 32343236, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:40:48', NULL, 'pending', 'rent and sell', 1),
+(86, 32303232, 12, 2, '1', '1234', '5678', '1', 'hourly', 'USD', 'aston-martin', 'test1', 2012, 16, '2', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'asdsadsa', '2020-03-11 09:41:46', NULL, 'pending', 'rent and sell', 1),
+(87, 34333234, 12, 2, '2', '12323', '12321', '1', 'Not for rental', 'ETB', 'aston-martin', 'asdsa', 2019, 11, '1', '#009f6b', '1', '10000-14999', '[]', 'Dire Dawa', NULL, 'asdfasdsad', '2020-03-11 09:45:19', NULL, 'pending', 'rent and sell', 1),
+(88, 33303337, 12, 3, '2', '1234', '4565', '1', 'hourly', 'ETB', 'audi', 'asdsa', 2002, 91, '1', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:50:35', NULL, 'pending', 'rent and sell', 1),
+(89, 32303334, 12, 2, '1', '123', '34343', '1', 'monthly', 'USD', 'aston-martin', 'asdsa', 2006, 81, '1', '#009f6b', '1', '5000-9999', '[]', 'Addis Ababa', NULL, 'asdsd', '2020-03-11 09:52:15', NULL, 'pending', 'rent and sell', 1),
+(90, 33313236, 12, 2, '2', '343', '678', '1', 'Not for rental', 'ETB', 'aston-martin', 'asdasd', 2018, 16, '1', '#C40233', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:53:16', NULL, 'pending', 'rent and sell', 1),
+(91, 33303330, 12, 2, '2', '343', '678', '1', 'Not for rental', 'ETB', 'aston-martin', 'asdasd', 2018, 16, '1', '#C40233', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-11 09:54:57', NULL, 'pending', 'rent and sell', 1),
+(92, 34303435, 12, 2, '2', '1212', '1212', '1', 'hourly', 'ETB', 'aston-martin', 'kjkiÃ¶ol', 2005, 41, '1', '#009f6b', '1', '0-4999', '[]', 'Addis Ababa', NULL, '1212', '2020-03-11 11:06:50', NULL, 'pending', 'rent and sell', 1),
+(93, 35303435, 12, 2, '3', '1243', '1242', '1', 'Not for rental', 'ETB', 'aston-martin', 'xdc', 2015, 6, '1', '#FFD300', '1', '0-4999', '[]', 'Addis Ababa', NULL, 'test', '2020-03-15 08:46:44', NULL, 'pending', 'rent and sell', 1),
+(94, 32373339, 12, 2, '2', '1243', '5456', '1', 'daily', 'ETB', 'aston-martin', 'test', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32373339_imgNotAvail.jpg\",\"hulutera_user_id_11_item_temp_id_32373339_items.png\",\"hulutera_user_id_11_item_temp_id_32373339_login.png\",\"hulutera_user_id_11_item_temp_id_32373339_mail.ico\",\"hulutera_user_id_11_item_temp_id_32373339_myList.jpg\"]', 'Addis Ababa', NULL, 'testing ', '2020-03-15 09:22:29', NULL, 'pending', 'rent and sell', 1),
+(95, 33333334, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_33333334_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 09:35:44', NULL, 'pending', 'rent and sell', 1),
+(96, 34353438, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_34353438_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:09:55', NULL, 'pending', 'rent and sell', 1),
+(97, 34353438, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_34353438_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:09:55', NULL, 'pending', 'rent and sell', 1),
+(98, 32353337, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32353337_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:10:22', NULL, 'pending', 'rent and sell', 1),
+(99, 32353337, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32353337_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:10:22', NULL, 'pending', 'rent and sell', 1),
+(100, 32353239, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32353239_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:10:36', NULL, 'pending', 'rent and sell', 1),
+(101, 32353239, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32353239_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:10:36', NULL, 'pending', 'rent and sell', 1),
+(102, 34303330, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_34303330_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:11:11', NULL, 'pending', 'rent and sell', 1),
+(103, 34313337, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_34313337_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:14:05', NULL, 'pending', 'rent and sell', 1),
+(104, 33353232, 12, 2, '2', '1232132', '5456', '1', 'daily', 'ETB', 'aston-martin', 'asdsad', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_33353232_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:20:21', NULL, 'pending', 'rent and sell', 1),
+(105, 32323432, 12, 2, '2', '4444', '5555', '1', 'daily', 'ETB', 'aston-martin', 'sadsds', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32323432_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'aassddaaddadd', '2020-03-15 10:20:42', NULL, 'pending', 'rent and sell', 1),
+(106, 32303437, 12, 2, '2', '4444', '5555', '1', 'daily', 'ETB', 'aston-martin', 'sadsds', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_32303437_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:24:35', NULL, 'pending', 'rent and sell', 1),
+(107, 33363331, 12, 2, '2', '4444', '5555', '1', 'daily', 'ETB', 'aston-martin', 'sadsds', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_33363331_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsds', '2020-03-15 10:24:51', NULL, 'pending', 'rent and sell', 1),
+(108, 33383438, 12, 2, '2', '4444', '5555', '1', 'daily', 'ETB', 'aston-martin', 'sadsds', 2016, 1, '2', '#009f6b', '1', '5000-9999', '[\"hulutera_user_id_11_item_temp_id_33383438_imgNotAvail.jpg\"]', 'Addis Ababa', NULL, 'asdsads', '2020-03-15 10:25:19', NULL, 'pending', 'rent and sell', 1),
+(109, 33353530, 12, 2, '2', '6000', '500', '1', 'Not for rental', 'ETB', 'aston-martin', 'x500', 2020, 6, '1', '#C40233', '1', '0-4999', '[\"hulutera_user_id_11_item_temp_id_33353530_items.png\"]', 'Addis Ababa', NULL, 'sdfdfdf', '2020-03-15 11:07:59', NULL, 'pending', 'rent and sell', 1),
+(110, 33343236, 12, 2, '3', '4550', '121', '1', 'hourly', 'ETB', 'audi', '60x', 2020, 1, '1', '#C40233', '1', '0-4999', '[\"hulutera_user_id_11_item_temp_id_33343236_myList.jpg\"]', 'Addis Ababa', NULL, 'ttt6y', '2020-03-15 11:19:41', NULL, 'pending', 'rent and sell', 1),
+(113, 34373238, 12, 2, '1', '123', '123', '1', 'Not for rental', 'ETB', 'aston-martin', 'asdsa', 2020, 26, '1', '#000000', '1', '5000-9999', '[\"hulutera_user_id_12_item_temp_id_34373238_login.png\"]', 'Dire Dawa', NULL, '123 d', '2020-03-15 11:25:25', NULL, 'pending', 'rent and sell', 1),
+(114, 33353230, 12, 2, '3', '121321', '4545', '1', 'Not for rental', 'ETB', 'aston-martin', 'ghgh', 2020, 6, '1', '#009f6b', '1', '0-4999', '[\"hulutera_user_id_12_item_temp_id_33353230_myList.jpg\"]', 'Addis Ababa', NULL, 'tresydetf', '2020-03-15 15:22:47', NULL, 'pending', 'rent and sell', 1);
 
 -- --------------------------------------------------------
 
@@ -542,6 +422,7 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
   `field_ram` varchar(20) DEFAULT NULL,
   `field_hard_drive` varchar(20) DEFAULT NULL,
   `field_color` varchar(20) DEFAULT NULL,
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` mediumtext,
   `field_title` varchar(125) DEFAULT NULL,
@@ -559,50 +440,50 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
 -- Dumping data for table `item_computer`
 --
 
-INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price`, `field_price_nego`, `field_price_currency`, `field_made`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(5, 97839, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '1', '', NULL, 'Addis Ababa', 'Test ', 'Checking', '2020-02-04 22:22:29', NULL, 'active', 'No Action', 3),
-(6, 77726, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '3', '2', NULL, 'Addis Ababa', 'new', 'Test items', '2013-11-29 22:16:14', NULL, 'Deleted', 'No Action', 3),
-(7, 4612, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, 'Addis Ababa', 'Another one', 'mini', '2013-11-29 22:04:09', NULL, 'Deleted', 'No Action', 3),
-(8, 94528, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, 'Addis Ababa', 'Another one', 'mini', '2020-02-04 22:22:30', NULL, 'active', 'No Action', 3),
-(9, 69239, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '2', '2', '3', NULL, 'Addis Ababa', '', 'The first item', '2013-12-01 15:12:21', NULL, 'active', 'No Action', 3),
-(13, 3033, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', 'Description', 'Comp title', '2013-11-29 22:05:34', NULL, 'Deleted', 'No Action', 3),
-(14, 5729, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sfwef', '2013-12-01 15:12:14', NULL, 'active', 'No Action', 3),
-(20, 14425, 1, 1, 0, '3232321312', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'myc', '2013-12-01 15:12:06', NULL, 'active', 'Sale', 3),
-(21, 47542, 2, 1, 0, '10,000', 'Negotiable', 'Birr', '', 'windows', NULL, '3', '', '', NULL, 'Addis Ababa', '', 'Comp title', '2013-12-04 18:43:43', NULL, 'Deleted', 'Sale', 3),
-(23, 94313, 1, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sdsadasd', '2013-12-01 15:11:41', NULL, 'active', 'Sale', 3),
-(24, 97130, 2, 4, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Awassa', '', 'LCD', '2020-02-04 22:22:22', NULL, 'active', 'sell', 3),
-(25, 57836, 2, 2, 0, '0', 'Negotiable', 'Birr', 'apple', 'unix', 'macbookAir', '', '', '', NULL, 'Addis Ababa', '', 'apple', '2020-02-04 22:22:20', NULL, 'active', 'sell', 3),
-(26, 98513, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'comp only with title', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
-(27, 62641, 2, 2, 0, '0', 'Negotiable', 'Birr', 'acer', 'windows', NULL, '2', '2', '3', NULL, 'Addis Ababa', 'Nice PC', 'comp with all but not negotiable', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
-(28, 5432, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '1.5 - 1.99GHz', '1.0 - 1.9GB', '200 - 299GB', NULL, 'Addis Ababa', '', 'checking the spec', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
-(29, 49645, 2, 1, 0, '0', 'pending', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'price check without nego', '2013-12-17 15:13:29', NULL, '', 'sell', 3),
-(30, 22620, 2, 1, 0, '0', 'pending', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'cascad', '2013-12-17 15:15:30', NULL, '', 'sell', 3),
-(31, 22347, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'price fix comp', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
-(32, 78018, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'nego comp', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
-(33, 56533, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'price check without nego', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
-(34, 49315, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'dasfsd', '2020-02-02 20:16:46', NULL, 'active', 'sell', 3),
-(35, 11917, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fwfew', '2020-02-02 20:16:38', NULL, 'active', 'sell', 3),
-(36, 9963, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sdxasdas', '2020-02-02 20:16:38', NULL, 'active', 'sell', 3),
-(37, 4802, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'dasdfe', '2020-02-02 20:16:37', NULL, 'active', 'sell', 3),
-(38, 6949, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'sdasdas', '2020-02-02 20:14:26', NULL, 'active', 'sell', 3),
-(39, 35333, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fdsfsdf', '2020-02-02 20:14:25', NULL, 'active', 'No Action', 3),
-(40, 42819, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', '5454', '2020-02-02 20:14:23', NULL, 'active', 'No Action', 3),
-(41, 1421, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, 'Addis Ababa', '', 'nnnn', '2020-02-02 20:14:22', NULL, 'active', 'No Action', 3),
-(42, 79748, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, 'Addis Ababa', '', 'sfdfd', '2020-02-02 20:14:19', NULL, 'active', 'sell', 3),
-(43, 29735, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'cfsd', '2020-01-24 16:15:53', NULL, 'active', 'sell', 3),
-(44, 1296, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'yyyy', '2020-01-24 16:15:52', NULL, 'active', 'sell', 3),
-(45, 22015, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wefe', '2020-01-24 16:15:46', NULL, 'active', 'sell', 3),
-(46, 94215, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdg', '2020-01-24 16:15:38', NULL, 'active', 'sell', 3),
-(47, 36639, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', '545', '2020-01-24 16:15:37', NULL, 'active', 'sell', 3),
-(48, 37521, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:35', NULL, 'active', 'sell', 3),
-(49, 72825, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'fgdfg', '2020-01-24 16:15:35', NULL, 'active', 'sell', 3),
-(50, 9212, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'erwer', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
-(51, 1745, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'dawf', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
-(52, 32611, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'wetwe', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
-(53, 52117, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'afew', '2020-01-24 16:15:33', NULL, 'active', 'sell', 3),
-(54, 4049, 2, 1, 0, '4545', '', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'ertert', '2020-01-24 16:15:33', NULL, 'active', 'sell', 3),
-(55, 95542, 2, 1, 0, '5656', 'Negotiable', 'USD', '', 'windows', NULL, '', '', '', NULL, 'Addis Ababa', '', 'com', '2020-01-24 16:15:32', NULL, 'active', 'sell', 3),
-(56, 17650, 1, 1, 0, '12321', 'Negotiable', 'Birr', '', 'windows', NULL, '2.5 - 2.99GHz', '1.0 - 1.9GB', '300 - 499GB', NULL, 'Addis Ababa', 'TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer ', 'TestComputer', '2013-12-21 14:30:49', NULL, 'active', 'sell', 3);
+INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price`, `field_price_nego`, `field_price_currency`, `field_made`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(5, 97839, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '1', '', NULL, '', 'Addis Ababa', 'Test ', 'Checking', '2020-02-04 22:22:29', NULL, 'active', 'No Action', 3),
+(6, 77726, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '3', '2', NULL, '', 'Addis Ababa', 'new', 'Test items', '2013-11-29 22:16:14', NULL, 'Deleted', 'No Action', 3),
+(7, 4612, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, '', 'Addis Ababa', 'Another one', 'mini', '2013-11-29 22:04:09', NULL, 'Deleted', 'No Action', 3),
+(8, 94528, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, '', 'Addis Ababa', 'Another one', 'mini', '2020-02-04 22:22:30', NULL, 'active', 'No Action', 3),
+(9, 69239, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '2', '2', '3', NULL, '', 'Addis Ababa', '', 'The first item', '2013-12-01 15:12:21', NULL, 'active', 'No Action', 3),
+(13, 3033, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', 'Description', 'Comp title', '2013-11-29 22:05:34', NULL, 'Deleted', 'No Action', 3),
+(14, 5729, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'sfwef', '2013-12-01 15:12:14', NULL, 'active', 'No Action', 3),
+(20, 14425, 1, 1, 0, '3232321312', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'myc', '2013-12-01 15:12:06', NULL, 'active', 'Sale', 3),
+(21, 47542, 2, 1, 0, '10,000', 'Negotiable', 'Birr', '', 'windows', NULL, '3', '', '', NULL, '', 'Addis Ababa', '', 'Comp title', '2013-12-04 18:43:43', NULL, 'Deleted', 'Sale', 3),
+(23, 94313, 1, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'sdsadasd', '2013-12-01 15:11:41', NULL, 'active', 'Sale', 3),
+(24, 97130, 2, 4, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Awassa', '', 'LCD', '2020-02-04 22:22:22', NULL, 'active', 'sell', 3),
+(25, 57836, 2, 2, 0, '0', 'Negotiable', 'Birr', 'apple', 'unix', 'macbookAir', '', '', '', NULL, '', 'Addis Ababa', '', 'apple', '2020-02-04 22:22:20', NULL, 'active', 'sell', 3),
+(26, 98513, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'comp only with title', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
+(27, 62641, 2, 2, 0, '0', 'Negotiable', 'Birr', 'acer', 'windows', NULL, '2', '2', '3', NULL, '', 'Addis Ababa', 'Nice PC', 'comp with all but not negotiable', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
+(28, 5432, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '1.5 - 1.99GHz', '1.0 - 1.9GB', '200 - 299GB', NULL, '', 'Addis Ababa', '', 'checking the spec', '2020-02-04 22:22:18', NULL, 'active', 'sell', 3),
+(29, 49645, 2, 1, 0, '0', 'pending', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'price check without nego', '2013-12-17 15:13:29', NULL, '', 'sell', 3),
+(30, 22620, 2, 1, 0, '0', 'pending', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'cascad', '2013-12-17 15:15:30', NULL, '', 'sell', 3),
+(31, 22347, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'price fix comp', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
+(32, 78018, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'nego comp', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
+(33, 56533, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'price check without nego', '2020-02-04 22:22:17', NULL, 'active', 'sell', 3),
+(34, 49315, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'dasfsd', '2020-02-02 20:16:46', NULL, 'active', 'sell', 3),
+(35, 11917, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'fwfew', '2020-02-02 20:16:38', NULL, 'active', 'sell', 3),
+(36, 9963, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'sdxasdas', '2020-02-02 20:16:38', NULL, 'active', 'sell', 3),
+(37, 4802, 2, 1, 0, '0', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'dasdfe', '2020-02-02 20:16:37', NULL, 'active', 'sell', 3),
+(38, 6949, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'sdasdas', '2020-02-02 20:14:26', NULL, 'active', 'sell', 3),
+(39, 35333, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'fdsfsdf', '2020-02-02 20:14:25', NULL, 'active', 'No Action', 3),
+(40, 42819, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', '5454', '2020-02-02 20:14:23', NULL, 'active', 'No Action', 3),
+(41, 1421, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, '', 'Addis Ababa', '', 'nnnn', '2020-02-02 20:14:22', NULL, 'active', 'No Action', 3),
+(42, 79748, 2, 1, 0, '', '', 'Birr', '000', 'windows', NULL, '000', '000', '000', NULL, '', 'Addis Ababa', '', 'sfdfd', '2020-02-02 20:14:19', NULL, 'active', 'sell', 3),
+(43, 29735, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'cfsd', '2020-01-24 16:15:53', NULL, 'active', 'sell', 3),
+(44, 1296, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'yyyy', '2020-01-24 16:15:52', NULL, 'active', 'sell', 3),
+(45, 22015, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'wefe', '2020-01-24 16:15:46', NULL, 'active', 'sell', 3),
+(46, 94215, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'fgdg', '2020-01-24 16:15:38', NULL, 'active', 'sell', 3),
+(47, 36639, 2, 1, 0, '', '', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', '545', '2020-01-24 16:15:37', NULL, 'active', 'sell', 3),
+(48, 37521, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'tttt', '2020-01-24 16:15:35', NULL, 'active', 'sell', 3),
+(49, 72825, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'fgdfg', '2020-01-24 16:15:35', NULL, 'active', 'sell', 3),
+(50, 9212, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'erwer', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
+(51, 1745, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'dawf', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
+(52, 32611, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'wetwe', '2020-01-24 16:15:34', NULL, 'active', 'sell', 3),
+(53, 52117, 2, 1, 0, '', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'afew', '2020-01-24 16:15:33', NULL, 'active', 'sell', 3),
+(54, 4049, 2, 1, 0, '4545', '', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'ertert', '2020-01-24 16:15:33', NULL, 'active', 'sell', 3),
+(55, 95542, 2, 1, 0, '5656', 'Negotiable', 'USD', '', 'windows', NULL, '', '', '', NULL, '', 'Addis Ababa', '', 'com', '2020-01-24 16:15:32', NULL, 'active', 'sell', 3),
+(56, 17650, 1, 1, 0, '12321', 'Negotiable', 'Birr', '', 'windows', NULL, '2.5 - 2.99GHz', '1.0 - 1.9GB', '300 - 499GB', NULL, '', 'Addis Ababa', 'TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer TestComputer ', 'TestComputer', '2013-12-21 14:30:49', NULL, 'active', 'sell', 3);
 
 -- --------------------------------------------------------
 
@@ -620,6 +501,7 @@ CREATE TABLE IF NOT EXISTS `item_electronic` (
   `field_price_sell` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(20) DEFAULT 'Negotiable',
   `field_price_currency` varchar(20) NOT NULL DEFAULT 'Birr',
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` mediumtext,
   `field_title` varchar(125) DEFAULT NULL,
@@ -637,18 +519,18 @@ CREATE TABLE IF NOT EXISTS `item_electronic` (
 -- Dumping data for table `item_electronic`
 --
 
-INSERT INTO `item_electronic` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(1, 11238, 2, 8, 0, '0', '', 'Birr', 'Addis Ababa', 'ddewdew', 'Elect', '2013-09-06 09:37:18', NULL, '', 'No Action', 5),
-(2, 99348, 2, 2, 0, '0', 'Negotiable', 'Birr', 'Addis Ababa', '', 'camera', '2013-11-30 09:31:07', NULL, 'active', 'No Action', 5),
-(6, 70435, 1, 8, 0, '0', '', 'Birr', 'Addis Ababa', '', 'adsdsds', '2013-11-17 19:51:53', NULL, '', 'No Action', 5),
-(7, 55622, 1, 8, 0, '0', '', 'Birr', 'Addis Ababa', '', 'adsadsad', '2013-11-17 19:51:53', NULL, '', 'No Action', 5),
-(8, 28731, 2, 1, 0, '0', 'Negotiable', 'Birr', 'Dire Dawa', '', 'my tv for you', '2020-02-04 22:22:23', NULL, 'active', 'No Action', 5),
-(9, 92420, 2, 8, 0, '0', '', 'Birr', 'Addis Ababa', '', 'sdfsdfsd', '2020-02-02 20:16:35', NULL, 'active', 'No Action', 5),
-(10, 54729, 2, 8, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'fdsf', '2020-01-24 16:15:52', NULL, 'active', 'sell', 5),
-(11, 50623, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'gggg', '2020-01-24 16:15:52', NULL, 'active', 'sell', 5),
-(12, 12320, 2, 8, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfd', '2020-01-24 16:15:48', NULL, 'active', 'sell', 5),
-(13, 8026, 2, 8, 0, '4444', 'Negotiable', 'Birr', 'Addis Ababa', '', 'Elect', '2020-01-24 16:15:36', NULL, 'active', 'sell', 5),
-(14, 4935, 2, 8, 0, '6565', '', 'Birr', 'Addis Ababa', '', 'dgsg', '2020-01-24 16:15:34', NULL, 'active', 'sell', 5);
+INSERT INTO `item_electronic` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(1, 11238, 2, 8, 0, '0', '', 'Birr', '', 'Addis Ababa', 'ddewdew', 'Elect', '2013-09-06 09:37:18', NULL, '', 'No Action', 5),
+(2, 99348, 2, 2, 0, '0', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'camera', '2013-11-30 09:31:07', NULL, 'active', 'No Action', 5),
+(6, 70435, 1, 8, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'adsdsds', '2013-11-17 19:51:53', NULL, '', 'No Action', 5),
+(7, 55622, 1, 8, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'adsadsad', '2013-11-17 19:51:53', NULL, '', 'No Action', 5),
+(8, 28731, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'Dire Dawa', '', 'my tv for you', '2020-02-04 22:22:23', NULL, 'active', 'No Action', 5),
+(9, 92420, 2, 8, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'sdfsdfsd', '2020-02-02 20:16:35', NULL, 'active', 'No Action', 5),
+(10, 54729, 2, 8, 0, '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'fdsf', '2020-01-24 16:15:52', NULL, 'active', 'sell', 5),
+(11, 50623, 2, 8, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'gggg', '2020-01-24 16:15:52', NULL, 'active', 'sell', 5),
+(12, 12320, 2, 8, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'fsdfd', '2020-01-24 16:15:48', NULL, 'active', 'sell', 5),
+(13, 8026, 2, 8, 0, '4444', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'Elect', '2020-01-24 16:15:36', NULL, 'active', 'sell', 5),
+(14, 4935, 2, 8, 0, '6565', '', 'Birr', '', 'Addis Ababa', '', 'dgsg', '2020-01-24 16:15:34', NULL, 'active', 'sell', 5);
 
 -- --------------------------------------------------------
 
@@ -668,6 +550,7 @@ CREATE TABLE IF NOT EXISTS `item_house` (
   `field_price_nego` varchar(20) DEFAULT 'Negotiable',
   `field_price_rate` varchar(20) DEFAULT NULL,
   `field_price_currency` varchar(10) DEFAULT 'Birr',
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_kebele` int(10) DEFAULT NULL,
   `field_wereda` int(10) DEFAULT NULL,
@@ -694,23 +577,23 @@ CREATE TABLE IF NOT EXISTS `item_house` (
 -- Dumping data for table `item_house`
 --
 
-INSERT INTO `item_house` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_location`, `field_kebele`, `field_wereda`, `field_lot_size`, `field_nr_bedroom`, `field_toilet`, `field_bathroom`, `field_build_year`, `field_water`, `field_electricity`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(1, 92638, 2, 5, 0, '', '', '', '', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'house', '2013-09-06 09:37:15', NULL, '', 'No Action', 2),
-(2, 53135, 2, 5, 0, '', '', '', '', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'dsds', '2013-12-01 13:29:36', NULL, '', 'sell', 2),
-(3, 7705, 1, 5, 0, '', '', '', '', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'dddsadsa', '2013-09-06 11:32:13', NULL, '', 'Rent', 2),
-(4, 33419, 2, 1, 0, '', '', '', '', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'house check', '2013-12-01 13:31:04', NULL, 'active', 'sell', 2),
-(5, 41748, 2, 1, 0, '50000 birr', '', '', '6month', 'Birr', 'Adama', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'House', '2020-02-04 22:22:23', NULL, 'active', 'Rent', 2),
-(6, 74318, 2, 5, 0, '', '', '', 'month', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'wwwww', '2013-12-18 16:47:27', NULL, 'Birr', 'No Action', 2),
-(7, 797, 2, 5, 0, '', '', '', 'month', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'gdgf', '2013-12-18 16:48:38', NULL, 'Birr', 'No Action', 2),
-(8, 27910, 2, 5, 0, '', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fsd', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 2),
-(9, 75723, 2, 5, 0, '', '6565', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdfgdfg', '2020-01-24 16:15:50', NULL, 'active', 'sell', 2),
-(10, 7310, 2, 5, 0, '56565', '', 'Negotiable', '12month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gfgfg', '2020-01-24 16:15:50', NULL, 'active', 'Rent', 2),
-(11, 43115, 2, 5, 0, '567', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'hou', '2020-01-24 16:15:47', NULL, 'active', 'Rent', 2),
-(12, 147, 2, 5, 0, '50', '', 'Negotiable', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdghdf', '2020-01-24 16:15:45', NULL, 'active', 'Rent', 2),
-(13, 37313, 2, 5, 0, '', '454', '', 'month', 'Birr', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'ffdw', '2020-01-24 16:15:43', NULL, 'active', 'sell', 2),
-(14, 97113, 2, 5, 0, '', 'csdfsd', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'adadfw', '2013-12-19 10:17:40', NULL, '', 'sell', 2),
-(15, 24813, 2, 5, 0, '', '4545', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fdfd', '2020-01-24 16:15:43', NULL, 'active', 'sell', 2),
-(16, 35118, 2, 5, 0, '', '5656', '', 'month', 'USD', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'efewgte', '2013-12-24 20:33:59', NULL, 'active', 'sell', 2);
+INSERT INTO `item_house` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_image`, `field_location`, `field_kebele`, `field_wereda`, `field_lot_size`, `field_nr_bedroom`, `field_toilet`, `field_bathroom`, `field_build_year`, `field_water`, `field_electricity`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(1, 92638, 2, 5, 0, '', '', '', '', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'house', '2013-09-06 09:37:15', NULL, '', 'No Action', 2),
+(2, 53135, 2, 5, 0, '', '', '', '', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'dsds', '2013-12-01 13:29:36', NULL, '', 'sell', 2),
+(3, 7705, 1, 5, 0, '', '', '', '', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'dddsadsa', '2013-09-06 11:32:13', NULL, '', 'Rent', 2),
+(4, 33419, 2, 1, 0, '', '', '', '', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'house check', '2013-12-01 13:31:04', NULL, 'active', 'sell', 2),
+(5, 41748, 2, 1, 0, '50000 birr', '', '', '6month', 'Birr', '', 'Adama', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'House', '2020-02-04 22:22:23', NULL, 'active', 'Rent', 2),
+(6, 74318, 2, 5, 0, '', '', '', 'month', '', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'wwwww', '2013-12-18 16:47:27', NULL, 'Birr', 'No Action', 2),
+(7, 797, 2, 5, 0, '', '', '', 'month', '', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', 'Negotiable', 'gdgf', '2013-12-18 16:48:38', NULL, 'Birr', 'No Action', 2),
+(8, 27910, 2, 5, 0, '', '', 'Negotiable', 'month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fsd', '2020-01-24 16:15:51', NULL, 'active', 'No Action', 2),
+(9, 75723, 2, 5, 0, '', '6565', '', 'month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdfgdfg', '2020-01-24 16:15:50', NULL, 'active', 'sell', 2),
+(10, 7310, 2, 5, 0, '56565', '', 'Negotiable', '12month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gfgfg', '2020-01-24 16:15:50', NULL, 'active', 'Rent', 2),
+(11, 43115, 2, 5, 0, '567', '', 'Negotiable', 'month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'hou', '2020-01-24 16:15:47', NULL, 'active', 'Rent', 2),
+(12, 147, 2, 5, 0, '50', '', 'Negotiable', 'month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'gdghdf', '2020-01-24 16:15:45', NULL, 'active', 'Rent', 2),
+(13, 37313, 2, 5, 0, '', '454', '', 'month', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'ffdw', '2020-01-24 16:15:43', NULL, 'active', 'sell', 2),
+(14, 97113, 2, 5, 0, '', 'csdfsd', '', 'month', 'USD', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'adadfw', '2013-12-19 10:17:40', NULL, '', 'sell', 2),
+(15, 24813, 2, 5, 0, '', '4545', '', 'month', 'USD', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'fdfd', '2020-01-24 16:15:43', NULL, 'active', 'sell', 2),
+(16, 35118, 2, 5, 0, '', '5656', '', 'month', 'USD', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'efewgte', '2013-12-24 20:33:59', NULL, 'active', 'sell', 2);
 
 -- --------------------------------------------------------
 
@@ -728,6 +611,7 @@ CREATE TABLE IF NOT EXISTS `item_household` (
   `field_price_sell` varchar(50) DEFAULT NULL,
   `field_price_nego` varchar(50) DEFAULT 'Negotiable',
   `field_price_currency` varchar(10) NOT NULL DEFAULT 'Birr',
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` mediumtext,
   `field_title` varchar(125) DEFAULT NULL,
@@ -746,32 +630,32 @@ CREATE TABLE IF NOT EXISTS `item_household` (
 -- Dumping data for table `item_household`
 --
 
-INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(2, 27715, 1, 1, 0, '123456878', '', 'Birr', 'Addis Ababa', '', 'my hh', '2013-09-06 11:24:42', 0, '', 'Sale', 6),
-(3, 50225, 1, 1, 0, '123124124123', '', 'Birr', 'Addis Ababa', '', 'my hh', '2013-09-06 11:31:53', 0, '', 'Sale', 6),
-(4, 72615, 2, 1, 0, '555', '', 'Birr', 'Addis Ababa', '', 'household check', '2013-11-29 17:51:17', 0, '', 'Sale', 6),
-(5, 77237, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'a nice item for U.', 'FuBu', '2013-11-29 17:55:55', 0, '', 'No Action', 6),
-(6, 4014, 1, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'test', '2013-11-17 19:51:53', 0, '', 'No Action', 6),
-(7, 94746, 2, 1, 0, '0', 'Negotiable', 'Birr', 'Shashemene', '', 'Sofa', '2020-02-04 22:22:22', 0, 'active', 'sell', 6),
-(8, 458, 2, 1, 0, '0', '', 'Birr', 'Addis Ababa', '', 'sxdasda', '2020-02-02 20:16:37', 0, 'active', 'sell', 6),
-(9, 74815, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'hh pr', '2020-02-02 20:14:18', 0, 'active', 'No Action', 6),
-(10, 840, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'dss', '2020-02-02 20:14:17', 0, 'active', 'No Action', 6),
-(11, 14012, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'ffff', '2020-02-02 20:14:16', 0, 'active', 'sell', 6),
-(12, 50749, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'sadsa', 'fsfs', '2020-02-01 15:12:18', 0, 'active', 'sell', 6),
-(13, 26714, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'fdf', '2020-02-01 15:12:15', 0, 'active', 'sell', 6),
-(14, 77831, 2, 2, 0, '', '', 'Birr', 'Addis Ababa', '', 'fsdfdsf', '2020-02-01 15:12:13', 0, 'active', 'sell', 6),
-(15, 19336, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sdasdas', '2020-02-01 15:12:11', 0, 'active', 'sell', 6),
-(16, 57844, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', 'dasdas', 'dsd', '2020-02-01 15:12:06', 0, 'active', 'sell', 6),
-(17, 50318, 2, 4, 0, '', '', 'Birr', 'Addis Ababa', '', 'dcsdfsd', '2020-02-01 15:11:56', 0, 'active', 'sell', 6),
-(18, 56636, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'sffwfe', '2020-01-24 16:15:57', 0, 'active', 'sell', 6),
-(19, 70436, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'ggggg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
-(20, 85441, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dgdg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
-(21, 8138, 2, 1, 0, '', 'Negotiable', 'Birr', 'Addis Ababa', '', 'gfgf', '2020-01-24 16:15:54', 0, 'active', 'sell', 6),
-(22, 40324, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'dvdsgvd', '2020-01-24 16:15:48', 0, 'active', 'sell', 6),
-(23, 1916, 2, 1, 0, '', '', 'Birr', 'Addis Ababa', '', 'gge', '2020-01-24 16:15:37', 0, 'active', 'sell', 6),
-(24, 81431, 2, 1, 0, '5555', '', 'USD', 'Addis Ababa', '', 'HH', '2013-12-25 15:08:12', 0, 'active', 'sell', 6),
-(25, 135, 2, 1, 0, '565656', 'Negotiable', 'Birr', 'Addis Ababa', '', 'hh', '2013-12-25 15:00:13', 0, 'active', 'sell', 6),
-(26, 734, 2, 1, 0, '56656', '', 'USD', 'Addis Ababa', '', '6556565gfdgdf', '2020-01-24 16:15:34', 0, 'active', 'sell', 6);
+INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(2, 27715, 1, 1, 0, '123456878', '', 'Birr', '', 'Addis Ababa', '', 'my hh', '2013-09-06 11:24:42', 0, '', 'Sale', 6),
+(3, 50225, 1, 1, 0, '123124124123', '', 'Birr', '', 'Addis Ababa', '', 'my hh', '2013-09-06 11:31:53', 0, '', 'Sale', 6),
+(4, 72615, 2, 1, 0, '555', '', 'Birr', '', 'Addis Ababa', '', 'household check', '2013-11-29 17:51:17', 0, '', 'Sale', 6),
+(5, 77237, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', 'a nice item for U.', 'FuBu', '2013-11-29 17:55:55', 0, '', 'No Action', 6),
+(6, 4014, 1, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'test', '2013-11-17 19:51:53', 0, '', 'No Action', 6),
+(7, 94746, 2, 1, 0, '0', 'Negotiable', 'Birr', '', 'Shashemene', '', 'Sofa', '2020-02-04 22:22:22', 0, 'active', 'sell', 6),
+(8, 458, 2, 1, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'sxdasda', '2020-02-02 20:16:37', 0, 'active', 'sell', 6),
+(9, 74815, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'hh pr', '2020-02-02 20:14:18', 0, 'active', 'No Action', 6),
+(10, 840, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'dss', '2020-02-02 20:14:17', 0, 'active', 'No Action', 6),
+(11, 14012, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'ffff', '2020-02-02 20:14:16', 0, 'active', 'sell', 6),
+(12, 50749, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', 'sadsa', 'fsfs', '2020-02-01 15:12:18', 0, 'active', 'sell', 6),
+(13, 26714, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'fdf', '2020-02-01 15:12:15', 0, 'active', 'sell', 6),
+(14, 77831, 2, 2, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'fsdfdsf', '2020-02-01 15:12:13', 0, 'active', 'sell', 6),
+(15, 19336, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'sdasdas', '2020-02-01 15:12:11', 0, 'active', 'sell', 6),
+(16, 57844, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', 'dasdas', 'dsd', '2020-02-01 15:12:06', 0, 'active', 'sell', 6),
+(17, 50318, 2, 4, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'dcsdfsd', '2020-02-01 15:11:56', 0, 'active', 'sell', 6),
+(18, 56636, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'sffwfe', '2020-01-24 16:15:57', 0, 'active', 'sell', 6),
+(19, 70436, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'ggggg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
+(20, 85441, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'dgdg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
+(21, 8138, 2, 1, 0, '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'gfgf', '2020-01-24 16:15:54', 0, 'active', 'sell', 6),
+(22, 40324, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'dvdsgvd', '2020-01-24 16:15:48', 0, 'active', 'sell', 6),
+(23, 1916, 2, 1, 0, '', '', 'Birr', '', 'Addis Ababa', '', 'gge', '2020-01-24 16:15:37', 0, 'active', 'sell', 6),
+(24, 81431, 2, 1, 0, '5555', '', 'USD', '', 'Addis Ababa', '', 'HH', '2013-12-25 15:08:12', 0, 'active', 'sell', 6),
+(25, 135, 2, 1, 0, '565656', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'hh', '2013-12-25 15:00:13', 0, 'active', 'sell', 6),
+(26, 734, 2, 1, 0, '56656', '', 'USD', '', 'Addis Ababa', '', '6556565gfdgdf', '2020-01-24 16:15:34', 0, 'active', 'sell', 6);
 
 -- --------------------------------------------------------
 
@@ -827,6 +711,7 @@ CREATE TABLE IF NOT EXISTS `item_other` (
   `field_price_sell` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(40) DEFAULT 'Negotiable',
   `field_price_currency` varchar(40) NOT NULL DEFAULT 'Birr',
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` mediumtext,
   `field_title` varchar(125) NOT NULL,
@@ -843,35 +728,35 @@ CREATE TABLE IF NOT EXISTS `item_other` (
 -- Dumping data for table `item_other`
 --
 
-INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(8, 1011, 1, 0, 0, '9000', '', 'Birr', 'Addis Ababa', '', 'my other 1', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
-(9, 810, 1, 0, 0, '123232', '', 'Birr', 'Addis Ababa', '', 'tetet', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
-(10, 534, 1, 0, 0, '121323', '', 'Birr', 'Addis Ababa', '', 'my tt', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
-(11, 5330, 1, 0, 0, '12323', '', 'Birr', 'Addis Ababa', '', 'dsdsdsda', '2013-09-08 13:28:41', 0, 'active', 'Sale', 7),
-(12, 28038, 2, 0, 0, '8000', '', 'Birr', 'Addis Ababa', '', 'others check', '2013-09-12 14:29:43', 0, '', 'Sale', 7),
-(13, 9600, 2, 0, 0, '5666', '', 'Birr', 'Addis Ababa', 'ggu', 'nice item', '2013-11-06 14:54:27', 0, 'Deleted', 'Sale', 7),
-(14, 13550, 1, 0, 0, '0', '', 'Birr', 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', 'Sale', 7),
-(15, 40139, 2, 0, 0, '0', '', 'Birr', 'Addis Ababa', '', 'others price check', '2013-11-30 09:34:06', 0, 'active', 'Sale', 7),
-(16, 1214, 1, 0, 0, '0', 'Negotiable', 'Birr', 'Addis Ababa', '', 'newother', '2020-02-04 22:22:29', 0, 'active', 'sell', 7),
-(21, 38846, 1, 0, 0, '13123123', 'Negotiable', 'Birr', 'Addis Ababa', '', 'myother', '2020-02-04 22:22:24', 0, 'active', 'sell', 7),
-(22, 25442, 2, 0, 0, '1000', '', 'USD', 'Addis Ababa', '', 'biycle', '2020-02-04 22:22:22', 0, 'active', 'sell', 7),
-(24, 28440, 2, 0, 0, '6565', '', 'Birr', 'Addis Ababa', '', 'gfgdfg', '2020-02-02 20:16:33', 0, 'active', 'sell', 7),
-(25, 6444, 2, 0, 0, '5656', '', 'USD', 'Addis Ababa', '', 'sdfsdf', '2020-02-02 20:14:25', 0, 'active', 'sell', 7),
-(26, 515, 2, 0, 0, '4434', '', 'USD', 'Debre Zeit', '', 'asdasdas', '2020-02-02 20:14:24', 0, 'active', 'sell', 7),
-(27, 13732, 2, 0, 0, '5656', '', 'USD', 'Addis Ababa', '', 'ryery', '2020-02-02 20:14:20', 0, 'active', 'sell', 7),
-(28, 86324, 2, 0, 0, '4344 dollar', '', 'USD', 'Addis Ababa', '', 'sxadas', '2020-02-02 20:14:18', 0, 'active', 'sell', 7),
-(29, 73424, 2, 0, 0, '454', '', 'USD', 'Addis Ababa', '', 'vdsvsdv', '2020-02-02 20:14:16', 0, 'active', 'sell', 7),
-(30, 80550, 2, 0, 0, '56565', 'Negotiable', 'Birr', 'Addis Ababa', '', 'cscssds', '2020-02-02 20:14:15', 0, 'active', 'sell', 7),
-(31, 25229, 2, 0, 0, '5665', '', 'USD', 'Addis Ababa', '', 'cdsv', '2020-02-01 15:12:09', 0, 'active', 'sell', 7),
-(32, 73944, 2, 0, 0, '4545', 'Negotiable', 'USD', 'Addis Ababa', '', 'cgfcgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 7),
-(33, 14912, 2, 0, 0, '676767', '', 'Birr', 'Addis Ababa', '', 'cgfccgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 7),
-(34, 20910, 2, 0, 0, '45', '', 'Birr', 'Addis Ababa', '', 'ffw', '2020-01-24 16:15:55', 0, 'active', 'sell', 7),
-(35, 77145, 2, 0, 0, '6565', 'Negotiable', 'USD', 'Addis Ababa', '', 'fwerwe', '2013-12-24 20:34:15', 0, 'active', 'sell', 7),
-(36, 8939, 1, 0, 0, '100000', 'Negotiable', 'USD', 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', 0, 'active', 'sell', 7),
-(37, 6025, 2, 0, 0, '78', '', 'Birr', 'Addis Ababa', '', 'big img', '2020-01-24 16:15:30', 0, 'active', 'sell', 7),
-(38, 6959, 1, 0, 1, '12345', '', 'Birr', 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', 'sell', 7),
-(41, 43429, 11, NULL, 3, '12345', '1', 'Birr', 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:34', 0, 'active', 'sell', 7),
-(42, 1650, 11, NULL, 3, '12345', '1', 'Birr', 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:31', 0, 'active', 'sell', 7);
+INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(8, 1011, 1, 0, 0, '9000', '', 'Birr', '', 'Addis Ababa', '', 'my other 1', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
+(9, 810, 1, 0, 0, '123232', '', 'Birr', '', 'Addis Ababa', '', 'tetet', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
+(10, 534, 1, 0, 0, '121323', '', 'Birr', '', 'Addis Ababa', '', 'my tt', '2013-09-06 11:21:53', 0, 'Deleted', 'Sale', 7),
+(11, 5330, 1, 0, 0, '12323', '', 'Birr', '', 'Addis Ababa', '', 'dsdsdsda', '2013-09-08 13:28:41', 0, 'active', 'Sale', 7),
+(12, 28038, 2, 0, 0, '8000', '', 'Birr', '', 'Addis Ababa', '', 'others check', '2013-09-12 14:29:43', 0, '', 'Sale', 7),
+(13, 9600, 2, 0, 0, '5666', '', 'Birr', '', 'Addis Ababa', 'ggu', 'nice item', '2013-11-06 14:54:27', 0, 'Deleted', 'Sale', 7),
+(14, 13550, 1, 0, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', 'Sale', 7),
+(15, 40139, 2, 0, 0, '0', '', 'Birr', '', 'Addis Ababa', '', 'others price check', '2013-11-30 09:34:06', 0, 'active', 'Sale', 7),
+(16, 1214, 1, 0, 0, '0', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'newother', '2020-02-04 22:22:29', 0, 'active', 'sell', 7),
+(21, 38846, 1, 0, 0, '13123123', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'myother', '2020-02-04 22:22:24', 0, 'active', 'sell', 7),
+(22, 25442, 2, 0, 0, '1000', '', 'USD', '', 'Addis Ababa', '', 'biycle', '2020-02-04 22:22:22', 0, 'active', 'sell', 7),
+(24, 28440, 2, 0, 0, '6565', '', 'Birr', '', 'Addis Ababa', '', 'gfgdfg', '2020-02-02 20:16:33', 0, 'active', 'sell', 7),
+(25, 6444, 2, 0, 0, '5656', '', 'USD', '', 'Addis Ababa', '', 'sdfsdf', '2020-02-02 20:14:25', 0, 'active', 'sell', 7),
+(26, 515, 2, 0, 0, '4434', '', 'USD', '', 'Debre Zeit', '', 'asdasdas', '2020-02-02 20:14:24', 0, 'active', 'sell', 7),
+(27, 13732, 2, 0, 0, '5656', '', 'USD', '', 'Addis Ababa', '', 'ryery', '2020-02-02 20:14:20', 0, 'active', 'sell', 7),
+(28, 86324, 2, 0, 0, '4344 dollar', '', 'USD', '', 'Addis Ababa', '', 'sxadas', '2020-02-02 20:14:18', 0, 'active', 'sell', 7),
+(29, 73424, 2, 0, 0, '454', '', 'USD', '', 'Addis Ababa', '', 'vdsvsdv', '2020-02-02 20:14:16', 0, 'active', 'sell', 7),
+(30, 80550, 2, 0, 0, '56565', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'cscssds', '2020-02-02 20:14:15', 0, 'active', 'sell', 7),
+(31, 25229, 2, 0, 0, '5665', '', 'USD', '', 'Addis Ababa', '', 'cdsv', '2020-02-01 15:12:09', 0, 'active', 'sell', 7),
+(32, 73944, 2, 0, 0, '4545', 'Negotiable', 'USD', '', 'Addis Ababa', '', 'cgfcgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 7),
+(33, 14912, 2, 0, 0, '676767', '', 'Birr', '', 'Addis Ababa', '', 'cgfccgf', '2020-01-24 16:15:56', 0, 'active', 'sell', 7),
+(34, 20910, 2, 0, 0, '45', '', 'Birr', '', 'Addis Ababa', '', 'ffw', '2020-01-24 16:15:55', 0, 'active', 'sell', 7),
+(35, 77145, 2, 0, 0, '6565', 'Negotiable', 'USD', '', 'Addis Ababa', '', 'fwerwe', '2013-12-24 20:34:15', 0, 'active', 'sell', 7),
+(36, 8939, 1, 0, 0, '100000', 'Negotiable', 'USD', '', 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', 0, 'active', 'sell', 7),
+(37, 6025, 2, 0, 0, '78', '', 'Birr', '', 'Addis Ababa', '', 'big img', '2020-01-24 16:15:30', 0, 'active', 'sell', 7),
+(38, 6959, 1, 0, 1, '12345', '', 'Birr', '', 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', 'sell', 7),
+(41, 43429, 12, NULL, 3, '12345', '1', 'Birr', '', 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:34', 0, 'active', 'sell', 7),
+(42, 1650, 12, NULL, 3, '12345', '1', 'Birr', '', 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:31', 0, 'active', 'sell', 7);
 
 -- --------------------------------------------------------
 
@@ -893,6 +778,7 @@ CREATE TABLE IF NOT EXISTS `item_phone` (
   `field_model` varchar(20) DEFAULT NULL,
   `field_os` varchar(20) DEFAULT NULL,
   `field_camera` varchar(40) DEFAULT NULL,
+  `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
   `field_extra_info` mediumtext,
   `field_title` varchar(125) NOT NULL,
@@ -909,28 +795,28 @@ CREATE TABLE IF NOT EXISTS `item_phone` (
 -- Dumping data for table `item_phone`
 --
 
-INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_make`, `field_model`, `field_os`, `field_camera`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(4, 23115, 1, 0, 0, '123456789', '', 'Birr', '000', '', '', '000', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 4),
-(5, 43832, 1, 0, 0, '312321312132', '', 'Birr', '000', '', '000', '', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 4),
-(6, 15728, 2, 0, 0, '3000', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 4),
-(10, 8034, 2, 0, 0, '', 'Negotiable', 'Birr', '2', '', '000', '000', 'Gambela', '', 'BB for U', '2020-02-04 22:22:22', NULL, 'active', 'sell', 4),
-(13, 67018, 2, 0, 0, '', '', 'Birr', 'check', '', '000', 'check', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
-(14, 56813, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
-(15, 8647, 2, 0, 0, '', '', 'Birr', '000', '', '000', '34', 'Addis Ababa', '', 'checking the specs', '2020-02-04 22:22:18', NULL, 'active', 'sell', 4),
-(16, 95330, 2, 0, 0, '', '', 'Birr', '000', '', 'iphone', '6.0 - 6.9 megapixles', 'Addis Ababa', '', 'checking the spec', '2020-02-04 22:22:18', NULL, 'active', 'sell', 4),
-(17, 91448, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'price', '2020-02-04 22:22:17', NULL, 'active', 'sell', 4),
-(18, 9, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'price check', '2020-02-04 22:22:17', NULL, 'active', 'sell', 4),
-(19, 53616, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'dsfdsfd', '2020-02-02 20:16:36', NULL, 'active', 'sell', 4),
-(20, 12420, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'ghhg', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
-(21, 60815, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'hhhh', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
-(22, 47839, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'reerrr', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
-(23, 3440, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'dcsc', '2020-01-24 16:15:47', NULL, 'active', 'sell', 4),
-(24, 57910, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'fghh', '2013-12-25 15:08:55', NULL, 'active', 'sell', 4),
-(25, 18742, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'dfaf', '2020-01-24 16:15:38', NULL, 'active', 'sell', 4),
-(26, 92814, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'pho', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
-(27, 74139, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'now', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
-(28, 8002, 2, 0, 0, '5656', '', 'USD', '000', '', '000', '000', 'Addis Ababa', '', 'fsdfds', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
-(29, 24629, 2, 0, 0, '5656', '', 'Birr', '000', '', '000', '000', 'Addis Ababa', '', 'dgdfgdf', '2013-12-24 20:34:39', NULL, 'active', 'sell', 4);
+INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `id_contact_category`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_make`, `field_model`, `field_os`, `field_camera`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+(4, 23115, 1, 0, 0, '123456789', '', 'Birr', '000', '', '', '000', '', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 4),
+(5, 43832, 1, 0, 0, '312321312132', '', 'Birr', '000', '', '000', '', '', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 4),
+(6, 15728, 2, 0, 0, '3000', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 4),
+(10, 8034, 2, 0, 0, '', 'Negotiable', 'Birr', '2', '', '000', '000', '', 'Gambela', '', 'BB for U', '2020-02-04 22:22:22', NULL, 'active', 'sell', 4),
+(13, 67018, 2, 0, 0, '', '', 'Birr', 'check', '', '000', 'check', '', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
+(14, 56813, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'phone check', '2020-02-04 22:22:20', NULL, 'active', 'sell', 4),
+(15, 8647, 2, 0, 0, '', '', 'Birr', '000', '', '000', '34', '', 'Addis Ababa', '', 'checking the specs', '2020-02-04 22:22:18', NULL, 'active', 'sell', 4),
+(16, 95330, 2, 0, 0, '', '', 'Birr', '000', '', 'iphone', '6.0 - 6.9 megapixles', '', 'Addis Ababa', '', 'checking the spec', '2020-02-04 22:22:18', NULL, 'active', 'sell', 4),
+(17, 91448, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'price', '2020-02-04 22:22:17', NULL, 'active', 'sell', 4),
+(18, 9, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'price check', '2020-02-04 22:22:17', NULL, 'active', 'sell', 4),
+(19, 53616, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'dsfdsfd', '2020-02-02 20:16:36', NULL, 'active', 'sell', 4),
+(20, 12420, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'ghhg', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
+(21, 60815, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'hhhh', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
+(22, 47839, 2, 0, 0, '', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'reerrr', '2020-01-24 16:15:54', NULL, 'active', 'sell', 4),
+(23, 3440, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'dcsc', '2020-01-24 16:15:47', NULL, 'active', 'sell', 4),
+(24, 57910, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'fghh', '2013-12-25 15:08:55', NULL, 'active', 'sell', 4),
+(25, 18742, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'dfaf', '2020-01-24 16:15:38', NULL, 'active', 'sell', 4),
+(26, 92814, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'pho', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
+(27, 74139, 2, 0, 0, '', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'now', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
+(28, 8002, 2, 0, 0, '5656', '', 'USD', '000', '', '000', '000', '', 'Addis Ababa', '', 'fsdfds', '2020-01-24 16:15:37', NULL, 'active', 'sell', 4),
+(29, 24629, 2, 0, 0, '5656', '', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'dgdfgdf', '2013-12-24 20:34:39', NULL, 'active', 'sell', 4);
 
 -- --------------------------------------------------------
 
@@ -995,7 +881,7 @@ CREATE TABLE IF NOT EXISTS `user_all` (
   `field_new_password` varchar(100) DEFAULT NULL,
   `field_activation` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_all`
@@ -1006,7 +892,7 @@ INSERT INTO `user_all` (`id`, `field_user_name`, `field_first_name`, `field_last
 (2, 'www', 'www', 'www', 'wendeworku@gmail.com', '1', 'ADD', '$1$I05KWw3Y$JkO3l5NRdMmNuK7eRMy8q0', 'admin', '', 0, '2014-01-02 19:28:46', '$1$znTU3uwD$0giEwL8TrMDZT1pHsyaPF0', NULL),
 (7, 'www', 'wende', 'wefewfew', 'wendeworku@yahoo.com', '0', '', '123', 'user', 'both', 0, '2013-11-06 15:01:11', NULL, NULL),
 (10, 'negadiew', 'daniel', 'assefa', 'dan_assefa@yahoo.com', '0', '', 'leseitye2+', 'user', 'both', 0, '2020-02-10 20:17:30', NULL, NULL),
-(11, 'abiy', 'Terefe', 'teshome', 'dochoex@gmail.com', '12121', 'aad', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', 'webmaster', 'both', 0, '2020-01-24 16:05:10', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL);
+(12, 'abiy', 'Terefe', 'teshome', 'dochoex@gmail.com', '12121', 'aad', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', 'webmaster', 'both', 0, '2020-03-15 12:20:19', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL);
 
 -- --------------------------------------------------------
 
@@ -1118,12 +1004,6 @@ CREATE TABLE IF NOT EXISTS `util_message` (
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `image_car`
---
-ALTER TABLE `image_car`
-  ADD CONSTRAINT `image_car_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item_car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `item_car`
