@@ -152,7 +152,7 @@ $lang = array (
     'Last Name' => 'Last Name',
     'Email' => 'Email',
     'Phone' => 'Phone',
-    'Password' => 'Password',
+    'password' => 'Password',
     'Password Again' => 'Password Again',
     'I have read and agree to the terms and conditions' => 'I have read and agree to the terms and conditions ',
     'click to see' => 'click to see',
@@ -315,7 +315,7 @@ $lang = array (
     You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your relationship and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
     <br /><br />
     If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us',
-    'Login' => 'Login',
+    'login' => 'Login',
     'Logout' => 'Logout',
     'My Items' => 'My Items',
     'Edit Profile' => 'Edit Profile',
@@ -336,8 +336,14 @@ $lang = array (
     'All Cities' => 'All Cities',
     'hulutera' => 'Hulutera',
     'failed search' => 'Please enter the search word </br> or select City </br> or select Item </br>',
-    'no match for search' => 'Sorry!There is no match found, please try again. </br> Shall you need more information on how to search, you can find '
-
+    'no match for search' => 'Sorry!There is no match found, please try again. </br> Shall you need more information on how to search, you can find ',
+    'missing email msg' => 'Please enter your e-mail',
+    'missing password msg' => 'Please enter the password',
+    'missing e-mail and password msg' => 'Please enter your e-mail and password',
+    'invalid email msg' => 'Your e-mail is invalid',
+    'Incorrect e-mail or password msg' => 'Invalid e-mail or password',
+    'non-existing email msg' => 'There is no user registered with this e-mail',
+    'Forgot your password' => 'Forgot your password'
 );
 
 $city_lang_arr = array(

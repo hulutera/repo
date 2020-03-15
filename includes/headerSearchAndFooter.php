@@ -135,7 +135,7 @@ function topRightLinks()
 		echo '</a>';
 		echo '<a href="../../includes/login.php' .$lang_url. '" >';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' .$lang['Login']. '</div>';
+		echo '<div id="topRightEnglish">' .$lang['login']. '</div>';
 		echo '</div>';
 		echo '</a>';		
 		echo '<a href="../../includes/upload.php' .$lang_url. '">';

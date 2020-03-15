@@ -23,7 +23,7 @@ $lang = array (
     'Hide Detail' => 'ዝርዝር ሸፍን',
     'Contact' => 'ባለንብረትን ማግኘት',
     'contact method' => 'የመገናኛ መንገድ',
-    'e-mail' => 'በኢሜይል',
+    'e-mail' => 'ኢሜይል',
     'with phone' => 'በስልክ',
     'with both' => 'በሁለቱም',
     'Picture' => 'ፎቶ',
@@ -151,7 +151,7 @@ $lang = array (
     'Last Name' => 'የአባት ስም',
     'Email' => 'ኢሜይል',
     'Phone' => 'ስልክ',
-    'Password' => 'የምስጢር ቃል',
+    'password' => 'የምስጢር ቃል',
     'Password Again' => 'የምስጢር ቃል በድጋሚ',
     'I have read and agree to the terms and conditions' => 'የአተገባበርና መመርያውን አንብቤ ተስማምቻለሁ ',
     'click to see' => 'ለማየት ይሄንን ይጫኑ',
@@ -302,7 +302,7 @@ $lang = array (
     ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
     <br /><br />
     በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
-    'Login' => 'ይግቡ',
+    'login' => 'ይግቡ',
     'Logout' => 'መዉጣት',
     'My Items' => 'የኔ ንብረቶች',
     'Edit Profile' => 'መረጃ ለማስተካከል',
@@ -323,7 +323,14 @@ $lang = array (
     'All Cities' => 'በሁሉም ከተሞች',
     'hulutera' => 'ሁሉተራ',
     'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ። </br> ወይም ከተማ ይምረጡ </br> ወይም የንብረት ዓይነት ይምረጡ',
-    'no match for search' => 'ይቅርታ እንዲፈለግልዎት ያሰቡት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ ይሄን የሚለው ተጭነው ያገኛሉ። '
+    'no match for search' => 'ይቅርታ እንዲፈለግልዎት ያሰቡት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ ይሄን የሚለው ተጭነው ያገኛሉ። ',
+    'missing email msg' => 'እባክዎ የኢሜይል አድራሻ ያስገቡ።',
+    'missing password msg' => 'እባክዎ የሚስጥር ቃል ያስገቡ።',
+    'missing e-mail and password msg' => 'እባክዎ የኢሜይል አድራሻ እና  የሚስጥር ቃል  ያስገቡ።',
+    'invalid email msg' => 'ያስገቡት ኢሜይል ትክክል አይደለም።',
+    'Incorrect e-mail or password msg' => 'ኢሜይሉ  ወይም የምስጢር ቃሉ ትክክል አይደለም።',
+    'non-existing email msg' => 'ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም',
+    'Forgot your password' => 'Forgot your password'
 );
 
 $city_lang_arr = array (

@@ -1,19 +1,17 @@
 <?php
-global $connect;
+global $connect, $lang;
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 $errorShow = "";
- $errMsg = array(
-     20 => "Login is success",
-     21 => "Please enter your e-mail/እባክዎ የኢሜይል አድራሻ ያስገቡ።",
-     22 => "Please enter the password./እባክዎ የሚስጥር ቃል ያስገቡ።",
-     23 => "Please enter your e-mail and password.</br>እባክዎ የኢሜይል አድራሻ እና  የሚስጥር ቃል  ያስገቡ።",
-     24 => "Your e-mail is invalid./ያስገቡት ኢሜይል ትክክል አይደለም።",
-     25 => "Invalid e-mail or password. ኢሜይል  ወይም የምስጢር ቃል ትክክል አይደለም።",
-     26 => "There is no user registered with this e-mail./ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም ",
-); 
- require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
- require_once $documnetRootPath.'/includes/cmn.user.php';
- require_once $documnetRootPath.'/classes/cmn.class.php';
+if (isset($_GET['lan'])) {
+	$lang_url = "?&lan=" . $_GET['lan'];
+}
+else { 
+	$lang_url = "";
+}
+ 
+require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath.'/includes/cmn.user.php';
+require_once $documnetRootPath.'/classes/cmn.class.php';
 
  require_once $documnetRootPath.'/db/database.class.php';
  
@@ -24,12 +22,14 @@ if(isset($_POST['submit']))
         session_start();
     }
 	$result2 = userLogin($_POST['email'], $_POST['password']);
-    if($result2 == 20) 
+    
+    if($result2 == "LOGIN_SUCCESS") 
     {
-        header('Location:../index.php');
+        $login_url = "../index.php" .  $lang_url;
+        header("$login_url");
     }
     else {
-        $errorShow = $errMsg[$result2];
+        $errorShow = $result2;
     }
 }
 
@@ -46,49 +46,45 @@ if(isset($_POST['submit']))
             <?php headerAndSearchCode(""); ?>
             <div id="outerLogin">
                 <div id="innerLogin">
-                    <form id="generalform" class="signin" method="post"
-                        action="../includes/login.php">
+                    <?php echo '<form id="generalform" class="signin" method="post"
+                        action="../includes/login.php' . $lang_url . '">';?>
                         <div id="login-box">
                             <table>
                                 <tr class="logInCol">
                                     <td class="logInHeader">
-                                        <div class="logInHeaderEn">Log In</div>
-                                        <div class="logInHeaderAm">ይግቡ</div>
+                                        <div class="logInHeaderEn"><?php echo $lang['login'];?></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="logInEmail">
-                                        <div class="logInEmailEn">e-mail</div>
-                                        <div class="logInEmailAm">ኢ-ሜይል</div>
+                                        <div class="logInEmailEn"><?php echo $lang['e-mail'];?></div>
                                     </td>
                                     <td><input id="username" name="email"
                                         value="" type="text"
-                                        autocomplete="on" placeholder="e-mail (ኢ-ሜይል)"></td>
+                                        autocomplete="on" placeholder="<?php echo $lang['e-mail'];?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="logInPassword">
-                                        <div class="logInPasswordEn">Password</div>
-                                        <div class="logInPasswordAm">የምስጢር ቃል</div>
+                                        <div class="logInPasswordEn"><?php echo $lang['password'];?></div>
                                     </td>
                                     <td><input id="password" name="password" value=""
-                                        type="password" placeholder="password (የምስጢር ቃል)"></td>
+                                        type="password" placeholder="<?php echo $lang['password'];?>"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td class="logInButton"><div class="inputButton" ><input type="submit" name="submit"
-                                        id="submit" class="button" value="Log In" /></div>
+                                        id="submit" class="button" value="<?php echo $lang['login'];?>" /></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>
                                         <div class="logInPassRecovery">
-                                            <a class="forgot" href="../includes/passRecovery.php">Forgot your
-                                                password/የምስጢር ቃሎ ጠፋብዎ?</a>
+                                             <?php echo '<a class="forgot" href="../includes/passRecovery.php' . $lang_url . '">' . $lang['Forgot your password'] . ' </a> '; ?>
                                         </div>
 
                                         <div class="logInRegister">
-                                            <a class="forgot" href="../includes/register.php">Register/ይመዝገቡ!</a>
+                                            <?php echo '<a class="forgot" href="../includes/register.php' . $lang_url . '">' . $lang['Register'] . '</a>'; ?>
                                         </div>
                                     </td>
                                 </tr>
