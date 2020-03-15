@@ -69,7 +69,7 @@ class ValidateForm
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key]) && $value == 'input') {
                 $_POST[$key] = filter_var($_POST[$key], FILTER_SANITIZE_STRING);
-                echo $key . ' =  ' . $_POST[$key] . '<br>';
+                //echo $key . ' =  ' . $_POST[$key] . '<br>';
             }
         }
 

@@ -1652,10 +1652,10 @@ div.clear {
 
 #inner {
 	display: inline-block;
-	border: 1px solid gray;
-	background: #80c8fe;
-	font-size: 20px;
-	font-style: italic;
+	/* border: 1px solid gray; */
+	/* background: #80c8fe; */
+	font-size: 30px;
+	font-family: sans-serif, Arial, Helvetica;
 	width: 60%;
 	height: 100%;
 	margin: 10px auto;

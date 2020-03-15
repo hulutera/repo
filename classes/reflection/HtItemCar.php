@@ -1,5 +1,5 @@
 <?php
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/class.fileuploader.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/centerColumns.php';
@@ -758,6 +758,115 @@ class HtItemCar extends MySqlRecord
         $this->fieldTableType = (int) $fieldTableType;
     }
 
+     /**
+     * setField from $_POST
+     *
+     * Comment for field field_table_type: Not specified.<br>
+     * @param int $fieldTableType
+     * @category Modifier
+     */
+    private function setFieldPost()
+    {
+        $_item = $_GET['table'];
+        $_userId = $_SESSION['uID'];
+        $_itemTempId = bin2hex(random_int(20,50).random_int(20,50));
+        $this->setFieldLocation($_POST['fieldLocation']);
+        $this->setIdCategory($_POST['idCategory']);
+        $this->setIdUser($_userId );
+        $this->setIdTemp($_itemTempId);	
+        $this->setFieldMake($_POST['fieldMake']);
+        $this->setFieldModel($_POST['fieldModel']);
+        $this->setFieldModelYear($_POST['fieldModelYear']);
+        $this->setFieldGearType($_POST['fieldGearType']);
+        $this->setFieldFuelType($_POST['fieldFuelType']);
+        $this->setFieldMilage($_POST['fieldMilage']);
+        $this->setFieldNoOfSeat($_POST['fieldNoOfSeat']);
+        $this->setFieldColor($_POST['fieldColor']);
+        $this->setFieldPriceRent($_POST['fieldPriceRent']);
+        $this->setFieldPriceRate($_POST['fieldPriceRate']);
+        $this->setFieldPriceSell($_POST['fieldPriceSell']);
+        $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
+        $this->setFieldPriceNego($_POST['fieldPriceNego']);
+        $this->setFieldTitle($_POST['fieldTitle']);
+        $this->setFieldContactMethod($_POST['fieldContactMethod']);
+        $this->setFieldImage($_POST['fileuploader-list-files']);
+        $this->setFieldUploadDate(date("Y-m-d H:i:s"));
+        $this->setFieldStatus("pending");
+        
+        if(isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell']))
+        {
+            $market = "rent and sell";
+        }
+        else if(!isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell']))
+        {
+            $market = "sell";
+        }
+        else if(isset($_POST['fieldPriceRent']) && !isset($_POST['fieldPriceSell']))
+        {
+            $market = "rent";
+        }
+        $this->setFieldMarketCategory($market);
+        $this->setFieldTableType(1);
+        
+        //create a folder for image upload
+        $directory = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$_item.'/user_id_'.$_userId.'/item_temp_id_'.$_itemTempId;
+        mkdir($directory, 0777, true);
+        while (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+            $_itemTempId = random_int(0, 999);
+        }
+    
+        //create a prefic for all images, with userId and item tempId
+        $imgPrefix = 'hulutera_user_id_'.$_userId.'_item_temp_id_'.$_itemTempId.'_';
+    
+        // initialize FileUploader
+        $FileUploader = new FileUploader('files', array(
+            'limit' => null,
+            'maxSize' => null,
+            'fileMaxSize' => null,
+            'extensions' => null,
+            'required' => true,
+            'uploadDir' => $directory.'/',
+            'title' => 'hulutera',
+            'replace' => false,
+            'editor' => array(
+                'maxWidth' => 640,
+                'maxHeight' => 480,
+                'quality' => 90
+            ),
+            'listInput' => true,
+            'files' => null,
+            'id' => $imgPrefix
+        ));
+    
+        // unlink the files
+        // !important only for preloaded files
+        // you will need to give the array with appendend files in 'files' option of the fileUploader
+        foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
+            unlink('../uploads/' . $value['name']);
+        }
+    
+    
+        // call to upload the files
+        $data = $FileUploader->upload();
+    
+        // if uploaded and success
+        if ($data['isSuccess'] && count($data['files']) > 0) {
+            // get uploaded files
+            $uploadedFiles = $data['files'];
+        }
+        // if warnings
+        if ($data['hasWarnings']) {
+            $warnings = $data['warnings'];
+            header('Location: ../../template.upload.php?type=' . $this->getTableName().'&='.$warnings);
+        }
+    
+        // get the fileList and encode in json
+        $fileList = json_encode($FileUploader->getFileList('name'));
+        $this->setFieldImage($fileList);
+        
+    }
+
     /**
      * getId gets the class attribute id value
      *
@@ -1245,6 +1354,8 @@ class HtItemCar extends MySqlRecord
      */
     public function insert()
     {
+        $this->setFieldPost();
+
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
@@ -1280,7 +1391,7 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        $this->resetLastSqlError();
+$this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1425,8 +1536,7 @@ SQL;
      */
     public function upload()
     {
-        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">
-        <h1>IN PROGRESS</h1>';
+        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">';        
         $this->inputItemLocation();
         $this->inputCarType();
         $this->inputCarMake();
@@ -1439,14 +1549,24 @@ SQL;
         $this->inputCarSeat();
         $this->inputCarColor();
         $this->inputItemPrice();
+        $this->inputTitle();
+        //$this->inputExtraInfo();        
         $this->inputItemContactMeWith($this->getTableName());
         $this->inputItemImages();
+        if($_SESSION['warnings'])
+        {
+            echo '<pre>';
+            print_r($_SESSION['warnings']);    
+            echo '</pre>';
+        }
+        $_SESSION['warnings'] = null;
         echo '<div class="form-group row no-gutters">
                 <div class="col-xs-offset-4 col-xs-8">
                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                 </div>
              </div>
         </form>';
+        
     }
     private function inputItemLocation()
     {
@@ -1713,7 +1833,7 @@ SQL;
         echo '</div></div></div></div></div>';
     }
 
-    private function inputItemContactMeWith($item)
+    private function inputTitle()
     {
         echo '
         <div class="form-group">
@@ -1721,13 +1841,22 @@ SQL;
         <div class="col-xs-8">
           <input id="fieldTitle" name="fieldTitle" type="text" class="form-control" required="required" value="'.$_SESSION['POST']['fieldTitle'].'">
         </div>
-      </div>
-      <div class="form-group">
+      </div>';
+    }
+    private function inputExtraInfo()
+    {
+        echo '
+        <div class="form-group">
         <label for="fieldExtraInfo" class="control-label col-xs-4">Extra Info</label> 
         <div class="col-xs-8">
           <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control" required="required">'.$_SESSION['POST']['fieldExtraInfo'].'</textarea>
         </div>
-      </div>
+      </div>';
+    }
+
+    private function inputItemContactMeWith($item)
+    {
+        echo '       
       <div class="form-group">
         <label for="fieldContactMethod" class="control-label col-xs-4">Contact Me With</label> 
         <div class="col-xs-8">
@@ -1745,12 +1874,7 @@ SQL;
           </label>
 
         </div>
-      </div>
-      <div class="form-group">
-        <label for="fieldContactMethod" class="control-label col-xs-4">Addtional Telephone</label>
-        <div class="col-xs-8">
-        <input class="form-control" type="tel" value="251-(555)-555-5555" id="example-tel-input">
-      </div>     
+      </div>    
       ';
     }
 

@@ -27,7 +27,8 @@ class FileUploader {
         'listInput' => true,
 		'files' => array(),
 		'move_uploaded_file' => null,
-		'validate_file' => null
+		'validate_file' => null,
+		'id' => null
     );
 	private $field = null;
 	protected $options = null;
@@ -875,7 +876,7 @@ class FileUploader {
 		$forceExtension = isset($conf[2]) && $conf[2] == true;
 		$random_string = $this->random_string($length);
         $extension = !empty($item['extension']) ? '.' . $item['extension'] : '';
-        $string = '';
+		$string = '';
 		
 		switch($type) {
 			case null:
@@ -884,6 +885,9 @@ class FileUploader {
 				break;
 			case "name":
 				$string = $item['title'];
+				break;
+			case "hulutera":
+				$string = $this->options['id'].$item['title'];
 				break;
 			default:
 				$string = $type;
