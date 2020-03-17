@@ -172,7 +172,7 @@ function topRightLinks()
 		echo '<div id="topRightEnglish">' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/userActive.php' .$lang_url. '">';
+		echo '<a href="../..//includes/template.content.php?type=userActive' .$str_url. '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' .$lang['My Items']. '</div>';
 		echo '</div>';

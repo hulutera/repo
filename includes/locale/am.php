@@ -330,7 +330,9 @@ $lang = array (
     'invalid email msg' => 'ያስገቡት ኢሜይል ትክክል አይደለም።',
     'Incorrect e-mail or password msg' => 'ኢሜይሉ  ወይም የምስጢር ቃሉ ትክክል አይደለም።',
     'non-existing email msg' => 'ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም',
-    'Forgot your password' => 'Forgot your password'
+    'Forgot your password' => 'Forgot your password',
+    'my activities' => 'ማድረግ የምችለው',
+    'my-page msg' => 'እንኳን ወደ እኔ ገጽ መጡ፤ በዚህ ገጽ ላይ ንብረት ማስገባት ፣ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ የሚከተለውን ተጭነው ይጠይቁን '
 );
 
 $city_lang_arr = array (

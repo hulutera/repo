@@ -25,8 +25,7 @@ if(isset($_POST['submit']))
     
     if($result2 == "LOGIN_SUCCESS") 
     {
-        $login_url = "../index.php" .  $lang_url;
-        header("$login_url");
+        header("Location:../../includes/mypage.php" . $login_url . "");
     }
     else {
         $errorShow = $result2;
