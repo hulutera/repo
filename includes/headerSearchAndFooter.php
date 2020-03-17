@@ -44,7 +44,9 @@ function fileRouter($add)
 		//use local minfied jquery lib
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
+	echo '
+		<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	    <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
@@ -162,26 +164,17 @@ function topRightLinks()
 		echo '<br /><br />';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' . $name . '</div></div>';
-		echo '<a href="../../includes/logout.php' .$lang_url. '">';
-		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' .$lang['Logout']. '</div>';
-		echo '</div>';
-		echo '</a>';
 		echo '<a href="../../includes/upload.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish">' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../..//includes/template.content.php?type=userActive' .$str_url. '">';
+		echo '<a href="../../includes/logout.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' .$lang['My Items']. '</div>';
+		echo '<div id="topRightEnglish"><i class="fas fa-power-off" style="font-size:18px;color:red"></i></div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/editProfile.php' .$lang_url. '">';
-		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' .$lang['Edit Profile']. '</div>';
-		echo '</div>';
-		echo '</a>';
+		echo '<i class="fas fa-user" style="font-size:18px"></i>';
 		echo '</div>';
 	}
 }
@@ -204,7 +197,7 @@ function miniSearch()
 		echo '<option value = "' . $key . '">'.$value.'</option>';
 	}		
 	echo '</select>';
-	echo '<input name="search_mini_form" class="searchbutton" type="submit" value="' . $lang['Search'] . '" />';
+	echo '<button name="search_mini_form" class="searchbutton"><i class="fa fa-search"></i> ' . $lang['Search'] . '</button>';
 	echo '</form>';
 	echo '</div>';
 }

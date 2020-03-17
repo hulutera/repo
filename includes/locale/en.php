@@ -345,7 +345,8 @@ $lang = array (
     'non-existing email msg' => 'There is no user registered with this e-mail',
     'Forgot your password' => 'Forgot your password',
     'my activities' => 'My Activities',
-    'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any further information then contact us by clicking here.'
+    'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any further information then contact us by clicking here.',
+    'my page' => 'My Page'
 );
 
 $city_lang_arr = array(

@@ -12,7 +12,7 @@ require_once $documnetRootPath.'/classes/cmn.class.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Mypage</title>
+<title><?php echo $lang['my page']; ?></title>
 <?php commonHeader();?>
 </head>
 <body>
@@ -24,14 +24,16 @@ require_once $documnetRootPath.'/classes/cmn.class.php';
                     <div id="mypage-list">
                         <ul>
                             <?php echo  '<li class="list-header"> ' . $lang['my activities'] . '</li>
-                                        <a href="../../includes/template.proxy.php?type=help' .$str_url. '"><li>' .$lang['My Items']. '</li></a>
+                                        <a href="../..//includes/template.content.php?type=userActive' .$str_url. '"><li>' .$lang['My Items']. '</li></a>
                                         <a href="../../includes/upload.php' . $lang_url. '"><li> ' . $lang['Post Items'] . ' </li></a>
                                         <a href="../../includes/editProfile.php' .$lang_url. '"><li> ' . $lang['Edit Profile'] . ' </li></a>
                                         <a href="../../includes/logout.php' .$lang_url. '"><li> ' . $lang['Logout'] . ' </li></a>'; 
                             ?>                      
                         </ul>
                     </div>  
-                    <div class="login-msg"><img src="../images/login_welcome.jpg" align="left"/> <p><?php echo $lang['my-page msg'] . '<a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' . $lang['here'] . '</a>';?></p> </div>
+                    <div class="login-msg"><img src="../images/login_welcome.jpg" align="left"/> 
+                        <div class="welcome-txt"><p><?php echo $lang['my-page msg'] . '<a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' . $lang['here'] . '</a>';?></p> </div>
+                    </div>
                 </div>
                 
             </div>

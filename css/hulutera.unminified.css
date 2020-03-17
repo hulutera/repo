@@ -2970,6 +2970,9 @@ th {
 	border: 1px solid black;
 	width: 100%;
 	text-align: center;
+	height:20px;
+	line-height: 20px;
+	background-color: #61bbd773;
 }
 
 .list-header {
