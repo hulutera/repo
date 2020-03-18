@@ -346,7 +346,34 @@ $lang = array (
     'Forgot your password' => 'Forgot your password',
     'my activities' => 'My Activities',
     'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any further information then contact us by clicking here.',
-    'my page' => 'My Page'
+    'my page' => 'My Page',
+    'active' => 'Active',
+    'pending' => 'Pending',
+    'all pending' => 'All Pending',
+    'reported' => "Reported",
+    'deleted' => 'Deleted',
+    'messages' => 'Messages',
+    'cp' => 'CONTROL PANEL',
+    'upload' => 'Upload',
+    'choose item to upload' => 'Choose Item to upload',
+    'delete' => 'Delete',
+    'follow' => 'Follow',
+    'unfollow' => 'Unfollow',
+    'all msg' => 'All',
+    'read' => 'Read',
+    'unread' => 'Unread',
+    'following' => 'Following',
+    'from' => 'From',
+    'subject' => 'Subject',
+    'date' => 'Date',
+    'purpose' => 'Purpose',
+    'msg sent' => 'The Message has been sent.',
+    'reply' => 'Reply',
+    'first page' => 'First Page',
+    'previous' => 'Previous',
+    'next' => 'Next',
+    'last page' => 'Last Page'
+    
 );
 
 $city_lang_arr = array(

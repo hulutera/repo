@@ -333,7 +333,38 @@ $lang = array (
     'Forgot your password' => 'Forgot your password',
     'my activities' => 'ማድረግ የምችለው',
     'my-page msg' => 'እንኳን ወደ እኔ ገጽ መጡ፤ በዚህ ገጽ ላይ ንብረት ማስገባት ፣ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ የሚከተለውን ተጭነው ይጠይቁን ',
-    'my page' => 'የእኔ ገጽ'
+    'my page' => 'የእኔ ገጽ',
+    'active' => 'የሚታይ',
+    'pending' => 'ተጠባባቂ',
+    'all pending' => 'አጠቃላይ ተጠባባቂ',
+    'reported' => 'ሪፖርት የተደረገ',
+    'deleted' => 'የጠፋ',
+    'messages' => 'መልእክቶች',
+    'cp' => 'የመቆጣጠሪያ ሰሌዳ',
+    'upload' => 'ንብረት ማስገባት',
+    'choose item to upload' => 'ለማስገባት የሚፈልጉትን ንብረት ይምረጡ',
+    'delete' => 'ማጥፋት',
+    'follow' => 'መከታተል',
+    'unfollow' => 'አለመከታተል',
+    'all msg' => 'ሁሉም',
+    'read' => 'የተነበበ',
+    'unread' => 'ያልተነበበ',
+    'following' => 'የምከታተለው',
+    'from' => 'ከ',
+    'subject' => 'ርዕስ',
+    'date' => 'ቀን',
+    'purpose' => 'ምክንያት',
+    'msg sent' => 'መልእክቱ በተሳካ ሁኔታ ተልኳል።',
+    'reply' => 'ይመልሱ',
+    'first page' => 'የመጀመርያ ገጽ',
+    'previous' => 'የቀድሞ ገጽ',
+    'next' => 'የሚቀጥለው ገጽ',
+    'last page' => 'የመጨረሻ ገጽ'
+
+
+
+
+
 );
 
 $city_lang_arr = array (

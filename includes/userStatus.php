@@ -1,6 +1,7 @@
 <?php
 function accountLinks()
 {
+    global $lang, $lang_url, $str_url;
 	$uId = getSessionId();
 	// calculate Contact us messages
 	$contactusMessage = queryContactUs();
@@ -40,25 +41,25 @@ function accountLinks()
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../includes/userActive.php\"> ";
+	echo 'href="../includes/userActive.php' .$lang_url. '"> ';
 	echo "<div class='item-list'>";
-	echo "<span>Active(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
+	echo "<span>" .$lang['active']. "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
 	echo "<a ";
 	if (activatetab() == 15)
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../includes/userPending.php\" >";
+	echo 'href="../includes/userPending.php' .$lang_url. '" >';
 	echo "<div class='item-list'>";
-	echo "<span>Pending(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
+	echo "<span>" .$lang['pending']. "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
 	echo "<a ";
 	if (activatetab() == 17)
 	{
 		echo "class=\"active\"";
 	}
-	echo "href=\"../includes/upload.php\" >";
+	echo 'href="../includes/upload.php' .$lang_url. '" >';
 	echo "<div class='item-list'>";
-	echo "<span>Post Items</span></div></a>";
+	echo "<span>" .$lang['Post Items']. "</span></div></a>";
 	echo "</div>";
 
 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
@@ -69,17 +70,17 @@ function accountLinks()
 		{
 			echo "class=\"active\"";
 		}
-		echo "href=\"../includes/pendingItems.php\">";
+		echo 'href="../includes/pendingItems.php' .$lang_url. '">';
 		echo "<div class='item-list'>";
-		echo "<span>All Pending(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
+		echo "<span>" .$lang['all pending']. "(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
 		echo "<a ";
 		if (activatetab() == 12)
 		{
 			echo "class=\"active\"";
 		}
-		echo "href=\"../includes/reportedItems.php\">";
+		echo 'href="../includes/reportedItems.php' .$lang_url. '">';
 		echo "<div class='item-list'>";
-		echo "<span>Reported(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
+		echo "<span>" .$lang['reported']. "(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
 		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
 		{
 			if($adminTotal == 1 || $webmasterTotal == 1) {
@@ -88,22 +89,22 @@ function accountLinks()
 				{
 					echo "class=\"active\"";
 				}
-				echo "href=\"../includes/deletedItems.php\">";
+				echo 'href="../includes/deletedItems.php' .$lang_url. '">';
 				echo "<div class='item-list'>";
-				echo "<span>Deleted(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
+				echo "<span>" .$lang['deleted']. "(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
 			}
 			echo "<a ";
 			if (activatetab() == 13)
 			{
 				echo "class=\"active\" ";
 			}
-			echo "href=\"../includes/userMessages.php\">";
+			echo 'href="../includes/userMessages.php' .$lang_url. '">';
 			echo "<div class='item-list'>";
-			echo "<span>Messages(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
+			echo "<span>" .$lang['messages']. "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 			
-			echo "<a class='item-list-cp' href=\"../includes/controlPanel.php?err=0\">";
+			echo '<a class="item-list-cp" href="../includes/controlPanel.php?err=0' .$str_url. '">';
 			echo "<div class='item-list-cp'>";
-			echo "<span>CONTROL PANEL</span></div></a>";
+			echo "<span>" .$lang['cp']. "</span></div></a>";
 			echo "</div>";
 		}			
 	}

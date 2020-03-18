@@ -169,6 +169,11 @@ function topRightLinks()
 		echo '<div id="topRightEnglish">' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
+		echo '<a href="../../includes/mypage.php' .$lang_url. '">';
+		echo '<div id="toplinktexts">';
+		echo '<div id="topRightEnglish"><i class="fas fa-home" style="font-size:18px;color:orange"></i></div>';
+		echo '</div>';
+		echo '</a>';
 		echo '<a href="../../includes/logout.php' .$lang_url. '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish"><i class="fas fa-power-off" style="font-size:18px;color:red"></i></div>';
