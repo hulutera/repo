@@ -42,7 +42,7 @@ if(!isset($_SESSION['uID']))
 								      <?php echo $lang['personal info']; ?>
 								</a></li>
 								<li><a id="EditProf" href="#" onclick="showSection(400)">
-									  <?php echo $lang['contact method'];?>
+									  <?php echo $lang['Contact method'];?>
 								</a></li>
 								<li><a id="EditProf" href="#" onclick="showSection(500)">
 								 	  <?php echo $lang['close account'];?>  
@@ -83,7 +83,7 @@ if(!isset($_SESSION['uID']))
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn"><?php echo $lang['Username'];?></div>
+											<div class="userNameEn"><?php echo $lang['username'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['userName'];
@@ -123,7 +123,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn"><?php echo $lang['contact method'];?></div>
+											<div class="userNameEn"><?php echo $lang['Contact method'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uContactMethod'];
@@ -198,7 +198,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel"> 
-											<div class="repeatPwrdEn"><?php echo $lang['repeat new password'];?></div>
+											<div class="repeatPwrdEn"><?php echo $lang['Password Again'];?></div>
 										</td>
 										<td class="moduleInput"><input type="password"
 											class="userInfo" id="email" name="repeatpassword"
@@ -236,7 +236,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn"><?php echo $lang['userName'];?></div>
+											<div class="userNameEn"><?php echo $lang['username'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="userName"
 											name="userName"
