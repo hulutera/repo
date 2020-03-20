@@ -2433,7 +2433,7 @@ div {
 	float: left;
 	direction: ltr;
 	font-size: 120%;
-	margin-left: 5%
+	margin-left: 10px;
 }
 
 .LeftNav a:hover {
@@ -2448,10 +2448,9 @@ div {
 	color: #000;
 	border: solid 1px #d2d2d2;
 	background: #f1f1f1;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-	background: -moz-linear-gradient(top, #fff, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
-	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
 }
 
 .LeftNav li a {
@@ -2466,18 +2465,22 @@ div {
 	color: #fff;
 }
 
+.LeftNav a.selected {
+	background-color: #1F75CC;
+	color: #fff;
+}
+
 .module {
-	position: relative;
+	float: left;
+	width: 50%;
+	margin-left: 10px;
 }
 
 .eCMthd, .eCloseAcc, .eName, .ePInfo, .ePass, .overview {
-	position: absolute;
-	width: 50%;
-	height: 284px;
+	width: 100%;
 	border: 1px solid #c2d7ef !important;
 	background-color: #dfefff !important;
 	font-family: sans-serif, Arial, Helvetica;
-	left: 23.5%;
 	font-size: 16px;
 }
 
@@ -2956,35 +2959,14 @@ th {
 	height: auto;
 }
 
-#mypage-list {
-	width: 12%;
-	float:left;
-}
-#mypage-list ul {
-	list-style-type: none;
-}
-
-#mypage-list ul li {
-	color: black;
-	font-size: 14px;
-	border: 1px solid black;
-	width: 100%;
-	text-align: center;
-	height:20px;
-	line-height: 20px;
-	background-color: #61bbd773;
-}
-
 .list-header {
-	font-size: 16px;
 	font-weight: bold;
-	background-color: bisque;
 }
 
 .login-msg{
 	float: left;
 	margin-left:20px;
-	width: 80%;
+	width: 70%;
 	font-size:15px;
 }
 

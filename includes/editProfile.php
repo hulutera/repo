@@ -3,11 +3,12 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
+global $lang, $lang_url, $str_url;
 
 if(!isset($_SESSION['uID']))
 {
 	ob_start();
-	header('Location:../index.php');
+	header('Location:../index.php' . $$lang_url);
 	ob_end_flash();
 }
 
@@ -15,7 +16,7 @@ if(!isset($_SESSION['uID']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Profile | የግል ገጽ</title>
+<title><?php echo $lang['profile edit']; ?></title>
 <?php commonHeader();?>
 </head>
 <body>
@@ -26,30 +27,25 @@ if(!isset($_SESSION['uID']))
 				<div id="mainColumn">
 					<div class="LeftNav" id="leftnav">
 						<div id="c_ln" class="c_ln t_lnkpi">
-							<ul class="c_n t_hovl ">
+				            <ul class="c_n t_hovl ">
 								<li class="active"><a class="selected" id="Overview" href="#"
-									onclick="showSection(999)">Overview
-										<div id="tabsAmharic">አጠቃላይ ኢንፎርሜሽን</div>
+									onclick="showSection(999)"> <?php echo $lang['profile'] ?>
 								</a></li>
-								<li><a id="EditProf" href="#" onclick="showSection(100)"> Edit e-mail
-										<div id="tabsAmharic">ኢሜይል ለመቀየር</div>
+								<li><a id="EditProf" href="#" onclick="showSection(100)"> 
+								      <?php echo $lang['Email']; ?>
 								</a></li>
-								<li><a id="EditProf" href="#" onclick="showSection(200);"> Edit
-										Password
-										<div id="tabsAmharic">የሚስጥር ቃል ለመቀየር</div>
+								<li><a id="EditProf" href="#" onclick="showSection(200);"> 
+								      <?php echo $lang['password']; ?>
 								</a>
 								</li>
-								<li><a id="EditProf" href="#" onclick="showSection(300)">Edit
-										Personal info
-										<div id="tabsAmharic">የግል መረጃ ለመቀየር</div>
+								<li><a id="EditProf" href="#" onclick="showSection(300)">
+								      <?php echo $lang['personal info']; ?>
 								</a></li>
-								<li><a id="EditProf" href="#" onclick="showSection(400)">Edit
-										Contact method
-										<div id="tabsAmharic">የመገኛ መንገድ ለመቀየር</div>
+								<li><a id="EditProf" href="#" onclick="showSection(400)">
+									  <?php echo $lang['contact method'];?>
 								</a></li>
-								<li><a id="EditProf" href="#" onclick="showSection(500)">Close
-										account
-										<div id="tabsAmharic">የካቶመር አካውንት ለመዝጋት</div>
+								<li><a id="EditProf" href="#" onclick="showSection(500)">
+								 	  <?php echo $lang['close account'];?>  
 								</a></li>
 								</li>
 							</ul>
@@ -57,8 +53,7 @@ if(!isset($_SESSION['uID']))
 					</div>
 					<div class="module">
 						<div class="overview">
-							<div class="headerEn">Account Summary</div>
-							<div class="headerAm">የካቶመር መረጃዎ በጥቅሉ</div>
+							<div class="headerEn"><?php echo $lang['acc summary'];?></div>
 							<div id="errorPasschan">
 							<?php
 							if(isset($_GET['error']))
@@ -68,7 +63,7 @@ if(!isset($_SESSION['uID']))
 								if($error_message=="")
 								{
 									echo "style=\"color:#4F8A10;background-color:#DFF2BF;\">";
-									echo "Setting sucessfully updated/የካቶመር መረጃዎ በትክክል ተቀይሯል";
+									echo $lang['profile change succ'];
 								}
 								else
 								{
@@ -88,8 +83,7 @@ if(!isset($_SESSION['uID']))
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">userName</div>
-											<div class="userNameAm">መጠቀምያ ስም</div>
+											<div class="userNameEn"><?php echo $lang['Username'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['userName'];
@@ -97,8 +91,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">Name</div>
-											<div class="NameAm">ስም</div>
+											<div class="NameEn"><?php echo $lang['Full Name'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uFirstName']." ";echo $row['uLastName'];
@@ -106,8 +99,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">e-mail</div>
-											<div class="NameAm">ኢሜይል</div>
+											<div class="NameEn"><?php echo $lang['Email'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uEmail'];
@@ -115,8 +107,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">Phone</div>
-											<div class="userNameAm">ስልክ</div>
+											<div class="userNameEn"><?php echo $lang['Phone'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uPhone'];
@@ -124,8 +115,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">Address</div>
-											<div class="userNameAm">አድራሻ</div>
+											<div class="userNameEn"><?php echo $lang['address'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uAddress'];
@@ -133,8 +123,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">Contact Method</div>
-											<div class="userNameAm">የመገኛ መንገድ</div>
+											<div class="userNameEn"><?php echo $lang['contact method'];?></div>
 										</td>
 										<td class="moduleInput"><?php if(isset($_SESSION['uID'])){
 											echo $row['uContactMethod'];
@@ -145,15 +134,13 @@ if(!isset($_SESSION['uID']))
 							</div>
 						</div>
 						<div style="display: none;" class="eName" id="EditEmail">
-							<div class="headerEn">Change your email</div>
-							<div class="headerAm">የኢሜይል አድራሻ ለመቀየር</div>
+							<div class="headerEn"><?php echo $lang['change your email'];?></div>
 							<form id="generalform" class="container" method="post"
-								action="../includes/updateProfile.php">
+								action="<?php echo '../includes/updateProfile.php' . $lang_url;?>">
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">e-mail</div>
-											<div class="NameAm">የሚጠቀሙበት ኢሜይል አድራሻ</div>
+											<div class="NameEn"><?php echo $lang['Email'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="email"
 											disabled="disabled" name="email"
@@ -163,8 +150,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">New e-mail</div>
-											<div class="NameAm">አዲሱ ኢሜይል አድራሻ</div>
+											<div class="NameEn"><?php echo $lang['new e-mail'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="newemail"
 											name="newemail"
@@ -177,9 +163,9 @@ if(!isset($_SESSION['uID']))
 										<td class="moduleInputButtons">
 											<div class="inputButton">
 												<input type="submit" name="submit1" id="saveSubmit"
-													class="saveSubmit" value="Save" /> <input type="submit"
+													class="saveSubmit" value="<?php echo $lang['save'];?>" /> <input type="submit"
 													name="submit" id="closeSubmit" class="closeSubmit"
-													value="Close" />
+													value="<?php echo $lang['close'];?>" />
 											</div>
 										</td>
 									</tr>
@@ -187,16 +173,14 @@ if(!isset($_SESSION['uID']))
 							</form>
 						</div>
 						<div style="display: none;" class="ePass" id="EditPass">
-							<div class="headerEn">Change your password</div>
-							<div class="headerAm">የምስጢር ቃል ለመቀየር</div>
+							<div class="headerEn"><?php echo $lang['change password'];?></div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../includes/updateProfile.php">
+								action="<?php echo '../includes/updateProfile.php' . $lang_url;?>">
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="oldPwrdEn">Current Password</div>
-											<div class="oldPwrdAm">የሚጠቀሙበት የሚስጥር ቃል</div>
+											<div class="oldPwrdEn"><?php echo $lang['current password'];?></div>
 										</td>
 										<td class="moduleInput"><input type="password"
 											class="userInfo" id="username" name="oldpassword"
@@ -205,8 +189,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="newPwrdEn">New Password</div>
-											<div class="newPwrdAm">አዲሱ የሚስጥር ቃል</div>
+											<div class="newPwrdEn"><?php echo $lang['new password'];?></div>
 										</td>
 										<td class="moduleInput"><input type="password"
 											class="userInfo" id="username" name="newpassword"
@@ -214,9 +197,8 @@ if(!isset($_SESSION['uID']))
 										</td>
 									</tr>
 									<tr>
-										<td class="moduleLabel">
-											<div class="repeatPwrdEn">Repeat Password</div>
-											<div class="repeatPwrdAm">አዲሱ የሚስጥር ቃል በድጋሚ</div>
+										<td class="moduleLabel"> 
+											<div class="repeatPwrdEn"><?php echo $lang['repeat new password'];?></div>
 										</td>
 										<td class="moduleInput"><input type="password"
 											class="userInfo" id="email" name="repeatpassword"
@@ -227,27 +209,25 @@ if(!isset($_SESSION['uID']))
 										<td class="moduleInputButtons">
 											<div class="inputButton">
 												<input type="submit" name="submit2" id="saveSubmit"
-													class="saveSubmit" value="Save" /> <input type="submit"
+													class="saveSubmit" value="<?php echo $lang['save'];?>" /> <input type="submit"
 													name="submit" id="closeSubmit" class="closeSubmit"
-													value="Close" />
+													value="<?php echo $lang['close'];?>" />
 											</div>
-											</div>
+											</div                                                                                                                                                                 >
 										</td>
 									</tr>
 								</table>
 							</form>
 						</div>
 						<div style="display: none;" class="ePInfo" id="EditPerInfo">
-							<div class="headerEn">Change Personal Information</div>
-							<div class="headerAm">የግል መረጃ ለመቀየር</div>
+							<div class="headerEn"><?php echo $lang['personal info'];?></div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../includes/updateProfile.php">
+								action="<?php echo '../includes/updateProfile.php' . $lang_url;?>">
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">Name</div>
-											<div class="NameAm">ስም</div>
+											<div class="NameEn"><?php echo $lang['Full Name'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="Name"
 											name="name"
@@ -256,8 +236,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">userName</div>
-											<div class="userNameAm">መጠቀምያ ስም</div>
+											<div class="userNameEn"><?php echo $lang['userName'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="userName"
 											name="userName"
@@ -266,8 +245,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">Phone</div>
-											<div class="userNameAm">ስልክ</div>
+											<div class="userNameEn"><?php echo $lang['Phone'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="phone"
 											name="phone"
@@ -276,8 +254,7 @@ if(!isset($_SESSION['uID']))
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="userNameEn">Address</div>
-											<div class="userNameAm">አድራሻ</div>
+											<div class="userNameEn"><?php echo $lang['address'];?></div>
 										</td>
 										<td class="moduleInput"><input class="userInfo" id="address"
 											name="address"
@@ -290,9 +267,9 @@ if(!isset($_SESSION['uID']))
 										<td class="moduleInputButtons">
 											<div class="inputButton">
 												<input type="submit" name="submit3" id="saveSubmit"
-													class="saveSubmit" value="Save" /> <input type="submit"
+													class="saveSubmit" value="<?php echo $lang['save'];?>" /> <input type="submit"
 													name="submit" id="closeSubmit" class="closeSubmit"
-													value="Close" />
+													value="<?php echo $lang['close'];?>" />
 											</div>
 											</div>
 										</td>
@@ -301,30 +278,27 @@ if(!isset($_SESSION['uID']))
 								</table>
 							</form>
 						</div>
-						<div style="display: none;" class="eCMthd" id="EditContMthd">
-							<div class="headerEn">Change contact method</div>
-							<div class="headerAm">የመገኛ መንገድ ለመቀየር</div>
+						<div style="display: none;" class="eCMthd" id="EditContMthd"> 
+							<div class="headerEn"><?php echo $lang['change contact method'];?></div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../includes/updateProfile.php">
+								action="<?php echo '../includes/updateProfile.php' . $lang_url;?>">
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">email</div>
-											<div class="NameAm">በኢሜይል</div>
+											<div class="NameEn"><?php echo $lang['Email'];?></div>
 										</td>
 										<td class="moduleInput"><input id="Name" name="contactemail"
-											type="checkbox" value="yes"
+											type="checkbox" value="<?php echo $lang['yes'];?>"
 											<?php if(isset($_SESSION['uID'])){echo ((strtolower($row['uContactMethod'])=="email" || $row['uContactMethod']=="Phone and Email")? 'checked' : '');}?>>
 										</td>
 									</tr>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">Phone</div>
-											<div class="NameAm">በስልክ</div>
+											<div class="NameEn"><?php echo $lang['Phone'];?></div>
 										</td>
 										<td class="moduleInput"><input id="phone" name="contactphone"
-											type="checkbox" value="yes"
+											type="checkbox" value="<?php echo $lang['yes'];?>"
 											<?php if(isset($_SESSION['uID'])){echo ((strtolower($row['uContactMethod'])=="phone" || $row['uContactMethod']=="Phone and Email") ? 'checked' : '');}?>>
 										</td>
 									</tr>
@@ -333,9 +307,9 @@ if(!isset($_SESSION['uID']))
 										<td class="moduleInputButtons">
 											<div class="inputButton">
 												<input type="submit" name="submit4" id="saveSubmit"
-													class="saveSubmit" value="Save" /> <input type="submit"
+													class="saveSubmit" value="<?php echo $lang['save'];?>" /> <input type="submit"
 													name="submit" id="closeSubmit" class="closeSubmit"
-													value="Close" />
+													value="<?php echo $lang['close'];?>" />
 											</div>
 											</div>
 										</td>
@@ -345,29 +319,18 @@ if(!isset($_SESSION['uID']))
 							</form>
 						</div>
 						<div style="display: none;" class="eCloseAcc" id="CloseAcc">
-							<div class="headerEn1">
-								We are sorry to see you go. By closing you account you will be
-								automatically signed out and all your previous post will be
-								removed from our database. <br> <strong
-									style="font-weight: bold;">Are you sure you want to close your
-									account?</strong>
-							</div>
-							<br>
-							<div class="headerAm1">
-								ከእኛ ጋር ባለመቆየትዎ እናዝናለን። ሆኖም ግን ይህንን ሲያደርጉ ወደ ካቶመር ፣ በአዲስ አካውንት
-								በስተቀር መግባት አይችሉም።በተጨማሪም በስምዎ ያስገቧቸው ንብረቶችም ከእኛ መዝገብ/ዳታቤዝ
-								/ይደመሰሳሉ። <br> <strong style="font-weight: bold;">በርግጥ የካቶመር
-									አካውንትዎን መዝጋት ይፈልጋሉ?</strong>
+							<div class="headerEn1"> <?php echo $lang['close acc msg part1'];?>
+								<br> <strong
+									style="font-weight: bold;"><?php echo $lang['close acc msg part2'];?></strong>
 							</div>
 							<div id="errorPasschan" style="color: red; padding-bottom: 10px;"></div>
 							<form id="generalform" class="container" method="post"
-								action="../includes/updateProfile.php">
+								action="<?php echo '../includes/updateProfile.php' . $lang_url;?>">
 
 								<table>
 									<tr>
 										<td class="moduleLabel">
-											<div class="NameEn">Yes</div>
-											<div class="NameAm">አዎ ፈልጋለው</div>
+											<div class="NameEn"><?php echo $lang['yes'];?></div>
 										</td>
 										<td class="moduleInput"><input id="Name" name="closeAcc"
 											value="" type="checkbox">
@@ -379,9 +342,9 @@ if(!isset($_SESSION['uID']))
 										<td class="moduleInputButtons">
 											<div class="inputButton">
 												<input type="submit" name="submit5" id="saveSubmit"
-													class="saveSubmit" value="Save" /> <input type="submit"
+													class="saveSubmit" value="<?php echo $lang['save'];?>" /> <input type="submit"
 													name="submit" id="closeSubmit" class="closeSubmit"
-													value="Close" />
+													value="<?php echo $lang['close'];?>" />
 											</div>
 											</div>
 										</td>

@@ -21,9 +21,9 @@ require_once $documnetRootPath.'/classes/cmn.class.php';
             <?php headerAndSearchCode(""); ?>
             <div id="main_section">
 				<div id="mainColumn">
-                    <div id="mypage-list">
+                    <div class="LeftNav">
                         <ul>
-                            <?php echo  '<li class="list-header"> ' . $lang['my activities'] . '</li>
+                            <?php echo  '<li class="list-header" style="background-color:#378de5; color: #fff"> ' . $lang['my activities'] . '</li>
                                         <a href="../..//includes/template.content.php?type=userActive' .$str_url. '"><li>' .$lang['My Items']. '</li></a>
                                         <a href="../../includes/upload.php' . $lang_url. '"><li> ' . $lang['Post Items'] . ' </li></a>
                                         <a href="../../includes/editProfile.php' .$lang_url. '"><li> ' . $lang['Edit Profile'] . ' </li></a>

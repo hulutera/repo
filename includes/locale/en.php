@@ -149,6 +149,7 @@ $lang = array (
     'Phone must be a number' => 'Phone must be a number',
     'Username' => 'Username',
     'First Name' => 'First Name',
+    'Full Name' => 'Full Name',
     'Last Name' => 'Last Name',
     'Email' => 'Email',
     'Phone' => 'Phone',
@@ -372,8 +373,36 @@ $lang = array (
     'first page' => 'First Page',
     'previous' => 'Previous',
     'next' => 'Next',
-    'last page' => 'Last Page'
-    
+    'last page' => 'Last Page',
+    'profile edit' => 'Edit profile',
+    'profile' => 'Update Profile',
+    'personal info' => 'Personal Information',
+    'close account' => 'Close Account',
+    'acc summary' => 'Account Summary',
+    'profile change succ' => 'Setting sucessfully updated',
+    'address' => 'Address',
+    'change your email' => 'Change email',
+    'new e-mail' => 'New e-mail',
+    'save' => 'Save',
+    'close' => 'Close',
+    'change password' => 'Change password',
+    'current password' => 'Current password',
+    'new password' => 'New password',
+    'enter the new password' => 'Enter the new password',
+    'enter repeated new password' => 'Re-enter the new password',
+    'repeat new password' => 'Repeat new password',
+    'change contact method' => 'Change contact method',
+    'yes' => 'Yes',
+    'close acc msg part1' => 'We are sorry to see you leave us, by closing your account you will be
+							  automatically signed out and all your previous post will be
+                              removed from our database.',
+    'close acc msg part2' => 'Are you sure you want to close your account?',
+    'email update succ' => 'your email has been updated.',
+    'email already exists msg' => 'The email already exists so, try another.',
+    'correct answer msg' => 'Please correct your answer',
+    'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com \n',
+    'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n'
+
 );
 
 $city_lang_arr = array(
