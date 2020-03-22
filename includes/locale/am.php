@@ -385,7 +385,8 @@ $lang = array (
     'email update succ' => 'ኢሜይልዎ በተሳካ መልኩ ተቀይርሯል።',
     'correct answer msg' => 'እባክዎ መልስዎን ያስተካክሉ.',
     'close acc email msg part2' => 'የሁሉተራ አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ። ይሁንና አካውንቱን መዝጋት እርስዎ ካልጠየቁ ፣ በ admin@hulutera.com መልእክት ይላኩልን።',
-    'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n'
+    'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n',
+    'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ'
 
 
 

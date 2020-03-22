@@ -401,8 +401,8 @@ $lang = array (
     'email already exists msg' => 'The email already exists so, try another.',
     'correct answer msg' => 'Please correct your answer',
     'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com \n',
-    'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n'
-
+    'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n',
+    'select city from map' => 'Select a city on the map'
 );
 
 $city_lang_arr = array(

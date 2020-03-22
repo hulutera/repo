@@ -304,6 +304,23 @@ th {
 	clear: both;
 }
 
+.svg-img{
+	display: block;
+	margin: auto;
+}
+
+path:hover{
+    fill: burlywood;
+}
+
+.mid-city{
+    font-size: 12px;
+}
+
+.big-city{
+    font-size: 14px;
+}
+
 #mask {
 	display: none;
 	background: #c7f0f6;

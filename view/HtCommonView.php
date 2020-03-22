@@ -490,15 +490,16 @@ class HtCommonView{
     /**/
     public function displayAllItem()
     {
+        $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+        $itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
         $table = "latestupdate";
         $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");
         $totalItems = mysqli_num_rows($countItems);
-
         if ($totalItems == 0) {
             ObjectPool::getInstance()->getViewObject("empty")->show(0);
             return;
         }
-        $filter = " ORDER BY LatestTime DESC LIMIT 0," . HtGlobal::get('itemPerPage');
+        $filter = " ORDER BY LatestTime DESC LIMIT $itemstart," . HtGlobal::get('itemPerPage');
         $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, $filter);
         while ($row = $result->fetch_assoc()) {
             if ($row['cID'] != 0) {
@@ -517,9 +518,10 @@ class HtCommonView{
                 ObjectPool::getInstance()->getViewObject("others")->show($row['oID']);
             }
         }
+        
         $calculatePageArray = calculatePage($totalItems);
         $result->close();
-        pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
+        item_list_pagination($calculatePageArray[0], $calculatePageArray[1], "", "All",  "All");
     }
 
 
@@ -588,6 +590,7 @@ class HtCommonView{
     private function displaySearch()
     {
         global $locationPerTable, $lang;
+        
         if (isset($_GET['lan'])) {
             $lang_url = "&lan=" . $_GET['lan'];
         }
@@ -599,6 +602,7 @@ class HtCommonView{
         $item = $_GET['item'];
 
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+        $itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
         $searchWordSanitized = DatabaseClass::getInstance()->getConnection()->real_escape_string($searchWordRaw);
         $bigQuery = "";
@@ -639,7 +643,7 @@ class HtCommonView{
                 ObjectPool::getInstance()->getViewObject("empty")->show(0);
                 return;
             }
-            $condition = " ORDER BY LatestTime DESC LIMIT 0," . HtGlobal::get('itemPerPage');
+            $condition = " ORDER BY LatestTime DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
             $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, $condition);
             while ($row = $result->fetch_assoc()) {
                 if ($row['cID'] != 0) {
@@ -705,9 +709,8 @@ class HtCommonView{
             }
             $calculatePageArray = calculatePage($totalItems);
             $result->close();
-            pagination('all', $calculatePageArray[1], $calculatePageArray[0], 0);
+            item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $location);
         } else{
-
                 //To avoid a wildcard value for search word
                 if($searchWordSanitized == NULL and ($city != "000" or $item != "000")){
                     $searchWordSanitized = "No searchword given";
@@ -722,14 +725,14 @@ class HtCommonView{
                     $location = $city;
                 }
                 
-                if ($item == "All" or $item == "000") {
+                if ($item == "All" or $item == "000" or (isset($_GET['item']) == false)) {
                     $allItem = DatabaseClass::getInstance()->getAllItem();
                 } else {
                     $allItem = array(
                         'array' => array('table_name' => $item)
                     );
                 }
-
+                
                 foreach ($allItem as $key => $value) { 
                     $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
                     $tmpStr = "";
@@ -762,8 +765,6 @@ class HtCommonView{
                 }
       
                 if ($numbreOfMatches >= 1) {
-                    $totpage = ceil($numbreOfMatches / HtGlobal::get('itemPerPage'));
-                    $itemstart = 0;//HtGlobal::get('itemPerPage') * ($page - 1);
                     $bigQuery ="";
                     foreach ($allItem as $key => $value) {
                         $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
@@ -800,36 +801,9 @@ class HtCommonView{
                         ObjectPool::getInstance()->getViewObject($name)->show($id);
                     } }
 
-                    echo "<div id=\"pagination\"><ul>";
-                    /*====a variable which describes the page bar*/
-
-                    $pagerange = 4;
-                    $nextpage = $page + 1;
-                    $previouspage = $page - 1;
-
-                    if ($page > 1) {
-                        echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
-                        echo '<li><a href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
-                    } else {
-                        echo '<li class = "previous-off"> <b>First Page </b></li>';
-                        echo '<li class = "previous-off"><b> previous</b></li>';
-                    }
-
-                    for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
-                        if ($i > 0 && $i <= $totpage) {
-                            echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
-                                '<li><a href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
-                        }
-                    }
-
-                    if ($page < $totpage) {
-                        echo '<li><a href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
-                        echo '<li><a href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
-                    } else {
-                        echo '<li class = "previous-off"> <b> Next </b></li>';
-                        echo '<li class = "previous-off"> <b> Last Page</b></li>';
-                    }
-                    echo "</ul></div>";
+                    $calculatePageArray = calculatePage($numbreOfMatches);
+                    item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $location);
+   
                 } else if ($numbreOfMatches < 1) {
                     echo '<div id="mainColumnX">
                                     <div id="spanMainColumnX" style="color: red;background-color: #ff0">
@@ -842,5 +816,9 @@ class HtCommonView{
 
                 echo "</div>";
             }
+
+
+
+            
   }
 }

@@ -65,3 +65,40 @@ function calculatePage($count)
 	}
 	return array($page, $totpage);
 }
+
+
+function item_list_pagination($page, $totalPage, $searchWordSanitized, $item,  $location){
+	global $lang, $lang_url, $str_url;
+	echo "<div id=\"pagination\"><ul>";
+                    /*====a variable which describes the page bar*/
+                    $pagerange = 4;
+                    $nextpage = $page + 1;
+                    $previouspage = $page - 1;
+                    if($searchWordSanitized == "No searchword given"){
+                        $searchWordSanitized = "";
+                    }
+
+                    if ($page > 1) {
+                        echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url .'">' . $lang['first page']. '</a></li>';
+                        echo '<li><a href="?page=' . $previouspage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' .$lang['previous']. '</a></li>';
+                    } else {
+                        echo '<li class = "previous-off"> <b>' .$lang['first page']. '</b></li>';
+                        echo '<li class = "previous-off"><b>' .$lang['previous']. '</b></li>';
+                    }
+
+                    for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
+                        if ($i > 0 && $i <= $totalPage) {
+                            echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url .'">' . $i . '</a></strong></li>' :
+                                '<li><a href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $i . '</a></li>';
+                        }
+                    }
+
+                    if ($page < $totpage) {
+                        echo '<li><a href="?page=' . $nextpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url .'"> > </a></li>';
+                        echo '<li><a href="?page=' . $totalpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url .'"> >> </a></li>';
+                    } else {
+                        echo '<li class = "previous-off"> <b>' .$lang['next']. '</b></li>';
+                        echo '<li class = "previous-off"> <b>' .$lang['last page']. '</b></li>';
+                    }
+                    echo "</ul></div>";
+}
