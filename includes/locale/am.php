@@ -194,7 +194,7 @@ $lang = array (
     'General comment' => 'አጠቃላይ አስተያየት',
     'Message' => 'መልዕክት',
     'Send' => 'ይላኩ',
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:' 
+    'about us page paragraph1 text'
     => 
     'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው',
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
@@ -208,64 +208,14 @@ $lang = array (
     'ሁሉተራን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን',
     'For any compliant , improvements or other issues you can use' => 'ለቅሬታ ፣ ለማሻሻያ ሃሳቦች እንዲሁም ሌሎች ጥቆማዎች ይህንን ይጫኑ',
     'For inappropriate items you can “Report” button' => 'ለአላግባብ ለገቡ ምስሎች እና ገለፃዎች "ሪፖርት" የሚለውን ተጭነው ይግለፁ',
-    'If you need help, click' => 'ለተጨማሪ መረጃ ካስፈለግዎ የሚከተለውን ይጫኑ',
+    'If you need help, click' => 'ተጨማሪ መረጃ ካስፈለግዎ የሚከተለውን ይጫኑ',
     'Contact Us' => 'ሊጠይቁን ይፈልጋሉ',
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'
     => 
     'በመጨረሻም ሁሉተራን ለኢትዮጵያውያን ይፋ ስናደርግ በሙሉ ኩራት እና ልባዊ ደስታ ሲሆን ድሕረገፁን እንዲጠቀሙበት በትህትና እንጠይቆታለን',
     'About Us' => 'ስለ እኛ',
     'Terms and Conditions' => 'የመተዳደርያ ደንብ',
-    'Welcome to hulutera.com, this website is owned and operated by hulutera. By visiting our website and accessing the information, resources, services, products, and tools we provide, you understand and agree to accept and adhere to the following terms and conditions as stated in this policy (hereafter referred to as "User Agreement").<br /><br />
-    This agreement is in effect as of May 01, 2020.
-    <br/><br/>
-	We reserve the right to change this User Agreement from time to time without notice. You acknowledge and agree that it is your responsibility to review this User Agreement periodically to familiarize yourself with any modifications. Your continued use of this site after such modifications will constitute acknowledgment and agreement of the modified terms and conditions.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Responsible Use and Conduct</span>
-    <br /><br />
-	By visiting our website and accessing the information, resources, services, products, and tools we provide for you, either directly or indirectly (hereafter referred to as "Resources"), you agree to use these Resources only for the purposes intended as permitted by the terms of this User Agreement and applicable laws, regulations and generally accepted online practices.
-	<br /><br />
-	Wherein, you understand that:
-	<br /><br />
-	a. In order to access our Resources, you may be required to provide certain information about yourself (such as identification, contact details,  etc.) as part of the registration  process, or as part of your ability to use the Resources. You agree that any information you provide will always be accurate, correct, and up to date.
-	<br /><br />
-	b. You are responsible for maintaining the confidentiality of any login information associated with any account you use to access our Resources.  Accordingly, you are responsible for all activities that occur under your account/s.
-	<br /><br />
-	c. Accessing (or attempting to access) any of our Resources by any means other than through the means we provide, is strictly prohibited. You specifically agree not to access (or attempt to access) any of our Resources through any automated, unethical or unconventional means.
-	<br /><br />
-	d. Engaging in any activity that disrupts or interferes with our Resources, including the servers and/or networks to which our Resources are located or connected, is strictly prohibited.
-	<br /><br />
-	e. Attempting to copy, duplicate, reproduce, sell, trade, or resell our Resources is strictly prohibited.
-	<br /><br />
-	f. You are solely responsible any consequences, losses, or damages that we may directly or indirectly incur or suffer due to any unauthorized activities conducted by you, as explained above, and may incur criminal or civil liability.
-	<br /><br />
-	g. We may provide various open communication tools on our website, such as blog comments, blog posts, public chat, forums, message boards, newsgroups, product ratings and reviews, various social media services, etc.  You understand that generally we do not pre-screen or monitor the content posted by users of these various communication tools, which means that if you choose to use these tools to submit any type of content to our website, then it is your personal responsibility to use these tools in a responsible and ethical manner.  By posting information or otherwise using any open communication tools as mentioned, you agree that you will not upload, post, share, or otherwise distribute any content that:
-	<br /><br />
-	i. Is illegal, threatening, defamatory, abusive, harassing, degrading, intimidating, fraudulent, deceptive, invasive, racist, or contains any type of suggestive, inappropriate, or explicit language;<br />
-    ii. Infringes on any trademark, patent, trade secret, copyright, or other proprietary right of any party;<br />
-    iii. Contains any type of unauthorized or unsolicited advertising;<br />
-    iv. Impersonates any person or entity, including any hulutera employees or representatives.
-    <br /><br />
-    We have the right at our sole discretion to remove any content that, we feel in our judgment does not comply with this User Agreement, along with any content that we feel is otherwise offensive, harmful, objectionable, inaccurate, or violates any 3rd party copyrights or trademarks. We are not responsible for any delay or failure in removing such content. If you post content that we choose to remove, you hereby consent to such removal, and consent to waive any claim against us.
-    <br /><br />
-    h. We do not assume any liability for any content posted by you or any other 3rd party users of our website.  However, any content posted by you using any open communication tools on our website, provided that it doesn"t violate or infringe on any 3rd party copyrights or trademarks, becomes the property of hulutera, and as such, gives us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce, modify, adapt, translate, publish, publicly display and/or distribute as we see fit.  This only refers and applies to content posted via open communication tools as described, and does not refer to information that is provided as part of the registration  process, necessary in order to use our Resources.
-    <br /><br />
-    You agree to indemnify and hold harmless hulutera and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfill any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defense of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Warranties</span>
-    <br /><br />
-    By using our website, you understand and agree that all Resources we provide are "as is" and "as available".  This means that we do not represent or warrant to you that:<br />
-    i) the use of our Resources will meet your needs or requirements.<br />
-    ii) the use of our Resources will be uninterrupted, timely and free from errors.<br />
-    iii) the information obtained by using our Resources will be accurate or reliable, and
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Liability</span>
-    <br /><br />
-    hulutera will not be liable for any direct, indirect, incidental, consequential or exemplary loss or damages which may be incurred by you as a result of using our Resources, or as a result of any changes, data loss or corruption, cancellation, loss of access, or downtime to the full extent that applicable limitation of liability laws apply.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Copyrights/Trademarks</span>
-    <br /><br />
-    All content and materials available on hulutera, including but not limited to text, graphics, website name, code, images and logos are the intellectual property of hulutera, and are protected by applicable copyright and trademark law.  Any inappropriate use, including but not limited to the reproduction, distribution, display or transmission of any content on this site is strictly prohibited, unless specifically authorized by hulutera.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Termination of Use</span>
-    <br /><br />
-    You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your relationship and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
-    <br /><br />
-    If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us'
+    'terms and conditions text'
     =>
     'እንኳን ወደ hulutera.com በደህና መጡ። hulutera.com ንብረትነቱ የሁሉተራ ነው። ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ፤ የሚከተለውን የመተዳደርያ ደንብ ተረድተው እና ተስማምተው ነው(ስምምነቱንም የተጠቃሚ ስምምነት በሚል እንገልጸዋለን)።<br /><br />
     ይህ ስምምነት ከግንቦት 8 2012 ጀምሮ ተግባራዊ ሆኗል።<br />
@@ -313,8 +263,8 @@ $lang = array (
     'Search' => 'ፈልግ',
     'e.g' => 'ለምሳሌ',
     'MENU' => 'ማውጫ',
-    'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click'
-    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል።',
+    'about us on footer text'
+    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች።',
     'here' => 'ይሄን',
     'to know more about hulutera.com' => ' ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
     'ABOUT US' => 'ስለ እኛ',
@@ -386,7 +336,11 @@ $lang = array (
     'correct answer msg' => 'እባክዎ መልስዎን ያስተካክሉ.',
     'close acc email msg part2' => 'የሁሉተራ አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ። ይሁንና አካውንቱን መዝጋት እርስዎ ካልጠየቁ ፣ በ admin@hulutera.com መልእክት ይላኩልን።',
     'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n',
-    'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ'
+    'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ',
+    'facebook' => 'ፌስቡክ',    
+    'twitter' => 'ትዊተር',
+    'pintrest' => 'ፒኢንትረስት',
+    'youtube' => ' ዩትዩብ'
 
 
 

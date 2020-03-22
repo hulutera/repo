@@ -775,6 +775,7 @@ body, html {
 #footer #information_fo, #aboutUs_fo, #followUs_fo {
 	width: 33.3%;
 	float: left;
+	margin-bottom:10px;
 }
 
 #footer li a {
@@ -812,30 +813,19 @@ body, html {
 #followUs_fo li {
 	list-style: none;
 	float: left;
-	width: 20px;
-	height: 20px;
-	border: 1px solid black;
-	border-radius: 50%;
-	margin: 2px;
-	padding: 0px;
+	border-radius: 100%;
+	margin: 5px;
+	color: white;
 }
 
 #followUs_fo ul {
 	text-align: center;
-	padding-left: 35%;
 }
 
-#followUs_fo .fb_icon_class {
-	background: #191919;
-}
 
 #followUs_fo .fb_icon_class:hover {
 	background: #3b5998;
 	border: none;
-}
-
-#followUs_fo .pint_icon_class {
-	background: #191919;
 }
 
 #followUs_fo .pint_icon_class:hover {
@@ -843,17 +833,9 @@ body, html {
 	border: none;
 }
 
-#followUs_fo .tw_icon_class {
-	background: #191919;
-}
-
 #followUs_fo .tw_icon_class:hover {
 	background: #00aced;
 	border: none;
-}
-
-#followUs_fo .youtube_icon_class {
-	background: #191919;
 }
 
 #followUs_fo .youtube_icon_class:hover {

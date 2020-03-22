@@ -276,25 +276,25 @@ function footerCode()
 	echo '<div id="footer">';
 	echo '<div id="footerLinks">';
 	echo '<div id="aboutUs_fo" >
-		 <p style="font-weight:bold">'  .$lang['ABOUT US']. '</p>
+		 <p style="font-weight:bold;margin-bottom:10px">'  .$lang['ABOUT US']. '</p>
 		<a href="../../index.php' .$lang_url. '"><img src="../../images/icons/ht_logo_2.png" height="60px" width="Auto" style="float:left;border-radius:50%"></a>
-		<p style="text-align:left;font-size:14px">' .$lang['hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click']. ' <a href="../../includes/template.proxy.php?type=about' .$str_url. '" style="color:#97caf0;font-weight:bold">'.$lang['here'].'</a>' .$lang['to know more about hulutera.com']. ' 
+		<p style="text-align:left;font-size:14px">' .$lang['about us on footer text']. ' <a href="../../includes/template.proxy.php?type=about' .$str_url. '" style="color:#97caf0;font-weight:bold">'.$lang['here'].'</a>' .$lang['to know more about hulutera.com']. ' 
 		</p>
         </div>';
 	echo '<div id="information_fo">
-		<p style="font-weight:bold">' .$lang['INFORMATION']. '</p>
-		<p ><a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' .$lang['Contact Us']. '</a></p>
-		<p><a href="../../includes/template.proxy.php?type=help' .$str_url.'" target="_blank">' .$lang['Help']. '</a></p>
-		<p ><a href="../../includes/template.proxy.php?type=terms' .$str_url.'">'.$lang['Terms and Conditions'].'</a></p>
-		<p><a href="../../includes/template.proxy.php?type=privacy' .$str_url.'">'.$lang['Privacy Policy'].'</a></p>
+		<p style="font-weight:bold;margin-bottom:10px">' .$lang['INFORMATION']. '</p>
+		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=terms' .$str_url.'">'.$lang['Terms and Conditions'].'</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=privacy' .$str_url.'">'.$lang['Privacy Policy'].'</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' .$lang['Contact Us']. '</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=help' .$str_url.'" target="_blank">' .$lang['Help']. '</a></p>
 		</div>';
 	echo '<div id="followUs_fo" >
-		  <p style="font-weight:bold">' .$lang['FOLLOW US']. '</p>
+		  <p style="font-weight:bold;margin-bottom:10px">' .$lang['FOLLOW US']. '</p>
 		       <ul>
-				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class"><img src="../../images/fb.png" width="20px" height="20px" /></li></a>
-				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class"><img src="../../images/tw.png" width="17px" height="17px" /></li></a>
-				<a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class"><img src="../../images/pin.png" width="20px" height="20px" /></li></a>
-				<a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class"><img src="../../images/yt.png" width="20px" height="20px" /></li></a>
+				<a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' .$lang['facebook']. '</li></a>
+				<a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' .$lang['twitter']. '</li></a>
+				<a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' .$lang['pintrest']. '</li></a>
+				<a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' .$lang['youtube']. '</li></a>
 			   </ul>
 		   </div>';
 	echo '<div id="utility">';
