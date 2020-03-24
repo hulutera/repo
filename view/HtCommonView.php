@@ -706,10 +706,12 @@ class HtCommonView{
                     . '<a  style="text-decoration:none; font-size:15px;" href="../../includes/template.proxy.php?type=help' .$lang_url. '">' .$lang['here']. '</a>
                     
                 </div></div>';
+            } else {
+                $calculatePageArray = calculatePage($totalItems);
+                $result->close();
+                item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
             }
-            $calculatePageArray = calculatePage($totalItems);
-            $result->close();
-            item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
+            
         } else {
                 //To avoid a wildcard value for search word
                 if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
