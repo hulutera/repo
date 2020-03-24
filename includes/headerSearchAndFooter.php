@@ -2,25 +2,21 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
-if (isset($_GET['lan'])) {
+if ($_GET['lan']) {
 	global $language;
 	$language = $_GET['lan'];
-	//var_dump($_GET);
 	// url exetention for language on hyperlinks without "?"
 	$lang_url = "?&lan=" . $language;
 	
 	// url exetention for language on hyperlinks with "?"
 	$str_url = str_replace("?", "", $lang_url);
 	require_once $documnetRootPath . '/includes/locale/' . $_GET['lan'] . '.php';	
-}
-else
-{ 
+} else { 
 	$language = "";
 	$lang_url = "";
 	$str_url = "";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
-
 
 function commonHeader()
 {

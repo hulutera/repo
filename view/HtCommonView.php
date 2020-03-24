@@ -635,7 +635,7 @@ class HtCommonView{
             return;
         } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
             $this->displayAllItem();
-        } elseif ($searchWordSanitized == "" and $item == "All"){
+        } elseif ($searchWordSanitized == "" and $item == "All") {
             $table = "latestupdate";
             $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");
             $totalItems = mysqli_num_rows($countItems);
@@ -710,12 +710,12 @@ class HtCommonView{
             $calculatePageArray = calculatePage($totalItems);
             $result->close();
             item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $location);
-        } else{
+        } else {
                 //To avoid a wildcard value for search word
-                if($searchWordSanitized == NULL and ($city != "000" or $item != "000")){
+                if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
                     $searchWordSanitized = "No searchword given";
                     $connector = "OR";
-                } elseif ($searchWordSanitized != "" and $city != "000"){
+                } elseif ($searchWordSanitized != "" and ($city != "000" or $item != "000")){
                     $connector = "AND";
                 }
 
@@ -783,13 +783,9 @@ class HtCommonView{
                             $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                             //break;
                         }
-                        $tmpStrFinal = rtrim($tmpStr, '\' OR ');
-                        $tmpStrFinal .=  "'";
-                        //$bigQuery .= " UNION ALL" . $tmpStrFinal;
-                    //}
-                    //$finalStr = rtrim($bigQuery, 'OR ');
+                    $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+                    $tmpStrFinal .=  "'";
                     $finalStr = rtrim($tmpStrFinal, 'OR ');
-                    //$finalStr2 = ltrim($finalStr, ' UNION ALL ');
                     $finalStr .= ") ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
                     $querySearch =  $finalStr;
                     $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
