@@ -8,28 +8,43 @@ require_once $documnetRootPath . '/includes/validate.php';
 
 $err = [];
 $itemName = str_replace("item_", "", $_GET['table']);
-$validate = new ValidateForm($_GET['table'], $err);
-
+$_SESSION['POST'] = [];
+$validate = new ValidateForm($err);
+//var_dump($_POST);
+//var_dump($err);
+$err2 = array();
+foreach ($err as $x) {
+	foreach ($x as $rowNumber => $pair) {		
+		$err2[$rowNumber] = $pair;
+	}	
+}
+//var_dump($err2);
+//exit;
 if (!empty($err)) {
 	$_SESSION['POST'] = $_POST;
+	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
 	$input = implode('', array_map(
 		function ($v) {
 			return sprintf("-  %s", $v);
 		},
-		$err,
-		array_keys($err)
+		$err2,
+		array_keys($err2)
 	));
+
+
 	$input = "Oh Snap! <br>" . $input;
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
+	$_SESSION['errorRaw']  = $err2;
+
 	header('Location: ../../template.upload.php?type=' . $itemName);
 } else {
-	$err=[];
+	$err = [];
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_item = $_GET['table'];
 	//get item instance
-	$_pItem = ObjectPool::getInstance()->getObjectWithId($_item,null); 	
+	$_pItem = ObjectPool::getInstance()->getObjectWithId($_item, null);
 	//insert item
 	$_pItem->insert();
 	//successfull

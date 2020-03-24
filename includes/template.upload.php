@@ -29,6 +29,24 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<script src="../../includes/thumbnails/js/custom.js" type="text/javascript"></script>
 	<script src="../../includes/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
 
+	<script>
+		$(document).ready(function() {
+			$("input[name$='rent-or-sell']").click(function() {
+				var test = $(this).val();
+				if (test == "rent") {
+					$(".fieldPriceSell").hide();
+					$(".fieldPriceRent").show();
+				}
+				else if(test == "sell") {
+					$(".fieldPriceSell").show();
+					$(".fieldPriceRent").hide();
+				} else {
+					$(".fieldPriceSell").show();
+					$(".fieldPriceRent").show();
+				}
+			});
+		});
+	</script>
 	<style>
 		body {
 			font-family: 'Roboto', sans-serif;
@@ -55,18 +73,20 @@ require_once $documnetRootPath . '/includes/validate.php';
 		<div id="wrapper">
 			<?php uploadHeaderAndSearchCode(""); ?>
 			<div id="main_section">
-				
-				<?php
-				if(isset($_SESSION['error']))
-				{
-					$crptor = new Cryptor();
-					$out = $crptor->decryptor($_SESSION['error']);
 
-					echo '<div class="alert-danger">
-					<strong>'. $out .'</strong>					
-				</div>';
-				}
+				<?php
+				// if (isset($_SESSION['error']) && isset($_SESSION['errorRaw'])) {
+				// 	$crptor = new Cryptor();
+				// 	$out = $crptor->decryptor($_SESSION['error']);
+				// 	var_dump($_SESSION['errorRaw']);
+				// 	echo '<div class="alert-danger">
+				// 	<strong>' . $out . '</strong>					
+				// </div>';
+				// }
+				// var_dump($_SESSION['OPTIONS']);
+				// var_dump($_SESSION['POST']);
 				(new HtMainView($_GET['type'], null))->upload();
+				//$_SESSION['POST'] = [];
 
 				?>
 			</div>

@@ -758,7 +758,7 @@ class HtItemCar extends MySqlRecord
         $this->fieldTableType = (int) $fieldTableType;
     }
 
-     /**
+    /**
      * setField from $_POST
      *
      * Comment for field field_table_type: Not specified.<br>
@@ -769,11 +769,11 @@ class HtItemCar extends MySqlRecord
     {
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
-        $_itemTempId = bin2hex(random_int(20,50).random_int(20,50));
+        $_itemTempId = bin2hex(random_int(20, 50) . random_int(20, 50));
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
-        $this->setIdUser($_userId );
-        $this->setIdTemp($_itemTempId);	
+        $this->setIdUser($_userId);
+        $this->setIdTemp($_itemTempId);
         $this->setFieldMake($_POST['fieldMake']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldModelYear($_POST['fieldModelYear']);
@@ -792,33 +792,28 @@ class HtItemCar extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-        
-        if(isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell']))
-        {
+
+        if (isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
             $market = "rent and sell";
-        }
-        else if(!isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell']))
-        {
+        } else if (!isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
             $market = "sell";
-        }
-        else if(isset($_POST['fieldPriceRent']) && !isset($_POST['fieldPriceSell']))
-        {
+        } else if (isset($_POST['fieldPriceRent']) && !isset($_POST['fieldPriceSell'])) {
             $market = "rent";
         }
         $this->setFieldMarketCategory($market);
         $this->setFieldTableType(1);
-        
+
         //create a folder for image upload
-        $directory = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$_item.'/user_id_'.$_userId.'/item_temp_id_'.$_itemTempId;
+        $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
         mkdir($directory, 0777, true);
         while (!file_exists($directory)) {
             mkdir($directory, 0777, true);
             $_itemTempId = random_int(0, 999);
         }
-    
+
         //create a prefic for all images, with userId and item tempId
-        $imgPrefix = 'hulutera_user_id_'.$_userId.'_item_temp_id_'.$_itemTempId.'_';
-    
+        $imgPrefix = 'hulutera_user_id_' . $_userId . '_item_temp_id_' . $_itemTempId . '_';
+
         // initialize FileUploader
         $FileUploader = new FileUploader('files', array(
             'limit' => null,
@@ -826,7 +821,7 @@ class HtItemCar extends MySqlRecord
             'fileMaxSize' => null,
             'extensions' => null,
             'required' => true,
-            'uploadDir' => $directory.'/',
+            'uploadDir' => $directory . '/',
             'title' => 'hulutera',
             'replace' => false,
             'editor' => array(
@@ -838,18 +833,18 @@ class HtItemCar extends MySqlRecord
             'files' => null,
             'id' => $imgPrefix
         ));
-    
+
         // unlink the files
         // !important only for preloaded files
         // you will need to give the array with appendend files in 'files' option of the fileUploader
         foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
             unlink('../uploads/' . $value['name']);
         }
-    
-    
+
+
         // call to upload the files
         $data = $FileUploader->upload();
-    
+
         // if uploaded and success
         if ($data['isSuccess'] && count($data['files']) > 0) {
             // get uploaded files
@@ -858,13 +853,12 @@ class HtItemCar extends MySqlRecord
         // if warnings
         if ($data['hasWarnings']) {
             $warnings = $data['warnings'];
-            header('Location: ../../template.upload.php?type=' . $this->getTableName().'&='.$warnings);
+            header('Location: ../../template.upload.php?type=' . $this->getTableName() . '&=' . $warnings);
         }
-    
+
         // get the fileList and encode in json
         $fileList = json_encode($FileUploader->getFileList('name'));
         $this->setFieldImage($fileList);
-        
     }
 
     /**
@@ -1391,7 +1385,7 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-$this->resetLastSqlError();
+        $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1497,26 +1491,52 @@ SQL;
      * Class attribute for storing default upload values from upload functionality     
      */
     private $uploadOption = array(
-        'fieldLocation' => 'option' ,
-        'idCategory' => 'option' ,
-        'fieldMake' => 'input' ,
-        'fieldModel' => 'input' ,
-        'fieldModelYear' => 'option' ,
-        'fieldGearType' => 'option' ,
-        'fieldFuelType' => 'option' ,
-        'fieldMilage' => 'option' ,
-        'fieldNoOfSeat' => 'option' ,
+        'fieldLocation' => 'option',
+        'idCategory' => 'option',
+        'fieldMake' => 'input',
+        'fieldModel' => 'input',
+        'fieldModelYear' => 'option',
+        'fieldGearType' => 'option',
+        'fieldFuelType' => 'option',
+        'fieldMilage' => 'option',
+        'fieldNoOfSeat' => 'option',
         'fieldColor' => 'option',
-        'fieldPriceRent' => 'input' ,
+        'fieldPriceRent' => 'input',
         'fieldPriceRate' => 'option',
-        'fieldPriceSell' => 'input' ,
+        'fieldPriceSell' => 'input',
         'fieldPriceCurrency' => 'option',
         'fieldPriceNego' => 'option',
-        'fieldTitle' => 'input' ,
+        'fieldTitle' => 'input',
         'fieldExtraInfo' => 'input',
         'fieldContactMethod' => 'option',
         'fileuploader-list-files' => 'input'
     );
+
+      /**
+     * Class attribute for storing default upload values from upload functionality     
+     */
+    private $uploadOptionShort = array(
+        'fieldLocation' => 'Location',
+        'idCategory' => 'Type',
+        'fieldMake' => 'Make',
+        'fieldModel' => 'Model',
+        'fieldModelYear' => 'Year Made',
+        'fieldGearType' => 'Gear Type',
+        'fieldFuelType' => 'Fuel Type',
+        'fieldMilage' => 'Milage',
+        'fieldNoOfSeat' => 'No of Seats',
+        'fieldColor' => 'Color',
+        'fieldPriceRent' => 'Rent Price',
+        'fieldPriceRate' => 'Rent Rate',
+        'fieldPriceSell' => 'Sell Price',
+        'fieldPriceCurrency' => 'Curreny',
+        'fieldPriceNego' => 'Negotiable',
+        'fieldTitle' => 'Title',
+        'fieldExtraInfo' => 'Extra Info',
+        'fieldContactMethod' => 'Contact Method',
+        'fileuploader-list-files' => 'Image files'
+    );
+
     /**
      * Facility for access upload options
      * @category DML Helper
@@ -1528,6 +1548,18 @@ SQL;
     }
 
     /**
+     * Facility for access upload options
+     * @category DML Helper
+     * @return uploadOptions
+     */
+    public function getUploadOptionShort($key)
+    {
+        return $this->uploadOptionShort[$key];
+    }
+
+
+
+    /**
      * Facility for upload a new row into item_car.
      *
      * All class attribute values defined for mapping all table fields are automatically used during updating.
@@ -1536,40 +1568,78 @@ SQL;
      */
     public function upload()
     {
-        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">';        
-        $this->inputItemLocation();
-        $this->inputCarType();
-        $this->inputCarMake();
-        $this->inputCarModel();
-        $this->inputCarYear();
-        $this->inputCarGearType();
-        $this->inputCarFuelType();
-        //$this->inputCarPlateType();
-        $this->inputCarMilage();
-        $this->inputCarSeat();
-        $this->inputCarColor();
-        $this->inputItemPrice();
-        $this->inputTitle();
-        //$this->inputExtraInfo();        
-        $this->inputItemContactMeWith($this->getTableName());
-        $this->inputItemImages();
-        if($_SESSION['warnings'])
-        {
+        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">';
+        $this->newForm();
+        if ($_SESSION['warnings']) {
             echo '<pre>';
-            print_r($_SESSION['warnings']);    
+            print_r($_SESSION['warnings']);
             echo '</pre>';
         }
         $_SESSION['warnings'] = null;
         echo '<div class="form-group row no-gutters">
-                <div class="col-xs-offset-4 col-xs-8">
+                <div class="col-md-offset-4">
                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                 </div>
              </div>
         </form>';
-        
     }
+
+    private function newForm()
+    {
+        echo '<div class="container-fluid" style="margin-left:15%; margin-right:15%;">';
+        echo '<div class="row">';
+        echo '<div class="col-md-12">';
+        echo '<div class="row">';
+        $this->inputItemLocation();
+        echo '</div>';
+        echo '<div class="row">';
+        $this->inputTitle();
+        echo '</div>';
+        echo '<div class="row">';
+        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
+        echo '<div class="row upload">';
+        $this->inputCarType();
+        $this->inputCarMake();
+        $this->inputCarModel();
+        echo '</div>';
+        echo '<div class="row upload">';
+        $this->inputCarYear();
+        $this->inputCarGearType();
+        $this->inputCarFuelType();
+        echo '</div>';
+        echo '<div class="row upload">';
+        $this->inputCarMilage();
+        $this->inputCarSeat();
+        $this->inputCarColor();
+        echo '</div></div></div>';
+        echo '<div class="row">';
+        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
+        echo '<div class="row upload">';
+        $this->inputItemPrice();
+        echo '</div></div></div>';
+        echo '<div class="row">';
+        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
+        echo '<div class="row upload">';
+        $this->inputItemContactMeWith();
+        echo '</div></div></div>';
+        echo '<div class="row">';
+        echo '<div class="col-md-12" style="border:1px solid #c7c7c7;">';
+        echo '<div class="row upload">';
+        $this->inputItemImages();
+        echo '</div></div></div></div></div>';
+    }
+
     private function inputItemLocation()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldLocation']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldLocation'] .'</div>';
+        }
+        $choose = "Choose Item Location";
+        if (isset($_SESSION['POST']['fieldLocation'])) {
+            $choose = $_SESSION['POST']['fieldLocation'];
+        }
         $location = array(
             "Addis Ababa" => "Addis Ababa",
             "Dire Dawa" => "Dire Dawa",
@@ -1594,55 +1664,89 @@ SQL;
             "Sodo"  => "Sodo",
             "Somali-Jijig" => "Somali-Jijig",
             "Axum"  => "Axum",
-            "Other"  => "Other",
+            "Other"  => "Other"
         );
         echo '
+        <div class="col-md-4">
         <div class="form-group">
-           <label for="fieldLocation" class="control-label col-xs-4">Item Location</label> 
-           <div class="col-xs-8">
-             <select id="fieldLocation" name="fieldLocation" class="select form-control" required="required">
-             <option value="'.$_SESSION['POST']['fieldLocation'].'">'.$_SESSION['POST']['fieldLocation'].'</option>';
-
+           <label for="fieldLocation">Item Location</label> 
+           '.$errorDiv.'
+           <div>
+             <select id="fieldLocation" name="fieldLocation" class="select form-control" >';
+             echo '<option value="' . $choose . '">' . $choose . '</option>';
         foreach ($location as $key => $value) {
             echo '<option value="' . $key . '">' . $value . '</option>';
         }
-        echo '</select></div></div>';
+        echo '</select></div></div></div>';
     }
     private function inputItemImages()
     {
-        echo '<div class="form-group">
-            <label for="fieldImage" class="control-label col-xs-4"><br><br><br><br>Choose Images here</label>
-            <div class="col-xs-8">
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fileuploader-list-files']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fileuploader-list-files'] .'</div>';
+        }
+        echo '<div class="row upload">';
+        echo '
+        <div class="form-group">
+        '.$errorDiv.'
+            <label for="fieldImage">Choose Images here</label>
+            <div>
                     <!-- file input -->
-                    <input type="file" name="files" required="required">
+                    <input type="file" name="files">
             </div>
-        </div>';
+        </div>
+        </div>
+        ';
     }
     private function inputCarType()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['idCategory']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['idCategory'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
         <div class="form-group">
-            <label for="idCategory" class="control-label col-xs-4">Type</label> 
-        <div class="col-xs-8">
-        <select id="idCategory" name="idCategory" class="select form-control" required="required">
-        <option value="'.$_SESSION['POST']['idCategory'].'">'.$_SESSION['POST']['idCategory'].'</option>
-        ';
+        '.$errorDiv.'
+            <label for="idCategory">Type</label> 
+        <div>
+        <select id="idCategory" name="idCategory" class="select form-control">';
+        $choose = "Choose Car Type";
+        if (isset($_SESSION['POST']['idCategory'])) {
+            $choose = $_SESSION['POST']['idCategory'];
+        }
+
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
         while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . $row['id'] . '">' . $row['field_name'] . '</option>';
+            echo '<option value="' . $row['field_name'] . '">' . $row['field_name'] . '</option>';
         }
-        echo '</select></div></div>';
+        echo '</select></div></div></div>';
     }
 
     private function inputCarMake()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldMake']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMake'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
         <div class="form-group">
-           <label for="fieldMake" class="control-label col-xs-4">Make</label> 
-           <div class="col-xs-8">
-             <select id="fieldMake" name="fieldMake" class="select form-control" required="required">
-             <option value="'.$_SESSION['POST']['fieldMake'].'">'.$_SESSION['POST']['fieldMake'].'</option>';
+        '.$errorDiv.'
+           <label for="fieldMake">Make</label> 
+           <div>
+             <select id="fieldMake" name="fieldMake" class="select form-control">';
+        $choose = "Choose Car Make";
+        if (isset($_SESSION['POST']['fieldMake'])) {
+            $choose = $_SESSION['POST']['fieldMake'];
+        }
+
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
         $make = array(
             "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
             "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
@@ -1660,29 +1764,53 @@ SQL;
         foreach ($make as $key => $value) {
             echo '<option value="' . $key . '">' . $value . '</option>';
         }
-        echo '</select></div></div>';
+        echo '</select></div></div></div>';
     }
 
     private function inputCarModel()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldModel']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModel'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
         <div class="form-group">
-          <label for="fieldModel" class="control-label col-xs-4">Model</label> 
-          <div class="col-xs-8">
-            <input id="fieldModel" name="fieldModel" type="text" value="'.$_SESSION['POST']['fieldModel'].'" class="form-control" required="required" >
+        '.$errorDiv.'
+          <label for="fieldModel">Model</label> 
+          <div>';
+        $placeholder = "Write Car Model";
+        $value = "";
+        if (isset($_SESSION['POST']['fieldModel'])) {
+            $value = $_SESSION['POST']['fieldModel'];
+        }
+        echo '
+            <input id="fieldModel" name="fieldModel" type="text" value="' . $value . '" class="form-control" placeholder="' . $placeholder . '" >
           </div>
-        </div>';
+        </div></div>';
     }
 
     private function inputCarYear()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldModelYear']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModelYear'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
         <div class="form-group">
-        <label for="fieldModelYear" class="control-label col-xs-4">Year Made</label> 
-        <div class="col-xs-8">
-        <select id="fieldModelYear" name="fieldModelYear" class="select form-control" required="required">
-          <option value="'.$_SESSION['POST']['fieldModelYear'].'">'.$_SESSION['POST']['fieldModelYear'].'</option>';
+        '.$errorDiv.'
+        <label for="fieldModelYear">Year Made</label> 
+        <div>
+        <select id="fieldModelYear" name="fieldModelYear" class="select form-control">';
+        $choose = "Choose Year Made";
+        if (isset($_SESSION['POST']['fieldModelYear'])) {
+            $choose = $_SESSION['POST']['fieldModelYear'];
+        }
 
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
 
         for ($i = date('Y'); $i >= 1980; --$i) {
             echo '<option value = "' . $i . '">' . $i . '</option>';
@@ -1694,49 +1822,78 @@ SQL;
         <option value = "1970">Cars in 70s (1970)</option>
         </select>
       </div>
-    </div>';
+    </div></div>';
     }
+
+    // private function inputCarFuelType()
+    // {
+    //     echo '
+    //     <div class="form-group">
+    //     <label for="fieldFuelType">Fuel Type</label> 
+    //     <div>
+    //       <label class="radio-inline">
+    //         <input type="radio" name="fieldFuelType" value="1" '.($_SESSION['POST']['fieldFuelType'] == 1?"checked":"").'>
+    //               Besine
+    //       </label>
+    //       <label class="radio-inline">
+    //         <input type="radio" name="fieldFuelType" value="2" '.($_SESSION['POST']['fieldFuelType'] == 2?"checked":"").'>
+    //               Diesel
+    //       </label>
+    //       <label class="radio-inline">
+    //         <input type="radio" name="fieldFuelType" value="3" '.($_SESSION['POST']['fieldFuelType'] == 3?"checked":"").'>
+    //               Bio-gas
+    //       </label>
+    //       <label class="radio-inline">
+    //         <input type="radio" name="fieldFuelType" value="4" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
+    //               Besine/Electric (Hybrid)
+    //       </label>
+    //       <label class="radio-inline">
+    //         <input type="radio" name="fieldFuelType" value="5" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
+    //               Electric
+    //       </label>
+    //     </div>
+    //   </div>
+    //     ';
+    // }
 
     private function inputCarFuelType()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldFuelType']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldFuelType'] .'</div>';
+        }
         echo '
-        <div class="form-group">
-        <label for="fieldFuelType" class="control-label col-xs-4">Fuel Type</label> 
-        <div class="col-xs-8">
-          <label class="radio-inline">
-            <input type="radio" name="fieldFuelType" value="1" required="required" '.($_SESSION['POST']['fieldFuelType'] == 1?"checked":"").'>
-                  Besine
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldFuelType" value="2" '.($_SESSION['POST']['fieldFuelType'] == 2?"checked":"").'>
-                  Diesel
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldFuelType" value="3" '.($_SESSION['POST']['fieldFuelType'] == 3?"checked":"").'>
-                  Bio-gas
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldFuelType" value="4" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
-                  Besine/Electric (Hybrid)
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldFuelType" value="5" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
-                  Electric
-          </label>
-        </div>
-      </div>
-        ';
-    }
+        <div class="col-md-4">
 
+        <div class="form-group">
+        '.$errorDiv.'
+        <label for="fieldFuelType">Fuel Type</label> 
+        <div>
+        <select id="fieldFuelType" name="fieldFuelType" class="select form-control">
+        ';
+        $choose = "Choose Fuel Type";
+        if (isset($_SESSION['POST']['fieldFuelType'])) {
+            $choose = $_SESSION['POST']['fieldFuelType'];
+        }
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
+        echo '        
+        <option value="Besine" >Besine</option>
+        <option value="Bio-gas" >Bio-gas</option>
+        <option value="Besine/Electric" >Besine/Electric</option>
+        <option value="Diesel" >Diesel</option>
+        <option value="Electric" >Electric</option>
+        </select></div></div></div>';
+    }
     //temporary disabled no database reflection, need generation
     private function inputCarPlateType()
     {
         echo '
         <div class="form-group">
-        <label for="car_registered" class="control-label col-xs-4">Registered</label> 
-        <div class="col-xs-8">
+        <label for="car_registered">Registered</label> 
+        <div>
           <label class="radio-inline">
-            <input type="radio" name="car_registered" value="1" required="required">
+            <input type="radio" name="car_registered" value="1">
                   Yes
           </label>
           <label class="radio-inline">
@@ -1748,69 +1905,129 @@ SQL;
                   Processing
           </label>
         </div>
-      </div>
+      </div></div>
         ';
     }
+    // private function inputCarGearType()
+    // {
+    //     echo '
+    //     <div class="form-group">
+    //       <label for="fieldGearType">Gear Type</label> 
+    //       <div>
+    //         <label class="radio-inline">
+    //           <input type="radio" name="fieldGearType" value="1" '.($_SESSION['POST']['fieldGearType'] == 1?"checked":"").'>
+    //                 Manual
+    //         </label>
+    //         <label class="radio-inline">
+    //           <input type="radio" name="fieldGearType" value="2" '.($_SESSION['POST']['fieldGearType'] == 2?"checked":"").'>
+    //                 Automatic
+    //         </label>
+    //         <label class="radio-inline">
+    //           <input type="radio" name="fieldGearType" value="3" '.($_SESSION['POST']['fieldGearType'] == 3?"checked":"").'>
+    //                 Semi-automatic
+    //         </label>
+    //       </div>
+    //     </div>
+    //     ';
+    // }
     private function inputCarGearType()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldGearType']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldGearType'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
+
         <div class="form-group">
-          <label for="fieldGearType" class="control-label col-xs-4">Gear Type</label> 
-          <div class="col-xs-8">
-            <label class="radio-inline">
-              <input type="radio" name="fieldGearType" value="1" required="required" '.($_SESSION['POST']['fieldGearType'] == 1?"checked":"").'>
-                    Manual
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="fieldGearType" value="2" '.($_SESSION['POST']['fieldGearType'] == 2?"checked":"").'>
-                    Automatic
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="fieldGearType" value="3" '.($_SESSION['POST']['fieldGearType'] == 3?"checked":"").'>
-                    Semi-automatic
-            </label>
-          </div>
-        </div>
-        ';
+        '.$errorDiv.'
+        <label for="fieldGearType">Gear Type</label> 
+        <div>
+        <select id="fieldMilage" name="fieldGearType" class="select form-control">';
+        $choose = "Choose Gear Type";
+        if (isset($_SESSION['POST']['fieldGearType'])) {
+            $choose = $_SESSION['POST']['fieldGearType'];
+        }
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
+
+        echo '
+        <option value="Manual" >Manual</option>
+        <option value="Automatic" >Automatic</option>
+        <option value="Semi-automatic" >Semi-automatic</option>
+        </select></div></div></div>';
     }
     private function inputCarMilage()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldMilage']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMilage'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
+
         <div class="form-group">
-        <label for="fieldMilage" class="control-label col-xs-4">Milage [km]</label> 
-        <div class="col-xs-8">
-        <select id="fieldMilage" name="fieldMilage" required="required" class="select form-control">
-        <option value="'.$_SESSION['POST']['fieldMilage'].'">'.$_SESSION['POST']['fieldMilage'].'</option>';
+        '.$errorDiv.'
+        <label for="fieldMilage">Milage [km]</label> 
+        <div>
+        <select id="fieldMilage" name="fieldMilage" class="select form-control">';
+        $choose = "Choose Milage";
+        if (isset($_SESSION['POST']['fieldMilage'])) {
+            $choose = $_SESSION['POST']['fieldMilage'];
+        }
+
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
         for ($i = 0; $i <= 40000;) {
             $j = $i + 4999;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5000;
         }
-        echo '</select></div></div>';
+        echo '</select></div></div></div>';
     }
 
     private function inputCarSeat()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldNoOfSeat']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldNoOfSeat'] .'</div>';
+        }
         echo '
+        <div class="col-md-4">
+
         <div class="form-group">
-          <label for="fieldNoOfSeat" class="control-label col-xs-4">Number of Seat</label> 
-          <div class="col-xs-8">
-            <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control" required="required">
-            <option value="'.$_SESSION['POST']['fieldNoOfSeat'].'">'.$_SESSION['POST']['fieldNoOfSeat'].'</option>';
-            for ($i = 1; $i <= 100;) {
-            $j = $i-1 + 5;
+        '.$errorDiv.'
+          <label for="fieldNoOfSeat">Number of Seat</label> 
+          <div>
+            <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control">';
+        $choose = "Choose No of Seat";
+        if (isset($_SESSION['POST']['fieldNoOfSeat'])) {
+            $choose = $_SESSION['POST']['fieldNoOfSeat'];
+        }
+
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
+
+        for ($i = 1; $i <= 100;) {
+            $j = $i - 1 + 5;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5;
         }
-        echo '</select></div></div>';
+        echo '</select></div></div></div>';
     }
 
     private function inputCarColor()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldColor']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldColor'] .'</div>';
+        }
         echo '
         <div class="form-group">
-        <label for="fieldColor" class="control-label col-xs-4">Color</label> 
-        <div class="col-xs-8"><div class="row">
+        '.$errorDiv.'
+        <label for="fieldColor">Color</label> 
+        <div class="col-md-4"><div class="row">
 		<div class="col-md-12">	<div class="btn-group" role="group">';
 
         $colors = [
@@ -1828,98 +2045,270 @@ SQL;
                 '
                 <button class="btn btn-secondary" type="button" style="background-color:' . $value . ';">
                 <input type="radio" class="square-radio" class="form-control" required="required" name="fieldColor" 
-                value="' . $value . '" ' . $key . ' '.($_SESSION['POST']['fieldColor'] == $value?"checked":"").'>    </button>';
+                value="' . $value . '" ' . $key . ' ' . ($_SESSION['POST']['fieldColor'] == $value ? "checked" : "") . '>    </button>';
         }
         echo '</div></div></div></div></div>';
     }
 
     private function inputTitle()
     {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldTitle']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldTitle'] .'</div>';
+        }
+        $placeholder= "Write your title";
+        $choose = "";
+        if (isset($_SESSION['POST']['fieldTitle'])) {
+            $choose = $_SESSION['POST']['fieldTitle'];
+        }
         echo '
+        <div class="col-md-4">
+
         <div class="form-group">
-        <label for="fieldTitle" class="control-label col-xs-4">Title</label> 
-        <div class="col-xs-8">
-          <input id="fieldTitle" name="fieldTitle" type="text" class="form-control" required="required" value="'.$_SESSION['POST']['fieldTitle'].'">
+        '.$errorDiv.'
+        <label for="fieldTitle">Title</label> 
+        <div>
+          <input id="fieldTitle" name="fieldTitle" type="text" placeholder="'. $placeholder . '" value="' . $choose . '" class="form-control">
         </div>
-      </div>';
+      </div></div>';
     }
     private function inputExtraInfo()
     {
         echo '
         <div class="form-group">
-        <label for="fieldExtraInfo" class="control-label col-xs-4">Extra Info</label> 
-        <div class="col-xs-8">
-          <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control" required="required">'.$_SESSION['POST']['fieldExtraInfo'].'</textarea>
+        <label for="fieldExtraInfo">Extra Info</label> 
+        <div>
+          <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control">' . $_SESSION['POST']['fieldExtraInfo'] . '</textarea>
         </div>
-      </div>';
+      </div></div>';
     }
 
-    private function inputItemContactMeWith($item)
+    private function inputItemContactMeWith()
     {
-        echo '       
-      <div class="form-group">
-        <label for="fieldContactMethod" class="control-label col-xs-4">Contact Me With</label> 
-        <div class="col-xs-8">
-          <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="1" required="required" '.($_SESSION['POST']['fieldContactMethod'] == 1?"checked":"").'>
-                  Phone
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="2" '.($_SESSION['POST']['fieldContactMethod'] == 2?"checked":"").'>
-                  E-mail
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="3" '.($_SESSION['POST']['fieldContactMethod'] == 3?"checked":"").'>
-                  All
-          </label>
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldContactMethod']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldContactMethod'] .'</div>';
+        }
+        $choosePhone = "";
+        $chooseEmail = "";
+        $chooseBoth = "";
 
+        if (isset($_SESSION['POST']['fieldContactMethod'])) {
+            if ($_SESSION['POST']['fieldContactMethod'] == "phone") {
+                $choosePhone = "checked";
+            }else if ($_SESSION['POST']['fieldContactMethod'] == "email") {
+                $chooseEmail = "checked";
+            }else if ($_SESSION['POST']['fieldContactMethod'] == "both") {
+                $chooseBoth = "checked";
+            }
+        }
+        echo '<div class="col-md-4">     
+      <div class="form-group">
+      '.$errorDiv.'
+        <label for="fieldContactMethod">Contact Me With</label> 
+        <div>
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="phone" required="required" '.$choosePhone.'> Phone </label>
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="email" '.$chooseEmail.'> E-mail </label>
+          <label class="radio-inline">
+            <input type="radio" name="fieldContactMethod" value="both" '.$chooseBoth.'> All </label>
         </div>
-      </div>    
+      </div></div>    
       ';
     }
 
     private function inputItemPrice()
     {
-        echo '<div class="form-group">
-                    <label for="fieldPriceRent" class="control-label col-xs-4">Price</label> 
-                    <div class="col-xs-8">
-                        <div class="col-xs-6">
-                             <div class="input-group my-group"> 
-                                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="write 0 if not rental" value="'.$_SESSION['POST']['fieldPriceRent'].'" class="form-control" required="required">
-                                <select id="fieldPriceRate" name="fieldPriceRate" class="select form-control rate" required="required">
-                                <option value="'.$_SESSION['POST']['fieldPriceRate'].'">'.$_SESSION['POST']['fieldPriceRate'].'</option>';
-        $colors = [
-            "not_rental" => "Not for rental",
+        echo '
+        <div class="row upload">
+            <div class="col-md-4">
+                <div class="form-group">';
+        $this->inputPriceRentOrSell();
+        $this->priceNegotiable();
+        $this->inputPriceCurreny();
+        echo '</div></div>';
+        $this->inputPriceRentType();
+        $this->inputPriceSellType();
+        echo '</div>';
+    }
+
+    private function inputPriceRentOrSell()
+    {       
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['rent-or-sell']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['rent-or-sell'] .'</div>';
+        }
+        $chooseRent = "";
+        $chooseSell = "";
+        $chooseBoth = "";
+        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent")
+        {
+            $chooseRent = "checked";
+        }
+        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "sell")
+        {
+            $chooseSell = "checked";
+        }
+        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent-or-sell")
+        {
+            $chooseBoth = "checked";
+        }
+
+        echo '<div class="row" style="padding: 0 0 0 10px;">
+        '.$errorDiv.'
+        <label for="price">Do you want to Rent or Sell?</label>
+        <div>
+            <label class="radio-inline">
+                <input type="radio" name="rent-or-sell" id="rent" required="required" value="rent" '.$chooseRent.'>Rent
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="rent-or-sell" id="sell" value="sell" '.$chooseSell.'>Sell
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="rent-or-sell" id="rent-or-sell" value="rent-or-sell" '.$chooseBoth.'>Both
+            </label>
+        </div>
+    </div>';
+    }
+    private function priceNegotiable()
+    {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldPriceNego']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceNego'] .'</div>';
+        }
+        $chooseYes = "";
+        $chooseNo = "";
+        if (isset($_SESSION['POST']['fieldPriceNego'])) {
+            if ($_SESSION['POST']['fieldPriceNego'] == "Yes") {
+                $chooseYes = "checked";
+            }else if ($_SESSION['POST']['fieldPriceNego'] == "No") {
+                $chooseNo = "checked";
+            }
+        }    
+        echo '<div class="row" style="padding:10px 0 0 10px;">
+        '.$errorDiv.'
+        <label for="price">Price is negotiable</label>
+        <div>
+            <label class="radio-inline">
+                <input type="radio" name="fieldPriceNego" id="sell" required="required" value="Yes" '.$chooseYes.'>Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="fieldPriceNego" id="rent" value="No" '.$chooseNo.'>No
+            </label>
+
+        </div>
+    </div>';
+    }
+    private function inputPriceCurreny()
+    {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldPriceCurrency']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceCurrency'] .'</div>';
+        }
+        echo '<div class="row" style="padding:10px 0 0 10px;">
+        '.$errorDiv.'
+        <label for="fieldPriceCurrency">Currency</label> 
+        <select id="fieldPriceCurrency" name="fieldPriceCurrency" class="select form-control">';
+        $choose = "ETB";
+        if (isset($_SESSION['POST']['fieldPriceCurrency'])) {
+            $choose = $_SESSION['POST']['fieldPriceCurrency'];
+        }
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
+        echo '<option value="USD">$USD</option>
+        </select>
+    </div>';
+    }
+
+
+    private function inputPriceRentType()
+    {
+        $errorDiv1 = "";
+        $errorDiv2 = "";
+        if(isset($_SESSION['errorRaw']['fieldPriceRent']))
+        {
+            $errorDiv1 = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceRent'] .'</div>';
+        }
+        if(isset($_SESSION['errorRaw']['fieldPriceRate']))
+        {
+            $errorDiv2 = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceRate'] .'</div>';
+        }
+        $diplayRent = "display: none; background:#fafbfd;";
+        if(isset($_SESSION['POST']["rent-or-sell"]) && 
+           ($_SESSION['POST']["rent-or-sell"] == "rent" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell"))
+        {
+            $diplayRent = "display: block; background:#fafbfd;";
+        }
+
+        $placeholder = "How much for Rent?";
+        $choose = "0";
+        if (isset($_SESSION['POST']['fieldPriceRent'])) {
+            $choose = $_SESSION['POST']['fieldPriceRent'];
+        }
+        echo '
+        <div class="col-md-4 fieldPriceRent" style="'.$diplayRent.'">
+        <div class="form-group" style="padding:10px 0 0 10px;">
+        <div>
+            <div class="row" style="padding:10px 0 0 10px;">
+            '.$errorDiv1.'
+            <label for="fieldPriceRent">Rent Price</label>
+                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="'. $placeholder . '"  value="' . $choose . '" class="form-control">
+            </div>
+            <div class="row" style="padding:10px 0 0 10px;">
+            '.$errorDiv2.'
+                <label for="fieldPriceRate">Rate</label> 
+                <select id="fieldPriceRate" name="fieldPriceRate" class="form-control">';
+        $choose = "Choose Rental Rate";
+        if (isset($_SESSION['POST']['fieldPriceRate'])) {
+            $choose = $_SESSION['POST']['fieldPriceRate'];
+        }
+        echo '<option value="' . $choose . '">' . $choose . '</option>';
+        $rate = [
             "hour" => "hourly",
             "day" => "daily",
             "month" => "monthly",
             "year" => "yearly"
         ];
-        foreach ($colors as $key => $value) {
+        foreach ($rate as $key => $value) {
             echo '<option value="' . $value . '">' . $value . '</option>';
         }
-        echo '</select>
-                            <input id="fieldPriceSell" name="fieldPriceSell" type="text"  placeholder="write 0 if not sell" value="'.$_SESSION['POST']['fieldPriceSell'].'" class="form-control" required="required">
-                            <select id="fieldPriceCurrency" name="fieldPriceCurrency" required="required" class="select form-control">
-                              <option value="'.$_SESSION['POST']['fieldPriceCurrency'].'">'.$_SESSION['POST']['fieldPriceCurrency'].'</option>
-                              <option value="ETB">ETB</option>
-                              <option value="USD">$USD</option>
-                            </select>
-                            <div class="form-group">
-                            <label  class="control-label col-xs-6">Price is negotiable</label>
-                            <div class="col-xs-6">
-                            <label class="radio-inline">
-                            <input type="radio" name="fieldPriceNego" value="1" required="required" '.($_SESSION['POST']['fieldPriceNego'] == 1?"checked":"").'>
-                                  Yes
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="fieldPriceNego" value="2" '.($_SESSION['POST']['fieldPriceNego'] == 2?"checked":"").'>
-                                  No
-                          </label>
-                          </div></div>
-                       </div>
-                   </div>
-              </div>
-                </div>';
+        echo '</select></div>
+</div></div></div>';
+    }
+
+    private function inputPriceSellType()
+    {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fieldPriceSell']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceSell'] .'</div>';
+        }
+        $diplaySell = "display: none; background:#fafbfd;";
+        if(isset($_SESSION['POST']["rent-or-sell"]) && 
+           ($_SESSION['POST']["rent-or-sell"] == "sell" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell"))
+        {
+            $diplaySell = "display: block; background:#fafbfd;";
+        }
+        
+        $placeholder = "How much for Sell?";
+        $choose = "0";
+        if (isset($_SESSION['POST']['fieldPriceSell'])) {
+            $choose =$_SESSION['POST']['fieldPriceSell'];
+        }
+
+        echo '
+        <div class="col-md-4 fieldPriceSell" style="'.$diplaySell.'">
+        <div class="form-group" style="padding:10px 0 0 10px;">
+        '.$errorDiv.'
+        <div>
+        <div class="row" style="padding:10px 0 0 10px;">
+            <label for="fieldPriceSell">Sell Price</label> 
+                <input id="fieldPriceSell" name="fieldPriceSell" type="text" placeholder="' . $placeholder . '" value="' . $choose . '"  class="form-control">
+           </div></div></div></div>';
     }
 }

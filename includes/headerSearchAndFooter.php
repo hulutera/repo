@@ -2,7 +2,7 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
-if ($_GET['lan']) {
+if (isset($_GET['lan'])) {
 	global $language;
 	$language = $_GET['lan'];
 	// url exetention for language on hyperlinks without "?"
