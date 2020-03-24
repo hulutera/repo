@@ -3,15 +3,19 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
 if (isset($_GET['lan'])) {
+	global $language;
+	$language = $_GET['lan'];
 	//var_dump($_GET);
 	// url exetention for language on hyperlinks without "?"
-	$lang_url = "?&lan=" . $_GET['lan'];
+	$lang_url = "?&lan=" . $language;
+	
 	// url exetention for language on hyperlinks with "?"
 	$str_url = str_replace("?", "", $lang_url);
 	require_once $documnetRootPath . '/includes/locale/' . $_GET['lan'] . '.php';	
 }
 else
 { 
+	$language = "";
 	$lang_url = "";
 	$str_url = "";
 	require_once $documnetRootPath . '/includes/locale/en.php';
@@ -187,11 +191,11 @@ function topRightLinks()
 /*search*/
 function miniSearch()
 {
-	global $lang, $lang_url, $str_url, $city_lang_arr;
+	global $lang, $lang_url, $str_url, $city_lang_arr, $language;
 	global $item_lang_arr;
 	echo '<div style="width:100%">';
-	echo '<form class="searchform" action="../../includes/search.php' .$lang_url. '" method ="GET">';
-	echo '<input name="search_text" class="searchfield" type="text"  placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
+	echo '<form class="searchform" action="../../includes/search.php" method ="GET">';
+	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
 	echo ' <select id="city" name="cities">';
 	foreach ($city_lang_arr as $key => $value){
 		echo '<option value = "' . $key . '">'.$value.'</option>';
@@ -202,7 +206,8 @@ function miniSearch()
 		echo '<option value = "' . $key . '">'.$value.'</option>';
 	}		
 	echo '</select>';
-	echo '<button name="search_mini_form" class="searchbutton"><i class="fa fa-search"></i> ' . $lang['Search'] . '</button>';
+	echo '<input name="lan" type="text" style="display:none" value="' . $language . '" >';
+   	echo '<button class="searchbutton"><i class="fa fa-search"></i>' . $lang['Search'] . '</button>';
 	echo '</form>';
 	echo '</div>';
 }
