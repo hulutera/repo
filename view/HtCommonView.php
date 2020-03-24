@@ -709,13 +709,13 @@ class HtCommonView{
             }
             $calculatePageArray = calculatePage($totalItems);
             $result->close();
-            item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $location);
+            item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
         } else {
                 //To avoid a wildcard value for search word
                 if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
                     $searchWordSanitized = "No searchword given";
                     $connector = "OR";
-                } elseif ($searchWordSanitized != "" and ($city != "000" or $item != "000")){
+                } else {
                     $connector = "AND";
                 }
 
@@ -798,7 +798,7 @@ class HtCommonView{
                     } }
 
                     $calculatePageArray = calculatePage($numbreOfMatches);
-                    item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $location);
+                    item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
    
                 } else if ($numbreOfMatches < 1) {
                     echo '<div id="mainColumnX">

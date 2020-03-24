@@ -168,8 +168,8 @@ $lang = array (
     'Contact Information including email address' => 'የሚገኙበት መረጃ ማለትም ስልክ፣ኢሜይል ወዘተ',
     'What we do with the information we gather:' => 'ያስገቧቸውን መረጃዎች',
     'We may use the information to improve our services.' => 'አገልግሎታችንን ለማሻሻል ልንጠቀምባቸው እንችላለን',
-    'We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.' => 'የተለያዩ አዳዲስ ውጤቶች እና ለእርሶ ይጠቅማሉ ብለን ያሰብናቸውን ነገሮች ለመላክ ልንጠቀምባቸው እንችላለን',
-    'From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.' => 'ድሕረ ገፁ ከጊዜው ጋር የሚራመድ እና የርሶን ፍላጎት ያሟላ ስለመሆኑ ልንጠይቆት ልንጠቀምባቸው እንችላለን',
+    'We may periodically send promotional emails msg' => 'የተለያዩ አዳዲስ ውጤቶች እና ለእርሶ ይጠቅማሉ ብለን ያሰብናቸውን ነገሮች ለመላክ ልንጠቀምባቸው እንችላለን',
+    'From time to time send info msg' => 'ድሕረ ገፁ ከጊዜው ጋር የሚራመድ እና የርሶን ፍላጎት ያሟላ ስለመሆኑ ልንጠይቆት ልንጠቀምባቸው እንችላለን',
     'Links to other websites' => 'ሌሎች ድሕረ ገፆች',
     'Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.' => 'በድሕረ ገፃችን ላይ ሌሎች ድሕረ ገፆች ሊታዩ ይችላሉ በማናቸውም ጊዜያት እነዚህ ድሕረ ገፆችን ተጭነው ወደነሱ ገፅ ላይ ከሄደ፤ ከዛ ወዲያ ሁሉተራ ምንም አይነት ሀላፊነት የለበትም።',
     'hulutera Admin' => 'የሁሉተራ አስተዳደር',
@@ -251,9 +251,8 @@ $lang = array (
     እነዚህን ይዘቶች ለማንኛውም ያልተገባ ተግባራት ከሁሉተራ እውቅና ውጪ መጠቀም በጥብቅ የተከለከለ ነው።
     <br /><br /><span class="tosTitle" style="font-size:14pt;">የመጠቀም ውል መቋረጥ</span>
     <br /><br />
-    ይህንን የተጠቃሚ ስምምነት ውል የሚጥስ ማንኛውም ተግባር ከፈፀሙ እንደሁኔታው በከፊል ወይም ሙሉ በሙሉ ከመጠቀም ልናግዶት እንደምንችል ተስማምተዋል።
-    <br /><br />
-    ማንኛውም ይህንን የተጠቃሚ ስምምነት የሚተላለፉ ተግባራት በህግ ያስቀጣል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
+    ይህንን የተጠቃሚ ስምምነት ውል የሚጥስ ማንኛውም ተግባር ከፈፀሙ እንደሁኔታው በከፊል ወይም ሙሉ በሙሉ ከመጠቀም ልናግዶት እንደምንችል ተስማምተዋል። ይህንንም እገዳ በማሳወቅ ወይም ባለማሳወቅ ተግባራዊ ልናደርገው እንደምንችል ተስማምተዋል።
+    ማንኛውም በወንጀል የሚጠረጠር ወይም የማጭበርበር ወይም ሌላውን የመተንኮስ ተግባራት ፤ ፈጣን የሆነ የተጠቃሚነት መብት እገዳ ያስከትላል እንዲሁም እንደሁኔታው ለፀጥታ አካላት የማሳወቅ ሀላፊነታችንን እንወጣለን። የተጠቃሚነት መብቶን ለተወሰነ ጊዜ ወይም ከናካቴው ስናቋርጥ ፤ እርሶ ያስገቡትን አጠቃላይ መረጃ የማጥፋት መብቱ ይኖረናል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
     <br /><br />
     በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
     'login' => 'ይግቡ',
@@ -340,7 +339,8 @@ $lang = array (
     'facebook' => 'ፌስቡክ',    
     'twitter' => 'ትዊተር',
     'pintrest' => 'ፒኢንትረስት',
-    'youtube' => ' ዩትዩብ'
+    'youtube' => ' ዩትዩብ',
+    'privacy policy paragraph1 text' => 'የግልዎን መረጃ አንሸጥም ፣ አንበትንም እንዲሁም ከእርስዎ ፍቃድ ውጪ ለሌላ አካል አናጋራም ሆኖም ግን በህግ ከተጠየቅን የማሳየ ግዴት ይኖርብናል።'
 
 
 

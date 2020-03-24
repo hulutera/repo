@@ -223,15 +223,15 @@ function privacyPolicy()
 			</p>
 			<p class="aboutus">' . $lang['This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.'] . '	</p>
 			<p class="aboutus"> ' . $lang['What we collect'] . '
-			<li class="aboutUsli">•' . $lang['Your name'] . '</li>
-			<li class="aboutUsli">•' . $lang['Contact Information including email address'] . '</li>
+			<li class="aboutUsli">• ' . $lang['Your name'] . '</li>
+			<li class="aboutUsli">• ' . $lang['Contact Information including email address'] . '</li>
 			</p>
 			<p class="aboutus">
 			<big><strong>' . $lang['What we do with the information we gather:'] . '</strong></big>
-			<li class="aboutUsli">•' . $lang['Your name'] . 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen. </li>
-			<li class="aboutUsli">•' . $lang['We may use the information to improve our services.'] . '</li>
-			<li class="aboutUsli">•' . $lang['We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.'] .'</li>
-			<li class="aboutUsli">•' . $lang['From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.'] . '</li>
+			<li class="aboutUsli">• ' . $lang['privacy policy paragraph1 text'] . '</li>
+			<li class="aboutUsli">• ' . $lang['We may use the information to improve our services.'] . '</li>
+			<li class="aboutUsli">• ' . $lang['We may periodically send promotional emails msg'] .'</li>
+			<li class="aboutUsli">• ' . $lang['From time to time send info msg'] . '</li>
 			</p>
 			<p class="aboutus">
 			<big><strong>' . $lang['Links to other websites'] . '</strong></big>
@@ -242,7 +242,7 @@ function privacyPolicy()
 			<p class="aboutus">
 			' . $lang['hulutera Admin'] . '
 			</p>
-			</div>			
+			</div></div>		
 			';
 }
 

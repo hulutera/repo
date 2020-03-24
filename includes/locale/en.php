@@ -166,8 +166,8 @@ $lang = array (
     'Contact Information including email address' => 'Contact Information including email address',
     'What we do with the information we gather:' => 'What we do with the information we gather:',
     'We may use the information to improve our services.' => 'We may use the information to improve our services.',
-    'We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.' => 'We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.',
-    'From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.' => 'From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.',
+    'We may periodically send promotional emails msg' => ' We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.',
+    'From time to time send info msg' => ' From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.',
     'Links to other websites' => 'Links to other websites',
     'Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.' => 'Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.',
     'hulutera Admin' => 'hulutera Admin',
@@ -265,7 +265,7 @@ $lang = array (
     All content and materials available on hulutera, including but not limited to text, graphics, website name, code, images and logos are the intellectual property of hulutera, and are protected by applicable copyright and trademark law.  Any inappropriate use, including but not limited to the reproduction, distribution, display or transmission of any content on this site is strictly prohibited, unless specifically authorized by hulutera.
     <br /><br /><span class="tosTitle" style="font-size:14pt;">Termination of Use</span>
     <br /><br />
-    You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your relationship and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
+    You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your account and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
     <br /><br />
     If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us',
     'login' => 'Login',
@@ -358,7 +358,8 @@ $lang = array (
     'facebook' => 'acebook',    
     'twitter' => 'witter',
     'pintrest' => 'intrest',
-    'youtube' => ' YouTube'
+    'youtube' => ' YouTube',
+    'privacy policy paragraph1 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.'
 );
 
 $city_lang_arr = array(
