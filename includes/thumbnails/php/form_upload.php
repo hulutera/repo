@@ -42,6 +42,8 @@ if (!empty($err)) {
 	$err = [];
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
+	$_SESSION['errorRaw']  = null;
+
 	$_item = $_GET['table'];
 	//get item instance
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_item, null);

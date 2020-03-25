@@ -769,7 +769,11 @@ class HtItemCar extends MySqlRecord
     {
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
-        $_itemTempId = bin2hex(random_int(20, 50) . random_int(20, 50));
+        //$_itemTempId = bin2hex(random_int(20, 50) . random_int(20, 50));
+        
+        $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
+        $_itemTempId = (int)$result->fetch_object()->id_temp + 1;
+echo $_itemTempId;
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
@@ -808,7 +812,6 @@ class HtItemCar extends MySqlRecord
         mkdir($directory, 0777, true);
         while (!file_exists($directory)) {
             mkdir($directory, 0777, true);
-            $_itemTempId = random_int(0, 999);
         }
 
         //create a prefic for all images, with userId and item tempId
@@ -1721,8 +1724,9 @@ SQL;
         echo '<option value="' . $choose . '">' . $choose . '</option>';
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
+        
         while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . $row['field_name'] . '">' . $row['field_name'] . '</option>';
+            echo '<option value="' . $row['id'] . '">' . $row['field_name'] . '</option>';
         }
         echo '</select></div></div></div>';
     }
@@ -2044,7 +2048,7 @@ SQL;
             echo
                 '
                 <button class="btn btn-secondary" type="button" style="background-color:' . $value . ';">
-                <input type="radio" class="square-radio" class="form-control" required="required" name="fieldColor" 
+                <input type="radio" class="square-radio" class="form-control"  name="fieldColor" 
                 value="' . $value . '" ' . $key . ' ' . ($_SESSION['POST']['fieldColor'] == $value ? "checked" : "") . '>    </button>';
         }
         echo '</div></div></div></div></div>';
@@ -2110,7 +2114,7 @@ SQL;
         <label for="fieldContactMethod">Contact Me With</label> 
         <div>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="phone" required="required" '.$choosePhone.'> Phone </label>
+            <input type="radio" name="fieldContactMethod" value="phone"  '.$choosePhone.'> Phone </label>
           <label class="radio-inline">
             <input type="radio" name="fieldContactMethod" value="email" '.$chooseEmail.'> E-mail </label>
           <label class="radio-inline">
@@ -2163,7 +2167,7 @@ SQL;
         <label for="price">Do you want to Rent or Sell?</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="rent" required="required" value="rent" '.$chooseRent.'>Rent
+                <input type="radio" name="rent-or-sell" id="rent"  value="rent" '.$chooseRent.'>Rent
             </label>
             <label class="radio-inline">
                 <input type="radio" name="rent-or-sell" id="sell" value="sell" '.$chooseSell.'>Sell
@@ -2195,7 +2199,7 @@ SQL;
         <label for="price">Price is negotiable</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="fieldPriceNego" id="sell" required="required" value="Yes" '.$chooseYes.'>Yes
+                <input type="radio" name="fieldPriceNego" id="sell"  value="Yes" '.$chooseYes.'>Yes
             </label>
             <label class="radio-inline">
                 <input type="radio" name="fieldPriceNego" id="rent" value="No" '.$chooseNo.'>No
