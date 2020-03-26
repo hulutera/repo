@@ -2939,10 +2939,17 @@ th {
 	color: white;
 	cursor: pointer;
 }
+.controlPanelRight  td{
+	padding-bottom: 5px;
+}
 
 .controlPanelLeft strong {
 	font-style: italic;
 	font-weight: bold;
+}
+
+.controlPanelLeft td{
+	padding-bottom: 5px;
 }
 
 .clientHeader {

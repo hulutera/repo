@@ -45,8 +45,7 @@ function accountLinks()
 	echo "<div class='item-list'>";
 	echo "<span>" .$lang['active']. "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
 	echo "<a ";
-	if (activatetab() == 15)
-	{
+	if (activatetab() == 15) {
 		echo "class=\"active\"";
 	}
 	echo 'href="../includes/userPending.php' .$lang_url. '" >';
@@ -81,8 +80,7 @@ function accountLinks()
 		echo 'href="../includes/reportedItems.php' .$lang_url. '">';
 		echo "<div class='item-list'>";
 		echo "<span>" .$lang['reported']. "(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
-		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1)
-		{
+		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
 			if($adminTotal == 1 || $webmasterTotal == 1) {
 				echo "<a ";
 				if (activatetab() == 16)
@@ -102,7 +100,7 @@ function accountLinks()
 			echo "<div class='item-list'>";
 			echo "<span>" .$lang['messages']. "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 			
-			echo '<a class="item-list-cp" href="../includes/controlPanel.php?err=0' .$str_url. '">';
+			echo '<a class="item-list-cp" href="../includes/controlPanel.php?' .$str_url. '">';
 			echo "<div class='item-list-cp'>";
 			echo "<span>" .$lang['cp']. "</span></div></a>";
 			echo "</div>";

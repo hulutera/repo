@@ -359,7 +359,19 @@ $lang = array (
     'twitter' => 'witter',
     'pintrest' => 'intrest',
     'youtube' => ' YouTube',
-    'privacy policy paragraph1 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.'
+    'privacy policy paragraph1 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.',
+    'id' => 'ID',
+    'your role' => 'YOUR ROLE ',
+    'role' => 'Role',
+    'active items' => 'Active Items',
+    'pending items' => 'Pending Items',
+    'deleted items' => 'Deleted Items',
+    'change role' => 'Change Role to',
+    'user' => 'USER',
+    'mod' => 'MODERATOR',
+    'admin' => 'ADMINISTRATOR',
+    'webmaster' => 'WEBMASTER'
+
 );
 
 $city_lang_arr = array(

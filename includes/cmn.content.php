@@ -216,16 +216,18 @@ function pendingItems()
 }
 function display($query)
 {
-	echo '<table style="font-family: Arial, Helvetica, sans-serif; ">';
+	global $lang, $lang_url, $str_url;
+
+	echo '<table style="font-family: Arial, Helvetica, sans-serif">';
 	echo '<tr class="cpheader">';
 	echo '<th>';
-	echo 'ID';
+	echo $lang['id'];
 	echo '</th>';
 	echo '<th>';
-	echo 'email';
+	echo $lang['Email'];
 	echo '</th>';
 	echo '<th>';
-	echo 'phone';
+	echo $lang['Phone'];
 	echo '</th>';
 	echo '</tr>';
 
@@ -234,15 +236,15 @@ function display($query)
 		echo '<tr>';
 
 		echo '<td style="width:10%;">';
-		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uID'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uID'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uEmail'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uEmail'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../includes/controlPanel.php?err=0&ID=' . $result['uID'] . '&nbsp&nbsp">' . $result['uPhone'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uPhone'] . '</a>';
 		echo '</td>';
 		echo '<td><input type="hidden" name="token"  value="' . Token::generate();
 		echo '"></td></tr>';
@@ -250,9 +252,9 @@ function display($query)
 	}
 	echo '</table>';
 }
-function controlPanel($hash)
+function controlPanel()
 {
-	global $connect;
+	global $connect, $lang, $lang_url, $str_url;
 	echo '<div class="controlPanel">';
 	echo '<div class="controlPanelLeft">';
 
@@ -266,30 +268,28 @@ function controlPanel($hash)
 		$result = queryUserWithTypeWithIDAndType($_SESSION['uID'], $val);
 		$noOfResults = mysqli_num_rows($result);
 		if ($noOfResults != 0) {
-			echo '<strong>YOU ' . strtoupper($val) . '</strong>';
+			echo '<strong>' . $lang['your role'] . strtoupper($val) . '</strong>';
 			display($result);
 		}
 	}
 	foreach ($roleList as $val) {
 		if (found($myRole) >= found($val)) {
-			if (found($val) != 1) {
+			if (found($val) > 2) {
 				$result = queryUserWithNotIdButType($_SESSION['uID'], $val);
 
 				$noOfResults = mysqli_num_rows($result);
 				if ($noOfResults != 0) {
-					echo '<strong>' . strtoupper($val) . '</strong>';
+					echo '<strong>' . $lang['Other'] .' '. strtoupper($val) . 'S</strong>';
 					display($result);
 				}
-			} else {
-
-				echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php">ALL USERS</a></strong></td></tr></table>';
-			}
+			} 
 		}
 	}
+	if($myRole == "webmaster" or $myRole == "admin") { echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php" >ALL USERS</a></strong></td></tr></table>';}
 	echo '</div>';
 
 	echo '<div class="controlPanelRight">';
-	if (isset($_GET['ID']) && $hash == 0) {
+	if (isset($_GET['ID'])) {
 		$result = queryUserWithId($_GET['ID']);
 		$rows = mysqli_num_rows($result);
 		if ($rows == 0) {
@@ -297,55 +297,43 @@ function controlPanel($hash)
 		}
 
 		$val = $result->fetch_assoc();
-		echo '<div class="clientHeader">';
-		echo '<table>';
-		echo '<tr><td>Email&nbsp&nbsp</td><td>' . $val['uEmail'] . '</td></tr>' .
-			'<tr><td>phone&nbsp&nbsp</td><td>' . $val['uPhone'] . '</td></tr>' .
-			'<tr><td>Role&nbsp&nbsp</td><td>' . $val['uRole'] . '</td></tr>';
-		echo '</table>';
-		echo '</div>';
 		$active  = countRow('active', $_GET['ID']);
 		$pending = countRow('pending', $_GET['ID']);
 		$delete  = countRow('modDelete', $_GET['ID']);
+		echo '<div>';
+		echo '<table>';
+		echo '<tr><td>' .$lang['Email']. '&nbsp&nbsp</td><td>' . $val['uEmail'] . '</td></tr>' .
+			'<tr><td>' .$lang['Phone']. '&nbsp&nbsp</td><td>' . $val['uPhone'] . '</td></tr>' .
+			'<tr><td>' .$lang['role']. '&nbsp&nbsp</td><td>' . $val['uRole'] . '</td></tr>' .
+			'<tr><td>' .$lang['active items']. '</td><td><a href="../includes/template.content.php?type=userActive">'. $lang['active'] .'(' . $active . ')</a></td></tr>' .
+			'<tr><td>' .$lang['pending items']. '</td><td><a href="../includes/template.content.php?type=userPending">'. $lang['pending'] .'(' . $pending . ')</a></td></tr>' .
+			'<tr><td>' .$lang['deleted items']. '</td><td><a href="../includes/template.content.php?type=deletedItems">'. $lang['deleted'] .'(' . $delete . ')</a></td></tr>';
+	
+		echo '</table>';
+		echo '</div>';
+		//For future
+		//$delComm = 1.50;
+		//$actComm = 3.00;
+		//$penComm = 2.50;
+		//$curr = 'Birr';
+		//$commission = $delete * $delComm + $pending * $penComm + $active * $actComm;
 
-		if ($active) {
-			echo '<a href="../includes/userActive.php?ID=' . $_GET['ID'] . '" target="_blank">ACTIVE(' . $active . ')</a><br>';
-		} else {
-			echo 'ACTIVE(' . $active . ')<br>';
-		}
-		if ($pending) {
-			echo '<a href="../includes/pendingItems.php?ID=' . $_GET['ID'] . '" target="_blank">PENDING(' . $pending . ')</a><br>';
-		} else {
-			echo 'PENDING(' . $pending . ')<br>';
-		}
-		if ($delete) {
-			echo '<a href="../includes/deletedItems.php?ID=' . $_GET['ID'] . '" target="_blank">DELETED(' . $delete . ')</a><br>';
-		} else {
-			echo 'DELETED(' . $delete . ')<br>';
-		}
-		$delComm = 1.50;
-		$actComm = 3.00;
-		$penComm = 2.50;
-
-		$curr = 'Birr';
-		$commission = $delete * $delComm + $pending * $penComm + $active * $actComm;
-
-		echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
-		echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
+		//echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
+		//echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
 
 		echo '<form enctype="multipart/form-data" action="../includes/privilege.php" name="myform" id="myform" method="POST">';
-		echo 'Change access to ';
+		echo $lang['change role'];
 		echo '<select id="privilege" name="privilege">';
-		echo '<option value="000">[privilege]</option>';
-		echo '<option value="user">USER</option>';
+		echo '<option value="000">[' . $lang['Choose']. ']</option>';
+		echo '<option value="user">' . $lang['user']. '</option>';
 		if (found($myRole) >= found('mod'))
-			echo '<option value="mod">MODERATOR</option>';
+			echo '<option value="mod">' . $lang['mod']. '</option>';
 		if (found($myRole) >= found('admin'))
-			echo '<option value="admin">ADMINISTRATOR</option>';
+			echo '<option value="admin">' . $lang['admin']. '</option>';
 		if (found($myRole) >= found('webmaster'))
-			echo '<option value="webmaster">WEBMASTER</option>';
+			echo '<option value="webmaster">' . $lang['webmaster']. '</option>';
 		echo '</select>';
-		echo '<input type="submit" name="Save">';
+		echo '<input type="submit" name="Save" value="' . $lang['Submit']. '">';
 		echo '<input name="modId" style="display:none;" type="text" value="' . $_GET['ID'] . '">';
 		echo '<input name="modtype" style="display:none;" type="text" value="' . $val['uRole'] . '">';
 		echo '</form>';
@@ -353,8 +341,8 @@ function controlPanel($hash)
 
 		//if(crypt(100, $hash) == $hash)
 		{
-			echo '<div id="myform_errorloc" class="error_strings">You are logged as an Andminstrator!';
-			echo ' <br><br>This operation require extra privileges, <br><br>Please contact your Webmaster. </div>';
+			echo '<div id="myform_errorloc" class="error_strings">You are logged as ' .$myRole. '!';
+			echo ' <br><br>This operation requires extra privileges, <br><br>Please contact your Webmaster. </div>';
 		}
 		//else 
 		{
@@ -403,59 +391,42 @@ function routerContent($contentType)
 	switch ($contentType) {
 		case 'deletedItems':
 			$isValidUrl = true;
+			deletedItems();
 			break;
 		case 'pendingItems':
 			$isValidUrl = true;
+			pendingItems();
 			break;
 		case 'reportedItems':
 			$isValidUrl = true;
+			reportedItems();
 			break;
 		case 'userActive':
 			$isValidUrl = true;
+			userActive();
 			break;
 		case 'userPending':
 			$isValidUrl = true;
+			userPending();
 			break;
 		case 'userMessages':
 			$isValidUrl = true;
 			break;
+		case 'controlPanel':
+			$isValidUrl = true;
+			controlPanel();
+			break;
 	}
 
 	if (!isset($_SESSION['uID']) || !$isValidUrl) {
 		header('Location:../index.php');
 	}
 
-	switch ($contentType) {
-		case 'deletedItems':
-			deletedItems();
-			break;
-		case 'pendingItems':
-			pendingItems();
-			break;
-		case 'reportedItems':
-			reportedItems();
-			break;
-		case 'userActive':
-			userActive();
-			break;
-		case 'userPending':
-			userPending();
-			break;
-	}
 }
-function routeControlPanel($contentType, $err)
-{
-	$isValidUrl = false;
-	if ($contentType == 'controlPanel')
-		$isValidUrl = true;
 
-	if (!isset($_SESSION['uID']) || !$isValidUrl) {
-		header('Location:../index.php');
-	} else {
-		controlPanel($err);
-	}
-}
 function getSessionId()
 {
 	return $_SESSION['uID'];
 }
+
+
