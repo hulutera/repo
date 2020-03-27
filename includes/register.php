@@ -1,15 +1,17 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath.'/includes/cmn.proxy.php';
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/includes/cmn.proxy.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Register | ይመዝገቡ</title>
-<?php commonHeader();?>
+	<title>Register | ይመዝገቡ</title>
+	<?php commonHeader(); ?>
 </head>
+
 <body>
 	<div id="whole">
 		<div id="wrapper">
@@ -22,5 +24,5 @@ require_once $documnetRootPath.'/includes/cmn.proxy.php';
 	</div>
 	<?php footerCode(); ?>
 </body>
-</html>
 
+</html>

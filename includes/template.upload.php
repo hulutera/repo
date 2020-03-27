@@ -74,6 +74,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 			<?php uploadHeaderAndSearchCode(""); ?>
 			<div id="main_section">
 
+<div class="col-md-12"><a href="upload.php">Back to Post Item</a></div>
 				<?php
 				// if (isset($_SESSION['error']) && isset($_SESSION['errorRaw'])) {
 				// 	$crptor = new Cryptor();
