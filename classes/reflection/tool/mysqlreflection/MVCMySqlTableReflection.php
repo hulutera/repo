@@ -539,6 +539,7 @@ class MVCMySqlTableReflection extends mysqli
      */
     private function buildUptateFileldsEqualValues()
     {
+        $tempFile= array();
         $this->rewindFieldsResultSet();
         $fieldsEqualValues = "" . PHP_EOL . "\t" . "\t" . "\t" . "\t" ;
         while ($object = $this->fieldsResultSet->fetch_object()) {
@@ -547,12 +548,21 @@ class MVCMySqlTableReflection extends mysqli
                 $attribute->name = $object->Field;
                 $attribute->type = $object->Type;
                 $tableFieldName = $attribute->name;
+                
+                array_push($tempFile, $attribute->getSqlFormattedValue2());
                 $fieldsEqualValues = $fieldsEqualValues . $tableFieldName . "=" .$attribute->getSqlFormattedValue();
 
                 $fieldsEqualValues = $fieldsEqualValues . PHP_EOL . "\t" . "\t" . "\t" . "\t";
              }
         }
-        // echo $fieldsEqualValues;
+        //var_dump($tempFile);
+        echo "private uploadOption = array(";
+        foreach ($tempFile as $key => $value) {
+            # code...
+            echo $value.","."<br>";
+        }
+        echo ");";
+        //echo $fieldsEqualValues;
         return substr($fieldsEqualValues,0,PHP_EOL_SUBSTRING_LENGHT);
         // return $fieldsEqualValues;
     }

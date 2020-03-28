@@ -89,7 +89,7 @@ class ValidateForm
          * check if rent-or-sell radio is selected report if not 
          */
         if (isset($_POST["rent-or-sell"]) && $_POST["rent-or-sell"] === '') {
-            $input = array("rent-or-sell"=>'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
+            $input = array("rent-or-sell" => 'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
             array_push($err, $input);
         }
 
@@ -98,30 +98,38 @@ class ValidateForm
          */
         if (isset($_POST["rent-or-sell"])) {
             if ($_POST["rent-or-sell"] === '') {
-                $input = array("rent-or-sell" =>'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
+                $input = array("rent-or-sell" => 'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
                 array_push($err, $input);
-            }
-            if ($_POST["rent-or-sell"] == "rent") {
+            } else if ($_POST["rent-or-sell"] == "rent") {
                 if (isset($_POST["fieldPriceRent"])) {
                     $value = $_POST["fieldPriceRent"];
                     $this->validatePrice($err, "fieldPriceRent");
                 }
-            }
-            if ($_POST["rent-or-sell"] == "sell") {
+            } else if ($_POST["rent-or-sell"] == "sell") {
+                if (isset($_POST["fieldPriceSell"])) {
+                    $value = $_POST["fieldPriceSell"];
+                    $this->validatePrice($err, "fieldPriceSell");
+                }
+            } else if ($_POST["rent-or-sell"] == "rent-or-sell") {
+                if (isset($_POST["fieldPriceRent"])) {
+                    $value = $_POST["fieldPriceRent"];
+                    $this->validatePrice($err, "fieldPriceRent");
+                }
                 if (isset($_POST["fieldPriceSell"])) {
                     $value = $_POST["fieldPriceSell"];
                     $this->validatePrice($err, "fieldPriceSell");
                 }
             }
-            if ($_POST["rent-or-sell"] == "rent-or-sell") {
-                if (isset($_POST["fieldPriceRent"])) {
-                    $value = $_POST["fieldPriceRent"];
-                    $this->validatePrice($err, "fieldPriceRent");
-                }
-                if (isset($_POST["fieldPriceSell"])) {
-                    $value = $_POST["fieldPriceSell"];
-                    $this->validatePrice($err, "fieldPriceSell");
-                }
+        } else {
+
+            if (isset($_POST["fieldPriceSell"])) {
+                $value = $_POST["fieldPriceSell"];
+                $this->validatePrice($err, "fieldPriceSell");
+            } 
+            else {
+
+                $input = array("rent-or-sell" => 'Rent, Sell or Both not selected.  Try again!<br>');
+                array_push($err, $input);
             }
         }
 
@@ -129,7 +137,7 @@ class ValidateForm
          * Check if image have been provided report if not
          */
         if (isset($_POST["fileuploader-list-files"]) && $_POST["fileuploader-list-files"] === '[]') {
-            $input = array("fileuploader-list-files" =>'At least one image should be provided.  Try again!<br>');
+            $input = array("fileuploader-list-files" => 'At least one image should be provided.  Try again!<br>');
             array_push($err, $input);
         }
 
@@ -153,12 +161,12 @@ class ValidateForm
             $_POST[$key] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
             if (!filter_var($_POST[$key], FILTER_VALIDATE_INT)) {
                 // Use openssl_encrypt() function to encrypt the data 
-                $input = array($key =>'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' is considered invalid, you provided value "' . $value . '". Should be number! Try again!<br>');
+                $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' is considered invalid, you provided value "' . $value . '". Should be number! Try again!<br>');
                 array_push($err, $input);
                 $_POST[$key] = "0";
             }
-        }else{
-            $input = array($key =>'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' should be provided.  Try again!<br>');
+        } else {
+            $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' should be provided.  Try again!<br>');
             array_push($err, $input);
         }
     }

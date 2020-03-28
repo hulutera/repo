@@ -769,11 +769,8 @@ class HtItemCar extends MySqlRecord
     {
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
-        //$_itemTempId = bin2hex(random_int(20, 50) . random_int(20, 50));
-        
         $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
         $_itemTempId = (int)$result->fetch_object()->id_temp + 1;
-echo $_itemTempId;
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
@@ -1532,7 +1529,7 @@ SQL;
         'fieldPriceRent' => 'Rent Price',
         'fieldPriceRate' => 'Rent Rate',
         'fieldPriceSell' => 'Sell Price',
-        'fieldPriceCurrency' => 'Curreny',
+        'fieldPriceCurrency' => 'Currency',
         'fieldPriceNego' => 'Negotiable',
         'fieldTitle' => 'Title',
         'fieldExtraInfo' => 'Extra Info',

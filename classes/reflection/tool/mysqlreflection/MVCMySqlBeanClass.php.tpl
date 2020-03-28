@@ -369,6 +369,10 @@ SQL;
             return false;
         }
     }
+    public function update(${ClassPkAttributeName})
+    {
+        ${ClassPkAttributeName}
+    }
 <!-- END Update -->
 <!-- BEGIN UpdateForMultiplePK -->
     /**

@@ -145,8 +145,7 @@ function uploadList($lang, $lang_sw)
 						</div>
 						<div id="item_right_scroller"></div>
 					</div>
-				</div>
-			</div>
+			
 		
 	</div>';
 }

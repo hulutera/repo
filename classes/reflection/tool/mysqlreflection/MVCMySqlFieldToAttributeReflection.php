@@ -378,6 +378,26 @@ class MVCMySqlFieldToAttributeReflection
 
     }
 
+private function deliciousCamelcase($str)
+{
+    $formattedStr = '';
+    $re = '/
+          (?<=[a-z])
+          (?=[A-Z])
+        | (?<=[A-Z])
+          (?=[A-Z][a-z])
+        /x';
+    $a = preg_split($re, $str);
+    $formattedStr = implode(' ', $a);
+    return $formattedStr;
+}
+    public function getSqlFormattedValue2()
+    {
+        $str = $this->getName();
+        $arr = str_replace("field ","", $this->deliciousCamelcase($str));
+        return "'". $str ."' => '".$arr."'" ;
+    }
+
     /**
      * underscoreToCamelCase
      * Covert lower_underscored mysql notation into Camel/Pascal case notation
