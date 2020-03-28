@@ -370,7 +370,16 @@ $lang = array (
     'user' => 'USER',
     'mod' => 'MODERATOR',
     'admin' => 'ADMINISTRATOR',
-    'webmaster' => 'WEBMASTER'
+    'webmaster' => 'WEBMASTER',
+    'all users' => 'ALL USERS',
+    'user list' => 'List of all users',
+    'cp home txt1' => 'You are logged as ',
+    'cp home txt2' => '<br><br>Inorder to upgrade your account, please contact us. You can upgrade to Moderator, check help for more information!',
+    'e.g ID username email' => 'e.g ID or username or email',
+    'user page' => 'Hulutera Users Page',
+    'search user' => "Search User",
+    'no users found' => '<br>No user found with this information!<br>'
+
 
 );
 

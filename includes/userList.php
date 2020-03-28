@@ -11,7 +11,7 @@ if (!isset($_SESSION['uID'])) {
 }
 
 $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-$search = (isset($_GET['searhVal'])) ? $_GET['searhVal'] : '';
+$search = (isset($_POST['searhVal'])) ? $_POST['searhVal'] : '';
 $role = 'user';
 
 function query($role, $start)
@@ -30,33 +30,27 @@ function searchResult($search)
 	global $role;
 	$connect = DatabaseClass::getInstance()->getConnection();
 
-	$terms = explode(',', $search);
-	$clauses = array();
-	foreach ($terms as $term) {
-		$clean = trim(preg_replace('/[^a-z0-9]/i', '', $term));
-		if (!empty($clean)) {
-			$clauses[] = "`uEmail` like '%" . $clean . "%'" .
-				" OR `userName`      like '%" . $clean . "%'" .
-				" OR `uFirstName`    like '%" . $clean . "%'" .
-				" OR `uLastName`     like '%" . $clean . "%'" .
-				" OR `uAddress`      like '%" . $clean . "%'" .
-				" OR `uDate`         like '%" . $clean . "%'" .
-				" OR `uID`           like '%" . $clean . "%'";
-		}
+	$terms = $search;
+	$clean = trim(preg_replace('/[^a-z0-9.@]/i', '', $terms));
+	
+	if (!empty($clean)) {
+		$clauses = "`uEmail` LIKE '%" . $clean . "%'" .
+			" OR `userName`      LIKE '%" . $clean . "%'" .
+			" OR `uID`           LIKE '%" . $clean . "%'";
 	}
-
+	
 	if (!empty($clauses)) {
-		$filter = '(' . implode(' AND ', $clauses) . ')';
-        $cond3 = "WHERE `uRole`='$role' AND $filter";
+		$filter = $clauses;
+        $cond3 = "WHERE $filter";
 	    $table = "user";
-	    $filter = "*";
-	    $users = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond3);
+		$filter = "*";
+		$users = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond3);
 		return $users;
 	}
 }
 function displayALL()
 {
-	global $page, $role;
+	global $page, $role, $lang;
 	$allUser = queryUser();
 	$sum = mysqli_num_rows($allUser);
 	$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
@@ -70,7 +64,8 @@ function displayALL()
 	$start = HtGlobal::get('itemPerPage') * ($page - 1);
 	//
 	$result = query($role, $start);
-
+	
+	echo '<div style="float:none;width:100%"><h3><br><br>' .$lang['user list']. '</h3></div>';
 	display($result);
 
 	return $totpage;
@@ -78,17 +73,17 @@ function displayALL()
 
 function userSearch()
 {
+	global $lang, $lang_url, $str_url;
 	logo();	
-
-	echo '<div class="userSearch">';
-	echo '<h1><a href="../includes/controlPanel.php">Back to CONTROL PANEL</a></h1>';
-	echo '<h3>USERS LIST | የደንበኞች ዝርዝር</h3>';
-	echo '<form class="" action="../includes/userList.php" method="GET">';
-	echo '<input name="searhVal" class="" type="text" placeholder="e.g. ID, username, email"/>';
-	echo '<input type="submit" value="Search ፈልግ" />';	
+    echo '<div class="userSearch">';
+	echo '<h3>' .$lang['user page']. '</h3><br><br>';
+	echo '<form name="search-user-form" class="" action="../includes/userList.php' .$lang_url. '" method="POST">';
+	echo $lang['search user'] .': <input name="searhVal" style="width:40%" class="" type="text" placeholder="' .$lang['e.g ID username email']. '"/>';
+	echo '<input type="submit" value="' .$lang['Search']. '" />';
 	echo '</form>';
 	echo '</div>';
 	echo '<br>';
+	
 }
 
 ?>
@@ -112,13 +107,14 @@ function userSearch()
 						$totpage = displayALL();
 						pagination("", $totpage, $page, 0);
 					} else {
-						if (isset($search))
+						if (isset($search)){
 							$search = $search;
-						    $result = searchResult($search);
+							$result = searchResult($search);}
 						if (mysqli_num_rows($result)) {
 							display($result);
 						} else {
-							echo $search . '<br>No user found with this information!<br>በገባው መረጃ  ደንበኛ አልተገኘም።';
+							global $lang;
+							echo $search . $lang['no users found'];
 							$totpage = displayALL();
 							pagination("", $totpage, $page, 0);
 						}

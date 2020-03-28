@@ -111,7 +111,8 @@ th {
 }
 
 .userSearch {
-	width: 60%;
+	width: 73%;
+	float: left;
 }
 
 .toprightlink a {
