@@ -79,18 +79,18 @@ class HtItemHouse extends MySqlRecord
     private $idCategory;
 
     /**
-     * Class attribute for mapping table field id_contact_category
+     * Class attribute for mapping table field field_contact_method
      *
-     * Comment for field id_contact_category: Not specified.<br>
+     * Comment for field field_contact_method: Not specified.<br>
      * Field information:
-     *  - Data type: int(3)
+     *  - Data type: varchar(50)
      *  - Null : NO
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var int $idContactCategory
+     * @var string $fieldContactMethod
      */
-    private $idContactCategory;
+    private $fieldContactMethod;
 
     /**
      * Class attribute for mapping table field field_price_rent
@@ -418,7 +418,7 @@ class HtItemHouse extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_house
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIE5PVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY29udGFjdF9jYXRlZ29yeWAgaW50KDMpIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9yZW50YCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX3JhdGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2tlYmVsZWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3dlcmVkYWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2xvdF9zaXplYCBpbnQoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbnJfYmVkcm9vbWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3RvaWxldGAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2JhdGhyb29tYCBpbnQoMTApIE5PVCBOVUxMLAogIGBmaWVsZF9idWlsZF95ZWFyYCB5ZWFyKDQpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfd2F0ZXJgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZWxlY3RyaWNpdHlgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTUpIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzInLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzNgIChgaWRfdXNlcmApLAogIEtFWSBgaENhdGVnb3J5SURfRktgIChgaWRfY2F0ZWdvcnlgKSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2hvdXNlYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTE3IERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIE5PVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgZmllbGRfY29udGFjdF9tZXRob2RgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9yZW50YCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX3JhdGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2tlYmVsZWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3dlcmVkYWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2xvdF9zaXplYCBpbnQoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbnJfYmVkcm9vbWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3RvaWxldGAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2JhdGhyb29tYCBpbnQoMTApIE5PVCBOVUxMLAogIGBmaWVsZF9idWlsZF95ZWFyYCB5ZWFyKDQpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfd2F0ZXJgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZWxlY3RyaWNpdHlgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTUpIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzInLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzNgIChgaWRfdXNlcmApLAogIEtFWSBgaENhdGVnb3J5SURfRktgIChgaWRfY2F0ZWdvcnlgKSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2hvdXNlYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTE3IERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -473,16 +473,16 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
-     * setIdContactCategory Sets the class attribute idContactCategory with a given value
+     * setFieldContactMethod Sets the class attribute fieldContactMethod with a given value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.<br>
-     * @param int $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.<br>
+     * @param string $fieldContactMethod
      * @category Modifier
      */
-    public function setIdContactCategory($idContactCategory)
+    public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->idContactCategory = (int)$idContactCategory;
+        $this->fieldContactMethod = (string)$fieldContactMethod;
     }
 
     /**
@@ -837,16 +837,16 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
-     * getIdContactCategory gets the class attribute idContactCategory value
+     * getFieldContactMethod gets the class attribute fieldContactMethod value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.
-     * @return int $idContactCategory
-     * @category Accessor of $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.
+     * @return string $fieldContactMethod
+     * @category Accessor of $fieldContactMethod
      */
-    public function getIdContactCategory()
+    public function getFieldContactMethod()
     {
-        return $this->idContactCategory;
+        return $this->fieldContactMethod;
     }
 
     /**
@@ -1228,7 +1228,7 @@ class HtItemHouse extends MySqlRecord
             @$this->idTemp = (integer)$rowObject->id_temp;
             @$this->idUser = (integer)$rowObject->id_user;
             @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->idContactCategory = (integer)$rowObject->id_contact_category;
+            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
             @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
@@ -1293,12 +1293,12 @@ class HtItemHouse extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_house
-            (id_temp,id_user,id_category,id_contact_category,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_image,field_location,field_kebele,field_wereda,field_lot_size,field_nr_bedroom,field_toilet,field_bathroom,field_build_year,field_water,field_electricity,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_image,field_location,field_kebele,field_wereda,field_lot_size,field_nr_bedroom,field_toilet,field_bathroom,field_build_year,field_water,field_electricity,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
 			{$this->parseValue($this->idCategory)},
-			{$this->parseValue($this->idContactCategory)},
+			{$this->parseValue($this->fieldContactMethod,'notNumber')},
 			{$this->parseValue($this->fieldPriceRent,'notNumber')},
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
@@ -1357,7 +1357,7 @@ SQL;
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
-				id_contact_category={$this->parseValue($this->idContactCategory)},
+				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
 				field_price_rent={$this->parseValue($this->fieldPriceRent,'notNumber')},
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
@@ -1426,6 +1426,35 @@ SQL;
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
     
+    private $uploadOption = array(
+        'idTemp' => 'id Temp',
+        'idUser' => 'id User',
+        'idCategory' => 'id Category',
+        'fieldContactMethod' => 'Contact Method',
+        'fieldPriceRent' => 'Price Rent',
+        'fieldPriceSell' => 'Price Sell',
+        'fieldPriceNego' => 'Price Nego',
+        'fieldPriceRate' => 'Price Rate',
+        'fieldPriceCurrency' => 'Price Currency',
+        'fieldImage' => 'Image',
+        'fieldLocation' => 'Location',
+        'fieldKebele' => 'Kebele',
+        'fieldWereda' => 'Wereda',
+        'fieldLotSize' => 'Lot Size',
+        'fieldNrBedroom' => 'Nr Bedroom',
+        'fieldToilet' => 'Toilet',
+        'fieldBathroom' => 'Bathroom',
+        'fieldBuildYear' => 'Build Year',
+        'fieldWater' => 'Water',
+        'fieldElectricity' => 'Electricity',
+        'fieldExtraInfo' => 'Extra Info',
+        'fieldTitle' => 'Title',
+        'fieldUploadDate' => 'Upload Date',
+        'fieldTotalView' => 'Total View',
+        'fieldStatus' => 'Status',
+        'fieldMarketCategory' => 'Market Category',
+        'fieldTableType' => 'Table Type');
+
     /**
     * Facility for upload a new row into item_house.
     *
@@ -1438,6 +1467,7 @@ SQL;
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
+    
 
 }
 ?>

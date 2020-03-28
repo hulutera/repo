@@ -79,18 +79,18 @@ class HtItemPhone extends MySqlRecord
     private $idCategory;
 
     /**
-     * Class attribute for mapping table field id_contact_category
+     * Class attribute for mapping table field field_contact_method
      *
-     * Comment for field id_contact_category: Not specified.<br>
+     * Comment for field field_contact_method: Not specified.<br>
      * Field information:
-     *  - Data type: int(3)
+     *  - Data type: varchar(50)
      *  - Null : NO
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var int $idContactCategory
+     * @var string $fieldContactMethod
      */
-    private $idContactCategory;
+    private $fieldContactMethod;
 
     /**
      * Class attribute for mapping table field field_price_sell
@@ -320,7 +320,7 @@ class HtItemPhone extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_phone
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX3Bob25lYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCgxMSkgTk9UIE5VTEwsCiAgYGlkX2NvbnRhY3RfY2F0ZWdvcnlgIGludCgzKSBOT1QgTlVMTCwKICBgZmllbGRfcHJpY2Vfc2VsbGAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9wcmljZV9uZWdvYCB2YXJjaGFyKDIwKSBERUZBVUxUICdOZWdvdGlhYmxlJywKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9tYWtlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX29zYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NhbWVyYWAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2V4dHJhX2luZm9gIG1lZGl1bXRleHQsCiAgYGZpZWxkX3RpdGxlYCB2YXJjaGFyKDEyNSkgTk9UIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIERFRkFVTFQgJ1NhbGUnLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzQnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIENPTlNUUkFJTlQgYGl0ZW1fcGhvbmVfaWJma18xYCBGT1JFSUdOIEtFWSAoYGlkX3VzZXJgKSBSRUZFUkVOQ0VTIGB1c2VyX2FsbGAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0zMCBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX3Bob25lYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCgxMSkgTk9UIE5VTEwsCiAgYGZpZWxkX2NvbnRhY3RfbWV0aG9kYCB2YXJjaGFyKDUwKSBOT1QgTlVMTCwKICBgZmllbGRfcHJpY2Vfc2VsbGAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9wcmljZV9uZWdvYCB2YXJjaGFyKDIwKSBERUZBVUxUICdOZWdvdGlhYmxlJywKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9tYWtlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX29zYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NhbWVyYWAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2V4dHJhX2luZm9gIG1lZGl1bXRleHQsCiAgYGZpZWxkX3RpdGxlYCB2YXJjaGFyKDEyNSkgTk9UIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIERFRkFVTFQgJ1NhbGUnLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzQnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIENPTlNUUkFJTlQgYGl0ZW1fcGhvbmVfaWJma18xYCBGT1JFSUdOIEtFWSAoYGlkX3VzZXJgKSBSRUZFUkVOQ0VTIGB1c2VyX2FsbGAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0zMCBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -375,16 +375,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * setIdContactCategory Sets the class attribute idContactCategory with a given value
+     * setFieldContactMethod Sets the class attribute fieldContactMethod with a given value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.<br>
-     * @param int $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.<br>
+     * @param string $fieldContactMethod
      * @category Modifier
      */
-    public function setIdContactCategory($idContactCategory)
+    public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->idContactCategory = (int)$idContactCategory;
+        $this->fieldContactMethod = (string)$fieldContactMethod;
     }
 
     /**
@@ -648,16 +648,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * getIdContactCategory gets the class attribute idContactCategory value
+     * getFieldContactMethod gets the class attribute fieldContactMethod value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.
-     * @return int $idContactCategory
-     * @category Accessor of $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.
+     * @return string $fieldContactMethod
+     * @category Accessor of $fieldContactMethod
      */
-    public function getIdContactCategory()
+    public function getFieldContactMethod()
     {
-        return $this->idContactCategory;
+        return $this->fieldContactMethod;
     }
 
     /**
@@ -948,7 +948,7 @@ class HtItemPhone extends MySqlRecord
             @$this->idTemp = (integer)$rowObject->id_temp;
             @$this->idUser = (integer)$rowObject->id_user;
             @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->idContactCategory = (integer)$rowObject->id_contact_category;
+            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
             @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
@@ -1006,12 +1006,12 @@ class HtItemPhone extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
 			{$this->parseValue($this->idCategory)},
-			{$this->parseValue($this->idContactCategory)},
+			{$this->parseValue($this->fieldContactMethod,'notNumber')},
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
@@ -1063,7 +1063,7 @@ SQL;
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
-				id_contact_category={$this->parseValue($this->idContactCategory)},
+				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},

@@ -79,18 +79,18 @@ class HtItemElectronic extends MySqlRecord
     private $idCategory;
 
     /**
-     * Class attribute for mapping table field id_contact_category
+     * Class attribute for mapping table field field_contact_method
      *
-     * Comment for field id_contact_category: Not specified.<br>
+     * Comment for field field_contact_method: Not specified.<br>
      * Field information:
-     *  - Data type: int(3)
+     *  - Data type: varchar(50)
      *  - Null : NO
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var int $idContactCategory
+     * @var string $fieldContactMethod
      */
-    private $idContactCategory;
+    private $fieldContactMethod;
 
     /**
      * Class attribute for mapping table field field_price_sell
@@ -264,7 +264,7 @@ class HtItemElectronic extends MySqlRecord
      * Class attribute for storing the SQL DDL of table item_electronic
      * @var string base64 encoded string for DDL
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2VsZWN0cm9uaWNgICgKICBgaWRgIGludCg0MCkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX3RlbXBgIGludCgyMCkgREVGQVVMVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY29udGFjdF9jYXRlZ29yeWAgaW50KDMpIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9zZWxsYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX25lZ29gIHZhcmNoYXIoMjApIERFRkFVTFQgJ05lZ290aWFibGUnLAogIGBmaWVsZF9wcmljZV9jdXJyZW5jeWAgdmFyY2hhcigyMCkgTk9UIE5VTEwgREVGQVVMVCAnQmlycicsCiAgYGZpZWxkX2ltYWdlYCBsb25ndGV4dCBOT1QgTlVMTCwKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzUnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIEtFWSBgZWxlY3Ryb25pY3NDYXRlZ3JvZ3lJRGAgKGBpZF9jYXRlZ29yeWApLAogIENPTlNUUkFJTlQgYGl0ZW1fZWxlY3Ryb25pY19pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9lbGVjdHJvbmljX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2VsZWN0cm9uaWNgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9MTUgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2VsZWN0cm9uaWNgICgKICBgaWRgIGludCg0MCkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX3RlbXBgIGludCgyMCkgREVGQVVMVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgZmllbGRfY29udGFjdF9tZXRob2RgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9zZWxsYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX25lZ29gIHZhcmNoYXIoMjApIERFRkFVTFQgJ05lZ290aWFibGUnLAogIGBmaWVsZF9wcmljZV9jdXJyZW5jeWAgdmFyY2hhcigyMCkgTk9UIE5VTEwgREVGQVVMVCAnQmlycicsCiAgYGZpZWxkX2ltYWdlYCBsb25ndGV4dCBOT1QgTlVMTCwKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzUnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIEtFWSBgZWxlY3Ryb25pY3NDYXRlZ3JvZ3lJRGAgKGBpZF9jYXRlZ29yeWApLAogIENPTlNUUkFJTlQgYGl0ZW1fZWxlY3Ryb25pY19pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9lbGVjdHJvbmljX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2VsZWN0cm9uaWNgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9MTUgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
 
     /**
      * setId Sets the class attribute id with a given value
@@ -319,16 +319,16 @@ class HtItemElectronic extends MySqlRecord
     }
 
     /**
-     * setIdContactCategory Sets the class attribute idContactCategory with a given value
+     * setFieldContactMethod Sets the class attribute fieldContactMethod with a given value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.<br>
-     * @param int $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.<br>
+     * @param string $fieldContactMethod
      * @category Modifier
      */
-    public function setIdContactCategory($idContactCategory)
+    public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->idContactCategory = (int)$idContactCategory;
+        $this->fieldContactMethod = (string)$fieldContactMethod;
     }
 
     /**
@@ -540,16 +540,16 @@ class HtItemElectronic extends MySqlRecord
     }
 
     /**
-     * getIdContactCategory gets the class attribute idContactCategory value
+     * getFieldContactMethod gets the class attribute fieldContactMethod value
      *
-     * The attribute idContactCategory maps the field id_contact_category defined as int(3).<br>
-     * Comment for field id_contact_category: Not specified.
-     * @return int $idContactCategory
-     * @category Accessor of $idContactCategory
+     * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(50).<br>
+     * Comment for field field_contact_method: Not specified.
+     * @return string $fieldContactMethod
+     * @category Accessor of $fieldContactMethod
      */
-    public function getIdContactCategory()
+    public function getFieldContactMethod()
     {
-        return $this->idContactCategory;
+        return $this->fieldContactMethod;
     }
 
     /**
@@ -788,7 +788,7 @@ class HtItemElectronic extends MySqlRecord
             @$this->idTemp = (integer)$rowObject->id_temp;
             @$this->idUser = (integer)$rowObject->id_user;
             @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->idContactCategory = (integer)$rowObject->id_contact_category;
+            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
             @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
             @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
             @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
@@ -842,12 +842,12 @@ class HtItemElectronic extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_electronic
-            (id_temp,id_user,id_category,id_contact_category,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
 			{$this->parseValue($this->idCategory)},
-			{$this->parseValue($this->idContactCategory)},
+			{$this->parseValue($this->fieldContactMethod,'notNumber')},
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
@@ -895,7 +895,7 @@ SQL;
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
-				id_contact_category={$this->parseValue($this->idContactCategory)},
+				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
@@ -953,6 +953,23 @@ SQL;
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
     
+    private $uploadOption = array(
+        'idTemp' => 'id Temp',
+        'idUser' => 'id User',
+        'idCategory' => 'id Category',
+        'fieldContactMethod' => 'Contact Method',
+        'fieldPriceSell' => 'Price Sell',
+        'fieldPriceNego' => 'Price Nego',
+        'fieldPriceCurrency' => 'Price Currency',
+        'fieldImage' => 'Image',
+        'fieldLocation' => 'Location',
+        'fieldExtraInfo' => 'Extra Info',
+        'fieldTitle' => 'Title',
+        'fieldUploadDate' => 'Upload Date',
+        'fieldTotalView' => 'Total View',
+        'fieldStatus' => 'Status',
+        'fieldMarketCategory' => 'Market Category',
+        'fieldTableType' => 'Table Type');
     /**
     * Facility for upload a new row into item_electronic.
     *
