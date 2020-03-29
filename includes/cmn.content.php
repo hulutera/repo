@@ -236,15 +236,15 @@ function display($query)
 		echo '<tr>';
 
 		echo '<td style="width:10%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uID'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uID'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uEmail'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uEmail'] . '</a>';
 		echo '</td>';
 
 		echo '<td style="width:35%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . '">' . $result['uPhone'] . '</a>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uPhone'] . '</a>';
 		echo '</td>';
 		echo '<td><input type="hidden" name="token"  value="' . Token::generate();
 		echo '"></td></tr>';
@@ -285,7 +285,7 @@ function controlPanel()
 			} 
 		}
 	}
-	if($myRole == "webmaster" or $myRole == "admin") { echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php" >ALL USERS</a></strong></td></tr></table>';}
+	if($myRole == "webmaster" or $myRole == "admin") { echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php' .$lang_url. '" >' .$lang['all users']. '</a></strong></td></tr></table>';}
 	echo '</div>';
 
 	echo '<div class="controlPanelRight">';
@@ -293,7 +293,7 @@ function controlPanel()
 		$result = queryUserWithId($_GET['ID']);
 		$rows = mysqli_num_rows($result);
 		if ($rows == 0) {
-			header('Location: ../index.php');
+			header('Location: ../index.php' .$lang_url. '');
 		}
 
 		$val = $result->fetch_assoc();
@@ -305,9 +305,9 @@ function controlPanel()
 		echo '<tr><td>' .$lang['Email']. '&nbsp&nbsp</td><td>' . $val['uEmail'] . '</td></tr>' .
 			'<tr><td>' .$lang['Phone']. '&nbsp&nbsp</td><td>' . $val['uPhone'] . '</td></tr>' .
 			'<tr><td>' .$lang['role']. '&nbsp&nbsp</td><td>' . $val['uRole'] . '</td></tr>' .
-			'<tr><td>' .$lang['active items']. '</td><td><a href="../includes/template.content.php?type=userActive">'. $lang['active'] .'(' . $active . ')</a></td></tr>' .
-			'<tr><td>' .$lang['pending items']. '</td><td><a href="../includes/template.content.php?type=userPending">'. $lang['pending'] .'(' . $pending . ')</a></td></tr>' .
-			'<tr><td>' .$lang['deleted items']. '</td><td><a href="../includes/template.content.php?type=deletedItems">'. $lang['deleted'] .'(' . $delete . ')</a></td></tr>';
+			'<tr><td>' .$lang['active items']. '</td><td><a href="../includes/template.content.php?type=userActive' .$str_url. '">'. $lang['active'] .'(' . $active . ')</a></td></tr>' .
+			'<tr><td>' .$lang['pending items']. '</td><td><a href="../includes/template.content.php?type=userPending' .$str_url. '">'. $lang['pending'] .'(' . $pending . ')</a></td></tr>' .
+			'<tr><td>' .$lang['deleted items']. '</td><td><a href="../includes/template.content.php?type=deletedItems' .$str_url. '">'. $lang['deleted'] .'(' . $delete . ')</a></td></tr>';
 	
 		echo '</table>';
 		echo '</div>';
@@ -321,7 +321,7 @@ function controlPanel()
 		//echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
 		//echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
 
-		echo '<form enctype="multipart/form-data" action="../includes/privilege.php" name="myform" id="myform" method="POST">';
+		echo '<form enctype="multipart/form-data" action="../includes/privilege.php' .$lang_url. '" name="myform" id="myform" method="POST">';
 		echo $lang['change role'];
 		echo '<select id="privilege" name="privilege">';
 		echo '<option value="000">[' . $lang['Choose']. ']</option>';
@@ -339,46 +339,10 @@ function controlPanel()
 		echo '</form>';
 	} else {
 
-		//if(crypt(100, $hash) == $hash)
-		{
-			echo '<div id="myform_errorloc" class="error_strings">You are logged as ' .$myRole. '!';
-			echo ' <br><br>This operation requires extra privileges, <br><br>Please contact your Webmaster. </div>';
-		}
-		//else 
-		{
-			// 			if($noOfUser==0)
-			// 			{
-			// 				if($noOfMod==0)
-			// 				{
-			// 					if($noOfAdmin==0)
-			// 					{
-			// 						if($noOfMaster==0)
-			// 						{
-
-			// 							echo 'No users for operation. Redirecting in 5 seconds!<br> <img id="progress" src="../images/redirect.gif">';
-			// 							header( "refresh:5; url=../index.php" );
-			// 						}
-			// 						else
-			// 						{
-			// 							echo 'Choose Adminstrator, Moderator or user <br> on the left side, for more options control.';
-			// 						}
-			// 					}
-			// 					else
-			// 					{
-			// 						echo 'Choose Adminstrator, Moderator or user <br> on the left side, for more options control.';
-			// 					}
-
-			// 				}
-			// 				else
-			// 				{
-			// 					echo 'Choose Adminstrator, Moderator or user <br> on the left side, for more options control.';
-			// 				}
-			// 			}
-			//else
-			{
-				echo 'Choose Adminstrator, Moderator or user <br> on the left side, for more options control.';
-			}
-		}
+		echo '<div id="myform_errorloc" class="error_strings">' .$lang['cp home txt1'] . $myRole . '!';
+		echo $lang['cp home txt2'] . '</div>';
+				
+		
 	}
 	echo '</div>';
 	echo '</div>';
@@ -419,7 +383,7 @@ function routerContent($contentType)
 	}
 
 	if (!isset($_SESSION['uID']) || !$isValidUrl) {
-		header('Location:../index.php');
+		header('Location:../index.php' .$lang_url. '');
 	}
 
 }

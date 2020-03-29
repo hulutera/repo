@@ -100,7 +100,7 @@ function accountLinks()
 			echo "<div class='item-list'>";
 			echo "<span>" .$lang['messages']. "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 			
-			echo '<a class="item-list-cp" href="../includes/controlPanel.php?' .$str_url. '">';
+			echo '<a class="item-list-cp" href="../includes/controlPanel.php' .$lang_url. '">';
 			echo "<div class='item-list-cp'>";
 			echo "<span>" .$lang['cp']. "</span></div></a>";
 			echo "</div>";
