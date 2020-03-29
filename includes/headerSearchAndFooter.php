@@ -105,7 +105,7 @@ function uploadList($lang, $lang_sw)
 							</a>
 						</div>
 						<div id="box">
-							<a href="../includes/template.upload.php?type=electronics' . $lang_sw . '">
+							<a href="../includes/template.upload.php?type=electronic' . $lang_sw . '">
 								<div id="item_name">
 								' . $lang['electronics'] . ' <img id="boxIcon"
 										src="../images/uploads/electronicsimages/electronics.png">
