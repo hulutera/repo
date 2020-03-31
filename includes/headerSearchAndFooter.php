@@ -10,7 +10,8 @@ if (isset($_GET['lan'])) {
 
 	// url exetention for language on hyperlinks with "?"
 	$str_url = str_replace("?", "", $lang_url);
-	require_once $documnetRootPath . '/includes/locale/' . $_GET['lan'] . '.php';
+	if($language != "") require_once $documnetRootPath . '/includes/locale/' . $_GET['lan'] . '.php';
+	else require_once $documnetRootPath . '/includes/locale/en.php';
 } else {
 	$language = "";
 	$lang_url = "";

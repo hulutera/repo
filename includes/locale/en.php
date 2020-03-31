@@ -55,7 +55,7 @@ $lang = array (
     'Adama' => 'Adama',
     'Bahir Dar' => 'Bahir Dar',
     'Mekele' => 'Mekele',
-    'Awassa' => 'Awassa',
+    'Hawassa' => 'Hawassa',
     'Asaita' => 'Asaita',
     'Asossa' => 'Asossa',
     'Debre Birhan' => 'Debre Birhan',
@@ -380,7 +380,6 @@ $lang = array (
     'search user' => "Search User",
     'no users found' => '<br>No user found with this information!<br>'
 
-
 );
 
 $city_lang_arr = array(
@@ -391,7 +390,7 @@ $city_lang_arr = array(
     'Adama' => 'Adama',
     'Bahir Dar' => 'Bahir Dar',
     'Mekele' => 'Mekele',
-    'Awassa' => 'Awassa',
+    'Hawassa' => 'Hawassa',
     'Asaita' => 'Asaita',
     'Asossa' => 'Asossa',
     'Debre Birhan' => 'Debre Birhan',

@@ -59,7 +59,7 @@ $lang = array (
     'Adama' => 'አዳማ',
     'Bahir Dar' => 'ባሕር ዳር',
     'Mekele' => 'መቀሌ',
-    'Awassa' => 'አዋሳ',
+    'Hawassa' => 'ሀዋሳ',
     'Asaita' => 'አሳይታ',
     'Asossa' => 'አሶሳ',
     'Debre Birhan' => 'ደብረ ብርሃን',
@@ -360,11 +360,6 @@ $lang = array (
     'users page' => 'የሁሉተራ ተጠቃሚዎች ገጽ',
     'search user' => 'ተጠቃሚዎች ይፈልጉ',
     'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>'
-
-
-
-
-
 );
 
 $city_lang_arr = array (
@@ -375,7 +370,7 @@ $city_lang_arr = array (
     'Adama' => 'አዳማ',
     'Bahir Dar' => 'ባሕር ዳር',
     'Mekele' => 'መቀሌ',
-    'Awassa' => 'አዋሳ',
+    'Hawassa' => 'ሀዋሳ',
     'Asaita' => 'አሳይታ',
     'Asossa' => 'አሶሳ',
     'Debre Birhan' => 'ደብረ ብርሃን',

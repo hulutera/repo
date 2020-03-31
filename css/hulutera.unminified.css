@@ -170,6 +170,9 @@ th {
 	font-size: 20px;
 	padding-top: 8px;
 }
+.svg-small-sc{
+	display:none;
+}
 
 .searchform {
 	width:100%;
@@ -2977,10 +2980,17 @@ th {
 	font-size:15px;
 }
 
-
-
-
-
+.svg-big-sc{
+	display:block;
+}
+.square-radio {
+    border: 1px solid black;
+    margin-top: 20px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    
+}
 
 /*For mmobile and tablets*/
 
@@ -3136,21 +3146,10 @@ th {
 	#computerBrand, #processor, #OS, #compType, #ram, #harddisk, #subject, #numberOfToilet, #camera {
 		height: 50px;
 	}
+	.svg-small-sc{
+		display:block;
+	}
+    .svg-big-sc{
+		display:none;
+	}
 }
-
-
-.square-radio {
-    border: 1px solid black;
-    margin-top: 20px;
-    width: 15px;
-    height: 15px;
-    position: relative;
-    
-}
-/* 
-.custom-input-group {
-	width: 70%;
-}
-.custom-form-control{
-	width: 50%;
-} */
