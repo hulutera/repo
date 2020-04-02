@@ -3185,6 +3185,8 @@ th {
 	}
 	.svg-mid-sc{
 		display:block;
+		margin-left: auto;
+		margin-right:auto;
 	}    
 	.svg-small-sc{
 		display:none;
@@ -3364,6 +3366,8 @@ th {
 	}    
 	.svg-small-sc{
 		display:block;
+		margin-left:auto;
+		margin-right:auto;
 	}
 
    	.leftNav-index{
