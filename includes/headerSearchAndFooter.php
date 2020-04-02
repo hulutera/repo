@@ -107,7 +107,7 @@ function uploadList($lang, $lang_sw)
 						<div id="box">
 							<a href="../includes/template.upload.php?type=electronic' . $lang_sw . '">
 								<div id="item_name">
-								' . $lang['electronics'] . ' <img id="boxIcon"
+								' . $lang['electronic'] . ' <img id="boxIcon"
 										src="../images/uploads/electronicsimages/electronics.png">
 								</div>
 							</a>
@@ -138,8 +138,8 @@ function uploadList($lang, $lang_sw)
 					</div>
 					<div id="lyr3">
 						<div id="box">
-							<a href="../includes/template.upload.php?type=others' . $lang_sw . '">
-								<div id="item_name"> ' . $lang['others'] . '<img id="boxIcon" src="../images/uploads/othersimages/others.png">
+							<a href="../includes/template.upload.php?type=other' . $lang_sw . '">
+								<div id="item_name"> ' . $lang['other'] . '<img id="boxIcon" src="../images/uploads/othersimages/others.png">
 								</div>
 							</a>
 						</div>

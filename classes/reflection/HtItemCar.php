@@ -1512,7 +1512,7 @@ SQL;
         'fileuploader-list-files' => 'input'
     );
 
-      /**
+    /**
      * Class attribute for storing default upload values from upload functionality     
      */
     private $uploadOptionShort = array(
@@ -1713,9 +1713,18 @@ SQL;
             <label for="idCategory">Type</label> 
         <div>
         <select id="idCategory" name="idCategory" class="select form-control">';
-        $choose = "Choose Car Type";
-        if (isset($_SESSION['POST']['idCategory'])) {
-            $choose = $_SESSION['POST']['idCategory'];
+        $choose = "Choose Type";
+        if (isset($_SESSION['POST']['idCategory'])) {            
+            $id =$_SESSION['POST']['idCategory'];            
+            $type = new HtCategoryCar("*");
+            $result = $type->getResultSet();
+            while ($row = $result->fetch_array()) {
+                if($row['id'] === $id)
+                {
+                    $choose = $row['field_name'];
+                    break;
+                }
+            }
         }
 
         echo '<option value="' . $choose . '">' . $choose . '</option>';

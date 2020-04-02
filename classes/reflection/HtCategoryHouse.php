@@ -172,7 +172,7 @@ class HtCategoryHouse extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if($id === "*"){
             $sql = "SELECT * FROM category_house";
         } else { //id
             $sql =  "SELECT * FROM category_house WHERE id={$this->parseValue($id,'int')}";

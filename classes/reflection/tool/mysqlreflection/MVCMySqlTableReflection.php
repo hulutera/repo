@@ -555,8 +555,9 @@ class MVCMySqlTableReflection extends mysqli
                 $fieldsEqualValues = $fieldsEqualValues . PHP_EOL . "\t" . "\t" . "\t" . "\t";
              }
         }
+        echo "---------------------- <br>";
         //var_dump($tempFile);
-        echo "private uploadOption = array(";
+        echo "private \$uploadOption = array(";
         foreach ($tempFile as $key => $value) {
             # code...
             echo $value.","."<br>";
