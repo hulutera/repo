@@ -1355,7 +1355,7 @@ SQL;
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
     
-        /**
+    /**
      * Class attribute for storing default upload values from upload functionality     
      */
 
@@ -1573,8 +1573,17 @@ SQL;
         <div>
         <select id="idCategory" name="idCategory" class="select form-control">';
         $choose = "Choose Type";
-        if (isset($_SESSION['POST']['idCategory'])) {
-            $choose = $_SESSION['POST']['idCategory'];
+        if (isset($_SESSION['POST']['idCategory'])) {            
+            $id =$_SESSION['POST']['idCategory'];            
+            $type = new HtCategoryComputer("*");
+            $result = $type->getResultSet();
+            while ($row = $result->fetch_array()) {
+                if($row['id'] === $id)
+                {
+                    $choose = $row['field_name'];
+                    break;
+                }
+            }
         }
 
         echo '<option value="' . $choose . '">' . $choose . '</option>';
