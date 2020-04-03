@@ -382,7 +382,10 @@ $lang = array (
     'e.g ID username email' => 'e.g ID or username or email',
     'user page' => 'Hulutera Users Page',
     'search user' => "Search User",
-    'no users found' => '<br>No user found with this information!<br>'
+    'no users found' => '<br>No user found with this information!<br>',
+    'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php'.$lang_url.'"> click this... </a>',
+    'to main page prompt msg' => '<a href="../../index.php'.$lang_url.'">TO Main page ... </a>',
+    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php'.$lang_url.'"> login </a> in order to upload an item.</br>'
 
 );
 

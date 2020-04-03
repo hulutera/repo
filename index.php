@@ -85,7 +85,7 @@ commonHeader();?>
 			<?php
 						foreach($city_lang_arr as $key=>$value){
 							$totalItems = 0;				
-					        if($key == "All") echo '<li style="background-color:#378de5; color: #fff"> ' . $value . '</li>';
+					        if($key == "All") echo '<li style="background-color:#378de5; color: #fff;text-align:center"> ' . $value . '</li>';
 							elseif($key != "000") {
 								$itemToStatus = array(
 									"car" => "cStatus",

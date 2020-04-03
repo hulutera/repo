@@ -2998,6 +2998,48 @@ th {
     
 }
 
+.leftNav-index{
+	width: 12%;
+	float: left;
+	box-sizing: border-box;
+	font-size: 120%;
+	padding-left:5px;
+}
+
+.leftNav-index a li:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+	background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+	background-color: #378de5;
+	color: #fff;
+}
+
+.leftNav-index li {
+	color: #000;
+	border: solid 1px #d2d2d2;
+	background: #f1f1f1;
+	height: 30px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.leftNav-index a {
+	display: block;
+	font-size: 16px;
+	color: #000;
+	font-family: sans-serif, Arial, Helvetica;
+}
+
+.leftNav-index li a.selected {
+	background-color: #1F75CC;
+	color: #fff;
+}
+
+.leftNav-index a.selected {
+	background-color: #1F75CC;
+	color: #fff;
+}
+
 .rightNav-index{
 	width:12%;
 	float:left;
@@ -3005,12 +3047,36 @@ th {
 	padding-right:5px
 }
 
-.leftNav-index{
-	width:12%;
-	float:left;
-	box-sizing: border-box;
-	padding-left:5px;
+.rightNav-index a li:hover {
+	color: whitesmoke;
+	background-color: gray; 
 }
+
+.rightNav-index li {
+	color: #000;
+	
+	height: 30px;
+	line-height: 30px;
+	
+}
+
+.rightNav-index a {
+	display: block;
+	font-size: 16px;
+	color: #000;
+	font-family: sans-serif, Arial, Helvetica;
+}
+
+.rightNav-index li a.selected {
+	background-color: #1F75CC;
+	color: #fff;
+}
+
+.rightNav-index a.selected {
+	background-color: #1F75CC;
+	color: #fff;
+}
+
 
 #mainColumn-index {
 	width:76%;

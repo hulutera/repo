@@ -7,6 +7,7 @@ $type = $_GET['type'];
 
 function createMessage($type)
 {
+	global $lang;
 	if (is_numeric($type)) {
 		switch ($type) {
 			case 0:
@@ -65,8 +66,7 @@ function createMessage($type)
 				$message .= 'መልእክቶ ተልኳል';
 				break;
 			case 9:
-				$message = ' You need to <a href="../includes/login.php"> login </a> in order to upload an item.</br>';
-				$message .= 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php">መግባት</a> ይኖርቦታል';
+				$message = $lang['prompt msg for a wrong access to upload'];
 				break;
 			case 10:
 				$message = "Thank you for using our service! 
@@ -118,12 +118,11 @@ function createMessage($type)
 				$message = "The file is not ready for upload.";
 				break;
 			case 23:
-				$message = '<a href="../../index.php">TO Main page ... <br>';
-				$message .= 'ወደ ዋና ገጽ ... </a>';
+				$message = $lang['to main page prompt msg'];
+				
 				break;
 			case 24:
-				$message = '<a href="../includes/upload.php">TO Upload more item ... <br>';
-				$message .= 'ንብረት ለማስገባት ... </a>';
+				$message = $lang['promp msg for uploading more items'];
 				break;								
 			case 404:
 				$message = "Oops! Bad Operation.";
@@ -155,10 +154,7 @@ function createMessage($type)
 					</div>
 					<div class="alert alert-info" id="inner">
 						<strong><?php createMessage(23); ?></strong>
-					</div>
-					<div class="alert alert-info" id="inner">
-						<strong><?php createMessage(24);?></strong>
-					</div>				
+					</div>			
 			</div>
 		</div>
 		<div class="push"></div>

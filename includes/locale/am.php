@@ -363,7 +363,12 @@ $lang = array (
     'e.g ID username email' => 'ምሳሌ:- መለያ ቁጥር ወይም ኢሜይል ወይም የመጠቀምያ ስም',
     'users page' => 'የሁሉተራ ተጠቃሚዎች ገጽ',
     'search user' => 'ተጠቃሚዎች ይፈልጉ',
-    'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>'
+    'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>',
+    'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a href="../includes/upload.php'.$lang_url.'">ይህንን ይጫኑ...</a>',
+    'to main page prompt msg' => '<a href="../index.php'.$lang_url.'">ወደ ዋና ገጽ ... </a>',
+    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php'.$lang_url.'">መግባት</a> ይኖርቦታል' 
+
+
 );
 
 $city_lang_arr = array (

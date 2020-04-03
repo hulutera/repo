@@ -233,8 +233,6 @@ function topRightLinks()
 		echo '<div class ="toprightlink">';
 		locale($current_link);
 		echo '<br /><br />';
-		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish">' . $name . '</div></div>';
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
 		echo '<div id="topRightEnglish"><i class="fas fa-upload" style="font-size:20px"></i><br/>' . $lang['Post Items'] . '</div>';
@@ -250,7 +248,8 @@ function topRightLinks()
 		echo '<div id="topRightEnglish"><i class="fas fa-power-off" style="font-size:20px"></i><br/>' . $lang['Logout'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<i class="fas fa-user" style="font-size:20px"></i>';
+		echo '<div id="toplinktexts">';
+		echo '<div id="topRightEnglish"><i class="fas fa-user" style="font-size:20px"></i></br>' . $name . '</div></div>';
 		echo '</div>';
 	}
 }
