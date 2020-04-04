@@ -1,6 +1,6 @@
 <?php
 
-$lang = array (
+$lang = array(
     'LANGUAGE' => 'LANGUAGE',
     'All Items' => 'All Items',
     'Post Items' => 'Post Items',
@@ -11,7 +11,7 @@ $lang = array (
     'phone' => 'Phone',
     'electronic' => 'Electronic',
     'electronic_memory' => 'Hardisk, USB, ...',
-    'electronic_sound' => 'Headphone, Speakers, ...',    
+    'electronic_sound' => 'Headphone, Speakers, ...',
     'electronic_tv' => 'Tv',
     'electronic_white' => 'Fridge, Washing Machine, Stove, ...',
     'household' => 'Household',
@@ -78,8 +78,8 @@ $lang = array (
     'Gambela' => 'Gambela',
     'Axum' => 'Axum',
     'Asaita' => 'Asaita',
-    'Asossa' => 'Asossa',    
-    'Debre Markos' => 'Debre Markos',    
+    'Asossa' => 'Asossa',
+    'Debre Markos' => 'Debre Markos',
     'Adigrat' => 'Adigrat',
     'Other' => 'Other',
     'Addis ketema' => 'Addis ketema',
@@ -196,8 +196,8 @@ $lang = array (
     'Message' => 'Message',
     'Send' => 'Send',
     'General comment' => 'General comment',
-    'about us on footer text' 
-    => 
+    'about us on footer text'
+    =>
     'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click ',
     'about us page paragraph1 text' =>
     'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
@@ -358,7 +358,7 @@ $lang = array (
     'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com \n',
     'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n',
     'select city from map' => 'Select a city on the map',
-    'facebook' => 'acebook',    
+    'facebook' => 'acebook',
     'twitter' => 'witter',
     'pintrest' => 'intrest',
     'youtube' => ' YouTube',
@@ -394,7 +394,7 @@ $lang = array (
 
 $city_lang_arr = array(
     '000' => 'Choose City',
-    'All' => 'All Cities',    
+    'All' => 'All Cities',
     'Addis Ababa' => 'Addis Ababa',
     'Adama' => 'Adama',
     'Bahir Dar' => 'Bahir Dar',
@@ -419,8 +419,8 @@ $city_lang_arr = array(
     'Gambela' => 'Gambela',
     'Axum' => 'Axum',
     'Asaita' => 'Asaita',
-    'Asossa' => 'Asossa',    
-    'Debre Markos' => 'Debre Markos',    
+    'Asossa' => 'Asossa',
+    'Debre Markos' => 'Debre Markos',
     'Adigrat' => 'Adigrat',
     'Other' => 'Other'
 );
@@ -434,10 +434,128 @@ $item_lang_arr = array(
     'computer' => 'Computer',
     'phone' => 'Phone',
     'electronic' => 'Electronic',
-    'electronic_memory' => 'Hardisk, USB, ...',
-    'electronic_sound' => 'Headphone, Speakers, ...',    
-    'electronic_tv' => 'Tv',
-    'electronic_white' => 'Fridge, Washing Machine, Stove, ...',    
+    // 'electronic_memory' => 'Hardisk, USB, ...',
+    // 'electronic_sound' => 'Headphone, Speakers, ...',    
+    // 'electronic_tv' => 'Tv',
+    // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',    
     'household' => 'Household',
     'other' => 'Other'
 );
+
+$item_specific_array = [
+    'car' => [
+        'Type'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => []
+        ],
+        'Make'        => [
+            0 => 'Make',
+            1 => 'Choose Make'
+        ],
+        'Model'       => [
+            0 => 'Model',
+            1 => 'Write Model'
+        ],
+        'Year Made'   => [
+            0 => 'Year Made',
+            1 => 'Choose Year Made',
+            2 => [
+                '1940' => 'Before 1940',
+                '1950' => '1940-1950',
+                '1960' => '1950-1960',
+                '1970' => '1970-1980',
+                'unknown' => 'unknown'
+            ]
+        ],
+        'Gear Type'   => [
+            0 => 'Gear Type',
+            1 => 'Choose Gear Type',
+            2 => [
+                'manual' => 'Manual',
+                'automatic' => 'Automatic',
+                'semi-automatic'  => 'Semi-automatic'
+            ]
+        ],
+        'Fuel Type'   => [
+            0 => 'Fuel Type',
+            1 => 'Choose Fuel Type',
+            2 => [                
+                'bensine' => 'Bensine',
+                'bensine-electric' => 'Bensine/Electric',
+                'electric' => 'Electric',
+                'diesel'  => 'Diesel',
+                'bio-gas' => 'Bio-gas',
+            ]
+        ],
+        'Milage [Km]' => [
+            0 => 'Milage [Km]',
+            1 => 'Choose Milage',
+            2 => ['unknown' => 'Unknown']
+        ],
+        'Number of Seats' => [
+            0 => 'Number of Seats',
+            1 => 'Choose Number of Seats',
+            2 => [
+                'over100' => 'Over 100', 
+                'unknown' => 'Unknown'
+            ]
+        ],
+        'Color'       => [
+            0 => 'Color',
+            1 => 'Choose Color'
+        ],
+    ],
+    'house' => [],
+    'computer' => [],
+    'phone' => [],
+    'electronic' => [],
+    'household' => [],
+    'other' => [],
+    'common' => [
+        'Location'    => [
+            0 => 'Location',
+            1 => 'Choose Item Location'
+        ],
+        'Do you want to Rent or Sell?' => [
+            0 => 'Do you want to Rent or Sell?',
+            'rent' => 'Rent',
+            'sell' => 'Sell',
+            'both' => 'Both',
+        ],
+
+        'Rent Price' => 'Rent Price',
+        'Rent Rate' => [
+            0 => 'Rent Rate',
+            1 => 'Choose Rent Rate',
+            2 => [
+                'hourly' => 'hourly',
+                'daily' => 'daily',
+                'monthly' => 'monthly',
+                'yearly' => 'yearly',                
+            ],
+        ],
+        'Sell Price' => 'Sell Price',        
+        'currency' => [
+            0 => 'Currency',
+            'ETB' => 'ETB',
+            'USD' => 'USD',           
+        ],
+        'Price is negotiable' => [
+            0 => 'Price is negotiable',
+            'yes' => 'Yes',
+            'no' => 'No',
+        ],
+        'Title' => 'Title',
+        'Extra Info' => 'Extra Info',        
+        'Contact Me With' => [
+            0       => 'Contact Me With',
+            'phone'  => 'Phone',
+            'e-mail' => 'E-mail',
+            'both'   => 'Both'
+        ],        
+        'Choose Images here' => 'Choose Images here'
+    ]
+];
+$GLOBALS['city_lang_arr'] = $city_lang_arr;
+$GLOBALS['item_specific_array'] = $item_specific_array;

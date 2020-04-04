@@ -88,7 +88,6 @@ require_once $documnetRootPath . '/includes/validate.php';
 				// var_dump($_SESSION['POST']);
 				(new HtMainView($_GET['type'], null))->upload();
 				//$_SESSION['POST'] = [];
-
 				?>
 			</div>
 		</div>

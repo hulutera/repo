@@ -1,4 +1,5 @@
 <?php
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/class.fileuploader.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
@@ -1568,6 +1569,7 @@ SQL;
      */
     public function upload()
     {
+        
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">';
         $this->newForm();
         if ($_SESSION['warnings']) {
@@ -1636,69 +1638,31 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldLocation'] .'</div>';
         }
-        $choose = "Choose Item Location";
+        $choose = $GLOBALS['item_specific_array']['common']['Location'][1];
         if (isset($_SESSION['POST']['fieldLocation'])) {
             $choose = $_SESSION['POST']['fieldLocation'];
         }
-        $location = array(
-            "Addis Ababa" => "Addis Ababa",
-            "Dire Dawa" => "Dire Dawa",
-            "Adama"  => "Adama",
-            "Bahir Dar"  => "Bahir Dar",
-            "Mekele"  => "Mekele",
-            "Awassa"  => "Awassa",
-            "Asaita"  => "Asaita",
-            "Debre Berhan" => "Debre Berhan",
-            "Dessie"  => "Dessie",
-            "Gondar"  => "Gondar",
-            "Gambela"  => "Gambela",
-            "Harar"  => "Harar",
-            "Asella"  => "Asella",
-            "Debre Zeit" =>  "Debre Zeit",
-            "Jimma"  => "Jimma",
-            "Nekemte"  => "Nekemte",
-            "Shashemene" => "Shashemene",
-            "Arba Minch" => "Arba Minch",
-            "Dila"  => "Dila",
-            "Hosaena"  => "Hosaena",
-            "Sodo"  => "Sodo",
-            "Somali-Jijig" => "Somali-Jijig",
-            "Axum"  => "Axum",
-            "Other"  => "Other"
-        );
+        $location = $GLOBALS['item_specific_array']['common']['Location'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
-           <label for="fieldLocation">Item Location</label> 
+           <label for="fieldLocation">'.$location.'</label> 
            '.$errorDiv.'
            <div>
              <select id="fieldLocation" name="fieldLocation" class="select form-control" >';
              echo '<option value="' . $choose . '">' . $choose . '</option>';
-        foreach ($location as $key => $value) {
-            echo '<option value="' . $key . '">' . $value . '</option>';
+
+        $city = $GLOBALS['city_lang_arr'];
+        foreach ($city as $key => $value) {
+            if($key === '000' || $key === 'All')
+            {
+                continue;                
+            }   
+            echo '<option value="' . $key . '">' . $value . '</option>';           
         }
         echo '</select></div></div></div>';
     }
-    private function inputItemImages()
-    {
-        $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fileuploader-list-files']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fileuploader-list-files'] .'</div>';
-        }
-        echo '<div class="row upload">';
-        echo '
-        <div class="form-group">
-        '.$errorDiv.'
-            <label for="fieldImage">Choose Images here</label>
-            <div>
-                    <!-- file input -->
-                    <input type="file" name="files">
-            </div>
-        </div>
-        </div>
-        ';
-    }
+
     private function inputCarType()
     {
         $errorDiv = "";
@@ -1706,14 +1670,15 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['idCategory'] .'</div>';
         }
+        $type = $GLOBALS['item_specific_array']['car']['Type'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
         '.$errorDiv.'
-            <label for="idCategory">Type</label> 
+            <label for="idCategory">'.$type.'</label> 
         <div>
         <select id="idCategory" name="idCategory" class="select form-control">';
-        $choose = "Choose Type";
+        $choose = $GLOBALS['item_specific_array']['car']['Type'][1];
         if (isset($_SESSION['POST']['idCategory'])) {            
             $id =$_SESSION['POST']['idCategory'];            
             $type = new HtCategoryCar("*");
@@ -1744,14 +1709,16 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMake'] .'</div>';
         }
+
+        $make = $GLOBALS['item_specific_array']['car']['Make'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
         '.$errorDiv.'
-           <label for="fieldMake">Make</label> 
+           <label for="fieldMake">'.$make.'</label> 
            <div>
              <select id="fieldMake" name="fieldMake" class="select form-control">';
-        $choose = "Choose Car Make";
+        $choose = $GLOBALS['item_specific_array']['car']['Make'][1];
         if (isset($_SESSION['POST']['fieldMake'])) {
             $choose = $_SESSION['POST']['fieldMake'];
         }
@@ -1784,13 +1751,14 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModel'] .'</div>';
         }
+        $model = $GLOBALS['item_specific_array']['car']['Model'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
         '.$errorDiv.'
-          <label for="fieldModel">Model</label> 
+          <label for="fieldModel">'.$model.'</label> 
           <div>';
-        $placeholder = "Write Car Model";
+        $placeholder = $GLOBALS['item_specific_array']['car']['Model'][1];
         $value = "";
         if (isset($_SESSION['POST']['fieldModel'])) {
             $value = $_SESSION['POST']['fieldModel'];
@@ -1808,14 +1776,17 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModelYear'] .'</div>';
         }
+
+        $yearMade = $GLOBALS['item_specific_array']['car']['Year Made'][0];
+
         echo '
         <div class="col-md-4">
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldModelYear">Year Made</label> 
+        <label for="fieldModelYear">'.$yearMade.'</label> 
         <div>
         <select id="fieldModelYear" name="fieldModelYear" class="select form-control">';
-        $choose = "Choose Year Made";
+        $choose = $GLOBALS['item_specific_array']['car']['Year Made'][1];
         if (isset($_SESSION['POST']['fieldModelYear'])) {
             $choose = $_SESSION['POST']['fieldModelYear'];
         }
@@ -1825,46 +1796,18 @@ SQL;
         for ($i = date('Y'); $i >= 1980; --$i) {
             echo '<option value = "' . $i . '">' . $i . '</option>';
         }
+        
         echo '
-        <option value = "1940">Cars in 50s (1940)</option>
-        <option value = "1950">Cars in 50s (1950)</option>
-        <option value = "1960">Cars in 60s (1960)</option>
-        <option value = "1970">Cars in 70s (1970)</option>
+        <option value = "1970">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1970'].'</option>
+        <option value = "1960">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1960'].'</option>
+        <option value = "1950">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1950'].'</option>
+        <option value = "1940">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1940'].'</option>
+        <option value = "1970">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['unknown'].'</option>
+
         </select>
       </div>
     </div></div>';
     }
-
-    // private function inputCarFuelType()
-    // {
-    //     echo '
-    //     <div class="form-group">
-    //     <label for="fieldFuelType">Fuel Type</label> 
-    //     <div>
-    //       <label class="radio-inline">
-    //         <input type="radio" name="fieldFuelType" value="1" '.($_SESSION['POST']['fieldFuelType'] == 1?"checked":"").'>
-    //               Besine
-    //       </label>
-    //       <label class="radio-inline">
-    //         <input type="radio" name="fieldFuelType" value="2" '.($_SESSION['POST']['fieldFuelType'] == 2?"checked":"").'>
-    //               Diesel
-    //       </label>
-    //       <label class="radio-inline">
-    //         <input type="radio" name="fieldFuelType" value="3" '.($_SESSION['POST']['fieldFuelType'] == 3?"checked":"").'>
-    //               Bio-gas
-    //       </label>
-    //       <label class="radio-inline">
-    //         <input type="radio" name="fieldFuelType" value="4" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
-    //               Besine/Electric (Hybrid)
-    //       </label>
-    //       <label class="radio-inline">
-    //         <input type="radio" name="fieldFuelType" value="5" '.($_SESSION['POST']['fieldFuelType'] == 4?"checked":"").'>
-    //               Electric
-    //       </label>
-    //     </div>
-    //   </div>
-    //     ';
-    // }
 
     private function inputCarFuelType()
     {
@@ -1873,26 +1816,30 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldFuelType'] .'</div>';
         }
+        $fuleType = $GLOBALS['item_specific_array']['car']['Fuel Type'][0];
+
         echo '
         <div class="col-md-4">
 
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldFuelType">Fuel Type</label> 
+        <label for="fieldFuelType">'.$fuleType.'</label> 
         <div>
         <select id="fieldFuelType" name="fieldFuelType" class="select form-control">
         ';
-        $choose = "Choose Fuel Type";
+        $choose = $GLOBALS['item_specific_array']['car']['Fuel Type'][1];
+        
         if (isset($_SESSION['POST']['fieldFuelType'])) {
             $choose = $_SESSION['POST']['fieldFuelType'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
+        $types = $GLOBALS['item_specific_array']['car']['Fuel Type'][2];
         echo '        
-        <option value="Besine" >Besine</option>
-        <option value="Bio-gas" >Bio-gas</option>
-        <option value="Besine/Electric" >Besine/Electric</option>
-        <option value="Diesel" >Diesel</option>
-        <option value="Electric" >Electric</option>
+        <option value="Besine" >'.$types['bensine'].'</option>
+        <option value="Besine/Electric" >'.$types['bensine-electric'].'</option>
+        <option value="Bio-gas" >'.$types['bio-gas'].'</option>        
+        <option value="Diesel" >'.$types['diesel'].'</option>
+        <option value="Electric" >'.$types['electric'].'</option>
         </select></div></div></div>';
     }
     //temporary disabled no database reflection, need generation
@@ -1918,28 +1865,7 @@ SQL;
       </div></div>
         ';
     }
-    // private function inputCarGearType()
-    // {
-    //     echo '
-    //     <div class="form-group">
-    //       <label for="fieldGearType">Gear Type</label> 
-    //       <div>
-    //         <label class="radio-inline">
-    //           <input type="radio" name="fieldGearType" value="1" '.($_SESSION['POST']['fieldGearType'] == 1?"checked":"").'>
-    //                 Manual
-    //         </label>
-    //         <label class="radio-inline">
-    //           <input type="radio" name="fieldGearType" value="2" '.($_SESSION['POST']['fieldGearType'] == 2?"checked":"").'>
-    //                 Automatic
-    //         </label>
-    //         <label class="radio-inline">
-    //           <input type="radio" name="fieldGearType" value="3" '.($_SESSION['POST']['fieldGearType'] == 3?"checked":"").'>
-    //                 Semi-automatic
-    //         </label>
-    //       </div>
-    //     </div>
-    //     ';
-    // }
+
     private function inputCarGearType()
     {
         $errorDiv = "";
@@ -1947,24 +1873,26 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldGearType'] .'</div>';
         }
+        $gearType = $GLOBALS['item_specific_array']['car']['Gear Type'][0];
+
         echo '
         <div class="col-md-4">
 
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldGearType">Gear Type</label> 
+        <label for="fieldGearType">'.$gearType.'</label> 
         <div>
         <select id="fieldMilage" name="fieldGearType" class="select form-control">';
-        $choose = "Choose Gear Type";
+        $choose = $GLOBALS['item_specific_array']['car']['Gear Type'][1];
         if (isset($_SESSION['POST']['fieldGearType'])) {
             $choose = $_SESSION['POST']['fieldGearType'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
 
         echo '
-        <option value="Manual" >Manual</option>
-        <option value="Automatic" >Automatic</option>
-        <option value="Semi-automatic" >Semi-automatic</option>
+        <option value="Manual" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['manual'].'</option>
+        <option value="Automatic" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['automatic'].'</option>
+        <option value="Semi-automatic" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['semi-automatic'].'</option>
         </select></div></div></div>';
     }
     private function inputCarMilage()
@@ -1974,25 +1902,30 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMilage'] .'</div>';
         }
+        $milageKm = $GLOBALS['item_specific_array']['car']['Milage [Km]'][0];
+
         echo '
         <div class="col-md-4">
 
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldMilage">Milage [km]</label> 
+        <label for="fieldMilage">'.$milageKm.'</label> 
         <div>
         <select id="fieldMilage" name="fieldMilage" class="select form-control">';
-        $choose = "Choose Milage";
+        $choose = $GLOBALS['item_specific_array']['car']['Milage [Km]'][1];
         if (isset($_SESSION['POST']['fieldMilage'])) {
             $choose = $_SESSION['POST']['fieldMilage'];
         }
 
         echo '<option value="' . $choose . '">' . $choose . '</option>';
-        for ($i = 0; $i <= 40000;) {
-            $j = $i + 4999;
+        for ($i = 0; $i <= 4000000;) {
+            $j = $i + 499999;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
-            $i += 5000;
+            $i += 500000;
         }
+        $unknown = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2]['unknown'];
+        echo '<option value="unknown">' . $unknown. '</option>';
+        $unknown = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2]['unknown'];
         echo '</select></div></div></div>';
     }
 
@@ -2003,15 +1936,17 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldNoOfSeat'] .'</div>';
         }
+        $numberOfSeats = $GLOBALS['item_specific_array']['car']['Number of Seats'][0];
+
         echo '
         <div class="col-md-4">
 
         <div class="form-group">
         '.$errorDiv.'
-          <label for="fieldNoOfSeat">Number of Seat</label> 
+          <label for="fieldNoOfSeat">'.$numberOfSeats.'</label> 
           <div>
             <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control">';
-        $choose = "Choose No of Seat";
+        $choose = $GLOBALS['item_specific_array']['car']['Number of Seats'][1];
         if (isset($_SESSION['POST']['fieldNoOfSeat'])) {
             $choose = $_SESSION['POST']['fieldNoOfSeat'];
         }
@@ -2022,7 +1957,9 @@ SQL;
             $j = $i - 1 + 5;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5;
-        }
+        }        
+        echo '<option value="over100">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['over100']. '</option>';
+        echo '<option value="unknown">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['unknown']. '</option>';
         echo '</select></div></div></div>';
     }
 
@@ -2033,10 +1970,12 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldColor'] .'</div>';
         }
+        $color = $GLOBALS['item_specific_array']['car']['Color'][1];
+
         echo '
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldColor">Color</label> 
+        <label for="fieldColor">'.$color.'</label> 
         <div class="col-md-4"><div class="row">
 		<div class="col-md-12">	<div class="btn-group" role="group">';
 
@@ -2067,7 +2006,7 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldTitle'] .'</div>';
         }
-        $placeholder= "Write your title";
+        $placeholder = $GLOBALS['item_specific_array']['common']['Title'];//"Write your title";
         $choose = "";
         if (isset($_SESSION['POST']['fieldTitle'])) {
             $choose = $_SESSION['POST']['fieldTitle'];
@@ -2077,7 +2016,7 @@ SQL;
 
         <div class="form-group">
         '.$errorDiv.'
-        <label for="fieldTitle">Title</label> 
+        <label for="fieldTitle">'.$GLOBALS['item_specific_array']['common']['Title'].'</label> 
         <div>
           <input id="fieldTitle" name="fieldTitle" type="text" placeholder="'. $placeholder . '" value="' . $choose . '" class="form-control">
         </div>
@@ -2114,22 +2053,49 @@ SQL;
                 $chooseBoth = "checked";
             }
         }
+        $contactMeWith = $GLOBALS['item_specific_array']['common']['Contact Me With'][0];
+        $phone = $GLOBALS['item_specific_array']['common']['Contact Me With']['phone'];
+        $email = $GLOBALS['item_specific_array']['common']['Contact Me With']['e-mail'];
+        $both  = $GLOBALS['item_specific_array']['common']['Contact Me With']['both'];
         echo '<div class="col-md-4">     
       <div class="form-group">
       '.$errorDiv.'
-        <label for="fieldContactMethod">Contact Me With</label> 
+        <label for="fieldContactMethod">'.$contactMeWith.'</label> 
         <div>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="phone"  '.$choosePhone.'> Phone </label>
+            <input type="radio" name="fieldContactMethod" value="phone"  '.$choosePhone.'> '.$phone.' </label>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="email" '.$chooseEmail.'> E-mail </label>
+            <input type="radio" name="fieldContactMethod" value="email" '.$chooseEmail.'> '.$email.' </label>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="both" '.$chooseBoth.'> All </label>
+            <input type="radio" name="fieldContactMethod" value="both" '.$chooseBoth.'> '.$both.' </label>
         </div>
       </div></div>    
       ';
     }
 
+    private function inputItemImages()
+    {
+        $errorDiv = "";
+        if(isset($_SESSION['errorRaw']['fileuploader-list-files']))
+        {
+            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fileuploader-list-files'] .'</div>';
+        }
+        
+        $image = $GLOBALS['item_specific_array']['common']['Choose Images here'];
+
+        echo '<div class="row upload">';
+        echo '
+        <div class="form-group">
+        '.$errorDiv.'
+            <label for="fieldImage">'.$image.'</label>
+            <div>
+                    <!-- file input -->
+                    <input type="file" name="files">
+            </div>
+        </div>
+        </div>
+        ';
+    }
     private function inputItemPrice()
     {
         echo '
@@ -2167,19 +2133,23 @@ SQL;
         {
             $chooseBoth = "checked";
         }
+        $doYouWantToRentOrSell = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?'][0];
+        $wantToRent = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?']['rent'];
+        $wantToSell = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?']['sell'];
+        $wantRentAndSell = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?']['both'];
 
         echo '<div class="row" style="padding: 0 0 0 10px;">
         '.$errorDiv.'
-        <label for="price">Do you want to Rent or Sell?</label>
+        <label for="price">'.$doYouWantToRentOrSell.'</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="rent"  value="rent" '.$chooseRent.'>Rent
+                <input type="radio" name="rent-or-sell" id="rent"  value="rent" '.$chooseRent.'>'.$wantToRent.'
             </label>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="sell" value="sell" '.$chooseSell.'>Sell
+                <input type="radio" name="rent-or-sell" id="sell" value="sell" '.$chooseSell.'>'.$wantToSell.'
             </label>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="rent-or-sell" value="rent-or-sell" '.$chooseBoth.'>Both
+                <input type="radio" name="rent-or-sell" id="rent-or-sell" value="rent-or-sell" '.$chooseBoth.'>'.$wantRentAndSell.'
             </label>
         </div>
     </div>';
@@ -2200,15 +2170,19 @@ SQL;
                 $chooseNo = "checked";
             }
         }    
+        $priceIsNegotiable = $GLOBALS['item_specific_array']['common']['Price is negotiable'][0];
+        $yes = $GLOBALS['item_specific_array']['common']['Price is negotiable']['yes'];
+        $no = $GLOBALS['item_specific_array']['common']['Price is negotiable']['no'];
+
         echo '<div class="row" style="padding:10px 0 0 10px;">
         '.$errorDiv.'
-        <label for="price">Price is negotiable</label>
+        <label for="price">'.$priceIsNegotiable .'</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="fieldPriceNego" id="sell"  value="Yes" '.$chooseYes.'>Yes
+                <input type="radio" name="fieldPriceNego" id="sell"  value="Yes" '.$chooseYes.'>'.$yes.'
             </label>
             <label class="radio-inline">
-                <input type="radio" name="fieldPriceNego" id="rent" value="No" '.$chooseNo.'>No
+                <input type="radio" name="fieldPriceNego" id="rent" value="No" '.$chooseNo.'>'.$no.'
             </label>
 
         </div>
@@ -2221,16 +2195,18 @@ SQL;
         {
             $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceCurrency'] .'</div>';
         }
+        $currency = $GLOBALS['item_specific_array']['common']['currency'][0];
+
         echo '<div class="row" style="padding:10px 0 0 10px;">
         '.$errorDiv.'
-        <label for="fieldPriceCurrency">Currency</label> 
+        <label for="fieldPriceCurrency">'.$currency.'</label> 
         <select id="fieldPriceCurrency" name="fieldPriceCurrency" class="select form-control">';
-        $choose = "ETB";
+        $choose = $GLOBALS['item_specific_array']['common']['currency']["ETB"];
         if (isset($_SESSION['POST']['fieldPriceCurrency'])) {
             $choose = $_SESSION['POST']['fieldPriceCurrency'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
-        echo '<option value="USD">$USD</option>
+        echo '<option value="USD">'.$GLOBALS['item_specific_array']['common']['currency']["USD"].'</option>
         </select>
     </div>';
     }
@@ -2260,30 +2236,28 @@ SQL;
         if (isset($_SESSION['POST']['fieldPriceRent'])) {
             $choose = $_SESSION['POST']['fieldPriceRent'];
         }
+        $rentPrice = $GLOBALS['item_specific_array']['common']['Rent Price'];
+        $rentRate = $GLOBALS['item_specific_array']['common']['Rent Rate'][0];
         echo '
         <div class="col-md-4 fieldPriceRent" style="'.$diplayRent.'">
         <div class="form-group" style="padding:10px 0 0 10px;">
         <div>
             <div class="row" style="padding:10px 0 0 10px;">
             '.$errorDiv1.'
-            <label for="fieldPriceRent">Rent Price</label>
+            <label for="fieldPriceRent">'.$rentPrice.'</label>
                 <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="'. $placeholder . '"  value="' . $choose . '" class="form-control">
             </div>
             <div class="row" style="padding:10px 0 0 10px;">
             '.$errorDiv2.'
-                <label for="fieldPriceRate">Rate</label> 
+                <label for="fieldPriceRate">'.$rentRate.'</label> 
                 <select id="fieldPriceRate" name="fieldPriceRate" class="form-control">';
-        $choose = "Choose Rental Rate";
+
+        $choose = $GLOBALS['item_specific_array']['common']['Rent Rate'][1];
         if (isset($_SESSION['POST']['fieldPriceRate'])) {
             $choose = $_SESSION['POST']['fieldPriceRate'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
-        $rate = [
-            "hour" => "hourly",
-            "day" => "daily",
-            "month" => "monthly",
-            "year" => "yearly"
-        ];
+        $rate = $GLOBALS['item_specific_array']['common']['Rent Rate'][2];
         foreach ($rate as $key => $value) {
             echo '<option value="' . $value . '">' . $value . '</option>';
         }
@@ -2311,13 +2285,14 @@ SQL;
             $choose =$_SESSION['POST']['fieldPriceSell'];
         }
 
+        $sellPrice = $GLOBALS['item_specific_array']['common']['Sell Price'];
         echo '
         <div class="col-md-4 fieldPriceSell" style="'.$diplaySell.'">
         <div class="form-group" style="padding:10px 0 0 10px;">
         '.$errorDiv.'
         <div>
         <div class="row" style="padding:10px 0 0 10px;">
-            <label for="fieldPriceSell">Sell Price</label> 
+            <label for="fieldPriceSell">'.$sellPrice.'</label> 
                 <input id="fieldPriceSell" name="fieldPriceSell" type="text" placeholder="' . $placeholder . '" value="' . $choose . '"  class="form-control">
            </div></div></div></div>';
     }

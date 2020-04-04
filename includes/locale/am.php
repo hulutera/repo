@@ -1,5 +1,5 @@
 <?php
-$lang = array (
+$lang = array(
     'LANGUAGE' => 'ቋንቋ',
     'All Items' => 'ሁሉም ንብረቶች',
     'Post Items' => 'ንብረት ያስገቡ',
@@ -10,7 +10,7 @@ $lang = array (
     'phone' => 'ስልክ',
     'electronics' => 'ኤሌክትሮኒክስ',
     'electronic_memory' => 'ሃርድ ዲስክ፣ ሜሞሪ ስቲክ፣ ወዘተ ...',
-    'electronic_sound' => 'ሄድ ፎን፣ ስፒከሮች፣ ወዘተ ...',    
+    'electronic_sound' => 'ሄድ ፎን፣ ስፒከሮች፣ ወዘተ ...',
     'electronic_tv' => 'ቲቪ',
     'electronic_white' => 'ፍሪጅ፣ ዋሺንግ ማሺን፣ ወዘተ ...',
     'household' => 'የቤት ዕቃዎች',
@@ -199,7 +199,7 @@ $lang = array (
     'Message' => 'መልዕክት',
     'Send' => 'ይላኩ',
     'about us page paragraph1 text'
-    => 
+    =>
     'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው',
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
     =>
@@ -215,7 +215,7 @@ $lang = array (
     'If you need help, click' => 'ተጨማሪ መረጃ ካስፈለግዎ የሚከተለውን ይጫኑ',
     'Contact Us' => 'ሊጠይቁን ይፈልጋሉ',
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'
-    => 
+    =>
     'በመጨረሻም ሁሉተራን ለኢትዮጵያውያን ይፋ ስናደርግ በሙሉ ኩራት እና ልባዊ ደስታ ሲሆን ድሕረገፁን እንዲጠቀሙበት በትህትና እንጠይቆታለን',
     'About Us' => 'ስለ እኛ',
     'Terms and Conditions' => 'የመተዳደርያ ደንብ',
@@ -339,7 +339,7 @@ $lang = array (
     'close acc email msg part2' => 'የሁሉተራ አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ። ይሁንና አካውንቱን መዝጋት እርስዎ ካልጠየቁ ፣ በ admin@hulutera.com መልእክት ይላኩልን።',
     'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n',
     'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ',
-    'facebook' => 'ፌስቡክ',    
+    'facebook' => 'ፌስቡክ',
     'twitter' => 'ትዊተር',
     'pintrest' => 'ፒኢንትረስት',
     'youtube' => ' ዩትዩብ',
@@ -351,7 +351,7 @@ $lang = array (
     'pending items' => 'ተጠባባቂ ንብረት',
     'deleted items' => 'የጠፋ ንብረት',
     'change role' => 'የተጠቃሚ ሀላፊነትን ይቀይሩ',
-    'user' => 'ተጠቃሚ',    
+    'user' => 'ተጠቃሚ',
     'mod' => 'ሞደሬተር',
     'admin' => 'አስተዳደር',
     'webmaster' => 'ዌብ ማስተር',
@@ -371,10 +371,9 @@ $lang = array (
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
     'search res' => 'የፍለጋ ውጤት'
-
 );
 
-$city_lang_arr = array (
+$city_lang_arr = array(
     '000' => 'ከተማ ይምረጡ',
     'All' => 'ሁሉም ከተሞች',
     'Addis Ababa' => 'አዲስ አበባ',
@@ -401,8 +400,8 @@ $city_lang_arr = array (
     'Gambela' => 'ጋንቤላ',
     'Axum' => 'አክሱም',
     'Asaita' => 'አሳይታ',
-    'Asossa' => 'አሶሳ',    
-    'Debre Markos' => 'ደብረ ማርቆስ',    
+    'Asossa' => 'አሶሳ',
+    'Debre Markos' => 'ደብረ ማርቆስ',
     'Adigrat' => 'አዲግራት',
     'Other' => 'ሌላ'
 );
@@ -414,12 +413,127 @@ $item_lang_arr = array(
     'house' => 'ቤት',
     'computer' => 'ኮምፒዩተር',
     'phone' => 'ስልክ',
-    'electronic' => 'ኤሌክትሮኒክስ',
-    'electronic_memory' => 'Hardisk, USB, ...',
-    'electronic_sound' => 'Headphone, Speakers, ...',    
-    'electronic_tv' => 'Tv',
-    'electronic_white' => 'Fridge, Washing Machine, Stove, ...',
+    // 'electronic' => 'ኤሌክትሮኒክስ',
+    // 'electronic_memory' => 'Hardisk, USB, ...',
+    // 'electronic_sound' => 'Headphone, Speakers, ...',    
+    // 'electronic_tv' => 'Tv',
+    // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',
     'household' => 'የቤት ዕቃዎች',
     'other' => 'ሌሎች'
 );
 
+$item_specific_array = [
+    'car' => [
+        'Type'        => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ'
+        ],
+        'Make'        => [
+            0 => 'ስሪት (አምራች ድርጅት)',
+            1 => 'ስሪት ይምረጡ'
+        ],
+        'Model'       => [
+            0 => 'ሞዴል',
+            1 => 'ሞዴል እዚህ ይጻፉ'
+        ],
+        'Year Made'   => [
+            0 => 'የተሠራበት ዓ.ም',
+            1 => 'የተሠራበት ዓ.ም ይምረጡ',
+            2 => [
+                '1940' => 'ከ1940 በፊት',
+                '1950' => 'ከ1940-1950 መካከል',
+                '1960' => 'ከ1950-1960 መካከል',
+                '1970' => 'ከ1970-1980 መካከል',
+                'unknown' => 'አይታወቅም'
+            ]
+        ],
+        'Gear Type'   => [
+            0 => 'ማርሽ ዓይነት (ጊር ቦክስ)',
+            1 => 'ማርሽ ዓይነት ይምረጡ',
+            2 => [
+                'manual' => 'ማንዋል',
+                'automatic' => 'አውቶማቲክ',
+                'semi-automatic'  => 'ከፊል አውቶማቲክ'
+            ]
+        ],
+        'Fuel Type'   => [
+            0 => 'ነዳጅ ዓይነት',
+            1 => 'ነዳጅ ዓይነት ይምረጡ',
+            2 => [
+                'bensine' => 'በቤንዚን ብቻ',
+                'bensine-electric' => 'በቤንዚን እና ኤሌትሪክ',
+                'electric' => 'በኤሌትሪክ ብቻ',
+                'diesel'  => 'ናፍጣ',
+                'bio-gas' => 'ባዮ ጋዝ',
+            ]
+        ],
+        'Milage [Km]' => [
+            0 => 'የተጓዘው መጠን (በኪ.ሜ)',
+            1 => 'የተጓዘው መጠን ይምረጡ',
+            2 => ['unknown' => 'አይታወቅም']
+        ],
+        'Number of Seats' => [
+            0 => 'የመቀመጫ ብዛት',
+            1 => 'የመቀመጫ ብዛት ይምረጡ',
+            2 => [
+                'over100' => 'ከ100 በላይ',
+                'unknown' => 'አይታወቅም'
+            ]
+        ],
+        'Color'       => [
+            0 => 'ቀለም',
+            1 => 'ቀለም ይምረጡ'
+        ],
+    ],
+    'house' => [],
+    'computer' => [],
+    'phone' => [],
+    'electronic' => [],
+    'household' => [],
+    'other' => [],
+    'common' => [
+        'Location'    => [
+            0 => 'ንብረቱ የሚገኘበት ቦታ',
+            1 => 'የንብረቱን ቦታ ይምረጡ'
+        ],
+        'Do you want to Rent or Sell?' => [
+            0 => 'ማከራየት ወይስ መሽጥ ይፈልጋሉ?',
+            'rent' => 'ማከራየት',
+            'sell' => 'መሽጥ',
+            'both' => 'ሁለቱንም'
+        ],
+        'Rent Price' => 'የኪራይ ዋጋ',
+        'Rent Rate' => [
+            0 => 'የኪራይ ተመን',
+            1 => 'የኪራይ ተመን ይምረጡ',
+            2 => [
+                'hourly' => 'በሰዓት',
+                'daily' => 'በቀን',
+                'monthly' => 'በወር',
+                'yearly' => 'በዓመት',                
+            ],
+        ],
+        'Sell Price' => 'የመሽያጭ ዋጋ',
+        'currency' => [
+            0 => 'ምንዛሪ',
+            'ETB' => 'ብር',
+            'USD' => 'የአሜሪካን ዶላር',
+        ],
+        'Price is negotiable' => [
+            0 => 'ዋጋ መደራደር ይቻላል?',
+            'yes' => 'ይቻላል',
+            'no' => 'አይቻልም',
+        ],
+        'Title' => 'ርዕስ',
+        'Extra Info' => 'ተጨማሪ መረጃ',
+        'Contact Me With' => [
+            0       => 'የመገኛ መንገድ',
+            'phone'  => 'በስልክ',
+            'e-mail' => 'በኢሜይል',
+            'both'   => 'በሁለቱም'
+        ],
+        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ'
+    ]
+];
+$GLOBALS['city_lang_arr'] = $city_lang_arr;
+$GLOBALS['item_specific_array'] = $item_specific_array;
