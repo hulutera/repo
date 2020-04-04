@@ -21,7 +21,7 @@ require_once $documnetRootPath.'/classes/cmn.class.php';
             <?php headerAndSearchCode(""); ?>
             <div id="main_section">
 				<div id="mainColumn">
-                    <div class="LeftNav">
+                    <div class="LeftNav" style="width:18%;box-sizing:border-box;margin-left:0px">
                         <ul>
                             <?php echo  '<li class="list-header" style="background-color:#378de5; color: #fff"> ' . $lang['my activities'] . '</li>
                                         <a href="../..//includes/template.content.php?type=userActive' .$str_url. '"><li>' .$lang['My Items']. '</li></a>
@@ -32,7 +32,7 @@ require_once $documnetRootPath.'/classes/cmn.class.php';
                         </ul>
                     </div>  
                     <div class="login-msg"><img src="../images/login_welcome.jpg" align="left"/> 
-                        <div class="welcome-txt"><p><?php echo $lang['my-page msg'] . '<a href="../../includes/template.proxy.php?type=contact' .$str_url.'">' . $lang['here'] . '</a>';?></p> </div>
+                        <div class="welcome-txt"><p><?php echo $lang['my-page msg'] . '';?></p> </div>
                     </div>
                 </div>
                 
