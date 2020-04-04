@@ -123,7 +123,10 @@ function createMessage($type)
 				break;
 			case 24:
 				$message = $lang['promp msg for uploading more items'];
-				break;								
+				break;
+			case 25:
+				$message = $lang['prompt code 25'];
+				break;						
 			case 404:
 				$message = "Oops! Bad Operation.";
 				break;

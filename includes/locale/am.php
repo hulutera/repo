@@ -279,8 +279,7 @@ $lang = array (
     'Choose City' => 'ከተማ ይምረጡ',
     'All Cities' => 'በሁሉም ከተሞች',
     'hulutera' => 'ሁሉተራ',
-    'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ። </br> ወይም ከተማ ይምረጡ </br> ወይም የንብረት ዓይነት ይምረጡ',
-    'no match for search' => 'ይቅርታ እንዲፈለግልዎት ያሰቡት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ ይሄን የሚለው ተጭነው ያገኛሉ። ',
+    'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ ወይም ከተማ ይምረጡ ወይም የንብረት ዓይነት ይምረጡ</br>',
     'missing email msg' => 'እባክዎ የኢሜይል አድራሻ ያስገቡ።',
     'missing password msg' => 'እባክዎ የሚስጥር ቃል ያስገቡ።',
     'missing e-mail and password msg' => 'እባክዎ የኢሜይል አድራሻ እና  የሚስጥር ቃል  ያስገቡ።',
@@ -366,8 +365,12 @@ $lang = array (
     'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>',
     'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a href="../includes/upload.php'.$lang_url.'">ይህንን ይጫኑ...</a>',
     'to main page prompt msg' => '<a href="../index.php'.$lang_url.'">ወደ ዋና ገጽ ... </a>',
-    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php'.$lang_url.'">መግባት</a> ይኖርቦታል' 
-
+    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php'.$lang_url.'">መግባት</a> ይኖርቦታል...',
+    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋ ይሞክሩ</br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'no match msg part1' => 'ይቅርታ',
+    'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
+    'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'search res' => 'የፍለጋ ውጤት'
 
 );
 

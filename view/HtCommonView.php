@@ -589,7 +589,7 @@ class HtCommonView{
 
     private function displaySearch()
     {
-        global $locationPerTable, $lang;
+        global $locationPerTable, $lang, $str_url;
         
         if (isset($_GET['lan'])) {
             $lang_url = "&lan=" . $_GET['lan'];
@@ -627,11 +627,7 @@ class HtCommonView{
         );
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            echo ' <div id="mainColumnX">
-                <div id="spanMainColumnX" style="color: red;background-color: #ff0">
-                ' . $lang['failed search'] . '                
-                </div>
-                </div>';
+            itemNotFound($searchWordRaw, $city, $item);
             return;
         } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
             $this->displayAllItem();
@@ -699,13 +695,7 @@ class HtCommonView{
             }
             
             if ($totalItems == 0) {
-                echo '<div id="mainColumnX">
-                <div id="spanMainColumnX" style="color: red;background-color: #ff0">
-                    ' .
-                    $lang['no match for search'] 
-                    . '<a  style="text-decoration:none; font-size:15px;" href="../../includes/template.proxy.php?type=help' .$lang_url. '">' .$lang['here']. '</a>
-                    
-                </div></div>';
+                itemNotFound($searchWordRaw, $city , $item);
             } else {
                 $calculatePageArray = calculatePage($totalItems);
                 $result->close();
@@ -713,7 +703,7 @@ class HtCommonView{
             }
             
         } else {
-                //To avoid a wildcard value for search word
+                //To avoid a wildcard value for search word 
                 if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
                     $searchWordSanitized = "No searchword given";
                     $connector = "OR";
@@ -803,13 +793,7 @@ class HtCommonView{
                     item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
    
                 } else if ($numbreOfMatches < 1) {
-                    echo '<div id="mainColumnX">
-                                    <div id="spanMainColumnX" style="color: red;background-color: #ff0">
-                                    ' .
-                                    $lang['no match for search'] 
-                                    . '<a  style="text-decoration:none; font-size:15px;" href="../../includes/template.proxy.php?type=help' .$lang_url. '">' .$lang['here']. '</a>
-                                    
-                                    </div>';
+                    itemNotFound($searchWordRaw, $city , $item);
                 }
 
                 echo "</div>";
@@ -819,4 +803,20 @@ class HtCommonView{
 
             
   }
+}
+
+function itemNotFound($searchWordSanitized, $city , $item) {
+    global $lang;
+    echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
+        <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
+        echo '<div id="spanMainColumnX" style="color: red">';
+        if($searchWordSanitized == "" and $city == "000" and $item == "000"){
+            echo $lang['failed search'].$lang['no match msg part3'];
+        } elseif ($searchWordSanitized != ""){
+           echo $lang['no match msg part1'].' "'. $searchWordSanitized.'" '. $lang['no match msg part2'].$lang['no match msg part3'];
+        } else {
+            echo $lang['full no match msg'];
+        }
+       
+    echo '</div></div>';
 }

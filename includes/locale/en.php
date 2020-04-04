@@ -292,8 +292,7 @@ $lang = array (
     'Choose City' => 'Choose City',
     'All Cities' => 'All Cities',
     'hulutera' => 'Hulutera',
-    'failed search' => 'Please enter the search word </br> or select City </br> or select Item </br>',
-    'no match for search' => 'Sorry!There is no match found, please try again. </br> Shall you need more information on how to search, you can find ',
+    'failed search' => 'Please enter the search word or select City or select Item </br>',
     'missing email msg' => 'Please enter your e-mail',
     'missing password msg' => 'Please enter the password',
     'missing e-mail and password msg' => 'Please enter your e-mail and password',
@@ -385,8 +384,12 @@ $lang = array (
     'no users found' => '<br>No user found with this information!<br>',
     'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php'.$lang_url.'"> click this... </a>',
     'to main page prompt msg' => '<a href="../../index.php'.$lang_url.'">TO Main page ... </a>',
-    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php'.$lang_url.'"> login </a> in order to upload an item.</br>'
-
+    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php'.$lang_url.'"> login </a> in order to upload an item.</br>',
+    'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help'.$str_url.'"> this </a>page',
+    'no match msg part1' => 'Sorry, there is no item found for',
+    'no match msg part2' => '</br>',
+    'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help'.$str_url.'"> this </a>page',
+    'search res' => 'Search Result'
 );
 
 $city_lang_arr = array(

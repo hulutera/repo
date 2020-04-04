@@ -14,7 +14,7 @@ if (isset($_GET['lan'])) {
 }
 
 if (!isset($_SESSION['uID'])) {
-	header('Location:../includes/prompt.php?type=9' . $lang_url);
+	header('Location:../includes/prompt.php?type=9' . $lang_sw);
 }
 ?>
 <html>
