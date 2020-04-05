@@ -46,7 +46,7 @@ function fileRouter($add)
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
 	echo '
-		<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+		<link href="../css/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet">
 	    <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
