@@ -9,13 +9,13 @@ $lang = array(
     'house' => 'House',
     'computer' => 'Computer',
     'phone' => 'Phone',
-    'electronic' => 'Electronic',
+    'electronics' => 'Electronic',
     'electronic_memory' => 'Hardisk, USB, ...',
     'electronic_sound' => 'Headphone, Speakers, ...',
     'electronic_tv' => 'Tv',
     'electronic_white' => 'Fridge, Washing Machine, Stove, ...',
     'household' => 'Household',
-    'other' => 'Other',
+    'others' => 'Miscellaneous',
     'Extra Info' => 'Extra Info',
     'Price' => 'Price',
     'Negotiable' => 'Negotiable',
@@ -439,7 +439,7 @@ $item_lang_arr = array(
     // 'electronic_tv' => 'Tv',
     // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',    
     'household' => 'Household',
-    'other' => 'Other'
+    'others' => 'Miscellaneous'
 );
 
 $item_specific_array = [

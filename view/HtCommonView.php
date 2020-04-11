@@ -7,7 +7,7 @@ require_once $documnetRootPath . '/classes/global.variable.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 
 require_once $documnetRootPath . '/test/backtracer.php';
-class HtCommonView{
+class HtCommonView extends MySqlRecord {
 
     private $_itemName;
     
@@ -17,7 +17,7 @@ class HtCommonView{
     }
 
     /**/
-    public function show($itemId)
+    public function show($itemElm)
     {
         //creating an object
         $this->_pItem = ObjectPool::getInstance()->getClassObject($this->_itemName);
@@ -35,32 +35,47 @@ class HtCommonView{
     private function showRowContent($row)
     {
         $pImage = new ImgHandler;
-        $pUser  = new UserClass($row);
+        //$pUser  = new UserClass($row);
 
+        /*
         $this->_pItem->setElements($row);
-        $id = $this->_pItem->getId();
-        $itemName = $this->_pItem->getItemName();
-        $uniqueId = $itemName . $this->_pItem->getId();
-        $datetime = $this->_pItem->getUpldTime();
-        $title = $this->_pItem->getTitle();
-        $location = $this->_pItem->getLoc();
-        $mkTyp = $this->_pItem->getMktType();
-        $contactType = $this->_pItem->getContactMethod();
-        
+        $id = $this->_pItem->getId(); 
+        $itemName = $this->_pItem->getItemName();*/
+        $itemName = $this->_itemName;
+        //$uniqueId = $itemName . $this->_pItem->getId();
+        $id = $row['id'];
+        $uniqueId = $itemName . $id; 
+        //$datetime = $this->_pItem->getUpldTime();
+        $datetime = $row['field_upload_date'];
+        //$title = $this->_pItem->getTitle();
+        $title = $row['field_title'];
+        //$location = $this->_pItem->getLoc();
+        $location = $row['field_location'];
+        //$mkTyp = $this->_pItem->getMktType();
+        $mkTyp = $row['field_make'];
+        //$contactType = $this->_pItem->getContactMethod();
+        $contactType = $row['field_contact_method'];
         // image directory per item
-        $itemImageDir = $itemName."images";
+        $imageDir = $this->getImageDir($itemName, $row);
         //Object for item Directory
-        $dir = $pImage->setDirectory($itemImageDir, $id);
+        //$dir = $pImage->setDirectory($itemImageDir, $id);
+        
 
         //Object for item Image
-        $image    = $pImage->initImage($row);
-        $numimage = $pImage->getNumOfImg();
-
+        //$image    = $pImage->initImage($row);
+        $image = $row['field_image'];
+        //$numimage = $pImage->getNumOfImg();
+        
+        $imageArr = explode(',', $image);
+        $numimage = sizeof($imageArr);
+                  
         //prepare image
-        $imgArr = json_encode($image);
-        $jsonImgobj = json_decode($imgArr, true);
-        $jsImg = implode(',', array_values($jsonImgobj));
-
+        //$imgArr = json_encode($image);
+        //$jsonImgobj = json_decode($imgArr, true);
+        $jsImg = implode(',', $imageArr);
+        $strReplArr= array('[', ']', '"');
+        $imgString = str_replace($strReplArr, "", $jsImg);
+        
         //---------------------------------------------------------
        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
         echo "<div class=\"col1\">";
@@ -68,30 +83,29 @@ class HtCommonView{
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
-            $thmbNlImg  = $dir . 'original/' . $image[1];
+            $thmbNlImg  = $dir . 'original/' . str_replace($strReplArr, "", $imageArr[1]);
             echo "<a href=\"javascript:void(0)\"
-			onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\">";
+			onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\">";
             echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
         }
         //
         echo "<div class=\"detail\">";  //start_detail
         echo "<div class=\"leftcol\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
-		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\">";
+		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\">";
         $this->displayTitle($title, $itemName);
         echo "</a>";
-        $this->_pItem->displayItemSpecific();
         $this->displayLocation($location);
         $this->displayUpldTime($datetime);
-        $this->displayPrice($this->_pItem);
+        $this->displayPrice($itemName, $row);
         $this->displayMarketType($mkTyp);
-        $this->displayAction($this->_pItem, $pUser);
+        //$this->displayAction($this->_pItem, $pUser);
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
         //---------------------------------------------------------
         echo "<div class=\"showbutton_show\">
 		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
-		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\"
+		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\"
 		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
@@ -99,14 +113,14 @@ class HtCommonView{
         //---------------------------------------------------------
         echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
-        $this->displayGallery($pImage, $image, $this->_pItem, $id, $dir);
+        $this->displayGallery($imageDir, $imageArr, $id, $itemName);
         echo "<div class=\"showbutton_hide\">
 		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $this->displayTitle($title, $itemName);
-        $this->displaySpecifics($this->_pItem);
-        $this->displayPrice($this->_pItem);
+        $this->displaySpecifics($row, $itemName);
+        $this->displayPrice($itemName, $row['field_market_catagory']);
         $this->displayContactMethod($pImage, $uniqueId, $contactType, $id, $itemName, $pUser);
         $this->displayMailCfrm($uniqueId, $id, $itemName);
         $this->displayReportReq($uniqueId, $id, $itemName);
@@ -120,6 +134,20 @@ class HtCommonView{
         unset($pImage);
         //backTrace($row);
     }
+
+    /** 
+     * Get the image directory
+     * */
+    public function getImageDir($itemName, $row){
+        $itemImageDir = "item_" . $itemName;
+        $userImageDir = "/user_id_" . $row['id_user'];
+        $tmpIdImageDir = "/item_temp_id_" . $row['id_temp'] . "/";
+        $path = "../upload/";
+        $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
+        return $dir ;     
+
+    }
+
 
     /*@ function to display action to take by admin/moderator/user/
 	 * input: objects $pItem,$pUser
@@ -308,27 +336,31 @@ class HtCommonView{
     /*@ function to display image gallery
 	 * input: $objImg, $objDir, $image, $objItem, $itemId
     * */
-    private function displayGallery($objImg, $image, $objItem, $itemId, $dir)
+    private function displayGallery($dir, $imageNameArray, $itemId, $itemName)
     {
         global $documnetRootPath;
 
-        $dir1 = $dir . 'original/';
-        $file = $dir1 . $image[1];
-        $numimage = $objImg->getNumOfImg();
-        $itemName = $objItem->getItemName();
+        //$dir1 = $dir . 'original/';
+        //$file = $dir1 . $image[1];
+        //$numimage = $objImg->getNumOfImg();
+        $numimage = sizeof($imageNameArray);
+        //$itemName = $objItem->getItemName();
         echo "<div class=\"featured_left_side\">";
         if ($numimage == 1) {
             $file_path = '../../images/icons/ht_logo_2.png';
             echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
         }
         if ($numimage > 1) {
-            echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg$itemName$itemId\" src=\"" . $file . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $file . "\"></div>";
             echo "<div id=\"featured_buttom\">";
             echo "<div class=\"imagesGallery\">";
             for ($i = 1; $i < $numimage; $i++) {
-                $divName = 'bottomimg' . $itemName . $itemId . $i;
+               // $divName = 'bottomimg' . $itemName . $itemId . $i;
+               $imageFileName = $imageNameArray[$i];
+               $fileNmae = str_replace('"', '', $imageFileName);
+               $divName = $fileName . $i;
                 echo "
-				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"\">
+				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileNmae',$itemId, '$itemName')\"\">
 				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\" \" />
 				</a>
 				";
@@ -341,19 +373,21 @@ class HtCommonView{
     }
     /*@ function to display item specific contents
 	 * input: $obj
-	* */
-    private function displaySpecifics($obj)
+    * */
+       
+    private function displaySpecifics($itemArr, $itemName)
     {
-        switch (get_class($obj)) {
-            case "CarClass":
-                echo $obj->getMake()     ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
-                echo $obj->getCategory() ? "<p><strong>Type:&nbsp</strong>" . $obj->getCategory() . "</p>" : "";
-                echo $obj->getMfg() != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $obj->getMfg() . "</p>" : "";
-                echo $obj->getFuel()      ? "<p><strong>Fuel:&nbsp</strong>" . $obj->getFuel() . "</p>" : "";
-                echo $obj->getSeat()      ? "<p><strong>Nr of Seats:&nbsp</strong>" . $obj->getSeat() . "</p>" : "";
-                echo $obj->getColor() != "999"     ? "<p><strong>Color:&nbsp</strong>" . $obj->getColor() . "</p>" : "";
-                echo $obj->getGear()      ? "<p><strong>Gear:&nbsp</strong>" . $obj->getGear() . "</p>" : "";
-                echo $obj->getInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $obj->getInfo() . "</p>" : "";
+        switch ($itemName) {
+            case "car":
+                echo "bhbhbh";
+                echo $itemArr['field_make']     ? "<p><strong>Make:&nbsp</strong>" . $itemArr['field_make'] . "</p>" : "";
+                echo $itemArr['id_category'] ? "<p><strong>Type:&nbsp</strong>" . $itemArr['id_category'] . "</p>" : "";
+                echo $itemArr['field_model_year'] != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $itemArr['field_model_year'] . "</p>" : "";
+                echo $itemArr['field_fuel_type']      ? "<p><strong>Fuel:&nbsp</strong>" . $itemArr['field_fuel_type'] . "</p>" : "";
+                echo $itemArr['field_no_of_seats']      ? "<p><strong>Nr of Seats:&nbsp</strong>" . $itemArr['field_no_of_seats'] . "</p>" : "";
+                echo $itemArr['field_color'] != "999"     ? "<p><strong>Color:&nbsp</strong>" . $itemArr['field_color'] . "</p>" : "";
+                echo $itemArr['field_gear_type']      ? "<p><strong>Gear:&nbsp</strong>" . $itemArr['field_gear_type'] . "</p>" : "";
+                echo $itemArr['field_extra_info']      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $itemArr['field_extra_info'] . "</p>" : "";
                 break;
             case "CompClass":
                 echo $obj->getMake()      ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
@@ -404,18 +438,18 @@ class HtCommonView{
                 break;
         }
     }
-    private function displayPrice($obj)
+    private function displayPrice($item, $row)
     {
         echo "<div class=\"price\">";
-        switch (get_class($obj)) {
-            case "CarClass":
+        switch ($item) {
+            case "car":
             case "HouseClass":
-                $rentValue = $obj->getRent();
-                $sellValue = $obj->getSell();
-                $negoValue = $obj->getNego();
-                $negoDisplay = ($negoValue == 1) ? "Negotiable" : "";
-                $curr  = $obj->getCurr();
-                $rate  = $obj->getRate();
+                $rentValue = $row['field_price_rent'];
+                $sellValue = $row['field_price_sell'];
+                $negoValue = $row['field_price_nego'];
+                $negoDisplay = ($negoValue == 'Yes') ? "Negotiable" : "";
+                $curr  = $row['field_price_currency'];
+                $rate  = $row['field_price_rate'];;
 
                 //ctrl var
                 $rentsellwnego =   $rentValue &&  $sellValue &&  $negoValue;
@@ -543,16 +577,18 @@ class HtCommonView{
     private function displayAllActive()
     {
         $item = $this->_itemName;
-        $total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
-        if ($total > 0) {
-            $calculatePageArray = calculatePage($total);
+        $itemClass = "HtItem".ucfirst($item);
+        //$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
+        $itemObj = new $itemClass;
+        $rows = $itemObj->itemQuery("*", "active");
+        if ($rows > 0) {
+            $calculatePageArray = calculatePage($rows);
             $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
-            $query = DatabaseClass::getInstance()->queryItemWithLimitAndDate($item, $start, HtGlobal::get('itemPerPage'), HtGlobal::get('ACTIVE'));
-            while ($dquery = $query->fetch_assoc()) {
-                $id = $dquery[ObjectPool::getInstance()->getClassObject($item)->getIdFieldName()];
-                ObjectPool::getInstance()->getViewObject($item)->show($id);
+            $result = $itemObj->getResultSet();
+            while ($row = $result->fetch_array()) {
+                $this->showRowContent($row);
             }
-            $query->close();
+            
             pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
         } else {
             ObjectPool::getInstance()->getViewObject("empty")->show($id);
@@ -627,7 +663,7 @@ class HtCommonView{
         );
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            itemNotFound($searchWordRaw, $city, $item);
+            $this->itemNotFound($searchWordRaw, $city, $item);
             return;
         } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
             $this->displayAllItem();
@@ -695,7 +731,7 @@ class HtCommonView{
             }
             
             if ($totalItems == 0) {
-                itemNotFound($searchWordRaw, $city , $item);
+                $this->itemNotFound($searchWordRaw, $city , $item);
             } else {
                 $calculatePageArray = calculatePage($totalItems);
                 $result->close();
@@ -793,7 +829,7 @@ class HtCommonView{
                     item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
    
                 } else if ($numbreOfMatches < 1) {
-                    itemNotFound($searchWordRaw, $city , $item);
+                    $this->itemNotFound($searchWordRaw, $city , $item);
                 }
 
                 echo "</div>";
@@ -803,20 +839,40 @@ class HtCommonView{
 
             
   }
+
+  public function itemQuery($id, $status=NULL)
+    {
+        if ($id == "*" and $status == NULL) {
+            $sql = "SELECT * FROM item_car";
+        } elseif($id == "*" and $status != NULL){
+            $sql =  "SELECT * FROM item_car WHERE field_status='$status'";
+        } elseif($id != "*" and $status == NULL){
+            $sql =  "SELECT * FROM item_car WHERE id='$id'";
+        } else { //id
+            $sql =  "SELECT * FROM item_car WHERE id=$id AND field_status='$status'";
+        }
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $result;
+    }
+
+    public function itemNotFound($searchWordSanitized, $city , $item) {
+        global $lang;
+        echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
+            <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
+            echo '<div id="spanMainColumnX" style="color: red">';
+            if($searchWordSanitized == "" and $city == "000" and $item == "000"){
+                echo $lang['failed search'].$lang['no match msg part3'];
+            } elseif ($searchWordSanitized != ""){
+               echo $lang['no match msg part1'].' "'. $searchWordSanitized.'" '. $lang['no match msg part2'].$lang['no match msg part3'];
+            } else {
+                echo $lang['full no match msg'];
+            }
+           
+        echo '</div></div>';
+    }
 }
 
-function itemNotFound($searchWordSanitized, $city , $item) {
-    global $lang;
-    echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
-        <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
-        echo '<div id="spanMainColumnX" style="color: red">';
-        if($searchWordSanitized == "" and $city == "000" and $item == "000"){
-            echo $lang['failed search'].$lang['no match msg part3'];
-        } elseif ($searchWordSanitized != ""){
-           echo $lang['no match msg part1'].' "'. $searchWordSanitized.'" '. $lang['no match msg part2'].$lang['no match msg part3'];
-        } else {
-            echo $lang['full no match msg'];
-        }
-       
-    echo '</div></div>';
-}

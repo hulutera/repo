@@ -1276,12 +1276,12 @@ class HtItemCar extends MySqlRecord
      */
     public function select($id)
     {
-        if ($id == "*") {
+        if ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_car";
         } else { //id
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         }
-
+        
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1321,6 +1321,29 @@ class HtItemCar extends MySqlRecord
         }
         return $this->affected_rows;
     }
+
+    public function itemQuery($id, $status=NULL)
+    {
+        $calculatePageArray = calculatePage($rows);
+        $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
+        if ($id == "*" and $status == NULL) {
+            $sql = "SELECT * FROM item_car";
+        } elseif($id == "*" and $status != NULL){
+            $sql =  "SELECT * FROM item_car WHERE field_status='$status'";
+        } elseif($id != "*" and $status == NULL){
+            $sql =  "SELECT * FROM item_car WHERE id='$id'";
+        } else { //id
+            $sql =  "SELECT * FROM item_car WHERE id=$id AND field_status='$status'";
+        }
+        
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+        return $this->affected_rows;
+    }
+
 
     /**
      * Deletes a specific row from the table item_car
