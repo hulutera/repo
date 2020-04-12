@@ -1689,10 +1689,6 @@ EOD;
             $errorMsg = $validate['idCategory'];
             $errorClass = ' alert alert-danger" role="alert';
         }
-        $errorDiv = "";
-        if (isset($_SESSION['errorRaw']['idCategory'])) {
-            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['idCategory'] . '</div>';
-        }
         $type = $GLOBALS['item_specific_array']['car']['Type'][0];
         echo <<< EOD
         <div class="col-md-4 {$errorClass}">
@@ -1745,25 +1741,39 @@ EOD;
 
     private function inputCarMake()
     {
-        $errorDiv = "";
+        $errorMsg = "";
+        $errorClass = '';
         if (isset($_SESSION['errorRaw']['fieldMake'])) {
-            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldMake'] . '</div>';
+            $validate = $GLOBALS['item_specific_array']['car']['validate'];
+            $errorMsg = $validate['fieldMake'];
+            $errorClass = ' alert alert-danger" role="alert';
         }
-
+        $selected = 0;
         $make = $GLOBALS['item_specific_array']['car']['Make'][0];
-        echo '
-        <div class="col-md-4">
-        <div class="form-group">
-        ' . $errorDiv . '
-           <label for="fieldMake">' . $make . '</label> 
-           <div>
-             <select id="fieldMake" name="fieldMake" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Make'][1];
+        $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST']['fieldMake'])) {
-            $choose = $_SESSION['POST']['fieldMake'];
+            if (strpos($_SESSION['POST']['fieldMake'], $GLOBALS['lang']['Choose']) !== false) {
+                $choose1 = $choose2 = $choose;
+            } else {
+                $temp = $_SESSION['POST']['fieldMake'];
+                $choose1 = $temp;
+                $choose2 = strtoupper($temp);
+                $selected = 1;
+            }
         }
 
-        echo '<option value="' . $choose . '">' . $choose . '</option>';
+        echo <<< EOD
+        <div class="col-md-4 {$errorClass}">
+        <div class="form-group"><label for="fieldMake">{$make}</label> {$errorMsg}
+            <div>
+             <select id="fieldMake" name="fieldMake" class="select form-control">';
+            <option value="{$choose1}">{$choose2}</option>
+EOD;
+        if ($selected == 1)
+            echo <<< EOD
+            <option value="{$choose}">{$choose}</option>;
+EOD;
         $make = array(
             "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
             "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
@@ -1779,7 +1789,7 @@ EOD;
             "volkswagen" => "volkswagen", "volvo" => "volvo"
         );
         foreach ($make as $key => $value) {
-            echo '<option value="' . $key . '">' . $value . '</option>';
+            echo '<option value="' . $key . '">' . strtoupper($value) . '</option>';
         }
         echo '</select></div></div></div>';
     }
