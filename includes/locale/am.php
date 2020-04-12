@@ -488,18 +488,18 @@ $item_specific_array = [
         'validate'    => [
             'fieldLocation' => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldTitle' => 'የመግቢያ አርዕስት መሞላት  አለበት። በድጋሚ ይሞክሩ!<br>',
-            'idCategory' => 'ዓይነት መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'idCategory' => ' መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldMake' => ' ስሪት (አምራች ድርጅት) መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
-            'fieldModel' => 'ሞዴል መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldModel' => ' መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldModelYear' => 'የተሠራበት ዓ.ም መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldGearType' => 'ማርሽ ዓይነት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldFuelType' => 'ነዳጅ ዓይነት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldMilage' => 'የተጓዘው መጠን መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             'fieldNoOfSeat' => 'የመቀመጫ ብዛት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
             // 'fieldPriceCurrency' => 'ምንዛሪ መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
-            'fieldPriceRent' => 'የኪራይ ዋጋ መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
-            'fieldPriceRate' => 'የኪራይ ተመን መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
-            'fieldPriceSell' => 'የመሽያጭ ዋጋ መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceRent' => ' መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceRate' => ' ተመን መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceSell' => ' መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
             'fileuploader-list-files' => 'ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!<br>'
         ]
     ],

@@ -1682,39 +1682,65 @@ EOD;
 
     private function inputCarType()
     {
+        $errorMsg = "";
+        $errorClass = '';
+        if (isset($_SESSION['errorRaw']['idCategory'])) {
+            $validate = $GLOBALS['item_specific_array']['car']['validate'];
+            $errorMsg = $validate['idCategory'];
+            $errorClass = ' alert alert-danger" role="alert';
+        }
         $errorDiv = "";
         if (isset($_SESSION['errorRaw']['idCategory'])) {
             $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['idCategory'] . '</div>';
         }
         $type = $GLOBALS['item_specific_array']['car']['Type'][0];
-        echo '
-        <div class="col-md-4">
-        <div class="form-group">
-        ' . $errorDiv . '
-            <label for="idCategory">' . $type . '</label> 
-        <div>
-        <select id="idCategory" name="idCategory" class="select form-control">';
+        echo <<< EOD
+        <div class="col-md-4 {$errorClass}">
+        <div class="form-group"> <label for="idCategory">{$type}</label>{$errorMsg} 
+        <div> 
+EOD;
+
+        echo '<select id="idCategory" name="idCategory" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Type'][1];
+        $choose1 = $choose2 = $choose;
+        $selected = 0;
         if (isset($_SESSION['POST']['idCategory'])) {
-            $id = $_SESSION['POST']['idCategory'];
-            $type = new HtCategoryCar("*");
-            $result = $type->getResultSet();
-            while ($row = $result->fetch_array()) {
-                if ($row['id'] === $id) {
-                    $choose = $row['field_name'];
-                    break;
+
+            if (strpos($_SESSION['POST']['idCategory'], $GLOBALS['lang']['Choose']) !== false) {
+                $choose1 = $choose2 = $choose;
+            } else {
+                $id = $_SESSION['POST']['idCategory'];
+                $type = new HtCategoryCar("*");
+                $result = $type->getResultSet();
+                while ($row = $result->fetch_array()) {
+                    if ($row['id'] === $id) {
+                        $choose1 = $id;
+                        $choose2 = $GLOBALS['lang'][$row['field_name']];
+                        $selected = 1;
+                        break;
+                    }
                 }
             }
         }
 
-        echo '<option value="' . $choose . '">' . $choose . '</option>';
+        echo <<< EOD
+        <option value="{$choose1}">{$choose2}</option>
+EOD;
+        if ($selected == 1)
+            echo <<< EOD
+        <option value="{$choose}">{$choose}</option>;
+EOD;
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
 
         while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . $row['id'] . '">' . $row['field_name'] . '</option>';
+            if (isset($GLOBALS['lang'][$row['field_name']])) {
+                echo '<option value="' . $row['id'] . '">' . $GLOBALS['lang'][$row['field_name']] . '</option>';
+            }
         }
-        echo '</select></div></div></div>';
+        echo <<<EOD
+            </select></div></div></div>
+EOD;
     }
 
     private function inputCarMake()
