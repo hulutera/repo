@@ -771,7 +771,7 @@ class HtItemCar extends MySqlRecord
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
         $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
-        $_itemTempId = (int)$result->fetch_object()->id_temp + 1;
+        $_itemTempId = (int) $result->fetch_object()->id_temp + 1;
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
@@ -1569,8 +1569,10 @@ SQL;
      */
     public function upload()
     {
-        
-        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '" method="post" enctype="multipart/form-data">';
+
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+
+        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
         $this->newForm();
         if ($_SESSION['warnings']) {
             echo '<pre>';
@@ -1633,59 +1635,72 @@ SQL;
 
     private function inputItemLocation()
     {
-        $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldLocation']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldLocation'] .'</div>';
+        $errorMsg = "";
+        $errorClass = '';
+        if (isset($_SESSION['errorRaw']['fieldLocation'])) {
+            $validate = $GLOBALS['item_specific_array']['car']['validate'];
+            $errorMsg = $validate['fieldLocation'];
+            $errorClass = ' alert alert-danger" role="alert';
         }
-        $choose = $GLOBALS['item_specific_array']['common']['Location'][1];
-        if (isset($_SESSION['POST']['fieldLocation'])) {
-            $choose = $_SESSION['POST']['fieldLocation'];
-        }
-        $location = $GLOBALS['item_specific_array']['common']['Location'][0];
-        echo '
-        <div class="col-md-4">
-        <div class="form-group">
-           <label for="fieldLocation">'.$location.'</label> 
-           '.$errorDiv.'
-           <div>
-             <select id="fieldLocation" name="fieldLocation" class="select form-control" >';
-             echo '<option value="' . $choose . '">' . $choose . '</option>';
-
+        $selected = 0;
         $city = $GLOBALS['city_lang_arr'];
-        foreach ($city as $key => $value) {
-            if($key === '000' || $key === 'All')
-            {
-                continue;                
-            }   
-            echo '<option value="' . $key . '">' . $value . '</option>';           
+        $location = $GLOBALS['item_specific_array']['common']['Location'][0];
+        $choose = $GLOBALS['item_specific_array']['common']['Location'][1];
+        $choose1 = $choose2 = $choose;
+        if (isset($_SESSION['POST']['fieldLocation'])) {
+            if (strpos($_SESSION['POST']['fieldLocation'], $GLOBALS['lang']['Choose']) !== false) {
+                $choose1 = $choose2 = $choose;
+            } else {
+                $temp = $_SESSION['POST']['fieldLocation'];
+                $choose1 = $temp;
+                $choose2 = $city[$temp];
+                $selected = 1;
+            }
         }
-        echo '</select></div></div></div>';
+        echo <<< EOD
+        <div class="col-md-4 {$errorClass}">
+        <div class="form-group">
+           <label for="fieldLocation">{$location}</label>{$errorMsg}
+            <div>
+             <select id="fieldLocation" name="fieldLocation" class="select form-control" >
+        <option value="{$choose1}">{$choose2}</option>
+EOD;
+        if ($selected == 1)
+            echo <<< EOD
+        <option value="{$choose}">{$choose}</option>;
+EOD;
+        foreach ($city as $key => $value) {
+            if ($key === '000' || $key === 'All') {
+                continue;
+            }
+            echo '<option value="' . $key . '">' . $value . '</option>';
+        }
+        echo <<<EOD
+            </select></div></div></div>
+EOD;
     }
 
     private function inputCarType()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['idCategory']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['idCategory'] .'</div>';
+        if (isset($_SESSION['errorRaw']['idCategory'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['idCategory'] . '</div>';
         }
         $type = $GLOBALS['item_specific_array']['car']['Type'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
-        '.$errorDiv.'
-            <label for="idCategory">'.$type.'</label> 
+        ' . $errorDiv . '
+            <label for="idCategory">' . $type . '</label> 
         <div>
         <select id="idCategory" name="idCategory" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Type'][1];
-        if (isset($_SESSION['POST']['idCategory'])) {            
-            $id =$_SESSION['POST']['idCategory'];            
+        if (isset($_SESSION['POST']['idCategory'])) {
+            $id = $_SESSION['POST']['idCategory'];
             $type = new HtCategoryCar("*");
             $result = $type->getResultSet();
             while ($row = $result->fetch_array()) {
-                if($row['id'] === $id)
-                {
+                if ($row['id'] === $id) {
                     $choose = $row['field_name'];
                     break;
                 }
@@ -1695,7 +1710,7 @@ SQL;
         echo '<option value="' . $choose . '">' . $choose . '</option>';
         $type = new HtCategoryCar("*");
         $result = $type->getResultSet();
-        
+
         while ($row = $result->fetch_assoc()) {
             echo '<option value="' . $row['id'] . '">' . $row['field_name'] . '</option>';
         }
@@ -1705,17 +1720,16 @@ SQL;
     private function inputCarMake()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldMake']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMake'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldMake'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldMake'] . '</div>';
         }
 
         $make = $GLOBALS['item_specific_array']['car']['Make'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
-        '.$errorDiv.'
-           <label for="fieldMake">'.$make.'</label> 
+        ' . $errorDiv . '
+           <label for="fieldMake">' . $make . '</label> 
            <div>
              <select id="fieldMake" name="fieldMake" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Make'][1];
@@ -1747,16 +1761,15 @@ SQL;
     private function inputCarModel()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldModel']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModel'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldModel'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldModel'] . '</div>';
         }
         $model = $GLOBALS['item_specific_array']['car']['Model'][0];
         echo '
         <div class="col-md-4">
         <div class="form-group">
-        '.$errorDiv.'
-          <label for="fieldModel">'.$model.'</label> 
+        ' . $errorDiv . '
+          <label for="fieldModel">' . $model . '</label> 
           <div>';
         $placeholder = $GLOBALS['item_specific_array']['car']['Model'][1];
         $value = "";
@@ -1772,9 +1785,8 @@ SQL;
     private function inputCarYear()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldModelYear']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldModelYear'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldModelYear'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldModelYear'] . '</div>';
         }
 
         $yearMade = $GLOBALS['item_specific_array']['car']['Year Made'][0];
@@ -1782,8 +1794,8 @@ SQL;
         echo '
         <div class="col-md-4">
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldModelYear">'.$yearMade.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldModelYear">' . $yearMade . '</label> 
         <div>
         <select id="fieldModelYear" name="fieldModelYear" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Year Made'][1];
@@ -1796,13 +1808,13 @@ SQL;
         for ($i = date('Y'); $i >= 1980; --$i) {
             echo '<option value = "' . $i . '">' . $i . '</option>';
         }
-        
+
         echo '
-        <option value = "1970">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1970'].'</option>
-        <option value = "1960">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1960'].'</option>
-        <option value = "1950">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1950'].'</option>
-        <option value = "1940">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['1940'].'</option>
-        <option value = "1970">'.$GLOBALS['item_specific_array']['car']['Year Made'][2]['unknown'].'</option>
+        <option value = "1970">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1970'] . '</option>
+        <option value = "1960">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1960'] . '</option>
+        <option value = "1950">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1950'] . '</option>
+        <option value = "1940">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1940'] . '</option>
+        <option value = "1970">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['unknown'] . '</option>
 
         </select>
       </div>
@@ -1812,9 +1824,8 @@ SQL;
     private function inputCarFuelType()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldFuelType']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldFuelType'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldFuelType'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldFuelType'] . '</div>';
         }
         $fuleType = $GLOBALS['item_specific_array']['car']['Fuel Type'][0];
 
@@ -1822,24 +1833,24 @@ SQL;
         <div class="col-md-4">
 
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldFuelType">'.$fuleType.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldFuelType">' . $fuleType . '</label> 
         <div>
         <select id="fieldFuelType" name="fieldFuelType" class="select form-control">
         ';
         $choose = $GLOBALS['item_specific_array']['car']['Fuel Type'][1];
-        
+
         if (isset($_SESSION['POST']['fieldFuelType'])) {
             $choose = $_SESSION['POST']['fieldFuelType'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
         $types = $GLOBALS['item_specific_array']['car']['Fuel Type'][2];
         echo '        
-        <option value="Besine" >'.$types['bensine'].'</option>
-        <option value="Besine/Electric" >'.$types['bensine-electric'].'</option>
-        <option value="Bio-gas" >'.$types['bio-gas'].'</option>        
-        <option value="Diesel" >'.$types['diesel'].'</option>
-        <option value="Electric" >'.$types['electric'].'</option>
+        <option value="Besine" >' . $types['bensine'] . '</option>
+        <option value="Besine/Electric" >' . $types['bensine-electric'] . '</option>
+        <option value="Bio-gas" >' . $types['bio-gas'] . '</option>        
+        <option value="Diesel" >' . $types['diesel'] . '</option>
+        <option value="Electric" >' . $types['electric'] . '</option>
         </select></div></div></div>';
     }
     //temporary disabled no database reflection, need generation
@@ -1869,9 +1880,8 @@ SQL;
     private function inputCarGearType()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldGearType']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldGearType'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldGearType'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldGearType'] . '</div>';
         }
         $gearType = $GLOBALS['item_specific_array']['car']['Gear Type'][0];
 
@@ -1879,8 +1889,8 @@ SQL;
         <div class="col-md-4">
 
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldGearType">'.$gearType.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldGearType">' . $gearType . '</label> 
         <div>
         <select id="fieldMilage" name="fieldGearType" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Gear Type'][1];
@@ -1890,17 +1900,16 @@ SQL;
         echo '<option value="' . $choose . '">' . $choose . '</option>';
 
         echo '
-        <option value="Manual" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['manual'].'</option>
-        <option value="Automatic" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['automatic'].'</option>
-        <option value="Semi-automatic" >'.$GLOBALS['item_specific_array']['car']['Gear Type'][2]['semi-automatic'].'</option>
+        <option value="Manual" >' . $GLOBALS['item_specific_array']['car']['Gear Type'][2]['manual'] . '</option>
+        <option value="Automatic" >' . $GLOBALS['item_specific_array']['car']['Gear Type'][2]['automatic'] . '</option>
+        <option value="Semi-automatic" >' . $GLOBALS['item_specific_array']['car']['Gear Type'][2]['semi-automatic'] . '</option>
         </select></div></div></div>';
     }
     private function inputCarMilage()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldMilage']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldMilage'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldMilage'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldMilage'] . '</div>';
         }
         $milageKm = $GLOBALS['item_specific_array']['car']['Milage [Km]'][0];
 
@@ -1908,8 +1917,8 @@ SQL;
         <div class="col-md-4">
 
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldMilage">'.$milageKm.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldMilage">' . $milageKm . '</label> 
         <div>
         <select id="fieldMilage" name="fieldMilage" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Milage [Km]'][1];
@@ -1924,7 +1933,7 @@ SQL;
             $i += 500000;
         }
         $unknown = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2]['unknown'];
-        echo '<option value="unknown">' . $unknown. '</option>';
+        echo '<option value="unknown">' . $unknown . '</option>';
         $unknown = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2]['unknown'];
         echo '</select></div></div></div>';
     }
@@ -1932,9 +1941,8 @@ SQL;
     private function inputCarSeat()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldNoOfSeat']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldNoOfSeat'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldNoOfSeat'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldNoOfSeat'] . '</div>';
         }
         $numberOfSeats = $GLOBALS['item_specific_array']['car']['Number of Seats'][0];
 
@@ -1942,8 +1950,8 @@ SQL;
         <div class="col-md-4">
 
         <div class="form-group">
-        '.$errorDiv.'
-          <label for="fieldNoOfSeat">'.$numberOfSeats.'</label> 
+        ' . $errorDiv . '
+          <label for="fieldNoOfSeat">' . $numberOfSeats . '</label> 
           <div>
             <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['Number of Seats'][1];
@@ -1957,25 +1965,24 @@ SQL;
             $j = $i - 1 + 5;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 5;
-        }        
-        echo '<option value="over100">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['over100']. '</option>';
-        echo '<option value="unknown">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['unknown']. '</option>';
+        }
+        echo '<option value="over100">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['over100'] . '</option>';
+        echo '<option value="unknown">' . $GLOBALS['item_specific_array']['car']['Number of Seats'][2]['unknown'] . '</option>';
         echo '</select></div></div></div>';
     }
 
     private function inputCarColor()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldColor']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldColor'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldColor'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldColor'] . '</div>';
         }
         $color = $GLOBALS['item_specific_array']['car']['Color'][1];
 
         echo '
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldColor">'.$color.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldColor">' . $color . '</label> 
         <div class="col-md-4"><div class="row">
 		<div class="col-md-12">	<div class="btn-group" role="group">';
 
@@ -2002,11 +2009,10 @@ SQL;
     private function inputTitle()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldTitle']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldTitle'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldTitle'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldTitle'] . '</div>';
         }
-        $placeholder = $GLOBALS['item_specific_array']['common']['Title'];//"Write your title";
+        $placeholder = $GLOBALS['item_specific_array']['common']['Title']; //"Write your title";
         $choose = "";
         if (isset($_SESSION['POST']['fieldTitle'])) {
             $choose = $_SESSION['POST']['fieldTitle'];
@@ -2015,10 +2021,10 @@ SQL;
         <div class="col-md-4">
 
         <div class="form-group">
-        '.$errorDiv.'
-        <label for="fieldTitle">'.$GLOBALS['item_specific_array']['common']['Title'].'</label> 
+        ' . $errorDiv . '
+        <label for="fieldTitle">' . $GLOBALS['item_specific_array']['common']['Title'] . '</label> 
         <div>
-          <input id="fieldTitle" name="fieldTitle" type="text" placeholder="'. $placeholder . '" value="' . $choose . '" class="form-control">
+          <input id="fieldTitle" name="fieldTitle" type="text" placeholder="' . $placeholder . '" value="' . $choose . '" class="form-control">
         </div>
       </div></div>';
     }
@@ -2036,9 +2042,8 @@ SQL;
     private function inputItemContactMeWith()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldContactMethod']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldContactMethod'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldContactMethod'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldContactMethod'] . '</div>';
         }
         $choosePhone = "";
         $chooseEmail = "";
@@ -2047,9 +2052,9 @@ SQL;
         if (isset($_SESSION['POST']['fieldContactMethod'])) {
             if ($_SESSION['POST']['fieldContactMethod'] == "phone") {
                 $choosePhone = "checked";
-            }else if ($_SESSION['POST']['fieldContactMethod'] == "email") {
+            } else if ($_SESSION['POST']['fieldContactMethod'] == "email") {
                 $chooseEmail = "checked";
-            }else if ($_SESSION['POST']['fieldContactMethod'] == "both") {
+            } else if ($_SESSION['POST']['fieldContactMethod'] == "both") {
                 $chooseBoth = "checked";
             }
         }
@@ -2059,15 +2064,15 @@ SQL;
         $both  = $GLOBALS['item_specific_array']['common']['Contact Me With']['both'];
         echo '<div class="col-md-4">     
       <div class="form-group">
-      '.$errorDiv.'
-        <label for="fieldContactMethod">'.$contactMeWith.'</label> 
+      ' . $errorDiv . '
+        <label for="fieldContactMethod">' . $contactMeWith . '</label> 
         <div>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="phone"  '.$choosePhone.'> '.$phone.' </label>
+            <input type="radio" name="fieldContactMethod" value="phone"  ' . $choosePhone . '> ' . $phone . ' </label>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="email" '.$chooseEmail.'> '.$email.' </label>
+            <input type="radio" name="fieldContactMethod" value="email" ' . $chooseEmail . '> ' . $email . ' </label>
           <label class="radio-inline">
-            <input type="radio" name="fieldContactMethod" value="both" '.$chooseBoth.'> '.$both.' </label>
+            <input type="radio" name="fieldContactMethod" value="both" ' . $chooseBoth . '> ' . $both . ' </label>
         </div>
       </div></div>    
       ';
@@ -2076,18 +2081,17 @@ SQL;
     private function inputItemImages()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fileuploader-list-files']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fileuploader-list-files'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fileuploader-list-files'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fileuploader-list-files'] . '</div>';
         }
-        
+
         $image = $GLOBALS['item_specific_array']['common']['Choose Images here'];
 
         echo '<div class="row upload">';
         echo '
         <div class="form-group">
-        '.$errorDiv.'
-            <label for="fieldImage">'.$image.'</label>
+        ' . $errorDiv . '
+            <label for="fieldImage">' . $image . '</label>
             <div>
                     <!-- file input -->
                     <input type="file" name="files">
@@ -2112,25 +2116,21 @@ SQL;
     }
 
     private function inputPriceRentOrSell()
-    {       
+    {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['rent-or-sell']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['rent-or-sell'] .'</div>';
+        if (isset($_SESSION['errorRaw']['rent-or-sell'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['rent-or-sell'] . '</div>';
         }
         $chooseRent = "";
         $chooseSell = "";
         $chooseBoth = "";
-        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent")
-        {
+        if (isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent") {
             $chooseRent = "checked";
         }
-        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "sell")
-        {
+        if (isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "sell") {
             $chooseSell = "checked";
         }
-        if(isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent-or-sell")
-        {
+        if (isset($_SESSION['POST']["rent-or-sell"]) && $_SESSION['POST']["rent-or-sell"] == "rent-or-sell") {
             $chooseBoth = "checked";
         }
         $doYouWantToRentOrSell = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?'][0];
@@ -2139,17 +2139,17 @@ SQL;
         $wantRentAndSell = $GLOBALS['item_specific_array']['common']['Do you want to Rent or Sell?']['both'];
 
         echo '<div class="row" style="padding: 0 0 0 10px;">
-        '.$errorDiv.'
-        <label for="price">'.$doYouWantToRentOrSell.'</label>
+        ' . $errorDiv . '
+        <label for="price">' . $doYouWantToRentOrSell . '</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="rent"  value="rent" '.$chooseRent.'>'.$wantToRent.'
+                <input type="radio" name="rent-or-sell" id="rent"  value="rent" ' . $chooseRent . '>' . $wantToRent . '
             </label>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="sell" value="sell" '.$chooseSell.'>'.$wantToSell.'
+                <input type="radio" name="rent-or-sell" id="sell" value="sell" ' . $chooseSell . '>' . $wantToSell . '
             </label>
             <label class="radio-inline">
-                <input type="radio" name="rent-or-sell" id="rent-or-sell" value="rent-or-sell" '.$chooseBoth.'>'.$wantRentAndSell.'
+                <input type="radio" name="rent-or-sell" id="rent-or-sell" value="rent-or-sell" ' . $chooseBoth . '>' . $wantRentAndSell . '
             </label>
         </div>
     </div>';
@@ -2157,32 +2157,31 @@ SQL;
     private function priceNegotiable()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldPriceNego']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceNego'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldPriceNego'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldPriceNego'] . '</div>';
         }
         $chooseYes = "";
         $chooseNo = "";
         if (isset($_SESSION['POST']['fieldPriceNego'])) {
             if ($_SESSION['POST']['fieldPriceNego'] == "Yes") {
                 $chooseYes = "checked";
-            }else if ($_SESSION['POST']['fieldPriceNego'] == "No") {
+            } else if ($_SESSION['POST']['fieldPriceNego'] == "No") {
                 $chooseNo = "checked";
             }
-        }    
+        }
         $priceIsNegotiable = $GLOBALS['item_specific_array']['common']['Price is negotiable'][0];
         $yes = $GLOBALS['item_specific_array']['common']['Price is negotiable']['yes'];
         $no = $GLOBALS['item_specific_array']['common']['Price is negotiable']['no'];
 
         echo '<div class="row" style="padding:10px 0 0 10px;">
-        '.$errorDiv.'
-        <label for="price">'.$priceIsNegotiable .'</label>
+        ' . $errorDiv . '
+        <label for="price">' . $priceIsNegotiable . '</label>
         <div>
             <label class="radio-inline">
-                <input type="radio" name="fieldPriceNego" id="sell"  value="Yes" '.$chooseYes.'>'.$yes.'
+                <input type="radio" name="fieldPriceNego" id="sell"  value="Yes" ' . $chooseYes . '>' . $yes . '
             </label>
             <label class="radio-inline">
-                <input type="radio" name="fieldPriceNego" id="rent" value="No" '.$chooseNo.'>'.$no.'
+                <input type="radio" name="fieldPriceNego" id="rent" value="No" ' . $chooseNo . '>' . $no . '
             </label>
 
         </div>
@@ -2191,22 +2190,21 @@ SQL;
     private function inputPriceCurreny()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldPriceCurrency']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceCurrency'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldPriceCurrency'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldPriceCurrency'] . '</div>';
         }
         $currency = $GLOBALS['item_specific_array']['common']['currency'][0];
 
         echo '<div class="row" style="padding:10px 0 0 10px;">
-        '.$errorDiv.'
-        <label for="fieldPriceCurrency">'.$currency.'</label> 
+        ' . $errorDiv . '
+        <label for="fieldPriceCurrency">' . $currency . '</label> 
         <select id="fieldPriceCurrency" name="fieldPriceCurrency" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['common']['currency']["ETB"];
         if (isset($_SESSION['POST']['fieldPriceCurrency'])) {
             $choose = $_SESSION['POST']['fieldPriceCurrency'];
         }
         echo '<option value="' . $choose . '">' . $choose . '</option>';
-        echo '<option value="USD">'.$GLOBALS['item_specific_array']['common']['currency']["USD"].'</option>
+        echo '<option value="USD">' . $GLOBALS['item_specific_array']['common']['currency']["USD"] . '</option>
         </select>
     </div>';
     }
@@ -2216,18 +2214,17 @@ SQL;
     {
         $errorDiv1 = "";
         $errorDiv2 = "";
-        if(isset($_SESSION['errorRaw']['fieldPriceRent']))
-        {
-            $errorDiv1 = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceRent'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldPriceRent'])) {
+            $errorDiv1 = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldPriceRent'] . '</div>';
         }
-        if(isset($_SESSION['errorRaw']['fieldPriceRate']))
-        {
-            $errorDiv2 = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceRate'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldPriceRate'])) {
+            $errorDiv2 = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldPriceRate'] . '</div>';
         }
         $diplayRent = "display: none; background:#fafbfd;";
-        if(isset($_SESSION['POST']["rent-or-sell"]) && 
-           ($_SESSION['POST']["rent-or-sell"] == "rent" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell"))
-        {
+        if (
+            isset($_SESSION['POST']["rent-or-sell"]) &&
+            ($_SESSION['POST']["rent-or-sell"] == "rent" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell")
+        ) {
             $diplayRent = "display: block; background:#fafbfd;";
         }
 
@@ -2239,17 +2236,17 @@ SQL;
         $rentPrice = $GLOBALS['item_specific_array']['common']['Rent Price'];
         $rentRate = $GLOBALS['item_specific_array']['common']['Rent Rate'][0];
         echo '
-        <div class="col-md-4 fieldPriceRent" style="'.$diplayRent.'">
+        <div class="col-md-4 fieldPriceRent" style="' . $diplayRent . '">
         <div class="form-group" style="padding:10px 0 0 10px;">
         <div>
             <div class="row" style="padding:10px 0 0 10px;">
-            '.$errorDiv1.'
-            <label for="fieldPriceRent">'.$rentPrice.'</label>
-                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="'. $placeholder . '"  value="' . $choose . '" class="form-control">
+            ' . $errorDiv1 . '
+            <label for="fieldPriceRent">' . $rentPrice . '</label>
+                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="' . $placeholder . '"  value="' . $choose . '" class="form-control">
             </div>
             <div class="row" style="padding:10px 0 0 10px;">
-            '.$errorDiv2.'
-                <label for="fieldPriceRate">'.$rentRate.'</label> 
+            ' . $errorDiv2 . '
+                <label for="fieldPriceRate">' . $rentRate . '</label> 
                 <select id="fieldPriceRate" name="fieldPriceRate" class="form-control">';
 
         $choose = $GLOBALS['item_specific_array']['common']['Rent Rate'][1];
@@ -2268,31 +2265,31 @@ SQL;
     private function inputPriceSellType()
     {
         $errorDiv = "";
-        if(isset($_SESSION['errorRaw']['fieldPriceSell']))
-        {
-            $errorDiv = '<div style="color:red;">'. $_SESSION['errorRaw']['fieldPriceSell'] .'</div>';
+        if (isset($_SESSION['errorRaw']['fieldPriceSell'])) {
+            $errorDiv = '<div style="color:red;">' . $_SESSION['errorRaw']['fieldPriceSell'] . '</div>';
         }
         $diplaySell = "display: none; background:#fafbfd;";
-        if(isset($_SESSION['POST']["rent-or-sell"]) && 
-           ($_SESSION['POST']["rent-or-sell"] == "sell" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell"))
-        {
+        if (
+            isset($_SESSION['POST']["rent-or-sell"]) &&
+            ($_SESSION['POST']["rent-or-sell"] == "sell" || $_SESSION['POST']["rent-or-sell"] == "rent-or-sell")
+        ) {
             $diplaySell = "display: block; background:#fafbfd;";
         }
-        
+
         $placeholder = "How much for Sell?";
         $choose = "0";
         if (isset($_SESSION['POST']['fieldPriceSell'])) {
-            $choose =$_SESSION['POST']['fieldPriceSell'];
+            $choose = $_SESSION['POST']['fieldPriceSell'];
         }
 
         $sellPrice = $GLOBALS['item_specific_array']['common']['Sell Price'];
         echo '
-        <div class="col-md-4 fieldPriceSell" style="'.$diplaySell.'">
+        <div class="col-md-4 fieldPriceSell" style="' . $diplaySell . '">
         <div class="form-group" style="padding:10px 0 0 10px;">
-        '.$errorDiv.'
+        ' . $errorDiv . '
         <div>
         <div class="row" style="padding:10px 0 0 10px;">
-            <label for="fieldPriceSell">'.$sellPrice.'</label> 
+            <label for="fieldPriceSell">' . $sellPrice . '</label> 
                 <input id="fieldPriceSell" name="fieldPriceSell" type="text" placeholder="' . $placeholder . '" value="' . $choose . '"  class="form-control">
            </div></div></div></div>';
     }

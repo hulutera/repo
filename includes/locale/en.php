@@ -301,7 +301,7 @@ $lang = array(
     'non-existing email msg' => 'There is no user registered with this e-mail',
     'Forgot your password' => 'Forgot your password',
     'my activities' => 'My Activities',
-    'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' .$str_url.'">this</a>.',
+    'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a>.',
     'my page' => 'My Page',
     'active' => 'Active',
     'pending' => 'Pending',
@@ -382,14 +382,15 @@ $lang = array(
     'user page' => 'Hulutera Users Page',
     'search user' => "Search User",
     'no users found' => '<br>No user found with this information!<br>',
-    'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php'.$lang_url.'"> click this... </a>',
-    'to main page prompt msg' => '<a href="../../index.php'.$lang_url.'">TO Main page ... </a>',
-    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php'.$lang_url.'"> login </a> in order to upload an item.</br>',
-    'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help'.$str_url.'"> this </a>page',
+    'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php' . $lang_url . '"> click this... </a>',
+    'to main page prompt msg' => '<a href="../../index.php' . $lang_url . '">TO Main page ... </a>',
+    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
+    'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'no match msg part1' => 'Sorry, there is no item found for',
     'no match msg part2' => '</br>',
-    'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help'.$str_url.'"> this </a>page',
-    'search res' => 'Search Result'
+    'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
+    'search res' => 'Search Result',
+    'Back to Post Item' => "Back to Post Item"
 );
 
 $city_lang_arr = array(
@@ -480,7 +481,7 @@ $item_specific_array = [
         'Fuel Type'   => [
             0 => 'Fuel Type',
             1 => 'Choose Fuel Type',
-            2 => [                
+            2 => [
                 'bensine' => 'Bensine',
                 'bensine-electric' => 'Bensine/Electric',
                 'electric' => 'Electric',
@@ -497,7 +498,7 @@ $item_specific_array = [
             0 => 'Number of Seats',
             1 => 'Choose Number of Seats',
             2 => [
-                'over100' => 'Over 100', 
+                'over100' => 'Over 100',
                 'unknown' => 'Unknown'
             ]
         ],
@@ -505,6 +506,23 @@ $item_specific_array = [
             0 => 'Color',
             1 => 'Choose Color'
         ],
+        'validate'    => [
+            'fieldLocation' => 'Should be provided.  Try again!<br>',
+            'fieldTitle' => 'The value for Title should be provided.  Try again!<br>',
+            'idCategory' => 'The value for Type should be provided.  Try again!<br>',
+            'fieldMake' => 'The value for Make should be provided.  Try again!<br>',
+            'fieldModel' => 'The value for Model should be provided.  Try again!<br>',
+            'fieldModelYear' => 'The value for Year Made should be provided.  Try again!<br>',
+            'fieldGearType' => 'The value for Gear Type should be provided.  Try again!<br>',
+            'fieldFuelType' => 'The value for Fuel Type should be provided.  Try again!<br>',
+            'fieldMilage' => 'The value for Milage should be provided.  Try again!<br>',
+            'fieldNoOfSeat' => 'The value for No of Seats should be provided.  Try again!<br>',
+            'fieldPriceCurrency' => 'The value Currency should be provided.  Try again!<br>',
+            'fieldPriceRent' => 'The value for Rent Rate should be provided.  Try again!<br>',
+            'fieldPriceRate' => 'The value for Rent Rate should be provided.  Try again!<br>',
+            'fieldPriceSell' => 'The value for Sell Price should be provided.  Try again!<br>',
+            'fileuploader-list-files' => 'At least one image should be provided.  Try again!<br>'
+        ]
     ],
     'house' => [],
     'computer' => [],
@@ -532,14 +550,14 @@ $item_specific_array = [
                 'hourly' => 'hourly',
                 'daily' => 'daily',
                 'monthly' => 'monthly',
-                'yearly' => 'yearly',                
+                'yearly' => 'yearly',
             ],
         ],
-        'Sell Price' => 'Sell Price',        
+        'Sell Price' => 'Sell Price',
         'currency' => [
             0 => 'Currency',
             'ETB' => 'ETB',
-            'USD' => 'USD',           
+            'USD' => 'USD',
         ],
         'Price is negotiable' => [
             0 => 'Price is negotiable',
@@ -547,15 +565,17 @@ $item_specific_array = [
             'no' => 'No',
         ],
         'Title' => 'Title',
-        'Extra Info' => 'Extra Info',        
+        'Extra Info' => 'Extra Info',
         'Contact Me With' => [
             0       => 'Contact Me With',
             'phone'  => 'Phone',
             'e-mail' => 'E-mail',
             'both'   => 'Both'
-        ],        
+        ],
         'Choose Images here' => 'Choose Images here'
     ]
+
+
 ];
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['item_specific_array'] = $item_specific_array;

@@ -1,4 +1,5 @@
 <?php
+
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption 
@@ -74,7 +75,7 @@ class ValidateForm
             if (isset($_POST[$key])) {
                 $postKey = $_POST[$key];
                 if (
-                    strpos($postKey, 'Choose') !== false or //Error if value start with Choose
+                    strpos($postKey, $GLOBALS['lang']['Choose']) !== false or //Error if value start with Choose
                     strpos($postKey, 'Write') !== false or  //Error if value start with Write
                     $postKey === ''
                 ) //Error if field is empty or not provided

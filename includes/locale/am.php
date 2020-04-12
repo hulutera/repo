@@ -165,7 +165,7 @@ $lang = array(
     'click to see' => 'ለማየት ይሄንን ይጫኑ',
     'Register' => 'ይመዝገቡ',
     'Join to hulutera' => 'huluteraን ይቀላቀሉ',
-    'Submit' => 'ይላኩ',
+    'Submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
     'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ተጠቃሚው በሁሉተራ ላይ ያስገባውን ማንኛውም ነገር እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
     'What we collect' => 'እንዲያስገቡ የምንጠይቆት',
     'Your name' => 'ስም',
@@ -370,7 +370,8 @@ $lang = array(
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
-    'search res' => 'የፍለጋ ውጤት'
+    'search res' => 'የፍለጋ ውጤት',
+    'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ"
 );
 
 $city_lang_arr = array(
@@ -484,6 +485,23 @@ $item_specific_array = [
             0 => 'ቀለም',
             1 => 'ቀለም ይምረጡ'
         ],
+        'validate'    => [
+            'fieldLocation' => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldTitle' => 'የመግቢያ አርዕስት መሞላት  አለበት። በድጋሚ ይሞክሩ!<br>',
+            'idCategory' => 'ዓይነት መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldMake' => ' ስሪት (አምራች ድርጅት) መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldModel' => 'ሞዴል መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldModelYear' => 'የተሠራበት ዓ.ም መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldGearType' => 'ማርሽ ዓይነት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldFuelType' => 'ነዳጅ ዓይነት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldMilage' => 'የተጓዘው መጠን መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldNoOfSeat' => 'የመቀመጫ ብዛት መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            // 'fieldPriceCurrency' => 'ምንዛሪ መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceRent' => 'የኪራይ ዋጋ መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceRate' => 'የኪራይ ተመን መመረጥ አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fieldPriceSell' => 'የመሽያጭ ዋጋ መሞላት አለበት። በድጋሚ ይሞክሩ!<br>',
+            'fileuploader-list-files' => 'ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!<br>'
+        ]
     ],
     'house' => [],
     'computer' => [],
@@ -537,3 +555,4 @@ $item_specific_array = [
 ];
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['lang'] = $lang;
