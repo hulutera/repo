@@ -381,7 +381,7 @@ $lang = array(
     'e.g ID username email' => 'e.g ID or username or email',
     'user page' => 'Hulutera Users Page',
     'search user' => "Search User",
-    'no users found' => '<br>No user found with this information!<br>',
+    'no users found' => '<br>No user found with this information!</p>',
     'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php' . $lang_url . '"> click this... </a>',
     'to main page prompt msg' => '<a href="../../index.php' . $lang_url . '">TO Main page ... </a>',
     'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
@@ -504,24 +504,33 @@ $item_specific_array = [
         ],
         'Color'       => [
             0 => 'Color',
-            1 => 'Choose Color'
+            1 => 'Choose Color',
+            2 => [
+                'red' => 'Red',
+                'green' => 'Green',
+                'blue' => 'Blue',
+                'yellow' => 'Yellow',
+                'black' => 'Black',
+                'white' => 'White',
+                'gray' => 'Gray',
+                'silver' => 'Silver',
+                'liver' => 'Liver',
+                'brown' => 'Brown',
+                'unknown' => 'Unknown'
+            ]
         ],
         'validate'    => [
-            'fieldLocation' => 'Should be provided.  Try again!<br>',
-            'fieldTitle' => 'The value for Title should be provided.  Try again!<br>',
-            'idCategory' => 'The value for Type should be provided.  Try again!<br>',
-            'fieldMake' => 'The value for Make should be provided.  Try again!<br>',
-            'fieldModel' => 'The value for Model should be provided.  Try again!<br>',
-            'fieldModelYear' => 'The value for Year Made should be provided.  Try again!<br>',
-            'fieldGearType' => 'The value for Gear Type should be provided.  Try again!<br>',
-            'fieldFuelType' => 'The value for Fuel Type should be provided.  Try again!<br>',
-            'fieldMilage' => 'The value for Milage should be provided.  Try again!<br>',
-            'fieldNoOfSeat' => 'The value for No of Seats should be provided.  Try again!<br>',
-            'fieldPriceCurrency' => 'The value Currency should be provided.  Try again!<br>',
-            'fieldPriceRent' => 'The value for Rent Rate should be provided.  Try again!<br>',
-            'fieldPriceRate' => 'The value for Rent Rate should be provided.  Try again!<br>',
-            'fieldPriceSell' => 'The value for Sell Price should be provided.  Try again!<br>',
-            'fileuploader-list-files' => 'At least one image should be provided.  Try again!<br>'
+            'fieldLocation' => '<p>Should be provided.  Try again!</p>',
+            'fieldTitle' => '<p>Should be provided.  Try again!</p>',
+            'idCategory' => '<p>Should be provided.  Try again!</p>',
+            'fieldMake' => '<p>Should be provided.  Try again!</p>',
+            'fieldModel' => '<p>Should be provided.  Try again!</p>',
+            'fieldModelYear' => '<p>Should be provided.  Try again!</p>',
+            'fieldGearType' => '<p>Should be provided.  Try again!</p>',
+            'fieldFuelType' => '<p>Should be provided.  Try again!</p>',
+            'fieldMilage' => '<p>Should be provided.  Try again!</p>',
+            'fieldNoOfSeat' => '<p>Should be provided.  Try again!</p>',
+            'fieldColor' => '<p>Should be provided.  Try again!</p>',            
         ]
     ],
     'house' => [],
@@ -535,14 +544,20 @@ $item_specific_array = [
             0 => 'Location',
             1 => 'Choose Item Location'
         ],
-        'Do you want to Rent or Sell?' => [
+        'rentOrSell' => [
             0 => 'Do you want to Rent or Sell?',
-            'rent' => 'Rent',
-            'sell' => 'Sell',
-            'both' => 'Both',
+            1 => 'Choose Rent or Sell?',
+            2 => [
+                'rent' => 'Rent',
+                'sell' => 'Sell',
+                'both' => 'Both',
+            ]
         ],
 
-        'Rent Price' => 'Rent Price',
+        'Rent Price' => [
+            0 => 'Rent Price',
+            1 => 'Write Rental Price',
+        ],
         'Rent Rate' => [
             0 => 'Rent Rate',
             1 => 'Choose Rent Rate',
@@ -553,26 +568,53 @@ $item_specific_array = [
                 'yearly' => 'yearly',
             ],
         ],
-        'Sell Price' => 'Sell Price',
+        'Sell Price' => [
+            0 => 'Sell Price',
+            1 => 'Write Selling Price'
+        ],
         'currency' => [
             0 => 'Currency',
-            'ETB' => 'ETB',
-            'USD' => 'USD',
+            1 => 'Choose Currency',
+            2 => [
+                'ETB' => 'ETB',
+                'USD' => 'USD',
+            ]
         ],
-        'Price is negotiable' => [
+        'negotiable' => [
             0 => 'Price is negotiable',
-            'yes' => 'Yes',
-            'no' => 'No',
+            1 => 'Choose negotiable',
+            2 => [
+                'yes' => 'Yes',
+                'no' => 'No',
+            ]
         ],
-        'Title' => 'Title',
+        'Title' => [
+            0 => 'Title',
+            1 => 'Write title here'
+        ],
         'Extra Info' => 'Extra Info',
-        'Contact Me With' => [
-            0       => 'Contact Me With',
-            'phone'  => 'Phone',
-            'e-mail' => 'E-mail',
-            'both'   => 'Both'
+        'contactMeWith' => [
+            0 => 'Contact Me With',
+            1 => 'Choose contact method',
+            2 => [
+                'phone'  => 'Phone',
+                'e-mail' => 'E-mail',
+                'both'   => 'Both'
+            ]
         ],
-        'Choose Images here' => 'Choose Images here'
+        'Choose Images here' => 'Choose Images here',
+        'validate'    => [
+            'fieldLocation' => '<p>Should be provided.  Try again!</p>',
+            'fieldPriceNego' => '<p>Should be provided.  Try again!</p>',
+            'fieldTitle' => '<p>Should be provided.  Try again!</p>',
+            'fieldPriceCurrency' => '<p>Should be provided.  Try again!</p>',
+            'fieldPriceRent' => '<p>Should be provided.  Try again!</p>',
+            'fieldPriceRate' => '<p>Should be provided.  Try again!</p>',
+            'fieldPriceSell' => '<p>Should be provided.  Try again!</p>',
+            'fieldContactMethod' => '<p>Should be provided.  Try again!</p>',            
+            'fileuploader-list-files' => '<p>At least one image should be provided.  Try again!</p>',
+            'rentOrSell' => '<p>Should be provided.!</p>'
+        ]
     ]
 
 

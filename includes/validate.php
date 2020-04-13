@@ -66,6 +66,7 @@ class ValidateForm
         $this->_runnerName = ObjectPool::getInstance()->getObjectWithId($item, null);
         $this->default_options = $this->_runnerName->getUploadOption();
 
+        $price = "fieldPriceSell fieldPriceRent fieldPriceRate";
         var_dump($_POST);
 
         /**
@@ -74,6 +75,10 @@ class ValidateForm
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key])) {
                 $postKey = $_POST[$key];
+                if(strpos($price, $key) !== false)
+                {
+                    continue;
+                }
                 if (
                     strpos($postKey, $GLOBALS['lang']['Choose']) !== false or //Error if value start with Choose
                     strpos($postKey, 'Write') !== false or  //Error if value start with Write
@@ -87,31 +92,29 @@ class ValidateForm
         }
 
         /**
-         * check if rent-or-sell radio is selected report if not 
+         * check if rentOrSell radio is selected report if not 
          */
-        if (isset($_POST["rent-or-sell"]) && $_POST["rent-or-sell"] === '') {
-            $input = array("rent-or-sell" => 'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
+        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], 'rentOrSell') !== false) {
+            $input = array("rentOrSell" => 'The value for ' . $_POST["rentOrSell"] . ' should be provided.  Try again!<br>');
             array_push($err, $input);
         }
 
-        /**
-         * check if rent-or-sell radio is selected report if not 
-         */
-        if (isset($_POST["rent-or-sell"])) {
-            if ($_POST["rent-or-sell"] === '') {
-                $input = array("rent-or-sell" => 'The value for ' . $_POST["rent-or-sell"] . ' should be provided.  Try again!<br>');
-                array_push($err, $input);
-            } else if ($_POST["rent-or-sell"] == "rent") {
+        if (isset($_POST["rentOrSell"])) {
+            if ($_POST["rentOrSell"] == "rent") {
                 if (isset($_POST["fieldPriceRent"])) {
                     $value = $_POST["fieldPriceRent"];
-                    $this->validatePrice($err, "fieldPriceRent");
+                    $this->validatePrice($err, "fieldPriceRent");                    
                 }
-            } else if ($_POST["rent-or-sell"] == "sell") {
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
+                    $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
+                    array_push($err, $input);
+                }
+            } else if ($_POST["rentOrSell"] == "sell") { 
                 if (isset($_POST["fieldPriceSell"])) {
                     $value = $_POST["fieldPriceSell"];
                     $this->validatePrice($err, "fieldPriceSell");
                 }
-            } else if ($_POST["rent-or-sell"] == "rent-or-sell") {
+            } else if ($_POST["rentOrSell"] == "both") {
                 if (isset($_POST["fieldPriceRent"])) {
                     $value = $_POST["fieldPriceRent"];
                     $this->validatePrice($err, "fieldPriceRent");
@@ -120,19 +123,12 @@ class ValidateForm
                     $value = $_POST["fieldPriceSell"];
                     $this->validatePrice($err, "fieldPriceSell");
                 }
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
+                    $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
+                    array_push($err, $input);
+                }
             }
-        } else {
-
-            if (isset($_POST["fieldPriceSell"])) {
-                $value = $_POST["fieldPriceSell"];
-                $this->validatePrice($err, "fieldPriceSell");
-            } 
-            else {
-
-                $input = array("rent-or-sell" => 'Rent, Sell or Both not selected.  Try again!<br>');
-                array_push($err, $input);
-            }
-        }
+        } 
 
         /**
          * Check if image have been provided report if not

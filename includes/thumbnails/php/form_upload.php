@@ -42,7 +42,7 @@ if (!empty($err2)) {
 		array_keys($err2)
 	));
 
-	var_dump($_SESSION['POST']['fieldLocation']);
+	var_dump($_SESSION['POST']['fieldColor']);
 	$input = "Oh Snap! <br>" . $input;
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
