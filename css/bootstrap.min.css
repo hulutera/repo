@@ -37,3 +37,10 @@
 .upload {
   padding:20px;
 }
+
+.alert-custom {
+  color: #a94442;
+  text-decoration: underline;
+  /* background-color: #f2dede; */
+  /* border-color: #ebccd1; */
+}

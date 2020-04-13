@@ -5,22 +5,33 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/class.fileuploader.php';
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/validate.php';
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
 $err = [];
 $itemName = str_replace("item_", "", $_GET['table']);
-$_SESSION['POST'] = [];
+//$_SESSION['POST'] = [];
 $validate = new ValidateForm($err);
-//var_dump($_POST);
-//var_dump($err);
-$err2 = array();
-foreach ($err as $x) {
-	foreach ($x as $rowNumber => $pair) {		
-		$err2[$rowNumber] = $pair;
-	}	
-}
-//var_dump($err2);
+// var_dump($_GET);
+// var_dump($err);
+// var_dump($GLOBALS['lang']['Choose']);
+// var_dump($GLOBALS['item_specific_array']['car']);
+// var_dump($GLOBALS['city_lang_arr']);
 //exit;
-if (!empty($err)) {
+$err2 = array();
+//$GLOBALS['item_specific_array']['car']['validate'];
+ foreach ($err as $x) {
+ 	foreach ($x as $rowNumber => $pair) {		
+ 		$err2[$rowNumber] = $pair;
+ 	}	
+}
+var_dump($err2);
+var_dump($_POST);
+if(strpos($_POST['fieldLocation'], $GLOBALS['lang']['Choose']) !== false) 
+	echo $GLOBALS['lang']['Choose'];
+echo $_POST['fieldLocation'];
+
+
+if (!empty($err2)) {
 	$_SESSION['POST'] = $_POST;
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
 	$input = implode('', array_map(
@@ -31,24 +42,35 @@ if (!empty($err)) {
 		array_keys($err2)
 	));
 
-
+	var_dump($_SESSION['POST']['fieldColor']);
 	$input = "Oh Snap! <br>" . $input;
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
 	$_SESSION['errorRaw']  = $err2;
-
-	header('Location: ../../template.upload.php?type=' . $itemName);
+	$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+//exit;
+	header('Location: ../../template.upload.php?type=' . $itemName.$lang_sw);
 } else {
+	// reset Error
 	$err = [];
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;
 
-	$_item = $_GET['table'];
+	//reset uploaded sessions per item
+	$items = new HtItemAll("*");
+	$result = $items->getResultSet();
+	while ($row = $result->fetch_assoc()) {
+		$itemName = $row['field_name'];
+		$_SESSION['upload_'.$itemName] = null;
+	}
+
 	//get item instance
-	$_pItem = ObjectPool::getInstance()->getObjectWithId($_item, null);
+	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
 	//insert item
 	$_pItem->insert();
 	//successfull
 	header('Location: ../../prompt.php?type=10');
+	
 }
+

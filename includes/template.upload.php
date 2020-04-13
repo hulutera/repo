@@ -31,13 +31,15 @@ require_once $documnetRootPath . '/includes/validate.php';
 
 	<script>
 		$(document).ready(function() {
-			$("input[name$='rent-or-sell']").click(function() {
+			$('#rentOrSell').on('change', function() {
 				var test = $(this).val();
-				if (test == "rent") {
+				if(test == "rentOrSell"){
+					$(".fieldPriceSell").hide();
+					$(".fieldPriceRent").hide();
+				} else if (test == "rent") {
 					$(".fieldPriceSell").hide();
 					$(".fieldPriceRent").show();
-				}
-				else if(test == "sell") {
+				} else if (test == "sell") {
 					$(".fieldPriceSell").show();
 					$(".fieldPriceRent").hide();
 				} else {
@@ -45,6 +47,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$(".fieldPriceRent").show();
 				}
 			});
+			//location.reload();
 		});
 	</script>
 	<style>
@@ -74,20 +77,21 @@ require_once $documnetRootPath . '/includes/validate.php';
 			<?php uploadHeaderAndSearchCode(""); ?>
 			<div id="main_section">
 
-<div class="col-md-12"><a href="upload.php">Back to Post Item</a></div>
 				<?php
-				// if (isset($_SESSION['error']) && isset($_SESSION['errorRaw'])) {
-				// 	$crptor = new Cryptor();
-				// 	$out = $crptor->decryptor($_SESSION['error']);
-				// 	var_dump($_SESSION['errorRaw']);
-				// 	echo '<div class="alert-danger">
-				// 	<strong>' . $out . '</strong>					
-				// </div>';
-				// }
-				// var_dump($_SESSION['OPTIONS']);
-				// var_dump($_SESSION['POST']);
-				(new HtMainView($_GET['type'], null))->upload();
-				//$_SESSION['POST'] = [];
+				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
+				echo '<div class="col-md-12"><a href="upload.php' . $lang_url . '">' . $GLOBALS['lang']['Back to Post Item'] . '</a></div>';
+
+				$sessionName = 'upload_' . $_GET['type'];
+				if (!isset($_SESSION[$sessionName])) {
+					$object = new HtMainView($_GET['type'], null);
+					$object->upload();
+					$_SESSION[$sessionName] = base64_encode(serialize($object));
+				} else {
+					$object = unserialize(base64_decode($_SESSION[$sessionName]));
+					$object->upload();
+				}
+				//var_dump($_SESSION);
+
 				?>
 			</div>
 		</div>

@@ -165,7 +165,7 @@ $lang = array(
     'click to see' => 'ለማየት ይሄንን ይጫኑ',
     'Register' => 'ይመዝገቡ',
     'Join to hulutera' => 'huluteraን ይቀላቀሉ',
-    'Submit' => 'ይላኩ',
+    'Submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
     'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ተጠቃሚው በሁሉተራ ላይ ያስገባውን ማንኛውም ነገር እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
     'What we collect' => 'እንዲያስገቡ የምንጠይቆት',
     'Your name' => 'ስም',
@@ -269,7 +269,7 @@ $lang = array(
     'about us on footer text'
     => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች።',
     'here' => 'ይሄን',
-    'to know more about hulutera.com' => ' ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
+    'to know more about hulutera.com' => '<p>ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
     'ABOUT US' => 'ስለ እኛ',
     'INFORMATION' => 'መረጃ',
     'Privacy Policy' => 'ግላዊ መርህ',
@@ -289,7 +289,7 @@ $lang = array(
     'email already exists msg' => 'ኢሜይሉ የተያዘ ስለሆነ ሌላ ያስገቡ።',
     'Forgot your password' => 'የምስጢር ቃልዎን ረሱት?',
     'my activities' => 'ማድረግ የምችለው',
-    'my-page msg' => 'እንኳን ወደ እኔ ገጽ መጡ፤ በዚህ ገጽ ላይ ንብረት ማስገባት ፣ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ <a href="../../includes/template.proxy.php?type=contact' .$str_url.'">ይሄንን</a> ተጭነው ማግኘት ይችላሉ። ',
+    'my-page msg' => 'እንኳን ወደ እኔ ገጽ መጡ፤ በዚህ ገጽ ላይ ንብረት ማስገባት ፣ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">ይሄንን</a> ተጭነው ማግኘት ይችላሉ። ',
     'my page' => 'የእኔ ገጽ',
     'active' => 'የሚታይ',
     'pending' => 'ተጠባባቂ',
@@ -342,7 +342,7 @@ $lang = array(
     'facebook' => 'ፌስቡክ',
     'twitter' => 'ትዊተር',
     'pintrest' => 'ፒኢንትረስት',
-    'youtube' => ' ዩትዩብ',
+    'youtube' => '<p>ዩትዩብ',
     'privacy policy paragraph1 text' => 'የግልዎን መረጃ አንሸጥም ፣ አንበትንም እንዲሁም ከእርስዎ ፍቃድ ውጪ ለሌላ አካል አናጋራም ሆኖም ግን በህግ ከተጠየቅን የማሳየ ግዴት ይኖርብናል።',
     'id' => 'መለያ ቁጥር',
     'your role' => 'የዕርስዎ ሀላፊነት ',
@@ -363,14 +363,15 @@ $lang = array(
     'users page' => 'የሁሉተራ ተጠቃሚዎች ገጽ',
     'search user' => 'ተጠቃሚዎች ይፈልጉ',
     'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>',
-    'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a href="../includes/upload.php'.$lang_url.'">ይህንን ይጫኑ...</a>',
-    'to main page prompt msg' => '<a href="../index.php'.$lang_url.'">ወደ ዋና ገጽ ... </a>',
-    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php'.$lang_url.'">መግባት</a> ይኖርቦታል...',
-    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋ ይሞክሩ</br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
+    'to main page prompt msg' => '<a href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
+    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
+    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋ ይሞክሩ</br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
-    'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help'.$str_url.'"> ይሄን </a> ተጭነው ያገኛሉ።',
-    'search res' => 'የፍለጋ ውጤት'
+    'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'search res' => 'የፍለጋ ውጤት',
+    'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ"
 );
 
 $city_lang_arr = array(
@@ -482,8 +483,41 @@ $item_specific_array = [
         ],
         'Color'       => [
             0 => 'ቀለም',
-            1 => 'ቀለም ይምረጡ'
+            1 => 'ቀለም ይምረጡ',
+            2 => [
+                'red' => 'ቀይ',
+                'green' => 'አረጓዴ',
+                'blue' => 'ሰማያዊ',
+                'yellow' => 'ቢጫ',
+                'black' => 'ጥቁር',
+                'white' => 'ነጭ',
+                'gray' => 'አይጥማ',
+                'silver' => 'ሲልቨር',
+                'liver' => 'ጉበትማ',
+                'brown' => 'ቡናማ',
+                'unknown' => 'አይታወቅም'
+            ]
         ],
+        'validate'    => [
+            'fieldLocation' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldTitle' => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
+            'idCategory' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldMake' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldModel' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldModelYear' => 'የተሠራበት ዓ.ም መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldGearType' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldFuelType' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldMilage' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldNoOfSeat' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldColor' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            // 'fieldPriceCurrency' => 'ምንዛሪ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+
+            'fieldPriceRent' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceRate' => '<p>ተመን መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceSell' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ</p>',
+            'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>'
+        ]
     ],
     'house' => [],
     'computer' => [],
@@ -496,13 +530,19 @@ $item_specific_array = [
             0 => 'ንብረቱ የሚገኘበት ቦታ',
             1 => 'የንብረቱን ቦታ ይምረጡ'
         ],
-        'Do you want to Rent or Sell?' => [
+        'rentOrSell' => [
             0 => 'ማከራየት ወይስ መሽጥ ይፈልጋሉ?',
-            'rent' => 'ማከራየት',
-            'sell' => 'መሽጥ',
-            'both' => 'ሁለቱንም'
+            1 => 'ኪራይ ወይም ሽያጭ ይምረጡ',
+            2 => [
+                'rent' => 'ማከራየት',
+                'sell' => 'መሽጥ',
+                'both' => 'ሁለቱንም'
+            ]
         ],
-        'Rent Price' => 'የኪራይ ዋጋ',
+        'Rent Price' => [
+            0 => 'የኪራይ ዋጋ',
+            1 => 'የኪራይ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
+        ],
         'Rent Rate' => [
             0 => 'የኪራይ ተመን',
             1 => 'የኪራይ ተመን ይምረጡ',
@@ -510,30 +550,58 @@ $item_specific_array = [
                 'hourly' => 'በሰዓት',
                 'daily' => 'በቀን',
                 'monthly' => 'በወር',
-                'yearly' => 'በዓመት',                
+                'yearly' => 'በዓመት',
             ],
         ],
-        'Sell Price' => 'የመሽያጭ ዋጋ',
+        'Sell Price' => [
+            0 => 'የመሽያጭ ዋጋ',
+            1 => 'የመሽያጭ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
+        ],
         'currency' => [
             0 => 'ምንዛሪ',
-            'ETB' => 'ብር',
-            'USD' => 'የአሜሪካን ዶላር',
+            1 => 'ምንዛሪ ይምረጡ',
+            2 => [
+                'ETB' => 'ብር',
+                'USD' => 'የአሜሪካን ዶላር',
+            ]
         ],
-        'Price is negotiable' => [
+        'negotiable' => [
             0 => 'ዋጋ መደራደር ይቻላል?',
-            'yes' => 'ይቻላል',
-            'no' => 'አይቻልም',
+            1 => 'ይምረጡ',
+            2 => [
+                'yes' => 'ዋጋ መደራደር ይቻላል',
+                'no' => 'ዋጋ መደራደር አይቻልም'
+            ]
         ],
-        'Title' => 'ርዕስ',
+        'Title' => [
+            0 => 'አርዕስት',
+            1 => 'አርዕስት እዚህ ይጻፉ'
+        ],
         'Extra Info' => 'ተጨማሪ መረጃ',
-        'Contact Me With' => [
-            0       => 'የመገኛ መንገድ',
-            'phone'  => 'በስልክ',
-            'e-mail' => 'በኢሜይል',
-            'both'   => 'በሁለቱም'
+        'contactMeWith' => [
+            0 => 'የመገኛ መንገድ',
+            1 => 'የመገኛ መንገድ ይምረጡ',
+            2 => [
+                'phone'  => 'በስልክ',
+                'e-mail' => 'በኢሜይል',
+                'both'   => 'በሁለቱም'
+            ]
         ],
-        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ'
+        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
+        'validate'    => [
+            'fieldLocation' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceNego' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldTitle' => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceCurrency' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceRent' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceRate' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldPriceSell' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
+            'fieldContactMethod' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</p>',
+            'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>'
+        ]
     ]
 ];
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['lang'] = $lang;

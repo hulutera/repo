@@ -5,7 +5,7 @@ require_once $documnetRootPath . '/includes/locale/locale.php';
 if (isset($_GET['lan'])) {
 	global $language;
 	$language = $_GET['lan'];
-	// url exetention for language on hyperlinks without "?"
+	// url extention for language on hyperlinks without "?"
 	$lang_url = "?&lan=" . $language;
 
 	// url exetention for language on hyperlinks with "?"
