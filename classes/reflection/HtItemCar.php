@@ -1242,11 +1242,11 @@ class HtItemCar extends MySqlRecord
      * @param int $id. If omitted an empty (not fetched) instance is created.
      * @return HtItemCar Object
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $status = null)
     {
         parent::__construct();
         if (!empty($id)) {
-            $this->select($id);
+            $this->select($id, $status);
         }
     }
 
@@ -1274,76 +1274,60 @@ class HtItemCar extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id = NULL, $status = NULL)
     {
-        if ($id == "*" and $status == NULL) {
-            $sql = "SELECT * FROM item_car";
-        } else { //id
-            $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
-        }
-        
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        if ($result) {
-            $rowObject = $result->fetch_object();
-            @$this->id = (int) $rowObject->id;
-            @$this->idTemp = (int) $rowObject->id_temp;
-            @$this->idUser = (int) $rowObject->id_user;
-            @$this->idCategory = (int) $rowObject->id_category;
-            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
-            @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
-            @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
-            @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);
-            @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-            @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
-            @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
-            @$this->fieldModelYear = $rowObject->field_model_year;
-            @$this->fieldNoOfSeat = (int) $rowObject->field_no_of_seat;
-            @$this->fieldFuelType = $this->replaceAposBackSlash($rowObject->field_fuel_type);
-            @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
-            @$this->fieldGearType = $this->replaceAposBackSlash($rowObject->field_gear_type);
-            @$this->fieldMilage = $this->replaceAposBackSlash($rowObject->field_milage);
-            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
-            @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
-            @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
-            @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
-            @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (int) $rowObject->field_total_view;
-            @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
-            @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (int) $rowObject->field_table_type;
-            $this->allowUpdate = true;
-        } else {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
-        }
-        return $this->affected_rows;
-    }
-
-    public function itemQuery($id, $status=NULL)
-    {
-        $calculatePageArray = calculatePage($rows);
-        $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
-        if ($id == "*" and $status == NULL) {
+        if($id == NULL and $status == NULL){
+            $sql = [];
+        } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_car";
         } elseif($id == "*" and $status != NULL){
-            $sql =  "SELECT * FROM item_car WHERE field_status='$status'";
+            $sql =  "SELECT * FROM item_car WHERE field_status={$this->parseValue($status, 'notNumbe')}";
         } elseif($id != "*" and $status == NULL){
-            $sql =  "SELECT * FROM item_car WHERE id='$id'";
+            $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
-            $sql =  "SELECT * FROM item_car WHERE id=$id AND field_status='$status'";
+            $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumbe')}";
         }
         
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         return $this->affected_rows;
     }
 
+    /* 
+    ** Set the car element values
+    */
+    public function elemSetter($row)
+    {
+        $this->id = $row['id'];
+        $this->idTemp = $row['id_temp'];
+        $this->idUser = $row['id_user'];
+        $this->idCategory = $row['id_category'];
+        $this->fieldContactMethod = $row['field_contact_method'];
+        $this->fieldPriceRent = $row['field_price_rent'];
+        $this->fieldPriceSell = $row['field_price_sell'];
+        $this->fieldPriceNego = $row['field_price_nego'];
+        $this->fieldPriceRate = $row['field_price_rate'];
+        $this->fieldPriceCurrency = $row['field_price_currency'];
+        $this->fieldMake = $row['field_make'];
+        $this->fieldModel = $row['field_model'];
+        $this->fieldModelYear = $row['field_model_year'];
+        $this->fieldNoOfSeat = $row['field_no_of_seat'];
+        $this->fieldFuelType = $row['field_fuel_type'];
+        $this->fieldColor = $row['field_color'];
+        $this->fieldGearType = $row['field_gear_type'];
+        $this->fieldMilage = $row['field_milage'];
+        $this->fieldImage = $row['field_image'];
+        $this->fieldLocation = $row['field_location'];
+        $this->fieldExtraInfo = $row['field_extra_info'];
+        $this->fieldTitle = $row['field_title'];
+        $this->fieldUploadDate = $row['field_upload_date'];
+        $this->fieldTotalView = $row['field_total_view'];
+        $this->fieldStatus = $row['field_status'];
+        $this->fieldMarketCategory = $row['field_market_category'];
+        $this->fieldTableType = $row['field_table_type'];
+    }
 
     /**
      * Deletes a specific row from the table item_car

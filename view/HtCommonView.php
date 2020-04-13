@@ -4,6 +4,7 @@ require_once $documnetRootPath . '/classes/cmn.class.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/classes/global.variable.class.php';
+require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 
 require_once $documnetRootPath . '/test/backtracer.php';
@@ -32,46 +33,23 @@ class HtCommonView extends MySqlRecord {
         $result->close();
     }
 
-    private function showRowContent($row)
+    
+    private function showRowContent($itemObj)
     {
         $pImage = new ImgHandler;
-        //$pUser  = new UserClass($row);
-
-        /*
-        $this->_pItem->setElements($row);
-        $id = $this->_pItem->getId(); 
-        $itemName = $this->_pItem->getItemName();*/
         $itemName = $this->_itemName;
-        //$uniqueId = $itemName . $this->_pItem->getId();
-        $id = $row['id'];
+        $id = $itemObj->getId();
         $uniqueId = $itemName . $id; 
-        //$datetime = $this->_pItem->getUpldTime();
-        $datetime = $row['field_upload_date'];
-        //$title = $this->_pItem->getTitle();
-        $title = $row['field_title'];
-        //$location = $this->_pItem->getLoc();
-        $location = $row['field_location'];
-        //$mkTyp = $this->_pItem->getMktType();
-        $mkTyp = $row['field_make'];
-        //$contactType = $this->_pItem->getContactMethod();
-        $contactType = $row['field_contact_method'];
-        // image directory per item
-        $imageDir = $this->getImageDir($itemName, $row);
-        //Object for item Directory
-        //$dir = $pImage->setDirectory($itemImageDir, $id);
-        
-
-        //Object for item Image
-        //$image    = $pImage->initImage($row);
-        $image = $row['field_image'];
-        //$numimage = $pImage->getNumOfImg();
-        
+        $datetime = $itemObj->getFieldUploadDate();
+        $title = $itemObj->getFieldTitle();
+        $location = $itemObj->getFieldLocation();
+        $mkTyp = $itemObj->getFieldMake();
+        $contactType = $itemObj->getFieldContactMethod();
+        $imageDir = $this->getImageDir($itemName, $itemObj);
+        $image = $itemObj->getFieldImage();
         $imageArr = explode(',', $image);
         $numimage = sizeof($imageArr);
                   
-        //prepare image
-        //$imgArr = json_encode($image);
-        //$jsonImgobj = json_decode($imgArr, true);
         $jsImg = implode(',', $imageArr);
         $strReplArr= array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
@@ -83,29 +61,28 @@ class HtCommonView extends MySqlRecord {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
-            $thmbNlImg  = $dir . 'original/' . str_replace($strReplArr, "", $imageArr[1]);
+            $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
             echo "<a href=\"javascript:void(0)\"
-			onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\">";
+			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
             echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
         }
         //
         echo "<div class=\"detail\">";  //start_detail
         echo "<div class=\"leftcol\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
-		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\">";
+		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         $this->displayTitle($title, $itemName);
         echo "</a>";
         $this->displayLocation($location);
         $this->displayUpldTime($datetime);
-        $this->displayPrice($itemName, $row);
+        $this->displayPrice($itemName, $itemObj);
         $this->displayMarketType($mkTyp);
-        //$this->displayAction($this->_pItem, $pUser);
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
         //---------------------------------------------------------
         echo "<div class=\"showbutton_show\">
 		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
-		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName',$imgString)\"
+		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
 		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
@@ -119,9 +96,9 @@ class HtCommonView extends MySqlRecord {
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $this->displayTitle($title, $itemName);
-        $this->displaySpecifics($row, $itemName);
-        $this->displayPrice($itemName, $row['field_market_catagory']);
-        $this->displayContactMethod($pImage, $uniqueId, $contactType, $id, $itemName, $pUser);
+        $this->displaySpecifics($itemObj, $itemName);
+        $this->displayPrice($itemName, $itemObj);
+        $this->displayContactMethod($pImage, $uniqueId, $itemObj, $itemName);
         $this->displayMailCfrm($uniqueId, $id, $itemName);
         $this->displayReportReq($uniqueId, $id, $itemName);
         $this->displayMailForm($uniqueId, $id, $itemName, $pUser);
@@ -138,10 +115,10 @@ class HtCommonView extends MySqlRecord {
     /** 
      * Get the image directory
      * */
-    public function getImageDir($itemName, $row){
+    public function getImageDir($itemName, $itemObj){
         $itemImageDir = "item_" . $itemName;
-        $userImageDir = "/user_id_" . $row['id_user'];
-        $tmpIdImageDir = "/item_temp_id_" . $row['id_temp'] . "/";
+        $userImageDir = "/user_id_" . $itemObj->getIdUser();
+        $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
         $path = "../upload/";
         $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
         return $dir ;     
@@ -319,18 +296,26 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display contact method /mail/phone/
 	 * input: $objDir,$uniqueId,$contactType,$itemId,$itemName,$userName,$userPhone
 	* */
-    private function displayContactMethod($objImg, $uniqueId, $contactType, $itemId, $itemName, $user)
+    private function displayContactMethod($pImage, $uniqueId, $itemObj, $itemName)
     {
+        $contactType = $itemObj->getFieldContactMethod();
+        $itemId = $itemObj->getId();
+        $userId = $itemObj->getIdUser();
+        $userObj = new HtUserAll(settype($UserId, "Integer"));
+        $userName = $userObj->getFieldFirstName() ? $userObj->getFieldFirstName() : NULL;
+        $phone = $userObj->getFieldPhoneNr() ? $userObj->getFieldPhoneNr() : NULL;
+        $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
+        
         echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
         echo "</br>";
         echo "<div class=\"header\"><label>Contact</label></div>";
-        if ($contactType == "Email" or $contactType == "Both")
+        if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
-			<img src =\"$objImg->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
-        if ($contactType == "Phone" or $contactType == "Both")
+			<img src =\"$pImage->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
+        if ($contactType == "phone" or $contactType == "both")
             echo "<div class=\"phone\">
-			<img src =\"$objImg->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
+			<img src =\"$pImage->PATH_PHN_ICON\"><label>" . $userName . ":" . $phone . "</label></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($id,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -338,30 +323,26 @@ class HtCommonView extends MySqlRecord {
     * */
     private function displayGallery($dir, $imageNameArray, $itemId, $itemName)
     {
-        global $documnetRootPath;
-
-        //$dir1 = $dir . 'original/';
-        //$file = $dir1 . $image[1];
-        //$numimage = $objImg->getNumOfImg();
+        $imageFileNameLarge = $imageNameArray[0];
+        $filterArr = array('"', '[', ']');
+        $fileNmaeLarge = str_replace($filterArr, '', $imageFileNameLarge);
         $numimage = sizeof($imageNameArray);
-        //$itemName = $objItem->getItemName();
         echo "<div class=\"featured_left_side\">";
         if ($numimage == 1) {
             $file_path = '../../images/icons/ht_logo_2.png';
             echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
         }
         if ($numimage > 1) {
-            echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $file . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
             echo "<div id=\"featured_buttom\">";
             echo "<div class=\"imagesGallery\">";
-            for ($i = 1; $i < $numimage; $i++) {
-               // $divName = 'bottomimg' . $itemName . $itemId . $i;
+            for ($i = 0; $i < $numimage; $i++) {
                $imageFileName = $imageNameArray[$i];
-               $fileNmae = str_replace('"', '', $imageFileName);
+               $fileNmae = str_replace($filterArr, '', $imageFileName);
                $divName = $fileName . $i;
                 echo "
 				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileNmae',$itemId, '$itemName')\"\">
-				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\" \" />
+				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\"$dir$fileNmae\" />
 				</a>
 				";
             }
@@ -375,19 +356,20 @@ class HtCommonView extends MySqlRecord {
 	 * input: $obj
     * */
        
-    private function displaySpecifics($itemArr, $itemName)
+    private function displaySpecifics($itemObj, $itemName)
     {
-        switch ($itemName) {
+        switch ($itemName) { 
             case "car":
-                echo "bhbhbh";
-                echo $itemArr['field_make']     ? "<p><strong>Make:&nbsp</strong>" . $itemArr['field_make'] . "</p>" : "";
-                echo $itemArr['id_category'] ? "<p><strong>Type:&nbsp</strong>" . $itemArr['id_category'] . "</p>" : "";
-                echo $itemArr['field_model_year'] != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $itemArr['field_model_year'] . "</p>" : "";
-                echo $itemArr['field_fuel_type']      ? "<p><strong>Fuel:&nbsp</strong>" . $itemArr['field_fuel_type'] . "</p>" : "";
-                echo $itemArr['field_no_of_seats']      ? "<p><strong>Nr of Seats:&nbsp</strong>" . $itemArr['field_no_of_seats'] . "</p>" : "";
-                echo $itemArr['field_color'] != "999"     ? "<p><strong>Color:&nbsp</strong>" . $itemArr['field_color'] . "</p>" : "";
-                echo $itemArr['field_gear_type']      ? "<p><strong>Gear:&nbsp</strong>" . $itemArr['field_gear_type'] . "</p>" : "";
-                echo $itemArr['field_extra_info']      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $itemArr['field_extra_info'] . "</p>" : "";
+                echo $itemObj->getFieldMake()   ? "<p><strong>Make:&nbsp</strong>" . $itemObj->getFieldMake() . "</p>" : "";
+                echo $itemObj->getFieldModel() != "0000"       ? "<p><strong>Model:&nbsp</strong>" . $itemObj->getFieldModel() . "</p>" : "";
+                echo $itemObj->getIdCategory() ? "<p><strong>Type:&nbsp</strong>" . $itemObj->getIdCategory() . "</p>" : "";
+                echo $itemObj->getFieldModelYear() != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $itemObj->getFieldModelYear() . "</p>" : "";
+                echo $itemObj->getFieldFuelType()     ? "<p><strong>Fuel:&nbsp</strong>" . $itemObj->getFieldFuelType() . "</p>" : "";
+                echo $itemObj->getFieldNoOfSeat()     ? "<p><strong>Nr of Seats:&nbsp</strong>" . $itemObj->getFieldNoOfSeat() . "</p>" : "";
+                echo $itemObj->getFieldColor() != "999"     ? "<p><strong>Color:&nbsp</strong>" .  $itemObj->getFieldColor() . "</p>" : "";
+                echo $itemObj->getFieldMilage()      ? "<p><strong>Milage:&nbsp</strong>" . $itemObj->getFieldMilage() . "</p>" : "";
+                echo $itemObj->getFieldGearType()      ? "<p><strong>Gear:&nbsp</strong>" . $itemObj->getFieldGearType() . "</p>" : "";
+                echo $itemObj->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $itemObj->getFieldExtraInfo() . "</p>" : "";
                 break;
             case "CompClass":
                 echo $obj->getMake()      ? "<p><strong>Make:&nbsp</strong>" . $obj->getMake() . "</p>" : "";
@@ -438,18 +420,18 @@ class HtCommonView extends MySqlRecord {
                 break;
         }
     }
-    private function displayPrice($item, $row)
+    private function displayPrice($item, $itemObj)
     {
         echo "<div class=\"price\">";
         switch ($item) {
             case "car":
             case "HouseClass":
-                $rentValue = $row['field_price_rent'];
-                $sellValue = $row['field_price_sell'];
-                $negoValue = $row['field_price_nego'];
+                $rentValue = $itemObj->getFieldPriceRent();
+                $sellValue = $itemObj->getFieldPriceSell();
+                $negoValue = $itemObj->getFieldPriceNego();
                 $negoDisplay = ($negoValue == 'Yes') ? "Negotiable" : "";
-                $curr  = $row['field_price_currency'];
-                $rate  = $row['field_price_rate'];;
+                $curr  = $itemObj->getFieldPriceCurrency();
+                $rate  = $itemObj->getFieldPriceRate();
 
                 //ctrl var
                 $rentsellwnego =   $rentValue &&  $sellValue &&  $negoValue;
@@ -579,14 +561,15 @@ class HtCommonView extends MySqlRecord {
         $item = $this->_itemName;
         $itemClass = "HtItem".ucfirst($item);
         //$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
-        $itemObj = new $itemClass;
-        $rows = $itemObj->itemQuery("*", "active");
+        $itemObj = new $itemClass();
+        $rows = $itemObj->select("*", "active");
         if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
             $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
             $result = $itemObj->getResultSet();
             while ($row = $result->fetch_array()) {
-                $this->showRowContent($row);
+                $itemObj->elemSetter($row);
+                $this->showRowContent($itemObj);                
             }
             
             pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
