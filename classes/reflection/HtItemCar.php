@@ -1300,33 +1300,33 @@ class HtItemCar extends MySqlRecord
     */
     public function elemSetter($row)
     {
-        $this->id = $row['id'];
-        $this->idTemp = $row['id_temp'];
-        $this->idUser = $row['id_user'];
-        $this->idCategory = $row['id_category'];
-        $this->fieldContactMethod = $row['field_contact_method'];
-        $this->fieldPriceRent = $row['field_price_rent'];
-        $this->fieldPriceSell = $row['field_price_sell'];
-        $this->fieldPriceNego = $row['field_price_nego'];
-        $this->fieldPriceRate = $row['field_price_rate'];
-        $this->fieldPriceCurrency = $row['field_price_currency'];
-        $this->fieldMake = $row['field_make'];
-        $this->fieldModel = $row['field_model'];
+        $this->id = (int) $row['id'];
+        $this->idTemp = (int) $row['id_temp'];
+        $this->idUser = (int) $row['id_user'];
+        $this->idCategory = (int) $row['id_category'];
+        $this->fieldContactMethod =  $this->replaceAposBackSlash($row['field_contact_method']);
+        $this->fieldPriceRent = $this->replaceAposBackSlash($row['field_price_rent']);
+        $this->fieldPriceSell = $this->replaceAposBackSlash($row['field_price_sell']);
+        $this->fieldPriceNego = $this->replaceAposBackSlash($row['field_price_nego']);
+        $this->fieldPriceRate = $this->replaceAposBackSlash($row['field_price_rate']);
+        $this->fieldPriceCurrency = $this->replaceAposBackSlash($row['field_price_currency']);
+        $this->fieldMake = $this->replaceAposBackSlash($row['field_make']);
+        $this->fieldModel = $this->replaceAposBackSlash($row['field_model']);
         $this->fieldModelYear = $row['field_model_year'];
-        $this->fieldNoOfSeat = $row['field_no_of_seat'];
-        $this->fieldFuelType = $row['field_fuel_type'];
-        $this->fieldColor = $row['field_color'];
-        $this->fieldGearType = $row['field_gear_type'];
-        $this->fieldMilage = $row['field_milage'];
-        $this->fieldImage = $row['field_image'];
-        $this->fieldLocation = $row['field_location'];
-        $this->fieldExtraInfo = $row['field_extra_info'];
-        $this->fieldTitle = $row['field_title'];
+        $this->fieldNoOfSeat = (int) $row['field_no_of_seat'];
+        $this->fieldFuelType = $this->replaceAposBackSlash($row['field_fuel_type']);
+        $this->fieldColor = $this->replaceAposBackSlash($row['field_color']);
+        $this->fieldGearType = $this->replaceAposBackSlash($row['field_gear_type']);
+        $this->fieldMilage = $this->replaceAposBackSlash($row['field_milage']);
+        $this->fieldImage = $this->replaceAposBackSlash($row['field_image']);
+        $this->fieldLocation = $this->replaceAposBackSlash($row['field_location']);
+        $this->fieldExtraInfo = $this->replaceAposBackSlash($row['field_extra_info']);
+        $this->fieldTitle = $this->replaceAposBackSlash($row['field_title']);
         $this->fieldUploadDate = $row['field_upload_date'];
-        $this->fieldTotalView = $row['field_total_view'];
-        $this->fieldStatus = $row['field_status'];
-        $this->fieldMarketCategory = $row['field_market_category'];
-        $this->fieldTableType = $row['field_table_type'];
+        $this->fieldTotalView = (int) $row['field_total_view'];
+        $this->fieldStatus = $this->replaceAposBackSlash($row['field_status']);
+        $this->fieldMarketCategory = $this->replaceAposBackSlash($row['field_market_category']);
+        $this->fieldTableType = (int) $row['field_table_type'];
     }
 
     /**
@@ -1492,7 +1492,16 @@ SQL;
      */
     public function display()
     {
-        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+        echo $this->getFieldMake()   ? "<p><strong>Make:&nbsp</strong>" . $this->getFieldMake() . "</p>" : "";
+        echo $this->getFieldModel() != "0000"       ? "<p><strong>Model:&nbsp</strong>" . $this->getFieldModel() . "</p>" : "";
+        echo $this->getIdCategory() ? "<p><strong>Type:&nbsp</strong>" . $this->getIdCategory() . "</p>" : "";
+        echo $this->getFieldModelYear() != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $this->getFieldModelYear() . "</p>" : "";
+        echo $this->getFieldFuelType()     ? "<p><strong>Fuel:&nbsp</strong>" . $this->getFieldFuelType() . "</p>" : "";
+        echo $this->getFieldNoOfSeat()     ? "<p><strong>Nr of Seats:&nbsp</strong>" . $this->getFieldNoOfSeat() . "</p>" : "";
+        echo $this->getFieldColor() != "999"     ? "<p><strong>Color:&nbsp</strong>" .  $this->getFieldColor() . "</p>" : "";
+        echo $this->getFieldMilage()      ? "<p><strong>Milage:&nbsp</strong>" . $this->getFieldMilage() . "</p>" : "";
+        echo $this->getFieldGearType()      ? "<p><strong>Gear:&nbsp</strong>" . $this->getFieldGearType() . "</p>" : "";
+        echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
     }
 
     /**

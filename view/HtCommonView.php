@@ -32,10 +32,10 @@ class HtCommonView extends MySqlRecord {
         }
         $result->close();
     }
-
     
-    private function showRowContent($itemObj)
+    public function showRowContent($item, $id)
     {
+        $itemObj = ObjectPool::getInstance()->getObjectWithId($item, $id);
         $pImage = new ImgHandler;
         $itemName = $this->_itemName;
         $id = $itemObj->getId();
@@ -75,7 +75,7 @@ class HtCommonView extends MySqlRecord {
         echo "</a>";
         $this->displayLocation($location);
         $this->displayUpldTime($datetime);
-        $this->displayPrice($itemName, $itemObj);
+        $this->displayPrice($itemObj);
         $this->displayMarketType($mkTyp);
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
@@ -97,8 +97,8 @@ class HtCommonView extends MySqlRecord {
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $this->displayTitle($title, $itemName);
         $this->displaySpecifics($itemObj, $itemName);
-        $this->displayPrice($itemName, $itemObj);
-        $this->displayContactMethod($pImage, $uniqueId, $itemObj, $itemName);
+        $this->displayPrice($itemObj);
+        $this->displayContactMethod($uniqueId, $itemObj, $itemName);
         $this->displayMailCfrm($uniqueId, $id, $itemName);
         $this->displayReportReq($uniqueId, $id, $itemName);
         $this->displayMailForm($uniqueId, $id, $itemName, $pUser);
@@ -115,8 +115,8 @@ class HtCommonView extends MySqlRecord {
     /** 
      * Get the image directory
      * */
-    public function getImageDir($itemName, $itemObj){
-        $itemImageDir = "item_" . $itemName;
+    public function getImageDir($itemObj) {
+        $itemImageDir = "item_" . $this->_itemName;
         $userImageDir = "/user_id_" . $itemObj->getIdUser();
         $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
         $path = "../upload/";
@@ -164,8 +164,9 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display uploaded date
 	 * input:$datetime
 	* */
-    private function displayUpldTime($datetime)
+    public function displayUpldTime($itemObj)
     {
+        $datetime = $itemObj->getFieldUploadDate();
         $datetimestr = strtotime($datetime);
         $today       = strtotime("today");
         $yesterday   = strtotime("yesterday");
@@ -182,17 +183,34 @@ class HtCommonView extends MySqlRecord {
 	 * if found else item category is displayed
 	* input: title, itemName
 	* */
-    private function displayTitle($title, $itemName)
+    public function displayTitle($itemObj)
     {
+        $title = $itemObj->getFieldTitle();
         echo "<div class=\"header\">";
-        echo $title != null ? $title : $itemName;
+        echo $title != null ? $title : $this->$_itemName;
         echo "</div>";
     }
     /*@function to display location of item
 	 * input : location /loc
+	* */ 
+    
+    /*@ function to display make of the item
+	 * 
+	* input: item object
 	* */
-    private function displayLocation($loc)
+    public function displayMake($itemObj)
     {
+        if($this->_itemName == "car" or $this->_itemName == "phone" or $this->_itemName == "computer") {
+            echo "<div class=\"location\">";
+            echo $itemObj->getFieldMake();
+            echo "</div>";
+        }
+    }
+
+    public function displayLocation($itemObj)
+    {
+        
+        $loc =  $itemObj->getFieldLocation();
         if ($loc != "") {
             echo "<div class=\"location\">" . $loc . "</div>";
         }
@@ -200,17 +218,17 @@ class HtCommonView extends MySqlRecord {
     /*@function to display market type /SELL/RENT
 	 * input: mkTyp
 	* */
-    private function displayMarketType($mkTyp)
+    public function displayMarketType($itemObj)
     {
         if ($mkTyp != "No Action") {
-            echo "<div id=\"text_sellRent\">" . strtoupper($mkTyp) . "</div></br>";
+            echo "<div id=\"text_sellRent\">" . strtoupper($itemObj->getFieldMarketCategory()) . "</div></br>";
         }
     }
 
     /*@ function to display a dialog to submit abuses
 	 * input:  $uniqueId,$itemId,$itemName
 	* */
-    private function displayReportReq($uniqueId, $itemId, $itemName)
+    public function displayReportReq($uniqueId, $itemId, $itemName)
     {
         echo "<div class = \"reportabuse\">";
         echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\"></div>";
@@ -239,7 +257,7 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display confirmation for mail sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName
 	* */
-    private function displayMailCfrm($uniqueId, $itemId, $itemName)
+    public function displayMailCfrm($uniqueId, $itemId, $itemName)
     {
         global $sentmsg;
         echo "<div class=\"msgcompleted\">";
@@ -252,7 +270,7 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display confirmation for report sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName
 	* */
-    private function displayReportCfrm($uniqueId, $itemId, $itemName)
+    public function displayReportCfrm($uniqueId, $itemId, $itemName)
     {
         global $abusemsg;
         echo "<div class=\"reportmsgcompleted\">";
@@ -265,7 +283,7 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display mail dialog sent to contact owner
 	 * input: $uniqueId,$itemId,$itemName,$userEmail
 	* */
-    private function displayMailForm($uniqueId, $itemId, $itemName, $user)
+    public function displayMailForm($uniqueId, $itemId, $itemName, $user)
     {
         echo "<div style=\"display:none;\" class=\"message_$uniqueId\">";
         echo "<form class=\"msgcontainer\" method=\"post\">";
@@ -296,8 +314,9 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display contact method /mail/phone/
 	 * input: $objDir,$uniqueId,$contactType,$itemId,$itemName,$userName,$userPhone
 	* */
-    private function displayContactMethod($pImage, $uniqueId, $itemObj, $itemName)
+    public function displayContactMethod($uniqueId, $itemObj, $itemName)
     {
+        $pImage = new ImgHandler;
         $contactType = $itemObj->getFieldContactMethod();
         $itemId = $itemObj->getId();
         $userId = $itemObj->getIdUser();
@@ -321,7 +340,7 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display image gallery
 	 * input: $objImg, $objDir, $image, $objItem, $itemId
     * */
-    private function displayGallery($dir, $imageNameArray, $itemId, $itemName)
+    public function displayGallery($dir, $imageNameArray, $itemId, $itemName)
     {
         $imageFileNameLarge = $imageNameArray[0];
         $filterArr = array('"', '[', ']');
@@ -420,12 +439,13 @@ class HtCommonView extends MySqlRecord {
                 break;
         }
     }
-    private function displayPrice($item, $itemObj)
+    
+    public function displayPrice($itemObj)
     {
         echo "<div class=\"price\">";
-        switch ($item) {
+        switch ($this->_itemName) {
             case "car":
-            case "HouseClass":
+            case "house":
                 $rentValue = $itemObj->getFieldPriceRent();
                 $sellValue = $itemObj->getFieldPriceSell();
                 $negoValue = $itemObj->getFieldPriceNego();
@@ -501,8 +521,7 @@ class HtCommonView extends MySqlRecord {
         }
         echo "</div>";
     }
-
-
+    
     /**/
     public function displayAllItem()
     {

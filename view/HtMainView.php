@@ -75,11 +75,11 @@ class HtMainView
      */
     public function showItem()
     {
-        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
+        $tempFilter_statua = "active";
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $tempFilter_statua);
         $result = $this->_pItem->getResultSet();
         while ($row = $result->fetch_assoc()) {
-            $this->_runnerId = $row['id'];
-            $this->showItemWithId();
+            $this->showItemWithId($row, $this->_pItem);
         }
     }
 
@@ -89,10 +89,79 @@ class HtMainView
      *  (new HtMainView("car",12))->showItemWithId();  //select * item where id=12
      * @param resolved by construtor
      */
-    public function showItemWithId()
+    public function showItemWithId($row, $itemObj)
     {
-        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
+        //$this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
+        $itemObj->elemSetter($row);
+        $id = $itemObj->getId();
+        $itemName = $this->_runnerName;
+        $uniqueId = $itemName . $id;
+        $commonViewObj = new HtCommonView($itemName);
+        //$contactType = $this->_pItem->getFieldContactMethod();
+        
+        //image handler
+        $imageDir = $commonViewObj->getImageDir($itemObj);
+        $image = $this->_pItem->getFieldImage();
+        $imageArr = explode(',', $image);
+        $numimage = sizeof($imageArr);
+        $jsImg = implode(',', $imageArr);
+        $strReplArr= array('[', ']', '"');
+        $imgString = str_replace($strReplArr, "", $jsImg);
+        
+        //---------------------------------------------------------
+       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
+        echo "<div class=\"col1\">";
+        if ($numimage == 1) {
+            echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
+            echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+        } else {
+            $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
+            echo "<a href=\"javascript:void(0)\"
+			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+            echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
+        }
+        //
+        echo "<div class=\"detail\">";  //start_detail
+        echo "<div class=\"leftcol\">"; //start_leftcol
+        echo "<a href=\"javascript:void(0)\"
+		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+        $commonViewObj->displayTitle($itemObj);
+        echo "</a>";
+        $commonViewObj->displayLocation($itemObj);
+        $commonViewObj->displayUpldTime($itemObj);
+        $commonViewObj->displayPrice($itemObj);
+        $commonViewObj->displayMake($itemObj);
+        $commonViewObj->displayMarketType($itemObj);
+        echo "</div>"; //end_leftcol
+        echo "</div>"; //end_detail
+        //---------------------------------------------------------
+        echo "<div class=\"showbutton_show\">
+		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
+		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
+		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
+        echo "</div>"; //end_col1
+        echo "</div>"; //end_thumblist_*
+        echo "<div class=\"clear\"></div>";
+        //---------------------------------------------------------
+        echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
+        echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
+        $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
+        echo "<div class=\"showbutton_hide\">
+		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
+        echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
+        $commonViewObj->displayTitle($itemObj);
         $this->_pItem->display();
+        $commonViewObj->displayPrice($itemObj);
+        $commonViewObj->displayContactMethod($uniqueId, $itemObj, $itemName);
+        $commonViewObj->displayMailCfrm($uniqueId, $id, $itemName);
+        $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
+        $commonViewObj->displayMailForm($uniqueId, $id, $itemName, $pUser);
+        $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
+        echo "</div>"; //end_featured_right_side
+        echo "</div>"; //end_featured_detailed
+        echo "</div>"; //end_divDetail_*
+           
     }
 
     /**

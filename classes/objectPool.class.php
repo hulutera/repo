@@ -55,12 +55,12 @@ class ObjectPool
         }
     }
 
-    public function getObjectWithId($item, $id)
+    public function getObjectWithId($item, $id, $status=null)
     {
         $itemName = str_replace("item_","",$item); 
         switch ($itemName) {
             case 'car':
-                return (new HtItemCar($id));
+                return (new HtItemCar($id, $status));
             case 'computer':
                 return (new HtItemComputer($id));
             case 'house':

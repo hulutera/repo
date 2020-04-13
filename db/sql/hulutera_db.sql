@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Apr 02, 2020 at 08:00 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2020 at 07:04 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,12 +28,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `category_abuse`
 --
 
-DROP TABLE IF EXISTS `category_abuse`;
-CREATE TABLE IF NOT EXISTS `category_abuse` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_abuse` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_abuse`
@@ -59,12 +57,10 @@ INSERT INTO `category_abuse` (`id`, `field_name`) VALUES
 -- Table structure for table `category_car`
 --
 
-DROP TABLE IF EXISTS `category_car`;
-CREATE TABLE IF NOT EXISTS `category_car` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_car` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_car`
@@ -95,12 +91,10 @@ INSERT INTO `category_car` (`id`, `field_name`) VALUES
 -- Table structure for table `category_computer`
 --
 
-DROP TABLE IF EXISTS `category_computer`;
-CREATE TABLE IF NOT EXISTS `category_computer` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_computer` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_computer`
@@ -120,11 +114,9 @@ INSERT INTO `category_computer` (`id`, `field_name`) VALUES
 -- Table structure for table `category_electronic`
 --
 
-DROP TABLE IF EXISTS `category_electronic`;
-CREATE TABLE IF NOT EXISTS `category_electronic` (
+CREATE TABLE `category_electronic` (
   `id` int(40) NOT NULL,
-  `field_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `field_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -147,12 +139,10 @@ INSERT INTO `category_electronic` (`id`, `field_name`) VALUES
 -- Table structure for table `category_house`
 --
 
-DROP TABLE IF EXISTS `category_house`;
-CREATE TABLE IF NOT EXISTS `category_house` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_house` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_house`
@@ -172,12 +162,10 @@ INSERT INTO `category_house` (`id`, `field_name`) VALUES
 -- Table structure for table `category_household`
 --
 
-DROP TABLE IF EXISTS `category_household`;
-CREATE TABLE IF NOT EXISTS `category_household` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_household` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_household`
@@ -196,11 +184,9 @@ INSERT INTO `category_household` (`id`, `field_name`) VALUES
 -- Table structure for table `category_other`
 --
 
-DROP TABLE IF EXISTS `category_other`;
-CREATE TABLE IF NOT EXISTS `category_other` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `category_other` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -209,12 +195,10 @@ CREATE TABLE IF NOT EXISTS `category_other` (
 -- Table structure for table `category_phone`
 --
 
-DROP TABLE IF EXISTS `category_phone`;
-CREATE TABLE IF NOT EXISTS `category_phone` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CREATE TABLE `category_phone` (
+  `id` int(40) NOT NULL,
+  `field_name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_phone`
@@ -231,12 +215,10 @@ INSERT INTO `category_phone` (`id`, `field_name`) VALUES
 -- Table structure for table `item_all`
 --
 
-DROP TABLE IF EXISTS `item_all`;
-CREATE TABLE IF NOT EXISTS `item_all` (
+CREATE TABLE `item_all` (
   `id` int(50) NOT NULL,
   `id_table` int(50) NOT NULL,
-  `field_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `field_name` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -258,9 +240,8 @@ INSERT INTO `item_all` (`id`, `id_table`, `field_name`) VALUES
 -- Table structure for table `item_car`
 --
 
-DROP TABLE IF EXISTS `item_car`;
-CREATE TABLE IF NOT EXISTS `item_car` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_car` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -278,26 +259,26 @@ CREATE TABLE IF NOT EXISTS `item_car` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_gear_type` varchar(20) DEFAULT NULL,
   `field_milage` varchar(20) DEFAULT NULL,
-  `field_image` longtext,
+  `field_image` longtext DEFAULT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` longtext,
+  `field_extra_info` longtext DEFAULT NULL,
   `field_title` varchar(125) NOT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(15) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK1` (`id_user`),
-  KEY `ccategoryID_FK` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_car`
 --
 
 INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_make`, `field_model`, `field_model_year`, `field_no_of_seat`, `field_fuel_type`, `field_color`, `field_gear_type`, `field_milage`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(119, 1, 12, 11, 'phone', '1500', '35000', 'Yes', 'hourly', 'ETB', 'saab', 'Saad 9.5 2.0 Turbo', 2005, 1, 'Besine', '#c0c0c0', 'Manual', '40000-44999', '[\"hulutera_user_id_12_item_temp_id_1_20170505_202717.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072350-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072702-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075420-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075447.jpg\"]', 'Addis Ababa', NULL, 'My First Car', '2020-03-25 11:18:43', NULL, 'pending', 'rent and sell', 1);
+(119, 1, 12, 11, 'phone', '1500', '35000', 'Yes', 'hourly', 'ETB', 'saab', 'Saad 9.5 2.0 Turbo', 2005, 1, 'Besine', '#c0c0c0', 'Manual', '40000-44999', '[\"hulutera_user_id_12_item_temp_id_1_20170505_202717.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072350-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072702-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075420-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075447.jpg\"]', 'Addis Ababa', NULL, 'My First Car', '2020-03-25 11:18:43', NULL, 'pending', 'rent and sell', 1),
+(120, 1, 12, 11, 'phone', '1500', '35000', 'Yes', 'hourly', 'ETB', 'saab', 'Saad 9.5 2.0 Turbo', 2005, 1, 'Besine', '#c0c0c0', 'Manual', '40000-44999', '[\"hulutera_user_id_12_item_temp_id_1_20170505_202717.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072350-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072702-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075420-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075447.jpg\"]', 'Addis Ababa', NULL, 'My Second Car', '2020-04-13 16:24:39', NULL, 'active', 'rent and sell', 1),
+(121, 1, 12, 11, 'phone', '1500', '35000', 'Yes', 'hourly', 'ETB', 'saab', 'Saad 9.5 2.0 Turbo', 2005, 1, 'Besine', '#c0c0c0', 'Manual', '40000-44999', '[\"hulutera_user_id_12_item_temp_id_1_20170505_202717.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072350-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072702-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075420-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075447.jpg\"]', 'Addis Ababa', NULL, 'My First Car', '2020-03-25 11:18:43', NULL, 'pending', 'rent and sell', 1),
+(122, 1, 12, 11, 'phone', '1500', '35000', 'Yes', 'hourly', 'ETB', 'saab', 'Saad 9.5 2.0 Turbo', 2005, 1, 'Besine', '#c0c0c0', 'Manual', '40000-44999', '[\"hulutera_user_id_12_item_temp_id_1_20170505_202717.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072350-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_072702-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075420-COLLAGE.jpg\",\"hulutera_user_id_12_item_temp_id_1_20170506_075447.jpg\"]', 'Addis Ababa', NULL, 'My Second Car', '2020-04-13 16:24:39', NULL, 'active', 'rent and sell', 1);
 
 -- --------------------------------------------------------
 
@@ -305,9 +286,8 @@ INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `field_contac
 -- Table structure for table `item_computer`
 --
 
-DROP TABLE IF EXISTS `item_computer`;
-CREATE TABLE IF NOT EXISTS `item_computer` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_computer` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -315,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
   `field_price_sell` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(20) DEFAULT NULL,
   `field_price_currency` varchar(20) NOT NULL DEFAULT 'Birr',
-  `field_made` varchar(20) DEFAULT NULL,
+  `field_make` varchar(20) DEFAULT NULL,
   `field_os` varchar(20) DEFAULT NULL,
   `field_model` varchar(20) DEFAULT NULL,
   `field_processor` varchar(20) DEFAULT NULL,
@@ -324,23 +304,20 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 3
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_computer`
 --
 
-INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_made`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_make`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
 (5, 97839, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '1', '', NULL, '', 'Addis Ababa', 'Test ', 'Checking', '2020-02-04 22:22:29', NULL, 'active', 'No Action', 3),
 (6, 77726, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'windows', NULL, '1', '3', '2', NULL, '', 'Addis Ababa', 'new', 'Test items', '2013-11-29 22:16:14', NULL, 'Deleted', 'No Action', 3),
 (7, 4612, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'windows', NULL, '5', '2', '3', NULL, '', 'Addis Ababa', 'Another one', 'mini', '2013-11-29 22:04:09', NULL, 'Deleted', 'No Action', 3),
@@ -394,9 +371,8 @@ INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `field_c
 -- Table structure for table `item_electronic`
 --
 
-DROP TABLE IF EXISTS `item_electronic`;
-CREATE TABLE IF NOT EXISTS `item_electronic` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_electronic` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -406,17 +382,14 @@ CREATE TABLE IF NOT EXISTS `item_electronic` (
   `field_price_currency` varchar(20) NOT NULL DEFAULT 'Birr',
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '5',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK1` (`id_user`),
-  KEY `electronicsCategrogyID` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 5
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_electronic`
@@ -444,9 +417,8 @@ INSERT INTO `item_electronic` (`id`, `id_temp`, `id_user`, `id_category`, `field
 -- Table structure for table `item_electronic_memory`
 --
 
-DROP TABLE IF EXISTS `item_electronic_memory`;
-CREATE TABLE IF NOT EXISTS `item_electronic_memory` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_electronic_memory` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -460,16 +432,13 @@ CREATE TABLE IF NOT EXISTS `item_electronic_memory` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_category`)
+  `field_table_type` int(10) NOT NULL DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -478,9 +447,8 @@ CREATE TABLE IF NOT EXISTS `item_electronic_memory` (
 -- Table structure for table `item_electronic_sound`
 --
 
-DROP TABLE IF EXISTS `item_electronic_sound`;
-CREATE TABLE IF NOT EXISTS `item_electronic_sound` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_electronic_sound` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -494,16 +462,13 @@ CREATE TABLE IF NOT EXISTS `item_electronic_sound` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_category`)
+  `field_table_type` int(10) NOT NULL DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -512,9 +477,8 @@ CREATE TABLE IF NOT EXISTS `item_electronic_sound` (
 -- Table structure for table `item_electronic_tv`
 --
 
-DROP TABLE IF EXISTS `item_electronic_tv`;
-CREATE TABLE IF NOT EXISTS `item_electronic_tv` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_electronic_tv` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -529,16 +493,13 @@ CREATE TABLE IF NOT EXISTS `item_electronic_tv` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_category`)
+  `field_table_type` int(10) NOT NULL DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -547,9 +508,8 @@ CREATE TABLE IF NOT EXISTS `item_electronic_tv` (
 -- Table structure for table `item_electronic_white`
 --
 
-DROP TABLE IF EXISTS `item_electronic_white`;
-CREATE TABLE IF NOT EXISTS `item_electronic_white` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_electronic_white` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -563,16 +523,13 @@ CREATE TABLE IF NOT EXISTS `item_electronic_white` (
   `field_color` varchar(20) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK2` (`id_user`),
-  KEY `d_CategoryID_FK` (`id_category`)
+  `field_table_type` int(10) NOT NULL DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -581,9 +538,8 @@ CREATE TABLE IF NOT EXISTS `item_electronic_white` (
 -- Table structure for table `item_house`
 --
 
-DROP TABLE IF EXISTS `item_house`;
-CREATE TABLE IF NOT EXISTS `item_house` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_house` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) NOT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -604,17 +560,14 @@ CREATE TABLE IF NOT EXISTS `item_house` (
   `field_build_year` year(4) DEFAULT NULL,
   `field_water` varchar(10) DEFAULT NULL,
   `field_electricity` varchar(10) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(15) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '2',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK3` (`id_user`),
-  KEY `hCategoryID_FK` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 2
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_house`
@@ -650,9 +603,8 @@ INSERT INTO `item_house` (`id`, `id_temp`, `id_user`, `id_category`, `field_cont
 -- Table structure for table `item_household`
 --
 
-DROP TABLE IF EXISTS `item_household`;
-CREATE TABLE IF NOT EXISTS `item_household` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_household` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
@@ -662,18 +614,14 @@ CREATE TABLE IF NOT EXISTS `item_household` (
   `field_price_currency` varchar(10) NOT NULL DEFAULT 'Birr',
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) DEFAULT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL DEFAULT 'Sale',
-  `field_table_type` int(10) NOT NULL DEFAULT '6',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK1` (`id_user`),
-  KEY `hhcategoryID_FK` (`id_category`),
-  KEY `marketCategory` (`field_market_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 6
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_household`
@@ -713,14 +661,12 @@ INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `field_
 -- Table structure for table `item_latest_update`
 --
 
-DROP TABLE IF EXISTS `item_latest_update`;
-CREATE TABLE IF NOT EXISTS `item_latest_update` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_latest_update` (
+  `id` int(40) NOT NULL,
   `id_item` int(40) NOT NULL,
   `field_item_name` varchar(50) NOT NULL,
-  `field_upload_time` int(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+  `field_upload_time` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_latest_update`
@@ -751,9 +697,8 @@ INSERT INTO `item_latest_update` (`id`, `id_item`, `field_item_name`, `field_upl
 -- Table structure for table `item_other`
 --
 
-DROP TABLE IF EXISTS `item_other`;
-CREATE TABLE IF NOT EXISTS `item_other` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_other` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(11) DEFAULT NULL,
@@ -763,16 +708,14 @@ CREATE TABLE IF NOT EXISTS `item_other` (
   `field_price_currency` varchar(40) NOT NULL DEFAULT 'Birr',
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) NOT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) NOT NULL,
-  `field_table_type` int(10) NOT NULL DEFAULT '7',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK1` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 7
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_other`
@@ -815,9 +758,8 @@ INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `field_cont
 -- Table structure for table `item_phone`
 --
 
-DROP TABLE IF EXISTS `item_phone`;
-CREATE TABLE IF NOT EXISTS `item_phone` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_phone` (
+  `id` int(40) NOT NULL,
   `id_temp` int(20) DEFAULT NULL,
   `id_user` int(40) NOT NULL,
   `id_category` int(11) NOT NULL,
@@ -825,28 +767,26 @@ CREATE TABLE IF NOT EXISTS `item_phone` (
   `field_price_sell` varchar(40) DEFAULT NULL,
   `field_price_nego` varchar(20) DEFAULT 'Negotiable',
   `field_price_currency` varchar(10) NOT NULL DEFAULT 'Birr',
-  `field_made` varchar(20) DEFAULT NULL,
+  `field_make` varchar(20) DEFAULT NULL,
   `field_model` varchar(20) DEFAULT NULL,
   `field_os` varchar(20) DEFAULT NULL,
   `field_camera` varchar(40) DEFAULT NULL,
   `field_image` longtext NOT NULL,
   `field_location` varchar(40) DEFAULT NULL,
-  `field_extra_info` mediumtext,
+  `field_extra_info` mediumtext DEFAULT NULL,
   `field_title` varchar(125) NOT NULL,
-  `field_upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_total_view` int(10) DEFAULT NULL,
   `field_status` varchar(10) NOT NULL DEFAULT 'pending',
   `field_market_category` varchar(10) DEFAULT 'Sale',
-  `field_table_type` int(10) NOT NULL DEFAULT '4',
-  PRIMARY KEY (`id`),
-  KEY `uID_FK1` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `field_table_type` int(10) NOT NULL DEFAULT 4
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_phone`
 --
 
-INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_made`, `field_model`, `field_os`, `field_camera`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
+INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_make`, `field_model`, `field_os`, `field_camera`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
 (4, 23115, 1, 0, '0', '123456789', '', 'Birr', '000', '', '', '000', '', 'Addis Ababa', '', 'my phone', '2013-12-16 12:50:38', NULL, 'active', 'Sale', 4),
 (5, 43832, 1, 0, '0', '312321312132', '', 'Birr', '000', '', '000', '', '', 'Addis Ababa', '', 'mp', '2013-12-16 12:50:43', NULL, '', 'Sale', 4),
 (6, 15728, 2, 0, '0', '3000', 'Negotiable', 'Birr', '000', '', '000', '000', '', 'Addis Ababa', '', 'phone check', '2013-12-16 12:47:28', NULL, 'active', 'Sale', 4),
@@ -881,9 +821,8 @@ INSERT INTO `item_phone` (`id`, `id_temp`, `id_user`, `id_category`, `field_cont
 -- Table structure for table `user_admin`
 --
 
-DROP TABLE IF EXISTS `user_admin`;
-CREATE TABLE IF NOT EXISTS `user_admin` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_admin` (
+  `id` int(40) NOT NULL,
   `field_user_name` varchar(50) NOT NULL,
   `field_first_name` varchar(40) DEFAULT NULL,
   `field_last_name` varchar(40) DEFAULT NULL,
@@ -894,11 +833,10 @@ CREATE TABLE IF NOT EXISTS `user_admin` (
   `field_privilege` varchar(40) NOT NULL DEFAULT 'user',
   `field_contact_method` varchar(40) NOT NULL,
   `field_term_and_condition` tinyint(1) NOT NULL,
-  `field_register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_new_password` varchar(100) DEFAULT NULL,
-  `field_activation` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `field_activation` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_admin`
@@ -921,9 +859,8 @@ INSERT INTO `user_admin` (`id`, `field_user_name`, `field_first_name`, `field_la
 -- Table structure for table `user_all`
 --
 
-DROP TABLE IF EXISTS `user_all`;
-CREATE TABLE IF NOT EXISTS `user_all` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_all` (
+  `id` int(40) NOT NULL,
   `field_user_name` varchar(50) NOT NULL,
   `field_first_name` varchar(40) DEFAULT NULL,
   `field_last_name` varchar(40) DEFAULT NULL,
@@ -934,11 +871,10 @@ CREATE TABLE IF NOT EXISTS `user_all` (
   `field_privilege` varchar(40) NOT NULL DEFAULT 'user',
   `field_contact_method` varchar(40) NOT NULL,
   `field_term_and_condition` tinyint(1) NOT NULL,
-  `field_register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_new_password` varchar(100) DEFAULT NULL,
-  `field_activation` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `field_activation` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_all`
@@ -957,9 +893,8 @@ INSERT INTO `user_all` (`id`, `field_user_name`, `field_first_name`, `field_last
 -- Table structure for table `user_temp`
 --
 
-DROP TABLE IF EXISTS `user_temp`;
-CREATE TABLE IF NOT EXISTS `user_temp` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_temp` (
+  `id` int(40) NOT NULL,
   `field_user_name` varchar(50) NOT NULL,
   `field_first_name` varchar(40) DEFAULT NULL,
   `field_last_name` varchar(40) DEFAULT NULL,
@@ -970,10 +905,9 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   `field_privilege` varchar(40) NOT NULL DEFAULT 'user',
   `field_contact_method` varchar(40) NOT NULL,
   `field_term_and_condition` tinyint(1) NOT NULL,
-  `field_register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `field_register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `field_new_password` varchar(100) DEFAULT NULL,
-  `field_activation` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `field_activation` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -982,9 +916,8 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- Table structure for table `util_abuse`
 --
 
-DROP TABLE IF EXISTS `util_abuse`;
-CREATE TABLE IF NOT EXISTS `util_abuse` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `util_abuse` (
+  `id` int(40) NOT NULL,
   `id_category` int(40) NOT NULL,
   `id_user` int(40) NOT NULL,
   `id_car` int(40) DEFAULT NULL,
@@ -995,17 +928,7 @@ CREATE TABLE IF NOT EXISTS `util_abuse` (
   `id_household` int(40) DEFAULT NULL,
   `id_other` int(40) DEFAULT NULL,
   `field_message` varchar(255) DEFAULT NULL,
-  `field_ip_address` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `abuseCategoryID` (`id_category`),
-  KEY `electronicsID` (`id_electronic`),
-  KEY `userID` (`id_user`),
-  KEY `hID` (`id_house`),
-  KEY `cID` (`id_car`),
-  KEY `dID` (`id_computer`),
-  KEY `phoneID` (`id_phone`),
-  KEY `householdID` (`id_household`),
-  KEY ` othersID` (`id_other`)
+  `field_ip_address` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1014,9 +937,8 @@ CREATE TABLE IF NOT EXISTS `util_abuse` (
 -- Table structure for table `util_contact_us`
 --
 
-DROP TABLE IF EXISTS `util_contact_us`;
-CREATE TABLE IF NOT EXISTS `util_contact_us` (
-  `id` int(40) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `util_contact_us` (
+  `id` int(40) NOT NULL,
   `field_name` varchar(125) NOT NULL,
   `field_company` varchar(125) DEFAULT NULL,
   `field_email` varchar(40) NOT NULL,
@@ -1024,9 +946,8 @@ CREATE TABLE IF NOT EXISTS `util_contact_us` (
   `field_purpose` varchar(125) NOT NULL,
   `field_description` mediumtext NOT NULL,
   `field_message_status` varchar(10) NOT NULL,
-  `field_received_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+  `field_received_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `util_contact_us`
@@ -1046,17 +967,359 @@ INSERT INTO `util_contact_us` (`id`, `field_name`, `field_company`, `field_email
 -- Table structure for table `util_message`
 --
 
-DROP TABLE IF EXISTS `util_message`;
-CREATE TABLE IF NOT EXISTS `util_message` (
+CREATE TABLE `util_message` (
   `id` int(11) NOT NULL,
   `field_receiver` int(11) NOT NULL,
   `field_sender` int(11) NOT NULL,
   `field_subject` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `field_body` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `field_sent_date` datetime NOT NULL,
-  `field_status` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `field_status` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `category_abuse`
+--
+ALTER TABLE `category_abuse`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_car`
+--
+ALTER TABLE `category_car`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_computer`
+--
+ALTER TABLE `category_computer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_electronic`
+--
+ALTER TABLE `category_electronic`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_house`
+--
+ALTER TABLE `category_house`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_household`
+--
+ALTER TABLE `category_household`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_other`
+--
+ALTER TABLE `category_other`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_phone`
+--
+ALTER TABLE `category_phone`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_all`
+--
+ALTER TABLE `item_all`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_car`
+--
+ALTER TABLE `item_car`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK1` (`id_user`),
+  ADD KEY `ccategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_computer`
+--
+ALTER TABLE `item_computer`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK2` (`id_user`),
+  ADD KEY `d_CategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_electronic`
+--
+ALTER TABLE `item_electronic`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK1` (`id_user`),
+  ADD KEY `electronicsCategrogyID` (`id_category`);
+
+--
+-- Indexes for table `item_electronic_memory`
+--
+ALTER TABLE `item_electronic_memory`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK2` (`id_user`),
+  ADD KEY `d_CategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_electronic_sound`
+--
+ALTER TABLE `item_electronic_sound`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK2` (`id_user`),
+  ADD KEY `d_CategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_electronic_tv`
+--
+ALTER TABLE `item_electronic_tv`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK2` (`id_user`),
+  ADD KEY `d_CategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_electronic_white`
+--
+ALTER TABLE `item_electronic_white`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK2` (`id_user`),
+  ADD KEY `d_CategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_house`
+--
+ALTER TABLE `item_house`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK3` (`id_user`),
+  ADD KEY `hCategoryID_FK` (`id_category`);
+
+--
+-- Indexes for table `item_household`
+--
+ALTER TABLE `item_household`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK1` (`id_user`),
+  ADD KEY `hhcategoryID_FK` (`id_category`),
+  ADD KEY `marketCategory` (`field_market_category`);
+
+--
+-- Indexes for table `item_latest_update`
+--
+ALTER TABLE `item_latest_update`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_other`
+--
+ALTER TABLE `item_other`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK1` (`id_user`);
+
+--
+-- Indexes for table `item_phone`
+--
+ALTER TABLE `item_phone`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uID_FK1` (`id_user`);
+
+--
+-- Indexes for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_all`
+--
+ALTER TABLE `user_all`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_temp`
+--
+ALTER TABLE `user_temp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `util_abuse`
+--
+ALTER TABLE `util_abuse`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `abuseCategoryID` (`id_category`),
+  ADD KEY `electronicsID` (`id_electronic`),
+  ADD KEY `userID` (`id_user`),
+  ADD KEY `hID` (`id_house`),
+  ADD KEY `cID` (`id_car`),
+  ADD KEY `dID` (`id_computer`),
+  ADD KEY `phoneID` (`id_phone`),
+  ADD KEY `householdID` (`id_household`),
+  ADD KEY ` othersID` (`id_other`);
+
+--
+-- Indexes for table `util_contact_us`
+--
+ALTER TABLE `util_contact_us`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `util_message`
+--
+ALTER TABLE `util_message`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category_abuse`
+--
+ALTER TABLE `category_abuse`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `category_car`
+--
+ALTER TABLE `category_car`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `category_computer`
+--
+ALTER TABLE `category_computer`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `category_house`
+--
+ALTER TABLE `category_house`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `category_household`
+--
+ALTER TABLE `category_household`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `category_other`
+--
+ALTER TABLE `category_other`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category_phone`
+--
+ALTER TABLE `category_phone`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `item_car`
+--
+ALTER TABLE `item_car`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+
+--
+-- AUTO_INCREMENT for table `item_computer`
+--
+ALTER TABLE `item_computer`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `item_electronic`
+--
+ALTER TABLE `item_electronic`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `item_electronic_memory`
+--
+ALTER TABLE `item_electronic_memory`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `item_electronic_sound`
+--
+ALTER TABLE `item_electronic_sound`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `item_electronic_tv`
+--
+ALTER TABLE `item_electronic_tv`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `item_electronic_white`
+--
+ALTER TABLE `item_electronic_white`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `item_house`
+--
+ALTER TABLE `item_house`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `item_household`
+--
+ALTER TABLE `item_household`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `item_latest_update`
+--
+ALTER TABLE `item_latest_update`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `item_other`
+--
+ALTER TABLE `item_other`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `item_phone`
+--
+ALTER TABLE `item_phone`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `user_all`
+--
+ALTER TABLE `user_all`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `user_temp`
+--
+ALTER TABLE `user_temp`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `util_abuse`
+--
+ALTER TABLE `util_abuse`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `util_contact_us`
+--
+ALTER TABLE `util_contact_us`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
