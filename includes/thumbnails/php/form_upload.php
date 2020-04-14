@@ -19,17 +19,16 @@ $validate = new ValidateForm($err);
 //exit;
 $err2 = array();
 //$GLOBALS['item_specific_array']['car']['validate'];
- foreach ($err as $x) {
- 	foreach ($x as $rowNumber => $pair) {		
- 		$err2[$rowNumber] = $pair;
- 	}	
+foreach ($err as $x) {
+	foreach ($x as $rowNumber => $pair) {
+		$err2[$rowNumber] = $pair;
+	}
 }
 var_dump($err2);
 var_dump($_POST);
-if(strpos($_POST['fieldLocation'], $GLOBALS['lang']['Choose']) !== false) 
+if (strpos($_POST['fieldLocation'], $GLOBALS['lang']['Choose']) !== false)
 	echo $GLOBALS['lang']['Choose'];
-echo $_POST['fieldLocation'];
-
+echo "fieldPriceRent = " . $_POST['fieldPriceRent'];
 
 if (!empty($err2)) {
 	$_SESSION['POST'] = $_POST;
@@ -42,14 +41,14 @@ if (!empty($err2)) {
 		array_keys($err2)
 	));
 
-	var_dump($_SESSION['POST']['fieldColor']);
+	var_dump($_SESSION['POST']['fieldPriceRent']);
 	$input = "Oh Snap! <br>" . $input;
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
 	$_SESSION['errorRaw']  = $err2;
 	$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-//exit;
-	header('Location: ../../template.upload.php?type=' . $itemName.$lang_sw);
+	//exit;
+	header('Location: ../../template.upload.php?type=' . $itemName . $lang_sw);
 } else {
 	// reset Error
 	$err = [];
@@ -57,20 +56,19 @@ if (!empty($err2)) {
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;
 
+	//get item instance
+	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
+	//insert item
+	$_pItem->insert();
+	
 	//reset uploaded sessions per item
 	$items = new HtItemAll("*");
 	$result = $items->getResultSet();
 	while ($row = $result->fetch_assoc()) {
 		$itemName = $row['field_name'];
-		$_SESSION['upload_'.$itemName] = null;
+		$_SESSION['upload_' . $itemName] = null;
 	}
 
-	//get item instance
-	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
-	//insert item
-	$_pItem->insert();
 	//successfull
 	header('Location: ../../prompt.php?type=10');
-	
 }
-

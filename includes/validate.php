@@ -75,8 +75,7 @@ class ValidateForm
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key])) {
                 $postKey = $_POST[$key];
-                if(strpos($price, $key) !== false)
-                {
+                if (strpos($price, $key) !== false) {
                     continue;
                 }
                 if (
@@ -100,35 +99,21 @@ class ValidateForm
         }
 
         if (isset($_POST["rentOrSell"])) {
-            if ($_POST["rentOrSell"] == "rent") {
-                if (isset($_POST["fieldPriceRent"])) {
-                    $value = $_POST["fieldPriceRent"];
-                    $this->validatePrice($err, "fieldPriceRent");                    
-                }
-                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
-                    $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
-                    array_push($err, $input);
-                }
-            } else if ($_POST["rentOrSell"] == "sell") { 
-                if (isset($_POST["fieldPriceSell"])) {
-                    $value = $_POST["fieldPriceSell"];
-                    $this->validatePrice($err, "fieldPriceSell");
-                }
+            if ($_POST["rentOrSell"] == "fieldPriceRent") {
+                $this->validatePrice($err, "fieldPriceRent");
+            } else if ($_POST["rentOrSell"] == "fieldPriceSell") {
+                $this->validatePrice($err, "fieldPriceSell");
             } else if ($_POST["rentOrSell"] == "both") {
-                if (isset($_POST["fieldPriceRent"])) {
-                    $value = $_POST["fieldPriceRent"];
-                    $this->validatePrice($err, "fieldPriceRent");
-                }
-                if (isset($_POST["fieldPriceSell"])) {
-                    $value = $_POST["fieldPriceSell"];
-                    $this->validatePrice($err, "fieldPriceSell");
-                }
-                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
+                $this->validatePrice($err, "fieldPriceRent");
+                $this->validatePrice($err, "fieldPriceSell");
+            }
+            if ($_POST["rentOrSell"] == "fieldPriceRent" || $_POST["rentOrSell"] == "both") {
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], 'default') !== false) {
                     $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
                     array_push($err, $input);
                 }
             }
-        } 
+        }
 
         /**
          * Check if image have been provided report if not
@@ -153,17 +138,8 @@ class ValidateForm
      */
     private function validatePrice(&$err, $key)
     {
-        $value = $_POST[$key];
-        if ($value !== "0") {
-            $_POST[$key] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
-            if (!filter_var($_POST[$key], FILTER_VALIDATE_INT)) {
-                // Use openssl_encrypt() function to encrypt the data 
-                $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' is considered invalid, you provided value "' . $value . '". Should be number! Try again!<br>');
-                array_push($err, $input);
-                $_POST[$key] = "0";
-            }
-        } else {
-            $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' should be provided.  Try again!<br>');
+        if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
+            $input = array($key => 'Invalid input, Should be number! Try again!');
             array_push($err, $input);
         }
     }

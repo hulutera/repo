@@ -163,7 +163,7 @@ $lang = array(
     'click to see' => 'click to see',
     'Register' => 'Register',
     'Join to hulutera' => 'Join to hulutera',
-    'Submit' => 'Submit',
+    'submit' => 'Submit',
     'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.',
     'What we collect' => 'What we collect',
     'Your name' => 'Your name',
@@ -390,7 +390,8 @@ $lang = array(
     'no match msg part2' => '</br>',
     'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'search res' => 'Search Result',
-    'Back to Post Item' => "Back to Post Item"
+    'Back to Post Item' => "Back to Post Item",
+    'Invalid' => "Invalid"
 );
 
 $city_lang_arr = array(
@@ -445,20 +446,34 @@ $item_lang_arr = array(
 
 $item_specific_array = [
     'car' => [
-        'Type'        => [
+        'idCategory'        => [
             0 => 'Type',
             1 => 'Choose Type',
             2 => []
         ],
-        'Make'        => [
+        'fieldMake'        => [
             0 => 'Make',
-            1 => 'Choose Make'
+            1 => 'Choose Make',
+            2 => [
+                "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
+            "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
+            "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
+            "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
+            "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
+            "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
+            "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
+            "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
+            "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
+            "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
+            "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
+            "volkswagen" => "volkswagen", "volvo" => "volvo"
+            ]
         ],
-        'Model'       => [
+        'fieldModel'       => [
             0 => 'Model',
             1 => 'Write Model'
         ],
-        'Year Made'   => [
+        'fieldModelYear'   => [
             0 => 'Year Made',
             1 => 'Choose Year Made',
             2 => [
@@ -469,7 +484,7 @@ $item_specific_array = [
                 'unknown' => 'unknown'
             ]
         ],
-        'Gear Type'   => [
+        'fieldGearType'   => [
             0 => 'Gear Type',
             1 => 'Choose Gear Type',
             2 => [
@@ -478,7 +493,7 @@ $item_specific_array = [
                 'semi-automatic'  => 'Semi-automatic'
             ]
         ],
-        'Fuel Type'   => [
+        'fieldFuelType'   => [
             0 => 'Fuel Type',
             1 => 'Choose Fuel Type',
             2 => [
@@ -489,12 +504,12 @@ $item_specific_array = [
                 'bio-gas' => 'Bio-gas',
             ]
         ],
-        'Milage [Km]' => [
+        'fieldMilage' => [
             0 => 'Milage [Km]',
             1 => 'Choose Milage',
             2 => ['unknown' => 'Unknown']
         ],
-        'Number of Seats' => [
+        'fieldNoOfSeat' => [
             0 => 'Number of Seats',
             1 => 'Choose Number of Seats',
             2 => [
@@ -502,7 +517,7 @@ $item_specific_array = [
                 'unknown' => 'Unknown'
             ]
         ],
-        'Color'       => [
+        'fieldColor'       => [
             0 => 'Color',
             1 => 'Choose Color',
             2 => [
@@ -518,19 +533,6 @@ $item_specific_array = [
                 'brown' => 'Brown',
                 'unknown' => 'Unknown'
             ]
-        ],
-        'validate'    => [
-            'fieldLocation' => '<p>Should be provided.  Try again!</p>',
-            'fieldTitle' => '<p>Should be provided.  Try again!</p>',
-            'idCategory' => '<p>Should be provided.  Try again!</p>',
-            'fieldMake' => '<p>Should be provided.  Try again!</p>',
-            'fieldModel' => '<p>Should be provided.  Try again!</p>',
-            'fieldModelYear' => '<p>Should be provided.  Try again!</p>',
-            'fieldGearType' => '<p>Should be provided.  Try again!</p>',
-            'fieldFuelType' => '<p>Should be provided.  Try again!</p>',
-            'fieldMilage' => '<p>Should be provided.  Try again!</p>',
-            'fieldNoOfSeat' => '<p>Should be provided.  Try again!</p>',
-            'fieldColor' => '<p>Should be provided.  Try again!</p>',            
         ]
     ],
     'house' => [],
@@ -554,7 +556,7 @@ $item_specific_array = [
             ]
         ],
 
-        'Rent Price' => [
+        'fieldPriceRent' => [
             0 => 'Rent Price',
             1 => 'Write Rental Price',
         ],
@@ -568,7 +570,7 @@ $item_specific_array = [
                 'yearly' => 'yearly',
             ],
         ],
-        'Sell Price' => [
+        'fieldPriceSell' => [
             0 => 'Sell Price',
             1 => 'Write Selling Price'
         ],
@@ -602,18 +604,32 @@ $item_specific_array = [
                 'both'   => 'Both'
             ]
         ],
+        'fieldColor'       => [
+            0 => 'Color',
+            1 => 'Choose Color',
+            2 => [
+                'red' => 'Red',
+                'green' => 'Green',
+                'blue' => 'Blue',
+                'yellow' => 'Yellow',
+                'black' => 'Black',
+                'white' => 'White',
+                'gray' => 'Gray',
+                'silver' => 'Silver',
+                'liver' => 'Liver',
+                'brown' => 'Brown',
+                'unknown' => 'Unknown',
+            ]
+        ],
         'Choose Images here' => 'Choose Images here',
         'validate'    => [
-            'fieldLocation' => '<p>Should be provided.  Try again!</p>',
-            'fieldPriceNego' => '<p>Should be provided.  Try again!</p>',
-            'fieldTitle' => '<p>Should be provided.  Try again!</p>',
-            'fieldPriceCurrency' => '<p>Should be provided.  Try again!</p>',
-            'fieldPriceRent' => '<p>Should be provided.  Try again!</p>',
-            'fieldPriceRate' => '<p>Should be provided.  Try again!</p>',
-            'fieldPriceSell' => '<p>Should be provided.  Try again!</p>',
-            'fieldContactMethod' => '<p>Should be provided.  Try again!</p>',            
-            'fileuploader-list-files' => '<p>At least one image should be provided.  Try again!</p>',
-            'rentOrSell' => '<p>Should be provided.!</p>'
+            0 => '<p>Should be selected.  Try again!</p>',
+            1 => '<p>Should be provided.  Try again!</p>',
+            2 => [
+                'fileuploader-list-files' => '<p>At least one image should be provided.  Try again!</p>',
+                'rentOrSell' => '<p>Should be provided.!</p>',
+                'number' => '<p>Invalid input, Should be number greater than zero (0)! Try again! </p>'
+            ],
         ]
     ]
 

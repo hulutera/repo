@@ -785,7 +785,7 @@ class HtItemCar extends MySqlRecord
         $this->setFieldNoOfSeat($_POST['fieldNoOfSeat']);
         $this->setFieldColor($_POST['fieldColor']);
         $this->setFieldPriceRent($_POST['fieldPriceRent']);
-        $this->setFieldPriceRate($_POST['fieldPriceRate']);
+        $this->setFieldPriceRate(isset($_POST['fieldPriceRate']) ? $_POST['fieldPriceRate'] : null);
         $this->setFieldPriceSell($_POST['fieldPriceSell']);
         $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
         $this->setFieldPriceNego($_POST['fieldPriceNego']);
@@ -795,14 +795,18 @@ class HtItemCar extends MySqlRecord
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
 
-        if (isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
-            $market = "rent and sell";
-        } else if (!isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
-            $market = "sell";
-        } else if (isset($_POST['fieldPriceRent']) && !isset($_POST['fieldPriceSell'])) {
-            $market = "rent";
+        if (isset($_POST['rentOrSell'])) {
+            if ($_POST['rentOrSell'] == "rent") {
+                $this->setFieldMarketCategory('rent');
+            }
+            else if ($_POST['rentOrSell'] == "sell") {
+                $this->setFieldMarketCategory('sell');
+            }
+            else if ($_POST['rentOrSell'] == "both") {
+                $this->setFieldMarketCategory('rent and sell');
+            }
         }
-        $this->setFieldMarketCategory($market);
+        
         $this->setFieldTableType(1);
 
         //create a folder for image upload
@@ -1276,18 +1280,18 @@ class HtItemCar extends MySqlRecord
      */
     public function select($id = NULL, $status = NULL)
     {
-        if($id == NULL and $status == NULL){
+        if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_car";
-        } elseif($id == "*" and $status != NULL){
+        } elseif ($id == "*" and $status != NULL) {
             $sql =  "SELECT * FROM item_car WHERE field_status={$this->parseValue($status, 'notNumbe')}";
-        } elseif($id != "*" and $status == NULL){
+        } elseif ($id != "*" and $status == NULL) {
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumbe')}";
         }
-        
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1393,6 +1397,7 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
+        echo $sql;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -1574,8 +1579,6 @@ SQL;
         return $this->uploadOptionShort[$key];
     }
 
-
-
     /**
      * Facility for upload a new row into item_car.
      *
@@ -1585,52 +1588,50 @@ SQL;
      */
     public function upload()
     {
-
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
-        $this->newForm();
+        $this->insertAllField();
         if ($_SESSION['warnings']) {
             echo '<pre>';
             print_r($_SESSION['warnings']);
             echo '</pre>';
         }
         $_SESSION['warnings'] = null;
-        echo '<div class="form-group row no-gutters">
-                <div class="col-md-offset-4">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        echo '<div class="row">
+                <div class="col-md-12">
+                    <button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">'.$GLOBALS['lang']['submit'].'</button>
                 </div>
              </div>
         </form>';
     }
 
-    private function newForm()
+    private function insertAllField()
     {
         echo '<div class="container-fluid" style="margin-left:15%; margin-right:15%;">';
         echo '<div class="row">';
         echo '<div class="col-md-12">';
         echo '<div class="row">';
-        $this->inputItemLocation();
+        $this->insertFieldLocation();
         echo '</div>';
         echo '<div class="row">';
-        $this->inputTitle();
+        $this->insertFieldTitle();
         echo '</div>';
         echo '<div class="row">';
         echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
         echo '<div class="row upload">';
-        $this->inputCarType();
-        $this->inputCarMake();
-        $this->inputCarModel();
+        $this->insertIdCategory();
+        $this->insertFieldMake();
+        $this->insertFieldModel();
         echo '</div>';
         echo '<div class="row upload">';
-        $this->inputCarYear();
-        $this->inputCarGearType();
-        $this->inputCarFuelType();
+        $this->insertFieldModelYear();
+        $this->insertFieldGearType();
+        $this->insertFieldFuelType();
         echo '</div>';
         echo '<div class="row upload">';
-        $this->inputCarMilage();
-        $this->inputCarSeat();
-        $this->inputCarColor();
+        $this->insertFieldMilage();
+        $this->insertFieldNoOfSeat();
+        $this->insertFieldColor();
         echo '</div></div></div>';
         echo '<div class="row">';
         echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
@@ -1640,72 +1641,25 @@ SQL;
         echo '<div class="row">';
         echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
         echo '<div class="row upload">';
-        $this->inputItemContactMeWith();
+        $this->insertFieldContactMethod();
         echo '</div></div></div>';
         echo '<div class="row">';
         echo '<div class="col-md-12" style="border:1px solid #c7c7c7;">';
         echo '<div class="row upload">';
-        $this->inputItemImages();
+        $this->insertItemImages();
         echo '</div></div></div></div></div>';
     }
 
-    private function inputItemLocation()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldLocation'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldLocation'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $city = $GLOBALS['city_lang_arr'];
-        $location = $GLOBALS['item_specific_array']['common']['Location'][0];
-        $choose = $GLOBALS['item_specific_array']['common']['Location'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldLocation'])) {
-            if (strpos($_SESSION['POST']['fieldLocation'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldLocation'];
-                $choose1 = $temp;
-                $choose2 = $city[$temp];
-                $selected = 1;
-            }
-        }
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-           <label for="fieldLocation">{$location}</label>{$errorMsg}
-            <div>
-             <select id="fieldLocation" name="fieldLocation" class="select form-control" >
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1)
-            echo <<< EOD
-        <option value="{$choose}">{$choose}</option>;
-EOD;
-        foreach ($city as $key => $value) {
-            if ($key === '000' || $key === 'All') {
-                continue;
-            }
-            echo '<option value="' . $key . '">' . $value . '</option>';
-        }
-        echo <<<EOD
-            </select></div></div></div>
-EOD;
-    }
 
-    private function inputCarType()
+    private function insertIdCategory()
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['idCategory'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['idCategory'];
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
             $errorClass = ' alert alert-custom" role="alert';
         }
-        $type = $GLOBALS['item_specific_array']['car']['Type'][0];
+        $type = $GLOBALS['item_specific_array']['car']['idCategory'][0];
         echo <<< EOD
         <div class="col-md-4 {$errorClass}">
         <div class="form-group"> <label for="idCategory">{$type}</label>{$errorMsg} 
@@ -1713,7 +1667,7 @@ EOD;
 EOD;
 
         echo '<select id="idCategory" name="idCategory" class="select form-control">';
-        $choose = $GLOBALS['item_specific_array']['car']['Type'][1];
+        $choose = $GLOBALS['item_specific_array']['car']['idCategory'][1];
         $choose1 = $choose2 = $choose;
         $selected = 0;
         if (isset($_SESSION['POST']['idCategory'])) {
@@ -1755,73 +1709,22 @@ EOD;
 EOD;
     }
 
-    private function inputCarMake()
+    private function insertFieldMake()
     {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldMake'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldMake'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $make = $GLOBALS['item_specific_array']['car']['Make'][0];
-        $choose = $GLOBALS['item_specific_array']['car']['Make'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldMake'])) {
-            if (strpos($_SESSION['POST']['fieldMake'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldMake'];
-                $choose1 = $temp;
-                $choose2 = strtoupper($temp);
-                $selected = 1;
-            }
-        }
-
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group"><label for="fieldMake">{$make}</label> {$errorMsg}
-            <div>
-             <select id="fieldMake" name="fieldMake" class="select form-control">;
-            <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1)
-            echo <<< EOD
-            <option value="{$choose}">{$choose}</option>;
-EOD;
-        $make = array(
-            "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
-            "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
-            "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
-            "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
-            "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
-            "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
-            "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
-            "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
-            "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
-            "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
-            "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-            "volkswagen" => "volkswagen", "volvo" => "volvo"
-        );
-        foreach ($make as $key => $value) {
-            echo '<option value="' . $key . '">' . strtoupper($value) . '</option>';
-        }
-        echo '</select></div></div></div>';
+        $this->insertSelectable('fieldMake');
     }
 
-    private function inputCarModel()
+    private function insertFieldModel()
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fieldModel'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldModel'];
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][1];
             $errorClass = ' alert alert-custom" role="alert';
         }
 
-        $model = $GLOBALS['item_specific_array']['car']['Model'][0];
-        $placeholder = $GLOBALS['item_specific_array']['car']['Model'][1];
+        $model = $GLOBALS['item_specific_array']['car']['fieldModel'][0];
+        $placeholder = $GLOBALS['item_specific_array']['car']['fieldModel'][1];
 
         echo <<< EOD
         <div class="col-md-4 {$errorClass}">
@@ -1839,19 +1742,19 @@ EOD;
         </div></div>';
     }
 
-    private function inputCarYear()
+    private function insertFieldModelYear()
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fieldModelYear'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldModelYear'];
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
             $errorClass = ' alert alert-custom" role="alert';
         }
 
         $selected = 0;
-        $yearMade = $GLOBALS['item_specific_array']['car']['Year Made'][0];
-        $choose = $GLOBALS['item_specific_array']['car']['Year Made'][1];
+        $yearMade = $GLOBALS['item_specific_array']['car']['fieldModelYear'];
+        $label = $yearMade[0];
+        $choose = $GLOBALS['item_specific_array']['car']['fieldModelYear'][1];
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST']['fieldModelYear'])) {
             if (strpos($_SESSION['POST']['fieldModelYear'], $GLOBALS['lang']['Choose']) !== false) {
@@ -1859,13 +1762,13 @@ EOD;
             } else {
                 $temp = $_SESSION['POST']['fieldModelYear'];
                 $choose1 = $temp;
-                $choose2 = $GLOBALS['item_specific_array']['car']['Year Made'][2][$temp];
+                $choose2 = $yearMade[2][$temp];
                 $selected = 1;
             }
         }
         echo <<< EOD
         <div class="col-md-4 {$errorClass}">
-        <div class="form-group"><label for="fieldModelYear">{$yearMade}</label>{$errorMsg}
+        <div class="form-group"><label for="fieldModelYear">{$label}</label>{$errorMsg}
         <div>
         <select id="fieldModelYear" name="fieldModelYear" class="select form-control">
         <option value="{$choose1}">{$choose2}</option>
@@ -1877,42 +1780,47 @@ EOD;
 EOD;
         }
 
-
         for ($i = date('Y'); $i >= 1980; --$i) {
             echo '<option value = "' . $i . '">' . $i . '</option>';
         }
+        $variable = $yearMade[2];
+        foreach ($variable as $key => $value) {
+            echo '
+        <option value = "'.$key.'">' . $value . '</option>';
+        }
 
-        echo '
-        <option value = "1970">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1970'] . '</option>
-        <option value = "1960">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1960'] . '</option>
-        <option value = "1950">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1950'] . '</option>
-        <option value = "1940">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['1940'] . '</option>
-        <option value = "1970">' . $GLOBALS['item_specific_array']['car']['Year Made'][2]['unknown'] . '</option>
-
-        </select>
-      </div>
-    </div></div>';
+        echo '</select></div>';
+        echo '</div></div>';
     }
 
-    private function inputCarFuelType()
+    private function insertFieldFuelType()
+    {
+        $this->insertSelectable('fieldFuelType');
+    }
+
+    private function insertFieldGearType()
+    {
+        $this->insertSelectable('fieldGearType');
+    }
+
+    private function insertSelectable($fieldName)
     {
         $errorMsg = "";
         $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldFuelType'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldFuelType'];
+        if (isset($_SESSION['errorRaw'][$fieldName])) {
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
             $errorClass = ' alert alert-custom" role="alert';
         }
         $selected = 0;
-        $fuleType = $GLOBALS['item_specific_array']['car']['Fuel Type'][0];
-        $types = $GLOBALS['item_specific_array']['car']['Fuel Type'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['Fuel Type'][1];
+        $label = $GLOBALS['item_specific_array']['car'][$fieldName][0];
+        $types = $GLOBALS['item_specific_array']['car'][$fieldName][2];
+        $choose = $GLOBALS['item_specific_array']['car'][$fieldName][1];
         $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldFuelType'])) {
-            if (strpos($_SESSION['POST']['fieldFuelType'], $GLOBALS['lang']['Choose']) !== false) {
+        if (isset($_SESSION['POST'][$fieldName])) {
+            if (strpos($_SESSION['POST'][$fieldName], $GLOBALS['lang']['Choose']) !== false) {
                 $choose1 = $choose2 = $choose;
             } else {
-                $temp = $_SESSION['POST']['fieldFuelType'];
+                $temp = $_SESSION['POST'][$fieldName];
                 $choose1 = $temp;
                 $choose2 = $types[$temp];
                 $selected = 1;
@@ -1922,107 +1830,34 @@ EOD;
         echo <<<EOD
         <div class="col-md-4 {$errorClass}">
         <div class="form-group">
-        <label for="fieldFuelType">{$fuleType}</label>{$errorMsg}
+        <label for="{$fieldName}">{$label}</label>{$errorMsg}
         <div>
-        <select id="fieldFuelType" name="fieldFuelType" class="select form-control">
+        <select id="{$fieldName}" name="{$fieldName}" class="select form-control">
         <option value="{$choose1}">{$choose2}</option>
 EOD;
-
         if ($selected == 1) {
             echo <<< EOD
 <option value="{$choose}">{$choose}</option>
 EOD;
         }
-        echo '        
-        <option value="bensine" >' . $types['bensine'] . '</option>
-        <option value="bensine-electric" >' . $types['bensine-electric'] . '</option>
-        <option value="bio-gas" >' . $types['bio-gas'] . '</option>        
-        <option value="diesel" >' . $types['diesel'] . '</option>
-        <option value="electric" >' . $types['electric'] . '</option>
-        </select></div></div></div>';
-    }
-    //temporary disabled no database reflection, need generation
-    private function inputCarPlateType()
-    {
-        echo '
-        <div class="form-group">
-        <label for="car_registered">Registered</label> 
-        <div>
-          <label class="radio-inline">
-            <input type="radio" name="car_registered" value="1">
-                  Yes
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="car_registered" value="2">
-                  No
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="car_registered" value="3">
-                  Processing
-          </label>
-        </div>
-      </div></div>
-        ';
-    }
-
-    private function inputCarGearType()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldGearType'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldGearType'];
-            $errorClass = ' alert alert-custom" role="alert';
+        foreach ($types as $key => $value) {
+            echo '
+        <option value = "'.$key.'">' . $value . '</option>';
         }
-        $selected = 0;
-        $gearType = $GLOBALS['item_specific_array']['car']['Gear Type'][0];
-        $types = $GLOBALS['item_specific_array']['car']['Gear Type'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['Gear Type'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldGearType'])) {
-            if (strpos($_SESSION['POST']['fieldGearType'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldGearType'];
-                $choose1 = $temp;
-                $choose2 = $types[$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-        <label for="fieldGearType">{$gearType}</label>{$errorMsg}
-        <div>
-        <select id="fieldGearType" name="fieldGearType" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        echo '
-        <option value="manual" >' . $types['manual'] . '</option>
-        <option value="automatic" >' . $types['automatic'] . '</option>
-        <option value="semi-automatic" >' . $types['semi-automatic'] . '</option>
-        </select></div></div></div>';
+        echo '</select></div></div></div>';
     }
-    private function inputCarMilage()
+    private function insertFieldMilage()
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fieldMilage'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldMilage'];
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
             $errorClass = ' alert alert-custom" role="alert';
         }
         $selected = 0;
-        $milageKm = $GLOBALS['item_specific_array']['car']['Milage [Km]'][0];
-        $types = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['Milage [Km]'][1];
+        $milageKm = $GLOBALS['item_specific_array']['car']['fieldMilage'][0];
+        $types = $GLOBALS['item_specific_array']['car']['fieldMilage'][2];
+        $choose = $GLOBALS['item_specific_array']['car']['fieldMilage'][1];
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST']['fieldMilage'])) {
             if (strpos($_SESSION['POST']['fieldMilage'], $GLOBALS['lang']['Choose']) !== false) {
@@ -2054,24 +1889,23 @@ EOD;
             echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
             $i += 500000;
         }
-        $unknown = $GLOBALS['item_specific_array']['car']['Milage [Km]'][2]['unknown'];
+        $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unknown'];
         echo '<option value="unknown">' . $unknown . '</option>';
         echo '</select></div></div></div>';
     }
 
-    private function inputCarSeat()
+    private function insertFieldNoOfSeat()
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fieldNoOfSeat'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldNoOfSeat'];
+            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
             $errorClass = ' alert alert-custom" role="alert';
         }
         $selected = 0;
-        $numberOfSeats = $GLOBALS['item_specific_array']['car']['Number of Seats'][0];
-        $types = $GLOBALS['item_specific_array']['car']['Number of Seats'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['Number of Seats'][1];
+        $numberOfSeats = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][0];
+        $types = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2];
+        $choose = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][1];
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST']['fieldNoOfSeat'])) {
             if (strpos($_SESSION['POST']['fieldNoOfSeat'], $GLOBALS['lang']['Choose']) !== false) {
@@ -2109,170 +1943,7 @@ EOD;
         echo '</select></div></div></div>';
     }
 
-    private function inputCarColor()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldColor'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldColor'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $color = $GLOBALS['item_specific_array']['car']['Color'][0];
-        $choose = $GLOBALS['item_specific_array']['car']['Color'][1];
-        $types = $GLOBALS['item_specific_array']['car']['Color'][2];
 
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldColor'])) {
-            if (strpos($_SESSION['POST']['fieldColor'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldColor'];
-                $choose1 = $temp;
-                $choose2 = $types[$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group"><label for="fieldColor">{$color}</label> {$errorMsg}
-            <div>
-             <select id="fieldColor" name="fieldColor" class="select form-control">;
-            <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1)
-            echo <<< EOD
-            <option value="{$choose}">{$choose}</option>;
-EOD;
-        $colors = [
-            "black"    => ["#000000", "#FFFFFF"],
-            "green"    => ["#009f6b", "#FFFFFF"],
-            "red"      => ["#C40233", "#FFFFFF"],
-            "yellow"   => ["#FFD300", "#000000"],
-            "blue"     => ["#0087BD", "#FFFFFF"],
-            "white"    => ["#ffffff", "#000000"],
-            "brown"    => ["#a52a2a", "#FFFFFF"],
-            "silver"   => ["#c0c0c0", "#FFFFFF"],
-            "liver"    => ["#534b4f", "#FFFFFF"],
-            "unknown"  => ["#ffffff", "#000000"]
-        ];
-        foreach ($colors as $key => $value) {
-            echo '<option value="' . $key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . ';">' . $types[$key] . '</option>';
-        }
-        echo '</select></div></div></div>';
-    }
-
-    private function inputTitle()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldTitle'])) {
-            $validate = $GLOBALS['item_specific_array']['car']['validate'];
-            $errorMsg = $validate['fieldTitle'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-
-        $title = $GLOBALS['item_specific_array']['common']['Title'][0];
-        $placeholder = $GLOBALS['item_specific_array']['common']['Title'][1];
-        $choose = "";
-        if (isset($_SESSION['POST']['fieldTitle'])) {
-            $choose = $_SESSION['POST']['fieldTitle'];
-        }
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}"">
-        <div class="form-group">
-        <label for="fieldTitle">{$title}</label> {$errorMsg}
-        <div>
-          <input id="fieldTitle" name="fieldTitle" type="text" placeholder="{$placeholder}" value="{$choose}" class="form-control">
-        </div>
-      </div></div>
-EOD;
-    }
-    private function inputExtraInfo()
-    {
-        echo '
-        <div class="form-group">
-        <label for="fieldExtraInfo">Extra Info</label> 
-        <div>
-          <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control">' . $_SESSION['POST']['fieldExtraInfo'] . '</textarea>
-        </div>
-      </div></div>';
-    }
-
-    private function inputItemContactMeWith()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldContactMethod'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['fieldContactMethod'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $contactMeWith = $GLOBALS['item_specific_array']['common']['contactMeWith'][0];
-        $choose = $GLOBALS['item_specific_array']['common']['contactMeWith'][1];
-        $types = $GLOBALS['item_specific_array']['common']['contactMeWith'][2];        
-
-
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldContactMethod'])) {
-            if (strpos($_SESSION['POST']['fieldContactMethod'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldContactMethod'];
-                $choose1 = $temp;
-                $choose2 = $types[$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-        <label for="fieldContactMethod">{$contactMeWith}</label>{$errorMsg}
-        <div>
-        <select id="fieldContactMethod" name="fieldContactMethod" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        foreach ($types as $key => $value) {
-            echo '        
-            <option value="'.$key.'" >' . $value . '</option>';
-        }
-        echo '</select></div></div></div>';
-    }
-
-    private function inputItemImages()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fileuploader-list-files'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['fileuploader-list-files'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-
-        $image = $GLOBALS['item_specific_array']['common']['Choose Images here'];
-
-        echo <<< EOD
-        <div class="row upload {$errorClass}">
-        <div class="form-group">
-            <label for="fieldImage"> {$image} </label>{$errorMsg}
-            <div>
-                    <!-- file input -->
-                    <input type="file" name="files">
-            </div>
-        </div>
-        </div>        
-EOD;
-    }
     private function inputItemPrice()
     {
         echo '
@@ -2280,260 +1951,11 @@ EOD;
             <div class="col-md-4">
                 <div class="form-group">';
         $this->inputPriceRentOrSell();
-        $this->priceNegotiable();
-        $this->inputPriceCurreny();
+        $this->insertFieldPriceNego();
+        $this->insertFieldPriceCurrency();
         echo '</div></div>';
-        $this->inputPriceRentType();
-        $this->inputPriceSellType();
+        $this->insertPriceTypeRent();
+        $this->insertPriceTypeSell();
         echo '</div>';
-    }
-
-    private function inputPriceRentOrSell()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['rentOrSell'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['rentOrSell'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $rentOrSell = $GLOBALS['item_specific_array']['common']['rentOrSell'];
-        $label = $rentOrSell[0];
-        $choose = $rentOrSell[1];
-        $choose1 = 'rentOrSell';
-        $choose2 = $choose;
-        if (isset($_SESSION['POST']['rentOrSell'])) {
-            if (strpos($_SESSION['POST']['rentOrSell'], 'rentOrSell') !== false) {
-                $choose1 = 'rentOrSell';
-                $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['rentOrSell'];
-                $choose1 = $temp;
-                $choose2 = $rentOrSell[2][$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-    <div class="col-md-12 {$errorClass}">
-    <div class="form-group">
-    <label for="rentOrSell">{$label}</label>{$errorMsg}
-    <div>
-    <select id="rentOrSell" name="rentOrSell" class="select form-control">
-    <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose1}">{$choose}</option>
-EOD;
-        }
-        echo '
-    <option value="rent" >' . $rentOrSell[2]['rent'] . '</option>
-    <option value="sell" >' . $rentOrSell[2]['sell'] . '</option>
-    <option value="both" >' . $rentOrSell[2]['both'] . '</option>
-    </select></div></div></div>';
-    }
-    private function priceNegotiable()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldPriceNego'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['fieldPriceNego'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $negotiable = $GLOBALS['item_specific_array']['common']['negotiable'];
-        $label = $negotiable[0];
-        $choose = $negotiable[1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldPriceNego'])) {
-            if (strpos($_SESSION['POST']['fieldPriceNego'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldPriceNego'];
-                $choose1 = $temp;
-                $choose2 = $negotiable[2][$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-    <div class="col-md-12 {$errorClass}">
-    <div class="form-group">
-    <label for="fieldPriceNego">{$label}</label>{$errorMsg}
-    <div>
-    <select id="fieldPriceNego" name="fieldPriceNego" class="select form-control">
-    <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        echo '
-    <option value="yes" >' . $negotiable[2]['yes'] . '</option>
-    <option value="no" >' . $negotiable[2]['no'] . '</option>
-    </select></div></div></div>';
-    }
-
-    private function inputPriceCurreny()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldPriceCurrency'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['fieldPriceCurrency'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $currency = $GLOBALS['item_specific_array']['common']['currency'];
-        $label = $currency[0];
-        $choose = $currency[1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldPriceCurrency'])) {
-            if (strpos($_SESSION['POST']['fieldPriceCurrency'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldPriceCurrency'];
-                $choose1 = $temp;
-                $choose2 = $currency[2][$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-    <div class="col-md-12 {$errorClass}">
-    <div class="form-group">
-    <label for="fieldPriceCurrency">{$label}</label>{$errorMsg}
-    <div>
-    <select id="fieldPriceCurrency" name="fieldPriceCurrency" class="select form-control">
-    <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        echo '
-        <option value="ETB" >' . $currency[2]['ETB'] . '</option>
-        <option value="USD" >' . $currency[2]['USD'] . '</option>
-        </select></div></div></div>';
-    }
-
-    private function inputPriceRentType()
-    {
-        $errorMsg1 = $errorMsg2 = "";
-        $errorClass1 = $errorClass2 = "";
-        if (isset($_SESSION['errorRaw']['fieldPriceRent'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg1 = $validate['fieldPriceRent'];
-            $errorClass1 = ' alert alert-custom" role="alert';
-        }
-        if (isset($_SESSION['errorRaw']['fieldPriceRate'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg2 = $validate['fieldPriceRate'];
-            $errorClass2 = ' alert alert-custom" role="alert';
-        }
-
-        $diplayRent = "display: none; background:#fafbfd;";
-        if (
-            isset($_SESSION['POST']["rentOrSell"]) &&
-            ($_SESSION['POST']["rentOrSell"] == "rent" || $_SESSION['POST']["rentOrSell"] == "both")
-        ) {
-            $diplayRent = "display: block; background:#fafbfd;";
-        }
-
-        $placeholder = "How much for Rent?";    
-        $rentPrice = $GLOBALS['item_specific_array']['common']['Rent Price'];
-        $rentRate = $GLOBALS['item_specific_array']['common']['Rent Rate'];
-        $selected = 0;
-        $labelRentPrice = $rentPrice[0];
-        $placeholder = $rentPrice[1];//"How much for Rent?";    
-        $labelRate = $rentRate[0];
-        $choose = $rentRate[1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldPriceRate'])) {
-            if (strpos($_SESSION['POST']['fieldPriceRate'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldPriceRate'];
-                $choose1 = $temp;
-                $choose2 = $rentRate[2][$temp];
-                $selected = 1;
-            }
-        }
-        $value = "";
-        if (isset($_SESSION['POST']['fieldPriceRent']) && $_SESSION['POST']['fieldPriceRent'] !== "0") {
-            $value = $_SESSION['POST']['fieldPriceRent'];        
-        }
-        echo <<< EOD
-        <div class="col-md-4 fieldPriceRent {$errorClass1}" style="{$diplayRent}">
-        <div class="form-group" >
-        <div>
-            <div class="row" >
-            <label for="fieldPriceRent">{$labelRentPrice}</label>{$errorMsg1}
-                <input id="fieldPriceRent" name="fieldPriceRent" type="text" placeholder="{$placeholder}" value="{$value}" class="form-control">
-            </div>
-            <div class="row {$errorClass2}" >
-                <label for="fieldPriceRate">{$labelRate}</label>{$errorMsg2}
-                <select id="fieldPriceRate" name="fieldPriceRate" class="form-control">
-EOD;
-
-        echo <<< EOD
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1) {
-            echo <<< EOD
-        <option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        $rate = $GLOBALS['item_specific_array']['common']['Rent Rate'][2];
-        foreach ($rate as $key => $value) {
-            echo '<option value="' . $key . '">' . $value . '</option>';
-        }
-        echo '</select></div></div></div></div>';
-    }
-
-    private function inputPriceSellType()
-    {
-        $errorMsg = $errorMsg2 = "";
-        $errorClass = $errorClass2 = "";
-        if (isset($_SESSION['errorRaw']['fieldPriceSell'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'];
-            $errorMsg = $validate['fieldPriceSell'];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-
-        $diplaySell = "display: none; background:#fafbfd;";
-        if (
-            isset($_SESSION['POST']["rentOrSell"]) &&
-            ($_SESSION['POST']["rentOrSell"] == "sell" || $_SESSION['POST']["rentOrSell"] == "both")
-        ) {
-            $diplaySell = "display: block; background:#fafbfd;";
-        }
-
-
-        $sellPrice = $GLOBALS['item_specific_array']['common']['Sell Price'];
-        $label = $sellPrice[0];
-        $placeholder = $sellPrice[1];
-        $value = "";
-        if (isset($_SESSION['POST']['fieldPriceSell']) && $_SESSION['POST']['fieldPriceSell'] !== "0") {
-            $value = $_SESSION['POST']['fieldPriceSell'];        
-        }
-
-        echo <<< EOD
-        <div class="col-md-4 fieldPriceSell {$errorClass}" style="{$diplaySell}">
-        <div class="form-group" >
-        <div>
-        <div class="row" >
-            <label for="fieldPriceSell">{$label}</label> {$errorMsg}
-                <input id="fieldPriceSell" name="fieldPriceSell" type="text"  value="{$value}" placeholder="{$placeholder}" class="form-control">
-           </div></div></div></div>
-EOD;
     }
 }

@@ -36,10 +36,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 				if(test == "rentOrSell"){
 					$(".fieldPriceSell").hide();
 					$(".fieldPriceRent").hide();
-				} else if (test == "rent") {
+				} else if (test == "fieldPriceRent") {
 					$(".fieldPriceSell").hide();
 					$(".fieldPriceRent").show();
-				} else if (test == "sell") {
+				} else if (test == "fieldPriceSell") {
 					$(".fieldPriceSell").show();
 					$(".fieldPriceRent").hide();
 				} else {
@@ -90,7 +90,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->upload();
 				}
-				//var_dump($_SESSION);
+				var_dump($_SESSION);
 
 				?>
 			</div>

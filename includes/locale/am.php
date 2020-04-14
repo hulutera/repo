@@ -165,7 +165,7 @@ $lang = array(
     'click to see' => 'ለማየት ይሄንን ይጫኑ',
     'Register' => 'ይመዝገቡ',
     'Join to hulutera' => 'huluteraን ይቀላቀሉ',
-    'Submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
+    'submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
     'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ተጠቃሚው በሁሉተራ ላይ ያስገባውን ማንኛውም ነገር እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
     'What we collect' => 'እንዲያስገቡ የምንጠይቆት',
     'Your name' => 'ስም',
@@ -371,7 +371,8 @@ $lang = array(
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'search res' => 'የፍለጋ ውጤት',
-    'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ"
+    'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
+    'Invalid' => "የተከለከለ"
 );
 
 $city_lang_arr = array(
@@ -425,19 +426,33 @@ $item_lang_arr = array(
 
 $item_specific_array = [
     'car' => [
-        'Type'        => [
+        'idCategory'        => [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ'
         ],
-        'Make'        => [
+        'fieldMake'        => [
             0 => 'ስሪት (አምራች ድርጅት)',
-            1 => 'ስሪት ይምረጡ'
+            1 => 'ስሪት ይምረጡ',
+            2 => [
+                "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
+            "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
+            "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
+            "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
+            "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
+            "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
+            "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
+            "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
+            "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
+            "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
+            "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
+            "volkswagen" => "volkswagen", "volvo" => "volvo"
+            ]
         ],
-        'Model'       => [
+        'fieldModel'       => [
             0 => 'ሞዴል',
             1 => 'ሞዴል እዚህ ይጻፉ'
         ],
-        'Year Made'   => [
+        'fieldModelYear'   => [
             0 => 'የተሠራበት ዓ.ም',
             1 => 'የተሠራበት ዓ.ም ይምረጡ',
             2 => [
@@ -448,7 +463,7 @@ $item_specific_array = [
                 'unknown' => 'አይታወቅም'
             ]
         ],
-        'Gear Type'   => [
+        'fieldGearType'   => [
             0 => 'ማርሽ ዓይነት (ጊር ቦክስ)',
             1 => 'ማርሽ ዓይነት ይምረጡ',
             2 => [
@@ -457,7 +472,7 @@ $item_specific_array = [
                 'semi-automatic'  => 'ከፊል አውቶማቲክ'
             ]
         ],
-        'Fuel Type'   => [
+        'fieldFuelType'   => [
             0 => 'ነዳጅ ዓይነት',
             1 => 'ነዳጅ ዓይነት ይምረጡ',
             2 => [
@@ -468,12 +483,12 @@ $item_specific_array = [
                 'bio-gas' => 'ባዮ ጋዝ',
             ]
         ],
-        'Milage [Km]' => [
+        'fieldMilage' => [
             0 => 'የተጓዘው መጠን (በኪ.ሜ)',
             1 => 'የተጓዘው መጠን ይምረጡ',
             2 => ['unknown' => 'አይታወቅም']
         ],
-        'Number of Seats' => [
+        'fieldNoOfSeat' => [
             0 => 'የመቀመጫ ብዛት',
             1 => 'የመቀመጫ ብዛት ይምረጡ',
             2 => [
@@ -481,7 +496,7 @@ $item_specific_array = [
                 'unknown' => 'አይታወቅም'
             ]
         ],
-        'Color'       => [
+        'fieldColor'       => [
             0 => 'ቀለም',
             1 => 'ቀለም ይምረጡ',
             2 => [
@@ -497,26 +512,6 @@ $item_specific_array = [
                 'brown' => 'ቡናማ',
                 'unknown' => 'አይታወቅም'
             ]
-        ],
-        'validate'    => [
-            'fieldLocation' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldTitle' => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
-            'idCategory' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldMake' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldModel' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldModelYear' => 'የተሠራበት ዓ.ም መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldGearType' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldFuelType' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldMilage' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldNoOfSeat' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldColor' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            // 'fieldPriceCurrency' => 'ምንዛሪ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-
-            'fieldPriceRent' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceRate' => '<p>ተመን መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceSell' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ</p>',
-            'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>'
         ]
     ],
     'house' => [],
@@ -534,12 +529,12 @@ $item_specific_array = [
             0 => 'ማከራየት ወይስ መሽጥ ይፈልጋሉ?',
             1 => 'ኪራይ ወይም ሽያጭ ይምረጡ',
             2 => [
-                'rent' => 'ማከራየት',
-                'sell' => 'መሽጥ',
+                'fieldPriceRent' => 'ማከራየት',
+                'fieldPriceSell' => 'መሽጥ',
                 'both' => 'ሁለቱንም'
             ]
         ],
-        'Rent Price' => [
+        'fieldPriceRent' => [
             0 => 'የኪራይ ዋጋ',
             1 => 'የኪራይ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
         ],
@@ -553,7 +548,7 @@ $item_specific_array = [
                 'yearly' => 'በዓመት',
             ],
         ],
-        'Sell Price' => [
+        'fieldPriceSell' => [
             0 => 'የመሽያጭ ዋጋ',
             1 => 'የመሽያጭ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
         ],
@@ -587,18 +582,32 @@ $item_specific_array = [
                 'both'   => 'በሁለቱም'
             ]
         ],
+        'fieldColor'       => [
+            0 => 'ቀለም',
+            1 => 'ቀለም ይምረጡ',
+            2 => [
+                'red' => 'ቀይ',
+                'green' => 'አረጓዴ',
+                'blue' => 'ሰማያዊ',
+                'yellow' => 'ቢጫ',
+                'black' => 'ጥቁር',
+                'white' => 'ነጭ',
+                'gray' => 'አይጥማ',
+                'silver' => 'ሲልቨር',
+                'liver' => 'ጉበትማ',
+                'brown' => 'ቡናማ',
+                'unknown' => 'አይታወቅም'
+            ]
+        ],
         'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
         'validate'    => [
-            'fieldLocation' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceNego' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldTitle' => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceCurrency' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceRent' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceRate' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldPriceSell' => '<p>መሞላት አለበት። በድጋሚ ይሞክሩ</p>',
-            'fieldContactMethod' => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</p>',
-            'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>'
+            0 => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+            1 => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
+            2 => [
+                'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</p>',
+                'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
+                'number' => '<p>የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</p>'
+            ],
         ]
     ]
 ];
