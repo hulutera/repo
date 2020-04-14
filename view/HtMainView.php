@@ -79,7 +79,7 @@ class HtMainView
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $tempFilter_statua);
         $result = $this->_pItem->getResultSet();
         while ($row = $result->fetch_assoc()) {
-            $this->showItemWithId($row, $this->_pItem);
+            $this->showItemWithId($row);
         }
     }
 
@@ -89,18 +89,16 @@ class HtMainView
      *  (new HtMainView("car",12))->showItemWithId();  //select * item where id=12
      * @param resolved by construtor
      */
-    public function showItemWithId($row, $itemObj)
+    public function showItemWithId($row)
     {
-        //$this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
-        $itemObj->elemSetter($row);
-        $id = $itemObj->getId();
+        $this->_pItem->elemSetter($row);
+        $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . $id;
         $commonViewObj = new HtCommonView($itemName);
-        //$contactType = $this->_pItem->getFieldContactMethod();
-        
+             
         //image handler
-        $imageDir = $commonViewObj->getImageDir($itemObj);
+        $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
         $imageArr = explode(',', $image);
         $numimage = sizeof($imageArr);
@@ -120,18 +118,18 @@ class HtMainView
 			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
             echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
         }
-        //
+        //-------------------------------------------------------------------
         echo "<div class=\"detail\">";  //start_detail
         echo "<div class=\"leftcol\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-        $commonViewObj->displayTitle($itemObj);
+        $commonViewObj->displayTitle($this->_pItem);
         echo "</a>";
-        $commonViewObj->displayLocation($itemObj);
-        $commonViewObj->displayUpldTime($itemObj);
-        $commonViewObj->displayPrice($itemObj);
-        $commonViewObj->displayMake($itemObj);
-        $commonViewObj->displayMarketType($itemObj);
+        $commonViewObj->displayLocation($this->_pItem);
+        $commonViewObj->displayUpldTime($this->_pItem);
+        $commonViewObj->displayPrice($this->_pItem);
+        $commonViewObj->displayMake($this->_pItem);
+        $commonViewObj->displayMarketType($this->_pItem);
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
         //---------------------------------------------------------
@@ -150,10 +148,10 @@ class HtMainView
 		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
-        $commonViewObj->displayTitle($itemObj);
+        $commonViewObj->displayTitle($this->_pItem);
         $this->_pItem->display();
-        $commonViewObj->displayPrice($itemObj);
-        $commonViewObj->displayContactMethod($uniqueId, $itemObj, $itemName);
+        $commonViewObj->displayPrice($this->_pItem);
+        $commonViewObj->displayContactMethod($uniqueId,  $this->_pItem, $itemName);
         $commonViewObj->displayMailCfrm($uniqueId, $id, $itemName);
         $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
         $commonViewObj->displayMailForm($uniqueId, $id, $itemName, $pUser);
