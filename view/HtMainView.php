@@ -128,7 +128,10 @@ class HtMainView
         $commonViewObj->displayLocation($this->_pItem);
         $commonViewObj->displayUpldTime($this->_pItem);
         $commonViewObj->displayPrice($this->_pItem);
+        
+        //optional item on thumbnail only for car, phone and computer
         $commonViewObj->displayMake($this->_pItem);
+        
         $commonViewObj->displayMarketType($this->_pItem);
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
