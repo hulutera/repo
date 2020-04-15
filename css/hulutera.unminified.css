@@ -1487,7 +1487,7 @@ div.clear {
 	background-color: orange;
 }
 
-.hide, .show {
+.hide-detail, .show {
 	background-color: #050598a6;
 	/* #1E82CC;*/
 	border: 1px solid #fff;
@@ -1505,13 +1505,13 @@ div.clear {
 	overflow: visible;
 }
 
-.hide:hover, .show:hover {
+.hide-detail:hover, .show:hover {
 	background-color: #97caf0;
 	color: #000;
 	border: 1px solid #1E82CC;
 }
 
-.hide:active, .show:active {
+.hide-detail:active, .show:active {
 	position: relative;
 	top: 1px;
 }

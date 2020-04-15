@@ -75,11 +75,18 @@ class HtMainView
      */
     public function showItem()
     {
-        $tempFilter_statua = "active";
-        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $tempFilter_statua);
+        // This is a temporary variable which suppose to be changed soon
+        $status = "active";
+        
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $status);
         $result = $this->_pItem->getResultSet();
-        while ($row = $result->fetch_assoc()) {
-            $this->showItemWithId($row);
+        $rows = $result->num_rows;
+        if($rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->showItemWithId($row);
+            }
+        } else {
+            $this->itemNotFound();
         }
     }
 
@@ -148,7 +155,7 @@ class HtMainView
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
         $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
         echo "<div class=\"showbutton_hide\">
-		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+		<input class=\"hide-detail\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $commonViewObj->displayTitle($this->_pItem);
@@ -201,5 +208,21 @@ class HtMainView
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
         $this->_pItem->upload();
+    }
+
+    /**
+     * Shall be used when there is no item to show
+     * This function shall expect to take more args for search
+     */
+
+    public function itemNotFound() {
+        global $lang;
+        echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
+            <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
+            echo '<div id="spanMainColumnX" style="color: red">';
+            
+                echo $lang['full no match msg'];
+                       
+        echo '</div></div>';
     }
 }

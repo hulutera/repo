@@ -46,7 +46,7 @@ function fileRouter($add)
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
 	echo '
-		<link href="../css/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet">
+		<link href="../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	    <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -203,22 +203,22 @@ function topRightLinks()
 		locale($current_link);
 		echo '<a href="../../includes/register.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-user-plus" style="font-size:20px"></i><br/>' . $lang['Register'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-plus" style="font-size:20px"></span><br/>' . $lang['Register'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/login.php' . $lang_url . '" >';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-door-open" style="font-size:20px"></i><br/>' . $lang['login'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-log-in" style="font-size:20px"></span><br/>' . $lang['login'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-upload" style="font-size:20px"></i><br/>' . $lang['Post Items'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/template.proxy.php?type=help' . $str_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-hands-helping" style="font-size:20px"></i><br/>' . $lang['Help'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $lang['Help'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '</div>';
@@ -235,21 +235,21 @@ function topRightLinks()
 		echo '<br /><br />';
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-upload" style="font-size:20px"></i><br/>' . $lang['Post Items'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/mypage.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-home" style="font-size:20px"></i><br/>' . $lang['my page'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['my page'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-power-off" style="font-size:20px"></i><br/>' . $lang['Logout'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><i class="fas fa-user" style="font-size:20px"></i></br>' . $name . '</div></div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $name . '</div></div>';
 		echo '</div>';
 	}
 }
