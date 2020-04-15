@@ -66,7 +66,7 @@ class ValidateForm
         $this->_runnerName = ObjectPool::getInstance()->getObjectWithId($item, null);
         $this->default_options = $this->_runnerName->getUploadOption();
 
-        $price = "fieldPriceSell fieldPriceRent fieldPriceRate";
+        $price = ["fieldPriceSell","fieldPriceRent","fieldPriceRate"];
         var_dump($_POST);
 
         /**
@@ -74,14 +74,14 @@ class ValidateForm
          */
         foreach ($this->default_options as $key => $value) {
             if (isset($_POST[$key])) {
-                $postKey = $_POST[$key];
-                if (strpos($price, $key) !== false) {
+                $postValue = $_POST[$key];
+                if (in_array($key, $price)) {
                     continue;
                 }
                 if (
-                    strpos($postKey, $GLOBALS['lang']['Choose']) !== false or //Error if value start with Choose
-                    strpos($postKey, 'Write') !== false or  //Error if value start with Write
-                    $postKey === ''
+                    strpos($postValue, $GLOBALS['lang']['Choose']) !== false or //Error if value start with Choose
+                    strpos($postValue, 'Write') !== false or  //Error if value start with Write
+                    $postValue === ''
                 ) //Error if field is empty or not provided
                 {
                     $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' should be provided.  Try again!<br>');
@@ -93,7 +93,7 @@ class ValidateForm
         /**
          * check if rentOrSell radio is selected report if not 
          */
-        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], 'rentOrSell') !== false) {
+        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) !== false) {
             $input = array("rentOrSell" => 'The value for ' . $_POST["rentOrSell"] . ' should be provided.  Try again!<br>');
             array_push($err, $input);
         }
@@ -108,7 +108,7 @@ class ValidateForm
                 $this->validatePrice($err, "fieldPriceSell");
             }
             if ($_POST["rentOrSell"] == "fieldPriceRent" || $_POST["rentOrSell"] == "both") {
-                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], 'default') !== false) {
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
                     $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
                     array_push($err, $input);
                 }

@@ -33,21 +33,26 @@ require_once $documnetRootPath . '/includes/validate.php';
 		$(document).ready(function() {
 			$('#rentOrSell').on('change', function() {
 				var test = $(this).val();
-				if(test == "rentOrSell"){
-					$(".fieldPriceSell").hide();
-					$(".fieldPriceRent").hide();
-				} else if (test == "fieldPriceRent") {
+				if (test == "fieldPriceRent") {
 					$(".fieldPriceSell").hide();
 					$(".fieldPriceRent").show();
 				} else if (test == "fieldPriceSell") {
 					$(".fieldPriceSell").show();
 					$(".fieldPriceRent").hide();
-				} else {
+				} else if (test == "both") {
 					$(".fieldPriceSell").show();
 					$(".fieldPriceRent").show();
+				} else {
+					$(".fieldPriceSell").hide();
+					$(".fieldPriceRent").hide();
 				}
 			});
-			//location.reload();
+			$('#fieldColor').on('change', function() {				
+				var backgroundColor = $('option:selected',this).css('background-color');
+				var color = $('option:selected',this).css('color');
+				$(this).css('background-color',backgroundColor);
+				$(this).css('color',color);
+			});
 		});
 	</script>
 	<style>
@@ -90,8 +95,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->upload();
 				}
-				var_dump($_SESSION);
-
+				//var_dump($_SESSION);
 				?>
 			</div>
 		</div>

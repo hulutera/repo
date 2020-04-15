@@ -126,7 +126,7 @@ $lang = array(
     'Manual' => 'ማንዋል',
     'Automatic' => 'አውቶማቲክ',
     'Semi-Automatic' => 'ከፊል አውቶማቲክ',
-    'Uploading Car ...' => 'መኪና የማስገባት ሂደት ...',
+    'Uploading' => 'የማስገባት ሂደት',
     'Bus' => 'አውቶቢስ',
     'Compact Car' => 'አነስተኛ የቤተሰብ መኪና',
     'Converitble' => 'ጣርያው ተከፋች',
@@ -426,6 +426,7 @@ $item_lang_arr = array(
 
 $item_specific_array = [
     'car' => [
+        'Uploading' => 'መኪና የማስገባት ሂደት  ',
         'idCategory'        => [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ'
@@ -521,7 +522,7 @@ $item_specific_array = [
     'household' => [],
     'other' => [],
     'common' => [
-        'Location'    => [
+        'fieldLocation'    => [
             0 => 'ንብረቱ የሚገኘበት ቦታ',
             1 => 'የንብረቱን ቦታ ይምረጡ'
         ],
@@ -538,7 +539,7 @@ $item_specific_array = [
             0 => 'የኪራይ ዋጋ',
             1 => 'የኪራይ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
         ],
-        'Rent Rate' => [
+        'fieldPriceRate' => [
             0 => 'የኪራይ ተመን',
             1 => 'የኪራይ ተመን ይምረጡ',
             2 => [
@@ -552,7 +553,7 @@ $item_specific_array = [
             0 => 'የመሽያጭ ዋጋ',
             1 => 'የመሽያጭ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
         ],
-        'currency' => [
+        'fieldPriceCurrency' => [
             0 => 'ምንዛሪ',
             1 => 'ምንዛሪ ይምረጡ',
             2 => [
@@ -560,7 +561,7 @@ $item_specific_array = [
                 'USD' => 'የአሜሪካን ዶላር',
             ]
         ],
-        'negotiable' => [
+        'fieldPriceNego' => [
             0 => 'ዋጋ መደራደር ይቻላል?',
             1 => 'ይምረጡ',
             2 => [
@@ -568,12 +569,12 @@ $item_specific_array = [
                 'no' => 'ዋጋ መደራደር አይቻልም'
             ]
         ],
-        'Title' => [
+        'fieldTitle' => [
             0 => 'አርዕስት',
             1 => 'አርዕስት እዚህ ይጻፉ'
         ],
         'Extra Info' => 'ተጨማሪ መረጃ',
-        'contactMeWith' => [
+        'fieldContactMethod' => [
             0 => 'የመገኛ መንገድ',
             1 => 'የመገኛ መንገድ ይምረጡ',
             2 => [

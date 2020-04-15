@@ -798,15 +798,13 @@ class HtItemCar extends MySqlRecord
         if (isset($_POST['rentOrSell'])) {
             if ($_POST['rentOrSell'] == "rent") {
                 $this->setFieldMarketCategory('rent');
-            }
-            else if ($_POST['rentOrSell'] == "sell") {
+            } else if ($_POST['rentOrSell'] == "sell") {
                 $this->setFieldMarketCategory('sell');
-            }
-            else if ($_POST['rentOrSell'] == "both") {
+            } else if ($_POST['rentOrSell'] == "both") {
                 $this->setFieldMarketCategory('rent and sell');
             }
         }
-        
+
         $this->setFieldTableType(1);
 
         //create a folder for image upload
@@ -1590,64 +1588,100 @@ SQL;
     {
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
-        $this->insertAllField();
-        if ($_SESSION['warnings']) {
-            echo '<pre>';
-            print_r($_SESSION['warnings']);
-            echo '</pre>';
-        }
-        $_SESSION['warnings'] = null;
-        echo '<div class="row">
-                <div class="col-md-12">
-                    <button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">'.$GLOBALS['lang']['submit'].'</button>
-                </div>
-             </div>
-        </form>';
+        $this->insertAllField();        
+        echo '</form>';
     }
 
     private function insertAllField()
-    {
-        echo '<div class="container-fluid" style="margin-left:15%; margin-right:15%;">';
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        echo '<div class="row">';
+    {        
+        ////
+        ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
+        
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        echo '<h2>'.$GLOBALS['item_specific_array']['car']['Uploading'].'<img style="width:85px;" src="../../images/icons/loading.gif"></h2>';
+        ___close_div_(3);
+
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        ___open_div_("col-md-6", '');
         $this->insertFieldLocation();
-        echo '</div>';
-        echo '<div class="row">';
+        ___close_div_(1);
+        ////
+        ___open_div_("col-md-6", '');
         $this->insertFieldTitle();
-        echo '</div>';
-        echo '<div class="row">';
-        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
-        echo '<div class="row upload">';
+        ___close_div_(1);
+        ___close_div_(3);
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        ___open_div_("col-md-4", '');
         $this->insertIdCategory();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldMake();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldModel();
-        echo '</div>';
-        echo '<div class="row upload">';
+        ___close_div_(1);
+        ___close_div_(3);
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        ___open_div_("col-md-4", '');
         $this->insertFieldModelYear();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldGearType();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldFuelType();
-        echo '</div>';
-        echo '<div class="row upload">';
+        ___close_div_(1);
+        ___close_div_(3);        
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        ___open_div_("col-md-4", '');
         $this->insertFieldMilage();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldNoOfSeat();
+        ___close_div_(1);
+        ___open_div_("col-md-4", '');
         $this->insertFieldColor();
-        echo '</div></div></div>';
-        echo '<div class="row">';
-        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
-        echo '<div class="row upload">';
+        ___close_div_(1);
+        ___close_div_(3);
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");        
         $this->inputItemPrice();
-        echo '</div></div></div>';
-        echo '<div class="row">';
-        echo '<div class="col-md-12" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;">';
-        echo '<div class="row upload">';
+        ___close_div_(3);        
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");         
         $this->insertFieldContactMethod();
-        echo '</div></div></div>';
-        echo '<div class="row">';
-        echo '<div class="col-md-12" style="border:1px solid #c7c7c7;">';
-        echo '<div class="row upload">';
+        ___close_div_(3);
+        ////        
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", ""); 
         $this->insertItemImages();
-        echo '</div></div></div></div></div>';
+        ___close_div_(3);
+
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
+        ___open_div_("form-group upload", ""); 
+        echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
+        ___close_div_(3);
+        ___close_div_(1);
+
     }
 
 
@@ -1660,18 +1694,10 @@ SQL;
             $errorClass = ' alert alert-custom" role="alert';
         }
         $type = $GLOBALS['item_specific_array']['car']['idCategory'][0];
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group"> <label for="idCategory">{$type}</label>{$errorMsg} 
-        <div> 
-EOD;
-
-        echo '<select id="idCategory" name="idCategory" class="select form-control">';
         $choose = $GLOBALS['item_specific_array']['car']['idCategory'][1];
         $choose1 = $choose2 = $choose;
         $selected = 0;
         if (isset($_SESSION['POST']['idCategory'])) {
-
             if (strpos($_SESSION['POST']['idCategory'], $GLOBALS['lang']['Choose']) !== false) {
                 $choose1 = $choose2 = $choose;
             } else {
@@ -1688,7 +1714,14 @@ EOD;
                 }
             }
         }
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("form-group", "");
 
+        echo <<< EOD
+         <label for="idCategory">{$type}</label>{$errorMsg} 
+EOD;
+        echo '<select id="idCategory" name="idCategory" class="select form-control">';
         echo <<< EOD
         <option value="{$choose1}">{$choose2}</option>
 EOD;
@@ -1704,14 +1737,13 @@ EOD;
                 echo '<option value="' . $row['id'] . '">' . $GLOBALS['lang'][$row['field_name']] . '</option>';
             }
         }
-        echo <<<EOD
-            </select></div></div></div>
-EOD;
+        echo '</select>';
+        ___close_div_(3);
     }
 
     private function insertFieldMake()
     {
-        $this->insertSelectable('fieldMake');
+        $this->insertSelectable('fieldMake', 'car');
     }
 
     private function insertFieldModel()
@@ -1726,236 +1758,71 @@ EOD;
         $model = $GLOBALS['item_specific_array']['car']['fieldModel'][0];
         $placeholder = $GLOBALS['item_specific_array']['car']['fieldModel'][1];
 
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("form-group", "");
+
         echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-          <label for="fieldModel">{$model}</label>{$errorMsg}
-          <div>
+             <label for="fieldModel">{$model}</label>{$errorMsg}
+        
 EOD;
         $value = "";
         if (isset($_SESSION['POST']['fieldModel']) && $_SESSION['POST']['fieldModel'] !== "0") {
             $value = $_SESSION['POST']['fieldModel'];
         }
-        echo '
-            <input id="fieldModel" name="fieldModel" type="text" value="' . $value . '" class="form-control" placeholder="' . $placeholder . '" >
-          </div>
-        </div></div>';
+        echo '<input id="fieldModel" name="fieldModel" type="text" value="' . $value . '" class="form-control" placeholder="' . $placeholder . '" >';
+        ___close_div_(3);
     }
 
     private function insertFieldModelYear()
     {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldModelYear'])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
-            $errorClass = ' alert alert-custom" role="alert';
+        $selectable = [];
+        for ($start = date('Y'); $start >= 1980; --$start) {
+            $end = $start;
+            $input = [$start => $end];
+            array_push($selectable, $input);
         }
-
-        $selected = 0;
-        $yearMade = $GLOBALS['item_specific_array']['car']['fieldModelYear'];
-        $label = $yearMade[0];
-        $choose = $GLOBALS['item_specific_array']['car']['fieldModelYear'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldModelYear'])) {
-            if (strpos($_SESSION['POST']['fieldModelYear'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldModelYear'];
-                $choose1 = $temp;
-                $choose2 = $yearMade[2][$temp];
-                $selected = 1;
-            }
-        }
-        echo <<< EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group"><label for="fieldModelYear">{$label}</label>{$errorMsg}
-        <div>
-        <select id="fieldModelYear" name="fieldModelYear" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-    <option value="{$choose}">{$choose}</option>
-EOD;
-        }
-
-        for ($i = date('Y'); $i >= 1980; --$i) {
-            echo '<option value = "' . $i . '">' . $i . '</option>';
-        }
-        $variable = $yearMade[2];
+        $variable = $GLOBALS['item_specific_array']['car']['fieldModelYear'][2];
         foreach ($variable as $key => $value) {
-            echo '
-        <option value = "'.$key.'">' . $value . '</option>';
+            $input = [$key => $value];
+            array_push($selectable, $input);
         }
-
-        echo '</select></div>';
-        echo '</div></div>';
+        $this->insertSelectable('fieldModelYear', 'car', $selectable);
     }
 
     private function insertFieldFuelType()
     {
-        $this->insertSelectable('fieldFuelType');
+        $this->insertSelectable('fieldFuelType', 'car');
     }
 
     private function insertFieldGearType()
     {
-        $this->insertSelectable('fieldGearType');
+        $this->insertSelectable('fieldGearType', 'car');
     }
 
-    private function insertSelectable($fieldName)
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw'][$fieldName])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $label = $GLOBALS['item_specific_array']['car'][$fieldName][0];
-        $types = $GLOBALS['item_specific_array']['car'][$fieldName][2];
-        $choose = $GLOBALS['item_specific_array']['car'][$fieldName][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST'][$fieldName])) {
-            if (strpos($_SESSION['POST'][$fieldName], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST'][$fieldName];
-                $choose1 = $temp;
-                $choose2 = $types[$temp];
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-        <label for="{$fieldName}">{$label}</label>{$errorMsg}
-        <div>
-        <select id="{$fieldName}" name="{$fieldName}" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        foreach ($types as $key => $value) {
-            echo '
-        <option value = "'.$key.'">' . $value . '</option>';
-        }
-        echo '</select></div></div></div>';
-    }
     private function insertFieldMilage()
     {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldMilage'])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $selected = 0;
-        $milageKm = $GLOBALS['item_specific_array']['car']['fieldMilage'][0];
-        $types = $GLOBALS['item_specific_array']['car']['fieldMilage'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['fieldMilage'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldMilage'])) {
-            if (strpos($_SESSION['POST']['fieldMilage'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldMilage'];
-                $choose1 = $temp;
-                $choose2 = $temp;
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-        <label for="fieldMilage">{$milageKm}</label>{$errorMsg}
-        <div>
-        <select id="fieldMilage" name="fieldMilage" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-        for ($i = 0; $i <= 4000000;) {
-            $j = $i + 499999;
-            echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
-            $i += 500000;
+        $selectable = [];
+        for ($start = 0; $start <= 4000000; $start += 500000) {
+            $end = $start + 499999;
+            $input = [$start . '-' . $end => $start . '-' . $end];
+            array_push($selectable, $input);
         }
         $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unknown'];
-        echo '<option value="unknown">' . $unknown . '</option>';
-        echo '</select></div></div></div>';
+        array_push($selectable, ["unknown" => $unknown]);
+        $this->insertSelectable('fieldMilage', 'car', $selectable);
     }
 
     private function insertFieldNoOfSeat()
     {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldNoOfSeat'])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
-            $errorClass = ' alert alert-custom" role="alert';
+        $selectable = [];
+        for ($start = 0; $start <= 100; $start += 5) {
+            $end = $start + 4;
+            $input = [$start . '-' . $end => $start . '-' . $end];
+            array_push($selectable, $input);
         }
-        $selected = 0;
-        $numberOfSeats = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][0];
-        $types = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2];
-        $choose = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][1];
-        $choose1 = $choose2 = $choose;
-        if (isset($_SESSION['POST']['fieldNoOfSeat'])) {
-            if (strpos($_SESSION['POST']['fieldNoOfSeat'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $temp = $_SESSION['POST']['fieldNoOfSeat'];
-                $choose1 = $temp;
-                $choose2 = !empty($types[$temp]) ? $types[$temp] : $temp;
-                $selected = 1;
-            }
-        }
-
-        echo <<<EOD
-        <div class="col-md-4 {$errorClass}">
-        <div class="form-group">
-        <label for="fieldNoOfSeat">{$numberOfSeats}</label>{$errorMsg}
-        <div>
-        <select id="fieldNoOfSeat" name="fieldNoOfSeat" class="select form-control">
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-
-        if ($selected == 1) {
-            echo <<< EOD
-<option value="{$choose}">{$choose}</option>
-EOD;
-        }
-
-        for ($i = 1; $i <= 100;) {
-            $j = $i - 1 + 5;
-            echo '<option value="' . $i . '-' . $j . '">' . $i . '-' . $j . '</option>';
-            $i += 5;
-        }
-        echo '<option value="over100">' . $types['over100'] . '</option>';
-        echo '<option value="unknown">' . $types['unknown'] . '</option>';
-        echo '</select></div></div></div>';
-    }
-
-
-    private function inputItemPrice()
-    {
-        echo '
-        <div class="row upload">
-            <div class="col-md-4">
-                <div class="form-group">';
-        $this->inputPriceRentOrSell();
-        $this->insertFieldPriceNego();
-        $this->insertFieldPriceCurrency();
-        echo '</div></div>';
-        $this->insertPriceTypeRent();
-        $this->insertPriceTypeSell();
-        echo '</div>';
+        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['unknown'];
+        array_push($selectable, ["unknown" => $unknown]);
+        $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
     }
 }

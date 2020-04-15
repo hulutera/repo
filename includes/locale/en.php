@@ -122,7 +122,7 @@ $lang = array(
     'Manual' => 'Manual',
     'Automatic' => 'Automatic',
     'Semi-Automatic' => 'Semi-Automatic',
-    'Uploading Car ...' => 'Uploading Car ...',
+    'Uploading' => 'Uploading',
     'Bus' => 'Bus',
     'Compact Car' => 'Compact Car',
     'Converitble' => 'Converitble',
@@ -446,6 +446,7 @@ $item_lang_arr = array(
 
 $item_specific_array = [
     'car' => [
+        'Uploading' => 'Uploading Car  ',
         'idCategory'        => [
             0 => 'Type',
             1 => 'Choose Type',
@@ -542,7 +543,7 @@ $item_specific_array = [
     'household' => [],
     'other' => [],
     'common' => [
-        'Location'    => [
+        'fieldLocation'    => [
             0 => 'Location',
             1 => 'Choose Item Location'
         ],
@@ -550,8 +551,8 @@ $item_specific_array = [
             0 => 'Do you want to Rent or Sell?',
             1 => 'Choose Rent or Sell?',
             2 => [
-                'rent' => 'Rent',
-                'sell' => 'Sell',
+                'fieldPriceRent' => 'Rent',
+                'fieldPriceSell' => 'Sell',
                 'both' => 'Both',
             ]
         ],
@@ -560,7 +561,7 @@ $item_specific_array = [
             0 => 'Rent Price',
             1 => 'Write Rental Price',
         ],
-        'Rent Rate' => [
+        'fieldPriceRate' => [
             0 => 'Rent Rate',
             1 => 'Choose Rent Rate',
             2 => [
@@ -574,7 +575,7 @@ $item_specific_array = [
             0 => 'Sell Price',
             1 => 'Write Selling Price'
         ],
-        'currency' => [
+        'fieldPriceCurrency' => [
             0 => 'Currency',
             1 => 'Choose Currency',
             2 => [
@@ -582,7 +583,7 @@ $item_specific_array = [
                 'USD' => 'USD',
             ]
         ],
-        'negotiable' => [
+        'fieldPriceNego' => [
             0 => 'Price is negotiable',
             1 => 'Choose negotiable',
             2 => [
@@ -590,12 +591,12 @@ $item_specific_array = [
                 'no' => 'No',
             ]
         ],
-        'Title' => [
+        'fieldTitle' => [
             0 => 'Title',
             1 => 'Write title here'
         ],
         'Extra Info' => 'Extra Info',
-        'contactMeWith' => [
+        'fieldContactMethod' => [
             0 => 'Contact Me With',
             1 => 'Choose contact method',
             2 => [
