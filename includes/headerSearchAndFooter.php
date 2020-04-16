@@ -35,6 +35,7 @@ function commonHeader()
 function fileRouter($add)
 {
 	//css
+	echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
 	echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
 	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 	//js
@@ -46,7 +47,7 @@ function fileRouter($add)
 		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
 	echo '
-		<link href="../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		
 	    <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
