@@ -457,7 +457,7 @@ form.signin input.button {
 	overflow: hidden;
 	clear: left;
 	float: left;
-	font-size: 13px;
+	/* font-size: 13px; */
 	margin-top: 5px;
 	margin-left: 0;
 	position: relative;

@@ -127,21 +127,6 @@ $lang = array(
     'Automatic' => 'አውቶማቲክ',
     'Semi-Automatic' => 'ከፊል አውቶማቲክ',
     'Uploading' => 'የማስገባት ሂደት',
-    'Bus' => 'አውቶቢስ',
-    'Compact Car' => 'አነስተኛ የቤተሰብ መኪና',
-    'Converitble' => 'ጣርያው ተከፋች',
-    'Full Size Van' => 'ቫን',
-    'Hatchback' => 'ሀችባክ',
-    'Heavy Machinery' => 'ከባድ ማሽን',
-    'Luxury Car' => 'የቅንጦት መኪና',
-    'Minibus' => 'ሚኒባስ',
-    'Pickup' => 'ፒካፕ',
-    'Small Car' => 'አነስተኛ የቤት መኪና',
-    'Sport Car' => 'የስፖርት መኪና',
-    'Station Wagon' => 'መለስተኛ የቤተሰብ መኪና',
-    'SUV' => 'ኤስ ዩ ቪ',
-    'Taxi' => 'ታክሲ',
-    'Truck' => 'የጭነት መኪና',
     'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
     'Please Agree to the Terms and Conditions' => 'በመተዳደርያ ደንቡ መስማማቶን የሚያሳየውን ይምረጡ',
     'Please enter a username' => 'የመጠቀምያ ስምዎን ያስገቡ.',
@@ -426,27 +411,44 @@ $item_lang_arr = array(
 
 $item_specific_array = [
     'car' => [
-        'Uploading' => 'መኪና የማስገባት ሂደት  ',
+        'Uploading' => 'መኪና የማስገቢያ ቅፅ',
         'idCategory'        => [
             0 => 'ዓይነት',
-            1 => 'ዓይነት ይምረጡ'
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+                'Bus' => 'አውቶቢስ',
+                'Compact Car' => 'አነስተኛ የቤተሰብ መኪና',
+                'Converitble' => 'ጣርያው ተከፋች',
+                'Full Size Van' => 'ቫን',
+                'Hatchback' => 'ሀችባክ',
+                'Heavy Machinery' => 'ከባድ ማሽን',
+                'Luxury Car' => 'የቅንጦት መኪና',
+                'Minibus' => 'ሚኒባስ',
+                'Pickup' => 'ፒካፕ',
+                'Small Car' => 'አነስተኛ የቤት መኪና',
+                'Sport Car' => 'የስፖርት መኪና',
+                'Station Wagon' => 'መለስተኛ የቤተሰብ መኪና',
+                'SUV' => 'ኤስ ዩ ቪ',
+                'Taxi' => 'ታክሲ',
+                'Truck' => 'የጭነት መኪና'
+            ]
         ],
         'fieldMake'        => [
             0 => 'ስሪት (አምራች ድርጅት)',
             1 => 'ስሪት ይምረጡ',
             2 => [
                 "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
-            "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
-            "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
-            "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
-            "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
-            "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
-            "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
-            "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
-            "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
-            "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
-            "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-            "volkswagen" => "volkswagen", "volvo" => "volvo"
+                "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
+                "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
+                "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
+                "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
+                "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
+                "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
+                "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
+                "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
+                "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
+                "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
+                "volkswagen" => "volkswagen", "volvo" => "volvo"
             ]
         ],
         'fieldModel'       => [
@@ -602,12 +604,12 @@ $item_specific_array = [
         ],
         'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
         'validate'    => [
-            0 => '<p>መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-            1 => '<p>መሞላት  አለበት። በድጋሚ ይሞክሩ</p>',
+            0 => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!</br>',
+            1 => ' መሞላት  አለበት። በድጋሚ ይሞክሩ!</br>',
             2 => [
-                'fileuploader-list-files' => '<p>ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</p>',
-                'rentOrSell' => '<p>ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</p>',
-                'number' => '<p>የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</p>'
+                'fileuploader-list-files' => ' ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</br>',
+                'rentOrSell' => ' ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</br>',
+                'number' => ' የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</br>'
             ],
         ]
     ]

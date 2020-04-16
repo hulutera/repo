@@ -22,7 +22,8 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<!-- styles -->
 	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/upload.css" rel="stylesheet">
 
 	<!-- js -->
 	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
@@ -47,11 +48,11 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$(".fieldPriceRent").hide();
 				}
 			});
-			$('#fieldColor').on('change', function() {				
-				var backgroundColor = $('option:selected',this).css('background-color');
-				var color = $('option:selected',this).css('color');
-				$(this).css('background-color',backgroundColor);
-				$(this).css('color',color);
+			$('#fieldColor').on('change', function() {
+				var backgroundColor = $('option:selected', this).css('background-color');
+				var color = $('option:selected', this).css('color');
+				$(this).css('background-color', backgroundColor);
+				$(this).css('color', color);
 			});
 		});
 	</script>
@@ -85,7 +86,6 @@ require_once $documnetRootPath . '/includes/validate.php';
 				<?php
 				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
 				echo '<div class="col-md-12"><a href="upload.php' . $lang_url . '">' . $GLOBALS['lang']['Back to Post Item'] . '</a></div>';
-
 				$sessionName = 'upload_' . $_GET['type'];
 				if (!isset($_SESSION[$sessionName])) {
 					$object = new HtMainView($_GET['type'], null);
@@ -97,6 +97,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 				}
 				//var_dump($_SESSION);
 				?>
+
 			</div>
 		</div>
 		<div class="push"></div>

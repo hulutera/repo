@@ -450,24 +450,40 @@ $item_specific_array = [
         'idCategory'        => [
             0 => 'Type',
             1 => 'Choose Type',
-            2 => []
+            2 => [
+                'Bus' => 'Bus',
+                'Compact Car' => 'Compact Car',
+                'Converitble' => 'Converitble',
+                'Full Size Van' => 'Full Size Van',
+                'Hatchback' => 'Hatchback',
+                'Heavy Machinery' => 'Heavy Machinery',
+                'Luxury Car' => 'Luxury Car',
+                'Minibus' => 'Minibus',
+                'Pickup' => 'Pickup',
+                'Small Car' => 'Small Car',
+                'Sport Car' => 'Sport Car',
+                'Station Wagon' => 'Station Wagon',
+                'SUV' => 'SUV',
+                'Taxi' => 'Taxi',
+                'Truck' => 'Truck'
+            ]
         ],
         'fieldMake'        => [
             0 => 'Make',
             1 => 'Choose Make',
             2 => [
                 "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
-            "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
-            "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
-            "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
-            "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
-            "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
-            "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
-            "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
-            "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
-            "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
-            "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-            "volkswagen" => "volkswagen", "volvo" => "volvo"
+                "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
+                "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
+                "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
+                "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
+                "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
+                "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
+                "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
+                "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
+                "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
+                "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
+                "volkswagen" => "volkswagen", "volvo" => "volvo"
             ]
         ],
         'fieldModel'       => [
@@ -624,12 +640,12 @@ $item_specific_array = [
         ],
         'Choose Images here' => 'Choose Images here',
         'validate'    => [
-            0 => '<p>Should be selected.  Try again!</p>',
-            1 => '<p>Should be provided.  Try again!</p>',
+            0 => ' Should be selected.  Try again!</br>',
+            1 => ' Should be provided.  Try again!</br>',
             2 => [
-                'fileuploader-list-files' => '<p>At least one image should be provided.  Try again!</p>',
-                'rentOrSell' => '<p>Should be provided.!</p>',
-                'number' => '<p>Invalid input, Should be number greater than zero (0)! Try again! </p>'
+                'fileuploader-list-files' => ' At least one image should be provided.  Try again!</br>',
+                'rentOrSell' => ' Should be provided.!</br>',
+                'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>'
             ],
         ]
     ]

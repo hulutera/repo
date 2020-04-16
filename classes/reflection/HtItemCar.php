@@ -1585,35 +1585,17 @@ SQL;
      * @return mixed MySQLi update result
      */
     public function upload()
-    {
+    {        
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
-        $this->insertAllField();        
+        $this->insertAllField();
         echo '</form>';
     }
 
     private function insertAllField()
-    {        
-        ////
+    {
         ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
-        
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
-        ___open_div_("form-group upload", "");
-        echo '<h2>'.$GLOBALS['item_specific_array']['car']['Uploading'].'<img style="width:85px;" src="../../images/icons/loading.gif"></h2>';
-        ___close_div_(3);
-
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
-        ___open_div_("form-group upload", "");
-        ___open_div_("col-md-6", '');
-        $this->insertFieldLocation();
-        ___close_div_(1);
-        ////
-        ___open_div_("col-md-6", '');
-        $this->insertFieldTitle();
-        ___close_div_(1);
-        ___close_div_(3);
+        $this->insertHeader('car');
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
@@ -1641,7 +1623,7 @@ SQL;
         ___open_div_("col-md-4", '');
         $this->insertFieldFuelType();
         ___close_div_(1);
-        ___close_div_(3);        
+        ___close_div_(3);
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
@@ -1659,86 +1641,34 @@ SQL;
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
-        ___open_div_("form-group upload", "");        
+        ___open_div_("form-group upload", "");
         $this->inputItemPrice();
-        ___close_div_(3);        
+        ___close_div_(3);
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
-        ___open_div_("form-group upload", "");         
+        ___open_div_("form-group upload", "");
         $this->insertFieldContactMethod();
         ___close_div_(3);
         ////        
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
-        ___open_div_("form-group upload", ""); 
+        ___open_div_("form-group upload", "");
         $this->insertItemImages();
         ___close_div_(3);
 
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
-        ___open_div_("form-group upload", ""); 
+        ___open_div_("form-group upload", "");
         echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
         ___close_div_(3);
         ___close_div_(1);
-
     }
 
 
     private function insertIdCategory()
     {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['idCategory'])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-        $type = $GLOBALS['item_specific_array']['car']['idCategory'][0];
-        $choose = $GLOBALS['item_specific_array']['car']['idCategory'][1];
-        $choose1 = $choose2 = $choose;
-        $selected = 0;
-        if (isset($_SESSION['POST']['idCategory'])) {
-            if (strpos($_SESSION['POST']['idCategory'], $GLOBALS['lang']['Choose']) !== false) {
-                $choose1 = $choose2 = $choose;
-            } else {
-                $id = $_SESSION['POST']['idCategory'];
-                $type = new HtCategoryCar("*");
-                $result = $type->getResultSet();
-                while ($row = $result->fetch_array()) {
-                    if ($row['id'] === $id) {
-                        $choose1 = $id;
-                        $choose2 = $GLOBALS['lang'][$row['field_name']];
-                        $selected = 1;
-                        break;
-                    }
-                }
-            }
-        }
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", $errorClass);
-        ___open_div_("form-group", "");
-
-        echo <<< EOD
-         <label for="idCategory">{$type}</label>{$errorMsg} 
-EOD;
-        echo '<select id="idCategory" name="idCategory" class="select form-control">';
-        echo <<< EOD
-        <option value="{$choose1}">{$choose2}</option>
-EOD;
-        if ($selected == 1)
-            echo <<< EOD
-        <option value="{$choose}">{$choose}</option>;
-EOD;
-        $type = new HtCategoryCar("*");
-        $result = $type->getResultSet();
-
-        while ($row = $result->fetch_assoc()) {
-            if (isset($GLOBALS['lang'][$row['field_name']])) {
-                echo '<option value="' . $row['id'] . '">' . $GLOBALS['lang'][$row['field_name']] . '</option>';
-            }
-        }
-        echo '</select>';
-        ___close_div_(3);
+        $this->insertSelectable('idCategory', 'car');
     }
 
     private function insertFieldMake()

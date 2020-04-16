@@ -124,6 +124,25 @@ class MySqlRecord extends Model
         return $r2;
     }
 
+    protected function insertHeader($item)
+    {
+        ___open_div_("row", "");
+        ___open_div_('col-md-12 upload-header alert alert-info" role="alert', '');
+        echo '<strong><p class="h2">'.$GLOBALS['item_specific_array'][$item]['Uploading'].'</strong></p>';
+        ___close_div_(2);
+
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+        ___open_div_("form-group upload", "");
+        ___open_div_("col-md-6", '');
+        $this->insertFieldLocation();
+        ___close_div_(1);
+        ////
+        ___open_div_("col-md-6", '');
+        $this->insertFieldTitle();
+        ___close_div_(1);
+        ___close_div_(3);
+    }
     protected function insertFieldLocation()
     {
         $selectable = [];
@@ -153,14 +172,15 @@ class MySqlRecord extends Model
         if (isset($_SESSION['POST']['fieldTitle'])) {
             $choose = $_SESSION['POST']['fieldTitle'];
         }
-
-        ___open_div_("col-md-4", $errorClass);
-        ___open_div_("form-group", "");
+        
+        ___open_div_("row", '');
+        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("form-group", '');
         echo <<< EOD
         <label for="fieldTitle">{$title}</label> {$errorMsg}
          <input id="fieldTitle" name="fieldTitle" type="text" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
-        ___close_div_(2);
+        ___close_div_(3);
     }
 
     protected function insertFieldExtraInfo()
@@ -417,14 +437,14 @@ EOD;
         $this->inputPriceRentOrSell();
         $this->insertFieldPriceNego();
         $this->insertFieldPriceCurrency();
-        ___close_div_(1);
+        ___close_div_(1);//col-md-6
 
         ___open_div_("col-md-6", '');
         $this->insertPriceTypeRent();
         $this->insertPriceTypeSell();
-        ___close_div_(1);
+        ___close_div_(1);//col-md-6
 
-        ___close_div_(3);
+        ___close_div_(3);//top-3
     }
 }
 function ___open_div_($class, $options)

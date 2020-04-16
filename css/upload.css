@@ -1,0 +1,42 @@
+#image_preview img {
+    width: 100px;
+    padding: 5px;
+    float: left;
+}
+
+.container img {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.my-group .form-control {
+    width: 50%;
+}
+
+.upload {
+    padding: 20px;
+}
+
+.upload-header {
+    /* border: 1px solid #c7c7c7;
+    border-bottom: 1px solid white;
+    background-color: green;
+    color: white;
+    font-weight: bold; */
+    text-align: center;
+}
+
+.alert-custom {
+    color: #a94442;
+    /* background-color: #f2dede; */
+    /* border-color: #ebccd1; */
+}
+
+.form-control {
+    width: 95%;
+    font-size: medium;
+}
+
+.form-horizontal .form-group {
+    margin: 0;
+}
