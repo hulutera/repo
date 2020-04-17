@@ -1,6 +1,7 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
+require_once $documnetRootPath . '/includes/pagination.php';
 
 
 class HtMainView
@@ -10,7 +11,7 @@ class HtMainView
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
 
-    function __construct($newRunnerName, $newRunnerId)
+    function __construct($newRunnerName, $newRunnerId=null)
     {
         $this->_runnerName = $newRunnerName;
         $this->_runnerId = $newRunnerId;
@@ -31,23 +32,21 @@ class HtMainView
      *  
      * @param resolved by construtor
      */
-    public function show()
+    public function show($filter=null)
     {
         if ($this->_runnerName == 'latest') {
             $this->showLatest();
-        } elseif ($this->_runnerName == 'all') {
-            $this->showAll();
+        } elseif ($this->_runnerName == 'search') {
+            $this->search();
         } else {
-            if (!empty($this->_runnerId)) {
-                if ($this->_runnerId == "*") {
-                    $this->showItem();
+                if ($filter != null) {
+                    $this->showItem($filter);
                 } else {
                     $this->showItemWithId();
                 }
             }
-        }
     }
-
+    
     /**
      * Alternative interface to display item
      * e.g.
@@ -73,23 +72,36 @@ class HtMainView
      *  (new HtMainView("car",null))->showItem();  //select * item 
      * @param resolved by construtor
      */
-    public function showItem()
+    public function showItem($filter)
     {
-        // This is a temporary variable which suppose to be changed soon
-        $status = "active";
-        
-        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $status);
-        $result = $this->_pItem->getResultSet();
-        $rows = $result->num_rows;
+                      
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
+        // Send query to the main item class
+        $condition = "field_status = '$filter'";
+        $rows = $this->_pItem->runQuery($condition);
         if($rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+            $calculatePageArray = calculatePage($rows);
+            $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
+            $end = $calculatePageArray[1];
+            $result = $this->_pItem->runQuery($condition, $start, $end);
+            $res = $this->_pItem->getResultSet();
+            while ($row = $res->fetch_assoc()) {
                 $this->showItemWithId($row);
             }
+            pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
         } else {
             $this->itemNotFound();
         }
     }
 
+
+    /**
+     *  This function shows a search result
+     * 
+     */
+    public function search(){
+       
+    }
     /**
      * Alternative interface to display item with id
      * e.g.

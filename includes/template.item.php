@@ -25,7 +25,7 @@ if (!file_exists($documnetRootPath . '/items/'.$item. '/'.$item.'.class.php'))
 			<?php headerAndSearchCode($item); ?>
 			<div id="main_section">
 				<div id="mainColumn">
-					<?php (new  HtMainView($item, "*"))->show();?>
+					<?php (new  HtMainView($item))->show("active");?>
 				</div>
 			</div>
 		</div>

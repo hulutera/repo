@@ -1297,6 +1297,26 @@ class HtItemCar extends MySqlRecord
         return $this->affected_rows;
     }
 
+/**
+ * Run a car query with a request
+ * 
+ */
+    public function runQuery($filter, $start=null, $end=null)
+    {
+        if($start == null) {
+            $sql =  "SELECT * FROM item_car WHERE $filter";
+        } else {
+            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
+        }
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+
+
     /* 
     ** Set the car element values
     */
