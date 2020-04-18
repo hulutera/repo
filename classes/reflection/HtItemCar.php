@@ -457,6 +457,14 @@ class HtItemCar extends MySqlRecord
      */
     public function setIdCategory($idCategory)
     {
+        $object = new HtCategoryCar("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_array()) {
+            if ($row['field_name'] === $idCategory) {
+                $idCategory = $row['id'];                
+                break;
+            }
+        }
         $this->idCategory = (int) $idCategory;
     }
 
@@ -1234,6 +1242,16 @@ class HtItemCar extends MySqlRecord
     {
         return "item_car";
     }
+    
+    /**
+    * Gets the name of the managed table short name
+    * @return string
+    * @category Accessor
+    */
+    public function getTableNameShort()
+    {
+        return "car";
+    }
 
     /**
      * The HtItemCar constructor
@@ -1250,6 +1268,8 @@ class HtItemCar extends MySqlRecord
         if (!empty($id)) {
             $this->select($id, $status);
         }
+        var_dump($id);
+        var_dump($status);
     }
 
     /**
@@ -1320,35 +1340,36 @@ class HtItemCar extends MySqlRecord
     /* 
     ** Set the car element values
     */
-    public function elemSetter($row)
+    public function setFieldAll($row)
     {
-        $this->id = (int) $row['id'];
-        $this->idTemp = (int) $row['id_temp'];
-        $this->idUser = (int) $row['id_user'];
-        $this->idCategory = (int) $row['id_category'];
-        $this->fieldContactMethod =  $this->replaceAposBackSlash($row['field_contact_method']);
-        $this->fieldPriceRent = $this->replaceAposBackSlash($row['field_price_rent']);
-        $this->fieldPriceSell = $this->replaceAposBackSlash($row['field_price_sell']);
-        $this->fieldPriceNego = $this->replaceAposBackSlash($row['field_price_nego']);
-        $this->fieldPriceRate = $this->replaceAposBackSlash($row['field_price_rate']);
-        $this->fieldPriceCurrency = $this->replaceAposBackSlash($row['field_price_currency']);
-        $this->fieldMake = $this->replaceAposBackSlash($row['field_make']);
-        $this->fieldModel = $this->replaceAposBackSlash($row['field_model']);
-        $this->fieldModelYear = $row['field_model_year'];
-        $this->fieldNoOfSeat = (int) $row['field_no_of_seat'];
-        $this->fieldFuelType = $this->replaceAposBackSlash($row['field_fuel_type']);
-        $this->fieldColor = $this->replaceAposBackSlash($row['field_color']);
-        $this->fieldGearType = $this->replaceAposBackSlash($row['field_gear_type']);
-        $this->fieldMilage = $this->replaceAposBackSlash($row['field_milage']);
-        $this->fieldImage = $this->replaceAposBackSlash($row['field_image']);
-        $this->fieldLocation = $this->replaceAposBackSlash($row['field_location']);
-        $this->fieldExtraInfo = $this->replaceAposBackSlash($row['field_extra_info']);
-        $this->fieldTitle = $this->replaceAposBackSlash($row['field_title']);
-        $this->fieldUploadDate = $row['field_upload_date'];
-        $this->fieldTotalView = (int) $row['field_total_view'];
-        $this->fieldStatus = $this->replaceAposBackSlash($row['field_status']);
-        $this->fieldMarketCategory = $this->replaceAposBackSlash($row['field_market_category']);
-        $this->fieldTableType = (int) $row['field_table_type'];
+        $rowObject = (object)$row;
+        @$this->id = (int) $rowObject->id;	
+        @$this->idTemp = (int) $rowObject->id_temp;	
+        @$this->idUser = (int) $rowObject->id_user;	
+        @$this->idCategory = (int) $rowObject->id_category;	
+        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);	
+        @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);	
+        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);	
+        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);	
+        @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);	
+        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);	
+        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);	
+        @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);	
+        @$this->fieldModelYear = $rowObject->field_model_year;	
+        @$this->fieldNoOfSeat = (int) $rowObject->field_no_of_seat;	
+        @$this->fieldFuelType = $this->replaceAposBackSlash($rowObject->field_fuel_type);	
+        @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);	
+        @$this->fieldGearType = $this->replaceAposBackSlash($rowObject->field_gear_type);	
+        @$this->fieldMilage = $this->replaceAposBackSlash($rowObject->field_milage);	
+        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);	
+        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);	
+        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);	
+        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);	
+        @$this->fieldUploadDate = $rowObject->field_upload_date;	
+        @$this->fieldTotalView = (int) $rowObject->field_total_view;	
+        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);	
+        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);	
+        @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
 
     /**
@@ -1608,28 +1629,34 @@ SQL;
     {        
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
-        $this->insertAllField();
+        $itemName = $this->getTableNameShort();
+        $this->insertAllField($itemName);        
         echo '</form>';
     }
 
-    private function insertAllField()
+    protected function insertAllField($itemName)
     {
+        $itemName = $this->getTableNameShort();
         ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
-        $this->insertHeader('car');
+        $this->insertHeader($itemName);
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
-        ___open_div_("col-md-4", '');
-        $this->insertIdCategory();
+        
+        ___open_div_("col-md-4", '');        
+        $this->insertSelectable('idCategory', $itemName);
         ___close_div_(1);
+        
         ___open_div_("col-md-4", '');
-        $this->insertFieldMake();
+        $this->insertSelectable('fieldMake', $itemName);
         ___close_div_(1);
+        
         ___open_div_("col-md-4", '');
-        $this->insertFieldModel();
+        $this->insertFieldText('fieldModel', $itemName);
         ___close_div_(1);
-        ___close_div_(3);
+        
+        ___close_div_(3);//top-3
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
@@ -1638,10 +1665,10 @@ SQL;
         $this->insertFieldModelYear();
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertFieldGearType();
+        $this->insertSelectable('fieldGearType', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertFieldFuelType();
+        $this->insertSelectable('fieldFuelType', $itemName);
         ___close_div_(1);
         ___close_div_(3);
         ////
@@ -1685,45 +1712,6 @@ SQL;
         ___close_div_(1);
     }
 
-
-    private function insertIdCategory()
-    {
-        $this->insertSelectable('idCategory', 'car');
-    }
-
-    private function insertFieldMake()
-    {
-        $this->insertSelectable('fieldMake', 'car');
-    }
-
-    private function insertFieldModel()
-    {
-        $errorMsg = "";
-        $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldModel'])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][1];
-            $errorClass = ' alert alert-custom" role="alert';
-        }
-
-        $model = $GLOBALS['item_specific_array']['car']['fieldModel'][0];
-        $placeholder = $GLOBALS['item_specific_array']['car']['fieldModel'][1];
-
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", $errorClass);
-        ___open_div_("form-group", "");
-
-        echo <<< EOD
-             <label for="fieldModel">{$model}</label>{$errorMsg}
-        
-EOD;
-        $value = "";
-        if (isset($_SESSION['POST']['fieldModel']) && $_SESSION['POST']['fieldModel'] !== "0") {
-            $value = $_SESSION['POST']['fieldModel'];
-        }
-        echo '<input id="fieldModel" name="fieldModel" type="text" value="' . $value . '" class="form-control" placeholder="' . $placeholder . '" >';
-        ___close_div_(3);
-    }
-
     private function insertFieldModelYear()
     {
         $selectable = [];
@@ -1738,16 +1726,6 @@ EOD;
             array_push($selectable, $input);
         }
         $this->insertSelectable('fieldModelYear', 'car', $selectable);
-    }
-
-    private function insertFieldFuelType()
-    {
-        $this->insertSelectable('fieldFuelType', 'car');
-    }
-
-    private function insertFieldGearType()
-    {
-        $this->insertSelectable('fieldGearType', 'car');
     }
 
     private function insertFieldMilage()

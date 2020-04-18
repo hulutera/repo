@@ -1,7 +1,8 @@
 <?php
 
 spl_autoload_register(function($className) {
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+    var_dump($className);
 });
 
 class ObjectPool
@@ -58,6 +59,8 @@ class ObjectPool
     public function getObjectWithId($item, $id=null)
     {
         $itemName = str_replace("item_","",$item); 
+        var_dump($itemName);
+
         switch ($itemName) {
             case 'car':
                 return (new HtItemCar($id));

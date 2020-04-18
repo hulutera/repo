@@ -21,9 +21,10 @@
     /* border: 1px solid #c7c7c7;
     border-bottom: 1px solid white;
     background-color: green;
-    color: white;
+    
     font-weight: bold; */
     text-align: center;
+    color: black;
 }
 
 .alert-custom {

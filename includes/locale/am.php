@@ -357,7 +357,9 @@ $lang = array(
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'search res' => 'የፍለጋ ውጤት',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
-    'Invalid' => "የተከለከለ"
+    'Invalid' => "የተከለከለ",
+    'unknown' => 'አይታወቅም',
+    'unlisted' => '-- አልተዘረዘረም --'
 );
 
 $city_lang_arr = array(
@@ -430,7 +432,8 @@ $item_specific_array = [
                 'Station Wagon' => 'መለስተኛ የቤተሰብ መኪና',
                 'SUV' => 'ኤስ ዩ ቪ',
                 'Taxi' => 'ታክሲ',
-                'Truck' => 'የጭነት መኪና'
+                'Truck' => 'የጭነት መኪና',
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldMake'        => [
@@ -448,7 +451,7 @@ $item_specific_array = [
                 "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
                 "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
                 "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-                "volkswagen" => "volkswagen", "volvo" => "volvo"
+                "volkswagen" => "volkswagen", "volvo" => "volvo", 'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldModel'       => [
@@ -463,7 +466,7 @@ $item_specific_array = [
                 '1950' => 'ከ1940-1950 መካከል',
                 '1960' => 'ከ1950-1960 መካከል',
                 '1970' => 'ከ1970-1980 መካከል',
-                'unknown' => 'አይታወቅም'
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldGearType'   => [
@@ -489,14 +492,14 @@ $item_specific_array = [
         'fieldMilage' => [
             0 => 'የተጓዘው መጠን (በኪ.ሜ)',
             1 => 'የተጓዘው መጠን ይምረጡ',
-            2 => ['unknown' => 'አይታወቅም']
+            2 => ['unlisted' => '-- አልተዘረዘረም --']
         ],
         'fieldNoOfSeat' => [
             0 => 'የመቀመጫ ብዛት',
             1 => 'የመቀመጫ ብዛት ይምረጡ',
             2 => [
                 'over100' => 'ከ100 በላይ',
-                'unknown' => 'አይታወቅም'
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldColor'       => [
@@ -513,16 +516,136 @@ $item_specific_array = [
                 'silver' => 'ሲልቨር',
                 'liver' => 'ጉበትማ',
                 'brown' => 'ቡናማ',
-                'unknown' => 'አይታወቅም'
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ]
     ],
     'house' => [],
-    'computer' => [],
+    'computer' => [
+        'Uploading' => 'ኮምፒዩተር የማስገቢያ ቅፅ',
+        'idCategory'        => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+                'Laptop' => 'ላፕቶፕ',
+                'Notebook' => 'ኖት ቡክ',
+                'Stationary' => 'ዴስክቶፕ',
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldMade'        => [
+            0 => 'ስሪት (አምራች ድርጅት)',
+            1 => 'ስሪት ይምረጡ',
+            2 => [
+                "acer" => "acer",
+                "alienware" => "alienware",
+                "apple" => "apple",
+                "asus" => "asus",
+                "cybertonpc" => "cybertonpc",
+                "cyberpower" => "cyberpower",
+                "dell" => "dell",
+                "gateway" => "gateway",
+                "hp" => "hp",
+                "ibuypower" => "ibuypower",
+                "lenovo" => "lenovo",
+                "sony" => "sony",
+                "toshiba" => "toshiba",
+                "msi" => "msi",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldModel'       => [
+            0 => 'ሞዴል',
+            1 => 'ሞዴል እዚህ ይጻፉ'
+        ],
+        'fieldHardDrive'   => [
+            0 => 'ሀርድ ዲሥክ (GB)',
+            1 => 'ሀርድ ዲሥክ ይምረጡ',
+            2 => [
+                "Under 200GB" => "ከ200GB በታች",
+                "200 - 299GB" => "200 - 299GB",
+                "300 - 499GB" => "300 - 499GB",
+                "Over 500GB" => "ከ500GB  በላይ",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldOs'   => [
+            0 => 'የኮምፒውተር ኡደት ስርዓት (OS) ',
+            1 => 'ኡደት ስርዓት ይምረጡ',
+            2 => [
+                "Windows" => "Windows/ዊንዶውስ",
+                "Linux" => "Linux/ሊኑክስ",
+                "Unix" => "Unix/ዩኒክስ",
+                "Mac" => "Mac/ማክ",
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldProcessor'   => [
+            0 => 'ፕሮሰሰር ፍጥነት ',
+            1 => 'ፕሮሰሰር ፍጥነት ይምረጡ',
+            2 => [
+                "Under 1 GHz" => "ከ1 GHz በታች",
+                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
+                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
+                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
+                "Over 3.0GHz" => "ከ3.0 GHz በላይ",
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldRam' => [
+            0 => 'የRAM ሜሞሪ መጠን',
+            1 => 'RAM ሜሞሪ ይምረጡ',
+            2 => [
+                "Under 1GB" => "ከ1 GB በታች",
+                "1.0 - 1.9GB" => "1.0 - 1.9GB",
+                "2.0 - 2.9GB" => "2.0 - 2.9GB",
+                "3.0 - 3.9GB" => "3.0 - 3.9GB",
+                "Over 4.0GB" => "ከ4.0GB GHz በላይ",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ]
+    ],
     'phone' => [],
-    'electronic' => [],
-    'household' => [],
-    'other' => [],
+    'electronic' => [
+        'Uploading' => 'ኤሌክትሮኒክስ የማስገቢያ ቅፅ',
+        'idCategory' => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+                'Camera' => 'ካሜራ',
+                'Refrigerator' => 'ማቀዝቀዣ (ፍሪጅ)',
+                'Games' => 'የኤሌክትሮኒክስ መጫዎቻ',
+                'Headphone' => 'የጆሮ ማዳመጫ',
+                'Watch' => 'የእጅ ሰዓት ፣ የግድግዳ ሰዓት፣ ወዘተ',
+                'Tape Recorder' => 'የድምፅ መቅጃ መቅረጫ)',
+                'TV' => 'ቴሌቪዥን',
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ]
+    ],
+    'household' => [
+        'Uploading' => 'የቤት ዕቃዎች የማስገቢያ ቅፅ',
+        'idCategory' => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [                
+                'Furniture' => 'ወንበር ፣ ጠረጴዛ፣ ሶፋ፣ አልጋ፣ ወዘተ',
+                'Kitchen Stuff' => 'የወጥ ቤት ዕቃዎች (ምድጃ፣ድስት) ወዘተ',
+                'Shower Stuff' => 'የመጸዳጃ የቤት ዕቃዎች',
+                'Other households' => 'የተለያዩ የቤት ዕቃዎች',
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ]
+    ],
+    'other' => [
+        'Uploading' => 'የተለያዩ ዕቃዎች የማስገቢያ ቅፅ',
+        'idCategory' => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+            ]
+        ]
+    ],
     'common' => [
         'fieldLocation'    => [
             0 => 'ንብረቱ የሚገኘበት ቦታ',
@@ -599,7 +722,7 @@ $item_specific_array = [
                 'silver' => 'ሲልቨር',
                 'liver' => 'ጉበትማ',
                 'brown' => 'ቡናማ',
-                'unknown' => 'አይታወቅም'
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',

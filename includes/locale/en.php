@@ -524,40 +524,145 @@ $item_specific_array = [
         'fieldMilage' => [
             0 => 'Milage [Km]',
             1 => 'Choose Milage',
-            2 => ['unknown' => 'Unknown']
+            2 => ['unlisted' => '-- Not listed --']
         ],
         'fieldNoOfSeat' => [
             0 => 'Number of Seats',
             1 => 'Choose Number of Seats',
             2 => [
                 'over100' => 'Over 100',
-                'unknown' => 'Unknown'
-            ]
-        ],
-        'fieldColor'       => [
-            0 => 'Color',
-            1 => 'Choose Color',
-            2 => [
-                'red' => 'Red',
-                'green' => 'Green',
-                'blue' => 'Blue',
-                'yellow' => 'Yellow',
-                'black' => 'Black',
-                'white' => 'White',
-                'gray' => 'Gray',
-                'silver' => 'Silver',
-                'liver' => 'Liver',
-                'brown' => 'Brown',
-                'unknown' => 'Unknown'
+                'unlisted' => '-- Not listed --'
             ]
         ]
     ],
     'house' => [],
-    'computer' => [],
+    'computer' => [
+        'Uploading' => 'Uploading Computer',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [
+                'Laptop' => 'Laptop',
+                'Notebook' => 'Notebook',
+                'Stationary' => 'Stationary',
+                'Tablets' => 'Tablets',
+                'Workstations' => 'Workstations',
+                'Other' => 'Other',
+            ]
+        ],
+        'fieldMade'        => [
+            0 => 'Make',
+            1 => 'Choose Make',
+            2 => [
+                "acer" => "acer",
+                "alienware" => "alienware",
+                "apple" => "apple",
+                "asus" => "asus",
+                "cybertonpc" => "cybertonpc",
+                "cyberpower" => "cyberpower",
+                "dell" => "dell",
+                "gateway" => "gateway",
+                "hp" => "hp",
+                "ibuypower" => "ibuypower",
+                "lenovo" => "lenovo",
+                "sony" => "sony",
+                "toshiba" => "toshiba",
+                "msi" => "msi",
+                'unknown' => 'unknown'
+            ]
+        ],
+        'fieldModel'       => [
+            0 => 'Model',
+            1 => 'Write Model'
+        ],
+        'fieldHardDrive'   => [
+            0 => 'Hardisk (GB)',
+            1 => 'Choose Hardisk',
+            2 => [
+                "Under 200GB" => "Under 200GB",
+                "200 - 299GB" => "200 - 299GB",
+                "300 - 499GB" => "300 - 499GB",
+                "Over 500GB" => "Over 500GB",
+                'unknown' => 'unknown'
+            ]
+        ],
+        'fieldOs'   => [
+            0 => 'OS (Operating System)',
+            1 => 'Choose OS',
+            2 => [
+                "Windows" => "Windows",
+                "Linux" => "Linux",
+                "Unix" => "Unix",
+                "Mac" => "Mac",
+                'unlisted' => '-- Not listed --',
+            ]
+        ],
+        'fieldProcessor'   => [
+            0 => 'Processor',
+            1 => 'Choose Processor',
+            2 => [
+                "Under 1 GHz" => "Under 1 GHz",
+                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
+                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
+                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
+                "Over 3.0GHz" => "Over 3.0GHz",
+                'unlisted' => '-- Not listed --'
+            ]
+        ],
+        'fieldRam' => [
+            0 => 'RAM memory',
+            1 => 'Choose RAM',
+            2 => [
+                "Under 1GB" => "Under 1GB",
+                "1.0 - 1.9GB" => "1.0 - 1.9GB",
+                "2.0 - 2.9GB" => "2.0 - 2.9GB",
+                "3.0 - 3.9GB" => "3.0 - 3.9GB",
+                "Over 4.0GB" => "Over 4.0GB",
+                'unlisted' => '-- Not listed --'
+            ]
+        ]
+    ],
     'phone' => [],
-    'electronic' => [],
-    'household' => [],
-    'other' => [],
+    'electronic' => [
+        'Uploading' => 'Uploading Electronics',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [
+                'Camera' => 'Camera',
+                'Refrigerator' => 'Fridge',
+                'Games' => 'Games',
+                'Head Phone' => 'Head Phone',
+                'Watch' => 'Watch',
+                'Tape Recorder' => 'Tape Recorder',
+                'TV' => 'TV',
+                'unlisted' => '-- Not listed --'
+            ]
+        ]
+    ],
+    'household' => [
+        'Uploading' => 'Uploading Household',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [
+                'Furniture' => 'Furniture',
+                'Kitchen Stuff' => 'Kitchen Stuff',
+                'Shower Stuff' => 'Shower Stuff',
+                'Other households' => 'Other households',
+                'Other' => 'Other',
+            ]
+        ]
+    ],    
+    'other' => [
+        'Uploading' => 'Uploading Miscellaneous',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [                
+            ]
+        ]
+    ],
     'common' => [
         'fieldLocation'    => [
             0 => 'Location',
@@ -635,7 +740,7 @@ $item_specific_array = [
                 'silver' => 'Silver',
                 'liver' => 'Liver',
                 'brown' => 'Brown',
-                'unknown' => 'Unknown',
+                'unlisted' => '-- Not listed --',
             ]
         ],
         'Choose Images here' => 'Choose Images here',
@@ -649,8 +754,6 @@ $item_specific_array = [
             ],
         ]
     ]
-
-
 ];
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['item_specific_array'] = $item_specific_array;

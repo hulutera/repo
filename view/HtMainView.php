@@ -42,7 +42,7 @@ class HtMainView
                 if ($filter != null) {
                     $this->showItem($filter);
                 } else {
-                    $this->showItemWithId();
+                    //$this->showItemWithId();
                 }
             }
     }
@@ -62,7 +62,7 @@ class HtMainView
             $runnerObj = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $row['id']);
             $this->_runnerId = $runnerObj->getId();
             $this->_runnerName = $runnerObj->getFieldItemName();
-            $this->showItemWithId();
+            //$this->showItemWithId();
         }
     }
 
@@ -110,7 +110,7 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
-        $this->_pItem->elemSetter($row);
+        $this->_pItem->setFieldAll($row);
         $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . $id;
@@ -201,7 +201,7 @@ class HtMainView
             while ($row = $result->fetch_assoc()) {
                 $this->_runnerId = $row['id'];
                 $this->_runnerName = $key;
-                $this->showItemWithId();
+                //$this->showItemWithId();
             }
         }
     }
@@ -218,7 +218,7 @@ class HtMainView
      */
     public function upload()
     {
-        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId);
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, null);
         $this->_pItem->upload();
     }
 

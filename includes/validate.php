@@ -113,6 +113,8 @@ class ValidateForm
                     array_push($err, $input);
                 }
             }
+        }else if(isset($_POST["fieldPriceSell"])){
+            $this->validatePrice($err, "fieldPriceSell");
         }
 
         /**

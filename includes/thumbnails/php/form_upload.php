@@ -28,7 +28,6 @@ var_dump($err2);
 var_dump($_POST);
 if (strpos($_POST['fieldLocation'], $GLOBALS['lang']['Choose']) !== false)
 	echo $GLOBALS['lang']['Choose'];
-echo "fieldPriceRent = " . $_POST['fieldPriceRent'];
 
 if (!empty($err2)) {
 	$_SESSION['POST'] = $_POST;

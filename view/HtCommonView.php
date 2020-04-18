@@ -587,7 +587,7 @@ class HtCommonView extends MySqlRecord {
             $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
             $result = $itemObj->getResultSet();
             while ($row = $result->fetch_array()) {
-                $itemObj->elemSetter($row);
+                $itemObj->setFieldAll($row);
                 $this->showRowContent($itemObj);                
             }
             

@@ -128,7 +128,7 @@ class MySqlRecord extends Model
     {
         ___open_div_("row", "");
         ___open_div_('col-md-12 upload-header alert alert-info" role="alert', '');
-        echo '<strong><p class="h2">'.$GLOBALS['item_specific_array'][$item]['Uploading'].'</strong></p>';
+        echo '<strong><p class="h2">' . $GLOBALS['item_specific_array'][$item]['Uploading'] . '</strong></p>';
         ___close_div_(2);
 
         ___open_div_("row", "");
@@ -139,7 +139,7 @@ class MySqlRecord extends Model
         ___close_div_(1);
         ////
         ___open_div_("col-md-6", '');
-        $this->insertFieldTitle();
+        $this->insertFieldText('fieldTitle', 'common');
         ___close_div_(1);
         ___close_div_(3);
     }
@@ -157,28 +157,28 @@ class MySqlRecord extends Model
         $this->insertSelectable('fieldLocation', 'common', $selectable);
     }
 
-    protected function insertFieldTitle()
+    protected function insertFieldText($fieldName, $item)
     {
         $errorMsg = "";
         $errorClass = '';
-        if (isset($_SESSION['errorRaw']['fieldTitle'])) {
+        if (isset($_SESSION['errorRaw'][$fieldName])) {
             $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][1];
             $errorClass = ' alert-custom';
         }
 
-        $title = $GLOBALS['item_specific_array']['common']['fieldTitle'][0];
-        $placeholder = $GLOBALS['item_specific_array']['common']['fieldTitle'][1];
+        $title = $GLOBALS['item_specific_array'][$item][$fieldName][0];
+        $placeholder = $GLOBALS['item_specific_array'][$item][$fieldName][1];
         $choose = "";
-        if (isset($_SESSION['POST']['fieldTitle'])) {
-            $choose = $_SESSION['POST']['fieldTitle'];
+        if (isset($_SESSION['POST'][$fieldName])) {
+            $choose = $_SESSION['POST'][$fieldName];
         }
-        
+
         ___open_div_("row", '');
         ___open_div_("col-md-12", $errorClass);
         ___open_div_("form-group", '');
         echo <<< EOD
-        <label for="fieldTitle">{$title}</label> {$errorMsg}
-         <input id="fieldTitle" name="fieldTitle" type="text" placeholder="{$placeholder}" value="{$choose}" class="form-control">
+        <label for="{$fieldName}">{$title}</label> {$errorMsg}
+         <input id="{$fieldName}" name="{$fieldName}" type="text" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
         ___close_div_(3);
     }
@@ -229,7 +229,7 @@ EOD;
 EOD;
     }
 
-    protected function inputPriceRentOrSell()
+    protected function selectPriceRentOrSell()
     {
         $selectable = [];
         $rentOrSell = $GLOBALS['item_specific_array']['common']['rentOrSell'][2];
@@ -272,34 +272,40 @@ EOD;
         }
         $this->insertSelectable('fieldPriceRate', 'common', $selectable);
     }
-    protected function insertPriceTypeRent()
+    protected function insertPriceTypeRent($option = null)
     {
-        $style = "display: none;";
-        if (
-            isset($_SESSION['POST']["rentOrSell"]) &&
-            ($_SESSION['POST']["rentOrSell"] === "fieldPriceRent" || $_SESSION['POST']["rentOrSell"] === "both")
-        ) {
-            $style = "display: block;";
+        $style = "display: block;";
+        if (!empty($option)) {
+            $style = "display: none;";
+            if (
+                isset($_SESSION['POST']["rentOrSell"]) &&
+                ($_SESSION['POST']["rentOrSell"] === "fieldPriceSell" || $_SESSION['POST']["rentOrSell"] === "both")
+            ) {
+                $style = "display: block;";
+            }
         }
         ___open_div_("row", '');
         ___open_div_("col-md-12", '');
         ___open_div_("form-group fieldPriceRent", '" style="' . $style);
-        $this->insertFieldPriceRent();
+        $this->insertFieldPriceRent($option);
         $this->insertFieldPriceRate();
         ___close_div_(3);
     }
-    protected function insertFieldPriceRent()
+    protected function insertFieldPriceRent($option = null)
     {
-        $this->insertPriceType('fieldPriceRent');
+        $this->insertPriceType('fieldPriceRent', $option);
     }
-    protected function insertPriceTypeSell()
+    protected function insertPriceTypeSell($option = null)
     {
-        $style = "display: none;";
-        if (
-            isset($_SESSION['POST']["rentOrSell"]) &&
-            ($_SESSION['POST']["rentOrSell"] === "fieldPriceSell" || $_SESSION['POST']["rentOrSell"] === "both")
-        ) {
-            $style = "display: block;";
+        $style = "display: block;";
+        if (!empty($option)) {
+            $style = "display: none;";
+            if (
+                isset($_SESSION['POST']["rentOrSell"]) &&
+                ($_SESSION['POST']["rentOrSell"] === "fieldPriceSell" || $_SESSION['POST']["rentOrSell"] === "both")
+            ) {
+                $style = "display: block;";
+            }
         }
         ___open_div_("row", '');
         ___open_div_("col-md-12", '');
@@ -329,7 +335,7 @@ EOD;
         }
         $this->insertSelectable('fieldColor', 'common', $selectable);
     }
-    protected function insertPriceType($marketType)
+    protected function insertPriceType($marketType, $option = null)
     {
         $errorMsg = "";
         $errorClass = "";
@@ -348,13 +354,16 @@ EOD;
             }
         }
 
-        $style = "display: none;";
-        if (
-            isset($_SESSION['POST']["rentOrSell"]) &&
-            ($_SESSION['POST']["rentOrSell"] == $marketType ||
-                $_SESSION['POST']["rentOrSell"] == "both")
-        ) {
-            $style = "display: block;";
+
+        $style = "display: block;";
+        if (!empty($option)) {
+            $style = "display: none;";
+            if (
+                isset($_SESSION['POST']["rentOrSell"]) &&
+                ($_SESSION['POST']["rentOrSell"] === $marketType || $_SESSION['POST']["rentOrSell"] === "both")
+            ) {
+                $style = "display: block;";
+            }
         }
 
         $type = $GLOBALS['item_specific_array']['common'][$marketType];
@@ -385,7 +394,16 @@ EOD;
         $selected = 0;
         $label = $GLOBALS['item_specific_array'][$source][$fieldName][0];
         $choose = $GLOBALS['item_specific_array'][$source][$fieldName][1];
-        $types = $GLOBALS['item_specific_array'][$source][$fieldName][2];
+        $types = [];
+        if (empty($selectable)) {
+            $types = $GLOBALS['item_specific_array'][$source][$fieldName][2];
+        } else {
+            foreach ($selectable as $row) {
+                foreach ($row as $key => $value) {
+                    $types[$key] = $value;
+                }
+            }
+        }
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST'][$fieldName])) {
             if (strpos($_SESSION['POST'][$fieldName], $GLOBALS['lang']['Choose']) !== false) {
@@ -410,19 +428,12 @@ EOD;
 <option value="{$choose}">{$choose}</option>
 EOD;
         }
-        if (empty($selectable)) {
-            foreach ($types as $key => $value) {
-                echo '
+
+        foreach ($types as $key => $value) {
+            echo '
         <option value = "' . $key . '">' . $value . '</option>';
-            }
-        } else {
-            foreach ($selectable as $row) {
-                foreach ($row as $key => $value) {
-                    echo '
-                    <option value = "' . $key . '">' . $value . '</option>';
-                }
-            }
         }
+
         echo '</select>';
         ___close_div_(3);
     }
@@ -434,17 +445,72 @@ EOD;
         ___open_div_("form-group", "");
 
         ___open_div_("col-md-6", '');
-        $this->inputPriceRentOrSell();
+        $this->selectPriceRentOrSell();
         $this->insertFieldPriceNego();
         $this->insertFieldPriceCurrency();
-        ___close_div_(1);//col-md-6
+        ___close_div_(1); //col-md-6
 
         ___open_div_("col-md-6", '');
-        $this->insertPriceTypeRent();
-        $this->insertPriceTypeSell();
-        ___close_div_(1);//col-md-6
+        $this->insertPriceTypeRent('rentOrSell');
+        $this->insertPriceTypeSell('rentOrSell');
+        ___close_div_(1); //col-md-6
 
-        ___close_div_(3);//top-3
+        ___close_div_(3); //top-3
+    }
+
+    protected function insertAllField($itemName, $skipRow = null)
+    {
+        ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
+        ///
+        if ($skipRow != 1) {
+            $this->insertHeader($itemName);
+        }
+        ///
+        if ($skipRow != 2) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
+            ___open_div_("form-group upload", "");
+
+            ___open_div_("col-md-12", '');
+            $this->insertSelectable('idCategory', $itemName);
+            ___close_div_(1);
+            ___close_div_(3); //top-3
+        }
+        ///
+        if ($skipRow != 3) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+            ___open_div_("form-group upload", "");
+            $this->insertFieldPriceNego();
+            $this->insertFieldPriceCurrency();
+            $this->insertPriceTypeSell();
+            ___close_div_(3);
+        }
+        ///
+        if ($skipRow != 4) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+            ___open_div_("form-group upload", "");
+            $this->insertFieldContactMethod();
+            ___close_div_(3);
+        }
+        ///  
+        if ($skipRow != 5) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
+            ___open_div_("form-group upload", "");
+            $this->insertItemImages();
+            ___close_div_(3);
+        }
+        ///
+        if ($skipRow != 6) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
+            ___open_div_("form-group upload", "");
+            echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
+            ___close_div_(3);
+        }
+        ___close_div_(1);
     }
 }
 function ___open_div_($class, $options)
