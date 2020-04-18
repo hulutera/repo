@@ -1268,8 +1268,6 @@ class HtItemCar extends MySqlRecord
         if (!empty($id)) {
             $this->select($id, $status);
         }
-        var_dump($id);
-        var_dump($status);
     }
 
     /**
@@ -1319,14 +1317,18 @@ class HtItemCar extends MySqlRecord
 
 /**
  * Run a car query with a request
- * 
+ * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+ * $start: the first item to fetch
+ * $itemPerPage: the total number of items to be fetched from the table
+ * return: the number of affected rows
+ * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
  */
-    public function runQuery($filter, $start=null, $end=null)
+    public function runQuery($filter, $start=null, $itemPerPage=null)
     {
-        if($start == null) {
-            $sql =  "SELECT * FROM item_car WHERE $filter";
+        if($end == null) {
+            $sql =  "SELECT * FROM item_car INNER JOIN category_car ON item_car.id_category = category_car.id WHERE $filter";
         } else {
-            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
+            $sql =  "SELECT * FROM item_car INNER JOIN category_car ON item_car.id_category = category_car.id WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);
@@ -1335,10 +1337,9 @@ class HtItemCar extends MySqlRecord
         return $this->affected_rows;
     }
 
-
-
     /* 
     ** Set the car element values
+    * $rows: it takes the array of one item row and it sets the values
     */
     public function setFieldAll($row)
     {
@@ -1536,15 +1537,37 @@ SQL;
      */
     public function display()
     {
-        echo $this->getFieldMake()   ? "<p><strong>Make:&nbsp</strong>" . $this->getFieldMake() . "</p>" : "";
-        echo $this->getFieldModel() != "0000"       ? "<p><strong>Model:&nbsp</strong>" . $this->getFieldModel() . "</p>" : "";
-        echo $this->getIdCategory() ? "<p><strong>Type:&nbsp</strong>" . $this->getIdCategory() . "</p>" : "";
-        echo $this->getFieldModelYear() != "0000"       ? "<p><strong>Year of Make:&nbsp</strong>" . $this->getFieldModelYear() . "</p>" : "";
-        echo $this->getFieldFuelType()     ? "<p><strong>Fuel:&nbsp</strong>" . $this->getFieldFuelType() . "</p>" : "";
-        echo $this->getFieldNoOfSeat()     ? "<p><strong>Nr of Seats:&nbsp</strong>" . $this->getFieldNoOfSeat() . "</p>" : "";
-        echo $this->getFieldColor() != "999"     ? "<p><strong>Color:&nbsp</strong>" .  $this->getFieldColor() . "</p>" : "";
-        echo $this->getFieldMilage()      ? "<p><strong>Milage:&nbsp</strong>" . $this->getFieldMilage() . "</p>" : "";
-        echo $this->getFieldGearType()      ? "<p><strong>Gear:&nbsp</strong>" . $this->getFieldGearType() . "</p>" : "";
+        echo $this->getFieldMake()   ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldMake"][0].':&nbsp</strong>' . $this->getFieldMake() . '</p>' : "";
+        echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
+        echo $this->getIdCategory() ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][2][$this->carCategory($this->getidCategory())] . '</p>' : "";
+        
+        //Check the upload inputs
+        if($this->getFieldModelYear() == "unknown" or ((int) ($this->getFieldModelYear()) < 1980)) {
+            $year = $GLOBALS["item_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
+        } else {
+            $year = $this->getFieldModelYear();
+        }
+        echo $this->getFieldModelYear() != "0000"   ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModelYear"][0].':&nbsp</strong>'.$year.'</p>' : "";
+        echo $this->getFieldFuelType()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp</strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</p>' : "";
+        
+        // Needs some modification in upload for over or unlisted values
+        if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "unlisted") {
+            $noSeat = $GLOBALS["item_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
+        } else {
+            $noSeat = $this->getFieldNoOfSeat();
+        }
+        echo $this->getFieldNoOfSeat()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp</strong>' . $noSeat . '</p>' : "";
+        echo $this->getFieldColor() != "999"     ? '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</p>' : "";
+
+        // Need to check the upload for over or unlisted values
+        if($this->getFieldMilage() == "unlisted") {
+            $milage = $GLOBALS["item_specific_array"]["car"]["fieldMilage"][2][$this->getFieldMilage()];
+        } else {
+            $milage = $this->getFieldMilage();
+        }
+        echo $this->getFieldMilage()      ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldMilage"][0].':&nbsp</strong>'.  $milage . "</p>" : "";
+        
+        echo $this->getFieldGearType()      ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldGearType"][0].':&nbsp</strong>'. $GLOBALS["item_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</p>' : "";
         echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
     }
 
@@ -1731,8 +1754,8 @@ SQL;
     private function insertFieldMilage()
     {
         $selectable = [];
-        for ($start = 0; $start <= 4000000; $start += 500000) {
-            $end = $start + 499999;
+        for ($start = 0; $start <= 500000; $start += 50000) {
+            $end = $start + 49999;
             $input = [$start . '-' . $end => $start . '-' . $end];
             array_push($selectable, $input);
         }
@@ -1744,7 +1767,7 @@ SQL;
     private function insertFieldNoOfSeat()
     {
         $selectable = [];
-        for ($start = 0; $start <= 100; $start += 5) {
+        for ($start = 1; $start <= 100; $start += 5) {
             $end = $start + 4;
             $input = [$start . '-' . $end => $start . '-' . $end];
             array_push($selectable, $input);
@@ -1752,5 +1775,61 @@ SQL;
         $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['unknown'];
         array_push($selectable, ["unknown" => $unknown]);
         $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
+    }
+
+    /**
+     * input: category id
+     * return car type name No need to connect to DB
+     */
+    public function carCategory($categoryId) {
+        switch ($categoryId){
+            case 1:
+                $catName = "Bus";
+                Break;
+            case 2:
+                $catName = "Compact Car";
+                Break;
+            case 3:
+                $catName = "Converitble";
+                Break;
+            case 4:
+                $catName = "Full Size Van";
+                Break;
+            case 5:
+                $catName = "Hatchback";
+                Break;
+            case 6:
+                $catName = "Heavy Machinery";
+                Break;
+            case 7:
+                $catName = "Luxury Car";
+                Break;
+            case 8:
+                $catName = "Minibus";
+                Break;
+            case 9:
+                $catName = "Pickup";
+                Break;
+            case 10:
+                $catName = "Small Car";
+                Break;
+            case 11:
+                $catName = "Sport Car";
+                Break;
+            case 12:
+                $catName = "Station Wagon";
+                Break;
+            case 13:
+                $catName = "SUV";
+                Break;
+            case 14:
+                $catName = "Taxi";
+                Break;
+            case 15:
+                $catName = "Truck";
+                Break;
+        }
+        return $catName;
+        
     }
 }

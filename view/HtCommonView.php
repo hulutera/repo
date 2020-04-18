@@ -172,9 +172,9 @@ class HtCommonView extends MySqlRecord {
         $yesterday   = strtotime("yesterday");
         $tomorrow    = strtotime("tomorrow");
         if ($datetimestr >= $today) {
-            echo "<div class=\"date\"> Today </div></br>";
+            echo '<div class="date">' .$GLOBALS['lang']["today"] . '</div></br>';
         } else if ($datetimestr >= $yesterday) {
-            echo "<div class=\"date\">Yesterday</div></br>";
+            echo '<div class="date">' . $GLOBALS['lang']["yesterday"] . '</div></br>';
         } else {
             echo '<div class="date">' . $datetime . '</div></br>';
         }
@@ -209,10 +209,9 @@ class HtCommonView extends MySqlRecord {
 
     public function displayLocation($itemObj)
     {
-        
-        $loc =  $itemObj->getFieldLocation();
+       $loc =  $itemObj->getFieldLocation();
         if ($loc != "") {
-            echo "<div class=\"location\">" . $loc . "</div>";
+            echo '<div class="location">'.$GLOBALS['lang']["$loc"]. '</div>';
         }
     }
     /*@function to display market type /SELL/RENT
@@ -220,8 +219,9 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMarketType($itemObj)
     {
+        $mrkTyp = $GLOBALS["item_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
         if ($mkTyp != "No Action") {
-            echo "<div id=\"text_sellRent\">" . strtoupper($itemObj->getFieldMarketCategory()) . "</div></br>";
+            echo '<div id="text_sellRent">' . $mrkTyp . "</div></br>";
         }
     }
 
@@ -327,14 +327,14 @@ class HtCommonView extends MySqlRecord {
         
         echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
         echo "</br>";
-        echo "<div class=\"header\"><label>Contact</label></div>";
+        echo '<div class="header"><label>'.$GLOBALS["lang"]["Contact method"].'</label></div>';
         if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
-			<img src =\"$pImage->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">Send a message/መልእክት ለባለንብረቱ ይላኩ</a></div>";
+			<img src =\"$pImage->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">".$GLOBALS['lang']['Send a message']."</a></div>";
         if ($contactType == "phone" or $contactType == "both")
             echo "<div class=\"phone\">
-			<img src =\"$pImage->PATH_PHN_ICON\"><label>" . $userName . ":" . $phone . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($id,'$itemName')\">Report Abuse/ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ</a></div>";
+			<img src =\"$pImage->PATH_PHN_ICON\"><label>" . $userName . " : " . $phone . "</label></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($id,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -442,6 +442,7 @@ class HtCommonView extends MySqlRecord {
     
     public function displayPrice($itemObj)
     {
+        global $lang;
         echo "<div class=\"price\">";
         switch ($this->_itemName) {
             case "car":
@@ -449,7 +450,7 @@ class HtCommonView extends MySqlRecord {
                 $rentValue = $itemObj->getFieldPriceRent();
                 $sellValue = $itemObj->getFieldPriceSell();
                 $negoValue = $itemObj->getFieldPriceNego();
-                $negoDisplay = ($negoValue == 'Yes') ? "Negotiable" : "";
+                $negoDisplay = ($negoValue == 'Yes') ? $GLOBALS["item_specific_array"]["common"]["fieldPriceNego"][2]['Yes'] : "";
                 $curr  = $itemObj->getFieldPriceCurrency();
                 $rate  = $itemObj->getFieldPriceRate();
 
@@ -464,11 +465,10 @@ class HtCommonView extends MySqlRecord {
                 $nego          =  !$rentValue && !$sellValue &&  $negoValue;
 
                 //display var
-                $rent_var = "<p style=\"text-indent: 10px;\"><strong>Rent:&nbsp</strong>" . $rentValue . " " . $curr . "/" . $rate . "</p>";
-                $sell_var = "<p style=\"text-indent: 10px;\"><strong>Sell:&nbsp</strong>" . $sellValue . " " . $curr . "</p>";
-                $nego_var = "<p style=\"text-indent: 10px;\">" . $negoDisplay . "/መደራደር ይቻላል/</p>";
-                echo "<p><strong>Price:</strong></p>";
-
+                $rent_var = '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp</strong>' . $rentValue . ' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
+                $sell_var = '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp</strong>' . $sellValue . ' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                $nego_var = '<p>&nbsp&nbsp' . $negoDisplay . "</p>";
+                
                 if ($rentsellwnego) {
                     echo $rent_var . $sell_var . $nego_var;
                 } else if ($sellnego) {

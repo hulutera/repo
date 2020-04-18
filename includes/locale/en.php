@@ -391,7 +391,11 @@ $lang = array(
     'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'search res' => 'Search Result',
     'Back to Post Item' => "Back to Post Item",
-    'Invalid' => "Invalid"
+    'Invalid' => "Invalid",
+    'unknown' => 'Unknown',
+    'unlisted' => '-- Unlisted --',
+    'today' => 'Today',
+    'yesterday' => 'Yesterday'
 );
 
 $city_lang_arr = array(
@@ -494,10 +498,10 @@ $item_specific_array = [
             0 => 'Year Made',
             1 => 'Choose Year Made',
             2 => [
-                '1940' => 'Before 1940',
-                '1950' => '1940-1950',
-                '1960' => '1950-1960',
-                '1970' => '1970-1980',
+                '1970' => '1970 - 1979',
+                '1960' => '1960 - 1969',
+                '1950' => '1950 - 1959',
+                '1940' => 'Before 1950',
                 'unknown' => 'unknown'
             ]
         ],
@@ -505,20 +509,20 @@ $item_specific_array = [
             0 => 'Gear Type',
             1 => 'Choose Gear Type',
             2 => [
-                'manual' => 'Manual',
-                'automatic' => 'Automatic',
-                'semi-automatic'  => 'Semi-automatic'
+                'Manual' => 'Manual',
+                'Automatic' => 'Automatic',
+                'Semi-automatic'  => 'Semi-automatic'
             ]
         ],
         'fieldFuelType'   => [
             0 => 'Fuel Type',
             1 => 'Choose Fuel Type',
             2 => [
-                'bensine' => 'Bensine',
-                'bensine-electric' => 'Bensine/Electric',
-                'electric' => 'Electric',
-                'diesel'  => 'Diesel',
-                'bio-gas' => 'Bio-gas',
+                'Bensine' => 'Bensine',
+                'Diesel'  => 'Diesel',
+                'Electric' => 'Electric',                
+                'Bio-gas' => 'Bio-gas',
+                'Hybrid' => 'Hybrid'
             ]
         ],
         'fieldMilage' => [
@@ -708,13 +712,18 @@ $item_specific_array = [
             0 => 'Price is negotiable',
             1 => 'Choose negotiable',
             2 => [
-                'yes' => 'Yes',
-                'no' => 'No',
+                'Yes' => 'Price is negotiable',
+                'No' => 'Price is not negotiable',
             ]
         ],
         'fieldTitle' => [
             0 => 'Title',
             1 => 'Write title here'
+        ],
+        'marketType' => [
+            'rent' => 'RENT',
+            'sell' => 'SELL',
+            'rent and sell' => 'RENT OR SELL'
         ],
         'Extra Info' => 'Extra Info',
         'fieldContactMethod' => [

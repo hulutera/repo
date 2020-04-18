@@ -81,14 +81,13 @@ class HtMainView
         $rows = $this->_pItem->runQuery($condition);
         if($rows > 0) {
             $calculatePageArray = calculatePage($rows);
-            $start = HtGlobal::get('itemPerPage') * ($calculatePageArray[0] - 1);
-            $end = $calculatePageArray[1];
-            $result = $this->_pItem->runQuery($condition, $start, $end);
-            $res = $this->_pItem->getResultSet();
-            while ($row = $res->fetch_assoc()) {
+            $start = ($calculatePageArray[0] - 1) * HtGlobal::get('itemPerPage');
+            $res = $this->_pItem->runQuery($condition, $start, HtGlobal::get('itemPerPage'));
+            $result = $this->_pItem->getResultSet();
+            while ($row = $result->fetch_assoc()) {
                 $this->showItemWithId($row);
             }
-            pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
+            pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
         } else {
             $this->itemNotFound();
         }
@@ -156,9 +155,9 @@ class HtMainView
         echo "</div>"; //end_detail
         //---------------------------------------------------------
         echo "<div class=\"showbutton_show\">
-		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
+		<input class=\"show\" type=\"button\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
-		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
+		value=\"".$GLOBALS['lang']['Show Detail']."\"/></div>";
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
         echo "<div class=\"clear\"></div>";
@@ -168,7 +167,7 @@ class HtMainView
         $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
         echo "<div class=\"showbutton_hide\">
 		<input class=\"hide-detail\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
-		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
+		value=\"".$GLOBALS['lang']['Hide Detail']."\"/></div>";
         echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $commonViewObj->displayTitle($this->_pItem);
         $this->_pItem->display();
