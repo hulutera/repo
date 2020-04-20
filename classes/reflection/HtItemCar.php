@@ -1325,10 +1325,10 @@ class HtItemCar extends MySqlRecord
  */
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
-        if($end == null) {
+        if($itemPerPage == null) {
             $sql =  "SELECT * FROM item_car WHERE $filter";
         } else {
-            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
+            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);
@@ -1541,8 +1541,8 @@ SQL;
         echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
         echo $this->getIdCategory() ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][2][$this->carCategory($this->getidCategory())] . '</p>' : "";
         
-        //Check the upload inputs
-        if($this->getFieldModelYear() == "unknown" or ((int) ($this->getFieldModelYear()) < 1980)) {
+        // Due to the inclusion of some words
+        if($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
             $year = $GLOBALS["item_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
         } else {
             $year = $this->getFieldModelYear();
@@ -1550,16 +1550,16 @@ SQL;
         echo $this->getFieldModelYear() != "0000"   ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModelYear"][0].':&nbsp</strong>'.$year.'</p>' : "";
         echo $this->getFieldFuelType()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp</strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</p>' : "";
         
-        // Needs some modification in upload for over or unlisted values
-        if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "unlisted") {
-            $noSeat = $GLOBALS["item_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
+        // Due to the inclusion of some words
+        if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
+            $noSeat = $GLOBALS["item_specific_array"]["car"]["fieldNoOfSeat"][2][$this->getFieldNoOfSeat()];
         } else {
             $noSeat = $this->getFieldNoOfSeat();
         }
         echo $this->getFieldNoOfSeat()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp</strong>' . $noSeat . '</p>' : "";
         echo $this->getFieldColor() != "999"     ? '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</p>' : "";
 
-        // Need to check the upload for over or unlisted values
+        // Due to the inclusion of some words
         if($this->getFieldMilage() == "unlisted") {
             $milage = $GLOBALS["item_specific_array"]["car"]["fieldMilage"][2][$this->getFieldMilage()];
         } else {
@@ -1754,7 +1754,7 @@ SQL;
     private function insertFieldMilage()
     {
         $selectable = [];        
-        $selectable = $this->lister(0,4000000, 500000);
+        $selectable = $this->lister(0,500000, 50000);
         $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unlisted'];
         array_push($selectable, ["unlisted" => $unknown]);
         $this->insertSelectable('fieldMilage', 'car', $selectable);
@@ -1764,8 +1764,8 @@ SQL;
     {
         $selectable = [];        
         $selectable = $this->lister(1,100, 5);
-        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['unlisted'];
-        array_push($selectable, ["unlisted" => $unknown]);
+        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['000'];
+        array_push($selectable, ["000" => $unknown]);
         $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
     }
 

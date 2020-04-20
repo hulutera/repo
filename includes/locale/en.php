@@ -503,7 +503,7 @@ $item_specific_array = [
                 '1960' => '1960 - 1969',
                 '1950' => '1950 - 1959',
                 '1940' => 'Before 1950',
-                'unknown' => 'unknown'
+                '000' => 'unknown'
             ]
         ],
         'fieldGearType'   => [
@@ -535,8 +535,8 @@ $item_specific_array = [
             0 => 'Number of Seats',
             1 => 'Choose Number of Seats',
             2 => [
-                'over100' => 'Over 100',
-                'unlisted' => '-- Not listed --'
+                '101' => 'Over 100',
+                '000' => '-- Not listed --'
             ]
         ]
     ],
