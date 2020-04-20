@@ -340,6 +340,7 @@ $lang = array(
     'new e-mail' => 'New e-mail',
     'save' => 'Save',
     'close' => 'Close',
+    'report' => 'Report',
     'change password' => 'Change password',
     'current password' => 'Current password',
     'new password' => 'New password',
@@ -915,6 +916,22 @@ $item_specific_array = [
                 'rentOrSell' => ' Should be provided.!</br>',
                 'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>'
             ],
+        ],
+        'abuseTypes' => [
+            0 => [
+                '000' => 'Choose Type',
+                'Bullying' => 'Bullying',
+                'Copyright' => 'Copyright',
+                'Discrimination' => 'Discrimination',
+                'Spam' => 'Spam',
+                'Identity theft' => 'Identity theft',
+                'Political violence' => 'Political violence',
+                'Race violence' => 'Race violence',
+                'Sex Abuse' => 'Sex Abuse',
+                'Sexual Content' => 'Sexual Content',
+                'Religious violence' => 'Religious violence',
+                'Other' => 'Other'
+            ]
         ]
     ]
 ];

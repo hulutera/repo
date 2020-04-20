@@ -171,6 +171,7 @@ class HtCommonView extends MySqlRecord {
         $today       = strtotime("today");
         $yesterday   = strtotime("yesterday");
         $tomorrow    = strtotime("tomorrow");
+               
         if ($datetimestr >= $today) {
             echo '<div class="date">' .$GLOBALS['lang']["today"] . '</div></br>';
         } else if ($datetimestr >= $yesterday) {
@@ -200,7 +201,8 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMake($itemObj)
     {
-        if($this->_itemName == "car" or $this->_itemName == "phone" or $this->_itemName == "computer") {
+        $itemName = $this->_itemName;
+        if($itemName == "car" or $itemName == "phone" or $itemName == "computer") {
             echo "<div class=\"location\">";
             echo $itemObj->getFieldMake();
             echo "</div>";
@@ -233,24 +235,15 @@ class HtCommonView extends MySqlRecord {
         echo "<div class = \"reportabuse\">";
         echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\"></div>";
         echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
+        echo "<p>".$GLOBALS['lang']['Report Abuse']."</p>";
         echo "<select id=\"selectabuse_$uniqueId\">";
-        echo "<option value=\"000\">Choose/ይምረጡ</option>";
-        echo "<option value=\"Bullying\">Bullying/ማንቋሸሽ</option>";
-        echo "<option value=\"Copyright\">Copyright/የቅጅ መብት  ስርቆት</option>";
-        echo "<option value=\"Discrimination\">Discrimination/መድልኦ</option>";
-        echo "<option value=\"Spam\">Spam/ግሳንግስ </option>";
-        echo "<option value=\"Identity theft\">Identity theft/የማንነት ስርቆት</option>";
-        echo "<option value=\"Political violence\">Political violence/የፖለቲካ ሁከት</option>";
-        echo "<option value=\"Race violence\">Race violence/ዘረኝነት</option>";
-        echo "<option value=\"Sex abuse\">Sex abuse/የጾታ በደለ</option>";
-        echo "<option value=\"Sexual content\">Sexual Content/ሴሰኛ ይዞታ</option>";
-        echo "<option value=\"Age abuse\">Age abuse/የዕድሜ በደለ</option>";
-        echo "<option value=\"Religious violence\">Religious violence/የሃይማኖት ሁከት</option>";
-        echo "<option value=\"Other\">Other/ከዚህ ዝርዝር ውጪ</option>";
+        foreach($GLOBALS["item_specific_array"]["common"]['abuseTypes'][0] as $key=>$value){
+            echo "<option value=\"$key\">".$value."</option>";
+        }
         echo "</select>";
         echo "<br>";
-        echo "<input class=\"report\" type=\"button\" onclick=\"swapabuseback($itemId,'$itemName')\" value=\"Report\" />";
-        echo "<input class=\"closereport\" type=\"button\" onclick=\"closeAbusebox($itemId,'$itemName')\" value=\"Close\" />";
+        echo "<input class=\"report\" type=\"button\" onclick=\"swapabuseback($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['report']."\" />";
+        echo "<input class=\"closereport\" type=\"button\" onclick=\"closeAbusebox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
         echo "</div>"; //end_reportbox_*
         echo "</div>"; //end_reportabuse
     }
@@ -334,7 +327,7 @@ class HtCommonView extends MySqlRecord {
         if ($contactType == "phone" or $contactType == "both")
             echo "<div class=\"phone\">
 			<img src =\"$pImage->PATH_PHN_ICON\"><label>" . $userName . " : " . $phone . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($id,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery

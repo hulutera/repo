@@ -23,8 +23,8 @@ $lang = array(
     'Per hour' => 'በሰዓት',
     'per month' => 'በወር',
     'Sell' => 'ሽያጭ',
-    'Show Detail' => 'ተጨማሪ አሳይ',
-    'Hide Detail' => 'ዝርዝር ሸፍን',
+    'Show Detail' => 'ዝርዝሩን ለማየት',
+    'Hide Detail' => 'ዝርዝሩን ለመሸፈን',
     'Contact' => 'ባለንብረትን ማግኘት',
     'Contact method' => 'የመገናኛ መንገድ',
     'change contact method' => 'የመገኛመንገድ ለመቀየር',
@@ -310,6 +310,7 @@ $lang = array(
     'profile change succ' => 'መረጃዎ በትክክል ተቀይሯል',
     'address' => 'አድራሻ',
     'close' => 'መዝጋት',
+    'report' => 'ሪፖርት',
     'change password' => 'የምስጢር ቃል መቀየር',
     'current password' => 'ያሁኑ የምስጢር ቃል',
     'new password' => 'አዲሱ የምስጢር ቃል',
@@ -896,6 +897,22 @@ $item_specific_array = [
                 'rentOrSell' => ' ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</br>',
                 'number' => ' የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</br>'
             ],
+        ],
+        'abuseTypes' => [
+            0 => [
+                '000' => 'ዓይነቱን ይምረጡ',
+                'Bullying' => 'ሌላውን ማንቋሸሽ',
+                'Copyright' => 'የቅጅ መብት ስርቆት',
+                'Discrimination' => 'መድልኦ አድራጊ',
+                'Spam' => 'ግሳንግስ',
+                'Identity theft' => 'የማንነት ስርቆት',
+                'Political violence' => 'የፖለቲካ ሁከት ፈጣሪ',
+                'Race violence' => 'የዘረኝነት ይዘት ያለው',
+                'Sex Abuse' => 'ጾታዊ ጥቃት',
+                'Sexual Content' => 'ወሲባዊ ይዘት ያለው',
+                'Religious violence' => 'የሃይማኖት ሁከት ፈጣሪ',
+                'Other' => 'ሌላ'
+            ]
         ]
     ]
 ];

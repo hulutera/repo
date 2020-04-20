@@ -1326,9 +1326,9 @@ class HtItemCar extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($end == null) {
-            $sql =  "SELECT * FROM item_car INNER JOIN category_car ON item_car.id_category = category_car.id WHERE $filter";
+            $sql =  "SELECT * FROM item_car WHERE $filter";
         } else {
-            $sql =  "SELECT * FROM item_car INNER JOIN category_car ON item_car.id_category = category_car.id WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
+            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $end";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);

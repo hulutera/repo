@@ -337,10 +337,10 @@ function swapmailclose(e, t) {
     })
 }
 
-function swapabuse(e, t) {
+function swapabuse(id, itemName) {
     $(document).ready(function () {
-        $(".reportbox_" + t + e).slideDown("fast");
-        $(".contact_" + t + e).slideUp("fast")
+        $(".reportbox_" + itemName + id).slideDown("fast");
+        $(".contact_" + itemName + id).slideUp("fast")
     })
 }
 
