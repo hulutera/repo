@@ -139,7 +139,7 @@ class MySqlRecord extends Model
         ___close_div_(1);
         ////
         ___open_div_("col-md-6", '');
-        $this->insertFieldText('fieldTitle', 'common');
+        $this->insertFillable('fieldTitle', 'common');
         ___close_div_(1);
         ___close_div_(3);
     }
@@ -157,7 +157,7 @@ class MySqlRecord extends Model
         $this->insertSelectable('fieldLocation', 'common', $selectable);
     }
 
-    protected function insertFieldText($fieldName, $item)
+    protected function insertFillable($fieldName, $item)
     {
         $errorMsg = "";
         $errorClass = '';
@@ -279,7 +279,7 @@ EOD;
             $style = "display: none;";
             if (
                 isset($_SESSION['POST']["rentOrSell"]) &&
-                ($_SESSION['POST']["rentOrSell"] === "fieldPriceSell" || $_SESSION['POST']["rentOrSell"] === "both")
+                ($_SESSION['POST']["rentOrSell"] === "fieldPriceRent" || $_SESSION['POST']["rentOrSell"] === "both")
             ) {
                 $style = "display: block;";
             }
@@ -438,7 +438,7 @@ EOD;
         ___close_div_(3);
     }
 
-    protected function inputItemPrice()
+    protected function insertItemPrice()
     {
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
@@ -470,7 +470,6 @@ EOD;
             ___open_div_("row", "");
             ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
             ___open_div_("form-group upload", "");
-
             ___open_div_("col-md-12", '');
             $this->insertSelectable('idCategory', $itemName);
             ___close_div_(1);
@@ -511,6 +510,24 @@ EOD;
             ___close_div_(3);
         }
         ___close_div_(1);
+    }
+
+    protected function lister($start, $end, $stage = null)
+    {
+        $selectable = [];
+        if (empty($stage)) {
+            for ($i = $start; $i <= $end; $i++) {
+                $input = [$i => $i];
+                array_push($selectable, $input);
+            }
+        } else {
+            for ($i = $start; $i <= $end; $i += $stage) {
+                $j = $i + $stage - 1;
+                $input = [$i . '-' . $j => $i . '-' . $j];
+                array_push($selectable, $input);
+            }
+        }
+        return $selectable;
     }
 }
 function ___open_div_($class, $options)

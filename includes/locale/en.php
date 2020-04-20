@@ -539,7 +539,73 @@ $item_specific_array = [
             ]
         ]
     ],
-    'house' => [],
+    'house' => [
+        'Uploading' => 'Uploading House',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [
+                'Commercial' => 'Commercial',
+                'Land' => 'Land',
+                'Condominium' => 'Condominium',
+                'Residential Rental' => 'Residential Rental',
+                'Residential Sales' => 'Residential Sales',
+                'Other' => 'Other'
+            ]
+        ],
+        'fieldLotSize' => [
+            0 => 'Property (Land) Size Sq.m',
+            1 => 'Choose Size',
+            2 => [],
+        ],
+        'fieldKebele'        => [
+            0 => 'Kebele',
+            1 => 'Choose Kebele',
+        ],
+        'fieldWereda'        => [
+            0 => 'Wereda',
+            1 => 'Choose Wereda',
+        ],
+        'fieldBuildYear'   => [
+            0 => 'Built Year',
+            1 => 'Choose Built Year',
+            2 => [
+                '1940' => 'Before 1940',
+                '1950' => '1940-1950',
+                '1960' => '1950-1960',
+                '1970' => '1970-1980',
+                'unknown' => 'unknown'
+            ]
+        ],
+        'fieldBathroom'   => [
+            0 => 'Bathroom',
+            1 => 'Choose Bathroom',
+        ],
+        'fieldToilet'   => [
+            0 => 'Toilet',
+            1 => 'Choose Toilet',
+        ],
+        'fieldNrBedroom' => [
+            0 => 'Bedroom',
+            1 => 'Choose Bedroom',
+        ],
+       'fieldWater' => [
+            0 => 'House have water?',
+            1 => 'Choose water',
+            2 => [
+                'yes' => 'Yes',
+                'no' => 'No',
+            ]
+        ],
+       'fieldElectricity' => [
+            0 => 'House have Electricity?',
+            1 => 'Choose water',
+            2 => [
+                'yes' => 'Yes',
+                'no' => 'No',
+            ]
+       ]
+    ],
     'computer' => [
         'Uploading' => 'Uploading Computer',
         'idCategory'        => [
@@ -626,7 +692,96 @@ $item_specific_array = [
             ]
         ]
     ],
-    'phone' => [],
+    'phone' => [
+        'Uploading' => 'Uploading Phone',
+        'idCategory'        => [
+            0 => 'Type',
+            1 => 'Choose Type',
+            2 => [
+                'Laptop' => 'Laptop',
+                'Notebook' => 'Notebook',
+                'Stationary' => 'Stationary',
+                'Tablets' => 'Tablets',
+                'Workstations' => 'Workstations',
+                'Other' => 'Other',
+            ]
+        ],
+        'fieldMade'        => [
+            0 => 'Make',
+            1 => 'Choose Make',
+            2 => [
+                "Alcatel" =>"Alcatel" ,
+                "Blackberry"=>"Blackberry",
+                "HTC"=>"HTC",
+                "Huawei"=>"Huawei",
+                "iPhone"=>"iPhone",
+                "LG"=>"LG",
+                "Motorolla"=>"Motorolla",
+                "Nokia"=>"Nokia",
+                "Samsung"=>"Samsung",
+                "Sanyo"=>"Sanyo",
+                "Siemens"=>"Siemens",
+                "Sony"=>"Sony",
+                "Sony Ericsson"=>"Sony Ericsson",
+                "T-Mobile"=>"T-Mobile",
+                "TANA"=>"TANA",
+                "Vodaphone"=>"Vodaphone",
+                "ZTE"=>"ZTE",
+                'unknown' => 'unknown'
+            ]
+        ],
+        'fieldModel'       => [
+            0 => 'Model',
+            1 => 'Write Model'
+        ],
+        'fieldCamera'   => [
+            0 => 'Camera Pixle (MB)',
+            1 => 'Choose Camera Pixle',
+            2 => [
+                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles" ,
+                "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
+                "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
+                "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
+                "more than 16 megapixles" => "more than 16 megapixles በላይ",
+                'unknown' => 'unknown'
+            ]
+        ],
+        'fieldOs'   => [
+            0 => 'OS (Operating System)',
+            1 => 'Choose OS',
+            2 => [
+                "Windows" => "Windows",
+                "Android" => "Android",
+                "iPhone" => "iPhone",
+                "Symbian" => "Symbian",
+                'unlisted' => '-- Not listed --',
+            ]
+        ],
+        'fieldProcessor'   => [
+            0 => 'Processor',
+            1 => 'Choose Processor',
+            2 => [
+                "Under 1 GHz" => "Under 1 GHz",
+                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
+                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
+                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
+                "Over 3.0GHz" => "Over 3.0GHz",
+                'unlisted' => '-- Not listed --'
+            ]
+        ],
+        'fieldRam' => [
+            0 => 'RAM memory',
+            1 => 'Choose RAM',
+            2 => [
+                "Under 1GB" => "Under 1GB",
+                "1.0 - 1.9GB" => "1.0 - 1.9GB",
+                "2.0 - 2.9GB" => "2.0 - 2.9GB",
+                "3.0 - 3.9GB" => "3.0 - 3.9GB",
+                "Over 4.0GB" => "Over 4.0GB",
+                'unlisted' => '-- Not listed --'
+            ]
+        ]
+    ],
     'electronic' => [
         'Uploading' => 'Uploading Electronics',
         'idCategory'        => [
@@ -657,14 +812,13 @@ $item_specific_array = [
                 'Other' => 'Other',
             ]
         ]
-    ],    
+    ],
     'other' => [
         'Uploading' => 'Uploading Miscellaneous',
         'idCategory'        => [
             0 => 'Type',
             1 => 'Choose Type',
-            2 => [                
-            ]
+            2 => []
         ]
     ],
     'common' => [

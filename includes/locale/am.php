@@ -14,7 +14,7 @@ $lang = array(
     'electronic_tv' => 'ቲቪ',
     'electronic_white' => 'ፍሪጅ፣ ዋሺንግ ማሺን፣ ወዘተ ...',
     'household' => 'የቤት ዕቃዎች',
-    'other' => 'ሌሎች',
+    'others' => 'ልዩ ልዩ ዕቃዎች', // (ድብልቅ) 
     'Extra Info' => 'ተጨማሪ መረጃ',
     'Price' => 'ዋጋ',
     'Negotiable' => 'መደራደር ይቻላል',
@@ -523,7 +523,74 @@ $item_specific_array = [
             ]
         ]
     ],
-    'house' => [],
+    'house' => [
+        'Uploading' => 'ቤት፣መሬት የማስገቢያ ቅፅ',
+        'idCategory'        => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+                'Commercial' => 'የንግድ',
+                'Land' => 'ባዶ መሬት',
+                'Condominium' => 'ኮንዶሚኒየም',
+                'Residential' => 'የመኖሪያ',                
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldLotSize' => [
+            0 => 'የመሬት ስፋት (ካ.ሜ)',
+            1 => 'የመሬት ስፋት  በካ.ሜ እዚህ ይጻፉ',
+            2 => [],
+        ],
+        'fieldKebele'        => [
+            0 => 'ቀበሌ',
+            1 => 'ቀበሌ ይምረጡ',
+        ],
+        'fieldWereda'        => [
+            0 => 'ወረዳ',
+            1 => 'ወረዳ ይምረጡ',
+        ],
+        'fieldBuildYear'   => [
+            0 => 'የተሠራበት ዓ.ም',
+            1 => 'የተሠራበት ዓ.ም ይምረጡ',
+            2 => [
+                '1940' => 'ከ1940 በፊት',
+                '1950' => 'ከ1940-1950 መካከል',
+                '1960' => 'ከ1950-1960 መካከል',
+                '1970' => 'ከ1970-1980 መካከል',
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldBathroom'   => [
+            0 => 'መታጠቢያ ቤት ብዛት',
+            1 => 'መታጠቢያ ቤት  ይምረጡ',
+        ],
+        'fieldToilet'   => [
+            0 => 'መጸዳጃ ቤት ብዛት',
+            1 => 'ብዛት ይምረጡ',
+        ],
+        'fieldNrBedroom' => [
+            0 => 'የመኝታ ቤት ብዛት',
+            1 => 'ብዛት ይምረጡ',
+        ],
+       'fieldWater' => [
+            0 => 'ቤቱ ውሃ አለው?',
+            1 => 'ውሃ ይምረጡ',
+            2 => [
+                'yes' => 'አለው',
+                'no' => 'የለውም',
+                'ongoing' => 'በሂደት ላይ'
+            ]
+        ],
+       'fieldElectricity' => [
+            0 => 'ቤቱ የኤሌክትሪክ ኃይል አለው?',
+            1 => 'ኤሌክትሪክ ይምረጡ',
+            2 => [
+                'yes' => 'አለው',
+                'no' => 'የለውም',
+                'ongoing' => 'በሂደት ላይ'
+            ]
+       ]
+    ],
     'computer' => [
         'Uploading' => 'ኮምፒዩተር የማስገቢያ ቅፅ',
         'idCategory'        => [
@@ -608,7 +675,94 @@ $item_specific_array = [
             ]
         ]
     ],
-    'phone' => [],
+    'phone' => [
+        'Uploading' => 'ስልክ የማስገቢያ ቅፅ',
+        'idCategory'        => [
+            0 => 'ዓይነት',
+            1 => 'ዓይነት ይምረጡ',
+            2 => [
+                'Laptop' => 'ላፕቶፕ',
+                'Notebook' => 'ኖት ቡክ',
+                'Stationary' => 'ዴስክቶፕ',
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldMade'        => [
+            0 => 'ስሪት (አምራች ድርጅት)',
+            1 => 'ስሪት ይምረጡ',
+            2 => [
+                "Alcatel" =>"Alcatel" ,
+                "Blackberry"=>"Blackberry",
+                "HTC"=>"HTC",
+                "Huawei"=>"Huawei",
+                "iPhone"=>"iPhone",
+                "LG"=>"LG",
+                "Motorolla"=>"Motorolla",
+                "Nokia"=>"Nokia",
+                "Samsung"=>"Samsung",
+                "Sanyo"=>"Sanyo",
+                "Siemens"=>"Siemens",
+                "Sony"=>"Sony",
+                "Sony Ericsson"=>"Sony Ericsson",
+                "T-Mobile"=>"T-Mobile",
+                "TANA"=>"TANA",
+                "Vodaphone"=>"Vodaphone",
+                "ZTE"=>"ZTE",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldModel'       => [
+            0 => 'ሞዴል',
+            1 => 'ሞዴል እዚህ ይጻፉ'
+        ],
+        'fieldCamera'   => [
+            0 => 'የስልክ ካሜራ መጠን',
+            1 => 'የካሜራ መጠን ይምረጡ',
+            2 => [
+                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles" ,
+                "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
+                "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
+                "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
+                "more than 16 megapixles" => "ከ16 megapixles በላይ",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ],
+        'fieldOs'   => [
+            0 => 'የስልክ ኡደት ስርዓት (OS) ',
+            1 => 'ኡደት ስርዓት ይምረጡ',
+            2 => [
+                "Windows" => "Windows/ዊንዶውስ",
+                "Android" => "Android/አንድሮይድ",
+                "iPhone" => "iPhone/አይ ፎን",
+                "Symbian" => "Symbian",
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldProcessor'   => [
+            0 => 'ፕሮሰሰር ፍጥነት ',
+            1 => 'ፕሮሰሰር ፍጥነት ይምረጡ',
+            2 => [
+                "Under 1 GHz" => "ከ1 GHz በታች",
+                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
+                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
+                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
+                "Over 3.0GHz" => "ከ3.0 GHz በላይ",
+                'unlisted' => '-- አልተዘረዘረም --',
+            ]
+        ],
+        'fieldRam' => [
+            0 => 'የRAM ሜሞሪ መጠን',
+            1 => 'RAM ሜሞሪ ይምረጡ',
+            2 => [
+                "Under 1GB" => "ከ1 GB በታች",
+                "1.0 - 1.9GB" => "1.0 - 1.9GB",
+                "2.0 - 2.9GB" => "2.0 - 2.9GB",
+                "3.0 - 3.9GB" => "3.0 - 3.9GB",
+                "Over 4.0GB" => "ከ4.0GB GHz በላይ",
+                'unlisted' => '-- አልተዘረዘረም --'
+            ]
+        ]
+    ],
     'electronic' => [
         'Uploading' => 'ኤሌክትሮኒክስ የማስገቢያ ቅፅ',
         'idCategory' => [

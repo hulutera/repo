@@ -54,6 +54,17 @@ require_once $documnetRootPath . '/includes/validate.php';
 				$(this).css('background-color', backgroundColor);
 				$(this).css('color', color);
 			});
+
+			$('#idCategory').on('change', function() {
+				var test = $(this).val();
+				if (test == "Land") {
+					$(".lotsize").show();
+					$(".land").hide();
+				}else{
+					$(".land").show();
+				}
+			});
+
 		});
 	</script>
 	<style>
@@ -84,10 +95,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 			<div id="main_section">
 
 				<?php
+
 				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
 				echo '<div class="col-md-12"><a href="upload.php' . $lang_url . '">' . $GLOBALS['lang']['Back to Post Item'] . '</a></div>';
-				$sessionName = 'upload_' . $_GET['type'];
-;
+				$sessionName = 'upload_' . $_GET['type'];;
 				if (!isset($_SESSION[$sessionName])) {
 					$object = new HtMainView($_GET['type'], null);
 					$object->upload();
@@ -96,7 +107,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->upload();
 				}
-				var_dump($_SESSION);
+				//var_dump($_SESSION);
 				?>
 
 			</div>

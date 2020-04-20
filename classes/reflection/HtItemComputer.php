@@ -1466,7 +1466,7 @@ SQL;
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertFieldText('fieldModel', $itemName);
+        $this->insertFillable('fieldModel', $itemName);
         ___close_div_(1);
         ___close_div_(3); //top-3
         ////

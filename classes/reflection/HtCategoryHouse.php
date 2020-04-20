@@ -179,9 +179,10 @@ class HtCategoryHouse extends MySqlRecord
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
+        $result = $this->query($sql);
         $this->resultSet=$result;
         $this->lastSql = $sql;
+        /*
         if ($result){
             $rowObject = $result->fetch_object();
             @$this->id = (integer)$rowObject->id;
@@ -191,7 +192,7 @@ class HtCategoryHouse extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
-        
+        */        
     }
 
     /**

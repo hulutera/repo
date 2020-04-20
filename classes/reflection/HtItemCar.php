@@ -804,9 +804,9 @@ class HtItemCar extends MySqlRecord
         $this->setFieldStatus("pending");
 
         if (isset($_POST['rentOrSell'])) {
-            if ($_POST['rentOrSell'] == "rent") {
+            if ($_POST['rentOrSell'] == "fieldPriceRent") {
                 $this->setFieldMarketCategory('rent');
-            } else if ($_POST['rentOrSell'] == "sell") {
+            } else if ($_POST['rentOrSell'] == "fieldPriceSell") {
                 $this->setFieldMarketCategory('sell');
             } else if ($_POST['rentOrSell'] == "both") {
                 $this->setFieldMarketCategory('rent and sell');
@@ -1657,7 +1657,7 @@ SQL;
         echo '</form>';
     }
 
-    protected function insertAllField($itemName)
+    protected function insertAllField($itemName,  $skipRow = null)
     {
         $itemName = $this->getTableNameShort();
         ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
@@ -1667,7 +1667,7 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         
-        ___open_div_("col-md-4", '');        
+        ___open_div_("col-md-12", '');        
         $this->insertSelectable('idCategory', $itemName);
         ___close_div_(1);
         
@@ -1676,7 +1676,7 @@ SQL;
         ___close_div_(1);
         
         ___open_div_("col-md-4", '');
-        $this->insertFieldText('fieldModel', $itemName);
+        $this->insertFillable('fieldModel', $itemName);
         ___close_div_(1);
         
         ___close_div_(3);//top-3
@@ -1712,7 +1712,7 @@ SQL;
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
-        $this->inputItemPrice();
+        $this->insertItemPrice();
         ___close_div_(3);
         ////
         ___open_div_("row", "");
@@ -1753,27 +1753,19 @@ SQL;
 
     private function insertFieldMilage()
     {
-        $selectable = [];
-        for ($start = 0; $start <= 500000; $start += 50000) {
-            $end = $start + 49999;
-            $input = [$start . '-' . $end => $start . '-' . $end];
-            array_push($selectable, $input);
-        }
-        $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unknown'];
-        array_push($selectable, ["unknown" => $unknown]);
+        $selectable = [];        
+        $selectable = $this->lister(0,4000000, 500000);
+        $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unlisted'];
+        array_push($selectable, ["unlisted" => $unknown]);
         $this->insertSelectable('fieldMilage', 'car', $selectable);
     }
 
     private function insertFieldNoOfSeat()
     {
-        $selectable = [];
-        for ($start = 1; $start <= 100; $start += 5) {
-            $end = $start + 4;
-            $input = [$start . '-' . $end => $start . '-' . $end];
-            array_push($selectable, $input);
-        }
-        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['unknown'];
-        array_push($selectable, ["unknown" => $unknown]);
+        $selectable = [];        
+        $selectable = $this->lister(1,100, 5);
+        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['unlisted'];
+        array_push($selectable, ["unlisted" => $unknown]);
         $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
     }
 

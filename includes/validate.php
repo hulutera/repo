@@ -66,7 +66,7 @@ class ValidateForm
         $this->_runnerName = ObjectPool::getInstance()->getObjectWithId($item, null);
         $this->default_options = $this->_runnerName->getUploadOption();
 
-        $price = ["fieldPriceSell","fieldPriceRent","fieldPriceRate"];
+        $price = ["fieldPriceSell", "fieldPriceRent", "fieldPriceRate"];
         var_dump($_POST);
 
         /**
@@ -103,6 +103,7 @@ class ValidateForm
                 $this->validatePrice($err, "fieldPriceRent");
             } else if ($_POST["rentOrSell"] == "fieldPriceSell") {
                 $this->validatePrice($err, "fieldPriceSell");
+                $_POST["fieldPriceRate"] = null;
             } else if ($_POST["rentOrSell"] == "both") {
                 $this->validatePrice($err, "fieldPriceRent");
                 $this->validatePrice($err, "fieldPriceSell");
@@ -113,7 +114,7 @@ class ValidateForm
                     array_push($err, $input);
                 }
             }
-        }else if(isset($_POST["fieldPriceSell"])){
+        } else if (isset($_POST["fieldPriceSell"])) {
             $this->validatePrice($err, "fieldPriceSell");
         }
 
@@ -131,6 +132,22 @@ class ValidateForm
             if (isset($_POST[$key]) && $value == 'input') {
                 $_POST[$key] = filter_var($_POST[$key], FILTER_SANITIZE_STRING);
                 // echo $key . ' =  ' . $_POST[$key] . '<br>';
+            }
+        }
+
+        //unset some errors
+        if (isset($_POST["idCategory"]) && $_POST["idCategory"] === "Land") {
+            $unsetables = ["fieldBuildYear", "fieldBathroom", "fieldToilet", "fieldNrBedroom"];
+
+            foreach ($err as $k1 => $v1) {
+                foreach ($v1 as $k2 => $v2) {
+                    if (in_array($k2, $unsetables)) {
+                        unset($err[$k1][$k2]);
+                    }
+                }
+            }
+            foreach ($unsetables as $key => $value) {
+                $_POST[$value] = 0;
             }
         }
     }

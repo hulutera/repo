@@ -12,10 +12,6 @@ $itemName = str_replace("item_", "", $_GET['table']);
 //$_SESSION['POST'] = [];
 $validate = new ValidateForm($err);
 // var_dump($_GET);
-// var_dump($err);
-// var_dump($GLOBALS['lang']['Choose']);
-// var_dump($GLOBALS['item_specific_array']['car']);
-// var_dump($GLOBALS['city_lang_arr']);
 //exit;
 $err2 = array();
 //$GLOBALS['item_specific_array']['car']['validate'];
@@ -24,11 +20,9 @@ foreach ($err as $x) {
 		$err2[$rowNumber] = $pair;
 	}
 }
-var_dump($err2);
-var_dump($_POST);
-if (strpos($_POST['fieldLocation'], $GLOBALS['lang']['Choose']) !== false)
-	echo $GLOBALS['lang']['Choose'];
-
+//var_dump($err2);
+//var_dump($_POST);
+//exit;
 if (!empty($err2)) {
 	$_SESSION['POST'] = $_POST;
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
@@ -67,7 +61,7 @@ if (!empty($err2)) {
 		$itemName = $row['field_name'];
 		$_SESSION['upload_' . $itemName] = null;
 	}
-
+	//exit
 	//successfull
 	header('Location: ../../prompt.php?type=10');
 }
