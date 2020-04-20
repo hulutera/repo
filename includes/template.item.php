@@ -7,11 +7,11 @@ require_once $documnetRootPath . '/includes/common.inc.php';
 
 
 //get item name from URL
-$item = $_GET['type'];
-if (!file_exists($documnetRootPath . '/items/'.$item. '/'.$item.'.class.php'))
-{
+if (!isset($_GET['type']))
+{	
 	header('Location: ../../index.php');
 }
+$item = $_GET['type'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

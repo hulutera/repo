@@ -7,7 +7,7 @@
 define("DBHOST","localhost");
 define("DBUSER","root");
 define("DBPASSWORD","");
-define("DBNAME","hulutera_db");
+define("DBNAME","hulutera_db2");
 define('DBPORT', '3306');
 
 /**

@@ -35,6 +35,7 @@ class ObjectPool
 
     public function getClassObject($item)
     {
+        /*
         global $documnetRootPath;
         require_once $documnetRootPath . '/items/' . $item . '/' . $item . '.class.php';
 
@@ -52,7 +53,7 @@ class ObjectPool
             return (new HouseholdClass());
         } else if ($item == "others") {
             return (new OtherClass());
-        }
+        }*/
     }
 
     public function getObjectWithId($item, $id=null)
