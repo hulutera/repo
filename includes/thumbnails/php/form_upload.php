@@ -14,7 +14,7 @@ $validate = new ValidateForm($err);
 // var_dump($_GET);
 //exit;
 $err2 = array();
-//$GLOBALS['item_specific_array']['car']['validate'];
+//$GLOBALS['upload_specific_array']['car']['validate'];
 foreach ($err as $x) {
 	foreach ($x as $rowNumber => $pair) {
 		$err2[$rowNumber] = $pair;

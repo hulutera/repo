@@ -449,7 +449,7 @@ $item_lang_arr = array(
     'others' => 'Miscellaneous'
 );
 
-$item_specific_array = [
+$upload_specific_array = [
     'car' => [
         'Uploading' => 'Uploading Car  ',
         'idCategory'        => [
@@ -936,4 +936,4 @@ $item_specific_array = [
     ]
 ];
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
-$GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['upload_specific_array'] = $upload_specific_array;

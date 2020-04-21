@@ -1537,37 +1537,37 @@ SQL;
      */
     public function display()
     {
-        echo $this->getFieldMake()   ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldMake"][0].':&nbsp</strong>' . $this->getFieldMake() . '</p>' : "";
-        echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
-        echo $this->getIdCategory() ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["car"]["idCategory"][2][$this->carCategory($this->getidCategory())] . '</p>' : "";
+        echo $this->getFieldMake()   ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp</strong>' . $this->getFieldMake() . '</p>' : "";
+        echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
+        echo $this->getIdCategory() ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["idCategory"][0].':&nbsp</strong>'.$GLOBALS["upload_specific_array"]["car"]["idCategory"][2][$this->carCategory($this->getidCategory())] . '</p>' : "";
         
         // Due to the inclusion of some words
         if($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
-            $year = $GLOBALS["item_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
+            $year = $GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
         } else {
             $year = $this->getFieldModelYear();
         }
-        echo $this->getFieldModelYear() != "0000"   ? '<p><strong>'.$GLOBALS["item_specific_array"]["car"]["fieldModelYear"][0].':&nbsp</strong>'.$year.'</p>' : "";
-        echo $this->getFieldFuelType()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp</strong>'. $GLOBALS["item_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</p>' : "";
+        echo $this->getFieldModelYear() != "0000"   ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0].':&nbsp</strong>'.$year.'</p>' : "";
+        echo $this->getFieldFuelType()     ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp</strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</p>' : "";
         
         // Due to the inclusion of some words
         if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
-            $noSeat = $GLOBALS["item_specific_array"]["car"]["fieldNoOfSeat"][2][$this->getFieldNoOfSeat()];
+            $noSeat = $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][2][$this->getFieldNoOfSeat()];
         } else {
             $noSeat = $this->getFieldNoOfSeat();
         }
-        echo $this->getFieldNoOfSeat()     ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp</strong>' . $noSeat . '</p>' : "";
-        echo $this->getFieldColor() != "999"     ? '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][0].':&nbsp</strong>'.$GLOBALS["item_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</p>' : "";
+        echo $this->getFieldNoOfSeat()     ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp</strong>' . $noSeat . '</p>' : "";
+        echo $this->getFieldColor() != "999"     ? '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp</strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</p>' : "";
 
         // Due to the inclusion of some words
         if($this->getFieldMilage() == "unlisted") {
-            $milage = $GLOBALS["item_specific_array"]["car"]["fieldMilage"][2][$this->getFieldMilage()];
+            $milage = $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][2][$this->getFieldMilage()];
         } else {
             $milage = $this->getFieldMilage();
         }
-        echo $this->getFieldMilage()      ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldMilage"][0].':&nbsp</strong>'.  $milage . "</p>" : "";
+        echo $this->getFieldMilage()      ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp</strong>'.  $milage . "</p>" : "";
         
-        echo $this->getFieldGearType()      ? '<p><strong>'. $GLOBALS["item_specific_array"]["car"]["fieldGearType"][0].':&nbsp</strong>'. $GLOBALS["item_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</p>' : "";
+        echo $this->getFieldGearType()      ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp</strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</p>' : "";
         echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
     }
 
@@ -1743,7 +1743,7 @@ SQL;
             $input = [$start => $end];
             array_push($selectable, $input);
         }
-        $variable = $GLOBALS['item_specific_array']['car']['fieldModelYear'][2];
+        $variable = $GLOBALS['upload_specific_array']['car']['fieldModelYear'][2];
         foreach ($variable as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -1755,7 +1755,7 @@ SQL;
     {
         $selectable = [];        
         $selectable = $this->lister(0,500000, 50000);
-        $unknown = $GLOBALS['item_specific_array']['car']['fieldMilage'][2]['unlisted'];
+        $unknown = $GLOBALS['upload_specific_array']['car']['fieldMilage'][2]['unlisted'];
         array_push($selectable, ["unlisted" => $unknown]);
         $this->insertSelectable('fieldMilage', 'car', $selectable);
     }
@@ -1763,8 +1763,8 @@ SQL;
     private function insertFieldNoOfSeat()
     {
         $selectable = [];        
-        $selectable = $this->lister(1,100, 5);
-        $unknown = $GLOBALS['item_specific_array']['car']['fieldNoOfSeat'][2]['000'];
+        $selectable = $this->lister(1,100);
+        $unknown = $GLOBALS['upload_specific_array']['car']['fieldNoOfSeat'][2]['000'];
         array_push($selectable, ["000" => $unknown]);
         $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
     }

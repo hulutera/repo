@@ -221,7 +221,7 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMarketType($itemObj)
     {
-        $mrkTyp = $GLOBALS["item_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
+        $mrkTyp = $GLOBALS["upload_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
         if ($mkTyp != "No Action") {
             echo '<div id="text_sellRent">' . $mrkTyp . "</div></br>";
         }
@@ -237,7 +237,7 @@ class HtCommonView extends MySqlRecord {
         echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
         echo "<p>".$GLOBALS['lang']['Report Abuse']."</p>";
         echo "<select id=\"selectabuse_$uniqueId\">";
-        foreach($GLOBALS["item_specific_array"]["common"]['abuseTypes'][0] as $key=>$value){
+        foreach($GLOBALS["upload_specific_array"]["common"]['abuseTypes'][0] as $key=>$value){
             echo "<option value=\"$key\">".$value."</option>";
         }
         echo "</select>";
@@ -443,7 +443,7 @@ class HtCommonView extends MySqlRecord {
                 $rentValue = $itemObj->getFieldPriceRent();
                 $sellValue = $itemObj->getFieldPriceSell();
                 $negoValue = $itemObj->getFieldPriceNego();
-                $negoDisplay = ($negoValue == 'Yes') ? $GLOBALS["item_specific_array"]["common"]["fieldPriceNego"][2]['Yes'] : "";
+                $negoDisplay = ($negoValue == 'Yes') ? $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2]['Yes'] : "";
                 $curr  = $itemObj->getFieldPriceCurrency();
                 $rate  = $itemObj->getFieldPriceRate();
 
@@ -458,8 +458,8 @@ class HtCommonView extends MySqlRecord {
                 $nego          =  !$rentValue && !$sellValue &&  $negoValue;
 
                 //display var
-                $rent_var = '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp</strong>' . $rentValue . ' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
-                $sell_var = '<p><strong>'.$GLOBALS["item_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp</strong>' . $sellValue . ' ' .$GLOBALS["item_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                $rent_var = '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp</strong>' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
+                $sell_var = '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp</strong>' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
                 $nego_var = '<p>&nbsp&nbsp' . $negoDisplay . "</p>";
                 
                 if ($rentsellwnego) {

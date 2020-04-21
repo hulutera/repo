@@ -128,7 +128,7 @@ class MySqlRecord extends Model
     {
         ___open_div_("row", "");
         ___open_div_('col-md-12 upload-header alert alert-info" role="alert', '');
-        echo '<strong><p class="h2">' . $GLOBALS['item_specific_array'][$item]['Uploading'] . '</strong></p>';
+        echo '<strong><p class="h2">' . $GLOBALS['upload_specific_array'][$item]['Uploading'] . '</strong></p>';
         ___close_div_(2);
 
         ___open_div_("row", "");
@@ -162,12 +162,12 @@ class MySqlRecord extends Model
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw'][$fieldName])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][1];
+            $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][1];
             $errorClass = ' alert-custom';
         }
 
-        $title = $GLOBALS['item_specific_array'][$item][$fieldName][0];
-        $placeholder = $GLOBALS['item_specific_array'][$item][$fieldName][1];
+        $title = $GLOBALS['upload_specific_array'][$item][$fieldName][0];
+        $placeholder = $GLOBALS['upload_specific_array'][$item][$fieldName][1];
         $choose = "";
         if (isset($_SESSION['POST'][$fieldName])) {
             $choose = $_SESSION['POST'][$fieldName];
@@ -196,7 +196,7 @@ EOD;
     protected function insertFieldContactMethod()
     {
         $selectable = [];
-        $contactMeWith = $GLOBALS['item_specific_array']['common']['fieldContactMethod'][2];
+        $contactMeWith = $GLOBALS['upload_specific_array']['common']['fieldContactMethod'][2];
         foreach ($contactMeWith as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -209,12 +209,12 @@ EOD;
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fileuploader-list-files'])) {
-            $validate = $GLOBALS['item_specific_array']['common']['validate'][2];
+            $validate = $GLOBALS['upload_specific_array']['common']['validate'][2];
             $errorMsg = $validate['fileuploader-list-files'];
             $errorClass = ' alert-custom';
         }
 
-        $image = $GLOBALS['item_specific_array']['common']['Choose Images here'];
+        $image = $GLOBALS['upload_specific_array']['common']['Choose Images here'];
 
         echo <<< EOD
         <div class="row upload {$errorClass}">
@@ -232,7 +232,7 @@ EOD;
     protected function selectPriceRentOrSell()
     {
         $selectable = [];
-        $rentOrSell = $GLOBALS['item_specific_array']['common']['rentOrSell'][2];
+        $rentOrSell = $GLOBALS['upload_specific_array']['common']['rentOrSell'][2];
         foreach ($rentOrSell as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -243,7 +243,7 @@ EOD;
     protected function insertFieldPriceNego()
     {
         $selectable = [];
-        $negotiable = $GLOBALS['item_specific_array']['common']['fieldPriceNego'][2];
+        $negotiable = $GLOBALS['upload_specific_array']['common']['fieldPriceNego'][2];
         foreach ($negotiable as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -254,7 +254,7 @@ EOD;
     protected function insertFieldPriceCurrency()
     {
         $selectable = [];
-        $currency = $GLOBALS['item_specific_array']['common']['fieldPriceCurrency'][2];
+        $currency = $GLOBALS['upload_specific_array']['common']['fieldPriceCurrency'][2];
         foreach ($currency as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -265,7 +265,7 @@ EOD;
     protected function insertFieldPriceRate()
     {
         $selectable = [];
-        $rate = $GLOBALS['item_specific_array']['common']['fieldPriceRate'][2];
+        $rate = $GLOBALS['upload_specific_array']['common']['fieldPriceRate'][2];
         foreach ($rate as $key => $value) {
             $input = [$key => $value];
             array_push($selectable, $input);
@@ -328,7 +328,7 @@ EOD;
             "unknown"  => ["#ffffff", "#000000"]
         ];
         $selectable = [];
-        $type = $GLOBALS['item_specific_array']['common']['fieldColor'][2];
+        $type = $GLOBALS['upload_specific_array']['common']['fieldColor'][2];
         foreach ($colors as $key => $value) {
             $input = [$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $type[$key]];
             array_push($selectable, $input);
@@ -348,9 +348,9 @@ EOD;
                 strpos($GLOBALS['lang'][$variable[0]], $GLOBALS['lang']['Invalid']) !== false &&
                 $_SESSION['POST'][$marketType] !== ''
             ) {
-                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['item_specific_array']['common']['validate'][2]['number'];
+                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['upload_specific_array']['common']['validate'][2]['number'];
             } else {
-                $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][1];
+                $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][1];
             }
         }
 
@@ -366,7 +366,7 @@ EOD;
             }
         }
 
-        $type = $GLOBALS['item_specific_array']['common'][$marketType];
+        $type = $GLOBALS['upload_specific_array']['common'][$marketType];
         $label = $type[0];
         $placeholder = $type[1];
         $value = "";
@@ -388,15 +388,15 @@ EOD;
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw'][$fieldName])) {
-            $errorMsg = $GLOBALS['item_specific_array']['common']['validate'][0];
+            $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][0];
             $errorClass = ' alert-custom';
         }
         $selected = 0;
-        $label = $GLOBALS['item_specific_array'][$source][$fieldName][0];
-        $choose = $GLOBALS['item_specific_array'][$source][$fieldName][1];
+        $label = $GLOBALS['upload_specific_array'][$source][$fieldName][0];
+        $choose = $GLOBALS['upload_specific_array'][$source][$fieldName][1];
         $types = [];
         if (empty($selectable)) {
-            $types = $GLOBALS['item_specific_array'][$source][$fieldName][2];
+            $types = $GLOBALS['upload_specific_array'][$source][$fieldName][2];
         } else {
             foreach ($selectable as $row) {
                 foreach ($row as $key => $value) {

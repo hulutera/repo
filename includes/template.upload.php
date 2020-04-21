@@ -2,7 +2,6 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/cmn.upload.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
 require_once $documnetRootPath . '/includes/validate.php';
 
