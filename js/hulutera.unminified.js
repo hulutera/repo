@@ -358,7 +358,7 @@ function swapabuseback(e, t) {
     $(document).ready(function () {
         var n = $("#selectabuse_" + t + e).val();
         if (n === "000") {
-            $(".errorabuse_" + t + e).slideDown("fast").replaceWith('<div style="background-color: #FFBABA; color: #D8000C;"class="errorabuse_' + t + e + '">You forgort to choose Report type. የሪፖርት ዓይነት መምረጥ ረስተዋል።	</div>');
+            $(".errorabuse_" + t + e).slideDown("fast");
             $("#selectabuse_" + t + e).css("border", "1px solid #D8000C");
         } else {
             $(".errorabuse_" + t + e).slideUp("fast");

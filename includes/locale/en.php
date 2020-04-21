@@ -915,25 +915,32 @@ $upload_specific_array = [
                 'fileuploader-list-files' => ' At least one image should be provided.  Try again!</br>',
                 'rentOrSell' => ' Should be provided.!</br>',
                 'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>'
-            ],
-        ],
-        'abuseTypes' => [
-            0 => [
-                '000' => 'Choose Type',
-                'Bullying' => 'Bullying',
-                'Copyright' => 'Copyright',
-                'Discrimination' => 'Discrimination',
-                'Spam' => 'Spam',
-                'Identity theft' => 'Identity theft',
-                'Political violence' => 'Political violence',
-                'Race violence' => 'Race violence',
-                'Sex Abuse' => 'Sex Abuse',
-                'Sexual Content' => 'Sexual Content',
-                'Religious violence' => 'Religious violence',
-                'Other' => 'Other'
             ]
         ]
     ]
 ];
+
+$abuse_type_lang_arr = array (
+    0 => [
+        '000' => 'Choose Type',
+        'Bullying' => 'Bullying',
+        'Copyright' => 'Copyright',
+        'Discrimination' => 'Discrimination',
+        'Spam' => 'Spam',
+        'Identity theft' => 'Identity theft',
+        'Political violence' => 'Political violence',
+        'Race violence' => 'Race violence',
+        'Sex Abuse' => 'Sex Abuse',
+        'Sexual Content' => 'Sexual Content',
+        'Religious violence' => 'Religious violence',
+        'Other' => 'Other'],
+    1 => [
+        'You forgort to choose the Report type' => 'You forgort to choose the Report type.',
+        'You successfully reported the item!' => 'You successfully reported the item!'
+    ]
+);
+$GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
+$GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['lang'] = $lang;

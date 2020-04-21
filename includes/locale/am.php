@@ -896,26 +896,32 @@ $upload_specific_array = [
                 'fileuploader-list-files' => ' ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</br>',
                 'rentOrSell' => ' ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</br>',
                 'number' => ' የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</br>'
-            ],
-        ],
-        'abuseTypes' => [
-            0 => [
-                '000' => 'ዓይነቱን ይምረጡ',
-                'Bullying' => 'ሌላውን ማንቋሸሽ',
-                'Copyright' => 'የቅጅ መብት ስርቆት',
-                'Discrimination' => 'መድልኦ አድራጊ',
-                'Spam' => 'ግሳንግስ',
-                'Identity theft' => 'የማንነት ስርቆት',
-                'Political violence' => 'የፖለቲካ ሁከት ፈጣሪ',
-                'Race violence' => 'የዘረኝነት ይዘት ያለው',
-                'Sex Abuse' => 'ጾታዊ ጥቃት',
-                'Sexual Content' => 'ወሲባዊ ይዘት ያለው',
-                'Religious violence' => 'የሃይማኖት ሁከት ፈጣሪ',
-                'Other' => 'ሌላ'
             ]
         ]
     ]
 ];
+
+$abuse_type_lang_arr = array (
+    0 => [
+        '000' => 'ዓይነቱን ይምረጡ',
+        'Bullying' => 'ሌላውን ማንቋሸሽ',
+        'Copyright' => 'የቅጅ መብት ስርቆት',
+        'Discrimination' => 'መድልኦ አድራጊ',
+        'Spam' => 'ግሳንግስ',
+        'Identity theft' => 'የማንነት ስርቆት',
+        'Political violence' => 'የፖለቲካ ሁከት ፈጣሪ',
+        'Race violence' => 'የዘረኝነት ይዘት ያለው',
+        'Sex Abuse' => 'ጾታዊ ጥቃት',
+        'Sexual Content' => 'ወሲባዊ ይዘት ያለው',
+        'Religious violence' => 'የሃይማኖት ሁከት ፈጣሪ',
+        'Other' => 'ሌላ'],
+    1 => [
+        'You forgort to choose the Report type' => 'የሪፖርት ዓይነት መምረጥ ረስተዋል።',
+        'You successfully reported the item!' => 'ሪፖርቱ በተሳካ ሁኔታ ተከናውኗል።'
+    ]
+);
+$GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
+$GLOBALS['item_specific_array'] = $item_specific_array;
 $GLOBALS['lang'] = $lang;

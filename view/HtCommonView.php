@@ -233,11 +233,12 @@ class HtCommonView extends MySqlRecord {
     public function displayReportReq($uniqueId, $itemId, $itemName)
     {
         echo "<div class = \"reportabuse\">";
-        echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\"></div>";
-        echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
+        echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\">";
+        echo "<p style=\"background-color: #FFBABA; color: #D8000C;\">".$GLOBALS["abuse_type_lang_arr"][1]['You forgort to choose the Report type']."</p></div>";
+        echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";        
         echo "<p>".$GLOBALS['lang']['Report Abuse']."</p>";
         echo "<select id=\"selectabuse_$uniqueId\">";
-        foreach($GLOBALS["upload_specific_array"]["common"]['abuseTypes'][0] as $key=>$value){
+        foreach($GLOBALS["abuse_type_lang_arr"][0] as $key=>$value){
             echo "<option value=\"$key\">".$value."</option>";
         }
         echo "</select>";
@@ -265,10 +266,9 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayReportCfrm($uniqueId, $itemId, $itemName)
     {
-        global $abusemsg;
         echo "<div class=\"reportmsgcompleted\">";
         echo "<div style=\"width:100%; height:100px;display:none;\" class=\"reportcfrm_$uniqueId\">";
-        echo "<p>$abusemsg</p>";
+        echo '<p>'.$GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"].'</p>';
         echo "<input  class=\"closeReportInner\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"Close\" />";
         echo "</div>"; //end_reportcfrm_*
         echo "</div>"; //end_reportmsgcompleted
