@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2020 at 07:04 PM
+-- Generation Time: Apr 22, 2020 at 11:21 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -71,14 +71,14 @@ INSERT INTO `category_car` (`id`, `field_name`) VALUES
 (2, 'Compact Car'),
 (3, 'Convertible'),
 (4, 'Full Size Van'),
-(5, 'Hatch Back'),
-(6, 'Heavy Machine'),
-(7, 'Lift back'),
+(5, 'Hatchback'),
+(6, 'Heavy Machinery'),
+(7, 'Liftback'),
 (8, 'Luxury car'),
-(9, 'Mini Bus'),
-(10, 'Pick up'),
-(11, 'Small car'),
-(12, 'Sport car'),
+(9, 'Minibus'),
+(10, 'Pickup'),
+(11, 'Small Car'),
+(12, 'Sport Car'),
 (13, 'Station Wagon'),
 (14, 'SUV'),
 (15, 'Taxi'),

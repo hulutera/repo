@@ -408,6 +408,11 @@ class HtItemCar extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2NhcmAgKAogIGBpZGAgaW50KDQwKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgaWRfdGVtcGAgaW50KDIwKSBERUZBVUxUIE5VTEwsCiAgYGlkX3VzZXJgIGludCg0MCkgTk9UIE5VTEwsCiAgYGlkX2NhdGVnb3J5YCBpbnQoNDApIE5PVCBOVUxMLAogIGBmaWVsZF9jb250YWN0X21ldGhvZGAgdmFyY2hhcig1MCkgTk9UIE5VTEwgREVGQVVMVCAncGhvbmUnLAogIGBmaWVsZF9wcmljZV9yZW50YCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX3JhdGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMjApIE5PVCBOVUxMIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9tYWtlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsX3llYXJgIHllYXIoNCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9ub19vZl9zZWF0YCBpbnQoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZnVlbF90eXBlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NvbG9yYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2dlYXJfdHlwZWAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9taWxhZ2VgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfaW1hZ2VgIGxvbmd0ZXh0LAogIGBmaWVsZF9sb2NhdGlvbmAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9leHRyYV9pbmZvYCBsb25ndGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBOT1QgTlVMTCwKICBgZmllbGRfdXBsb2FkX2RhdGVgIHRpbWVzdGFtcCBOT1QgTlVMTCBERUZBVUxUIENVUlJFTlRfVElNRVNUQU1QIE9OIFVQREFURSBDVVJSRU5UX1RJTUVTVEFNUCwKICBgZmllbGRfdG90YWxfdmlld2AgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3N0YXR1c2AgdmFyY2hhcigxMCkgTk9UIE5VTEwgREVGQVVMVCAncGVuZGluZycsCiAgYGZpZWxkX21hcmtldF9jYXRlZ29yeWAgdmFyY2hhcigxNSkgTk9UIE5VTEwsCiAgYGZpZWxkX3RhYmxlX3R5cGVgIGludCgxMCkgTk9UIE5VTEwgREVGQVVMVCAnMScsCiAgUFJJTUFSWSBLRVkgKGBpZGApLAogIEtFWSBgdUlEX0ZLMWAgKGBpZF91c2VyYCksCiAgS0VZIGBjY2F0ZWdvcnlJRF9GS2AgKGBpZF9jYXRlZ29yeWApLAogIENPTlNUUkFJTlQgYGl0ZW1fY2FyX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2Nhcl9pYmZrXzJgIEZPUkVJR04gS0VZIChgaWRfY2F0ZWdvcnlgKSBSRUZFUkVOQ0VTIGBjYXRlZ29yeV9jYXJgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9MzAgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
 
+    /*
+    * Property to store a car category array
+    */
+    private $categoryNameArray;
+
     /**
      * setId Sets the class attribute id with a given value
      *
@@ -1268,6 +1273,7 @@ class HtItemCar extends MySqlRecord
         if (!empty($id)) {
             $this->select($id, $status);
         }
+        $this->setCategoryName();
     }
 
     /**
@@ -1371,6 +1377,15 @@ class HtItemCar extends MySqlRecord
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);	
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);	
         @$this->fieldTableType = (int) $rowObject->field_table_type;
+    }
+
+    public function setCategoryName(){
+        $object = new HtCategoryCar("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_assoc()) {
+            $catArray[] = $row;
+        }
+        $this->categoryNameArray = $catArray;                
     }
 
     /**
@@ -1539,7 +1554,9 @@ SQL;
     {
         echo $this->getFieldMake()   ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp</strong>' . $this->getFieldMake() . '</p>' : "";
         echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
-        echo $this->getIdCategory() ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["idCategory"][0].':&nbsp</strong>'.$GLOBALS["upload_specific_array"]["car"]["idCategory"][2][$this->carCategory($this->getidCategory())] . '</p>' : "";
+        
+        $carCategory = $GLOBALS['upload_specific_array']['car']['idCategory'][2][$this->carCategory($this->getidCategory())];
+        echo $this->getIdCategory() ? "<p><strong>".$GLOBALS['upload_specific_array']['car']['idCategory'][0].":&nbsp</strong>".  $carCategory . "</p>" : "";
         
         // Due to the inclusion of some words
         if($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
@@ -1771,57 +1788,11 @@ SQL;
 
     /**
      * input: category id
-     * return car type name No need to connect to DB
+     * returns car category name
      */
     public function carCategory($categoryId) {
-        switch ($categoryId){
-            case 1:
-                $catName = "Bus";
-                Break;
-            case 2:
-                $catName = "Compact Car";
-                Break;
-            case 3:
-                $catName = "Converitble";
-                Break;
-            case 4:
-                $catName = "Full Size Van";
-                Break;
-            case 5:
-                $catName = "Hatchback";
-                Break;
-            case 6:
-                $catName = "Heavy Machinery";
-                Break;
-            case 7:
-                $catName = "Luxury Car";
-                Break;
-            case 8:
-                $catName = "Minibus";
-                Break;
-            case 9:
-                $catName = "Pickup";
-                Break;
-            case 10:
-                $catName = "Small Car";
-                Break;
-            case 11:
-                $catName = "Sport Car";
-                Break;
-            case 12:
-                $catName = "Station Wagon";
-                Break;
-            case 13:
-                $catName = "SUV";
-                Break;
-            case 14:
-                $catName = "Taxi";
-                Break;
-            case 15:
-                $catName = "Truck";
-                Break;
-        }
-        return $catName;
-        
+        $row = $this->categoryNameArray;
+        $cat = $row[$categoryId - 1]['field_name'];
+        return $cat;
     }
 }
