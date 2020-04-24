@@ -83,9 +83,11 @@ class HtMainView
             $start = ($calculatePageArray[0] - 1) * HtGlobal::get('itemPerPage');
             $res = $this->_pItem->runQuery($condition, $start, HtGlobal::get('itemPerPage'));
             $result = $this->_pItem->getResultSet();
+            echo '<div class="row">';
             while ($row = $result->fetch_assoc()) {
                 $this->showItemWithId($row);
             }
+            echo '</div>';
             pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
         } else {
             $this->itemNotFound();
@@ -122,22 +124,22 @@ class HtMainView
         $jsImg = implode(',', $imageArr);
         $strReplArr= array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
-        
+
         //---------------------------------------------------------
-       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
-        echo "<div class=\"col1\">";
+       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-md-6 col-md-6\" style =\"height:500px\" >";
+        echo "<div class=\"col1 thumbnail\">";
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
-            echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+            echo "<div class=\"img-thumbnail\" <img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
             $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
             echo "<a href=\"javascript:void(0)\"
 			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-            echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
+            echo "<div class=\"img-thumbnail\">	<img src=\"$thmbNlImg\" class=\"img-thumbnail\"></div></a>";
         }
         //-------------------------------------------------------------------
-        echo "<div class=\"detail\">";  //start_detail
-        echo "<div class=\"leftcol\">"; //start_leftcol
+        echo "<div class=\"caption\">";  //start_detail
+        echo "<div class=\"caption\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         $commonViewObj->displayTitle($this->_pItem);
@@ -153,13 +155,13 @@ class HtMainView
         echo "</div>"; //end_leftcol
         echo "</div>"; //end_detail
         //---------------------------------------------------------
-        echo "<div class=\"showbutton_show\">
+        echo "<div class=\"showbutton_show\" style =\"width:auto\">
 		<input class=\"show\" type=\"button\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
-		value=\"".$GLOBALS['lang']['Show Detail']."\"/></div>";
+		value=\"".$GLOBALS['lang']['Show Detail']."\"/ ></div>";
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
-        echo "<div class=\"clear\"></div>";
+        //echo "<div class=\"clear\"></div>";
         //---------------------------------------------------------
         echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
