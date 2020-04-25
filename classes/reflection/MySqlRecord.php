@@ -182,8 +182,9 @@ class MySqlRecord extends Model
          <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
         if ($type === 'password') {
-
-            echo '<input type="checkbox" onclick="myFunction()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
+            if ($fieldName !== "fieldPasswordRepeat") {
+                echo '<input type="checkbox" onclick="myFunction()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
+            }
         }
         ___close_div_(3);
     }

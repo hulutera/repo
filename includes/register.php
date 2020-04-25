@@ -16,18 +16,12 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
-<script>
-	$(document).ready(function() {
-		$('.show-password').on('change', function() { // on change of state
-			if (this.checked) // if changed state is "CHECKED"
-			{
-				// do the magic here
-				$('.fieldPassword').attr('type') = 'text';
-			}
-		});
-	});
-</script>
 
+<style>
+	.alert-custom {
+    color: #a94442;
+}
+</style>
 <body>
 	<div id="whole">
 		<div id="wrapper">
@@ -60,13 +54,12 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<?php //footerCode(); 
 	?>
 
-	<script>
+	<script>		
 		function myFunction() {
 			var x1 = document.getElementById("fieldPassword");			
 			var x2 = document.getElementById("fieldPasswordRepeat");
 			x1.type = (x1.type === "password") ? "text" : "password";
-			x2.type = (x2.type === "password") ? "text" : "password";
-			
+			x2.type = (x2.type === "password") ? "text" : "password";			
 		}
 	</script>
 </body>

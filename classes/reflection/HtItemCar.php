@@ -1771,9 +1771,11 @@ SQL;
     private function insertFieldMilage()
     {
         $selectable = [];        
-        $selectable = $this->lister(0,500000, 50000);
-        $unknown = $GLOBALS['upload_specific_array']['car']['fieldMilage'][2]['unlisted'];
-        array_push($selectable, ["unlisted" => $unknown]);
+        $selectable = $this->lister(0,500000, 50000);        
+        $moreOptions = $GLOBALS['upload_specific_array']['car']['fieldMilage'][2];
+        foreach ($moreOptions as $key => $value) {
+            array_push($selectable, [$key => $value]);
+        } 
         $this->insertSelectable('fieldMilage', 'upload_specific_array', 'car', $selectable);
     }
 
@@ -1781,8 +1783,10 @@ SQL;
     {
         $selectable = [];        
         $selectable = $this->lister(1,100);
-        $unknown = $GLOBALS['upload_specific_array']['car']['fieldNoOfSeat'][2]['000'];
-        array_push($selectable, ["000" => $unknown]);
+        $moreOptions = $GLOBALS['upload_specific_array']['car']['fieldNoOfSeat'][2];
+        foreach ($moreOptions as $key => $value) {
+            array_push($selectable, [$key => $value]);
+        }        
         $this->insertSelectable('fieldNoOfSeat', 'upload_specific_array', 'car', $selectable);
     }
 
