@@ -397,7 +397,7 @@ function userAccount() {
     })
 }
 
-function validateForm() {
+function ValidateUpload() {
     var e = document.getElementById("Item").value;
     switch (e) {
         case "000":

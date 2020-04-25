@@ -1685,15 +1685,15 @@ SQL;
         ___open_div_("form-group upload", "");
         
         ___open_div_("col-md-12", '');        
-        $this->insertSelectable('idCategory', $itemName);
+        $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
         
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMake', $itemName);
+        $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
         ___close_div_(1);
         
         ___open_div_("col-md-4", '');
-        $this->insertFillable('fieldModel', $itemName);
+        $this->insertFillable('fieldModel', 'upload_specific_array', $itemName);
         ___close_div_(1);
         
         ___close_div_(3);//top-3
@@ -1705,10 +1705,10 @@ SQL;
         $this->insertFieldModelYear();
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldGearType', $itemName);
+        $this->insertSelectable('fieldGearType', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldFuelType', $itemName);
+        $this->insertSelectable('fieldFuelType', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___close_div_(3);
         ////
@@ -1765,7 +1765,7 @@ SQL;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldModelYear', 'car', $selectable);
+        $this->insertSelectable('fieldModelYear', 'upload_specific_array', 'car', $selectable);
     }
 
     private function insertFieldMilage()
@@ -1774,7 +1774,7 @@ SQL;
         $selectable = $this->lister(0,500000, 50000);
         $unknown = $GLOBALS['upload_specific_array']['car']['fieldMilage'][2]['unlisted'];
         array_push($selectable, ["unlisted" => $unknown]);
-        $this->insertSelectable('fieldMilage', 'car', $selectable);
+        $this->insertSelectable('fieldMilage', 'upload_specific_array', 'car', $selectable);
     }
 
     private function insertFieldNoOfSeat()
@@ -1783,13 +1783,14 @@ SQL;
         $selectable = $this->lister(1,100);
         $unknown = $GLOBALS['upload_specific_array']['car']['fieldNoOfSeat'][2]['000'];
         array_push($selectable, ["000" => $unknown]);
-        $this->insertSelectable('fieldNoOfSeat', 'car', $selectable);
+        $this->insertSelectable('fieldNoOfSeat', 'upload_specific_array', 'car', $selectable);
     }
 
     /**
      * input: category id
      * returns car category name
      */
+
     public function carCategory($categoryId) {
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];

@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtUserAll
  * @extends MySqlRecord
  * @filesource HtUserAll.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -234,7 +234,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -247,7 +247,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldUserName($fieldUserName)
     {
-        $this->fieldUserName = (string)$fieldUserName;
+        $this->fieldUserName = (string) $fieldUserName;
     }
 
     /**
@@ -260,7 +260,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldFirstName($fieldFirstName)
     {
-        $this->fieldFirstName = (string)$fieldFirstName;
+        $this->fieldFirstName = (string) $fieldFirstName;
     }
 
     /**
@@ -273,7 +273,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldLastName($fieldLastName)
     {
-        $this->fieldLastName = (string)$fieldLastName;
+        $this->fieldLastName = (string) $fieldLastName;
     }
 
     /**
@@ -286,7 +286,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldEmail($fieldEmail)
     {
-        $this->fieldEmail = (string)$fieldEmail;
+        $this->fieldEmail = (string) $fieldEmail;
     }
 
     /**
@@ -299,7 +299,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldPhoneNr($fieldPhoneNr)
     {
-        $this->fieldPhoneNr = (string)$fieldPhoneNr;
+        $this->fieldPhoneNr = (string) $fieldPhoneNr;
     }
 
     /**
@@ -312,7 +312,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldAddress($fieldAddress)
     {
-        $this->fieldAddress = (string)$fieldAddress;
+        $this->fieldAddress = (string) $fieldAddress;
     }
 
     /**
@@ -325,7 +325,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldPassword($fieldPassword)
     {
-        $this->fieldPassword = (string)$fieldPassword;
+        $this->fieldPassword = (string) $fieldPassword;
     }
 
     /**
@@ -338,7 +338,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldPrivilege($fieldPrivilege)
     {
-        $this->fieldPrivilege = (string)$fieldPrivilege;
+        $this->fieldPrivilege = (string) $fieldPrivilege;
     }
 
     /**
@@ -351,7 +351,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->fieldContactMethod = (string)$fieldContactMethod;
+        $this->fieldContactMethod = (string) $fieldContactMethod;
     }
 
     /**
@@ -364,7 +364,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldTermAndCondition($fieldTermAndCondition)
     {
-        $this->fieldTermAndCondition = (int)$fieldTermAndCondition;
+        $this->fieldTermAndCondition = (int) $fieldTermAndCondition;
     }
 
     /**
@@ -377,7 +377,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldRegisterDate($fieldRegisterDate)
     {
-        $this->fieldRegisterDate = (string)$fieldRegisterDate;
+        $this->fieldRegisterDate = (string) $fieldRegisterDate;
     }
 
     /**
@@ -390,7 +390,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldNewPassword($fieldNewPassword)
     {
-        $this->fieldNewPassword = (string)$fieldNewPassword;
+        $this->fieldNewPassword = (string) $fieldNewPassword;
     }
 
     /**
@@ -403,7 +403,7 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldActivation($fieldActivation)
     {
-        $this->fieldActivation = (string)$fieldActivation;
+        $this->fieldActivation = (string) $fieldActivation;
     }
 
     /**
@@ -599,10 +599,10 @@ class HtUserAll extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "user_all";
@@ -617,11 +617,13 @@ class HtUserAll extends MySqlRecord
      * @param int $id. If omitted an empty (not fetched) instance is created.
      * @return HtUserAll Object
      */
-    public function __construct($id = null)
+    public function __construct($input = [])
     {
         parent::__construct();
-        if (!empty($id)) {
-            $this->select($id);
+        if (is_array($input) && sizeof($input) !== 0) {
+            $this->select($input);
+        } else if (!empty($input)) {
+            $this->select($input);
         }
     }
 
@@ -638,7 +640,6 @@ class HtUserAll extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -650,21 +651,27 @@ class HtUserAll extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($input)
     {
-        if($id == "*"){
-            $sql = "SELECT * FROM user_all";
-        } else { //id
-            $sql =  "SELECT * FROM user_all WHERE id={$this->parseValue($id,'int')}";
+        if(is_array($input))
+        {
+            $sql = $input['sql'];
+        }else
+        {
+            if ($input == "*") {
+                $sql = "SELECT * FROM user_all";
+            } else { //id
+                $sql =  "SELECT * FROM user_all WHERE id={$this->parseValue($input, 'int')}";
+            }
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
+            @$this->id = (int) $rowObject->id;
             @$this->fieldUserName = $this->replaceAposBackSlash($rowObject->field_user_name);
             @$this->fieldFirstName = $this->replaceAposBackSlash($rowObject->field_first_name);
             @$this->fieldLastName = $this->replaceAposBackSlash($rowObject->field_last_name);
@@ -674,17 +681,17 @@ class HtUserAll extends MySqlRecord
             @$this->fieldPassword = $this->replaceAposBackSlash($rowObject->field_password);
             @$this->fieldPrivilege = $this->replaceAposBackSlash($rowObject->field_privilege);
             @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldTermAndCondition = (integer)$rowObject->field_term_and_condition;
+            @$this->fieldTermAndCondition = (int) $rowObject->field_term_and_condition;
             @$this->fieldRegisterDate = $rowObject->field_register_date;
             @$this->fieldNewPassword = $this->replaceAposBackSlash($rowObject->field_new_password);
             @$this->fieldActivation = $this->replaceAposBackSlash($rowObject->field_activation);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
+
 
     /**
      * Deletes a specific row from the table user_all
@@ -694,12 +701,12 @@ class HtUserAll extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM user_all WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM user_all WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -721,25 +728,25 @@ class HtUserAll extends MySqlRecord
             INSERT INTO user_all
             (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation)
             VALUES(
-			{$this->parseValue($this->fieldUserName,'notNumber')},
-			{$this->parseValue($this->fieldFirstName,'notNumber')},
-			{$this->parseValue($this->fieldLastName,'notNumber')},
-			{$this->parseValue($this->fieldEmail,'notNumber')},
-			{$this->parseValue($this->fieldPhoneNr,'notNumber')},
-			{$this->parseValue($this->fieldAddress,'notNumber')},
-			{$this->parseValue($this->fieldPassword,'notNumber')},
-			{$this->parseValue($this->fieldPrivilege,'notNumber')},
-			{$this->parseValue($this->fieldContactMethod,'notNumber')},
+			{$this->parseValue($this->fieldUserName, 'notNumber')},
+			{$this->parseValue($this->fieldFirstName, 'notNumber')},
+			{$this->parseValue($this->fieldLastName, 'notNumber')},
+			{$this->parseValue($this->fieldEmail, 'notNumber')},
+			{$this->parseValue($this->fieldPhoneNr, 'notNumber')},
+			{$this->parseValue($this->fieldAddress, 'notNumber')},
+			{$this->parseValue($this->fieldPassword, 'notNumber')},
+			{$this->parseValue($this->fieldPrivilege, 'notNumber')},
+			{$this->parseValue($this->fieldContactMethod, 'notNumber')},
 			{$this->parseValue($this->fieldTermAndCondition)},
-			{$this->parseValue($this->fieldRegisterDate,'notNumber')},
-			{$this->parseValue($this->fieldNewPassword,'notNumber')},
-			{$this->parseValue($this->fieldActivation,'notNumber')})
+			{$this->parseValue($this->fieldRegisterDate, 'notNumber')},
+			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
+			{$this->parseValue($this->fieldActivation, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -766,26 +773,26 @@ SQL;
             UPDATE
                 user_all
             SET 
-				field_user_name={$this->parseValue($this->fieldUserName,'notNumber')},
-				field_first_name={$this->parseValue($this->fieldFirstName,'notNumber')},
-				field_last_name={$this->parseValue($this->fieldLastName,'notNumber')},
-				field_email={$this->parseValue($this->fieldEmail,'notNumber')},
-				field_phone_nr={$this->parseValue($this->fieldPhoneNr,'notNumber')},
-				field_address={$this->parseValue($this->fieldAddress,'notNumber')},
-				field_password={$this->parseValue($this->fieldPassword,'notNumber')},
-				field_privilege={$this->parseValue($this->fieldPrivilege,'notNumber')},
-				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
+				field_user_name={$this->parseValue($this->fieldUserName, 'notNumber')},
+				field_first_name={$this->parseValue($this->fieldFirstName, 'notNumber')},
+				field_last_name={$this->parseValue($this->fieldLastName, 'notNumber')},
+				field_email={$this->parseValue($this->fieldEmail, 'notNumber')},
+				field_phone_nr={$this->parseValue($this->fieldPhoneNr, 'notNumber')},
+				field_address={$this->parseValue($this->fieldAddress, 'notNumber')},
+				field_password={$this->parseValue($this->fieldPassword, 'notNumber')},
+				field_privilege={$this->parseValue($this->fieldPrivilege, 'notNumber')},
+				field_contact_method={$this->parseValue($this->fieldContactMethod, 'notNumber')},
 				field_term_and_condition={$this->parseValue($this->fieldTermAndCondition)},
-				field_register_date={$this->parseValue($this->fieldRegisterDate,'notNumber')},
-				field_new_password={$this->parseValue($this->fieldNewPassword,'notNumber')},
-				field_activation={$this->parseValue($this->fieldActivation,'notNumber')}
+				field_register_date={$this->parseValue($this->fieldRegisterDate, 'notNumber')},
+				field_new_password={$this->parseValue($this->fieldNewPassword, 'notNumber')},
+				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -811,31 +818,146 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for user_all previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for user_all previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into user_all.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
-    public function upload()
+     * Facility for register a new user row into user_all.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
+    public function register()
     {
-        global $documnetRootPath;
-        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=register' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        //echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_user.php?table=' . $this->getTableName() . $lang_sw . '&function=upload" method="post" enctype="multipart/form-data">';
+
+        //$itemName = $this->getTableNameShort();
+        $this->insertAllField(null, null);
+        echo '</form>';
+    }
+    /**
+     * 
+     */
+    public function insertAllField($itemName,  $skipRow = null)
+    {
+        //uploadResetErrors();
+        ___open_div_("container-fluid", '');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group", "");
+        ___open_div_("col-md-2", '');
+        logoText();
+        ___close_div_(1);
+        ___open_div_("col-md-10", '');
+        topRightLinks();
+        ___close_div_(2);
+        ___close_div_(4);
+        ///
+        ___open_div_("row", "");
+        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['registeration'] . '</strong></p>';
+        ___close_div_(2);
+        ///
+        $fillableFields = ['fieldFirstName', 'fieldLastName'];
+        $style = '" style="text-align: left;font-size:18px;';
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", $style . 'padding-top: 10px;');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
+        ___close_div_(2);
+        foreach ($fillableFields as $value) {
+            ___open_div_("col-md-6", '');
+            ___open_div_("col-md-12", '');
+            $this->insertFillable($value,  'user_specific_array', 'user');
+            ___close_div_(2);
+        }
+        ___close_div_(4);
+        ///
+        $fillableFields = ['fieldEmail', 'fieldPhoneNr'];
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", $style);
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        foreach ($fillableFields as $value) {
+            ___open_div_("col-md-6", '');
+            ___open_div_("col-md-12", '');
+            $this->insertFillable($value,  'user_specific_array', 'user');
+            ___close_div_(2);
+        }
+        $this->insertPassword();
+        ___close_div_(4);
+        ///
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 ", $style);
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertSelectable('fieldContactMethod',  'upload_specific_array', 'common');
+        ___close_div_(6);
+        ///
+        ___open_div_("row", "");
+        ___open_div_("col-md-12 ", $style);
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertSelectable('fieldTermAndCondition',  'user_specific_array', 'user');
+        ___close_div_(1);
+        //___open_div_("col-md-12", '');
+        global $lang, $str_url;
+        ___open_div_("col-md-6", '');
+        echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '">' .
+            $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
+        ___close_div_(1);
+        ___open_div_("col-md-6", '');
+        echo '<p ><a class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' .
+            $GLOBALS['user_specific_array']['user']['fieldPrivacyPolicy'][0]['message'] . '</a></p>';
+        ___close_div_(1);
+        ___close_div_(5);
+        ///
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Register'] . '</button>';
+        ___close_div_(5);
+        ___close_div_(2);
     }
 
+    private function insertPassword()
+    {
+        $fillableFields = ['fieldPassword', 'fieldPasswordRepeat'];
+        foreach ($fillableFields as $value) {
+            ___open_div_("col-md-6", '');
+            ___open_div_("col-md-12", '');
+            $this->insertFillable($value,  'user_specific_array', 'user', 'password');
+            ___close_div_(2);
+        }
+    }
 }
-?>

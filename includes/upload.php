@@ -9,7 +9,7 @@ if (isset($_GET['lan'])) {
 	$lang_sw = "&lan=" . $_GET['lan'];
 	$lang_url =  "?&lan=" . $_GET['lan'];
 } else {
-	$lang_sw = "";
+	$lang_sw = "&lan=en";
 	$str_url =  "";
 }
 

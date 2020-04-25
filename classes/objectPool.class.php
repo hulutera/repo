@@ -73,7 +73,7 @@ class ObjectPool
             case 'phone':
                 return (new HtItemPhone($id));
             case 'other':
-                return (new HtItemOther($id));
+                return (new HtItemOther($id));            
             case 'latest':
                 return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
             default:

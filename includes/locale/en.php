@@ -2,6 +2,7 @@
 
 $lang = array(
     'LANGUAGE' => 'LANGUAGE',
+    'HULUTERA_TEXT_LOGO' => '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>',
     'All Items' => 'All Items',
     'Post Items' => 'Post Items',
     'Help' => 'Help',
@@ -93,6 +94,7 @@ $lang = array(
     'Nifassilk Lafto' => 'Nifassilk Lafto',
     'Yeka' => 'Yeka',
     'Choose' => 'Choose',
+    'Write' => 'Write',
     'type' => 'type',
     'BIRR' => 'BIRR',
     'USD' => 'USD',
@@ -907,20 +909,11 @@ $upload_specific_array = [
                 'unlisted' => '-- Not listed --',
             ]
         ],
-        'Choose Images here' => 'Choose Images here',
-        'validate'    => [
-            0 => ' Should be selected.  Try again!</br>',
-            1 => ' Should be provided.  Try again!</br>',
-            2 => [
-                'fileuploader-list-files' => ' At least one image should be provided.  Try again!</br>',
-                'rentOrSell' => ' Should be provided.!</br>',
-                'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>'
-            ]
-        ]
+        'Choose Images here' => 'Choose Images here'
     ]
 ];
 
-$abuse_type_lang_arr = array (
+$abuse_type_lang_arr = [
     0 => [
         '000' => 'Choose Type',
         'Bullying' => 'Bullying',
@@ -938,9 +931,88 @@ $abuse_type_lang_arr = array (
         'You forgort to choose the Report type' => 'You forgort to choose the Report type.',
         'You successfully reported the item!' => 'You successfully reported the item!'
     ]
-);
+];
+
+$user_specific_array = [
+    'user' =>    [
+        'registeration' => 'User Registeration',
+        'fieldUserName'       => [
+            0 => 'Username',
+            1 => 'Write Username here'
+        ],
+        'fieldFirstName'       => [
+            0 => 'First Name',
+            1 => 'Write your First Name'
+        ],
+        'fieldLastName'       => [
+            0 => 'Last Name',
+            1 => 'Write your Last Name'
+        ],
+        'fieldEmail'       => [
+            0 => 'Email',
+            1 => 'Write Email here',
+        ],
+        'fieldPhoneNr'       => [
+            0 => 'Phone',
+            1 => 'Write phone here',
+        ],
+        'fieldPassword'       => [
+            0 => 'Password',
+            1 => 'Write password here',
+            2 => 'Show password'
+        ],
+        'fieldPasswordRepeat'       => [
+            0 => 'Repeat Password',
+            1 => 'Write password here again',
+            2 => 'Show password'
+        ],
+        'fieldTermAndCondition'       => [
+            0 => 'Terms and Conditions',
+            1 => 'Choose if you read and agree to the Terms and Conditions',
+            2 => [
+                'Yes' => 'YES! I have read and agree to the Terms and Conditions'
+            ],
+            3 => [
+                'message' => 'Click here to read <strong>Term and Conditions</strong>'
+            ]
+        ],
+        'fieldPrivacyPolicy'       => [            
+            0 => [
+                'message' => 'Click here to read <strong>Privacy Policy</strong>'
+            ]
+        ],        
+    ],
+    
+    'message' => [
+        'activation' => [
+            'subject' => 'Confirmation of registration',
+            'body' => 'Thank you for registering. A confirmation mail has been sent to your email.
+            Please click on the activation link to activate your account.',
+        ]
+    ]
+];
+
+$validate = [
+    0 => ' Should be selected.  Try again!</br>',
+    1 => ' Should be provided.  Try again!</br>',
+    2 => [
+        'fileuploader-list-files' => ' At least one image should be provided.  Try again!</br>',
+        'rentOrSell' => ' Should be provided.!</br>',
+        'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>',
+        'isalpha' => 'Invalid input, should be only letter. Try again!<br>',
+        'isdigit' => 'Invalid input, should be only numbers. Try again!<br>',
+        'isalphanumeric' => 'Invalid input, should be only a combination of letters and/or numbers. Try again!<br>',
+        'length' => [
+            5 => 'Invalid input, should be at least 5 letters long. Try again!<br>',
+            14 => 'Invalid input, should be at least 14 letters long. Try again!<br>',
+        ],
+        'email' => 'Invalid email address. Try again!<br>',
+        'passwordRepeat' => 'Passwords do not match. Try again!<br>',
+    ],
+];
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
-$GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['user_specific_array'] = $user_specific_array;
+$GLOBALS['validate'] = $validate;
 $GLOBALS['lang'] = $lang;

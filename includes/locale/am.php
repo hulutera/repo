@@ -1,6 +1,7 @@
 <?php
 $lang = array(
     'LANGUAGE' => 'ቋንቋ',
+    'HULUTERA_TEXT_LOGO' => '<span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>',
     'All Items' => 'ሁሉም ንብረቶች',
     'Post Items' => 'ንብረት ያስገቡ',
     'Help' => 'መረጃ',
@@ -97,6 +98,7 @@ $lang = array(
     'Nifassilk Lafto' => 'ነፋስ ስልክ ላፍቶ',
     'Yeka' => 'የካ',
     'Choose' => 'ይምረጡ',
+    'Write' => 'ይጻፉ',
     'type' => 'አይነት',
     'BIRR' => 'ብር',
     'USD' => 'የአሜሪካን ዶላር',
@@ -362,8 +364,7 @@ $lang = array(
     'unknown' => 'አይታወቅም',
     'unlisted' => '-- አልተዘረዘረም --',
     'today' => 'ዛሬ',
-    'yesterday' => 'ትላንት'
-
+    'yesterday' => 'ትላንት',
 );
 
 $city_lang_arr = array(
@@ -490,7 +491,7 @@ $upload_specific_array = [
                 'Diesel'  => 'ናፍጣ',
                 'Electric' => 'በኤሌትሪክ',
                 'Bio-gas' => 'ባዮ ጋዝ',
-                'Hybrid' => 'ሃይብሪድ'               
+                'Hybrid' => 'ሃይብሪድ'
             ]
         ],
         'fieldMilage' => [
@@ -533,7 +534,7 @@ $upload_specific_array = [
                 'Commercial' => 'የንግድ',
                 'Land' => 'ባዶ መሬት',
                 'Condominium' => 'ኮንዶሚኒየም',
-                'Residential' => 'የመኖሪያ',                
+                'Residential' => 'የመኖሪያ',
                 'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
@@ -573,7 +574,7 @@ $upload_specific_array = [
             0 => 'የመኝታ ቤት ብዛት',
             1 => 'ብዛት ይምረጡ',
         ],
-       'fieldWater' => [
+        'fieldWater' => [
             0 => 'ቤቱ ውሃ አለው?',
             1 => 'ውሃ ይምረጡ',
             2 => [
@@ -582,7 +583,7 @@ $upload_specific_array = [
                 'ongoing' => 'በሂደት ላይ'
             ]
         ],
-       'fieldElectricity' => [
+        'fieldElectricity' => [
             0 => 'ቤቱ የኤሌክትሪክ ኃይል አለው?',
             1 => 'ኤሌክትሪክ ይምረጡ',
             2 => [
@@ -590,7 +591,7 @@ $upload_specific_array = [
                 'no' => 'የለውም',
                 'ongoing' => 'በሂደት ላይ'
             ]
-       ]
+        ]
     ],
     'computer' => [
         'Uploading' => 'ኮምፒዩተር የማስገቢያ ቅፅ',
@@ -692,23 +693,23 @@ $upload_specific_array = [
             0 => 'ስሪት (አምራች ድርጅት)',
             1 => 'ስሪት ይምረጡ',
             2 => [
-                "Alcatel" =>"Alcatel" ,
-                "Blackberry"=>"Blackberry",
-                "HTC"=>"HTC",
-                "Huawei"=>"Huawei",
-                "iPhone"=>"iPhone",
-                "LG"=>"LG",
-                "Motorolla"=>"Motorolla",
-                "Nokia"=>"Nokia",
-                "Samsung"=>"Samsung",
-                "Sanyo"=>"Sanyo",
-                "Siemens"=>"Siemens",
-                "Sony"=>"Sony",
-                "Sony Ericsson"=>"Sony Ericsson",
-                "T-Mobile"=>"T-Mobile",
-                "TANA"=>"TANA",
-                "Vodaphone"=>"Vodaphone",
-                "ZTE"=>"ZTE",
+                "Alcatel" => "Alcatel",
+                "Blackberry" => "Blackberry",
+                "HTC" => "HTC",
+                "Huawei" => "Huawei",
+                "iPhone" => "iPhone",
+                "LG" => "LG",
+                "Motorolla" => "Motorolla",
+                "Nokia" => "Nokia",
+                "Samsung" => "Samsung",
+                "Sanyo" => "Sanyo",
+                "Siemens" => "Siemens",
+                "Sony" => "Sony",
+                "Sony Ericsson" => "Sony Ericsson",
+                "T-Mobile" => "T-Mobile",
+                "TANA" => "TANA",
+                "Vodaphone" => "Vodaphone",
+                "ZTE" => "ZTE",
                 'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
@@ -720,7 +721,7 @@ $upload_specific_array = [
             0 => 'የስልክ ካሜራ መጠን',
             1 => 'የካሜራ መጠን ይምረጡ',
             2 => [
-                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles" ,
+                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles",
                 "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
                 "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
                 "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
@@ -786,7 +787,7 @@ $upload_specific_array = [
         'idCategory' => [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ',
-            2 => [                
+            2 => [
                 'Furniture' => 'ወንበር ፣ ጠረጴዛ፣ ሶፋ፣ አልጋ፣ ወዘተ',
                 'Kitchen Stuff' => 'የወጥ ቤት ዕቃዎች (ምድጃ፣ድስት) ወዘተ',
                 'Shower Stuff' => 'የመጸዳጃ የቤት ዕቃዎች',
@@ -800,8 +801,7 @@ $upload_specific_array = [
         'idCategory' => [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ',
-            2 => [
-            ]
+            2 => []
         ]
     ],
     'common' => [
@@ -888,20 +888,12 @@ $upload_specific_array = [
                 'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
-        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
-        'validate'    => [
-            0 => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!</br>',
-            1 => ' መሞላት  አለበት። በድጋሚ ይሞክሩ!</br>',
-            2 => [
-                'fileuploader-list-files' => ' ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!</br>',
-                'rentOrSell' => ' ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ</br>',
-                'number' => ' የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!</br>'
-            ]
-        ]
+        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ'
     ]
 ];
 
-$abuse_type_lang_arr = array (
+
+$abuse_type_lang_arr = [
     0 => [
         '000' => 'ዓይነቱን ይምረጡ',
         'Bullying' => 'ሌላውን ማንቋሸሽ',
@@ -914,14 +906,93 @@ $abuse_type_lang_arr = array (
         'Sex Abuse' => 'ጾታዊ ጥቃት',
         'Sexual Content' => 'ወሲባዊ ይዘት ያለው',
         'Religious violence' => 'የሃይማኖት ሁከት ፈጣሪ',
-        'Other' => 'ሌላ'],
+        'Other' => 'ሌላ'
+    ],
     1 => [
         'You forgort to choose the Report type' => 'የሪፖርት ዓይነት መምረጥ ረስተዋል።',
         'You successfully reported the item!' => 'ሪፖርቱ በተሳካ ሁኔታ ተከናውኗል።'
     ]
-);
+];
+
+$user_specific_array = [
+    'user' =>    [
+        'registeration' => 'የደንበኛ መመዝገቢያ ቅፅ',
+        'fieldUserName'       => [
+            0 => 'መጠቀምያ ስም',
+            1 => 'መጠቀምያ ስም እዚህ ይጻፉ'
+        ],
+        'fieldFirstName'       => [
+            0 => 'ስም',
+            1 => 'ስምዎን እዚህ ይጻፉ'
+        ],
+        'fieldLastName'       => [
+            0 => 'የአባት ስም',
+            1 => 'የአባት ስም እዚህ ይጻፉ',
+        ],
+        'fieldEmail'       => [
+            0 => 'ኢሜይል',
+            1 => 'የኢሜይል አድራሻ እዚህ ይጻፉ',
+        ],
+        'fieldPhoneNr'       => [
+            0 => 'ስልክ',
+            1 => 'ስልክዎን እዚህ ይጻፉ',
+        ],
+        'fieldPassword'       => [
+            0 => 'የምስጢር ቃል',
+            1 => 'የምስጢር ቃል ይጻፉ',
+            2 => 'የምስጢር ቃል አሳይ'
+        ],
+        'fieldPasswordRepeat'       => [
+            0 => 'የምስጢር ቃል በድጋሚ',
+            1 => 'የምስጢር ቃል በድጋሚ ይጻፉ',
+            2 => 'የምስጢር ቃል አሳይ'
+        ],
+        'fieldTermAndCondition'       => [
+            0 => 'መተዳደርያ ደንብ እና ግላዊ መርህ',
+            1 => 'የመተዳደርያ ደንቡ መስማማቶን ይምረጡ',
+            2 => [
+                'Yes' => 'አዎ! መተዳደርያ ደንብ እና ግላዊ መርህ አንብብዬ ተስማምቻለው'
+            ],
+            3 => [
+                'message' => '<strong>የመተዳደርያ ደንብ</strong> ለማንበብ ይጫኑ'
+            ]
+        ],
+        'fieldPrivacyPolicy' => [
+            0 => [
+                'message' => '<strong>የግላዊ መርህን</strong> ለማንበብ እዚህ ይጫኑ'
+            ]
+        ]
+    ],
+    'message' => [
+        'activation' => [
+            'subject' => 'የምዝገባ ማረጋገጫ እና ማስጀመሪያ',
+            'body' => 'እኛን ስለመረጡና ስለተመዘገቡ እናመሰናለን። ምዝገባውን ለማጠናቀቅ እና የሁሉተራን አገልግሎት መጠቀም እንዲጀምሩ ይሄንን መሲብ ይጫኑ።',
+        ]
+    ]
+];
+
+$validate = [
+    0 => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!</br>',
+    1 => ' መሞላት አለበት። በድጋሚ ይሞክሩ!</br>',
+    2 => [
+        'fileuploader-list-files' => ' ቢያንስ አንድ ምስል መጫን አለበት። በድጋሚ ይሞክሩ!',
+        'rentOrSell' => ' ኪራይ ወይም ሽያጭ መመረጥ አለበት። በድጋሚ ይሞክሩ!',
+        'number' => ' የተከለከለ ግባት! መጻፍ የሚቻለው ከዜሮ በላይ ቁጥር (አሀዝ) ብቻ ነው። በድጋሚ ይሞክሩ!',
+        'isalpha' => 'የተከለከለ ግባት! የሚቀበለው ግባት ፊደል ብቻ ነው። ባዶ መተውም ክልክል ነው። በድጋሚ ይሞክሩ!<br>',
+        'isdigit' => 'የተከለከለ ግባት! የሚቀበለው ግባት ቁጥር(አሀዝ) ብቻ ነው። ባዶ መተውም ክልክል ነው። በድጋሚ ይሞክሩ!<br>',
+        'isalphanumeric' => 'የተከለከለ ግባት! የሚቀበለው ግባት የፊደል፣ የቁጥር(አሀዝ)፣ ወይም የሁለቱ ድብልቅ ነው። ባዶ መተውም ክልክል ነው። በድጋሚ ይሞክሩ!<br>',
+        'length' => [
+            5 => 'ርዝመት ቢያንስ 5 በላይ መሆን አለበት። በድጋሚ ይሞክሩ!',
+            14 => 'ርዝመት ቢያንስ 14 በላይ መሆን አለበት። በድጋሚ ይሞክሩ!',
+        ],
+        'email' => 'የተከለከለ ግባት! ያስገቡት የኢሜይል አድራሻ መስፈርት አያሟላም። በድጋሚ ይሞክሩ!',
+        'passwordRepeat' => 'የምስጢር ቃሎቹ ተመሳሳይ መሆን አለባቸው። በድጋሚ ይሞክሩ!',
+    ],
+];
+
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
+$GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['item_specific_array'] = $item_specific_array;
 $GLOBALS['lang'] = $lang;

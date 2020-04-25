@@ -9,20 +9,14 @@ require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
 $err = [];
 $itemName = str_replace("item_", "", $_GET['table']);
-//$_SESSION['POST'] = [];
-$validate = new ValidateForm($err);
-// var_dump($_GET);
-//exit;
+$validate = new ValidateUpload($err);
 $err2 = array();
-//$GLOBALS['upload_specific_array']['car']['validate'];
 foreach ($err as $x) {
 	foreach ($x as $rowNumber => $pair) {
 		$err2[$rowNumber] = $pair;
 	}
 }
-//var_dump($err2);
-//var_dump($_POST);
-//exit;
+
 if (!empty($err2)) {
 	$_SESSION['POST'] = $_POST;
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
@@ -34,14 +28,13 @@ if (!empty($err2)) {
 		array_keys($err2)
 	));
 
-	var_dump($_SESSION['POST']['fieldPriceRent']);
 	$input = "Oh Snap! <br>" . $input;
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
 	$_SESSION['errorRaw']  = $err2;
 	$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-	//exit;
-	header('Location: ../../template.upload.php?type=' . $itemName . $lang_sw);
+
+	header('Location: ../../template.upload.php?function=upload&type=' . $itemName . $lang_sw);
 } else {
 	// reset Error
 	$err = [];
@@ -53,7 +46,7 @@ if (!empty($err2)) {
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
 	//insert item
 	$_pItem->insert();
-	
+
 	//reset uploaded sessions per item
 	$items = new HtItemAll("*");
 	$result = $items->getResultSet();
@@ -61,7 +54,7 @@ if (!empty($err2)) {
 		$itemName = $row['field_name'];
 		$_SESSION['upload_' . $itemName] = null;
 	}
-	//exit
+
 	//successfull
 	header('Location: ../../prompt.php?type=10');
 }

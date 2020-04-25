@@ -18,7 +18,7 @@ commonHeader();?>
 			<?php 
 				echo '<div id= "head">';
 				echo '<div class="header" style="padding-left:15%;padding-right:15%;display:block;margin-bottom:20px">';
-				logo();
+				logImg();
 				topRightLinks();
 				echo '</div>';
 				echo '</div></div>';		

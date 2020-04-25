@@ -139,7 +139,7 @@ class MySqlRecord extends Model
         ___close_div_(1);
         ////
         ___open_div_("col-md-6", '');
-        $this->insertFillable('fieldTitle', 'common');
+        $this->insertFillable('fieldTitle', 'upload_specific_array', 'common');
         ___close_div_(1);
         ___close_div_(3);
     }
@@ -154,32 +154,37 @@ class MySqlRecord extends Model
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldLocation', 'common', $selectable);
+        $this->insertSelectable('fieldLocation', 'upload_specific_array', 'common', $selectable);
     }
 
-    protected function insertFillable($fieldName, $item)
+    protected function insertFillable($fieldName,  $globalArrayName, $item, $type = null)
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw'][$fieldName])) {
-            $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][1];
+            $errorMsg = $_SESSION['errorRaw'][$fieldName];
             $errorClass = ' alert-custom';
         }
 
-        $title = $GLOBALS['upload_specific_array'][$item][$fieldName][0];
-        $placeholder = $GLOBALS['upload_specific_array'][$item][$fieldName][1];
+        $title = $GLOBALS[$globalArrayName][$item][$fieldName][0];
+        $placeholder = $GLOBALS[$globalArrayName][$item][$fieldName][1];
         $choose = "";
         if (isset($_SESSION['POST'][$fieldName])) {
             $choose = $_SESSION['POST'][$fieldName];
         }
+        $typetype = isset($type) ? $type : "text";
 
         ___open_div_("row", '');
         ___open_div_("col-md-12", $errorClass);
         ___open_div_("form-group", '');
         echo <<< EOD
         <label for="{$fieldName}">{$title}</label> {$errorMsg}
-         <input id="{$fieldName}" name="{$fieldName}" type="text" placeholder="{$placeholder}" value="{$choose}" class="form-control">
+         <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
+        if ($type === 'password') {
+
+            echo '<input type="checkbox" onclick="myFunction()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
+        }
         ___close_div_(3);
     }
 
@@ -201,7 +206,7 @@ EOD;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldContactMethod', 'common', $selectable);
+        $this->insertSelectable('fieldContactMethod', 'upload_specific_array', 'common', $selectable);
     }
 
     protected function insertItemImages()
@@ -209,8 +214,8 @@ EOD;
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fileuploader-list-files'])) {
-            $validate = $GLOBALS['upload_specific_array']['common']['validate'][2];
-            $errorMsg = $validate['fileuploader-list-files'];
+            $validate = $GLOBALS['validate'][2];
+            $errorMsg = $_SESSION['errorRaw']['fileuploader-list-files'];
             $errorClass = ' alert-custom';
         }
 
@@ -237,7 +242,7 @@ EOD;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('rentOrSell', 'common', $selectable);
+        $this->insertSelectable('rentOrSell', 'upload_specific_array', 'common', $selectable);
     }
 
     protected function insertFieldPriceNego()
@@ -248,7 +253,7 @@ EOD;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldPriceNego', 'common', $selectable);
+        $this->insertSelectable('fieldPriceNego', 'upload_specific_array', 'common', $selectable);
     }
 
     protected function insertFieldPriceCurrency()
@@ -259,7 +264,7 @@ EOD;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldPriceCurrency', 'common', $selectable);
+        $this->insertSelectable('fieldPriceCurrency', 'upload_specific_array', 'common', $selectable);
     }
 
     protected function insertFieldPriceRate()
@@ -270,7 +275,7 @@ EOD;
             $input = [$key => $value];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldPriceRate', 'common', $selectable);
+        $this->insertSelectable('fieldPriceRate', 'upload_specific_array', 'common', $selectable);
     }
     protected function insertPriceTypeRent($option = null)
     {
@@ -333,7 +338,7 @@ EOD;
             $input = [$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $type[$key]];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldColor', 'common', $selectable);
+        $this->insertSelectable('fieldColor', 'upload_specific_array', 'common', $selectable);
     }
     protected function insertPriceType($marketType, $option = null)
     {
@@ -348,9 +353,9 @@ EOD;
                 strpos($GLOBALS['lang'][$variable[0]], $GLOBALS['lang']['Invalid']) !== false &&
                 $_SESSION['POST'][$marketType] !== ''
             ) {
-                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['upload_specific_array']['common']['validate'][2]['number'];
+                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['validate'][2]['number'];
             } else {
-                $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][1];
+                $errorMsg = $_SESSION['errorRaw'][$marketType];
             }
         }
 
@@ -383,20 +388,20 @@ EOD;
         ___close_div_(3);
     }
 
-    protected function insertSelectable($fieldName, $source = null, $selectable = null)
+    protected function insertSelectable($fieldName, $globalArrayName, $source = null, $selectable = null)
     {
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw'][$fieldName])) {
-            $errorMsg = $GLOBALS['upload_specific_array']['common']['validate'][0];
+            $errorMsg = $_SESSION['errorRaw'][$fieldName];
             $errorClass = ' alert-custom';
         }
         $selected = 0;
-        $label = $GLOBALS['upload_specific_array'][$source][$fieldName][0];
-        $choose = $GLOBALS['upload_specific_array'][$source][$fieldName][1];
+        $label = $GLOBALS[$globalArrayName][$source][$fieldName][0];
+        $choose = $GLOBALS[$globalArrayName][$source][$fieldName][1];
         $types = [];
         if (empty($selectable)) {
-            $types = $GLOBALS['upload_specific_array'][$source][$fieldName][2];
+            $types = $GLOBALS[$globalArrayName][$source][$fieldName][2];
         } else {
             foreach ($selectable as $row) {
                 foreach ($row as $key => $value) {
@@ -471,7 +476,7 @@ EOD;
             ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
             ___open_div_("form-group upload", "");
             ___open_div_("col-md-12", '');
-            $this->insertSelectable('idCategory', $itemName);
+            $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
             ___close_div_(1);
             ___close_div_(3); //top-3
         }
@@ -530,15 +535,15 @@ EOD;
         return $selectable;
     }
 }
-function ___open_div_($class, $options)
-{
-    echo '<div class="' . $class . ' ' . $options . '">';
-}
-function ___close_div_($number)
-{
-    $div = "";
-    for ($i = 0; $i < $number; $i++) {
-        $div .= "</div>";
-    }
-    echo $div;
-}
+// function ___open_div_($class, $options)
+// {
+//     echo '<div class="' . $class . ' ' . $options . '">';
+// }
+// function ___close_div_($number)
+// {
+//     $div = "";
+//     for ($i = 0; $i < $number; $i++) {
+//         $div .= "</div>";
+//     }
+//     echo $div;
+// }

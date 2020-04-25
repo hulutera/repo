@@ -49,7 +49,7 @@ class Cryptor
         return $out;
     }
 }
-class ValidateForm
+class ValidateUpload
 {
     private $default_options = [];
 
@@ -78,15 +78,16 @@ class ValidateForm
                 if (in_array($key, $price)) {
                     continue;
                 }
-                if (
-                    strpos($postValue, $GLOBALS['lang']['Choose']) !== false or //Error if value start with Choose
-                    strpos($postValue, 'Write') !== false or  //Error if value start with Write
-                    $postValue === ''
-                ) //Error if field is empty or not provided
+                if (strpos($postValue, $GLOBALS['lang']['Choose']) !== false) //Error if value start with Choose
                 {
-                    $input = array($key => 'The value for ' . $this->_runnerName->getUploadOptionShort($key) . ' should be provided.  Try again!<br>');
-                    array_push($err, $input);
+                    $input = array($key => $GLOBALS['validate'][0]);
+                } else if (
+                    strpos($postValue, 'Write') !== false or  //Error if value start with Write
+                    $postValue === '' //Error if field is empty or not provided
+                ) {
+                    $input = array($key => $GLOBALS['validate'][1]);
                 }
+                array_push($err, $input);
             }
         }
 
@@ -94,7 +95,7 @@ class ValidateForm
          * check if rentOrSell radio is selected report if not 
          */
         if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) !== false) {
-            $input = array("rentOrSell" => 'The value for ' . $_POST["rentOrSell"] . ' should be provided.  Try again!<br>');
+            $input = array("rentOrSell" => $GLOBALS['validate'][0]);
             array_push($err, $input);
         }
 
@@ -110,7 +111,7 @@ class ValidateForm
             }
             if ($_POST["rentOrSell"] == "fieldPriceRent" || $_POST["rentOrSell"] == "both") {
                 if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
-                    $input = array("fieldPriceRate" => 'The value for ' . $_POST["fieldPriceRate"] . ' should be provided.  Try again!<br>');
+                    $input = array("fieldPriceRate" => $GLOBALS['validate'][0]);
                     array_push($err, $input);
                 }
             }
@@ -122,7 +123,7 @@ class ValidateForm
          * Check if image have been provided report if not
          */
         if (isset($_POST["fileuploader-list-files"]) && $_POST["fileuploader-list-files"] === '[]') {
-            $input = array("fileuploader-list-files" => 'At least one image should be provided.  Try again!<br>');
+            $input = array("fileuploader-list-files" => $GLOBALS['validate'][1]);
             array_push($err, $input);
         }
 
@@ -158,7 +159,7 @@ class ValidateForm
     private function validatePrice(&$err, $key)
     {
         if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
-            $input = array($key => 'Invalid input, Should be number! Try again!');
+            $input = array($key => $GLOBALS['validate'][1]);
             array_push($err, $input);
         }
     }
@@ -168,5 +169,79 @@ class ValidateForm
     public function getDefaultOptions()
     {
         return $this->default_options;
+    }
+}
+
+class ValidateRegister
+{
+    public function __construct(&$err)
+    {
+        /**
+         * Get all information for the IUT (Item Under Test) for validation
+         */
+        $input = [];
+        if (isset($_POST['submit'])) {
+            foreach ($_POST as $key => $value) {
+                if (isset($_POST[$key])) {
+                    if (strpos($key, 'field') === false) {
+                        continue;
+                    }
+                    if ((strpos($value, $GLOBALS['lang']['Choose']) !== false)) //Error if value start with Choose                        
+                    {
+                        $input = array($key => $GLOBALS['validate'][0]);
+                    } else if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
+                    {
+                        $input = array($key => $GLOBALS['validate'][1]);
+                    } else {
+                        switch ($key) {
+                            case 'fieldUserName':
+                                if (!ctype_alnum($value)) {
+                                    $input = array($key => $GLOBALS['validate'][2]['isalphanumeric']);
+                                } else if (strlen($value) < 5) {
+                                    $input = array($key => $GLOBALS['validate'][2]['length'][5]);
+                                }
+                                continue;
+                            case 'fieldFirstName':
+                            case 'fieldLastName':
+                                if (!ctype_alpha($value)) {
+                                    $input = array($key => $GLOBALS['validate'][2]['isalpha']);
+                                }
+                                continue;
+                            case 'fieldPhoneNr':
+                                if (!ctype_digit($value)) {
+                                    $input = array($key => $GLOBALS['validate'][2]['isdigit']);
+                                } else if (strlen($value) < 10) {
+                                    $input = array($key => $GLOBALS['validate'][1]);
+                                }
+                                continue;
+                            case 'fieldEmail':
+                                if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                                    $input = array('fieldEmail' => $GLOBALS['validate'][2]['email']);
+                                }
+                                continue;
+                            case 'fieldPassword':
+                                //case 'fieldPasswordRepeat':
+                                if (strlen($value) < 5) {
+                                    $input = array($key => $GLOBALS['validate'][2]['length'][5]);
+                                } else if ($_POST['fieldPassword'] !== $_POST['fieldPasswordRepeat']) {
+                                    $input = array('fieldPassword' => $GLOBALS['validate'][2]['passwordRepeat']);
+                                }
+                                continue;
+                            case 'fieldPasswordRepeat':
+                                //case 'fieldPasswordRepeat':
+                                if (strlen($value) < 5) {
+                                    $input = array($key => $GLOBALS['validate'][2]['length'][5]);
+                                } else if ($_POST['fieldPassword'] !== $_POST['fieldPasswordRepeat']) {
+                                    $input = array('fieldPasswordRepeat' => $GLOBALS['validate'][2]['passwordRepeat']);
+                                }
+                                continue;
+                            default:
+                                break;
+                        }
+                    }
+                    array_push($err, $input);
+                }
+            }
+        }
     }
 }

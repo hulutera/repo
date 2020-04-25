@@ -12,8 +12,7 @@ else {
 require_once $documnetRootPath.'/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath.'/includes/cmn.user.php';
 require_once $documnetRootPath.'/classes/cmn.class.php';
-
- require_once $documnetRootPath.'/db/database.class.php';
+require_once $documnetRootPath.'/db/database.class.php';
  
 if(isset($_POST['submit']))
 {

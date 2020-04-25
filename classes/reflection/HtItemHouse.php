@@ -1650,28 +1650,28 @@ SQL;
         ___open_div_("form-group upload", "");
 
         ___open_div_("col-md-12", '');
-        $this->insertSelectable('idCategory', $itemName);
+        $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
         $selectable = $this->lister(1, 100);
-        $this->insertSelectable('fieldKebele', $itemName, $selectable);
+        $this->insertSelectable('fieldKebele', 'upload_specific_array', $itemName, $selectable);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldWereda', $itemName, $selectable);
+        $this->insertSelectable('fieldWereda', 'upload_specific_array', $itemName, $selectable);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldWater', $itemName);
+        $this->insertSelectable('fieldWater', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldElectricity', $itemName);
+        $this->insertSelectable('fieldElectricity', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4 lotsize", '');
         $selectable = $this->lister(1, 10000, 50);
-        $this->insertFillable('fieldLotSize', $itemName); //, $selectable);
+        $this->insertFillable('fieldLotSize', 'upload_specific_array', $itemName); //, $selectable);
         ___close_div_(1);
 
         ___close_div_(3); //top-3
@@ -1713,22 +1713,22 @@ SQL;
         ) {
             $style = "display: none;";
         }
-
+        $globalArrayName = 'upload_specific_array';
         ___open_div_("row land", '" style="' . $style);
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldBuildYear', $itemName);
+        $this->insertSelectable('fieldBuildYear', $globalArrayName, $itemName);
         ___close_div_(1);
         ___open_div_("col-md-6", '');
         $selectable = $this->lister(1, 20);
-        $this->insertSelectable('fieldBathroom', $itemName, $selectable);
+        $this->insertSelectable('fieldBathroom', $globalArrayName, $itemName, $selectable);
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldToilet', $itemName, $selectable);
+        $this->insertSelectable('fieldToilet', $globalArrayName, $itemName, $selectable);
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldNrBedroom', $itemName, $selectable);
+        $this->insertSelectable('fieldNrBedroom', $globalArrayName, $itemName, $selectable);
         ___close_div_(1);
         ___close_div_(3);
     }

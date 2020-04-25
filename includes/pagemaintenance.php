@@ -1,6 +1,6 @@
 <?php 
 
-function logo(){
+function logImg(){
 	echo '<div class ="logo"><a href="../includes/pagemaintenance.php"><img src="http://static.hulutera.com/images/hulutera_logo.png"></a></div>';
 	
 }
@@ -40,7 +40,7 @@ function maintenancePage(){
 <body>
 	<div id="whole">
 		<div id="wrapper">
-			<?php   logo(); ?>
+			<?php   logImg(); ?>
 			<div id="main_section">
 				<div id="mainColumn">
 					<?php maintenancePage();?>

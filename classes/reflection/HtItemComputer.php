@@ -1458,15 +1458,15 @@ SQL;
         ___open_div_("form-group upload", "");
 
         ___open_div_("col-md-4", '');        
-        $this->insertSelectable('idCategory', $itemName);
+        $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMade', $itemName);
+        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertFillable('fieldModel', $itemName);
+        $this->insertFillable('fieldModel', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___close_div_(3); //top-3
         ////
@@ -1474,13 +1474,13 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldOs', $itemName);
+        $this->insertSelectable('fieldOs', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldProcessor', $itemName);
+        $this->insertSelectable('fieldProcessor', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldRam', $itemName);
+        $this->insertSelectable('fieldRam', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___close_div_(3);
         ////
@@ -1488,7 +1488,7 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldHardDrive', $itemName);
+        $this->insertSelectable('fieldHardDrive', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-4", '');
         $this->insertFieldColor();

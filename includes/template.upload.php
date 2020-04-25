@@ -22,7 +22,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
 	<link href="../../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/upload.css" rel="stylesheet">
+	<link href="../../css/custom.css" rel="stylesheet">
 
 	<!-- js -->
 	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
@@ -59,7 +59,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 				if (test == "Land") {
 					$(".lotsize").show();
 					$(".land").hide();
-				}else{
+				} else {
 					$(".land").show();
 				}
 			});
@@ -97,7 +97,17 @@ require_once $documnetRootPath . '/includes/validate.php';
 
 				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
 				echo '<div class="col-md-12"><a href="upload.php' . $lang_url . '">' . $GLOBALS['lang']['Back to Post Item'] . '</a></div>';
-				$sessionName = 'upload_' . $_GET['type'];;
+
+				///reset/cleanup _SESSION variables
+				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_SESSION['lan'] != $_GET['lan']) {
+					unset($_SESSION['POST']);
+					unset($_SESSION['errorRaw']);
+				}
+				$_SESSION['lan'] = $_GET['lan'];
+				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+				
+				//define unique session
+				$sessionName = 'upload_' . $_GET['type'];
 				if (!isset($_SESSION[$sessionName])) {
 					$object = new HtMainView($_GET['type'], null);
 					$object->upload();
@@ -106,9 +116,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->upload();
 				}
-				//var_dump($_SESSION);
 				?>
-
 			</div>
 		</div>
 		<div class="push"></div>

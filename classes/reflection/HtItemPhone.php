@@ -1335,15 +1335,15 @@ SQL;
         ___open_div_("form-group upload", "");
 
         ___open_div_("col-md-4", '');        
-        $this->insertSelectable('idCategory', $itemName);
+        $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMade', $itemName);
+        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertFillable('fieldModel', $itemName);
+        $this->insertFillable('fieldModel', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___close_div_(3); //top-3
         ////
@@ -1351,10 +1351,10 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldOs', $itemName);
+        $this->insertSelectable('fieldOs', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldCamera', $itemName);
+        $this->insertSelectable('fieldCamera', 'upload_specific_array', $itemName);
         ___close_div_(1);
         ___close_div_(3);
         ////
