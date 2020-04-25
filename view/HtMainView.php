@@ -126,7 +126,7 @@ class HtMainView
         $imgString = str_replace($strReplArr, "", $jsImg);
 
         //---------------------------------------------------------
-       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-md-6 col-md-6\" style =\"height:500px\" >";
+       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-md-4 col-md-4\" style =\"height:500px\" >";
         echo "<div class=\"col1 thumbnail\">";
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
