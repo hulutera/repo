@@ -35,7 +35,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}
-				$_SESSION['lan'] = $_GET['lan'];
+				$_SESSION['lan'] = isset($_GET['lan'])?$_GET['lan']:"en";
 				$sessionName = 'register';
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
 				
