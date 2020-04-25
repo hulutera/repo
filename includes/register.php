@@ -19,9 +19,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 
 <style>
 	.alert-custom {
-    color: #a94442;
-}
+		color: #a94442;
+	}
 </style>
+
 <body>
 	<div id="whole">
 		<div id="wrapper">
@@ -29,16 +30,14 @@ require_once $documnetRootPath . '/includes/validate.php';
 			?>
 			<div id="main_section">
 				<?php
-
 				///reset/cleanup session variables
 				if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}
-				$_SESSION['lan'] = isset($_GET['lan'])?$_GET['lan']:"en";
 				$sessionName = 'register';
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-				
+
 				if (!isset($_SESSION[$sessionName])) {
 					$object = new HtUserAll("*");
 					$object->register();
@@ -54,12 +53,12 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<?php //footerCode(); 
 	?>
 
-	<script>		
+	<script>
 		function myFunction() {
-			var x1 = document.getElementById("fieldPassword");			
+			var x1 = document.getElementById("fieldPassword");
 			var x2 = document.getElementById("fieldPasswordRepeat");
 			x1.type = (x1.type === "password") ? "text" : "password";
-			x2.type = (x2.type === "password") ? "text" : "password";			
+			x2.type = (x2.type === "password") ? "text" : "password";
 		}
 	</script>
 </body>

@@ -274,7 +274,7 @@ $lang = array(
     You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your account and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
     <br /><br />
     If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us',
-    'login' => 'Login',
+    'Login' => 'Login',
     'Logout' => 'Logout',
     'My Items' => 'My Items',
     'Edit Profile' => 'Edit Profile',
@@ -936,6 +936,7 @@ $abuse_type_lang_arr = [
 $user_specific_array = [
     'user' =>    [
         'registeration' => 'User Registeration',
+        'login' => 'Login',
         'fieldUserName'       => [
             0 => 'Username',
             1 => 'Write Username here'
@@ -992,27 +993,29 @@ $user_specific_array = [
     ]
 ];
 
-$validate = [
-    0 => ' Should be selected.  Try again!</br>',
-    1 => ' Should be provided.  Try again!</br>',
+$validate_specific_array = [
+    0 => ' Should be selected. Please try again!</br>',
+    1 => ' Should be provided. Please try again!</br>',
     2 => [
-        'fileuploader-list-files' => ' At least one image should be provided.  Try again!</br>',
+        'fileuploader-list-files' => ' At least one image should be provided. Please try again!</br>',
         'rentOrSell' => ' Should be provided.!</br>',
-        'number' => ' Invalid input, Should be number greater than zero (0)! Try again!</br>',
-        'isalpha' => 'Invalid input, should be only letter. Try again!<br>',
-        'isdigit' => 'Invalid input, should be only numbers. Try again!<br>',
-        'isalphanumeric' => 'Invalid input, should be only a combination of letters and/or numbers. Try again!<br>',
+        'number' => ' Invalid input, Should be number greater than zero (0)!Please try again!</br>',
+        'isalpha' => 'Invalid input, should be only letter. Please try again!<br>',
+        'isdigit' => 'Invalid input, should be only numbers. Please try again!<br>',
+        'isalphanumeric' => 'Invalid input, should be only a combination of letters and/or numbers. Please try again!<br>',
         'length' => [
-            5 => 'Invalid input, should be at least 5 letters long. Try again!<br>',
-            14 => 'Invalid input, should be at least 14 letters long. Try again!<br>',
+            5 => 'Invalid input, should be at least 5 letters long. Please try again!<br>',
+            14 => 'Invalid input, should be at least 14 letters long. Please try again!<br>',
         ],
-        'email' => 'Invalid email address. Try again!<br>',
-        'passwordRepeat' => 'Passwords do not match. Try again!<br>',
+        'email' => 'Invalid email address. Please try again!<br>',
+        'passwordRepeat' => 'Passwords do not match. Please try again!<br>',
+        'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again.'
     ],
 ];
+
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
 $GLOBALS['user_specific_array'] = $user_specific_array;
-$GLOBALS['validate'] = $validate;
+$GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;

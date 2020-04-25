@@ -836,7 +836,7 @@ SQL;
         $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\"");
         $userAll = new HtUserAll($sql);
         $result = $userAll->getResultSet();
-                echo $result->num_rows;
+
         //user already exists
         if ($result->num_rows !== 0) {            
             header('Location: ../../includes/prompt.php?type=2');

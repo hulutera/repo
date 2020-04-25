@@ -653,11 +653,9 @@ class HtUserAll extends MySqlRecord
      */
     public function select($input)
     {
-        if(is_array($input))
-        {
+        if (is_array($input)) {
             $sql = $input['sql'];
-        }else
-        {
+        } else {
             if ($input == "*") {
                 $sql = "SELECT * FROM user_all";
             } else { //id
@@ -845,18 +843,87 @@ SQL;
         } else {
             $lang_url = "";
         }
-        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=register' . $lang_url . '" method="post" enctype="multipart/form-data">';
-        //echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_user.php?table=' . $this->getTableName() . $lang_sw . '&function=upload" method="post" enctype="multipart/form-data">';
-
-        //$itemName = $this->getTableNameShort();
-        $this->insertAllField(null, null);
+        $this->insertRegisterField();
         echo '</form>';
+    }
+
+    /**
+     * Facility for register a new user row into user_all.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
+    public function login()
+    {
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=login' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        $this->insertLoginField();
+        echo '</form>';
+    }
+
+    public function insertLoginField()
+    {
+        if (isset($_GET['lan'])) {
+            $lang_url = "?&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+        //uploadResetErrors();
+        ___open_div_("container-fluid", '');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ////        
+        ___open_div_("row", "");
+        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['login'] . '</strong></p>';
+        ___close_div_(2);
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="text-align: left;font-size:18px;');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
+        ___close_div_(1);
+        ___open_div_("col-md-12", '');
+        $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password');
+        ___close_div_(1);
+        ___close_div_(4);
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Login'] . '</button>';
+        ___close_div_(5);
+
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-6", '');
+        echo '<a class="forgot" href="../includes/passRecovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
+        ___close_div_(1);
+        ___open_div_("col-md-6", '" style="text-align:right;');
+        echo '<a class="forgot" href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
+        ___close_div_(1);
+        ___close_div_(5);
+
+        ___close_div_(2);
     }
     /**
      * 
      */
-    public function insertAllField($itemName,  $skipRow = null)
+    public function insertRegisterField()
     {
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
@@ -928,7 +995,7 @@ SQL;
         $this->insertSelectable('fieldTermAndCondition',  'user_specific_array', 'user');
         ___close_div_(1);
         //___open_div_("col-md-12", '');
-        global $lang, $str_url;
+        global $str_url;
         ___open_div_("col-md-6", '');
         echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '">' .
             $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
@@ -958,6 +1025,65 @@ SQL;
             ___open_div_("col-md-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user', 'password');
             ___close_div_(2);
+        }
+    }
+
+    public function finalize()
+    {
+        $email = $_POST['fieldEmail'];
+        $password = $_POST['fieldPassword'];
+        $crypto = new Cryptor();
+        $cryptoPassword = base64_encode($crypto->encryptor($password));
+        var_dump('# pass---- ' . $password);
+        var_dump('# cpass---- ' . $cryptoPassword);
+        //check user exists in and create session if so
+        $sql =  "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_password = \"$cryptoPassword\"";
+        $result = $this->query($sql);
+        var_dump($sql);
+        // while ($row = $result->fetch_array()) {
+        //     if (session_status() !== PHP_SESSION_ACTIVE) {
+        //         session_start();
+        //     }
+        //     $_SESSION['uID'] = $row['id'];
+        //     $_SESSION['time'] = time();
+        //     var_dump($row['id']);
+        //     return "LOGIN_SUCCESS";            
+        // }
+
+        return;
+        global $lang;
+
+        $connect = DatabaseClass::getInstance()->getConnection();
+
+        $email_1 = $connect->real_escape_string($email);
+        $password_1 = $connect->real_escape_string($password);
+        $successLogin = FALSE;
+        $cond2 = "WHERE uEmail = '$email_1'";
+        $filter = "*";
+        $table = "user";
+        $result =   DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
+        if (mysqli_num_rows($result) != 0) {
+            $row = $result->fetch_array();
+            if (crypt($password_1, $row['uNewPassword']) == $row['uNewPassword']) {
+                $successLogin = TRUE;
+            } else if ($row['activation'] != NULL) { //Allow login before activation for recovered password    
+                if (crypt($password_1, $row['uNewPassword']) == $row['uNewPassword']) {
+                    $newPassword = $row['uNewPassword'];
+                    $cond1 = "upassword = '$newPassword', uNewPassword = NULL, activation = NULL WHERE uEmail = '$email'";
+                    $table = "user";
+                    $result2 = DatabaseClass::getInstance()->updateTable($table, $cond1);
+                    $successLogin = TRUE;
+                }
+            }
+            if ($successLogin == TRUE) {
+                $_SESSION['uID'] = $row['uID'];
+                $_SESSION['time'] = time();
+                return "LOGIN_SUCCESS";
+            } else {
+                return $lang['Incorrect e-mail or password msg'];
+            }
+        } else {
+            return $lang['non-existing email msg'];
         }
     }
 }

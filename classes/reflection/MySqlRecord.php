@@ -215,7 +215,7 @@ EOD;
         $errorMsg = "";
         $errorClass = '';
         if (isset($_SESSION['errorRaw']['fileuploader-list-files'])) {
-            $validate = $GLOBALS['validate'][2];
+            $validate = $GLOBALS['validate_specific_array'][2];
             $errorMsg = $_SESSION['errorRaw']['fileuploader-list-files'];
             $errorClass = ' alert-custom';
         }
@@ -354,7 +354,7 @@ EOD;
                 strpos($GLOBALS['lang'][$variable[0]], $GLOBALS['lang']['Invalid']) !== false &&
                 $_SESSION['POST'][$marketType] !== ''
             ) {
-                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['validate'][2]['number'];
+                $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['validate_specific_array'][2]['number'];
             } else {
                 $errorMsg = $_SESSION['errorRaw'][$marketType];
             }

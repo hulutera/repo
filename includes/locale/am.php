@@ -246,7 +246,7 @@ $lang = array(
     ማንኛውም በወንጀል የሚጠረጠር ወይም የማጭበርበር ወይም ሌላውን የመተንኮስ ተግባራት ፤ ፈጣን የሆነ የተጠቃሚነት መብት እገዳ ያስከትላል እንዲሁም እንደሁኔታው ለፀጥታ አካላት የማሳወቅ ሀላፊነታችንን እንወጣለን። የተጠቃሚነት መብቶን ለተወሰነ ጊዜ ወይም ከናካቴው ስናቋርጥ ፤ እርሶ ያስገቡትን አጠቃላይ መረጃ የማጥፋት መብቱ ይኖረናል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
     <br /><br />
     በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
-    'login' => 'ይግቡ',
+    'Login' => 'ይግቡ',
     'Logout' => 'መዉጣት',
     'My Items' => 'የኔ ንብረቶች',
     'Edit Profile' => 'መረጃ ለማስተካከል',
@@ -917,6 +917,7 @@ $abuse_type_lang_arr = [
 $user_specific_array = [
     'user' =>    [
         'registeration' => 'የደንበኛ መመዝገቢያ ቅፅ',
+        'login' => 'የመግቢያ ቅፅ',
         'fieldUserName'       => [
             0 => 'መጠቀምያ ስም',
             1 => 'መጠቀምያ ስም እዚህ ይጻፉ'
@@ -971,7 +972,7 @@ $user_specific_array = [
     ]
 ];
 
-$validate = [
+$validate_specific_array = [
     0 => ' መመረጥ አለበት። በድጋሚ ይሞክሩ!</br>',
     1 => ' መሞላት አለበት። በድጋሚ ይሞክሩ!</br>',
     2 => [
@@ -987,6 +988,7 @@ $validate = [
         ],
         'email' => 'የተከለከለ ግባት! ያስገቡት የኢሜይል አድራሻ መስፈርት አያሟላም። በድጋሚ ይሞክሩ!',
         'passwordRepeat' => 'የምስጢር ቃሎቹ ተመሳሳይ መሆን አለባቸው። በድጋሚ ይሞክሩ!',
+        'invalidEmailOrPassword' => 'ኢሜይሉ ወይም የምስጢር ቃሉ ትክክል አይደለም። በድጋሚ ይሞክሩ!'
     ],
 ];
 
@@ -994,5 +996,6 @@ $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
 $GLOBALS['user_specific_array'] = $user_specific_array;
-$GLOBALS['item_specific_array'] = $item_specific_array;
+$GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;
+

@@ -227,7 +227,7 @@ function topRightLinks()
 		echo '</a>';
 		echo '<a href="../../includes/login.php' . $lang_url . '" >';
 		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-log-in" style="font-size:20px"></span><br/>' . $lang['login'] . '</div>';
+		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-log-in" style="font-size:20px"></span><br/>' . $lang['Login'] . '</div>';
 		echo '</div>';
 		echo '</a>';
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
