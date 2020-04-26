@@ -15,8 +15,8 @@ if (isset($_GET['lan'])) {
 	else require_once $documnetRootPath . '/includes/locale/en.php';
 } else {
 	$language = "";
-	$lang_url = "";
-	$str_url = "";
+	$lang_url = "?&lan=en";
+	$str_url = "&lan=en";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
 

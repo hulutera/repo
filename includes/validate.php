@@ -186,10 +186,7 @@ class ValidateRegister
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
-                    if ((strpos($value, $GLOBALS['lang']['Choose']) !== false)) //Error if value start with Choose                        
-                    {
-                        $input = array($key => $GLOBALS['validate_specific_array'][0]);
-                    } else if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
+                    if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
                     {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
@@ -200,25 +197,25 @@ class ValidateRegister
                                 } else if (strlen($value) < 5) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
                                 }
-                                continue;
+                                break;
                             case 'fieldFirstName':
                             case 'fieldLastName':
                                 if (!ctype_alpha($value)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['isalpha']);
                                 }
-                                continue;
+                                break;
                             case 'fieldPhoneNr':
                                 if (!ctype_digit($value)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['isdigit']);
                                 } else if (strlen($value) < 10) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][1]);
                                 }
-                                continue;
+                                break;
                             case 'fieldEmail':
                                 if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                                     $input = array('fieldEmail' => $GLOBALS['validate_specific_array'][2]['email']);
                                 }
-                                continue;
+                                break;
                             case 'fieldPassword':
                                 //case 'fieldPasswordRepeat':
                                 if (strlen($value) < 5) {
@@ -226,23 +223,40 @@ class ValidateRegister
                                 } else if ($_POST['fieldPassword'] !== $_POST['fieldPasswordRepeat']) {
                                     $input = array('fieldPassword' => $GLOBALS['validate_specific_array'][2]['passwordRepeat']);
                                 }
-                                continue;
+                                break;
                             case 'fieldPasswordRepeat':
-                                //case 'fieldPasswordRepeat':
                                 if (strlen($value) < 5) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
                                 } else if ($_POST['fieldPassword'] !== $_POST['fieldPasswordRepeat']) {
                                     $input = array('fieldPasswordRepeat' => $GLOBALS['validate_specific_array'][2]['passwordRepeat']);
                                 }
-                                continue;
+                                break;
+                            case 'fieldTermAndCondition':
+                                if (!$this->isCheckboxChecked($value, '1')) {
+                                    $input = array($key => $GLOBALS['validate_specific_array'][0]);
+                                }
+                                break;
                             default:
                                 break;
                         }
                     }
-                    array_push($err, $input);
+                    if (!empty($input)) {
+                        array_push($err, $input);
+                    }
                 }
             }
         }
+    }
+    private function isCheckboxChecked($chkname, $value)
+    {
+        if (!empty($_POST[$chkname])) {
+            foreach ($_POST[$chkname] as $chkval) {
+                if ($chkval == $value) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 
@@ -258,30 +272,34 @@ class ValidateLogin
             foreach ($_POST as $key => $value) {
                 if (isset($_POST[$key])) {
                     switch ($key) {
+                        case 'fieldUserName':
+                            if (!ctype_alnum($value)) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
+                            } else if (strlen($value) < 5) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                            }
+                            break;
                         case 'fieldEmail':
                             if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
                             {
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
-                                array_push($err, $input);
-                            }
-                            if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                                $input = array('fieldEmail' => $GLOBALS['validate_specific_array'][2]['email']);
-                                array_push($err, $input);
+                            } else if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['email']);
                             }
                             break;
                         case 'fieldPassword':
                             if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
                             {
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
-                                array_push($err, $input);
-                            }
-                            if (strlen($value) < 5) {
+                            } else if (strlen($value) < 5) {
                                 $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
-                                array_push($err, $input);
                             }
                             break;
                         default:
                             break;
+                    }
+                    if (!empty($input)) {
+                        array_push($err, $input);
                     }
                 }
             }

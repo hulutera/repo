@@ -10,10 +10,11 @@ $errPre = [];
 $function = $_GET['function'];
 if ($function == 'register') {
     $validate = new ValidateRegister($errPre);
-} else if ($function == 'login') {
+} else if ($function == 'login' || $function == 'passRecovery') {
     $validate = new ValidateLogin($errPre);
 }
 var_dump($errPre);
+//exit;
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
     var_dump($errPre[0]);
@@ -30,7 +31,7 @@ if (!empty($errPre)) {
         $object = new HtUserTemp("*");
         $object->register();
         clearSessionVariables($function); // reset Error
-    } else if ($function == 'login') {
+    } else if ($function == 'login' || $function == 'passRecovery') {
         $validate->postValidation($errPost);
         var_dump($errPost);
         if (!empty($errPost)) {

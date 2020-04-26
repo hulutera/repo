@@ -918,6 +918,10 @@ $user_specific_array = [
     'user' =>    [
         'registeration' => 'የደንበኛ መመዝገቢያ ቅፅ',
         'login' => 'የመግቢያ ቅፅ',
+        'passwordRecovery' => [
+            0 => 'የምስጢር ቃል ማስታወሻ ቅፅ', 
+            1 => 'ይላኩ'
+        ],
         'fieldUserName'       => [
             0 => 'መጠቀምያ ስም',
             1 => 'መጠቀምያ ስም እዚህ ይጻፉ'
@@ -998,4 +1002,3 @@ $GLOBALS['upload_specific_array'] = $upload_specific_array;
 $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;
-

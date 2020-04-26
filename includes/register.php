@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_flush();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
@@ -35,10 +36,9 @@ require_once $documnetRootPath . '/includes/validate.php';
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}
-				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 				$sessionName = 'register';
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-
+				$_SESSION['lan'] = $_GET['lan'];
 				if (!isset($_SESSION[$sessionName])) {
 					$object = new HtUserAll("*");
 					$object->register();
@@ -55,11 +55,11 @@ require_once $documnetRootPath . '/includes/validate.php';
 	?>
 
 	<script>
-		function myFunction() {
-			var x1 = document.getElementById("fieldPassword");
-			var x2 = document.getElementById("fieldPasswordRepeat");
-			x1.type = (x1.type === "password") ? "text" : "password";
-			x2.type = (x2.type === "password") ? "text" : "password";
+		function showPassword() {
+			var fieldPassword = document.getElementById("fieldPassword");
+			var fieldPasswordRepeat = document.getElementById("fieldPasswordRepeat");
+			fieldPassword.type = (fieldPassword.type === "password") ? "text" : "password";
+			fieldPasswordRepeat.type = (fieldPasswordRepeat.type === "password") ? "text" : "password";
 		}
 	</script>
 </body>

@@ -523,7 +523,7 @@ $upload_specific_array = [
             2 => [
                 'Bensine' => 'Bensine',
                 'Diesel'  => 'Diesel',
-                'Electric' => 'Electric',                
+                'Electric' => 'Electric',
                 'Bio-gas' => 'Bio-gas',
                 'Hybrid' => 'Hybrid'
             ]
@@ -592,7 +592,7 @@ $upload_specific_array = [
             0 => 'Bedroom',
             1 => 'Choose Bedroom',
         ],
-       'fieldWater' => [
+        'fieldWater' => [
             0 => 'House have water?',
             1 => 'Choose water',
             2 => [
@@ -600,14 +600,14 @@ $upload_specific_array = [
                 'no' => 'No',
             ]
         ],
-       'fieldElectricity' => [
+        'fieldElectricity' => [
             0 => 'House have Electricity?',
             1 => 'Choose water',
             2 => [
                 'yes' => 'Yes',
                 'no' => 'No',
             ]
-       ]
+        ]
     ],
     'computer' => [
         'Uploading' => 'Uploading Computer',
@@ -713,23 +713,23 @@ $upload_specific_array = [
             0 => 'Make',
             1 => 'Choose Make',
             2 => [
-                "Alcatel" =>"Alcatel" ,
-                "Blackberry"=>"Blackberry",
-                "HTC"=>"HTC",
-                "Huawei"=>"Huawei",
-                "iPhone"=>"iPhone",
-                "LG"=>"LG",
-                "Motorolla"=>"Motorolla",
-                "Nokia"=>"Nokia",
-                "Samsung"=>"Samsung",
-                "Sanyo"=>"Sanyo",
-                "Siemens"=>"Siemens",
-                "Sony"=>"Sony",
-                "Sony Ericsson"=>"Sony Ericsson",
-                "T-Mobile"=>"T-Mobile",
-                "TANA"=>"TANA",
-                "Vodaphone"=>"Vodaphone",
-                "ZTE"=>"ZTE",
+                "Alcatel" => "Alcatel",
+                "Blackberry" => "Blackberry",
+                "HTC" => "HTC",
+                "Huawei" => "Huawei",
+                "iPhone" => "iPhone",
+                "LG" => "LG",
+                "Motorolla" => "Motorolla",
+                "Nokia" => "Nokia",
+                "Samsung" => "Samsung",
+                "Sanyo" => "Sanyo",
+                "Siemens" => "Siemens",
+                "Sony" => "Sony",
+                "Sony Ericsson" => "Sony Ericsson",
+                "T-Mobile" => "T-Mobile",
+                "TANA" => "TANA",
+                "Vodaphone" => "Vodaphone",
+                "ZTE" => "ZTE",
                 'unknown' => 'unknown'
             ]
         ],
@@ -741,7 +741,7 @@ $upload_specific_array = [
             0 => 'Camera Pixle (MB)',
             1 => 'Choose Camera Pixle',
             2 => [
-                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles" ,
+                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles",
                 "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
                 "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
                 "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
@@ -926,7 +926,8 @@ $abuse_type_lang_arr = [
         'Sex Abuse' => 'Sex Abuse',
         'Sexual Content' => 'Sexual Content',
         'Religious violence' => 'Religious violence',
-        'Other' => 'Other'],
+        'Other' => 'Other'
+    ],
     1 => [
         'You forgort to choose the Report type' => 'You forgort to choose the Report type.',
         'You successfully reported the item!' => 'You successfully reported the item!'
@@ -937,6 +938,10 @@ $user_specific_array = [
     'user' =>    [
         'registeration' => 'User Registeration',
         'login' => 'Login',
+        'passwordRecovery' => [
+            0 => 'Password Recovery',
+            1 => 'Recovery'
+        ],
         'fieldUserName'       => [
             0 => 'Username',
             1 => 'Write Username here'
@@ -977,13 +982,13 @@ $user_specific_array = [
                 'message' => 'Click here to read <strong>Term and Conditions</strong>'
             ]
         ],
-        'fieldPrivacyPolicy'       => [            
+        'fieldPrivacyPolicy'       => [
             0 => [
                 'message' => 'Click here to read <strong>Privacy Policy</strong>'
             ]
-        ],        
+        ],
     ],
-    
+
     'message' => [
         'activation' => [
             'subject' => 'Confirmation of registration',

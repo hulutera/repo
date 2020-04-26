@@ -1,4 +1,6 @@
 <?php
+session_start();
+ob_flush();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
@@ -28,16 +30,14 @@ require_once $documnetRootPath . '/includes/validate.php';
 
                 <?php
                 ///reset/cleanup session variables
-                if (isset($_SESSION['POST'])) {
-                    if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
-                        unset($_SESSION['POST']);
-                        unset($_SESSION['errorRaw']);
-                    }
-                }
-                $_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
-                $sessionName = 'login';
-                $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-
+                if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
+					unset($_SESSION['POST']);
+					unset($_SESSION['errorRaw']);
+				}
+				$sessionName = 'login';
+				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+                $_SESSION['lan'] = $_GET['lan'];
+                
                 if (!isset($_SESSION[$sessionName])) {
                     $object = new HtUserAll("*");
                     $object->login();

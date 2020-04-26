@@ -864,6 +864,7 @@ SQL;
         $this->setFieldTermAndCondition($_POST['fieldTermAndCondition']=='Yes' ?1 :0);
         $this->setFieldActivation($activation);
         $this->setFieldPrivilege('user');
+        date_default_timezone_set('UTC');
         $this->setFieldRegisterDate(date("Y-m-d H:i:s"));
         $this->insert();
 

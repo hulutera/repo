@@ -183,7 +183,7 @@ class MySqlRecord extends Model
 EOD;
         if ($type === 'password') {
             if ($fieldName !== "fieldPasswordRepeat") {
-                echo '<input type="checkbox" onclick="myFunction()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
+                echo '<input type="checkbox" onclick="showPassword()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
             }
         }
         ___close_div_(3);
@@ -441,6 +441,42 @@ EOD;
         }
 
         echo '</select>';
+        ___close_div_(3);
+    }
+
+    protected function insertCheckbox($fieldName, $globalArrayName, $item, $selectable = null)
+    {
+        $errorMsg = "";
+        $errorClass = '';
+        $checked = ' checked="checked"';
+        if (isset($_SESSION['errorRaw'][$fieldName])) {
+            $errorMsg = $_SESSION['errorRaw'][$fieldName];
+            $errorClass = ' alert-custom';
+            $checked = '';
+        }
+        elseif (!isset($_SESSION['POST'][$fieldName])){            
+            $checked = '';
+        }
+
+        $title = $GLOBALS[$globalArrayName][$item][$fieldName][0];
+        $placeholder = $GLOBALS[$globalArrayName][$item][$fieldName][1];
+        $hiddenValue = 0;
+        $showValue = 1;
+        if (isset($_SESSION['POST'][$fieldName])) {
+            //$showValue = $hiddenValue;
+            $showValue = $_SESSION['POST'][$fieldName];
+        }
+
+        $title = $GLOBALS[$globalArrayName][$item][$fieldName][0];
+        
+        ___open_div_("row", '');
+        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("form-group", '');
+        echo <<< EOD
+        <label for="{$fieldName}">{$title}</label> {$errorMsg}
+        <input type="hidden" name="{$fieldName}" value="{$hiddenValue}" >
+        <input type="checkbox" name="{$fieldName}" value="{$showValue}" {$checked}>
+EOD;
         ___close_div_(3);
     }
 
