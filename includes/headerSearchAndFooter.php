@@ -208,7 +208,7 @@ function logImg()
 function logoText()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '">'.$GLOBALS['lang']['HULUTERA_TEXT_LOGO'].'<br></a></div>';	
+	echo '<a href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:40px;">'.$GLOBALS['lang']['HULUTERA_TEXT_LOGO'].'</div></a>';	
 }
 
 /*Top Right Links*/
@@ -235,11 +235,7 @@ function topRightLinks()
 		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/template.proxy.php?type=help' . $str_url . '">';
-		echo '<div id="toplinktexts">';
-		echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $lang['Help'] . '</div>';
-		echo '</div>';
-		echo '</a>';
+		topRightHelpLink();
 		echo '</div>';
 	} else {
 		$userId = $_SESSION['uID'];
@@ -273,6 +269,15 @@ function topRightLinks()
 	}
 }
 
+function topRightHelpLink()
+{
+	global $str_url;
+	echo '<a href="../../includes/template.proxy.php?type=help' . $str_url . '">';
+	echo '<div id="toplinktexts">';
+	echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
+	echo '</div>';
+	echo '</a>';
+}
 /*search*/
 function miniSearch()
 {

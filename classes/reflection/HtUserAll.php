@@ -877,6 +877,22 @@ SQL;
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+
+        ////
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group", "");
+        ___open_div_("col-md-6", '');
+        logoText();
+        ___close_div_(1);
+        ___open_div_("col-md-6", '');
+        ___open_div_("toprightlink", '');
+        $current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        locale($current_link);
+        topRightHelpLink();
+        ___close_div_(2);
+        ___close_div_(3);
+        ///
         ////        
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
@@ -927,15 +943,15 @@ SQL;
     {
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:25%; margin-right:25%; padding: 20px;');
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
         ___open_div_("form-group", "");
-        ___open_div_("col-md-2", '');
+        ___open_div_("col-md-6", '');
         logoText();
         ___close_div_(1);
-        ___open_div_("col-md-10", '');
+        ___open_div_("col-md-6", '');
         topRightLinks();
         ___close_div_(2);
         ___close_div_(4);
@@ -1025,65 +1041,6 @@ SQL;
             ___open_div_("col-md-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user', 'password');
             ___close_div_(2);
-        }
-    }
-
-    public function finalize()
-    {
-        $email = $_POST['fieldEmail'];
-        $password = $_POST['fieldPassword'];
-        $crypto = new Cryptor();
-        $cryptoPassword = base64_encode($crypto->encryptor($password));
-        var_dump('# pass---- ' . $password);
-        var_dump('# cpass---- ' . $cryptoPassword);
-        //check user exists in and create session if so
-        $sql =  "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_password = \"$cryptoPassword\"";
-        $result = $this->query($sql);
-        var_dump($sql);
-        // while ($row = $result->fetch_array()) {
-        //     if (session_status() !== PHP_SESSION_ACTIVE) {
-        //         session_start();
-        //     }
-        //     $_SESSION['uID'] = $row['id'];
-        //     $_SESSION['time'] = time();
-        //     var_dump($row['id']);
-        //     return "LOGIN_SUCCESS";            
-        // }
-
-        return;
-        global $lang;
-
-        $connect = DatabaseClass::getInstance()->getConnection();
-
-        $email_1 = $connect->real_escape_string($email);
-        $password_1 = $connect->real_escape_string($password);
-        $successLogin = FALSE;
-        $cond2 = "WHERE uEmail = '$email_1'";
-        $filter = "*";
-        $table = "user";
-        $result =   DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
-        if (mysqli_num_rows($result) != 0) {
-            $row = $result->fetch_array();
-            if (crypt($password_1, $row['uNewPassword']) == $row['uNewPassword']) {
-                $successLogin = TRUE;
-            } else if ($row['activation'] != NULL) { //Allow login before activation for recovered password    
-                if (crypt($password_1, $row['uNewPassword']) == $row['uNewPassword']) {
-                    $newPassword = $row['uNewPassword'];
-                    $cond1 = "upassword = '$newPassword', uNewPassword = NULL, activation = NULL WHERE uEmail = '$email'";
-                    $table = "user";
-                    $result2 = DatabaseClass::getInstance()->updateTable($table, $cond1);
-                    $successLogin = TRUE;
-                }
-            }
-            if ($successLogin == TRUE) {
-                $_SESSION['uID'] = $row['uID'];
-                $_SESSION['time'] = time();
-                return "LOGIN_SUCCESS";
-            } else {
-                return $lang['Incorrect e-mail or password msg'];
-            }
-        } else {
-            return $lang['non-existing email msg'];
         }
     }
 }

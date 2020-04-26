@@ -6,49 +6,65 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/validate.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
-$err = [];
+$errPre = [];
 $function = $_GET['function'];
 if ($function == 'register') {
-    $validate = new ValidateRegister($err);
+    $validate = new ValidateRegister($errPre);
 } else if ($function == 'login') {
-    $validate = new ValidateLogin($err);
+    $validate = new ValidateLogin($errPre);
 }
-
-
-$err2 = array();
-foreach ($err as $x) {
-    foreach ($x as $rowNumber => $pair) {
-        $err2[$rowNumber] = $pair;
-    }
-}
-
-if (!empty($err2)) {
-
-    $input = implode('', array_map(
-        function ($v) {
-            return sprintf("-  %s", $v);
-        },
-        $err2,
-        array_keys($err2)
-    ));
-    $_SESSION['errorRaw'] = $err2;
-    $crypto = new Cryptor();
+var_dump($errPre);
+if (!empty($errPre)) {
+    $_SESSION['errorRaw'] = getInnerArray($errPre);
+    var_dump($errPre[0]);
+    var_dump($_SESSION['errorRaw']);
     $_SESSION['POST'] = $_POST;
     $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
     $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
+    var_dump($errPre);
     header('Location: ' . $redirectLink);
 } else {
-    // reset Error
     //successfull
+    $errPost = [];
     if ($function == 'register') {
         $object = new HtUserTemp("*");
         $object->register();
-    } else if ($function == 'login') {        
-        $validate->postValidation($err);
+        clearSessionVariables($function); // reset Error
+    } else if ($function == 'login') {
+        $validate->postValidation($errPost);
+        var_dump($errPost);
+        if (!empty($errPost)) {
+            $_SESSION['errorRaw'] = getInnerArray($errPost);
+            $_SESSION['POST'] = $_POST;
+            $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+            $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
+            header('Location: ' . $redirectLink);
+        } else {
+            clearSessionVariables($function); // reset Error
+        }
     }
+}
 
-    unset($err);
+/**
+ * Clear session variables created during validation
+ */
+function clearSessionVariables($function)
+{
     unset($_SESSION[$function]);
     unset($_SESSION['POST']);
     unset($_SESSION['errorRaw']);
+}
+
+/**
+ * iterrate through nested array and extract Errors
+ */
+function getInnerArray($errInput)
+{
+    $errLocal = array();
+    foreach ($errInput as $row) {
+        foreach ($row as $key => $value) {
+            $errLocal[$key] = $value;
+        }
+    }
+    return $errLocal;
 }

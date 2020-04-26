@@ -58,12 +58,12 @@ function locale($current_link)
         $gu => "ጉራግኛ",
         $wo => "ወላይትኛ"
     ];
-    echo '<div id="toplinktexts">';
-    echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale">';
+    echo '<div id="toplinktexts" style="font-weight: 700;">';
+    echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale select-css">';
     foreach ($language as $key => $value) {
         //use mb_substr($value,0,2) to get the first two characters
         echo $key;
-        echo '<option value = "' . $key . '">'.$value.'</option>';
+        echo '<option value = "' . $key . '"><strong>'.$value.'</strong></option>';
     }
     echo '</select>';
     echo '<div>';

@@ -257,37 +257,37 @@ class ValidateLogin
         if (isset($_POST['submit'])) {
             foreach ($_POST as $key => $value) {
                 if (isset($_POST[$key])) {
-                    if (strpos($key, 'field') === false) {
-                        continue;
+                    switch ($key) {
+                        case 'fieldEmail':
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
+                            {
+                                $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                                array_push($err, $input);
+                            }
+                            if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                                $input = array('fieldEmail' => $GLOBALS['validate_specific_array'][2]['email']);
+                                array_push($err, $input);
+                            }
+                            break;
+                        case 'fieldPassword':
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
+                            {
+                                $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                                array_push($err, $input);
+                            }
+                            if (strlen($value) < 5) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                                array_push($err, $input);
+                            }
+                            break;
+                        default:
+                            break;
                     }
-                    if ((strpos($value, $GLOBALS['lang']['Choose']) !== false)) //Error if value start with Choose                        
-                    {
-                        $input = array($key => $GLOBALS['validate_specific_array'][0]);
-                    } else if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
-                    {
-                        $input = array($key => $GLOBALS['validate_specific_array'][1]);
-                    } else {
-
-                        switch ($key) {
-                            case 'fieldEmail':
-                                if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                                    $input = array('fieldEmail' => $GLOBALS['validate_specific_array'][2]['email']);
-                                }
-                                continue;
-                            case 'fieldPassword':
-                                if (strlen($value) < 5) {
-                                    $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
-                                }
-                                continue;
-                            default:
-                                break;
-                        }
-                    }
-                    array_push($err, $input);
                 }
             }
         }
     }
+
 
     public function postValidation(&$err)
     {
@@ -308,11 +308,11 @@ class ValidateLogin
             $_SESSION['uID'] = $userAll->getId();
             $_SESSION['time'] = time();
             header("Location: ../../includes/mypage.php" . $langURL);
-        } else {            
+        } else {
             $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
             array_push($err, $input);
-            $input = ['fieldPassword' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];                
-            array_push($err, $input);                
+            $input = ['fieldPassword' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
+            array_push($err, $input);
             header("Location: ../../includes/form_user.php?function=login" . $langURL);
         }
     }
