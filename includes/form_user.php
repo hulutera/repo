@@ -32,7 +32,7 @@ if (!empty($errPre)) {
         $object->register();
         clearSessionVariables($function); // reset Error
     } else if ($function == 'login' || $function == 'passRecovery') {
-        $validate->postValidation($errPost);
+        $validate->postValidation($errPost, $function);
         var_dump($errPost);
         if (!empty($errPost)) {
             $_SESSION['errorRaw'] = getInnerArray($errPost);

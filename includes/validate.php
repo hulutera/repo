@@ -280,16 +280,14 @@ class ValidateLogin
                             }
                             break;
                         case 'fieldEmail':
-                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
-                            {
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
                             } else if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                                 $input = array($key => $GLOBALS['validate_specific_array'][2]['email']);
                             }
                             break;
                         case 'fieldPassword':
-                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
-                            {
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
                             } else if (strlen($value) < 5) {
                                 $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
@@ -307,31 +305,48 @@ class ValidateLogin
     }
 
 
-    public function postValidation(&$err)
+    public function postValidation(&$err, $function)
     {
-
         $langURL = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "?&lan=en";
-        $email = $_POST['fieldEmail'];
-        $password = $_POST['fieldPassword'];
-        $crypto = new Cryptor();
-        $cryptoPassword = base64_encode($crypto->encryptor($password));
-        $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_password = \"$cryptoPassword\"");
+        if ($function == 'login') {
+            $email = $_POST['fieldEmail'];
+            $password = $_POST['fieldPassword'];
+            $crypto = new Cryptor();
+            $cryptoPassword = base64_encode($crypto->encryptor($password));
+            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_password = \"$cryptoPassword\"");
 
-        $userAll = new HtUserAll($sql);
-        $result = $userAll->getResultSet();
-        if ($result->num_rows !== 0) {
-            if (session_status() !== PHP_SESSION_ACTIVE) {
-                session_start();
+            $userAll = new HtUserAll($sql);
+            $result = $userAll->getResultSet();
+            if ($result->num_rows !== 0) {
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                }
+                $_SESSION['uID'] = $userAll->getId();
+                $_SESSION['time'] = time();
+                header("Location: ../../includes/mypage.php" . $langURL);
+            } else {
+                $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
+                array_push($err, $input);
+                $input = ['fieldPassword' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
+                array_push($err, $input);
+                header("Location: ../../includes/form_user.php?function=login" . $langURL);
             }
-            $_SESSION['uID'] = $userAll->getId();
-            $_SESSION['time'] = time();
-            header("Location: ../../includes/mypage.php" . $langURL);
-        } else {
-            $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
-            array_push($err, $input);
-            $input = ['fieldPassword' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
-            array_push($err, $input);
-            header("Location: ../../includes/form_user.php?function=login" . $langURL);
+        }elseif ($function == 'passRecovery') {
+            $email = $_POST['fieldEmail'];
+            $userName = $_POST['fieldUserName'];                        
+            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_user_name = \"$userName\"");
+
+            $userAll = new HtUserAll($sql);
+            $result = $userAll->getResultSet();
+            if ($result->num_rows === 0) {                
+                $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
+                array_push($err, $input);
+                $input = ['fieldUserName' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
+                array_push($err, $input);
+                header("Location: ../../includes/form_user.php?function=passRecovery" . $langURL);
+            }else {
+                echo $userAll->updateAndRecoverPassword();
+            }            
         }
     }
 }

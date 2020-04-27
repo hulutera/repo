@@ -994,6 +994,21 @@ $user_specific_array = [
             'subject' => 'Confirmation of registration',
             'body' => 'Thank you for registering. A confirmation mail has been sent to your email.
             Please click on the activation link to activate your account.',
+        ],
+        'passRecovery' => [
+            'subject' => '"Your New Password',
+            'body' => [
+                0 => 'Dear Customer,<br>
+                      A password recovery was requested for your account. Please click on the following link below to recover your password.<br>
+                      Please remember that after you have logged in with this new password you can always change it using Change Password link.<br><br>
+                      This email was automatically generated. If you did not request a password recovery please contact the administrator <br>
+                      using email <strong>admin@hulutera.com</strong><br>',
+                1 => [
+                    '<br>Recovery Link:', 
+                    '<br>New-password:', 
+                    '<br>Sincerely,<br>The hulutera Team<br>'
+                ],
+            ]
         ]
     ]
 ];
@@ -1014,7 +1029,8 @@ $validate_specific_array = [
         ],
         'email' => 'Invalid email address. Please try again!<br>',
         'passwordRepeat' => 'Passwords do not match. Please try again!<br>',
-        'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again.'
+        'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again!',
+        'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!'
     ],
 ];
 

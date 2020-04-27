@@ -885,7 +885,7 @@ SQL;
     {
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:20%; margin-right:25%; padding: 20px;');
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
@@ -1056,12 +1056,11 @@ SQL;
         }
     }
 
-
     public function insertPassRecoveryField()
     {
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
@@ -1108,5 +1107,44 @@ SQL;
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button>';
         ___close_div_(5);
         ___close_div_(2);
+    }
+
+    /**
+     * 
+     */
+    public function updateAndRecoverPassword()
+    {
+        //Generate a RANDOM MD5 Hash for a password
+        $randomPassword = md5(uniqid(rand()));
+        $randomPassword08 = substr($randomPassword, 0, 8);
+
+        $email = $this->fieldEmail;
+        $crypto = new Cryptor();
+        $cryptoPassword = base64_encode($crypto->encryptor($randomPassword08));
+        $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
+
+        $this->fieldNewPassword = $cryptoPassword;
+        $this->fieldActivation = $activation;
+        $this->update($this->getId());
+
+        $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $activation . "&newPass=yes";
+        $subject = $GLOBALS['user_specific_array']['message']['passRecovery']['subject'];
+        $body = $GLOBALS['user_specific_array']['message']['passRecovery']['body'][0];
+        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][0] . $recoveryLink . "<br><br><br>";
+        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][1] . $randomPassword08 . "<br>";
+        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][2] . "<br><br>";
+
+        /// temporary disable for message sending
+        if (DBHOST == 'localhost') {
+            header('Location: ../includes/prompt.php?type=4');
+            return;
+        }
+        $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
+        //Check if mail Delivered or die
+        if (!$isMailDelivered) {
+            die("Sending Email Failed. Please Contact Site Admin!");
+        } else {
+            header('Location: ../includes/prompt.php?type=4');
+        }
     }
 }

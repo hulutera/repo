@@ -733,7 +733,7 @@ class HtUserTemp extends MySqlRecord
 			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
 			{$this->parseValue($this->fieldActivation, 'notNumber')})
 SQL;
-echo $sql;
+        echo $sql;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -838,22 +838,22 @@ SQL;
         $result = $userAll->getResultSet();
 
         //user already exists
-        if ($result->num_rows !== 0) {            
+        if ($result->num_rows !== 0) {
             header('Location: ../../includes/prompt.php?type=2');
         }
         //check user exists in user_temp, if so delete it
         $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
         $result = $this->query($sql);
-        while ($row = $result->fetch_array()) {            
-                var_dump($row['id']); 
-                $this->delete($row['id']);               
+        while ($row = $result->fetch_array()) {
+            var_dump($row['id']);
+            $this->delete($row['id']);
         }
-            
+
         ////
         $password = $_POST['fieldPassword'];
         $crypto = new Cryptor();
         $cryptoPassword = base64_encode($crypto->encryptor($password));
-        $activation = sha1(mt_rand(10000,99999).time().$email.$cryptoPassword);
+        $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
         $this->setFieldUserName($_POST['fieldUserName']);
         $this->setFieldEmail($email);
         $this->setFieldFirstName($_POST['fieldFirstName']);
@@ -861,7 +861,7 @@ SQL;
         $this->setFieldPhoneNr($_POST['fieldPhoneNr']);
         $this->setFieldPassword($cryptoPassword);
         $this->setFieldContactMethod($_POST['fieldContactMethod']);
-        $this->setFieldTermAndCondition($_POST['fieldTermAndCondition']=='Yes' ?1 :0);
+        $this->setFieldTermAndCondition($_POST['fieldTermAndCondition'] == 'Yes' ? 1 : 0);
         $this->setFieldActivation($activation);
         $this->setFieldPrivilege('user');
         date_default_timezone_set('UTC');
@@ -872,8 +872,19 @@ SQL;
         $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['activation']['body'] . '<br>';
         $body .= "http://www.hulutera.com/includes/activate.php?key=" . $activation;
-        ///        
-        mail($email, $subject, $body, 'From:noreply@hulutera.com');  
-        header('Location: ../../includes/prompt.php?type=1');      
+
+        /// temporary disable for message sending
+        if (DBHOST == 'localhost') {
+            header('Location: ../../includes/prompt.php?type=1');
+            return;
+        }
+        ///
+        $isMailDelivered = mail($email, $subject, $body, 'From:noreply@hulutera.com');
+        //Check if mail Delivered or die
+        if (!$isMailDelivered) {
+            die("Sending Email Failed. Please Contact Site Admin!");
+        } else {
+            header('Location: ../includes/prompt.php?type=1');
+        }
     }
 }
