@@ -922,6 +922,7 @@ li .col2 {
 	border-radius: 6px;
 }
 
+/*
 #divCommon {
 	font-family: Georgia, Times New Roman, serif !important;
 	font-size: 12px;
@@ -931,7 +932,18 @@ li .col2 {
 	border: 1px solid #CCC;
 	border-top: 1px solid #CCC;
 	overflow: hidden;
+} */
+
+#divCommon .thumbnail p {
+	margin: 0px;
+	font-size: 15px;
+	font-family: Snell Roundhand, cursive;
 }
+
+#divCommon .thumbnail{
+	/*height: 400px;*/
+}
+
 
 div#featured_detailed {
 	float: left;
@@ -1441,12 +1453,8 @@ div#featured_right_side .msgcompleted input {
 	max-width: 99%;
 	vertical-align: middle;
 }
-
-.col1 .leftcol .price {
-	clear: left;
-	font-weight: 700;
-	font-size: 14px;
-	text-align: left;
+.price {
+	margin-bottom: 10px;
 }
 
 .col1 {
@@ -1482,7 +1490,8 @@ div.clear {
 
 .showbutton_show {
 	float: right;
-	width: 15%;
+	position: relative;
+	bottom: 0px;
 }
 
 .showbutton_hide {
@@ -1882,7 +1891,7 @@ input[type=checkbox] {
 	float: left;
 }
 
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+/*a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -1892,7 +1901,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
-}
+}*/
 
 body {
 	line-height: 1;
@@ -3099,15 +3108,19 @@ th {
 	margin-bottom: 20px;
 }
 
-/*For mmobile and tablets*/
+/* 
+  ##Device = Laptops, Desktops
+*/
+@media (min-width: 1025px) and (max-width: 1200px) {
 
-@media screen and (max-width:1000px) {
-	#whole {
-		width: 100%;
-	}
-	#wrapper {
-		width: 100%;
-	}
+	/* Shall be saved and used when necessary*/
+
+}
+
+/* 
+ * ##Device = Tablets, Ipads (portrait)
+*/
+@media screen and (min-width: 768px) and (max-width: 1024px){
 	.tabsAndSearch .tabs {
 		width: 100%;
 		padding: 0px;
@@ -3131,17 +3144,17 @@ th {
 		padding: 0px;
 	}
 	#sidelist #menu_mobile {
-		display: block;
+		display: none;
 		padding: 0px 5px;
 	}
 	#sidelist ul {
-		display: none;
+		display: block;
 	}
 	#sidelist {
 		padding: 0px;
 	}
 	#sidelist ul li {
-		width: 50%;
+		width: 25%;
 	}
 	#footer {
 		width: 100%;
@@ -3276,9 +3289,13 @@ th {
 	}
 }
 
-@media screen and (max-width:800px) {
+/* 
+	##Device = Low Resolution Tablets, Mobiles (Landscape)
+*/
+@media (min-width: 481px) and (max-width: 767px) {
 	#whole {
 		width: 100%;
+		margin: 0px;
 	}
 	#wrapper {
 		width: 100%;
@@ -3316,7 +3333,7 @@ th {
 		padding: 0px;
 	}
 	#sidelist ul li {
-		width: 50%;
+		width: 33%;
 	}
 	#footer {
 		width: 100%;
@@ -3451,7 +3468,7 @@ th {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.col-md-4, .col-md-4{
+	#divCommon {
 		width: 50%;
 		float:left;
 	}
@@ -3461,11 +3478,13 @@ th {
 	}
 }
 
-/* Very small size */
-
-@media screen and (max-width:500px) {
+/* 
+ * Device = Most of the Smartphones Mobiles (Portrait)
+*/
+@media screen and (max-width:480px) {
 	#whole {
 		width: 100%;
+		margin: 0px;
 	}
 	#wrapper {
 		width: 100%;
@@ -3635,12 +3654,7 @@ th {
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
-	}
-
-	.img-thumbnail{
-		width: auto;
-		height: 130px;
-	}
+	}	
 }
 
 .alert-custom {

@@ -173,11 +173,11 @@ class HtCommonView extends MySqlRecord {
         $tomorrow    = strtotime("tomorrow");
                
         if ($datetimestr >= $today) {
-            echo '<div class="date">' .$GLOBALS['lang']["today"] . '</div></br>';
+            echo '<p>' .$GLOBALS['lang']["today"] . '</p>';
         } else if ($datetimestr >= $yesterday) {
-            echo '<div class="date">' . $GLOBALS['lang']["yesterday"] . '</div></br>';
+            echo '<p>' . $GLOBALS['lang']["yesterday"] . '</p>';
         } else {
-            echo '<div class="date">' . $datetime . '</div></br>';
+            echo '<p>' . $datetime . '</p>';
         }
     }
     /*@ function to display titile of the item
@@ -187,9 +187,9 @@ class HtCommonView extends MySqlRecord {
     public function displayTitle($itemObj)
     {
         $title = $itemObj->getFieldTitle();
-        echo "<div class=\"header\">";
+        echo "<h4>";
         echo $title != null ? $title : $this->$_itemName;
-        echo "</div>";
+        echo "</h4>";
     }
     /*@function to display location of item
 	 * input : location /loc
@@ -213,7 +213,7 @@ class HtCommonView extends MySqlRecord {
     {
        $loc =  $itemObj->getFieldLocation();
         if ($loc != "") {
-            echo '<div class="location">'.$GLOBALS['lang']["$loc"]. '</div>';
+            echo '<p>'.$GLOBALS['lang']["$loc"]. '</p>';
         }
     }
     /*@function to display market type /SELL/RENT
@@ -223,7 +223,7 @@ class HtCommonView extends MySqlRecord {
     {
         $mrkTyp = $GLOBALS["upload_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
         if ($mkTyp != "No Action") {
-            echo '<div id="text_sellRent">' . $mrkTyp . "</div></br>";
+            echo '<p class="text-center alert-info">' . $mrkTyp . "</p>";
         }
     }
 
@@ -443,39 +443,42 @@ class HtCommonView extends MySqlRecord {
                 $rentValue = $itemObj->getFieldPriceRent();
                 $sellValue = $itemObj->getFieldPriceSell();
                 $negoValue = $itemObj->getFieldPriceNego();
-                $negoDisplay = ($negoValue == 'Yes') ? $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2]['Yes'] : "";
+                $negoDisplay = ($negoValue == 'Yes') ? $itemObj->getFieldPriceNego() : "";
                 $curr  = $itemObj->getFieldPriceCurrency();
                 $rate  = $itemObj->getFieldPriceRate();
 
                 //ctrl var
-                $rentsellwnego =   $rentValue &&  $sellValue &&  $negoValue;
-                $rentsell      =   $rentValue &&  $sellValue && !$negoValue;
-                $rentnego      =   $rentValue && !$sellValue &&  $negoValue;
-                $rent          =   $rentValue && !$sellValue && !$negoValue;
-                $sellnego      =  !$rentValue &&  $sellValue &&  $negoValue;
-                $sell          =  !$rentValue &&  $sellValue && !$negoValue;
-                $noprice       =  !$rentValue && !$sellValue && !$negoValue;
-                $nego          =  !$rentValue && !$sellValue &&  $negoValue;
+                $rentsellwnego =   $rentValue &&  $sellValue &&  $negoDisplay;
+                $rentsell      =   $rentValue &&  $sellValue && !$negoDisplay;
+                $rentnego      =   $rentValue && !$sellValue &&  $negoDisplay;
+                $rent          =   $rentValue && !$sellValue && !$negoDisplay;
+                $sellnego      =  !$rentValue &&  $sellValue &&  $negoDisplay;
+                $sell          =  !$rentValue &&  $sellValue && !$negoDisplay;
+                $noprice       =  !$rentValue && !$sellValue && !$negoDisplay;
+                $nego          =  !$rentValue && !$sellValue &&  $negoDisplay;
 
                 //display var
-                $rent_var = '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp</strong>' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
-                $sell_var = '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp</strong>' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
-                $nego_var = '<p>&nbsp&nbsp' . $negoDisplay . "</p>";
+                $rent_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
+                $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
+                //$not_for_sell = 
+                $not_for_rent = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][2].'</p>';
+                $not_for_sell = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][2].'</p>';
                 
                 if ($rentsellwnego) {
                     echo $rent_var . $sell_var . $nego_var;
                 } else if ($sellnego) {
-                    echo $sell_var . $nego_var;
+                    echo $sell_var . $nego_var . $not_for_rent;
                 } else if ($rentnego) {
-                    echo $rent_var . $nego_var;
+                    echo $rent_var . $nego_var . $not_for_sell;
                 } else if ($rentsell) {
-                    echo $rent_var . $sell_var;
+                    echo $rent_var . $sell_var . $nego_var;
                 } else if ($nego) {
                     echo $nego_var;
                 } else if ($rent) {
-                    echo $rent_var;
+                    echo $rent_var . $nego_var . $not_for_sell;
                 } else if ($sell) {
-                    echo $sell_var;
+                    echo $sell_var . $nego_var . $not_for_rent;
                 } else if ($noprice) {
                     echo "<p style=\"text-indent: 10px;\">No price information Available</p>";
                 }

@@ -124,22 +124,22 @@ class HtMainView
         $jsImg = implode(',', $imageArr);
         $strReplArr= array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
-
+        
         //---------------------------------------------------------
-       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-md-4 col-md-4\" style =\"height:400px\" >";
-        echo "<div class=\"col1 thumbnail\">";
+       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-sm-6 col-md-4\">";
+        echo "<div class=\"thumbnail\">";
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
-            echo "<div class=\"img-thumbnail\" <img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+            echo "<div><img class=\"img-thumbnail\" src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
             $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
             echo "<a href=\"javascript:void(0)\"
 			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-            echo "<div>	<img src=\"$thmbNlImg\" class=\"img-thumbnail\"></div></a>";
+            echo "<div >	<img class=\"img-thumbnail\" src=\"$thmbNlImg\"></div></a>";
         }
         //-------------------------------------------------------------------
         echo "<div class=\"caption\">";  //start_detail
-        echo "<div class=\"caption\">"; //start_leftcol
+       ///// echo "<div class=\"caption1\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         $commonViewObj->displayTitle($this->_pItem);
@@ -147,18 +147,11 @@ class HtMainView
         $commonViewObj->displayLocation($this->_pItem);
         $commonViewObj->displayUpldTime($this->_pItem);
         $commonViewObj->displayPrice($this->_pItem);
-        
-        //optional item on thumbnail only for car, phone and computer
-        $commonViewObj->displayMake($this->_pItem);
-        
         $commonViewObj->displayMarketType($this->_pItem);
-        echo "</div>"; //end_leftcol
-        echo "</div>"; //end_detail
+      ////  echo "</div>"; //end_leftcol
+        
         //---------------------------------------------------------
-        echo "<div class=\"showbutton_show\" style =\"width:auto\">
-		<input class=\"show\" type=\"button\"
-		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
-		value=\"".$GLOBALS['lang']['Show Detail']."\"/ ></div>";
+        echo "</div>"; //end_detail
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
         //echo "<div class=\"clear\"></div>";
