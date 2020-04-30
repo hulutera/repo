@@ -820,7 +820,8 @@ $upload_specific_array = [
         ],
         'fieldPriceRent' => [
             0 => 'የኪራይ ዋጋ',
-            1 => 'የኪራይ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
+            1 => 'የኪራይ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም',
+            2 => 'አይከራይም',
         ],
         'fieldPriceRate' => [
             0 => 'የኪራይ ተመን',
@@ -834,7 +835,8 @@ $upload_specific_array = [
         ],
         'fieldPriceSell' => [
             0 => 'የመሽጭያ ዋጋ',
-            1 => 'የመሽጭያ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም'
+            1 => 'የመሽጭያ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም',
+            2 => 'አይሸጥም'
         ],
         'fieldPriceCurrency' => [
             0 => 'ምንዛሪ',
@@ -857,8 +859,8 @@ $upload_specific_array = [
             1 => 'አርዕስት እዚህ ይጻፉ'
         ],
         'marketType' => [
-            'rent' => 'ማከራየት',
-            'sell' => 'ሽያጭ',
+            'rent' => 'የሚከራይ',
+            'sell' => 'የሚሸጥ',
             'rent and sell' => 'የሚከራይ ወይም የሚሸጥ'
         ],
         'Extra Info' => 'ተጨማሪ መረጃ',

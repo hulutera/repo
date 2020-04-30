@@ -842,6 +842,7 @@ $upload_specific_array = [
         'fieldPriceRent' => [
             0 => 'Rent Price',
             1 => 'Write Rental Price',
+            2 => 'Not for rent'
         ],
         'fieldPriceRate' => [
             0 => 'Rent Rate',
@@ -855,7 +856,8 @@ $upload_specific_array = [
         ],
         'fieldPriceSell' => [
             0 => 'Sell Price',
-            1 => 'Write Selling Price'
+            1 => 'Write Selling Price',
+            2 => 'Not for sell'
         ],
         'fieldPriceCurrency' => [
             0 => 'Currency',
@@ -878,9 +880,9 @@ $upload_specific_array = [
             1 => 'Write title here'
         ],
         'marketType' => [
-            'rent' => 'RENT',
-            'sell' => 'SELL',
-            'rent and sell' => 'RENT OR SELL'
+            'rent' => 'rent',
+            'sell' => 'sell',
+            'rent and sell' => 'rent or sell'
         ],
         'Extra Info' => 'Extra Info',
         'fieldContactMethod' => [
