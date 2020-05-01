@@ -110,6 +110,7 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
+        global $documnetRootPath;
         $this->_pItem->setFieldAll($row);
         $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
@@ -129,17 +130,18 @@ class HtMainView
        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-sm-6 col-md-4\">";
         echo "<div class=\"thumbnail\">";
         if ($numimage == 1) {
+            $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
+            $imgNotFound = "../images/". $language ."/itemnotfound.png";
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
-            echo "<div><img class=\"img-thumbnail\" src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
+            echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$imgNotFound\"></div></a>";
         } else {
             $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
             echo "<a href=\"javascript:void(0)\"
 			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-            echo "<div >	<img class=\"img-thumbnail\" src=\"$thmbNlImg\"></div></a>";
+            echo "<div >	<img class=\"img-thumbnail thumb-image\" src=\"$thmbNlImg\"></div></a>";
         }
         //-------------------------------------------------------------------
         echo "<div class=\"caption\">";  //start_detail
-       ///// echo "<div class=\"caption1\">"; //start_leftcol
         echo "<a href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         $commonViewObj->displayTitle($this->_pItem);
@@ -148,13 +150,10 @@ class HtMainView
         $commonViewObj->displayUpldTime($this->_pItem);
         $commonViewObj->displayPrice($this->_pItem);
         $commonViewObj->displayMarketType($this->_pItem);
-      ////  echo "</div>"; //end_leftcol
-        
         //---------------------------------------------------------
         echo "</div>"; //end_detail
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
-        //echo "<div class=\"clear\"></div>";
         //---------------------------------------------------------
         echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
         echo "<div id=\"featured_detailed\">";                             //start_featured_detailed

@@ -205,7 +205,7 @@ th {
 	font-transform: italic;
 	font-family: sans-serif, Arial, Helvetica;
 	;
-}
+} 
 
 .searchform .searchbutton {
 	padding: 5px;
@@ -945,8 +945,12 @@ li .col2 {
 	font-family: Snell Roundhand, cursive;
 }
 
-#divCommon .thumbnail{
-	/*height: 400px;*/
+#divCommon .thumb-image{
+	height:175px;
+	width:auto;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
 }
 
 

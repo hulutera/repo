@@ -222,7 +222,7 @@ class HtCommonView extends MySqlRecord {
     public function displayMarketType($itemObj)
     {
         $mrkTyp = $GLOBALS["upload_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
-        if ($mkTyp != "No Action") {
+        if ($mrkTyp != "No Action") {
             echo '<p class="text-center alert-info">' . $mrkTyp . "</p>";
         }
     }
@@ -458,7 +458,7 @@ class HtCommonView extends MySqlRecord {
                 $nego          =  !$rentValue && !$sellValue &&  $negoDisplay;
 
                 //display var
-                $rent_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
+                if ($rate != NULL) $rent_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
                 $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
                 $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
                 //$not_for_sell = 

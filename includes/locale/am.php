@@ -378,6 +378,7 @@ $lang = array(
     'unlisted' => '-- አልተዘረዘረም --',
     'today' => 'ዛሬ',
     'yesterday' => 'ትላንት',
+    'noImage' => 'ፎቶ የለም'
 );
 
 $city_lang_arr = array(

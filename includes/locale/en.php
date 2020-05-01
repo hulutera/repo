@@ -408,7 +408,8 @@ $lang = array(
     'unknown' => 'Unknown',
     'unlisted' => '-- Unlisted --',
     'today' => 'Today',
-    'yesterday' => 'Yesterday'
+    'yesterday' => 'Yesterday',
+    'noImage' => 'No Image'
 );
 
 $city_lang_arr = array(
