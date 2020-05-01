@@ -325,7 +325,9 @@ class HtUserAll extends MySqlRecord
      */
     public function setFieldPassword($fieldPassword)
     {
-        $this->fieldPassword = (string) $fieldPassword;
+        $crypto = new Cryptor();
+        $cryptoPassword = base64_encode($crypto->encryptor($fieldPassword));
+        $this->fieldPassword = (string) $cryptoPassword;
     }
 
     /**
@@ -507,7 +509,8 @@ class HtUserAll extends MySqlRecord
      */
     public function getFieldPassword()
     {
-        return $this->fieldPassword;
+        $crypto = new Cryptor();
+        return  $crypto->decryptor(base64_decode($this->fieldPassword));
     }
 
     /**
@@ -1112,7 +1115,7 @@ SQL;
     /**
      * 
      */
-    public function updateAndRecoverPassword()
+    public function recoverPassword()
     {
         //Generate a RANDOM MD5 Hash for a password
         $randomPassword = md5(uniqid(rand()));
@@ -1146,5 +1149,216 @@ SQL;
         } else {
             header('Location: ../includes/prompt.php?type=4');
         }
+    }
+
+    public function finalizeEditProfile()
+    {
+        $fieldBefore = [
+            $this->fieldUserName,
+            $this->fieldFirstName,
+            $this->fieldLastName,
+            $this->fieldEmail,
+            $this->fieldPhoneNr,
+            $this->fieldAddress,
+            $this->fieldPassword,
+            $this->fieldContactMethod,
+            $this->fieldNewPassword
+        ];
+
+        $this->fieldUserName = isset($_POST['fieldUserName']) ? $_POST['fieldUserName'] : $this->fieldUserName;
+        $this->fieldFirstName = isset($_POST['fieldFirstName']) ? $_POST['fieldFirstName'] : $this->fieldFirstName;
+        $this->fieldLastName = isset($_POST['fieldLastName']) ? $_POST['fieldLastName'] : $this->fieldLastName;
+        $this->fieldEmail = isset($_POST['fieldEmail']) ? $_POST['fieldEmail'] : $this->fieldEmail;
+        $this->fieldPhoneNr = isset($_POST['fieldPhoneNr']) ? $_POST['fieldPhoneNr'] : $this->fieldPhoneNr;
+        $this->fieldAddress  = isset($_POST['fieldAddress']) ? $_POST['fieldAddress'] : $this->fieldAddress;
+        $this->fieldPassword      = isset($_POST['fieldPassword']) ? $_POST['fieldPassword'] : $this->fieldPassword;
+        $this->fieldContactMethod = isset($_POST['fieldContactMethod']) ? $_POST['fieldContactMethod'] : $this->fieldContactMethod;
+        $this->fieldNewPassword   = isset($_POST['fieldNewPassword']) ? $_POST['fieldNewPassword'] : $this->fieldNewPassword;
+        $fieldAfter = [
+            $this->fieldUserName,
+            $this->fieldFirstName,
+            $this->fieldLastName,
+            $this->fieldEmail,
+            $this->fieldPhoneNr,
+            $this->fieldAddress,
+            $this->fieldPassword,
+            $this->fieldContactMethod,
+            $this->fieldNewPassword
+        ];
+        var_dump($fieldBefore);
+        var_dump($fieldAfter);
+        if ($fieldBefore !== $fieldAfter) {
+            //var_dump($_SESSION);
+        }
+
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+        if ($fieldBefore !== $fieldAfter) {
+            $this->update($_SESSION['uID']);
+
+            $subject = $GLOBALS['user_specific_array']['message']['editProfile']['subject'];
+            $body = $GLOBALS['user_specific_array']['message']['editProfile']['body'][0] . "<br><br>";
+
+
+            /// temporary disable for message sending
+            if (DBHOST == 'localhost') {
+                $_SESSION['editProfileSuccess'] = 1;
+                header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+                return;
+            }
+            $isMailDelivered = mail($this->field_email, $subject, $body, 'From:admin@hulutera.com');
+            //Check if mail Delivered or die
+            if (!$isMailDelivered) {
+                die("Sending Email Failed. Please Contact Site Admin!");
+            } else {
+                $_SESSION['editProfileSuccess'] = 1;
+                header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+            }
+        } else {
+            header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+        }
+    }
+    public function updateProfile()
+    {
+        if (isset($_SESSION['editProfileSuccess'])) {
+            ___open_div_("container-fluid", '');
+            ___open_div_("row justify-content-center", '" style=" width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
+            ___open_div_("row", "");
+            ___open_div_('col-md-12', '" style="text-align:center;color:#31708f;');
+            ___open_div_('col-md-12 alert alert-success" role="alert', '');
+            echo $GLOBALS['message']['success'];
+            ___close_div_(5);
+        }
+        $fields = [
+            'fieldName' => $this->getFieldFirstName() . ' ' . $this->getFieldLastName(),
+            'fieldEmail' => $this->getFieldEmail(),
+            'fieldUserName' => $this->getFieldUserName(),
+            'fieldPhoneNr' => $this->getFieldPhoneNr(),
+            'fieldPassword' => $this->getFieldPassword(),
+            'fieldContactMethod' => $this->getFieldContactMethod(),
+        ];
+        ___open_div_("container-fluid ", '');
+        ___open_div_('row justify-content-center alert alert-info" role="alert"', '" style=" color:black;width:54%; margin-left:20%; margin-right:25%; padding: 20px; border:1px solid #c7c7c7;');
+        ___open_div_("row", "");
+        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        ___open_div_('col-md-12', ' ');
+        echo '<strong><p class="h2">' . $GLOBALS['lang']['my profile'] . '</strong></p>';
+        ___close_div_(1);
+
+        ___close_div_(2);
+        foreach ($fields as $key => $value) {
+            $style = '" style="text-align: left;font-size:18px;';
+            ___open_div_("row", "");
+            ___open_div_("col-md-12", $style . ' border-bottom:1px solid #c7c7c7;');
+            ___open_div_("form-group ", "");
+            $lable = $GLOBALS['user_specific_array']['user'][$key][0];
+            if ($key == 'fieldName') {
+                $lable = $GLOBALS['user_specific_array']['user']['fieldName'][0];
+                $value = $value;
+            }
+            if ($key == 'fieldContactMethod') {
+                $lable = $GLOBALS['upload_specific_array']['common'][$key][0];
+                $value = $GLOBALS['upload_specific_array']['common'][$key][2][$value];
+            }
+            if ($key == 'fieldPassword') {
+                $value = '********';
+            }
+            echo '<strong>' . $lable . '</strong>';
+            echo '<p>' . $value;
+            global $lang_url;
+
+            echo '
+            <a href="../../includes/editProfile.php' . $lang_url . '&function=editProfile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md" 
+                        style="float:right;color:black;font-size:16px;font-weight:bold;">' .  $GLOBALS['lang']['edit'] . '</a>';
+            ___close_div_(3);
+        }
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '" style="padding:20px;');
+        echo '<a href="http://hulutera/includes/mypage.php?' . $lang_url . '" type="button" class="btn btn-primary  btn-lg btn-block"
+                                style="">' . $GLOBALS['lang']['to my page'] . '</a>';
+        ___close_div_(2);
+        ___close_div_(2);
+        unset($_SESSION['POST']);
+        unset($_SESSION['errorRaw']);
+        unset($_SESSION['editProfileSuccess']);
+    }
+
+
+    public function editProfile($field)
+    {
+        $fieldAll = [
+            'fieldUserName' => $this->fieldUserName,
+            'fieldFirstName' => $this->fieldFirstName,
+            'fieldLastName' => $this->fieldLastName,
+            'fieldEmail' => $this->fieldEmail,
+            'fieldPhoneNr' => $this->fieldPhoneNr,
+            'fieldAddress' => $this->fieldAddress,
+            'fieldPassword' => $this->fieldPassword,
+            'fieldContactMethod' => $this->fieldContactMethod,
+            'fieldNewPasswor' => $this->fieldNewPassword
+        ];
+
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=editProfile' . $lang_url . '" method="post" enctype="multipart/form-data">';
+
+        ___open_div_("container-fluid", '');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ///
+        ___open_div_("row", "");
+        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        $index = ($field == 'fieldContactMethod' || $field == 'fieldPassword') ?3 :2;
+        echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user'][$field][$index] . '</strong></p>';
+        echo '<p style="text-align:justify; color:#6c757d;font-size:20px">' . $GLOBALS['message']['change']['name'] . '</p>';
+        ___close_div_(2);
+        ///
+        $style = '" style="text-align: left;font-size:18px;';
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", $style . 'padding-top: 10px;');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        if ($field == 'fieldName') {
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user']['fieldFirstName'][0];
+            $this->insertFillable('fieldFirstName',  'user_specific_array', 'user', null, $label, $this->fieldFirstName);
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user']['fieldLastName'][0];
+            $this->insertFillable('fieldLastName',  'user_specific_array', 'user', null, $label, $this->fieldLastName);
+        } else if ($field == 'fieldPassword') {
+            $label = $GLOBALS['lang']['old'] . ' ' . $GLOBALS['user_specific_array']['user'][$field][0];
+            $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password', $label, null);
+
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user'][$field][0];
+            $placeholder = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user'][$field][1];
+            $this->insertFillable('fieldPasswordRepeat',  'user_specific_array', 'user', 'password', $label, null, $placeholder);
+
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user']['fieldPasswordRepeat2'][0];
+            $placeholder = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user']['fieldPasswordRepeat2'][1];
+            $this->insertFillable('fieldPasswordRepeat2',  'user_specific_array', 'user', 'password', $label, null, $placeholder);
+        } else if ($field == 'fieldContactMethod') {
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user'][$field][0];
+            $this->insertSelectable($field,  'user_specific_array', 'user', null, $label);
+        } else {
+            $label = $GLOBALS['lang']['new'] . ' ' . $GLOBALS['user_specific_array']['user'][$field][0];
+            $this->insertFillable($field,  'user_specific_array', 'user', null, $label, $fieldAll[$field]);
+        }
+        ___close_div_(2);
+        ___close_div_(4);
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-6", '');
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['save changes'] . '</button>';
+        ___close_div_(1);
+        ___open_div_("col-md-6", '');
+        echo '<a href="../../includes/editProfile.php?' . $lang_url . '&function=editProfile&update=' . $field . '&order=cancel" type="button" class="btn btn-danger btn-lg btn-block"
+                                style="float:right;">' . $GLOBALS['lang']['cancel changes'] . '</a>';
+        ___close_div_(1);
+        ___close_div_(5);
+        ___close_div_(2);
+        echo '</form>';
     }
 }

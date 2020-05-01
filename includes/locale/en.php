@@ -276,7 +276,7 @@ $lang = array(
     If you have any questions or comments about our "Terms and Conditions" as outlined above, you can send us your question at info@hulutera.com or you can send us a message using contact us',
     'Login' => 'Login',
     'Logout' => 'Logout',
-    'My Items' => 'My Items',
+    'My Items' => 'Your Items',
     'Edit Profile' => 'Edit Profile',
     'Search' => 'Search',
     'e.g' => 'e.g',
@@ -303,8 +303,15 @@ $lang = array(
     'non-existing email msg' => 'There is no user registered with this e-mail',
     'Forgot your password' => 'Forgot your password',
     'my activities' => 'My Activities',
-    'my-page msg' => 'Welcome to my page, in this page you can Post Items, check the status of your posted items and edit your profile. Shall you require any more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a>.',
-    'my page' => 'My Page',
+    'my page' => 'Your Page',
+    'my profile' => 'Your Profile',
+    'my page header'=>'Welcome to your page,',
+    'my-page msg' => 'In this page you could check the status of your uploaded items and edit your profile. Shall you require any more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a>.',
+    'my-page msg2' => 'Here you can view your posted items. You will find status of your active, pending, reported or deleted items.',
+    'my-page msg3' => 'Here you can edit you personal information. You can change password, username, email, ... etc.',
+    'to my page' => 'Back to Your Page',
+    'to my items'  => 'Your items',
+    'to my profile' => 'Your Profile',
     'active' => 'Active',
     'pending' => 'Pending',
     'all pending' => 'All Pending',
@@ -341,6 +348,9 @@ $lang = array(
     'change your email' => 'Change email',
     'new e-mail' => 'New e-mail',
     'save' => 'Save',
+    'save changes' => 'Save Changes',
+    'cancel changes' => 'Cancel changes',
+    'edit' => 'Edit',
     'close' => 'Close',
     'report' => 'Report',
     'change password' => 'Change password',
@@ -891,7 +901,7 @@ $upload_specific_array = [
             2 => [
                 'phone'  => 'Phone',
                 'e-mail' => 'E-mail',
-                'both'   => 'Both'
+                'both'   => 'Phone and E-mail'
             ]
         ],
         'fieldColor'       => [
@@ -944,9 +954,15 @@ $user_specific_array = [
             0 => 'Password Recovery',
             1 => 'Recovery'
         ],
+        'fieldName'       => [
+            0 => 'Full Name',
+            1 => 'Write Full Name here',
+            2 => 'Changing Name'
+        ],
         'fieldUserName'       => [
             0 => 'Username',
-            1 => 'Write Username here'
+            1 => 'Write Username here',
+            2 => 'Changing Username'
         ],
         'fieldFirstName'       => [
             0 => 'First Name',
@@ -959,20 +975,40 @@ $user_specific_array = [
         'fieldEmail'       => [
             0 => 'Email',
             1 => 'Write Email here',
+            2 => 'Changing Email'
         ],
         'fieldPhoneNr'       => [
             0 => 'Phone',
             1 => 'Write phone here',
+            2 => 'Changing Phone Number'
         ],
         'fieldPassword'       => [
             0 => 'Password',
             1 => 'Write password here',
-            2 => 'Show password'
+            2 => 'Show password',
+            3 => 'Changing password'
         ],
         'fieldPasswordRepeat'       => [
             0 => 'Repeat Password',
             1 => 'Write password here again',
-            2 => 'Show password'
+            2 => 'Show password',
+            3 => 'Changing password'
+        ],
+        'fieldPasswordRepeat2'       => [
+            0 => 'Repeat Password',
+            1 => 'Write password here again',
+            2 => 'Show password',
+            3 => 'Changing password'
+        ],
+        'fieldContactMethod' => [
+            0 => 'Contact Me With',
+            1 => 'Choose contact method',
+            2 => [
+                'phone'  => 'Phone',
+                'e-mail' => 'E-mail',
+                'both'   => 'Phone and E-mail'
+            ],
+            3=>'Changing Contact method'
         ],
         'fieldTermAndCondition'       => [
             0 => 'Terms and Conditions',
@@ -1006,10 +1042,18 @@ $user_specific_array = [
                       This email was automatically generated. If you did not request a password recovery please contact the administrator <br>
                       using email <strong>admin@hulutera.com</strong><br>',
                 1 => [
-                    '<br>Recovery Link:', 
-                    '<br>New-password:', 
+                    '<br>Recovery Link:',
+                    '<br>New-password:',
                     '<br>Sincerely,<br>The hulutera Team<br>'
                 ],
+            ]
+        ],
+        'editProfile' => [
+            'subject' => 'Confirmation for your profile update',
+            'body' => [
+                0 => 'Dear Customer,<br>
+                      You have asked to update your Hulutera profile. Per your request, you have successfully.
+                      <br>Sincerely,<br>The hulutera Team<br>'            
             ]
         ]
     ]
@@ -1035,6 +1079,14 @@ $validate_specific_array = [
         'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!'
     ],
 ];
+$message = [
+    'change' =>  [
+        'name' => 'If you want to change the name associated with your Hulutera customer account,
+                 you may do so below. Be sure to click the <strong>Save Changes</strong> button when you are done.
+                 If you don\'t want your change be sure to click on <strong>Cancel</strong>.'
+    ],
+    'success' => 'You have successfully modified your account!',
+];
 
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
@@ -1042,3 +1094,4 @@ $GLOBALS['upload_specific_array'] = $upload_specific_array;
 $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;
+$GLOBALS['message'] = $message;

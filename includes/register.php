@@ -47,6 +47,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->register();
 				}
+				var_dump($_SESSION);
 				?> </div>
 		</div>
 		<div class="push"></div>

@@ -157,7 +157,7 @@ class MySqlRecord extends Model
         $this->insertSelectable('fieldLocation', 'upload_specific_array', 'common', $selectable);
     }
 
-    protected function insertFillable($fieldName,  $globalArrayName, $item, $type = null)
+    protected function insertFillable($fieldName, $globalArrayName, $item, $type = null, $newLabel = null, $value = null, $newPlaceholder = null)
     {
         $errorMsg = "";
         $errorClass = '';
@@ -165,24 +165,31 @@ class MySqlRecord extends Model
             $errorMsg = $_SESSION['errorRaw'][$fieldName];
             $errorClass = ' alert-custom';
         }
+        $label = ($newLabel !== null) ? $newLabel : $GLOBALS[$globalArrayName][$item][$fieldName][0];
+        $placeholder = ($newPlaceholder !== null) ? $newPlaceholder :  $GLOBALS[$globalArrayName][$item][$fieldName][1];
 
-        $title = $GLOBALS[$globalArrayName][$item][$fieldName][0];
-        $placeholder = $GLOBALS[$globalArrayName][$item][$fieldName][1];
-        $choose = "";
+        $choose = ($value !== null) ? $value : "";
         if (isset($_SESSION['POST'][$fieldName])) {
             $choose = $_SESSION['POST'][$fieldName];
         }
         $typetype = isset($type) ? $type : "text";
 
         ___open_div_("row", '');
-        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("col-md-12", '');
         ___open_div_("form-group", '');
         echo <<< EOD
-        <label for="{$fieldName}">{$title}</label> {$errorMsg}
-         <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
+        <label for="{$fieldName}">{$label}</label>
+EOD;
+        if (isset($errorMsg)) {
+            ___open_div_("col-md-12", $errorClass);
+            echo $errorMsg;
+            ___close_div_(1);
+        }
+        echo <<< EOD
+    <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
         if ($type === 'password') {
-            if ($fieldName !== "fieldPasswordRepeat") {
+            if (strpos($fieldName, "fieldPasswordRepeat") === false) {
                 echo '<input type="checkbox" onclick="showPassword()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
             }
         }
@@ -389,7 +396,7 @@ EOD;
         ___close_div_(3);
     }
 
-    protected function insertSelectable($fieldName, $globalArrayName, $source = null, $selectable = null)
+    protected function insertSelectable($fieldName, $globalArrayName, $source = null, $selectable = null, $newLabel = null)
     {
         $errorMsg = "";
         $errorClass = '';
@@ -398,7 +405,7 @@ EOD;
             $errorClass = ' alert-custom';
         }
         $selected = 0;
-        $label = $GLOBALS[$globalArrayName][$source][$fieldName][0];
+        $label = ($newLabel !== null) ? $newLabel : $GLOBALS[$globalArrayName][$source][$fieldName][0];
         $choose = $GLOBALS[$globalArrayName][$source][$fieldName][1];
         $types = [];
         if (empty($selectable)) {
@@ -422,10 +429,17 @@ EOD;
             }
         }
         ___open_div_("row", "");
-        ___open_div_("col-md-12", $errorClass);
+        ___open_div_("col-md-12", '');
         ___open_div_("form-group", "");
         echo <<< EOD
-        <label for="{$fieldName}">{$label}</label>{$errorMsg}        
+        <label for="{$fieldName}">{$label}</label>
+EOD;
+        if (isset($errorMsg)) {
+            ___open_div_("col-md-12", $errorClass);
+            echo $errorMsg;
+            ___close_div_(1);
+        }
+        echo <<< EOD
         <select id="{$fieldName}" name="{$fieldName}" class="select form-control">
         <option value="{$choose1}">{$choose2}</option>
 EOD;
@@ -453,8 +467,7 @@ EOD;
             $errorMsg = $_SESSION['errorRaw'][$fieldName];
             $errorClass = ' alert-custom';
             $checked = '';
-        }
-        elseif (!isset($_SESSION['POST'][$fieldName])){            
+        } elseif (!isset($_SESSION['POST'][$fieldName])) {
             $checked = '';
         }
 
@@ -468,7 +481,7 @@ EOD;
         }
 
         $title = $GLOBALS[$globalArrayName][$item][$fieldName][0];
-        
+
         ___open_div_("row", '');
         ___open_div_("col-md-12", $errorClass);
         ___open_div_("form-group", '');

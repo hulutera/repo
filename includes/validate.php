@@ -217,7 +217,6 @@ class ValidateRegister
                                 }
                                 break;
                             case 'fieldPassword':
-                                //case 'fieldPasswordRepeat':
                                 if (strlen($value) < 5) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
                                 } else if ($_POST['fieldPassword'] !== $_POST['fieldPasswordRepeat']) {
@@ -232,7 +231,7 @@ class ValidateRegister
                                 }
                                 break;
                             case 'fieldTermAndCondition':
-                                if (!$this->isCheckboxChecked($value, '1')) {
+                                if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                                 }
                                 break;
@@ -279,6 +278,12 @@ class ValidateLogin
                                 $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
                             }
                             break;
+                        case 'fieldFirstName':
+                        case 'fieldLastName':
+                            if (!ctype_alnum($value)) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
+                            }
+                            break;
                         case 'fieldEmail':
                             if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
@@ -291,8 +296,36 @@ class ValidateLogin
                                 $input = array($key => $GLOBALS['validate_specific_array'][1]);
                             } else if (strlen($value) < 5) {
                                 $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                            } else {
+                                if (isset($_SESSION['uID'])) {
+                                    $userAll = new HtUserAll($_SESSION['uID']);
+                                    if ($userAll->getFieldPassword() !== $value) {
+                                        $input = array($key => $GLOBALS['validate_specific_array'][2]['passwordNotCurrent']);
+                                    }
+                                }
+                            }
+                        case 'fieldPasswordRepeat':
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
+                                $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                            } else if (strlen($value) < 5) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                            } else if ($_POST['fieldPasswordRepeat'] !== $_POST['fieldPasswordRepeat2']) {
+                                $input = array('fieldPasswordRepeat' => $GLOBALS['validate_specific_array'][2]['passwordRepeat']);
+                            }
+                        case 'fieldPasswordRepeat2':
+                            if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
+                                $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                            } else if (strlen($value) < 5) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                            } else if ($_POST['fieldPasswordRepeat'] !== $_POST['fieldPasswordRepeat2']) {
+                                $input = array('fieldPasswordRepeat2' => $GLOBALS['validate_specific_array'][2]['passwordRepeat']);
                             }
                             break;
+                        case 'fieldContactMethod':
+                            if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][0]);
+                            }
+                            break;                        
                         default:
                             break;
                     }
@@ -331,22 +364,25 @@ class ValidateLogin
                 array_push($err, $input);
                 header("Location: ../../includes/form_user.php?function=login" . $langURL);
             }
-        }elseif ($function == 'passRecovery') {
+        } elseif ($function == 'passRecovery') {
             $email = $_POST['fieldEmail'];
-            $userName = $_POST['fieldUserName'];                        
+            $userName = $_POST['fieldUserName'];
             $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_user_name = \"$userName\"");
 
             $userAll = new HtUserAll($sql);
             $result = $userAll->getResultSet();
-            if ($result->num_rows === 0) {                
+            if ($result->num_rows === 0) {
                 $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
                 array_push($err, $input);
                 $input = ['fieldUserName' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
                 array_push($err, $input);
                 header("Location: ../../includes/form_user.php?function=passRecovery" . $langURL);
-            }else {
-                echo $userAll->updateAndRecoverPassword();
-            }            
+            } else {
+                $userAll->recoverPassword();
+            }
+        } elseif ($function == 'editProfile') {
+            $userAll = new HtUserAll($_SESSION['uID']);
+            $userAll->finalizeEditProfile();
         }
     }
 }
