@@ -491,6 +491,9 @@ class HtUtilContactUs extends MySqlRecord
     {
         $sql = "DELETE FROM util_contact_us WHERE id={$this->parseValue($id,'int')}";
         $this->resetLastSqlError();
+        
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -526,6 +529,9 @@ class HtUtilContactUs extends MySqlRecord
 			{$this->parseValue($this->fieldReceivedDate,'notNumber')})
 SQL;
         $this->resetLastSqlError();
+        
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -568,7 +574,10 @@ SQL;
                 id={$this->parseValue($id,'int')}
 SQL;
             $this->resetLastSqlError();
-            $result = $this->query($sql);
+            
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
+        $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - ". $this->error;
             } else {

@@ -1077,7 +1077,8 @@ $validate_specific_array = [
         'email' => 'Invalid email address. Please try again!<br>',
         'passwordRepeat' => 'Passwords do not match. Please try again!<br>',
         'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again!',
-        'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!'
+        'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!',
+        'mixedLanguage'=>'Invalid input, a mix of languge is not allowed. Please try again!',
     ],
 ];
 $message = [

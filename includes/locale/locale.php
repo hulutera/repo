@@ -1,5 +1,5 @@
 <?php
-
+$GLOBALS['GEEZ'] = ['am', 'gu', 'wo', 'tg'];
 function locale($current_link)
 {
     global $lang;

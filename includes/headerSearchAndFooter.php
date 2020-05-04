@@ -489,4 +489,97 @@ function ___close_div_($number)
 	}
 	echo $div;
 }
+
+function yourPage(){
+	global $str_url, $lang_url;
+	$myPageHeaderTitle = $GLOBALS['lang']['my page header'];
+	$myPageHeaderMessage = $GLOBALS['lang']['my-page msg'];
+	$myItemsTitle = $GLOBALS['lang']['My Items'];
+	$myItemMessage = $GLOBALS['lang']['my-page msg2'];
+	$toMyItemsButton = $GLOBALS['lang']['to my items'];
+	$myProfileTitle= $GLOBALS['lang']['my profile'];
+	$myProfileMessage = $GLOBALS['lang']['my-page msg3'];
+	$toMyProfileButton= $GLOBALS['lang']['to my profile'];
+	echo <<< EOD
+	<div class="container-fluid alert alert-info" role="alert" style="color:black;">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="h1 font-weight-bold">
+						{$myPageHeaderTitle}
+					</p>
+					<p class="h3">
+						{$myPageHeaderMessage}
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-left:5%;margin-right:5%;">
+					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-4">
+										<img src="../images/allitems.svg" style="margin-top:25%;width:100%;" />
+									</div>
+									<div class="col-md-8">
+										<div class="row">
+											<p class="h2 font-weight-bold">
+												{$myItemsTitle}
+											</p>
+										</div>
+										<div class="row">
+											<p>
+												{$myItemMessage}
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+									<a href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active" 
+												style="float:right;">{$toMyItemsButton}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-4">
+										<img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
+									</div>
+									<div class="col-md-8">
+										<div class="row">
+											<p class="h2 font-weight-bold">
+												{$myProfileTitle}
+											</p>
+										</div>
+										<div class="row">
+											<p>
+												{$myProfileMessage}
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+											
+									<a href="../../includes/editProfile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
+												style="float:right;">{$toMyProfileButton}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+EOD;
+}
 ?>

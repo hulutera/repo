@@ -1,5 +1,4 @@
 <?php
-
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption 
@@ -191,18 +190,23 @@ class ValidateRegister
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
                         switch ($key) {
-                            case 'fieldUserName':
+                            case 'fieldUserName':if (in_array($_GET['lan'], $GLOBALS['GEEZ'])) {
+                                validateUtf8($key, $value, $err);
+                            } else{
                                 if (!ctype_alnum($value)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
                                 } else if (strlen($value) < 5) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
-                                }
+                                }}
                                 break;
                             case 'fieldFirstName':
                             case 'fieldLastName':
+                                if (in_array($_GET['lan'], $GLOBALS['GEEZ'])) {
+                                    validateUtf8($key, $value, $err);
+                                } else{
                                 if (!ctype_alpha($value)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['isalpha']);
-                                }
+                                }}
                                 break;
                             case 'fieldPhoneNr':
                                 if (!ctype_digit($value)) {
@@ -267,21 +271,30 @@ class ValidateLogin
          * Get all information for the IUT (Item Under Test) for validation
          */
         $input = [];
+        
         if (isset($_POST['submit'])) {
             foreach ($_POST as $key => $value) {
                 if (isset($_POST[$key])) {
                     switch ($key) {
                         case 'fieldUserName':
-                            if (!ctype_alnum($value)) {
-                                $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
-                            } else if (strlen($value) < 5) {
-                                $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                            if (in_array($_GET['lan'], $GLOBALS['GEEZ'])) {
+                                validateUtf8($key, $value, $err);
+                            } else {
+                                if (!ctype_alnum($value)) {
+                                    $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
+                                } else if (strlen($value) < 5) {
+                                    $input = array($key => $GLOBALS['validate_specific_array'][2]['length'][5]);
+                                }
                             }
                             break;
                         case 'fieldFirstName':
                         case 'fieldLastName':
-                            if (!ctype_alnum($value)) {
-                                $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
+                            if (in_array($_GET['lan'], $GLOBALS['GEEZ'])) {
+                                validateUtf8($key, $value, $err);
+                            } else {
+                                if (!ctype_alnum($value)) {
+                                    $input = array($key => $GLOBALS['validate_specific_array'][2]['isalphanumeric']);
+                                }
                             }
                             break;
                         case 'fieldEmail':
@@ -325,13 +338,22 @@ class ValidateLogin
                             if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
                                 $input = array($key => $GLOBALS['validate_specific_array'][0]);
                             }
-                            break;                        
+                            break;
+                        case 'fieldPhoneNr':
+                            if (!ctype_digit($value)) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][2]['isdigit']);
+                            } else if (strlen($value) < 10) {
+                                $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                            }
+                            break;
                         default:
                             break;
                     }
+
                     if (!empty($input)) {
                         array_push($err, $input);
                     }
+                    var_dump($err);
                 }
             }
         }
@@ -384,5 +406,60 @@ class ValidateLogin
             $userAll = new HtUserAll($_SESSION['uID']);
             $userAll->finalizeEditProfile();
         }
+    }
+}
+
+/**
+ * unicodeStrToArray
+ *
+ * @param  mixed $str
+ * @param  mixed $l
+ * @return void
+ */
+function unicodeStrToArray($str, $l = 0)
+{
+    if ($l > 0) {
+        $ret = array();
+        $len = mb_strlen($str, "UTF-8");
+        for ($i = 0; $i < $len; $i += $l) {
+            $ret[] = mb_substr($str, $i, $l, "UTF-8");
+        }
+        return $ret;
+    }
+    return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
+}
+
+/**
+ * validateUtf8
+ * 
+ * @param  mixed $key
+ * @param  mixed $input
+ * @param  mixed $err
+ * @return void
+ */
+function validateUtf8($keyIn, $valueIn, &$err)
+{
+    $utf8ToArray = unicodeStrToArray($valueIn);
+    $count = 0;
+    $input = [];
+    $errMsg1 = '';
+    $errMsg = '';
+    foreach ($utf8ToArray as $key => $value) {
+        if ((preg_match('/[\W]+$/ui', $value) && ($value != ' ')) || preg_match('/^[0-9]+$/', $value)) {
+            $errMsg1 = $GLOBALS['validate_specific_array'][2]['isalpha'] . '<br>';
+        }
+        if (preg_match('/^[a-zA-Z]+$/', $value)) {
+            $count++;
+        }
+    }
+    if ($count > 0) {
+        $errMsg = $GLOBALS['validate_specific_array'][2]['mixedLanguage'] . '<br>' . $errMsg1;
+    } else {
+        $errMsg = $errMsg1;
+    }
+
+    if (!empty($errMsg)) {
+        $input = [$keyIn => $errMsg];
+        array_push($err, $input);
     }
 }

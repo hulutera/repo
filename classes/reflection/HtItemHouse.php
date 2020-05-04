@@ -1390,6 +1390,9 @@ class HtItemHouse extends MySqlRecord
     {
         $sql = "DELETE FROM item_house WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
+        
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1446,6 +1449,9 @@ class HtItemHouse extends MySqlRecord
 SQL;
         echo $sql;
         $this->resetLastSqlError();
+        
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1507,7 +1513,10 @@ SQL;
                 id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            $result = $this->query($sql);
+            
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
+        $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {

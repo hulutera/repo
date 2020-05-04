@@ -23,6 +23,7 @@ if (!isset($_SESSION['uID'])) {
 	<?php commonHeader(); ?>
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 
 <body>
@@ -64,6 +65,7 @@ if (!isset($_SESSION['uID'])) {
 						$object->updateProfile();
 					}					
 				}
+				// var_dump($_SESSION);
 				?>
 			</div>
 		</div>

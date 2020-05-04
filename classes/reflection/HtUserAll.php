@@ -2,6 +2,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
+header('Content-Type: text/html; charset=utf-8');
 
 /**
  * Class HtUserAll
@@ -667,7 +668,9 @@ class HtUserAll extends MySqlRecord
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
+        $this->set_charset('utf8');
+        $this->query('SET NAMES utf8');
+        $result = $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
         if ($result) {
@@ -790,6 +793,11 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
+            echo $sql;
+            //return;
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
@@ -1162,7 +1170,8 @@ SQL;
             $this->fieldAddress,
             $this->fieldPassword,
             $this->fieldContactMethod,
-            $this->fieldNewPassword
+            $this->fieldNewPassword,
+            $this->fieldTermAndCondition
         ];
 
         $this->fieldUserName = isset($_POST['fieldUserName']) ? $_POST['fieldUserName'] : $this->fieldUserName;
@@ -1174,6 +1183,7 @@ SQL;
         $this->fieldPassword      = isset($_POST['fieldPassword']) ? $_POST['fieldPassword'] : $this->fieldPassword;
         $this->fieldContactMethod = isset($_POST['fieldContactMethod']) ? $_POST['fieldContactMethod'] : $this->fieldContactMethod;
         $this->fieldNewPassword   = isset($_POST['fieldNewPassword']) ? $_POST['fieldNewPassword'] : $this->fieldNewPassword;
+        $this->fieldTermAndCondition = isset($_POST['fieldTermAndCondition']) ? $_POST['fieldTermAndCondition'] : $this->fieldTermAndCondition;
         $fieldAfter = [
             $this->fieldUserName,
             $this->fieldFirstName,
@@ -1183,16 +1193,15 @@ SQL;
             $this->fieldAddress,
             $this->fieldPassword,
             $this->fieldContactMethod,
-            $this->fieldNewPassword
+            $this->fieldNewPassword,
+            $this->fieldTermAndCondition
         ];
         var_dump($fieldBefore);
         var_dump($fieldAfter);
-        if ($fieldBefore !== $fieldAfter) {
-            //var_dump($_SESSION);
-        }
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         if ($fieldBefore !== $fieldAfter) {
+
             $this->update($_SESSION['uID']);
 
             $subject = $GLOBALS['user_specific_array']['message']['editProfile']['subject'];
@@ -1304,12 +1313,12 @@ SQL;
         }
         echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=editProfile' . $lang_url . '" method="post" enctype="multipart/form-data">';
 
-        ___open_div_("container-fluid", '');
+        ___open_div_("container-fluid ", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
         ///
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
-        $index = ($field == 'fieldContactMethod' || $field == 'fieldPassword') ?3 :2;
+        $index = ($field == 'fieldContactMethod' || $field == 'fieldPassword') ? 3 : 2;
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user'][$field][$index] . '</strong></p>';
         echo '<p style="text-align:justify; color:#6c757d;font-size:20px">' . $GLOBALS['message']['change']['name'] . '</p>';
         ___close_div_(2);

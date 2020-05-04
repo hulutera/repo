@@ -3,6 +3,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
     ob_start();
 }
+header("Content-Type: text/html;charset=UTF-8");
+
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/validate.php';
@@ -19,7 +21,7 @@ if ($function == 'register') {
 var_dump($errPre);
 var_dump($_POST);
 // var_dump($_SERVER['HTTP_REFERER']);
-
+//exit;
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
     var_dump($errPre[0]);
