@@ -28,7 +28,7 @@ $lang = array(
     'Show Detail' => 'Show Detail',
     'Hide Detail' => 'Hide Detail',
     'Contact' => 'Contact',
-    'Contact method' => 'Contact method',
+    'Contact method' => 'Contact Method',
     'e-mail' => 'e-mail',
     'with phone' => 'phone',
     'both' => 'both',
@@ -409,7 +409,11 @@ $lang = array(
     'unlisted' => '-- Unlisted --',
     'today' => 'Today',
     'yesterday' => 'Yesterday',
-    'noImage' => 'No Image'
+    'noImage' => 'No Image',
+    'item specification' => 'Specification',
+    'Enter your message' => 'Enter your message here ....',
+    'contact owner' => 'Contact the owner',
+    'You forgort to enter your name, email address and Message' => 'You need to enter your name, email and message.'
 );
 
 $city_lang_arr = array(
@@ -847,7 +851,9 @@ $upload_specific_array = [
                 'fieldPriceRent' => 'Rent',
                 'fieldPriceSell' => 'Sell',
                 'both' => 'Both',
-            ]
+                 ],
+            3 => 'Price Details'
+
         ],
 
         'fieldPriceRent' => [

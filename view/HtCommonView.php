@@ -187,9 +187,9 @@ class HtCommonView extends MySqlRecord {
     public function displayTitle($itemObj)
     {
         $title = $itemObj->getFieldTitle();
-        echo "<h4>";
+        echo "<h5>";
         echo $title != null ? $title : $this->$_itemName;
-        echo "</h4>";
+        echo "</h5>";
     }
     /*@function to display location of item
 	 * input : location /loc
@@ -253,11 +253,10 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMailCfrm($uniqueId, $itemId, $itemName)
     {
-        global $sentmsg;
-        echo "<div class=\"msgcompleted\">";
-        echo "<div style=\"width:100%; paddding: 5px; height:100px; display:none;\" class=\"sent_$uniqueId\">";
-        echo "<p>$sentmsg</p> ";
-        echo "<input  class=\"closeInner\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"Close\" />";
+        echo "<div class=\"msgcompleted col-md-12\">";
+        echo "<div style=\"width:100%;display:none;\" class=\"sent_$uniqueId\">";
+        echo "<p class=\"bg-success\">".$GLOBALS['lang']['msg sent']."</p> ";
+        echo "<input  class=\"closeInner1 btn btn-danger btn-sm\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"Close\" />";
         echo "</div>"; //end_msgcompleted
         echo "</div>"; //end_sent_*
     }
@@ -278,26 +277,31 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMailForm($uniqueId, $itemId, $itemName, $user)
     {
-        echo "<div style=\"display:none;\" class=\"message_$uniqueId\">";
-        echo "<form class=\"msgcontainer\" method=\"post\">";
-        echo "<div style=\"display:none;\" class=\"error_1$uniqueId\"></div>";
-        echo "<div style=\"display:none;\" class=\"error_2$uniqueId\"></div>";
-        echo "<div class =\"msgform\">";
-        echo "<div class=\"field\">";
-        echo "<label for=\"name\">Name</label>";
-        echo '<input type="text" class="input" id="name_' . $uniqueId . '" name="name"  maxlength="80"  />';
+        echo "<div style=\"display:none;\" class=\"message_$uniqueId col-md-12\">";
+        echo "<form class=\"msgcontainer1 thumbnail\" method=\"post\">";
+        echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
+             <p class=\"bg-danger\">".$GLOBALS['lang']['You forgort to enter your name, email address and Message']."
+             </div>";
+        echo "<div style=\"display:none;\" class=\"error_2$uniqueId form-group\">
+             <p class=\"bg-danger\">".$GLOBALS['lang']['Your e-mail address is invalid']."
+             </div>";
+        echo "<div class =\"msgform1\">";
+        echo '<p>'.$GLOBALS["lang"]["contact owner"].'</p>';
+        echo "<div class=\"field1 form-group\">";
+        echo "<label for=\"name\">".$GLOBALS['lang']['Your name']."</label></br>";
+        echo '<input type="text" style="width:90%" id="name_' . $uniqueId . '" name="name"/>';
         echo "</div>"; //end_field
-        echo "<div class=\"field\">";
-        echo "<label for=\"email\">Email</label>";
-        echo '<input style="text-transform:lowercase;" type="text" class="input" id="email_' . $uniqueId . '" name="email" maxlength="80" />';
+        echo "<div class=\"field1 form-group\">";
+        echo "<label for=\"email\">".$GLOBALS['lang']['Email']."</label></br>";
+        echo '<input style="text-transform:lowercase;width:90%" type="email"  id="email_' . $uniqueId . '" name="email"/>';
         echo "</div>"; //end_field
-        echo "<div class=\"field\">";
-        echo "<label for=\"description\">Message</label>";
-        echo '<textarea name="description" id="description_' . $uniqueId . '"width="309px" rows="4" placeholder="Enter your message here..." ></textarea>';
+        echo "<div class=\"field1 form-group\">";
+        echo "<label for=\"description\">".$GLOBALS['lang']['Message']."</label>";
+        echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="'.$GLOBALS['lang']['Enter your message'].'"></textarea>';
         echo "</div>"; //end_field
-        echo "<div class=\"messageRouter\">";
-        echo "<input class=\"close\" type=\"button\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"Close\" />";
-        echo "<input class=\"send\" type=\"button\" onclick=\"swapmailback($itemId, '$user->getEmail()','$itemName')\" value=\"Send\" />";
+        echo "<div class=\"messageRouter1 form-group\">";
+        echo "<input class=\"send1 btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$user->getEmail()','$itemName')\" value=\"".$GLOBALS['lang']['Send']."\" />";
+        echo "<input class=\"close1 btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
         echo "</div>";
         echo "</div>"; //end_msgform
         echo "<div class=\"clear\"></div>";
@@ -318,16 +322,15 @@ class HtCommonView extends MySqlRecord {
         $phone = $userObj->getFieldPhoneNr() ? $userObj->getFieldPhoneNr() : NULL;
         $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
         
-        echo "<div id=\"mail_report\" class=\"contact_$uniqueId\">";
-        echo "</br>";
-        echo '<div class="header"><label>'.$GLOBALS["lang"]["Contact method"].'</label></div>';
+        echo "<div id=\"mail_report1\" class=\"contact_$uniqueId \">";
+        echo '<div class="header1"><label>'.$GLOBALS["lang"]["Contact method"].'</label></div>';
         if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
-			<img src =\"$pImage->PATH_MAIL_ICON\"><a onclick=\"swapmail($itemId,'$itemName')\">".$GLOBALS['lang']['Send a message']."</a></div>";
+			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">".$GLOBALS['lang']['Send a message']."</a></p></div>";
         if ($contactType == "phone" or $contactType == "both")
-            echo "<div class=\"phone\">
-			<img src =\"$pImage->PATH_PHN_ICON\"><label>" . $userName . " : " . $phone . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$pImage->PATH_RPT_ICON\"><a onclick=\"swapabuse($itemId,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
+            echo "<div class=\"phone1\">
+			<p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -339,28 +342,30 @@ class HtCommonView extends MySqlRecord {
         $filterArr = array('"', '[', ']');
         $fileNmaeLarge = str_replace($filterArr, '', $imageFileNameLarge);
         $numimage = sizeof($imageNameArray);
-        echo "<div class=\"featured_left_side\">";
+        echo "<div class=\"featured_left_side1 col-xs-12 col-md-8\"  style=\"padding:0px;\">";
         if ($numimage == 1) {
             $file_path = '../../images/icons/ht_logo_2.png';
             echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
         }
         if ($numimage > 1) {
-            echo "<div id=\"featured_left_side_bigImage\"><img class=\"largeImg\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
-            echo "<div id=\"featured_buttom\">";
-            echo "<div class=\"imagesGallery\">";
+            echo "<div id=\"featured_left_side_bigImage1\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:white\"><img style=\"width:100%;margin-left:auto;margin-right:auto;margin-bottom:5px;display:block;padding:0px\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
+            echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {
                $imageFileName = $imageNameArray[$i];
-               $fileNmae = str_replace($filterArr, '', $imageFileName);
+               $fileName = str_replace($filterArr, '', $imageFileName);
                $divName = $fileName . $i;
+               echo "<div id=\"featured_buttom1\" class=\"col-xs-3 col-md-2\" style=\"padding:0px\">";
+               echo "<div class=\"imagesGallery1 thumbnail\">";
                 echo "
-				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileNmae',$itemId, '$itemName')\"\">
-				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\"$dir$fileNmae\" />
+				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
+				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$dir$fileName\" />
 				</a>
-				";
+                ";
+                echo "</div>";
+                echo "</div>";
             }
             echo "</div>";
-            echo "</div>";
-            
+              
         }
         echo "</div>";
     }

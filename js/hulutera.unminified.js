@@ -244,7 +244,7 @@ function func_moderatorShow(e, t, n) {
 
 function swap(e, t) {
     $(document).ready(function () {
-        $(".thumblist_" + t + e).slideUp("fast");
+      //$(".thumblist_" + t + e).slideUp("fast");
         $("#divDetail_" + t + e).slideDown("fast")
     })
 }
@@ -253,6 +253,25 @@ function swapback(e, t) {
     $(document).ready(function () {
         $(".thumblist_" + t + e).slideDown("fast");
         $("#divDetail_" + t + e).slideUp("fast")
+    })
+}
+
+// show item specification
+function showspec(item, id) {
+    $(document).ready(function () {
+        $("#spec_" + item + id).slideDown("fast");
+        $("#spec_up_" + item + id).show();
+        $("#spec_down_" + item + id).hide()
+    })
+}
+
+
+// hide item specification
+function hidespec(item, id) {
+    $(document).ready(function () {
+        $("#spec_" + item + id).slideUp("fast");
+        $("#spec_up_" + item + id).hide();
+        $("#spec_down_" + item + id).show()
     })
 }
 
@@ -288,16 +307,15 @@ function validateEmail(e) {
 
 function swapmailback(e, t, n) {
     $(document).ready(function () {
-        var r = $("#msgcontainer");
+        var r = $("#msgcontainer1");
         var i = $("#name_" + n + e).val();
         var s = $("#email_" + n + e).val();
         var o = $("#description_" + n + e).val();
-        if (i === "" && s === "" && o === "") {
-            var u = "You forgort to enter your name, email address and Message." + " ስም ፣የኢሜይል አድራሻ እና መልዕክት ማስገባት ረስተዋል።";
-            $(".error_1" + n + e).slideDown("fast").replaceWith('<div style="background-color: #FFBABA; color: #D8000C;"class="error_1' + n + e + '">' + u + "</div>");
+        if (i === "" || s === "" || o === "") {
+            $(".error_1" + n + e).slideDown("fast");
             $("#name_" + n + e).css("border", "1px solid #D8000C");
             $("#email_" + n + e).css("border", "1px solid #D8000C");
-            $("#description_" + n + e).css("border", "1px solid #D8000C")
+            $("#description_" + n + e).css("border", "1px solid #D8000C");
         } else if (validateEmail(s)) {
             $(".error_1" + n + e).slideUp("fast");
             $(".message_" + n + e).slideUp("fast");
@@ -312,9 +330,8 @@ function swapmailback(e, t, n) {
             $("#description_" + n + e).val("");
             $(".error_2" + n + e).slideUp("fast")
         } else {
-            var a = "Please Enter a valid email address.የኢሜይል አድራሻ  ማስገባት ረስተዋል።";
             $(".error_1" + n + e).slideUp("fast");
-            $(".error_2" + n + e).slideDown("fast").replaceWith('<div style="background-color:#FFBABA; color: #D8000C;"class="error_2' + n + e + '">' + a + "</div>");
+            $(".error_2" + n + e).slideDown("fast");
             $("#name_" + n + e).css("border", "1px solid #4F8A10");
             $("#email_" + n + e).css({
                 "background-color": "#FFBABA",

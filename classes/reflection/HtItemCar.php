@@ -1561,11 +1561,13 @@ SQL;
      */
     public function display()
     {
-        echo $this->getFieldMake()   ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp</strong>' . $this->getFieldMake() . '</p>' : "";
-        echo $this->getFieldModel() != "0000"       ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp</strong>' . $this->getFieldModel() . '</p>' : "";
+        echo "<p><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="col-md-12" style="margin:0px 0px 10px 20px;padding:0px;">';
+        echo $this->getFieldMake()   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        echo $this->getFieldModel() != "0000"       ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
         
         $carCategory = $GLOBALS['upload_specific_array']['car']['idCategory'][2][$this->carCategory($this->getidCategory())];
-        echo $this->getIdCategory() ? "<p><strong>".$GLOBALS['upload_specific_array']['car']['idCategory'][0].":&nbsp</strong>".  $carCategory . "</p>" : "";
+        echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['car']['idCategory'][0].":&nbsp<strong>".  $carCategory . "</strong></p>" : "";
         
         // Due to the inclusion of some words
         if($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
@@ -1573,8 +1575,8 @@ SQL;
         } else {
             $year = $this->getFieldModelYear();
         }
-        echo $this->getFieldModelYear() != "0000"   ? '<p><strong>'.$GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0].':&nbsp</strong>'.$year.'</p>' : "";
-        echo $this->getFieldFuelType()     ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp</strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</p>' : "";
+        echo $this->getFieldModelYear() != "0000"   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0].':&nbsp<strong>'.$year.'</strong></p>' : "";
+        echo $this->getFieldFuelType()     ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</strong></p>' : "";
         
         // Due to the inclusion of some words
         if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
@@ -1582,8 +1584,8 @@ SQL;
         } else {
             $noSeat = $this->getFieldNoOfSeat();
         }
-        echo $this->getFieldNoOfSeat()     ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp</strong>' . $noSeat . '</p>' : "";
-        echo $this->getFieldColor() != "999"     ? '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp</strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</p>' : "";
+        echo $this->getFieldNoOfSeat()     ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp<strong>' . $noSeat . '</strong></p>' : "";
+        echo $this->getFieldColor() != "999"     ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
 
         // Due to the inclusion of some words
         if($this->getFieldMilage() == "unlisted") {
@@ -1591,10 +1593,15 @@ SQL;
         } else {
             $milage = $this->getFieldMilage();
         }
-        echo $this->getFieldMilage()      ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp</strong>'.  $milage . "</p>" : "";
+        echo $this->getFieldMilage()      ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp<strong>'.  $milage . "</strong></p>" : "";
         
-        echo $this->getFieldGearType()      ? '<p><strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp</strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</p>' : "";
+        echo $this->getFieldGearType()      ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
         echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
+        echo '</div>';
+
+        echo '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p>';
+
+
     }
 
     /**

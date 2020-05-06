@@ -127,7 +127,8 @@ class HtMainView
         $imgString = str_replace($strReplArr, "", $jsImg);
         
         //---------------------------------------------------------
-       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-sm-6 col-md-4\">";
+       
+        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\">";
         echo "<div class=\"thumbnail\">";
         if ($numimage == 1) {
             $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
@@ -155,13 +156,11 @@ class HtMainView
         echo "</div>"; //end_col1
         echo "</div>"; //end_thumblist_*
         //---------------------------------------------------------
-        echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
-        echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
-        $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
-        echo "<div class=\"showbutton_hide\">
-		<input class=\"hide-detail\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+        echo "<div style =\"display:none;background-color:#ebf0f1\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
+        echo "<div id=\"featured_right_side1\" class=\"col-xs-12 col-md-4 align-center\">";                         //start_featured_right_side
+        echo "<div class=\"showbutton_hide1  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
+		<input class=\"hide-detail3 btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"".$GLOBALS['lang']['Hide Detail']."\"/></div>";
-        echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
         $commonViewObj->displayTitle($this->_pItem);
         $this->_pItem->display();
         $commonViewObj->displayPrice($this->_pItem);
@@ -171,9 +170,10 @@ class HtMainView
         $commonViewObj->displayMailForm($uniqueId, $id, $itemName, $pUser);
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; //end_featured_right_side
+        $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
         echo "</div>"; //end_featured_detailed
-        echo "</div>"; //end_divDetail_*
-           
+       
+          
     }
 
     /**

@@ -953,6 +953,10 @@ li .col2 {
 	display:block;
 }
 
+.featured_detailed2 p {
+	margin: 0px 0px 5px;
+	font-size: 15px;
+}
 
 div#featured_detailed {
 	float: left;

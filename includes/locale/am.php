@@ -378,7 +378,11 @@ $lang = array(
     'unlisted' => '-- አልተዘረዘረም --',
     'today' => 'ዛሬ',
     'yesterday' => 'ትላንት',
-    'noImage' => 'ፎቶ የለም'
+    'noImage' => 'ፎቶ የለም',
+    'item specification' => 'ንጥል ዝርዝር',
+    'Enter your message' => 'መልዕክቱን እዚህ ላይ ይጻፉ ...',
+    'contact owner' => 'ለባለንብረቱ መልዕክት ይላኩ',
+    'You forgort to enter your name, email address and Message' => 'ስምዎን ፣ ኢሜልዎን እና ምልዕክትዎን ማስገባት ይኖርቦታል።'
 );
 
 $city_lang_arr = array(
@@ -830,7 +834,8 @@ $upload_specific_array = [
                 'fieldPriceRent' => 'ማከራየት',
                 'fieldPriceSell' => 'መሽጥ',
                 'both' => 'ሁለቱንም'
-            ]
+                ],
+            3 => 'የዋጋ ዝርዝር'
         ],
         'fieldPriceRent' => [
             0 => 'የኪራይ ዋጋ',
@@ -845,7 +850,7 @@ $upload_specific_array = [
                 'daily' => 'በቀን',
                 'monthly' => 'በወር',
                 'yearly' => 'በዓመት',
-            ],
+            ]
         ],
         'fieldPriceSell' => [
             0 => 'የመሽጭያ ዋጋ',
