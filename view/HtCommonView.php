@@ -253,10 +253,10 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMailCfrm($uniqueId, $itemId, $itemName)
     {
-        echo "<div class=\"msgcompleted col-md-12\">";
+        echo "<div class=\"msgcompleted col-xs-12 col-md-12\">";
         echo "<div style=\"width:100%;display:none;\" class=\"sent_$uniqueId\">";
         echo "<p class=\"bg-success\">".$GLOBALS['lang']['msg sent']."</p> ";
-        echo "<input  class=\"closeInner1 btn btn-danger btn-sm\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"Close\" />";
+        echo "<input  class=\"closeInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
         echo "</div>"; //end_msgcompleted
         echo "</div>"; //end_sent_*
     }
@@ -268,7 +268,7 @@ class HtCommonView extends MySqlRecord {
         echo "<div class=\"reportmsgcompleted\">";
         echo "<div style=\"width:100%; height:100px;display:none;\" class=\"reportcfrm_$uniqueId\">";
         echo '<p>'.$GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"].'</p>';
-        echo "<input  class=\"closeReportInner\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"Close\" />";
+        echo "<input  class=\"closeReportInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
         echo "</div>"; //end_reportcfrm_*
         echo "</div>"; //end_reportmsgcompleted
     }
@@ -277,31 +277,31 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMailForm($uniqueId, $itemId, $itemName, $user)
     {
-        echo "<div style=\"display:none;\" class=\"message_$uniqueId col-md-12\">";
-        echo "<form class=\"msgcontainer1 thumbnail\" method=\"post\">";
+        echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\">";
+        echo "<form class=\"msgcontainerRemove thumbnail\" method=\"post\">";
         echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
              <p class=\"bg-danger\">".$GLOBALS['lang']['You forgort to enter your name, email address and Message']."
              </div>";
         echo "<div style=\"display:none;\" class=\"error_2$uniqueId form-group\">
              <p class=\"bg-danger\">".$GLOBALS['lang']['Your e-mail address is invalid']."
              </div>";
-        echo "<div class =\"msgform1\">";
+        echo "<div class =\"msgformRemove\">";
         echo '<p>'.$GLOBALS["lang"]["contact owner"].'</p>';
-        echo "<div class=\"field1 form-group\">";
+        echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"name\">".$GLOBALS['lang']['Your name']."</label></br>";
         echo '<input type="text" style="width:90%" id="name_' . $uniqueId . '" name="name"/>';
         echo "</div>"; //end_field
-        echo "<div class=\"field1 form-group\">";
+        echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"email\">".$GLOBALS['lang']['Email']."</label></br>";
         echo '<input style="text-transform:lowercase;width:90%" type="email"  id="email_' . $uniqueId . '" name="email"/>';
         echo "</div>"; //end_field
-        echo "<div class=\"field1 form-group\">";
+        echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"description\">".$GLOBALS['lang']['Message']."</label>";
         echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="'.$GLOBALS['lang']['Enter your message'].'"></textarea>';
         echo "</div>"; //end_field
         echo "<div class=\"messageRouter1 form-group\">";
-        echo "<input class=\"send1 btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$user->getEmail()','$itemName')\" value=\"".$GLOBALS['lang']['Send']."\" />";
-        echo "<input class=\"close1 btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
+        echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$user->getEmail()','$itemName')\" value=\"".$GLOBALS['lang']['Send']."\" />";
+        echo "<input class=\"closeRemove btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
         echo "</div>";
         echo "</div>"; //end_msgform
         echo "<div class=\"clear\"></div>";
@@ -322,13 +322,13 @@ class HtCommonView extends MySqlRecord {
         $phone = $userObj->getFieldPhoneNr() ? $userObj->getFieldPhoneNr() : NULL;
         $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
         
-        echo "<div id=\"mail_report1\" class=\"contact_$uniqueId \">";
-        echo '<div class="header1"><label>'.$GLOBALS["lang"]["Contact method"].'</label></div>';
+        echo "<div id=\"mail_reportRemove\" style=\"margin-top:20px\" class=\"contact_$uniqueId \">";
+        echo '<div class="headerRemove"><p class="bg-success"><strong>'.$GLOBALS["lang"]["Contact method"].'</strong></p></div>';
         if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
 			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">".$GLOBALS['lang']['Send a message']."</a></p></div>";
         if ($contactType == "phone" or $contactType == "both")
-            echo "<div class=\"phone1\">
+            echo "<div class=\"phone\">
 			<p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
         echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
         echo "</div>";
@@ -342,13 +342,13 @@ class HtCommonView extends MySqlRecord {
         $filterArr = array('"', '[', ']');
         $fileNmaeLarge = str_replace($filterArr, '', $imageFileNameLarge);
         $numimage = sizeof($imageNameArray);
-        echo "<div class=\"featured_left_side1 col-xs-12 col-md-8\"  style=\"padding:0px;\">";
+        echo "<div class=\"featured_left_sideRemove col-xs-12 col-md-8\"  style=\"padding:0px;\">";
         if ($numimage == 1) {
             $file_path = '../../images/icons/ht_logo_2.png';
-            echo '<div id="featured_left_side_bigImageOnly"><img id="largeImg" src="' . $file_path . '" ></div>';
+            echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" src="' . $file_path . '" ></div>';
         }
         if ($numimage > 1) {
-            echo "<div id=\"featured_left_side_bigImage1\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:white\"><img style=\"width:100%;margin-left:auto;margin-right:auto;margin-bottom:5px;display:block;padding:0px\" id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1\"><img class=\"largeImg\"  id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
             echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {
                $imageFileName = $imageNameArray[$i];

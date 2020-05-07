@@ -367,7 +367,7 @@ $lang = array(
     'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
     'to main page prompt msg' => '<a href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
     'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
-    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋ ይሞክሩ</br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',

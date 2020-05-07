@@ -490,6 +490,11 @@ form.signin input.button {
 	;
 }
 
+.divItemNotFind {
+	padding:0px 0px 10px 0px;
+	text-align:center;
+}
+
 #spanColumnXamharic {
 	font-size: 20px;
 	font-family: sans-serif, Arial, Helvetica;
@@ -953,9 +958,33 @@ li .col2 {
 	display:block;
 }
 
+.featured_detailed2 {
+	background-color:#ebf0f1;
+}
+
 .featured_detailed2 p {
 	margin: 0px 0px 5px;
 	font-size: 15px;
+}
+
+.largeImg {
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:5px;
+	display:block;
+	padding:0px;
+}
+
+.itemSpecDiv {
+	margin:0px;
+	padding:0px 0px 0px 20px;
+	background-color: rgb(235, 240, 241);
+}
+
+.priceDivTitle{
+	margin:20px 0px 0px 0px;
+	padding:0px;
 }
 
 div#featured_detailed {

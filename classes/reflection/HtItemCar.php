@@ -1561,8 +1561,9 @@ SQL;
      */
     public function display()
     {
-        echo "<p><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
-        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="col-md-12" style="margin:0px 0px 10px 20px;padding:0px;">';
+        echo '<div>';
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
         echo $this->getFieldMake()   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
         echo $this->getFieldModel() != "0000"       ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
         
@@ -1598,8 +1599,9 @@ SQL;
         echo $this->getFieldGearType()      ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
         echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
+        echo '</div>';
 
-        echo '<p><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p>';
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
 
 
     }

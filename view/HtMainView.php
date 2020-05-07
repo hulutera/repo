@@ -128,8 +128,8 @@ class HtMainView
         
         //---------------------------------------------------------
        
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\">";
-        echo "<div class=\"thumbnail\">";
+        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\">";    // #divCommon start
+        echo "<div class=\"thumbnail\">";  // .thumbnail starts
         if ($numimage == 1) {
             $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
             $imgNotFound = "../images/". $language ."/itemnotfound.png";
@@ -142,7 +142,7 @@ class HtMainView
             echo "<div >	<img class=\"img-thumbnail thumb-image\" src=\"$thmbNlImg\"></div></a>";
         }
         //-------------------------------------------------------------------
-        echo "<div class=\"caption\">";  //start_detail
+        echo "<div class=\"caption\">";  // .caption start
         echo "<a href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         $commonViewObj->displayTitle($this->_pItem);
@@ -152,14 +152,14 @@ class HtMainView
         $commonViewObj->displayPrice($this->_pItem);
         $commonViewObj->displayMarketType($this->_pItem);
         //---------------------------------------------------------
-        echo "</div>"; //end_detail
-        echo "</div>"; //end_col1
-        echo "</div>"; //end_thumblist_*
+        echo "</div>"; // .caption end
+        echo "</div>"; // .thumbnail end
+        echo "</div>"; // #divCommon end
         //---------------------------------------------------------
-        echo "<div style =\"display:none;background-color:#ebf0f1\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
-        echo "<div id=\"featured_right_side1\" class=\"col-xs-12 col-md-4 align-center\">";                         //start_featured_right_side
-        echo "<div class=\"showbutton_hide1  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
-		<input class=\"hide-detail3 btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$uniqueId\">"; // .featured_detailed2 start
+        echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section 
+        echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
+		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
 		value=\"".$GLOBALS['lang']['Hide Detail']."\"/></div>";
         $commonViewObj->displayTitle($this->_pItem);
         $this->_pItem->display();
@@ -169,9 +169,9 @@ class HtMainView
         $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
         $commonViewObj->displayMailForm($uniqueId, $id, $itemName, $pUser);
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
-        echo "</div>"; //end_featured_right_side
+        echo "</div>"; // left side div end
         $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
-        echo "</div>"; //end_featured_detailed
+        echo "</div>"; // .featured_detailed2 end
        
           
     }
@@ -220,13 +220,10 @@ class HtMainView
      */
 
     public function itemNotFound() {
-        global $lang;
-        echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
-            <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
-            echo '<div id="spanMainColumnX" style="color: red">';
-            
-                echo $lang['full no match msg'];
-                       
+        echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
+            echo '<p class="col-xs-12 col-md-12 bg-primary">'.$GLOBALS["lang"]["search res"].'</p>';
+            echo '<div id="spanMainColumnXRemove" style="color: red">';
+            echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
     }
 }
