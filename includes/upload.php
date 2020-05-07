@@ -31,6 +31,46 @@ if (!isset($_SESSION['uID'])) {
 		a:hover {
 			color: black;
 		}
+
+		.image-container {
+			position: relative;
+			display: inline-block;
+		}
+
+		.image-container .hover-text {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 255, 0.5);
+			opacity: 0;
+			transition: opacity;
+		}
+
+		.hover-text a {
+			display: table;
+			height: 100%;
+			width: 100%;
+			text-decoration: none;
+		}
+
+		.hover-text a div {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			font-size: larger;
+			color: white;
+		}
+
+		.image-container img {
+			vertical-align: top;
+			/* fixes white space due to baseline alignment */
+		}
+
+		.image-container:hover {
+			background-color: lightskyblue;
+		}
 	</style>
 	<script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -53,22 +93,10 @@ if (!isset($_SESSION['uID'])) {
 </head>
 
 <body>
-	<div id="whole">
-		<div id="wrapper">
-			<?php uploadHeaderAndSearchCode(""); ?>
-			<div id="main_section">
-				<div id="item_collections">
-					<div id="lyr1">
-						<div id="boxHead">
-							<?php echo $lang['choose item to upload']; ?> </div>
-						<div id="box">
-							<?php uploadList($lang, $lang_sw) ?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="push"></div>
-			<?php footerCode(); ?>
+	<?php
+	headerAndSearchCode("upload");
+	uploadList($lang_sw);
+	footerCode(); ?>
 </body>
 
 </html>

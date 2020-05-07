@@ -19,20 +19,17 @@ if (!isset($_SESSION['uID'])) {
 <head>
     <title><?php echo $lang['my page']; ?></title>
     <?php commonHeader(); ?>
-    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <div id="whole">
-        <div id="wrapper">
-            <?php headerAndSearchCode(""); ?>
-            <div id="main_section">
-                <?php yourPage();?>
-            </div>
-            <div class="push"></div>
-        </div>
-        <?php footerCode(); ?>
+    <?php
+    headerAndSearchCode("");
+    yourPage();
+    footerCode();
+    ?>
 </body>
 
 </html>

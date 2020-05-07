@@ -27,11 +27,8 @@ require_once $documnetRootPath . '/includes/validate.php';
 <body>
 	<div id="whole">
 		<div id="wrapper">
-			<?php
-			?>
 			<div id="main_section">
 				<?php
-				///reset/cleanup session variables
 				if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
@@ -47,13 +44,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 					$object->register();
 				}				
-				?> </div>
-		</div>
-		<div class="push"></div>
+				?> 
+			</div>
+		</div>		
 	</div>
-	<?php //footerCode(); 
-	?>
-
 	<script>
 		function showPassword() {
 			var fieldPassword = document.getElementById("fieldPassword");

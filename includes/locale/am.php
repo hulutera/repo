@@ -2,6 +2,7 @@
 $lang = array(
     'LANGUAGE' => 'ቋንቋ',
     'HULUTERA_TEXT_LOGO' => '<span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>',
+    'HULUTERA_TEXT_LOGO2' => '<span style="color:orange">ሁሉተራ</span>',
     'All Items' => 'ሁሉም ንብረቶች',
     'Post Items' => 'ንብረት ያስገቡ',
     'Help' => 'መረጃ',
@@ -10,12 +11,14 @@ $lang = array(
     'computer' => 'ኮምፒዩተር',
     'phone' => 'ስልክ',
     'electronics' => 'ኤሌክትሮኒክስ',
+    'electronic' => 'ኤሌክትሮኒክስ',
     'electronic_memory' => 'ሃርድ ዲስክ፣ ሜሞሪ ስቲክ፣ ወዘተ ...',
     'electronic_sound' => 'ሄድ ፎን፣ ስፒከሮች፣ ወዘተ ...',
     'electronic_tv' => 'ቲቪ',
     'electronic_white' => 'ፍሪጅ፣ ዋሺንግ ማሺን፣ ወዘተ ...',
     'household' => 'የቤት ዕቃዎች',
     'others' => 'ልዩ ልዩ ዕቃዎች', // (ድብልቅ) 
+    'other' => 'ልዩ ልዩ ዕቃዎች', // (ድብልቅ) 
     'Extra Info' => 'ተጨማሪ መረጃ',
     'Price' => 'ዋጋ',
     'Negotiable' => 'መደራደር ይቻላል',

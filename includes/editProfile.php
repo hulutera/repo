@@ -27,52 +27,45 @@ if (!isset($_SESSION['uID'])) {
 </head>
 
 <body>
-	<div id="whole">
-		<div id="wrapper">
-			<?php headerAndSearchCode(""); ?>
-			<div id="main_section">
-				<?php
-				if (!isset($_GET['function']) or $_GET['function'] !== 'editProfile' or $_SESSION['lan'] != $_GET['lan']) {
-					unset($_SESSION['POST']);
-					unset($_SESSION['errorRaw']);
-				}
-				$sessionName = 'editProfile';
-				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-				$_SESSION['lan'] = $_GET['lan'];
-				if (!isset($_SESSION[$sessionName])) {
-					$object = new HtUserAll($_SESSION['uID']);
-					$object->updateProfile();
-					$_SESSION[$sessionName] = base64_encode(serialize($object));
-				} else {
-					$object = unserialize(base64_decode($_SESSION[$sessionName]));
-					//$object->updateProfile();
-					if (isset($_GET['function'])) {
-						$function = $_GET['function'];
-						if (isset($_GET['update'])) {
-							$update = $_GET['update'];
-							if (isset($_GET['order'])) {
-								$order = $_GET['order'];
-								if ($order == 'open') {
-									$object->editProfile($update);
-								} elseif ($order == 'cancel') {
-									$object->updateProfile();
-								}
-							}
-						} else {
+	<?php headerAndSearchCode(""); ?>
+		<?php
+		if (!isset($_GET['function']) or $_GET['function'] !== 'editProfile' or $_SESSION['lan'] != $_GET['lan']) {
+			unset($_SESSION['POST']);
+			unset($_SESSION['errorRaw']);
+		}
+		$sessionName = 'editProfile';
+		$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+		$_SESSION['lan'] = $_GET['lan'];
+		if (!isset($_SESSION[$sessionName])) {
+			$object = new HtUserAll($_SESSION['uID']);
+			$object->updateProfile();
+			$_SESSION[$sessionName] = base64_encode(serialize($object));
+		} else {
+			$object = unserialize(base64_decode($_SESSION[$sessionName]));
+			//$object->updateProfile();
+			if (isset($_GET['function'])) {
+				$function = $_GET['function'];
+				if (isset($_GET['update'])) {
+					$update = $_GET['update'];
+					if (isset($_GET['order'])) {
+						$order = $_GET['order'];
+						if ($order == 'open') {
+							$object->editProfile($update);
+						} elseif ($order == 'cancel') {
 							$object->updateProfile();
 						}
-					} else {
-						$object->updateProfile();
-					}					
+					}
+				} else {
+					$object->updateProfile();
 				}
-				// var_dump($_SESSION);
-				?>
-			</div>
-		</div>
+			} else {
+				$object->updateProfile();
+			}
+		}
+		// var_dump($_SESSION);
+		?>
 	</div>
 	</div>
-	</div>
-	<div class="push"></div>
 	</div>
 	</div>
 	<?php footerCode(); ?>

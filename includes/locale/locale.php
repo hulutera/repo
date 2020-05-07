@@ -30,13 +30,13 @@ function locale($current_link)
         $wo = $current_link . '&lan=wo';
     } else {
 
-        if (strpos($current_link, "?")){
+        if (strpos($current_link, "?")) {
             $lang_link = "&lan";
         } else {
             $lang_link = "?&lan";
         }
 
-        
+
         $en = $current_link . $lang_link . '=en';
         $am = $current_link . $lang_link . '=am';
         $ao = $current_link . $lang_link . '=ao';
@@ -58,13 +58,13 @@ function locale($current_link)
         $gu => "ጉራግኛ",
         $wo => "ወላይትኛ"
     ];
-    echo '<div id="toplinktexts" style="font-weight: 700;">';
+    ___open_div_('lan-selector', '" style="float:right;');
     echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale select-css">';
     foreach ($language as $key => $value) {
         //use mb_substr($value,0,2) to get the first two characters
         echo $key;
-        echo '<option value = "' . $key . '"><strong>'.$value.'</strong></option>';
-    }
+        echo '<option value = "' . $key . '" data-image="../images/icons/ethiopia.png" ><strong>' . $value . '</strong></option>';
+    }    
     echo '</select>';
-    echo '<div>';
+    ___close_div_(1);
 }

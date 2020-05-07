@@ -119,14 +119,14 @@ function createMessage($type)
 				break;
 			case 23:
 				$message = $lang['to main page prompt msg'];
-				
+
 				break;
 			case 24:
 				$message = $lang['promp msg for uploading more items'];
 				break;
 			case 25:
 				$message = $lang['prompt code 25'];
-				break;						
+				break;
 			case 404:
 				$message = "Oops! Bad Operation.";
 				break;
@@ -147,22 +147,18 @@ function createMessage($type)
 </head>
 
 <body>
-	<div id="whole">
-		<div id="wrapper">
-			<?php headerAndSearchCode(""); ?>
-			<div id="outer">
-				
-					<div class="alert alert-success" id="inner">
-						<strong><?php createMessage($type); ?></strong>
-					</div>
-					<div class="alert alert-info" id="inner">
-						<strong><?php createMessage(23); ?></strong>
-					</div>			
-			</div>
+	<?php
+	headerAndSearchCode(""); ?>
+	<div id="outer">
+		<div class="alert alert-success" id="inner">
+			<strong><?php createMessage($type); ?></strong>
 		</div>
-		<div class="push"></div>
+		<div class="alert alert-info" id="inner">
+			<strong><?php createMessage(23); ?></strong>
+		</div>
 	</div>
-	<?php footerCode(); ?>
+	<?php footerCode();
+	?>
 </body>
 
 </html>

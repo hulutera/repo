@@ -24,20 +24,17 @@ require_once $documnetRootPath . '/includes/validate.php';
 <body>
     <div id="whole">
         <div id="wrapper">
-            <?php //headerAndSearchCode(""); 
-            ?>
             <div id="main_section">
-
                 <?php
                 ///reset/cleanup session variables
                 if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
-					unset($_SESSION['POST']);
-					unset($_SESSION['errorRaw']);
-				}
-				$sessionName = 'login';
-				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+                    unset($_SESSION['POST']);
+                    unset($_SESSION['errorRaw']);
+                }
+                $sessionName = 'login';
+                $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
                 $_SESSION['lan'] = $_GET['lan'];
-                
+
                 if (!isset($_SESSION[$sessionName])) {
                     $object = new HtUserAll("*");
                     $object->login();
@@ -51,7 +48,8 @@ require_once $documnetRootPath . '/includes/validate.php';
         </div>
         <div class="push"></div>
     </div>
-    <?php //footerCode(); ?>
+    <?php //footerCode(); 
+    ?>
     <script>
         function myFunction() {
             var x1 = document.getElementById("fieldPassword");
