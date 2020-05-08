@@ -14,8 +14,9 @@ require_once $documnetRootPath . '/includes/validate.php';
 <head>
 	<title>Register | ይመዝገቡ</title>
 	<?php commonHeader(); ?>
-	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
+	<link href="../../css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <style>
@@ -25,29 +26,30 @@ require_once $documnetRootPath . '/includes/validate.php';
 </style>
 
 <body>
-	<div id="whole">
-		<div id="wrapper">
-			<div id="main_section">
-				<?php
-				if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {
-					unset($_SESSION['POST']);
-					unset($_SESSION['errorRaw']);
-				}
-				$sessionName = 'register';
-				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-				$_SESSION['lan'] = $_GET['lan'];
-				if (!isset($_SESSION[$sessionName])) {
-					$object = new HtUserAll("*");
-					$object->register();
-					$_SESSION[$sessionName] = base64_encode(serialize($object));
-				} else {
-					$object = unserialize(base64_decode($_SESSION[$sessionName]));
-					$object->register();
-				}				
-				?> 
-			</div>
-		</div>		
+	<?php
+	headerAndSearchCode("");
+	?>
+	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+
+		<?php
+		if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {
+			unset($_SESSION['POST']);
+			unset($_SESSION['errorRaw']);
+		}
+		$sessionName = 'register';
+		$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+		$_SESSION['lan'] = $_GET['lan'];
+		if (!isset($_SESSION[$sessionName])) {
+			$object = new HtUserAll("*");
+			$object->register();
+			$_SESSION[$sessionName] = base64_encode(serialize($object));
+		} else {
+			$object = unserialize(base64_decode($_SESSION[$sessionName]));
+			$object->register();
+		}
+		?>
 	</div>
+	<?php footerCode(); ?>
 	<script>
 		function showPassword() {
 			var fieldPassword = document.getElementById("fieldPassword");

@@ -21,7 +21,7 @@ if (!isset($_SESSION['uID'])) {
     <?php commonHeader(); ?>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/hulutera.unminified.css" rel="stylesheet">
-
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>

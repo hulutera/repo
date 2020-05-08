@@ -12,8 +12,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 <head>
     <title>Log In | ይግቡ </title>
     <?php commonHeader(); ?>
-    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <style>
     .alert-custom {
@@ -22,34 +24,31 @@ require_once $documnetRootPath . '/includes/validate.php';
 </style>
 
 <body>
-    <div id="whole">
-        <div id="wrapper">
-            <div id="main_section">
-                <?php
-                ///reset/cleanup session variables
-                if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
-                    unset($_SESSION['POST']);
-                    unset($_SESSION['errorRaw']);
-                }
-                $sessionName = 'login';
-                $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-                $_SESSION['lan'] = $_GET['lan'];
-
-                if (!isset($_SESSION[$sessionName])) {
-                    $object = new HtUserAll("*");
-                    $object->login();
-                    $_SESSION[$sessionName] = base64_encode(serialize($object));
-                } else {
-                    $object = unserialize(base64_decode($_SESSION[$sessionName]));
-                    $object->login();
-                }
-                ?>
-            </div>
-        </div>
-        <div class="push"></div>
-    </div>
-    <?php //footerCode(); 
+    <?php headerAndSearchCode("");
     ?>
+    <div class="row" style="width:60%;margin:80px;margin-left:20%;margin-right:20%;">
+
+        <?php
+        ///reset/cleanup session variables
+        if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
+            unset($_SESSION['POST']);
+            unset($_SESSION['errorRaw']);
+        }
+        $sessionName = 'login';
+        $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+        $_SESSION['lan'] = $_GET['lan'];
+
+        if (!isset($_SESSION[$sessionName])) {
+            $object = new HtUserAll("*");
+            $object->login();
+            $_SESSION[$sessionName] = base64_encode(serialize($object));
+        } else {
+            $object = unserialize(base64_decode($_SESSION[$sessionName]));
+            $object->login();
+        }
+        ?>
+    </div>
+    <?php footerCode(); ?>
     <script>
         function myFunction() {
             var x1 = document.getElementById("fieldPassword");

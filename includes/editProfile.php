@@ -21,13 +21,17 @@ if (!isset($_SESSION['uID'])) {
 <head>
 	<title><?php echo $lang['profile edit']; ?></title>
 	<?php commonHeader(); ?>
-	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
-	<?php headerAndSearchCode(""); ?>
+	<?php
+	headerAndSearchCode("");
+	?>
+	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
 		<?php
 		if (!isset($_GET['function']) or $_GET['function'] !== 'editProfile' or $_SESSION['lan'] != $_GET['lan']) {
 			unset($_SESSION['POST']);
@@ -64,9 +68,6 @@ if (!isset($_SESSION['uID'])) {
 		}
 		// var_dump($_SESSION);
 		?>
-	</div>
-	</div>
-	</div>
 	</div>
 	<?php footerCode(); ?>
 	<script>

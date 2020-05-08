@@ -898,16 +898,16 @@ SQL;
         ___open_div_("container-fluid", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:20%; margin-right:25%; padding: 20px;');
         ////
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("form-group", "");
-        ___open_div_("col-md-6", '');
-        logoText();
-        ___close_div_(1);
-        ___open_div_("col-md-6", '" style="text-align:center; border:none;');
-        topRightLinks('" style="text-align:center; border:none;');
-        ___close_div_(1);
-        ___close_div_(3);
+        // ___open_div_("row", "");
+        // ___open_div_("col-md-12", '');
+        // ___open_div_("form-group", "");
+        // ___open_div_("col-md-6", '');
+        // logoText();
+        // ___close_div_(1);
+        // ___open_div_("col-md-6", '" style="text-align:center; border:none;');
+        // topRightLinks('" style="text-align:center; border:none;');
+        // ___close_div_(1);
+        // ___close_div_(3);
         ///
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
@@ -997,21 +997,6 @@ SQL;
         ___open_div_("container-fluid", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
 
-        ////
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("form-group", "");
-        ___open_div_("col-md-6", '');
-        logoText();
-        ___close_div_(1);
-        ___open_div_("col-md-6", '');
-        ___open_div_("toprightlink", '');
-        $current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        locale($current_link);
-        topRightHelpLink();
-        ___close_div_(2);
-        ___close_div_(3);
-        ///
         ////        
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
@@ -1023,13 +1008,14 @@ SQL;
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12", '');
         ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+
+        ___open_div_("col-md-12", '" style="margin-top:10px;');
         $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
         ___close_div_(1);
         ___open_div_("col-md-12", '');
         $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password');
         ___close_div_(1);
-        ___close_div_(4);
+        ___close_div_(5);
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
