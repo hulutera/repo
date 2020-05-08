@@ -26,10 +26,10 @@ if (!$isValidUrl)
 </head>
 
 <body>
-	<?php
-	headerAndSearchCode("");
-	routerProxy($proxyType);
-	footerCode(); ?>
+	<?php headerAndSearchCode(""); ?>
+	<div class="row" style="text-align:start;width:60%;margin:10px;margin-left:20%;margin-right:20%;">
+		<?php routerProxy($proxyType); ?>
+	</div>
+	<?php footerCode(); ?>
 </body>
-
 </html>

@@ -260,35 +260,17 @@ function topRightHelpLink()
 /*search*/
 function miniSearch()
 {
-	global $lang, $lang_url, $str_url, $city_lang_arr, $language;
-	global $item_lang_arr;
-	// echo '<div class="advanced-search">';
-	// echo '<form class="searchform" action="../../includes/search.php" method ="GET">';
-	// echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa"/>';
-	// city();
-	// item();	
-	// echo '<input name="lan" type="text" style="display:none" value="' . $language . '" >';
-	// echo '<button class="searchbutton"><i class="fa fa-search"></i>' . $lang['Search'] . '</button>';
-	// echo '</form>';
-	// echo '</div>
-	// ';	
+	global $lang_url;
+	echo '<form class="" action="../../includes/search.php'.$lang_url.'" method="get">';
 	___open_div_("advanced-search", '');
 	___open_div_("input-group", '');
-
-	echo '<input type="text" placeholder="' . $lang['e.g'] . ' RAV4, Toyota, Villa" style="width:58%">';
-
-
+	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="width:55%">';
 	city();
-
-
 	item();
-
-
-
-	echo '<button type="button"><i class="ti-search">' . $lang['Search'] . '</i></button>';
-
+	echo '<button type="submit	button"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
 	___close_div_(1);
 	___close_div_(1);
+	echo '</form>';
 }
 
 function city()

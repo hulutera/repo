@@ -3,7 +3,6 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/cmn.user.php';
 require_once $documnetRootPath . '/classes/cmn.class.php';
-
 require_once $documnetRootPath . '/db/database.class.php';
 
 
@@ -25,11 +24,10 @@ if (!isset($_SESSION['uID'])) {
 </head>
 
 <body>
-    <?php
-    headerAndSearchCode("");
-    yourPage();
-    footerCode();
-    ?>
+   	<?php headerAndSearchCode(""); ?>
+	<div class="row" style="text-align:start;width:100%;margin:10px;">
+		<?php yourPage(); ?>
+	</div>
+	<?php footerCode(); ?>
 </body>
-
 </html>
