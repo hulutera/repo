@@ -1307,11 +1307,11 @@ class HtItemCar extends MySqlRecord
         } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_car";
         } elseif ($id == "*" and $status != NULL) {
-            $sql =  "SELECT * FROM item_car WHERE field_status={$this->parseValue($status, 'notNumbe')}";
+            $sql =  "SELECT * FROM item_car WHERE field_status={$this->parseValue($status, 'notNumber')}";
         } elseif ($id != "*" and $status == NULL) {
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
-            $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumbe')}";
+            $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
         }
 
         $this->resetLastSqlError();
@@ -1379,6 +1379,10 @@ class HtItemCar extends MySqlRecord
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
 
+    /* 
+    ** Set the computer category elements
+    * 
+    */
     public function setCategoryName(){
         $object = new HtCategoryCar("*");
         $result = $object->getResultSet();
@@ -1564,8 +1568,8 @@ SQL;
         echo '<div>';
         echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
         echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        echo $this->getFieldMake()   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
-        echo $this->getFieldModel() != "0000"       ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
+        echo $this->getFieldMake() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        echo $this->getFieldModel() != null       ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
         
         $carCategory = $GLOBALS['upload_specific_array']['car']['idCategory'][2][$this->carCategory($this->getidCategory())];
         echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['car']['idCategory'][0].":&nbsp<strong>".  $carCategory . "</strong></p>" : "";
@@ -1577,7 +1581,7 @@ SQL;
             $year = $this->getFieldModelYear();
         }
         echo $this->getFieldModelYear() != "0000"   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0].':&nbsp<strong>'.$year.'</strong></p>' : "";
-        echo $this->getFieldFuelType()     ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</strong></p>' : "";
+        echo $this->getFieldFuelType()  != null  ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</strong></p>' : "";
         
         // Due to the inclusion of some words
         if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
@@ -1586,7 +1590,7 @@ SQL;
             $noSeat = $this->getFieldNoOfSeat();
         }
         echo $this->getFieldNoOfSeat()     ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp<strong>' . $noSeat . '</strong></p>' : "";
-        echo $this->getFieldColor() != "999"     ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
+        echo $this->getFieldColor() != null    ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
 
         // Due to the inclusion of some words
         if($this->getFieldMilage() == "unlisted") {
@@ -1594,10 +1598,10 @@ SQL;
         } else {
             $milage = $this->getFieldMilage();
         }
-        echo $this->getFieldMilage()      ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp<strong>'.  $milage . "</strong></p>" : "";
+        echo $this->getFieldMilage()  != null  ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp<strong>'.  $milage . "</strong></p>" : "";
         
-        echo $this->getFieldGearType()      ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
-        echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
+        echo $this->getFieldGearType()  != null ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
+        //echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
 

@@ -221,9 +221,12 @@ class HtCommonView extends MySqlRecord {
 	* */
     public function displayMarketType($itemObj)
     {
-        $mrkTyp = $GLOBALS["upload_specific_array"]["common"]["marketType"][$itemObj->getFieldMarketCategory()];
+        $mrkTyp = $itemObj->getFieldMarketCategory();
+       
         if ($mrkTyp != "No Action") {
-            echo '<p class="text-center alert-info">' . $mrkTyp . "</p>";
+            echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"][$mrkTyp] . "</p>";
+        } else {
+            echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"]["sell"] . "</p>";
         }
     }
 
@@ -490,25 +493,25 @@ class HtCommonView extends MySqlRecord {
                     echo "<p style=\"text-indent: 10px;\">No price information Available</p>";
                 }
                 break;
-            case "CompClass":
+            case "computer":
             case "ElecClass":
             case "HouseHoldClass":
             case "PhoneClass":
             case "OtherClass":
                 //ctrl var
-                $sellValue = $obj->getSell();
-                $negoValue = $obj->getNego();
-                $negoDisplay = ($negoValue == 1) ? "Negotiable" : "";
+                $sellValue = $itemObj->getFieldPriceSell();
+                $negoValue = $itemObj->getFieldPriceNego();
+                $negoDisplay = ($negoValue == 'Yes') ? $itemObj->getFieldPriceNego() : "";
                 $sellnego  =  $sellValue  &&  $negoValue;
                 $sell      =  $sellValue  && !$negoValue;
                 $noprice   =  !$sellValue && !$negoValue;
                 $nego      =  !$sellValue &&  $negoValue;
-                $curr  = $obj->getCurr();
+                $curr  =  $itemObj->getFieldPriceCurrency();
 
                 //display var
-                $sell_var = "<p style=\"text-indent: 10px;\"><strong>Sell:&nbsp</strong>" . $sellValue . " " . $curr . "</p>";
-                $nego_var = "<p style=\"text-indent: 10px;\">" . $negoDisplay . "/መደራደር ይቻላል/</p>";
-                echo "<p><strong>Price:</strong></p>";
+                $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
+                               
                 if ($sellnego) {
                     echo $sell_var . $nego_var;
                 } else if ($nego) {

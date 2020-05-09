@@ -626,7 +626,7 @@ $upload_specific_array = [
                 'unlisted' => '-- አልተዘረዘረም --',
             ]
         ],
-        'fieldMade'        => [
+        'fieldMake'        => [
             0 => 'ስሪት (አምራች ድርጅት)',
             1 => 'ስሪት ይምረጡ',
             2 => [
@@ -909,7 +909,7 @@ $upload_specific_array = [
                 'silver' => 'ሲልቨር',
                 'liver' => 'ጉበትማ',
                 'brown' => 'ቡናማ',
-                'unlisted' => '-- አልተዘረዘረም --'
+                'unknown' => '-- አልተዘረዘረም --'
             ]
         ],
         'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ'

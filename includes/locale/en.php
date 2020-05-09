@@ -641,7 +641,7 @@ $upload_specific_array = [
                 'Other' => 'Other',
             ]
         ],
-        'fieldMade'        => [
+        'fieldMake'        => [
             0 => 'Make',
             1 => 'Choose Make',
             2 => [
@@ -678,7 +678,7 @@ $upload_specific_array = [
             ]
         ],
         'fieldOs'   => [
-            0 => 'OS (Operating System)',
+            0 => 'Operating System',
             1 => 'Choose OS',
             2 => [
                 "Windows" => "Windows",
@@ -701,7 +701,7 @@ $upload_specific_array = [
             ]
         ],
         'fieldRam' => [
-            0 => 'RAM memory',
+            0 => 'RAM',
             1 => 'Choose RAM',
             2 => [
                 "Under 1GB" => "Under 1GB",
@@ -768,7 +768,7 @@ $upload_specific_array = [
             ]
         ],
         'fieldOs'   => [
-            0 => 'OS (Operating System)',
+            0 => 'Operating System',
             1 => 'Choose OS',
             2 => [
                 "Windows" => "Windows",
@@ -928,7 +928,7 @@ $upload_specific_array = [
                 'silver' => 'Silver',
                 'liver' => 'Liver',
                 'brown' => 'Brown',
-                'unlisted' => '-- Not listed --',
+                'unknown' => '-- Not listed --',
             ]
         ],
         'Choose Images here' => 'Choose Images here'

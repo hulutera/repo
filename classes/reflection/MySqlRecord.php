@@ -343,7 +343,7 @@ EOD;
         $selectable = [];
         $type = $GLOBALS['upload_specific_array']['common']['fieldColor'][2];
         foreach ($colors as $key => $value) {
-            $input = [$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $type[$key]];
+            $input = [$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key]];
             array_push($selectable, $input);
         }
         $this->insertSelectable('fieldColor', 'upload_specific_array', 'common', $selectable);
@@ -395,7 +395,7 @@ EOD;
 EOD;
         ___close_div_(3);
     }
-
+    
     protected function insertSelectable($fieldName, $globalArrayName, $source = null, $selectable = null, $newLabel = null)
     {
         $errorMsg = "";
