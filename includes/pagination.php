@@ -54,8 +54,8 @@ function pagination($item, $totpage, $page, $mailtype)
 * * */
 function calculatePage($count)
 {
-	
-	$totpage = ceil($count / HtGlobal::get('itemPerPage'));
+	$globalVarObj = new HtGlobal();
+	$totpage = ceil($count / $globalVarObj::get('itemPerPage'));
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 
 	if ($page > $totpage) {

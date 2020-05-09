@@ -80,8 +80,9 @@ class HtMainView
         $rows = $this->_pItem->runQuery($condition);
         if($rows > 0) {
             $calculatePageArray = calculatePage($rows);
-            $start = ($calculatePageArray[0] - 1) * HtGlobal::get('itemPerPage');
-            $res = $this->_pItem->runQuery($condition, $start, HtGlobal::get('itemPerPage'));
+            $globalVarObj = new HtGlobal();
+            $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
+            $res = $this->_pItem->runQuery($condition, $start, $globalVarObj::get('itemPerPage'));
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
@@ -167,7 +168,7 @@ class HtMainView
         $commonViewObj->displayContactMethod($uniqueId,  $this->_pItem, $itemName);
         $commonViewObj->displayMailCfrm($uniqueId, $id, $itemName);
         $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
-        $commonViewObj->displayMailForm($uniqueId, $id, $itemName, $pUser);
+        $commonViewObj->displayMailForm($uniqueId, $id, $itemName,  $this->_pItem->getIdUser());
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; // left side div end
         $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);

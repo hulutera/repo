@@ -2,13 +2,19 @@
 class HtGlobal
 {
     private static $htGlobal;
+
+    public function __construct(){
+        self::init();
+    }
+
     public static function get($var)
     {
         return self::$htGlobal[$var];
     }
+
     public static function init()
     {
-        self::$htGlobal = array(
+        self::$htGlobal = [
             "LOGIN_SUCCESS"
             => 20,
             "ERR_ENTER_EMAIL"
@@ -88,6 +94,6 @@ class HtGlobal
             "noItemToShow"
              => "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>"
 
-        );
+        ];
     }
 }
