@@ -1347,7 +1347,7 @@ class HtItemCar extends MySqlRecord
     ** Set the car element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldAll($row)
+    public function setFieldValues($row)
     {
         $rowObject = (object)$row;
         @$this->id = (int) $rowObject->id;	

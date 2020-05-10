@@ -1177,44 +1177,7 @@ class HtItemComputer extends MySqlRecord
         $result =  $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        return $this->affected_rows;
-
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        if ($result) {
-            $rowObject = $result->fetch_object();
-            @$this->id = (int) $rowObject->id;
-            @$this->idTemp = (int) $rowObject->id_temp;
-            @$this->idUser = (int) $rowObject->id_user;
-            @$this->idCategory = (int) $rowObject->id_category;
-            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
-            @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
-            @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-            @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
-            @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
-            @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
-            @$this->fieldProcessor = $this->replaceAposBackSlash($rowObject->field_processor);
-            @$this->fieldRam = $this->replaceAposBackSlash($rowObject->field_ram);
-            @$this->fieldHardDrive = $this->replaceAposBackSlash($rowObject->field_hard_drive);
-            @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
-            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
-            @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
-            @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
-            @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
-            @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (int) $rowObject->field_total_view;
-            @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
-            @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (int) $rowObject->field_table_type;
-            $this->allowUpdate = true;
-        } else {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
-        }
-        return $this->affected_rows;
+        return $this->affected_rows;        
     }
 
     /**
@@ -1243,7 +1206,7 @@ class HtItemComputer extends MySqlRecord
     ** Set the computer element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldAll($row)
+    public function setFieldValues($row)
     {
         $rowObject = (object)$row;
         @$this->id = (int) $rowObject->id;	

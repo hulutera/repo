@@ -494,7 +494,7 @@ class HtCommonView extends MySqlRecord {
                 }
                 break;
             case "computer":
-            case "ElecClass":
+            case "electronic":
             case "HouseHoldClass":
             case "PhoneClass":
             case "OtherClass":

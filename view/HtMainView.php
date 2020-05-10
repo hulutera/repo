@@ -112,7 +112,7 @@ class HtMainView
     public function showItemWithId($row)
     {
         global $documnetRootPath;
-        $this->_pItem->setFieldAll($row);
+        $this->_pItem->setFieldValues($row);
         $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . $id;
