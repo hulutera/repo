@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 10:48 PM
+-- Generation Time: May 11, 2020 at 11:24 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -172,10 +172,12 @@ CREATE TABLE `category_household` (
 
 INSERT INTO `category_household` (`id`, `field_name`) VALUES
 (1, 'Furniture'),
-(2, 'Kitchen Stuff'),
-(3, 'Shower Stuff'),
-(4, 'Other households'),
-(5, 'Other');
+(2, 'Kitchen Appliances'),
+(3, 'Bathroom Appliances'),
+(4, 'Home Decor'),
+(5, 'Bedroom Appliances'),
+(6, 'Baby Gears'),
+(7, 'Other');
 
 -- --------------------------------------------------------
 
@@ -532,12 +534,10 @@ CREATE TABLE `item_house` (
 --
 
 INSERT INTO `item_house` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_image`, `field_location`, `field_kebele`, `field_wereda`, `field_lot_size`, `field_nr_bedroom`, `field_toilet`, `field_bathroom`, `field_build_year`, `field_water`, `field_electricity`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(4, 33419, 2, 1, '0', '', '', '', '', 'Birr', '', 'Addis Ababa', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'house check', '2013-12-01 13:31:04', NULL, 'active', 'sell', 2),
-(5, 41748, 2, 1, '0', '50000 birr', '', '', '6month', 'Birr', '', 'Adama', 0, 0, 0, 1, 1, 0, 0000, '1', '1', '', 'House', '2020-02-04 22:22:23', NULL, 'active', 'Rent', 2),
-(17, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-04-02 05:39:00', NULL, 'pending', 'rent and sell', 1),
-(18, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-04-02 05:39:00', NULL, 'pending', 'rent and sell', 1),
-(19, 35120, 12, 3, 'phone', '4500', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera_user_id_12_item_temp_id_35120_SAAB-9-5-00.jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'zzzzzzzzzzzzzz', '2020-04-02 05:40:04', NULL, 'pending', 'rent and sell', 1),
-(20, 35121, 12, 4, 'phone', '12400', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (1).jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-04-02 17:53:19', NULL, 'pending', 'rent and sell', 1),
+(17, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 1960, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-05-11 19:41:11', NULL, 'active', 'rent and sell', 1),
+(18, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-05-11 18:15:00', NULL, 'active', 'rent and sell', 1),
+(19, 35120, 12, 3, 'phone', '4500', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera_user_id_12_item_temp_id_35120_SAAB-9-5-00.jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'zzzzzzzzzzzzzz', '2020-05-11 18:15:09', NULL, 'active', 'rent and sell', 1),
+(20, 35121, 12, 4, 'phone', '12400', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (1).jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-05-11 18:15:19', NULL, 'active', 'rent and sell', 1),
 (21, 35121, 12, 4, 'phone', '12400', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (1).jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-04-02 17:53:19', NULL, 'pending', 'rent and sell', 1),
 (22, 35122, 12, 4, 'phone', '1200', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera_user_id_12_item_temp_id_35122_SAAB-9-5-00.jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-04-02 17:55:41', NULL, 'pending', 'rent and sell', 1),
 (23, 35123, 12, 1, 'both', '12323', NULL, 'yes', 'daily', 'USD', '[\"hulutera (9).jpg\"]', 'Mekele', 2, 2, NULL, 16, 17, 18, 1950, 'yes', 'yes', NULL, 'xasde', '2020-04-20 06:36:04', NULL, 'pending', 'rent', 1),
@@ -577,33 +577,8 @@ CREATE TABLE `item_household` (
 --
 
 INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_market_category`, `field_table_type`) VALUES
-(2, 27715, 1, 1, '0', '123456878', '', 'Birr', '', 'Addis Ababa', '', 'my hh', '2013-09-06 11:24:42', 0, '', 'Sale', 6),
-(3, 50225, 1, 1, '0', '123124124123', '', 'Birr', '', 'Addis Ababa', '', 'my hh', '2013-09-06 11:31:53', 0, '', 'Sale', 6),
-(4, 72615, 2, 1, '0', '555', '', 'Birr', '', 'Addis Ababa', '', 'household check', '2013-11-29 17:51:17', 0, '', 'Sale', 6),
-(5, 77237, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', 'a nice item for U.', 'FuBu', '2013-11-29 17:55:55', 0, '', 'No Action', 6),
-(6, 4014, 1, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'test', '2013-11-17 19:51:53', 0, '', 'No Action', 6),
-(7, 94746, 2, 1, '0', '0', 'Negotiable', 'Birr', '', 'Shashemene', '', 'Sofa', '2020-02-04 22:22:22', 0, 'active', 'sell', 6),
-(8, 458, 2, 1, '0', '0', '', 'Birr', '', 'Addis Ababa', '', 'sxdasda', '2020-02-02 20:16:37', 0, 'active', 'sell', 6),
-(9, 74815, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'hh pr', '2020-02-02 20:14:18', 0, 'active', 'No Action', 6),
-(10, 840, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'dss', '2020-02-02 20:14:17', 0, 'active', 'No Action', 6),
-(11, 14012, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'ffff', '2020-02-02 20:14:16', 0, 'active', 'sell', 6),
-(12, 50749, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', 'sadsa', 'fsfs', '2020-02-01 15:12:18', 0, 'active', 'sell', 6),
-(13, 26714, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'fdf', '2020-02-01 15:12:15', 0, 'active', 'sell', 6),
-(14, 77831, 2, 2, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'fsdfdsf', '2020-02-01 15:12:13', 0, 'active', 'sell', 6),
-(15, 19336, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'sdasdas', '2020-02-01 15:12:11', 0, 'active', 'sell', 6),
-(16, 57844, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', 'dasdas', 'dsd', '2020-02-01 15:12:06', 0, 'active', 'sell', 6),
-(17, 50318, 2, 4, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'dcsdfsd', '2020-02-01 15:11:56', 0, 'active', 'sell', 6),
-(18, 56636, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'sffwfe', '2020-01-24 16:15:57', 0, 'active', 'sell', 6),
-(19, 70436, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'ggggg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
-(20, 85441, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'dgdg', '2020-01-24 16:15:55', 0, 'active', 'sell', 6),
-(21, 8138, 2, 1, '0', '', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'gfgf', '2020-01-24 16:15:54', 0, 'active', 'sell', 6),
-(22, 40324, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'dvdsgvd', '2020-01-24 16:15:48', 0, 'active', 'sell', 6),
-(23, 1916, 2, 1, '0', '', '', 'Birr', '', 'Addis Ababa', '', 'gge', '2020-01-24 16:15:37', 0, 'active', 'sell', 6),
-(24, 81431, 2, 1, '0', '5555', '', 'USD', '', 'Addis Ababa', '', 'HH', '2013-12-25 15:08:12', 0, 'active', 'sell', 6),
-(25, 135, 2, 1, '0', '565656', 'Negotiable', 'Birr', '', 'Addis Ababa', '', 'hh', '2013-12-25 15:00:13', 0, 'active', 'sell', 6),
-(26, 734, 2, 1, '0', '56656', '', 'USD', '', 'Addis Ababa', '', '6556565gfdgdf', '2020-01-24 16:15:34', 0, 'active', 'sell', 6),
-(27, 735, 12, 3, 'phone', '120000', 'Yes', 'ETB', '[\"hulutera_user_id_12_item_temp_id_735_SAAB-9-5-00.jpg\"]', 'Dire Dawa', 'my new household', 'new household ', '2020-04-01 19:42:37', NULL, 'pending', 'sell', 1),
-(28, 736, 12, 2, 'phone', '45', 'yes', 'ETB', '[\"hulutera_user_id_12_item_temp_id_736_SAAB-9-5-00.jpg\"]', 'Adama', NULL, 'my dist', '2020-04-18 10:59:15', NULL, 'pending', 'sell', 1);
+(27, 735, 12, 3, 'phone', '120000', 'Yes', 'ETB', '[\"hulutera_user_id_12_item_temp_id_735_SAAB-9-5-00.jpg\"]', 'Dire Dawa', 'my new household', 'new household ', '2020-05-11 21:17:12', NULL, 'active', 'sell', 1),
+(28, 736, 12, 2, 'phone', '45', 'Yes', 'ETB', '[\"hulutera_user_id_12_item_temp_id_736_SAAB-9-5-00.jpg\"]', 'Adama', NULL, 'my dist', '2020-05-11 21:17:18', NULL, 'active', 'sell', 1);
 
 -- --------------------------------------------------------
 
@@ -1177,7 +1152,7 @@ ALTER TABLE `category_house`
 -- AUTO_INCREMENT for table `category_household`
 --
 ALTER TABLE `category_household`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category_other`

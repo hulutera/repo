@@ -1305,6 +1305,7 @@ class HtItemHouse extends MySqlRecord
         if (!empty($id)) {
             $this->select($id);
         }
+        $this->setCategoryName();
     }
 
     /**
@@ -1331,53 +1332,97 @@ class HtItemHouse extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id, $status = null)
     {
-        if ($id == "*") {
+        if ($id == NULL and $status == NULL) {
+            $sql = [];
+        } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_house";
-        } else { //id
+        } elseif ($id == "*" and $status != NULL) {
+            $sql =  "SELECT * FROM item_house WHERE field_status={$this->parseValue($status, 'notNumber')}";
+        } elseif ($id != "*" and $status == NULL) {
             $sql =  "SELECT * FROM item_house WHERE id={$this->parseValue($id, 'int')}";
+        } else { //id
+            $sql =  "SELECT * FROM item_house WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result) {
-            $rowObject = $result->fetch_object();
-            @$this->id = (int) $rowObject->id;
-            @$this->idTemp = (int) $rowObject->id_temp;
-            @$this->idUser = (int) $rowObject->id_user;
-            @$this->idCategory = (int) $rowObject->id_category;
-            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
-            @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
-            @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
-            @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);
-            @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
-            @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
-            @$this->fieldKebele = (int) $rowObject->field_kebele;
-            @$this->fieldWereda = (int) $rowObject->field_wereda;
-            @$this->fieldLotSize = (int) $rowObject->field_lot_size;
-            @$this->fieldNrBedroom = (int) $rowObject->field_nr_bedroom;
-            @$this->fieldToilet = (int) $rowObject->field_toilet;
-            @$this->fieldBathroom = (int) $rowObject->field_bathroom;
-            @$this->fieldBuildYear = $rowObject->field_build_year;
-            @$this->fieldWater = $this->replaceAposBackSlash($rowObject->field_water);
-            @$this->fieldElectricity = $this->replaceAposBackSlash($rowObject->field_electricity);
-            @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
-            @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
-            @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (int) $rowObject->field_total_view;
-            @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
-            @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (int) $rowObject->field_table_type;
-            $this->allowUpdate = true;
+        return $this->affected_rows; 
+    }
+
+    /**
+     * Run a house query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function runQuery($filter, $start=null, $itemPerPage=null)
+    {
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_house WHERE $filter";
         } else {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
+            $sql =  "SELECT * FROM item_house WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
         return $this->affected_rows;
+    }
+
+    /* 
+    ** Set the house element values
+    * $rows: it takes the array of one item row and it sets the values
+    */
+    public function setFieldValues($row)
+    {
+        $rowObject = (object)$row;
+        @$this->id = (int) $rowObject->id;	
+        @$this->idTemp = (int) $rowObject->id_temp;	
+        @$this->idUser = (int) $rowObject->id_user;	
+        @$this->idCategory = (int) $rowObject->id_category;	
+        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
+        @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
+        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
+        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
+        @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);
+        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
+        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
+        @$this->fieldKebele = (int) $rowObject->field_kebele;
+        @$this->fieldWereda = (int) $rowObject->field_wereda;
+        @$this->fieldLotSize = (int) $rowObject->field_lot_size;
+        @$this->fieldNrBedroom = (int) $rowObject->field_nr_bedroom;
+        @$this->fieldToilet = (int) $rowObject->field_toilet;
+        @$this->fieldBathroom = (int) $rowObject->field_bathroom;
+        @$this->fieldBuildYear = $rowObject->field_build_year;
+        @$this->fieldWater = $this->replaceAposBackSlash($rowObject->field_water);
+        @$this->fieldElectricity = $this->replaceAposBackSlash($rowObject->field_electricity);
+        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
+        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
+        @$this->fieldUploadDate = $rowObject->field_upload_date;
+        @$this->fieldTotalView = (int) $rowObject->field_total_view;
+        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
+        @$this->fieldTableType = (int) $rowObject->field_table_type;
+    }
+
+    /* 
+    ** Set the house category elements
+    * 
+    */
+    public function setCategoryName(){
+        $object = new HtCategoryHouse("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_assoc()) {
+            $catArray[] = $row;
+        }
+        $this->categoryNameArray = $catArray;                
     }
 
     /**
@@ -1554,7 +1599,32 @@ SQL;
      */
     public function display()
     {
-        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+        echo '<div>';
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
+        $houseCategory = $GLOBALS['upload_specific_array']['house']['idCategory'][2][$this->houseCategory($this->getIdCategory())];
+        echo $this->getIdCategory() != null ? "<p>".$GLOBALS['upload_specific_array']['house']['idCategory'][0].":&nbsp<strong>".  $houseCategory . "</strong></p>" : "";
+        echo $this->getFieldKebele() != null ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldKebele"][0].':&nbsp<strong>' . $this->getFieldKebele() . '</strong></p>' : "";
+        echo $this->getFieldWereda() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldWereda"][0].':&nbsp<strong>' . $this->getFieldWereda() . '</strong></p>' : "";
+        echo $this->getFieldLotSize() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldLotSize"][0].':&nbsp<strong>' . $this->getFieldLotSize() . '</strong></p>' : "";
+        echo $this->getFieldNrBedroom() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldNrBedroom"][0].':&nbsp<strong>' . $this->getFieldNrBedroom() . '</strong></p>' : "";
+        echo $this->getFieldToilet() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldToilet"][0].':&nbsp<strong>' . $this->getFieldToilet() . '</strong></p>' : "";
+        echo $this->getFieldBathroom() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldBathroom"][0].':&nbsp<strong>' . $this->getFieldBathroom() . '</strong></p>' : "";
+
+        if ($this->getFieldBuildYear() != null){
+            if ($this->getFieldBuildYear() < 1970 or $this->getFieldBuildYear() == "unknown"){
+                $buildYear = $GLOBALS["upload_specific_array"]["house"]["fieldBuildYear"][2][$this->getFieldBuildYear()];
+            } else {
+                $buildYear =  $this->getFieldBuildYear();
+            }
+
+            echo $this->getFieldBuildYear() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldBuildYear"][0].':&nbsp<strong>' . $buildYear . '</strong></p>' : "";
+        }
+        echo $this->getFieldWater() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldWater"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["house"]["fieldWater"][2][$this->getFieldWater()] . '</strong></p>' : "";
+        //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
     }
 
     private $uploadOption = array(
@@ -1741,4 +1811,16 @@ SQL;
         ___close_div_(1);
         ___close_div_(3);
     }
+
+     /**
+     * input: category id
+     * returns car category name
+     */
+
+    public function houseCategory($categoryId) {
+        $row = $this->categoryNameArray;
+        $cat = $row[$categoryId - 1]['field_name'];
+        return $cat;
+    }
+
 }

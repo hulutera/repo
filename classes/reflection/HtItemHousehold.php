@@ -851,6 +851,7 @@ class HtItemHousehold extends MySqlRecord
         if (!empty($id)) {
             $this->select($id);
         }
+        $this->setCategoryName();
     }
 
     /**
@@ -878,43 +879,88 @@ class HtItemHousehold extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id, $status = null)
     {
-        if($id == "*"){
+        if ($id == NULL and $status == NULL) {
+            $sql = [];
+        } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_household";
+        } elseif ($id == "*" and $status != NULL) {
+            $sql =  "SELECT * FROM item_household WHERE field_status={$this->parseValue($status, 'notNumber')}";
+        } elseif ($id != "*" and $status == NULL) {
+            $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
-            $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
-            $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->idTemp = (integer)$rowObject->id_temp;
-            @$this->idUser = (integer)$rowObject->id_user;
-            @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
-            @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
-            @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
-            @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
-            @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
-            @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
-            @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (integer)$rowObject->field_total_view;
-            @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
-            @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (integer)$rowObject->field_table_type;
-            $this->allowUpdate = true;
-        } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
-        }
-        return $this->affected_rows;
+        return $this->affected_rows; 
         
+    }
+
+    /**
+     * Run a household query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function runQuery($filter, $start=null, $itemPerPage=null)
+    {
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_household WHERE $filter";
+        } else {
+            $sql =  "SELECT * FROM item_household WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+    /* 
+    ** Set the household element values
+    * $rows: it takes the array of one item row and it sets the values
+    */
+    public function setFieldValues($row)
+    {
+        $rowObject = (object)$row;
+        @$this->id = (int) $rowObject->id;	
+        @$this->idTemp = (int) $rowObject->id_temp;	
+        @$this->idUser = (int) $rowObject->id_user;	
+        @$this->idCategory = (int) $rowObject->id_category;	
+        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
+        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
+        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
+        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
+        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
+        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
+        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
+        @$this->fieldUploadDate = $rowObject->field_upload_date;
+        @$this->fieldTotalView = (integer)$rowObject->field_total_view;
+        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
+        @$this->fieldTableType = (integer)$rowObject->field_table_type;
+    }
+
+    /* 
+    ** Set the household category elements
+    * 
+    */
+    public function setCategoryName(){
+        $object = new HtCategoryHousehold("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_assoc()) {
+            $catArray[] = $row;
+        }
+        $this->categoryNameArray = $catArray;                
     }
 
     /**
@@ -1069,7 +1115,16 @@ SQL;
     */
     public function display()
     {
-        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+        echo '<div>';
+        if ($this->getIdCategory() != null or $this->getIdCategory() != 7) {
+            $hhCategory = $GLOBALS['upload_specific_array']['household']['idCategory'][2][$this->householdCategory($this->getIdCategory())];
+            echo "<p>".$GLOBALS['upload_specific_array']['household']['idCategory'][0].":&nbsp<strong>".  $hhCategory ."</strong></p>";
+        }
+        //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
+        echo '</div>';
+
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
+
     }
 
         /**
@@ -1141,6 +1196,12 @@ SQL;
         $itemName = $this->getTableNameShort();
         $this->insertAllField($itemName);
         echo '</form>';
+    }
+
+    public function householdCategory($categoryId) {
+        $row = $this->categoryNameArray;
+        $cat = $row[$categoryId - 1]['field_name'];
+        return $cat;
     }
 }
 ?>

@@ -569,8 +569,7 @@ $upload_specific_array = [
                 'Commercial' => 'Commercial',
                 'Land' => 'Land',
                 'Condominium' => 'Condominium',
-                'Residential Rental' => 'Residential Rental',
-                'Residential Sales' => 'Residential Sales',
+                'Residential' => 'Residential',
                 'Other' => 'Other'
             ]
         ],
@@ -614,16 +613,16 @@ $upload_specific_array = [
             0 => 'House have water?',
             1 => 'Choose water',
             2 => [
-                'yes' => 'Yes',
-                'no' => 'No',
+                'Yes' => 'Yes',
+                'No' => 'No',
             ]
         ],
         'fieldElectricity' => [
             0 => 'House have Electricity?',
             1 => 'Choose water',
             2 => [
-                'yes' => 'Yes',
-                'no' => 'No',
+                'Yes' => 'Yes',
+                'No' => 'No',
             ]
         ]
     ],
@@ -827,10 +826,12 @@ $upload_specific_array = [
             1 => 'Choose Type',
             2 => [
                 'Furniture' => 'Furniture',
-                'Kitchen Stuff' => 'Kitchen Stuff',
-                'Shower Stuff' => 'Shower Stuff',
-                'Other households' => 'Other households',
-                'Other' => 'Other',
+                'Kitchen Appliances' => 'Kitchen Appliances',
+                'Bathroom Appliances' => 'Shower Appliances',
+                'Home Decor' => 'Home Decor',
+                'Bedroom Appliances' => 'Bedroom Appliances',
+                'Baby Gears' => 'Baby Gears',
+                'Other' => 'Other'
             ]
         ]
     ],

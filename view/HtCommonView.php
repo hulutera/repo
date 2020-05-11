@@ -495,9 +495,9 @@ class HtCommonView extends MySqlRecord {
                 break;
             case "computer":
             case "electronic":
-            case "HouseHoldClass":
-            case "PhoneClass":
-            case "OtherClass":
+            case "household":
+            case "phone":
+            case "miscellanous":
                 //ctrl var
                 $sellValue = $itemObj->getFieldPriceSell();
                 $negoValue = $itemObj->getFieldPriceNego();
