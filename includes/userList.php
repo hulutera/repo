@@ -74,7 +74,7 @@ function displayALL()
 function userSearch()
 {
 	global $lang, $lang_url, $str_url;
-	logImg();	
+	logoImage();	
     echo '<div class="userSearch">';
 	echo '<h3>' .$lang['user page']. '</h3><br><br>';
 	echo '<form name="search-user-form" class="" action="../includes/userList.php' .$lang_url. '" method="POST">';

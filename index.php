@@ -12,6 +12,9 @@ require_once $documnetRootPath . '/db/database.class.php';
 	<?php
 	global $lang_url, $str_url;
 	commonHeader(); ?>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/font-awesome.min.css" rel="stylesheet">
 </head>
 

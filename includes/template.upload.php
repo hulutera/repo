@@ -4,7 +4,13 @@ ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/common.inc.php';
 require_once $documnetRootPath . '/includes/validate.php';
-
+if (isset($_GET['lan'])) {
+	$lang_sw = "&lan=" . $_GET['lan'];
+	$lang_url =  "?&lan=" . $_GET['lan'];
+} else {
+	$lang_sw = "&lan=en";
+	$str_url =  "";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +27,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<!-- styles -->
 	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-	<link href="../../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
+	
 	<link href="../../css/custom.css" rel="stylesheet">
 
 	<!-- js -->
@@ -67,19 +76,6 @@ require_once $documnetRootPath . '/includes/validate.php';
 		});
 	</script>
 	<style>
-		body {
-			font-family: 'Roboto', sans-serif;
-			font-size: 14px;
-			line-height: normal;
-			background-color: #fff;
-
-			margin: 0;
-		}
-
-		form {
-			margin: 15px;
-		}
-
 		.fileuploader {
 			max-width: 560px;
 		}
@@ -88,15 +84,14 @@ require_once $documnetRootPath . '/includes/validate.php';
 </head>
 
 <body>
+<?php headerAndSearchCode("upload"); uploadListNav($lang_sw);?>
 	<div id="whole">
-		<div id="wrapper">
-			<?php uploadHeaderAndSearchCode(""); ?>
+		<div id="wrapper">			
 			<div id="main_section">
 
 				<?php
 
 				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
-				echo '<div class="col-md-12"><a href="upload.php' . $lang_url . '">' . $GLOBALS['lang']['Back to Post Item'] . '</a></div>';
 
 				///reset/cleanup _SESSION variables
 				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_SESSION['lan'] != $_GET['lan']) {
@@ -120,7 +115,6 @@ require_once $documnetRootPath . '/includes/validate.php';
 				?>
 			</div>
 		</div>
-		<div class="push"></div>
 	</div>
 	<?php footerCode(); ?>
 </body>

@@ -3762,7 +3762,7 @@ th {
     cursor: pointer;
 }
 .nav-item {
-    background: #252525;
+    background:#2e6b68; /*#252525;*/
     display: -webkit-box;
     display: -ms-flexbox;
 	display: flex;
@@ -3906,15 +3906,61 @@ th {
 	font-weight: bold;
 	overflow: hidden;
 }
-
-
 /*
 
+*/
+
+.image-container {
+	position: relative;
+	display: inline-block;
+}
+a:hover {
+	color: black;
+}
+
+
+.image-container .hover-text {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 255, 0.5);
+	opacity: 0;
+	transition: opacity;
+}
+
+.hover-text a {
+	display: table;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
+}
+
+.hover-text a div {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: larger;
+	color: white;
+}
+
+.image-container img {
+	vertical-align: top;
+}
+
+.image-container:hover {
+	background-color: lightskyblue;
+}
+
+/*
+FOOTER
 
 */
 .footer-section {
 	background: #191919;
 	color: #b2b2b2;
+	margin-top: 10px;
 }
 .footer-left {
     margin-bottom: 30px;

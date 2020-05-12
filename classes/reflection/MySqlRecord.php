@@ -127,11 +127,6 @@ class MySqlRecord extends Model
     protected function insertHeader($item)
     {
         ___open_div_("row", "");
-        ___open_div_('col-md-12 upload-header alert alert-info" role="alert', '');
-        echo '<strong><p class="h2">' . $GLOBALS['upload_specific_array'][$item]['Uploading'] . '</strong></p>';
-        ___close_div_(2);
-
-        ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-6", '');

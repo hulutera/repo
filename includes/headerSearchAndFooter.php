@@ -34,6 +34,7 @@ function commonHeader()
 
 	fileRouter($add);
 }
+
 function fileRouter($add)
 {
 	//css
@@ -93,27 +94,13 @@ function headerAndSearchCode($item)
 	___close_div_(1);
 	___close_div_(3);
 
-	___open_div_('nav-item', '');
+	___open_div_('nav-item', '" style="margin-bottom: 5px;');
 	___open_div_('container', '');
 	sidelist($item);
 	___close_div_(2);
 
 	___close_div_(1);
 	echo '</header>';
-}
-/*Code for Header and Search Bar*/
-function headerAndSearchCodes($item)
-{
-	$defaultText = "";
-	echo '<div id= "head">';
-	echo '<div class="header">';
-	logoText();
-	topRightLinks();
-	echo '</div>';
-	echo '</div></div>';
-	//tabMenu();
-	miniSearch();
-	sidelist($item);
 }
 
 function uploadResetErrors()
@@ -124,16 +111,11 @@ function uploadResetErrors()
 	unset($_SESSION['errorRaw']);
 	unset($_SESSION['previous']);
 }
-function uploadList($lang_sw)
+
+function uploadListMain($lang_sw)
 {
 	uploadResetErrors();
-	___open_div_('container-fluid', '" style="min-height:400px');
-	___open_div_('col-md-12', '');
-	___open_div_('row', '');
-	___open_div_('col-md-12', '');
-	//echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['choose item to upload'] . '</p>';
-
-	___close_div_(3);
+	___open_div_('container-fluid', '');
 	___open_div_('row vertical-align', '" style="margin-top:79px');
 	___open_div_('col-md-12 mb-4', '');
 	___open_div_('list-group', '" style="text-align:center');
@@ -145,7 +127,7 @@ function uploadList($lang_sw)
 		$itemName = $GLOBALS['lang'][$value];
 		echo <<< EOD
 		<li class="list-group-item image-container" style="border-radius:4px; width:160px;height:160px;text-align:center"><div class="md-v-line ">
-		<a href="../includes/template.upload.php?type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
+		<a href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
 		<img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
 EOD;
@@ -154,38 +136,36 @@ EOD;
 	___close_div_(4);
 }
 
-/*Fetch the active URL*/
-function activatetab()
+function uploadListNav($lang_sw)
 {
-	$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
-	if ($curPageName == "index.php") {
-		$tabactive = 1;
-	} else if ($curPageName == "includes/upload.php") {
-		$tabactive = 2;
-	} else if ($curPageName == "includes/help.php") {
-		$tabactive = 3;
-	} else if ($curPageName == "includes/pendingItems.php") {
-		$tabactive = 11;
-	} else if ($curPageName == "includes/reportedItems.php") {
-		$tabactive = 12;
-	} else if ($curPageName == "includes/userMessages.php") {
-		$tabactive = 13;
-	} else if ($curPageName == "includes/userActive.php") {
-		$tabactive = 14;
-	} else if ($curPageName == "includes/userPending.php") {
-		$tabactive = 15;
-	} else if ($curPageName == "includes/deletedItems.php") {
-		$tabactive = 16;
-	} else if ($curPageName == "includes/prompt.php") {
-		$tabactive = 18;
-	} else {
-		$tabactive = 0;
-	}
+	___open_div_('container-fluid', '" style="margin-right:2%');
+	___open_div_('row vertical-align', '');
+	___open_div_('col-md-12 mb-4', '');
+	___open_div_('list-group', '" style="text-align:center');
+	echo '<ul class="list-group">';
+	$itemList = [
+		'car', 'computer', 'electronic', 'house', 'household', 'phone', 'other'
+	];
+	foreach ($itemList as $key => $value) {
+		$style = "";
+		if ($_GET['type'] == $value) {
+			$style = 'background-color: #e4e427; border-radius:4px; width:140px;height:140px;text-align:center';
+		} else {
+			$style = 'background-color: #c7c7c7; border-radius:4px; width:120px;height:120px;text-align:center';
+		}
+		$itemName = $GLOBALS['lang'][$value];
+		echo <<< EOD
+		<li class="list-group-item image-container" style="{$style}" ><div class="md-v-line ">
+		<a href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 16px;color: #000000;">
+		<img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
-	return $tabactive;
+EOD;
+	}
+	echo '</ul>';
+	___close_div_(4);
 }
-/*logo*/
-function logImg()
+
+function logoImage()
 {
 	global $lang_url;
 	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
@@ -197,15 +177,6 @@ function logoText()
 }
 
 /*Top Right Links*/
-function topRightLinkRegister()
-{
-	___open_div_('col-md-6', '');
-	logoText();
-	___close_div_(1);
-	___open_div_('col-md-6 top-links', '');
-	topRightLinks();
-	___close_div_(1);
-}
 function topRightLinks($style = null)
 {
 	global $lang_url, $str_url, $lang;
@@ -257,11 +228,12 @@ function topRightHelpLink()
 	echo '</div>';
 	echo '</a>';
 }
+
 /*search*/
 function miniSearch()
 {
 	global $lang_url;
-	echo '<form class="" action="../../includes/search.php'.$lang_url.'" method="get">';
+	echo '<form class="" action="../../includes/search.php' . $lang_url . '" method="get">';
 	___open_div_("advanced-search", '');
 	___open_div_("input-group", '');
 	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="width:55%">';
@@ -281,6 +253,7 @@ function city()
 	}
 	echo '</select>';
 }
+
 function item()
 {
 	global $item_lang_arr;
@@ -290,48 +263,7 @@ function item()
 	}
 	echo '</select>';
 }
-/*tabmenu home/PostyourItem/Help*/
-function tabMenu()
-{
-	global $lang, $lang_url, $str_url;
 
-	//require_once $documnetRootPath . '/includes/locale/tg.php';
-
-
-	echo '<div class="tabsAndSearch"><div class="tabs">
-			<li  class="activeFirst"><a ';
-	if (activatetab() == 1) {
-		echo "class=\"active\"";
-	}
-	echo ' href="../../index.php' . $lang_url . '">' . $lang['All Items'] . '</a></li>';
-
-	if (isset($_SESSION['uID'])) {
-		//ask login prompt before post
-
-		echo '<li class="activeSecond"><a ';
-		if (activatetab() == 2) {
-			echo "class=\"active\"";
-		}
-		echo 'href="../../includes/upload.php' . $lang_url . '">' . $lang['Post Items'] . '</a></li>';
-	} else {
-		//go to upload
-		echo '<li class="activeSecond"><a ';
-		if (activatetab() == 18) {
-			echo "class=\"active\"";
-		}
-		// Remove '?' from language url
-		echo 'href="../../includes/prompt.php?type=9' . $str_url . '">' . $lang['Post Items'] . '</a></li>';
-	}
-	echo '<li class="activeThird"><a ';
-	if (activatetab() == 3) {
-		echo "class=\"active\"";
-	}
-	echo 'href="../../includes/help.php' . $lang_url . '" >' . $lang['Help'] . '</a></li>';
-	echo '</div>';
-	miniSearch();
-	echo '</div>';
-}
-/*sidelist*/
 function svgMapElement()
 {
 	global $lang, $str_url;
@@ -410,11 +342,18 @@ function svgMapElement()
 
 <?php
 }
-
+/*sidelist*/
 function sidelist($item)
 {
 	if ($item == "upload") {
-		echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['choose item to upload'] . '</p>';
+		$type = isset($_GET['type']) ? $_GET['type'] : "";
+		echo '<div id="sidelist">';
+		if ($type == "") {
+			echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['choose item to upload'] . '</p>';
+		} else {
+			echo '<p class="h2" style="text-align:center;">' . $GLOBALS['upload_specific_array'][$type]['Uploading'] . '</p>';
+		}
+		___close_div_(1);
 		return;
 	} elseif ($item == "index") {
 		//echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['select city from map']. '</p>';
@@ -441,7 +380,6 @@ function sidelist($item)
 	}
 	echo '</ul>	</div>';
 }
-
 /*footer*/
 function footerCode()
 {
