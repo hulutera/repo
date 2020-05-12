@@ -718,15 +718,16 @@ $upload_specific_array = [
             0 => 'Type',
             1 => 'Choose Type',
             2 => [
-                'Laptop' => 'Laptop',
-                'Notebook' => 'Notebook',
-                'Stationary' => 'Stationary',
-                'Tablets' => 'Tablets',
-                'Workstations' => 'Workstations',
-                'Other' => 'Other',
+                'Cell Phone' =>  'Cell Phone',
+                'Smart Phone'=> 'Smart Phone',
+                'Fixed Phone' => 'Fixed Phone',
+                'PDA'=> 'PDA',
+                'Smart Watch' => 'Smart Watch',
+                'Phone Accessories' => 'Phone Accessories',
+                'Other' => '-- unlisted --'
             ]
         ],
-        'fieldMade'        => [
+        'fieldMake'        => [
             0 => 'Make',
             1 => 'Choose Make',
             2 => [
@@ -755,14 +756,14 @@ $upload_specific_array = [
             1 => 'Write Model'
         ],
         'fieldCamera'   => [
-            0 => 'Camera Pixle (MB)',
-            1 => 'Choose Camera Pixle',
+            0 => 'Camera Resolution',
+            1 => 'Choose Camera Resolution',
             2 => [
-                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles",
-                "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
-                "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
-                "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
-                "more than 16 megapixles" => "more than 16 megapixles በላይ",
+                "1.0 - 3.9 MP" => "1.0 - 3.9 MP",
+                "4.0 - 7.9 MP" => "4.0 - 7.9 MP",
+                "8.0 - 10.9 MP" => "8.0 - 10.9 MP",
+                "11.0 - 15.9 MP" => "11.0 - 15.9 MP",
+                "more than 16 MP" => "more than 16 MP",
                 'unknown' => 'unknown'
             ]
         ],
@@ -775,30 +776,6 @@ $upload_specific_array = [
                 "iPhone" => "iPhone",
                 "Symbian" => "Symbian",
                 'unlisted' => '-- Not listed --',
-            ]
-        ],
-        'fieldProcessor'   => [
-            0 => 'Processor',
-            1 => 'Choose Processor',
-            2 => [
-                "Under 1 GHz" => "Under 1 GHz",
-                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
-                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
-                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
-                "Over 3.0GHz" => "Over 3.0GHz",
-                'unlisted' => '-- Not listed --'
-            ]
-        ],
-        'fieldRam' => [
-            0 => 'RAM memory',
-            1 => 'Choose RAM',
-            2 => [
-                "Under 1GB" => "Under 1GB",
-                "1.0 - 1.9GB" => "1.0 - 1.9GB",
-                "2.0 - 2.9GB" => "2.0 - 2.9GB",
-                "3.0 - 3.9GB" => "3.0 - 3.9GB",
-                "Over 4.0GB" => "Over 4.0GB",
-                'unlisted' => '-- Not listed --'
             ]
         ]
     ],
@@ -840,7 +817,15 @@ $upload_specific_array = [
         'idCategory'        => [
             0 => 'Type',
             1 => 'Choose Type',
-            2 => []
+            2 => [
+                'Clothes' => 'Clothes',
+                'Shoes' => 'Shoes',
+                'Jewellery' => 'Jewellery',
+                'Tools' => 'Tools',
+                'Sport' => 'Sport',
+                'Entertainment' => 'Entertainment',
+                'Other' => '-- unlisted --'
+            ]
         ]
     ],
     'common' => [

@@ -704,13 +704,16 @@ $upload_specific_array = [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ',
             2 => [
-                'Laptop' => 'ላፕቶፕ',
-                'Notebook' => 'ኖት ቡክ',
-                'Stationary' => 'ዴስክቶፕ',
-                'unlisted' => '-- አልተዘረዘረም --',
+                'Cell Phone' => 'ተንቀሳቃሽ ስልክ',
+                'Smart Phone' => 'ስማርት ፎን ',
+                'Fixed Phone' => 'የቤት ስልክ',
+                'PDA'=> 'ፒ ዲ ኤ',
+                'Smart Watch' => 'ስማርት ሰአት',
+                'Phone Accessories' => 'የስልክ መለዋወጫዎች',
+                'Other' => '-- አልተዘረዘረም --'
             ]
         ],
-        'fieldMade'        => [
+        'fieldMake'        => [
             0 => 'ስሪት (አምራች ድርጅት)',
             1 => 'ስሪት ይምረጡ',
             2 => [
@@ -742,49 +745,26 @@ $upload_specific_array = [
             0 => 'የስልክ ካሜራ መጠን',
             1 => 'የካሜራ መጠን ይምረጡ',
             2 => [
-                "1.0 - 3.9 megapixles" => "1.0 - 3.9 megapixles",
-                "4.0 - 7.9 megapixles" => "4.0 - 7.9 megapixles",
-                "8.0 - 10.9 megapixles" => "8.0 - 10.9 megapixles",
-                "11.0 - 15.9 megapixles" => "11.0 - 15.9 megapixles",
-                "more than 16 megapixles" => "ከ16 megapixles በላይ",
-                'unlisted' => '-- አልተዘረዘረም --'
+                "1.0 - 3.9 MP" => "1.0 - 3.9 ሜ.ፒ",
+                "4.0 - 7.9 MP" => "4.0 - 7.9 ሜ.ፒ",
+                "8.0 - 10.9 MP" => "8.0 - 10.9 ሜ.ፒ",
+                "11.0 - 15.9 MP" => "11.0 - 15.9 ሜ.ፒ",
+                "more than 16 MP" => "ከ 16 ሜ.ፒ በላይ",
+                'unknown' => 'አይታወቅም'
             ]
         ],
         'fieldOs'   => [
             0 => 'የስልክ ኡደት ስርዓት (OS) ',
             1 => 'ኡደት ስርዓት ይምረጡ',
             2 => [
-                "Windows" => "Windows/ዊንዶውስ",
-                "Android" => "Android/አንድሮይድ",
-                "iPhone" => "iPhone/አይ ፎን",
-                "Symbian" => "Symbian",
+                "Windows" => "ዊንዶውስ",
+                "Android" => "አንድሮይድ",
+                "iPhone" => "አይ ፎን",
+                "Symbian" => "ሲምቢያን",
                 'unlisted' => '-- አልተዘረዘረም --',
             ]
         ],
-        'fieldProcessor'   => [
-            0 => 'ፕሮሰሰር ፍጥነት ',
-            1 => 'ፕሮሰሰር ፍጥነት ይምረጡ',
-            2 => [
-                "Under 1 GHz" => "ከ1 GHz በታች",
-                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
-                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
-                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
-                "Over 3.0GHz" => "ከ3.0 GHz በላይ",
-                'unlisted' => '-- አልተዘረዘረም --',
-            ]
-        ],
-        'fieldRam' => [
-            0 => 'የRAM ሜሞሪ መጠን',
-            1 => 'RAM ሜሞሪ ይምረጡ',
-            2 => [
-                "Under 1GB" => "ከ1 GB በታች",
-                "1.0 - 1.9GB" => "1.0 - 1.9GB",
-                "2.0 - 2.9GB" => "2.0 - 2.9GB",
-                "3.0 - 3.9GB" => "3.0 - 3.9GB",
-                "Over 4.0GB" => "ከ4.0GB GHz በላይ",
-                'unlisted' => '-- አልተዘረዘረም --'
-            ]
-        ]
+        
     ],
     'electronic' => [
         'Uploading' => 'ኤሌክትሮኒክስ የማስገቢያ ቅፅ',
@@ -824,7 +804,15 @@ $upload_specific_array = [
         'idCategory' => [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ',
-            2 => []
+            2 => [
+                'Clothes' => 'ልብሶች',
+                'Shoes' => 'ጫማዎች',
+                'Jewellery' => 'ጌጣጌጦች',
+                'Tools' => 'የጥገና መሣሪያዎች',
+                'Sport' => 'የስፖርት ዕቃዎች',
+                'Entertainment' => 'የመዝናኛ ዕቃዎች',
+                'Other' =>  '-- አልተዘረዘረም --'        
+            ]
         ]
     ],
     'common' => [

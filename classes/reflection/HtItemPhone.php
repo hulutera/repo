@@ -435,16 +435,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * setFieldMade Sets the class attribute fieldMade with a given value
+     * setFieldMake Sets the class attribute fieldMake with a given value
      *
-     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
-     * Comment for field field_made: Not specified.<br>
-     * @param string $fieldMade
+     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
+     * Comment for field field_make: Not specified.<br>
+     * @param string $fieldMake
      * @category Modifier
      */
-    public function setFieldMade($fieldMade)
+    public function setFieldMake($fieldMake)
     {
-        $this->fieldMade = (string)$fieldMade;
+        $this->fieldMake = (string)$fieldMake;
     }
 
     /**
@@ -620,7 +620,7 @@ class HtItemPhone extends MySqlRecord
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setFieldMade($_POST['fieldMade']);
+        $this->setFieldMake($_POST['fieldMake']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldCamera($_POST['fieldCamera']);
@@ -808,16 +808,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * getFieldMade gets the class attribute fieldMade value
+     * getFieldMake gets the class attribute fieldMake value
      *
-     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
-     * Comment for field field_made: Not specified.
-     * @return string $fieldMade
-     * @category Accessor of $fieldMade
+     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
+     * Comment for field field_make: Not specified.
+     * @return string $fieldMake
+     * @category Accessor of $fieldMake
      */
-    public function getFieldMade()
+    public function getFieldMake()
     {
-        return $this->fieldMade;
+        return $this->fieldMake;
     }
 
     /**
@@ -1020,6 +1020,7 @@ class HtItemPhone extends MySqlRecord
         if (!empty($id)) {
             $this->select($id);
         }
+        $this->setCategoryName();
     }
 
     /**
@@ -1047,47 +1048,91 @@ class HtItemPhone extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id, $status = null)
     {
-        if($id == "*"){
+        
+        if ($id == NULL and $status == NULL) {
+            $sql = [];
+        } elseif ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_phone";
+        } elseif ($id == "*" and $status != NULL) {
+            $sql =  "SELECT * FROM item_phone WHERE field_status={$this->parseValue($status, 'notNumber')}";
+        } elseif ($id != "*" and $status == NULL) {
+            $sql =  "SELECT * FROM item_phone WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
-            $sql =  "SELECT * FROM item_phone WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM item_phone WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
-            $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->idTemp = (integer)$rowObject->id_temp;
-            @$this->idUser = (integer)$rowObject->id_user;
-            @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
-            @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
-            @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-            @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_made);
-            @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
-            @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
-            @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
-            @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
-            @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
-            @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
-            @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
-            @$this->fieldUploadDate = $rowObject->field_upload_date;
-            @$this->fieldTotalView = (integer)$rowObject->field_total_view;
-            @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
-            @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-            @$this->fieldTableType = (integer)$rowObject->field_table_type;
-            $this->allowUpdate = true;
-        } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
-        }
         return $this->affected_rows;
-        
+    }
+
+    /**
+     * Run a phone query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function runQuery($filter, $start=null, $itemPerPage=null)
+    {
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_phone WHERE $filter";
+        } else {
+            $sql =  "SELECT * FROM item_phone WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+    /* 
+    ** Set the phone element values
+    * $rows: it takes the array of one item row and it sets the values
+    */
+    public function setFieldValues($row)
+    {
+        $rowObject = (object)$row;
+        @$this->id = (int) $rowObject->id;	
+        @$this->idTemp = (int) $rowObject->id_temp;	
+        @$this->idUser = (int) $rowObject->id_user;	
+        @$this->idCategory = (int) $rowObject->id_category;	
+        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
+        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
+        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
+        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
+        @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
+        @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
+        @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
+        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
+        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
+        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
+        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
+        @$this->fieldUploadDate = $rowObject->field_upload_date;
+        @$this->fieldTotalView = (integer)$rowObject->field_total_view;
+        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
+        @$this->fieldTableType = (integer)$rowObject->field_table_type;
+    }
+
+    /* 
+    ** Set the phone category elements
+    * 
+    */
+    public function setCategoryName(){
+        $object = new HtCategoryPhone("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_assoc()) {
+            $catArray[] = $row;
+        }
+        $this->categoryNameArray = $catArray;                
     }
 
     /**
@@ -1128,7 +1173,7 @@ class HtItemPhone extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_made,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1137,7 +1182,7 @@ class HtItemPhone extends MySqlRecord
 			{$this->parseValue($this->fieldPriceSell,'notNumber')},
 			{$this->parseValue($this->fieldPriceNego,'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
-			{$this->parseValue($this->fieldMade,'notNumber')},
+			{$this->parseValue($this->fieldMake,'notNumber')},
 			{$this->parseValue($this->fieldModel,'notNumber')},
 			{$this->parseValue($this->fieldOs,'notNumber')},
 			{$this->parseValue($this->fieldCamera,'notNumber')},
@@ -1192,7 +1237,7 @@ SQL;
 				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
-				field_made={$this->parseValue($this->fieldMade,'notNumber')},
+				field_make={$this->parseValue($this->fieldMake,'notNumber')},
 				field_model={$this->parseValue($this->fieldModel,'notNumber')},
 				field_os={$this->parseValue($this->fieldOs,'notNumber')},
 				field_camera={$this->parseValue($this->fieldCamera,'notNumber')},
@@ -1250,7 +1295,25 @@ SQL;
     */
     public function display()
     {
-        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+        echo '<div>';
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
+        if ($this->getIdCategory() != null or $this->getIdCategory() != 7) {
+            $phoneCategory = $GLOBALS['upload_specific_array']['phone']['idCategory'][2][$this->phoneCategory($this->getIdCategory())];
+            echo "<p>".$GLOBALS['upload_specific_array']['phone']['idCategory'][0].":&nbsp<strong>".  $phoneCategory ."</strong></p>";
+        }
+        echo $this->getFieldMake() != null ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        echo $this->getFieldModel() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
+        
+        if ($this->getFieldOs() != null or $this->getFieldOs() != "unlisted") {
+            echo $this->getFieldOs() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldOs"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldOs"][2][$this->getFieldOs()] . '</strong></p>' : "";
+        }
+        
+        echo $this->getFieldCamera() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][2][$this->getFieldCamera()] . '</strong></p>' : "";
+        //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
     }
     
    /**
@@ -1262,7 +1325,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMade' => 'Made',
+        'fieldMake' => 'Made',
         'fieldOs' => 'OS (Operting System)',
         'fieldModel' => 'Model',
         'fieldCamera' => 'Camera Size',
@@ -1284,7 +1347,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMade' => 'Made',
+        'fieldMake' => 'Made',
         'fieldModel' => 'Model',
         'fieldOs' => 'OS (Operting System)',
         'fieldCamera' => 'Camera Size',
@@ -1334,7 +1397,7 @@ SQL;
         echo '</form>';
     }
 
-    protected function insertAllField($itemName)
+    protected function insertAllField($itemName, $skipRow = NULL)
     {
         ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
         $this->insertHeader($itemName);
@@ -1348,7 +1411,7 @@ SQL;
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
+        $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
@@ -1393,6 +1456,12 @@ SQL;
         echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
         ___close_div_(3);
         ___close_div_(1);
+    }
+
+    public function phoneCategory($categoryId) {
+        $row = $this->categoryNameArray;
+        $cat = $row[$categoryId - 1]['field_name'];
+        return $cat;
     }
 }
 ?>
