@@ -405,7 +405,7 @@ function footerCode()
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
-		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/help.php">' . $lang['Help'] . '</a></p>
 		</div>';
 	echo '<div id="followUs_fo" >
 		  <p class="h4">' . $lang['FOLLOW US'] . '</p>
