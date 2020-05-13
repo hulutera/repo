@@ -341,18 +341,17 @@ class HtCommonView extends MySqlRecord {
     /*@ function to display image gallery
 	 * input: $objImg, $objDir, $image, $objItem, $itemId
     * */
-    public function displayGallery($dir, $imageNameArray, $itemId, $itemName)
+    public function displayGallery($dir, $imageNameArray, $numimage, $itemId, $itemName)
     {
         $imageFileNameLarge = $imageNameArray[0];
         $filterArr = array('"', '[', ']');
         $fileNmaeLarge = str_replace($filterArr, '', $imageFileNameLarge);
-        $numimage = sizeof($imageNameArray);
         echo "<div class=\"featured_left_sideRemove col-xs-12 col-md-8\"  style=\"padding:0px;\">";
-        if ($numimage == 1) {
-            $file_path = '../../images/icons/ht_logo_2.png';
-            echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" src="' . $file_path . '" ></div>';
+        if ($numimage == 0) {
+            $imageNotFound = $dir . $fileNmaeLarge;
+            echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
         }
-        if ($numimage > 1) {
+        if ($numimage >= 1) {
             echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1\"><img class=\"largeImg\"  id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
             echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {

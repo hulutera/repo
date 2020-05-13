@@ -121,31 +121,36 @@ class HtMainView
         //image handler
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
-        $imageArr = explode(',', $image);
-        $numimage = sizeof($imageArr);
+        if ($image != null){
+            $imageArr = explode(',', $image);
+            $numimage = sizeof($imageArr);
+        } else {
+            $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
+            $imageDir = "../images/". $language ."/";
+            $numimage = 0;
+            $imageArr = ["itemnotfound.png"];
+        }
+        
         $jsImg = implode(',', $imageArr);
         $strReplArr= array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
-        
+        $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
         //---------------------------------------------------------
        
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\">";    // #divCommon start
-        echo "<div class=\"thumbnail\">";  // .thumbnail starts
-        if ($numimage == 1) {
-            $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
-            $imgNotFound = "../images/". $language ."/itemnotfound.png";
+        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
+        echo "<div class=\"thumbnail tn_$uniqueId\">";  // .thumbnail starts
+        if ($numimage == 0) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
-            echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$imgNotFound\"></div></a>";
+            echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
         } else {
-            $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
             echo "<a href=\"javascript:void(0)\"
-			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-            echo "<div >	<img class=\"img-thumbnail thumb-image\" src=\"$thmbNlImg\"></div></a>";
+			onclick=\"swap($id,'$itemName')\">";
+            echo "<div >	<img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
         }
         //-------------------------------------------------------------------
         echo "<div class=\"caption\">";  // .caption start
         echo "<a href=\"javascript:void(0)\"
-		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+		onclick=\"swap($id,'$itemName')\">";
         $commonViewObj->displayTitle($this->_pItem);
         echo "</a>";
         $commonViewObj->displayLocation($this->_pItem);
@@ -171,7 +176,7 @@ class HtMainView
         $commonViewObj->displayMailForm($uniqueId, $id, $itemName,  $this->_pItem->getIdUser());
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; // left side div end
-        $commonViewObj->displayGallery($imageDir, $imageArr, $id, $itemName);
+        $commonViewObj->displayGallery($imageDir, $imageArr, $numimage, $id, $itemName);
         echo "</div>"; // .featured_detailed2 end
        
           

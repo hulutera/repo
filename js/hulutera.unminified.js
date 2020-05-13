@@ -242,17 +242,18 @@ function func_moderatorShow(e, t, n) {
     })
 }
 
-function swap(e, t) {
+function swap(id, item) {
     $(document).ready(function () {
-      //$(".thumblist_" + t + e).slideUp("fast");
-        $("#divDetail_" + t + e).slideDown("fast")
+        $(".tn_" + item + id).css("border", "1px solid #0080ff");
+        $("#divDetail_" + item + id).slideDown("fast");
     })
 }
 
-function swapback(e, t) {
+function swapback(id, item) {
     $(document).ready(function () {
-        $(".thumblist_" + t + e).slideDown("fast");
-        $("#divDetail_" + t + e).slideUp("fast")
+        $(".thumblist_" + item + id).slideDown("fast");
+        $(".tn_" + item + id).css("border", "1px solid #ddd");
+        $("#divDetail_" + item + id).slideUp("fast");
     })
 }
 
