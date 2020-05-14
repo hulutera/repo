@@ -377,6 +377,7 @@ $lang = array(
     'search res' => 'የፍለጋ ውጤት',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     'Invalid' => "የተከለከለ",
+    'Should' => "የተከለከለ",
     'unknown' => 'አይታወቅም',
     'unlisted' => '-- አልተዘረዘረም --',
     'today' => 'ዛሬ',
@@ -623,7 +624,9 @@ $upload_specific_array = [
                 'Laptop' => 'ላፕቶፕ',
                 'Notebook' => 'ኖት ቡክ',
                 'Stationary' => 'ዴስክቶፕ',
-                'unlisted' => '-- አልተዘረዘረም --',
+                'Tablets' => 'ታብሌት',
+                'Workstations' => 'ዎርክስቴሽን',
+                'Other' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldMake'        => [
@@ -652,24 +655,30 @@ $upload_specific_array = [
             1 => 'ሞዴል እዚህ ይጻፉ'
         ],
         'fieldHardDrive'   => [
-            0 => 'ሀርድ ዲሥክ (GB)',
+            0 => 'ሀርድ ዲሥክ',
             1 => 'ሀርድ ዲሥክ ይምረጡ',
             2 => [
-                "Under 200GB" => "ከ200GB በታች",
+                "Under 100GB" => "ከ99GB በታች",
+                "100 - 199GB" => "100 - 199GB",
                 "200 - 299GB" => "200 - 299GB",
                 "300 - 499GB" => "300 - 499GB",
-                "Over 500GB" => "ከ500GB  በላይ",
-                'unlisted' => '-- አልተዘረዘረም --'
+                "500 - 1TB" => "500 - 1TB",
+                "1 - 2TB" => "1 - 2TB",
+                "2 - 3TB" => "2 - 3TB",
+                "3 - 4TB" => "3 - 4TB",
+                "4 - 5TB" => "4 - 5TB",
+                "Over 5TB" => "ከ5TB  በላይ",
+                'unknown' => 'አይታወቅም'
             ]
         ],
         'fieldOs'   => [
             0 => 'የኮምፒውተር ኡደት ስርዓት (OS) ',
             1 => 'ኡደት ስርዓት ይምረጡ',
             2 => [
-                "Windows" => "Windows/ዊንዶውስ",
-                "Linux" => "Linux/ሊኑክስ",
-                "Unix" => "Unix/ዩኒክስ",
-                "Mac" => "Mac/ማክ",
+                "Windows" => "ዊንዶውስ",
+                "Linux" => "ሊኑክስ",
+                "Unix" => "ዩኒክስ",
+                "Mac" => "ማክ",
                 'unlisted' => '-- አልተዘረዘረም --',
             ]
         ],
@@ -682,7 +691,7 @@ $upload_specific_array = [
                 "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
                 "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
                 "Over 3.0GHz" => "ከ3.0 GHz በላይ",
-                'unlisted' => '-- አልተዘረዘረም --',
+                'unknown' => 'አይታወቅም'
             ]
         ],
         'fieldRam' => [
@@ -694,7 +703,7 @@ $upload_specific_array = [
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
                 "Over 4.0GB" => "ከ4.0GB GHz በላይ",
-                'unlisted' => '-- አልተዘረዘረም --'
+                'unknown' => 'አይታወቅም'
             ]
         ]
     ],
@@ -745,6 +754,7 @@ $upload_specific_array = [
             0 => 'የስልክ ካሜራ መጠን',
             1 => 'የካሜራ መጠን ይምረጡ',
             2 => [
+                "Under 1 MP" => "ከ1 MP በታች",
                 "1.0 - 3.9 MP" => "1.0 - 3.9 ሜ.ፒ",
                 "4.0 - 7.9 MP" => "4.0 - 7.9 ሜ.ፒ",
                 "8.0 - 10.9 MP" => "8.0 - 10.9 ሜ.ፒ",

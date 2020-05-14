@@ -1302,7 +1302,7 @@ SQL;
             $phoneCategory = $GLOBALS['upload_specific_array']['phone']['idCategory'][2][$this->phoneCategory($this->getIdCategory())];
             echo "<p>".$GLOBALS['upload_specific_array']['phone']['idCategory'][0].":&nbsp<strong>".  $phoneCategory ."</strong></p>";
         }
-        echo $this->getFieldMake() != null ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        echo $this->getFieldMake() != "unlisted" ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
         echo $this->getFieldModel() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
         
         if ($this->getFieldOs() != null or $this->getFieldOs() != "unlisted") {

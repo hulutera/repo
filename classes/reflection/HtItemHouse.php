@@ -1602,8 +1602,14 @@ SQL;
         echo '<div>';
         echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
         echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        $houseCategory = $GLOBALS['upload_specific_array']['house']['idCategory'][2][$this->houseCategory($this->getIdCategory())];
-        echo $this->getIdCategory() != null ? "<p>".$GLOBALS['upload_specific_array']['house']['idCategory'][0].":&nbsp<strong>".  $houseCategory . "</strong></p>" : "";
+        
+        if ($this->getidCategory() != null){
+            if ($this->getidCategory() != 6){
+                $houseCategory = $GLOBALS['upload_specific_array']['house']['idCategory'][2][$this->houseCategory($this->getIdCategory())];
+                echo $this->getIdCategory() != null ? "<p>".$GLOBALS['upload_specific_array']['house']['idCategory'][0].":&nbsp<strong>".  $houseCategory . "</strong></p>" : "";
+            }
+        }
+
         echo $this->getFieldKebele() != null ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldKebele"][0].':&nbsp<strong>' . $this->getFieldKebele() . '</strong></p>' : "";
         echo $this->getFieldWereda() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldWereda"][0].':&nbsp<strong>' . $this->getFieldWereda() . '</strong></p>' : "";
         echo $this->getFieldLotSize() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldLotSize"][0].':&nbsp<strong>' . $this->getFieldLotSize() . '</strong></p>' : "";
@@ -1800,7 +1806,7 @@ SQL;
         $this->insertSelectable('fieldBuildYear', $globalArrayName, $itemName);
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        $selectable = $this->lister(1, 20);
+        $selectable = $this->lister(1, 100);
         $this->insertSelectable('fieldBathroom', $globalArrayName, $itemName, $selectable);
         ___close_div_(1);
         ___open_div_("col-md-6", '');

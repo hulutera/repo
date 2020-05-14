@@ -1419,15 +1419,21 @@ SQL;
         echo '<div>';
         echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
         echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        $compCategory = $GLOBALS['upload_specific_array']['computer']['idCategory'][2][$this->computerCategory($this->getidCategory())];
-        echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['computer']['idCategory'][0].":&nbsp<strong>".  $compCategory . "</strong></p>" : "";
-        echo $this->getFieldMake() != null ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        
+        if ($this->getidCategory() != null){
+            if ($this->getidCategory() != 6){
+                $compCategory = $GLOBALS['upload_specific_array']['computer']['idCategory'][2][$this->computerCategory($this->getidCategory())];
+                echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['computer']['idCategory'][0].":&nbsp<strong>".  $compCategory . "</strong></p>" : "";
+            }
+        }
+        
+        echo $this->getFieldMake() != "unlisted" ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
         echo $this->getFieldModel() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
-        echo $this->getFieldOs() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][2][$this->getFieldOs()].'</strong></p>' : "";
+        echo $this->getFieldOs() != "unlisted"   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][2][$this->getFieldOs()].'</strong></p>' : "";
         echo $this->getFieldProcessor() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][2][$this->getFieldProcessor()].'</strong></p>' : "";
-        echo $this->getFieldRam() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][2][$this->getFieldRam()].'</strong></p>' : "";
+        echo $this->getFieldRam() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][2][$this->getFieldRam()].'</strong></p>' : "";
         echo $this->getFieldHardDrive() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][2][$this->getFieldHardDrive()].'</strong></p>' : "";
-        echo $this->getFieldColor() != null     ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
+        echo $this->getFieldColor() != "unknown"     ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';

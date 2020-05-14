@@ -408,6 +408,7 @@ $lang = array(
     'search res' => 'Search Result',
     'Back to Post Item' => "Back to Post Item",
     'Invalid' => "Invalid",
+    'Should' => "Invalid",
     'unknown' => 'Unknown',
     'unlisted' => '-- Unlisted --',
     'today' => 'Today',
@@ -637,7 +638,7 @@ $upload_specific_array = [
                 'Stationary' => 'Stationary',
                 'Tablets' => 'Tablets',
                 'Workstations' => 'Workstations',
-                'Other' => 'Other',
+                'Other' => '-- not listed --',
             ]
         ],
         'fieldMake'        => [
@@ -658,7 +659,7 @@ $upload_specific_array = [
                 "sony" => "sony",
                 "toshiba" => "toshiba",
                 "msi" => "msi",
-                'unknown' => 'unknown'
+                'unlisted' => '-- not listed --'
             ]
         ],
         'fieldModel'       => [
@@ -666,14 +667,20 @@ $upload_specific_array = [
             1 => 'Write Model'
         ],
         'fieldHardDrive'   => [
-            0 => 'Hardisk (GB)',
+            0 => 'Hardisk',
             1 => 'Choose Hardisk',
             2 => [
-                "Under 200GB" => "Under 200GB",
+                "Under 100GB" => "Under 99GB",
+                "100 - 199GB" => "100 - 199GB",
                 "200 - 299GB" => "200 - 299GB",
                 "300 - 499GB" => "300 - 499GB",
-                "Over 500GB" => "Over 500GB",
-                'unknown' => 'unknown'
+                "500 - 1TB" => "500 - 1TB",
+                "1 - 2TB" => "1 - 2TB",
+                "2 - 3TB" => "2 - 3TB",
+                "3 - 4TB" => "3 - 4TB",
+                "4 - 5TB" => "4 - 5TB",
+                "Over 5TB" => "Over 5TB",
+                "unknown" => "unknown"
             ]
         ],
         'fieldOs'   => [
@@ -696,7 +703,7 @@ $upload_specific_array = [
                 "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
                 "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
                 "Over 3.0GHz" => "Over 3.0GHz",
-                'unlisted' => '-- Not listed --'
+                "unknown" => "unknown"
             ]
         ],
         'fieldRam' => [
@@ -708,7 +715,7 @@ $upload_specific_array = [
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
                 "Over 4.0GB" => "Over 4.0GB",
-                'unlisted' => '-- Not listed --'
+                "unknown" => "unknown"
             ]
         ]
     ],
@@ -748,7 +755,7 @@ $upload_specific_array = [
                 "TANA" => "TANA",
                 "Vodaphone" => "Vodaphone",
                 "ZTE" => "ZTE",
-                'unknown' => 'unknown'
+                'unlisted' => '-- not listed --'
             ]
         ],
         'fieldModel'       => [
@@ -759,6 +766,7 @@ $upload_specific_array = [
             0 => 'Camera Resolution',
             1 => 'Choose Camera Resolution',
             2 => [
+                "under 1.0 MP" => "under 1.0 MP",
                 "1.0 - 3.9 MP" => "1.0 - 3.9 MP",
                 "4.0 - 7.9 MP" => "4.0 - 7.9 MP",
                 "8.0 - 10.9 MP" => "8.0 - 10.9 MP",
