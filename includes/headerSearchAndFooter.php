@@ -70,7 +70,7 @@ function headerAndSearchCode($item)
 	___open_div_('container', '');
 	___open_div_('ht-left', '');
 	___open_div_('mail-service', '');
-	echo '<a href="../../includes/template.proxy.php?type=contact' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>info@hulutera.com</a>';
+	echo '<a href="../../includes/template.proxy.php?type=contact' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>Contact us<br>info@hulutera.com</a>';
 	___close_div_(1);
 	___open_div_('phone-service', '');
 	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
@@ -379,6 +379,36 @@ function sidelist($item)
 		echo '</a></li>';
 	}
 	echo '</ul>	</div>';
+}
+/*Fetch the active URL*/
+function activatetab()
+{
+	$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+	if ($curPageName == "index.php") {
+		$tabactive = 1;
+	} else if ($curPageName == "includes/upload.php") {
+		$tabactive = 2;
+	} else if ($curPageName == "includes/help.php") {
+		$tabactive = 3;
+	} else if ($curPageName == "includes/pendingItems.php") {
+		$tabactive = 11;
+	} else if ($curPageName == "includes/reportedItems.php") {
+		$tabactive = 12;
+	} else if ($curPageName == "includes/userMessages.php") {
+		$tabactive = 13;
+	} else if ($curPageName == "includes/userActive.php") {
+		$tabactive = 14;
+	} else if ($curPageName == "includes/userPending.php") {
+		$tabactive = 15;
+	} else if ($curPageName == "includes/deletedItems.php") {
+		$tabactive = 16;
+	} else if ($curPageName == "includes/prompt.php") {
+		$tabactive = 18;
+	} else {
+		$tabactive = 0;
+	}
+
+	return $tabactive;
 }
 /*footer*/
 function footerCode()

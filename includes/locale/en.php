@@ -308,7 +308,7 @@ $lang = array(
     'my activities' => 'My Activities',
     'my page' => 'Your Page',
     'my profile' => 'Your Profile',
-    'my page header'=>'Welcome to your page,',
+    'my page header' => 'Welcome to your page,',
     'my-page msg' => 'In this page you could check the status of your uploaded items and edit your profile. Shall you require any more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a>.',
     'my-page msg2' => 'Here you can view your posted items. You will find status of your active, pending, reported or deleted items.',
     'my-page msg3' => 'Here you can edit you personal information. You can change password, username, email, ... etc.',
@@ -725,9 +725,9 @@ $upload_specific_array = [
             1 => 'Choose Type',
             2 => [
                 'Cell Phone' =>  'Cell Phone',
-                'Smart Phone'=> 'Smart Phone',
+                'Smart Phone' => 'Smart Phone',
                 'Fixed Phone' => 'Fixed Phone',
-                'PDA'=> 'PDA',
+                'PDA' => 'PDA',
                 'Smart Watch' => 'Smart Watch',
                 'Phone Accessories' => 'Phone Accessories',
                 'Other' => '-- unlisted --'
@@ -847,7 +847,7 @@ $upload_specific_array = [
                 'fieldPriceRent' => 'Rent',
                 'fieldPriceSell' => 'Sell',
                 'both' => 'Both',
-                 ],
+            ],
             3 => 'Price Details'
 
         ],
@@ -1011,7 +1011,7 @@ $user_specific_array = [
                 'e-mail' => 'E-mail',
                 'both'   => 'Phone and E-mail'
             ],
-            3=>'Changing Contact method'
+            3 => 'Changing Contact method'
         ],
         'fieldTermAndCondition'       => [
             0 => 'Terms and Conditions',
@@ -1056,7 +1056,7 @@ $user_specific_array = [
             'body' => [
                 0 => 'Dear Customer,<br>
                       You have asked to update your Hulutera profile. Per your request, you have successfully.
-                      <br>Sincerely,<br>The hulutera Team<br>'            
+                      <br>Sincerely,<br>The hulutera Team<br>'
             ]
         ]
     ]
@@ -1080,7 +1080,7 @@ $validate_specific_array = [
         'passwordRepeat' => 'Passwords do not match. Please try again!<br>',
         'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again!',
         'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!',
-        'mixedLanguage'=>'Invalid input, a mix of languge is not allowed. Please try again!',
+        'mixedLanguage' => 'Invalid input, a mix of languge is not allowed. Please try again!',
     ],
 ];
 $message = [
@@ -1092,6 +1092,110 @@ $message = [
     'success' => 'You have successfully modified your account!',
 ];
 
+$help = [
+    0 => ["HuluteraFAQ" =>  "Hulutera FAQ"],
+    1 => [
+        "register" => [
+            "head" => "How to register",
+            "body" => [
+                "Step 1:" => 'Click the link button <strong style="color: blue;">Register</strong> on the top right of the website.',
+                "Step 2:" => 'Fill the required part of the form with your personal information and press <button class="btn btn-primary">Register</button> button',
+                "Step 3:" => 'You will get message that says <strong style="color: blue;">"Thank you for registering. 
+                             A confirmation mail has been sent to your email. Please click on the activation link to activate your account.
+                             "</strong> Continue to Step 4 ...',
+                "Step 4:" => 'Open your email address (provided on the form) and click on
+                             the link sent from us.This will activate your account.You
+                             will see a message saying <strong style="color: blue;">Your
+                             acount is now active.You may now login </strong>.At this
+                             step your Regsitration is completed.',
+            ]
+        ],
+        "logIn"    => [
+            "head" => "How to login",
+            "body" => [
+                "Step 1:" => 'Click the link <strong style="color: blue;">Log in</strong>
+                on the top right of the website.',
+                "Step 2:" => 'Provide your email and password. Click <button class="btn btn-primary">Log in</button> button.If you have account with us, you will be
+                directed to your account page.',
+            ]
+        ],
+        "recovery"   => [
+            "head" => "How to recover password",
+            "body" => [
+                "Step 1:" => 'Click <strong class="" style="color: #337ab7;">
+                Forgot your password</strong> link under the login form. It will direct you to a page that you can 
+                fill in either your 
+                your <strong style="color: blue;">email</strong> or <strong
+                class="" style="color: blue;">username</strong>
+                and click the <button class="btn btn-primary">Recovery</button> button.You
+                will see a message <strong class=""
+                style="color: blue;">Password recovery information has now
+                been sent to the e-mail associated with this user. Please
+                follow instructions in the email.</strong>. To complete
+                recovery proceed to next step (Step 2:9)',
+                "Step 2:" => 'Open your email address (provided on the form) and click on
+                the link sent from us.This will recover your password.You
+                will see a message saying <strong style="color: blue;">Please
+                remember once you recovered your account, you can change
+                your password from your account page</strong>.After
+                providing new password ,your password recovery is completed
+                and now you can proceed to login.',
+            ]
+        ],
+        "upload"   => [
+            "head" => "How to upload",
+            "body" => [
+                "Step 1:" => "Click on the <button> Post Items </button> from the list presented 
+                Choose the Item you want to advertise",
+                "Step 2:" => 'After you have filled detailed information of the item you want to annouce continue
+                with adding pictures of the item. It is good to have a visible image to get more viewers. After
+                compeletion click on the <button class="btn btn-primary">Log in</button> button to compelete you
+                advert. You will see the message <strong style="color: blue;">Your item was successfuly uploaded.
+                Thank you for using our service!</strong> at this steg your
+                upload is completed. In order to see your uploaded items,we
+                will require 24hr to activate your uploaded Items.'
+            ]
+        ],
+        "contactus"   => [
+            "head" => "How to contact us",
+            "body" => [
+                "Step 1:" => 'Click the link <strong style="color: blue;">Contact us info@hulutera.com</strong>
+                on the top left of the for web contact or the phone number shown on the top left side of this page. 
+                For web contact see next step (Step 2:)',
+                "Step 2:" => 'If you have already logged-in your personal details will be automatically
+                filled.Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
+                Use <strong style="color: blue;">General</strong> reason if
+			you don\'t find your reason listed on the dropdown choices. Write detail information why you
+			want to contact us on the <strong style="color: blue;">Message</strong>
+            field.',
+            "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
+			button to send your question. Then,you will see a message <strong
+			style="color: blue;">We appreciate your taking the time to
+			contact us"</strong>.'
+            ]
+        ],
+        "search"   => [
+            "head" => "How to search",
+            "body" => [
+                "" => 'The searchbox will help you find the item that you want based on the keyword that you are going to write on the text field.
+
+                Your keywords should be of the following types:<br>
+                
+                1) Manufacturer of car, phone, computer e.g. Toyota ,Apple,Acer<br>
+                
+                2) Color of a Car e.g. to search a red car, write only red but not red car,black.<br>
+                
+                3) Type of car, house, phone, computer, electronics, household. e.g. small car , condominium,TV, furniture, laptop<br>
+                
+                4) Model of car,phone, computer e.g. Carina ,iphone 4, Samsung UN60ES7100F,MacBook Air MD232LL/A',
+                "Step 1:" => 'Find the search box on the top right part of the website.',
+                "Step 2:" => 'Write the keyword on the text field',
+                "Step 3:" => 'Click the <button>search</button> button.',
+            "*" => 'If there is no items listed on the window it means there is no match found on our database to your keyword.'
+            ]
+        ], 
+    ]
+];
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
@@ -1099,3 +1203,4 @@ $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;
 $GLOBALS['message'] = $message;
+$GLOBALS['help'] = $help;

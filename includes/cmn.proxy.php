@@ -1,93 +1,81 @@
 <?php
 
-if(isset($_GET['lan'])) { 
-	$lang_url = "?&lan=" . $_GET['lan'];		
-} else{
-	$lang_url = "";	
+if (isset($_GET['lan'])) {
+	$lang_url = "?&lan=" . $_GET['lan'];
+} else {
+	$lang_url = "";
 }
 
 function contact()
 {
 	global $connect, $lang, $lang_url;
-	$error_message="";	
-	if(isset($_POST['submit']))
-	{
+	$error_message = "";
+	if (isset($_POST['submit'])) {
 		$error = array();
-			
+
 		/*check name*/
-		if(empty($_POST['name'])){
+		if (empty($_POST['name'])) {
 			$error[] = $lang['Please enter your name'];
-		}else if(ctype_alpha($_POST['name'])){
+		} else if (ctype_alpha($_POST['name'])) {
 			$name = $_POST['name'];
-		}else{
+		} else {
 			$error[] = $lang['Enter only your first name'];
 		}
 
 		//email
-		if(empty($_POST['email'])){
+		if (empty($_POST['email'])) {
 			$error[] = $lang['Please enter your email'];
-		}else if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+		} else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 			$email = $connect->real_escape_string($_POST['email']);
-		}else{
+		} else {
 			$error[] = $lang['Your e-mail address is invalid'];
 		}
 
 		/*check message*/
-		if(!empty($_POST['description'])){
+		if (!empty($_POST['description'])) {
 			$description = $connect->real_escape_string($_POST['description']);
 		}
 		/*check subject*/
-		if(empty($_POST['subject'])){
+		if (empty($_POST['subject'])) {
 			$error[] = $lang['Please enter a subject'];
-		}else
-		{
-			$subject=$connect->real_escape_string($_POST['subject']);
+		} else {
+			$subject = $connect->real_escape_string($_POST['subject']);
 		}
 		/*check purpose*/
-		if($_POST['contactpurpose']=="000"){
+		if ($_POST['contactpurpose'] == "000") {
 			$error[] = $lang['Please state choose your purpose'];
-		}else{
-			$contactpurpose=$connect->real_escape_string($_POST['contactpurpose']);
+		} else {
+			$contactpurpose = $connect->real_escape_string($_POST['contactpurpose']);
 		}
 		/*check company*/
-		if(!empty($_POST['company'])){
+		if (!empty($_POST['company'])) {
 			$company = $connect->real_escape_string($_POST['company']);
 		}
 
-		if(empty($error))
-		{
+		if (empty($error)) {
 			$result = $connect->query("INSERT INTO contactus (name, company, email, subject ,purpose, description, messageStatus)
 					VALUES ('$name','$company','$email','$subject','$contactpurpose','$description','unread')")
-					or die (mysqli_error());
-			if(!$result)
-			{
-				die('Could not insert into database: '.mysqli_error());
-			}
-			else
-			{
-				$message= $lang ['This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n'];
+				or die(mysqli_error());
+			if (!$result) {
+				die('Could not insert into database: ' . mysqli_error());
+			} else {
+				$message = $lang['This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n'];
 				$isMailDelivered = mail($email, 'Contact confirmation', $message, 'From:noreply@hulutera.com');
 
-				if(!$isMailDelivered)
-				{
-					die ("Sending Email Failed. Please Contact Site Admin!");
-				}
-				else
-				{
+				if (!$isMailDelivered) {
+					die("Sending Email Failed. Please Contact Site Admin!");
+				} else {
 					redirect("../includes/prompt.php?type=7");
 				}
 			}
-		}
-		else
-		{
+		} else {
 			$endl = '<br>';
-			$error_message='<div class="error">';
-			foreach($error as $key=>$values)
-			{
-				$error_message.="$values";
-				$error_message.=$endl;
+			$error_message = '<div class="error">';
+			foreach ($error as $key => $values) {
+				$error_message .= "$values";
+				$error_message .= $endl;
 			}
-			$error_message.="</div>";
+			$error_message .= "</div>";
 		}
 	}
 
@@ -96,8 +84,8 @@ function contact()
 	$emailValue = (isset($_POST['email'])) ? $_POST['email'] : '';
 	$subjectValue = (isset($_POST['subject'])) ? $_POST['subject'] : '';
 	$descriptionValue = (isset($_POST['description'])) ? $_POST['description'] : '';
-	
-	if($lang_url !== NULL) {
+
+	if ($lang_url !== NULL) {
 		$str_url = str_replace("?", "", $lang_url);
 	} else {
 		$str_url = "";
@@ -109,23 +97,23 @@ function contact()
 	echo  $error_message;
 	echo '<table>';
 	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Your name'].'</div></td>';
-	echo '<td><input type="text" class="input" id="name" name="name" maxlength="80" value="'.$nameValue.'"/></td>';
+	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Your name'] . '</div></td>';
+	echo '<td><input type="text" class="input" id="name" name="name" maxlength="80" value="' . $nameValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Email'].'</div></td>';
-	echo '<td><input type="text" style="text-transform:lowercase"class="input" id="email" name="email" maxlength="80" value="'.$emailValue.'"/></td>';
+	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Email'] . '</div></td>';
+	echo '<td><input type="text" style="text-transform:lowercase"class="input" id="email" name="email" maxlength="80" value="' . $emailValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Company'].'</div></td>';
-	echo '<td><input type="text" class="input" id="company" name="company" maxlength="80" value="'.$companyValue.'"/></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Company'] . '</div></td>';
+	echo '<td><input type="text" class="input" id="company" name="company" maxlength="80" value="' . $companyValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Subject'].'</div></td>';
-	echo '<td><input type="text" class="input" id="subject" name="subject" maxlength="80" value="'.$subjectValue.'"/></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Subject'] . '</div></td>';
+	echo '<td><input type="text" class="input" id="subject" name="subject" maxlength="80" value="' . $subjectValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Contact Purpose'].'</div></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Contact Purpose'] . '</div></td>';
 	echo '<td>';
 	echo '<select name="contactpurpose" id="contactpurpose">';
 	echo '<option value="000"> ' . $lang['choose your puropse'] . '</ option>';
@@ -133,18 +121,18 @@ function contact()
 	echo '<option value="My Ad is not approved">' . $lang['My Ad is not approved'] . '</ option>';
 	echo '<option value="My Ad is still pending">' . $lang['My Ad is still pending'] . ' </ option>';
 	echo '<option value="Technical problems in Ad"> ' . $lang['Technical problems in Ad'] . '</ option>';
-	echo '<option value="Problems with picture">'.$lang['Problems with picture'].'</ option>';
-	echo '<option value="I want to report suspected fraud"> '.$lang['I want to report suspected fraud'].' </ option>';
-	echo '<option value="Feedback and suggestions for hulutera"> '.$lang['Feedback and suggestions for hulutera'].'</ option>';
-	echo '<option value="General">'.$lang['General comment'] .'</option>';
+	echo '<option value="Problems with picture">' . $lang['Problems with picture'] . '</ option>';
+	echo '<option value="I want to report suspected fraud"> ' . $lang['I want to report suspected fraud'] . ' </ option>';
+	echo '<option value="Feedback and suggestions for hulutera"> ' . $lang['Feedback and suggestions for hulutera'] . '</ option>';
+	echo '<option value="General">' . $lang['General comment'] . '</option>';
 	echo '</select>';
 	echo '</td>';
 	echo '</tr>';
 	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>'.$lang['Message'].'</div></td>';
-	echo '<td><textarea name="description" id="description" rows="8" value="Enter your message here...">'.$descriptionValue.'</textarea></td>';
+	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Message'] . '</div></td>';
+	echo '<td><textarea name="description" id="description" rows="8" value="Enter your message here...">' . $descriptionValue . '</textarea></td>';
 	echo '</tr>';
-	echo '<tr><td colspan="2"><div id="buttonInput"><input type="submit" name="submit" id="submit" class="button" value="'.$lang['Send'].'"/></div></td>';
+	echo '<tr><td colspan="2"><div id="buttonInput"><input type="submit" name="submit" id="submit" class="button" value="' . $lang['Send'] . '"/></div></td>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</form>';
@@ -155,7 +143,7 @@ function contact()
 function aboutUs()
 {
 	global $lang, $lang_url;
-	if($lang_url !== NULL) {
+	if ($lang_url !== NULL) {
 		$str_url = str_replace("?", "", $lang_url);
 	} else {
 		$str_url = "";
@@ -166,13 +154,13 @@ function aboutUs()
 			<p>
 			<p class="aboutus">
 			' . $lang['about us page paragraph1 text'] . '
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=car'. $str_url .'">'.$lang['car'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=house'. $str_url .'">'.$lang['house'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=phone'. $str_url .'">'.$lang['phone'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=computer'. $str_url .'">'.$lang['computer'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=electronics'. $str_url .'">'.$lang['electronics'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=household'. $str_url .'">'.$lang['household'].'</a></li>
-			<li class="aboutUsli"><a href="../includes/template.item.php?type=others'. $str_url .'">'.$lang['others'].'</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=car' . $str_url . '">' . $lang['car'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=house' . $str_url . '">' . $lang['house'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=phone' . $str_url . '">' . $lang['phone'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=computer' . $str_url . '">' . $lang['computer'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=electronics' . $str_url . '">' . $lang['electronics'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=household' . $str_url . '">' . $lang['household'] . '</a></li>
+			<li class="aboutUsli"><a href="../includes/template.item.php?type=others' . $str_url . '">' . $lang['others'] . '</a></li>
 			</p>
 			<br>
 			<p class="aboutus">
@@ -184,9 +172,9 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">' . $lang['We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'] . '
-			<li class="aboutUsli">•' . $lang['For any compliant , improvements or other issues you can use'] . ' <a href="../../includes/template.proxy.php?type=contact'.$str_url.'">' . $lang['Contact Us'] . '</a></li>
+			<li class="aboutUsli">•' . $lang['For any compliant , improvements or other issues you can use'] . ' <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></li>
 			<li class="aboutUsli">•' . $lang['For inappropriate items you can “Report” button'] . '</li>
-			<li class="aboutUsli">•' . $lang['If you need help, click'] . ' <a href="../../includes/template.proxy.php?type=help'.$str_url.'"> ' . $lang['Help'] . '</a> </li>
+			<li class="aboutUsli">•' . $lang['If you need help, click'] . ' <a href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a> </li>
 			</p>
 
 			<br>
@@ -205,7 +193,7 @@ function termAndConditions()
 	echo '
 			<div id="termsAndCond">
 			<div style="background-color:#dfefff;">
-			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:14px">' .$lang['Terms and Conditions']. ' </span></br></br>
+			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:14px">' . $lang['Terms and Conditions'] . ' </span></br></br>
     ' . $lang['terms and conditions text'] . '
 	</div>
 	</div>
@@ -230,7 +218,7 @@ function privacyPolicy()
 			<big><strong>' . $lang['What we do with the information we gather:'] . '</strong></big>
 			<li class="aboutUsli">• ' . $lang['privacy policy paragraph1 text'] . '</li>
 			<li class="aboutUsli">• ' . $lang['We may use the information to improve our services.'] . '</li>
-			<li class="aboutUsli">• ' . $lang['We may periodically send promotional emails msg'] .'</li>
+			<li class="aboutUsli">• ' . $lang['We may periodically send promotional emails msg'] . '</li>
 			<li class="aboutUsli">• ' . $lang['From time to time send info msg'] . '</li>
 			</p>
 			<p class="aboutus">
@@ -247,6 +235,93 @@ function privacyPolicy()
 }
 
 function help()
+{
+	___open_div_('container-fluid', '');
+	___open_div_('row', '');
+	___open_div_('col-md-12', '');
+	//---------------------------
+	___open_div_('page-header', '');
+	echo '<h1>' . $GLOBALS['help'][0]['HuluteraFAQ'] . '<small></small></h1>';
+	___close_div_(1);
+	///
+	$picture = [
+		'register' => '<span class="glyphicon glyphicon-plus" style="font-size:20px"></span>',
+		'logIn' => '<span class="glyphicon glyphicon-log-in" style="font-size:20px"></span>',
+		'upload' => '<span class="glyphicon glyphicon-upload" style="font-size:20px"></span>'
+	];
+	___open_div_('row', '');
+	foreach ($GLOBALS['help'][1] as $key => $value) {
+		//echo '<h3 style="color:#050598a6">' . $GLOBALS['help'][1][$key]['head'] . '</h3>';//' . $picture[$key] .'  
+		 ___open_div_('col-md-12 ', '');
+		echo '<button type="button" class="collapsible" style="font-size:25px">' . $GLOBALS['help'][1][$key]['head'] . '</button>';
+
+		___open_div_('col-md-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');	
+
+  
+		$body = $GLOBALS['help'][1][$key]['body'];
+		echo '<ul style="text-align:start">';
+		foreach ($body as $key2 => $value2) {
+			echo '<p style="text-align:start">';
+
+			echo '<li class="list-item"><strong>' . $key2 . '</strong>' . $body[$key2] . '</li>';
+
+			echo '</p>';
+		}
+		echo '</ul>';
+		echo '<p style="text-align:start"><a class="btn" href="#">Watch Video »</a></p>';
+		___close_div_(2);
+	}
+	// help2();
+	___close_div_(1);
+
+	//---------------------------
+	___close_div_(3);
+
+	// 	echo '<div class="container-fluid">
+	// 	<div class="row">
+	// 		<div class="col-md-12">
+	// 			<div class="page-header">
+	// 				<h1>
+	// 					Hulutera FAQ <small></small>
+	// 				</h1>
+	// 			</div>
+	// 			<div class="row">
+	// 				<div class="col-md-6">
+	// 					<div class="row">
+	// 						<div class="col-md-12">
+	// 							<h2>
+	// 							How to Register
+	// 							</h2>
+	// 							<p>
+	// 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+	// 							</p>
+	// 							<p>
+	// 								<a class="btn" href="#">Watch Video »</a>
+	// 							</p>
+	// 						</div>
+	// 					</div>
+	// 				</div>
+	// 				<div class="col-md-6">
+	// 					<div class="row">
+	// 						<div class="col-md-12">
+	// 							<h2>
+	// 								Heading
+	// 							</h2>
+	// 							<p>
+	// 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+	// 							</p>
+	// 							<p>
+	// 								<a class="btn" href="#">View details »</a>
+	// 							</p>
+	// 						</div>
+	// 					</div>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </div>';
+}
+function help2()
 {
 	echo '
 			<div id="helpin">
@@ -348,6 +423,9 @@ function help()
 			</p>
 
 			</div>
+
+
+
 			<div
 			style="background-color: #f1f1f1; border-bottom: 1px solid #ccc; font-family: Georgia, Times New Roman, serif !important;"
 			id="howtologin">
@@ -465,6 +543,8 @@ function help()
 			src="http://static.hulutera.com/images/login.png">
 			</p>
 			</div>
+
+			______________________________________________________________________
 			<div
 			style="background-color: #f1f1f1; border-bottom: 1px solid #ccc; font-family: Georgia, Times New Roman, serif !important;"
 			id="howtoupload">
@@ -754,76 +834,74 @@ function help()
 
 function register()
 {
-	$http_referer= $_SERVER['HTTP_REFERER'];
+	$http_referer = $_SERVER['HTTP_REFERER'];
 	global $connect, $lang, $lang_url;
-	$error_message="";
-	if(isset($_POST['submit'])){
+	$error_message = "";
+	if (isset($_POST['submit'])) {
 		$error = array();
 
-		if(!isset($_POST['termandCond'])){
+		if (!isset($_POST['termandCond'])) {
 			$error[] = $lang['Please Agree to the Terms and Conditions'];
 		}
 
 		//username
-		if(empty($_POST['username'])){
+		if (empty($_POST['username'])) {
 			$error[] = $lang['Please enter a username'];
-		}else if( ctype_alnum($_POST['username']) ){
+		} else if (ctype_alnum($_POST['username'])) {
 			$username = $_POST['username'];
-		}else{
+		} else {
 			$error[] = $lang['Username must consist of letters and numbers only'];
 		}
 
 		//email
-		if(empty($_POST['email'])){
+		if (empty($_POST['email'])) {
 			$error[] = $lang['Please enter your email'];
-		}else if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+		} else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 			$email = $connect->real_escape_string($_POST['email']);
-		}else{
+		} else {
 			$error[] = $lang['Your e-mail address is invalid'];
 		}
 
 		//password
-		if(empty($_POST['password'])||empty($_POST['password2'])){
+		if (empty($_POST['password']) || empty($_POST['password2'])) {
 			$error[] = $lang['Please enter a password'];
-		}else if($_POST['password']==$_POST['password2']){
+		} else if ($_POST['password'] == $_POST['password2']) {
 			$password = $connect->real_escape_string($_POST['password']);
-		}else {
+		} else {
 			$error[] = $lang['Passwords do not match'];
 		}
 
-		if(!empty($_POST['name'])){
-			if(ctype_alnum($_POST['name']))
+		if (!empty($_POST['name'])) {
+			if (ctype_alnum($_POST['name']))
 				$firstname = $_POST['name'];
-			else{
+			else {
 				$error[] = $lang['Firstname must consist of letters and numbers only'];
 			}
-		}
-		else{
+		} else {
 			$error[] = $lang['Enter your Firstname'];
 		}
 
-		if(!empty($_POST['lastName'])){
-			if(ctype_alnum($_POST['lastName']))
+		if (!empty($_POST['lastName'])) {
+			if (ctype_alnum($_POST['lastName']))
 				$lastname = $_POST['lastName'];
-			else{
+			else {
 				$error[] = $lang['Lastname must consist of letters and numbers only'];
 			}
-		}
-		else{
+		} else {
 			$error[] = $lang['Enter your Lastname'];
 		}
 
-		if(!empty($_POST['address'])){
+		if (!empty($_POST['address'])) {
 			$address = $connect->real_escape_string($_POST['address']);
 		}
-		if(!empty($_POST['phone'])){
-			if(ctype_digit($_POST['phone']))
-				$phone= $_POST['phone'];
-			else{
+		if (!empty($_POST['phone'])) {
+			if (ctype_digit($_POST['phone']))
+				$phone = $_POST['phone'];
+			else {
 				$error[] = $lang['Phone must be a number'];
 			}
 		}
-		if(empty ($error)){
+		if (empty($error)) {
 			$filter = "*";
 			$table1 = "user";
 			$table2 = "tempuser";
@@ -831,38 +909,37 @@ function register()
 			$cond2 = "WHERE email = '$email'";
 			$result = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table1, $cond1);
 			$result3 = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table2, $cond2);
-			if (mysqli_num_rows($result)==0){
-				if(mysqli_num_rows($result3)) {
+			if (mysqli_num_rows($result) == 0) {
+				if (mysqli_num_rows($result3)) {
 					//user exist in tempUser table, delete & create again
-					$resulst4= DatabaseClass::getInstance()->updateUser($table2, $cond2);
+					$resulst4 = DatabaseClass::getInstance()->updateUser($table2, $cond2);
 				}
 
-				$activation=md5(uniqid(rand(),true));
+				$activation = md5(uniqid(rand(), true));
 				$hashed_password = crypt($password);
-				$result2 = DatabaseClass::getInstance()->insertUser("tempuser", '$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation');
-				if(!$result2){
-					die('Could not insert into database: '.mysqli_error());
-				}else{
-					$message="To activate your account, please click on the link:\n\n";
-					$message.="http://www.hulutera.com/includes/activate.php?key=".$activation;
+				$result2 = DatabaseClass::getInstance()->insertUser("tempuser", '$username', '$email', '$hashed_password', '$firstname', '$lastname', '$address', '$phone', '$activation');
+				if (!$result2) {
+					die('Could not insert into database: ' . mysqli_error());
+				} else {
+					$message = "To activate your account, please click on the link:\n\n";
+					$message .= "http://www.hulutera.com/includes/activate.php?key=" . $activation;
 					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@hulutera.com');
 					redirect("../includes/prompt.php?type=1");
 				}
-			}else{
+			} else {
 				redirect("../includes/prompt.php?type=2");
 			}
-		}else{
+		} else {
 			$endl = '<br>';
-			$error_message='<div class="error">';
-			foreach($error as $key=>$values){
-				$error_message.="$values";
-				$error_message.=$endl;
+			$error_message = '<div class="error">';
+			foreach ($error as $key => $values) {
+				$error_message .= "$values";
+				$error_message .= $endl;
 			}
-			$error_message.="</div>";
+			$error_message .= "</div>";
 		}
 
-		if ($http_referer=='http://www.hulutera.com/includes/prompt.php?type=9')
-		{
+		if ($http_referer == 'http://www.hulutera.com/includes/prompt.php?type=9') {
 			ob_start();
 			header('Location: ../includes/upload.php');
 			ob_end_flash();
@@ -875,28 +952,28 @@ function register()
 	$addressValue = (isset($_POST['address'])) ? $_POST['address'] : '';
 	$emailValue = (isset($_POST['email'])) ? $_POST['email'] : '';
 	$phoneValue = (isset($_POST['phone'])) ? $_POST['phone'] : '';
-    
-    
+
+
 	echo '<div id="mainColumn">';
 	echo '<div id="registernow">';
 	echo '<form class="container" method="post" action="../includes/register.php' . $lang_url . '">';
-	echo '<br>'. $error_message;
+	echo '<br>' . $error_message;
 	echo '<div class="registerInner">';
 	echo '<div class="field">';
 	echo '<table>';
 	echo '<tr>';
 	echo '<td><label for="username">' . $lang['Username'] . '</label></td>';
 	echo '<td>';
-	echo '<input type="text" class="input" id="username" name="username" maxlength="20" value="'.$usernameValue.'"/></td>';
+	echo '<input type="text" class="input" id="username" name="username" maxlength="20" value="' . $usernameValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
 	echo '<td><label for="name">' . $lang['First Name'] . '</label></td>';
 	echo '<td>';
-	echo '<input type="text" class="input" id="name" name="name" maxlength="80" value="'.$nameValue.'"/></td>';
+	echo '<input type="text" class="input" id="name" name="name" maxlength="80" value="' . $nameValue . '"/></td>';
 	echo '</tr>';
 	echo '<tr>';
 	echo '<td><label for="lastName">' . $lang['Last Name'] . '</label></td>';
-	echo '<td><input type="text" class="input" id="lastName" name="lastName" maxlength="80" value="'.$lastNameValue.'"/></td>';
+	echo '<td><input type="text" class="input" id="lastName" name="lastName" maxlength="80" value="' . $lastNameValue . '"/></td>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</div>';
@@ -904,13 +981,13 @@ function register()
 	echo '<table>';
 	echo '<tr>';
 	echo '<td><label for="email">' . $lang['Email'] . '</label></td>';
-	echo '<td><input style="text-transform:lowercase;" type="email" class="input" id="email" name="email" maxlength="80" value="'.$emailValue.'"/></td>';
+	echo '<td><input style="text-transform:lowercase;" type="email" class="input" id="email" name="email" maxlength="80" value="' . $emailValue . '"/></td>';
 	echo '</tr><tr>';
 	echo '<td><label for="phone">' . $lang['Phone'] . '</label></td>';
-	echo '<td><input type="tel" class="input" id="phone" name="phone" maxlength="20" value="'.$phoneValue.'"/></td>';
+	echo '<td><input type="tel" class="input" id="phone" name="phone" maxlength="20" value="' . $phoneValue . '"/></td>';
 	echo '</tr><tr>';
 	locationRegion();
-	echo'</tr>';
+	echo '</tr>';
 	echo '</table>';
 	echo '</div>';
 	echo '<div class="field">';
@@ -955,7 +1032,7 @@ function registerX()
 			<ol>
 			<li>
 			<label>' . $lang['Username'] . '</label>
-			<input type="text" class="input" id="username" name="username" maxlength="20" value="'.$usernameValue.'"/>
+			<input type="text" class="input" id="username" name="username" maxlength="20" value="' . $usernameValue . '"/>
 
 					</li>
 					<li>
@@ -973,7 +1050,7 @@ function locationRegion()
 	global $lang;
 	echo '<td><label>' . $lang['City'] . '</label></td>
 			<td><select name="Region" id="city">
-			<option value="000" selected>[' . $lang['City'] . ' ' . $lang['Choose'] .']</option>
+			<option value="000" selected>[' . $lang['City'] . ' ' . $lang['Choose'] . ']</option>
 			<option value = "Addis Ababa">' . $lang['Addis Ababa'] . '</option>
 			<option value = "Dire Dawa">' . $lang['Dire Dawa'] . '</option>
 			<option value = "Adama">' . $lang['Adama'] . '</option>
@@ -1006,26 +1083,49 @@ function locationRegion()
 
 function title($proxyType)
 {
-	switch($proxyType)
-	{
-		case 'about':   $isValidUrl = array(0=>"ስለ እኛ",1=>true);break;
-		case 'terms':   $isValidUrl = array(0=>"የመተዳደርያ ደንብ",1=>true);break;
-		case 'contact': $isValidUrl = array(0=>"ይጠይቁን",1=>true);break;
-		case 'help':    $isValidUrl = array(0=>"መረጃ",1=>true);break;
-		case 'privacy': $isValidUrl = array(0=>"ግላዊ መርህ",1=>true);break;
+	switch ($proxyType) {
+		case 'about':
+			$isValidUrl = array(0 => "ስለ እኛ", 1 => true);
+			break;
+		case 'terms':
+			$isValidUrl = array(0 => "የመተዳደርያ ደንብ", 1 => true);
+			break;
+		case 'contact':
+			$isValidUrl = array(0 => "ይጠይቁን", 1 => true);
+			break;
+		case 'help':
+			$isValidUrl = array(0 => "መረጃ", 1 => true);
+			break;
+		case 'privacy':
+			$isValidUrl = array(0 => "ግላዊ መርህ", 1 => true);
+			break;
 	}
 	return $isValidUrl;
 }
 
 function routerProxy($proxyType)
 {
-	switch($proxyType)
-	{
-		case 'about':   aboutUs();$isValidUrl = array(0=>"ስለ እኛ",1=>true);break;
-		case 'terms':   termAndConditions();$isValidUrl = array(0=>"የመተዳደርያ ደንብ",1=>true);break;
-		case 'contact': contact();$isValidUrl = array(0=>"ይጠይቁን",1=>true);break;
-		case 'help':    help();$isValidUrl = array(0=>"መረጃ",1=>true);break;
-		case 'privacy': privacyPolicy();$isValidUrl = array(0=>"ግላዊ መርህ",1=>true);break;
+	switch ($proxyType) {
+		case 'about':
+			aboutUs();
+			$isValidUrl = array(0 => "ስለ እኛ", 1 => true);
+			break;
+		case 'terms':
+			termAndConditions();
+			$isValidUrl = array(0 => "የመተዳደርያ ደንብ", 1 => true);
+			break;
+		case 'contact':
+			contact();
+			$isValidUrl = array(0 => "ይጠይቁን", 1 => true);
+			break;
+		case 'help':
+			help();
+			$isValidUrl = array(0 => "መረጃ", 1 => true);
+			break;
+		case 'privacy':
+			privacyPolicy();
+			$isValidUrl = array(0 => "ግላዊ መርህ", 1 => true);
+			break;
 	}
 }
 
@@ -1033,20 +1133,16 @@ function routerProxy($proxyType)
 function redirect($url)
 {
 	// If no headers are sent, send one
-	if (!headers_sent())
-	{
-		header('Location: '.$url);
+	if (!headers_sent()) {
+		header('Location: ' . $url);
 		exit;
-	}
-	else
-	{
+	} else {
 		echo '<script type="text/javascript">';
-		echo 'window.location.href="'.$url.'";';
+		echo 'window.location.href="' . $url . '";';
 		echo '</script>';
 		echo '<noscript>';
-		echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+		echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
 		echo '</noscript>';
 		exit;
 	}
 }
-?>

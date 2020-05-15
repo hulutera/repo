@@ -1059,16 +1059,7 @@ SQL;
         ___open_div_("container-fluid", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
         ////
-        ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("form-group", "");
-        ___open_div_("col-md-6", '');
-        logoText();
-        ___close_div_(1);
-        ___open_div_("col-md-6", '');
-        topRightLinks();
-        ___close_div_(2);
-        ___close_div_(4);
+
         ///
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
