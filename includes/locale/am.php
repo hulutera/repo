@@ -377,7 +377,6 @@ $lang = array(
     'search res' => 'የፍለጋ ውጤት',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     'Invalid' => "የተከለከለ",
-    'Should' => "የተከለከለ",
     'unknown' => 'አይታወቅም',
     'unlisted' => '-- አልተዘረዘረም --',
     'today' => 'ዛሬ',

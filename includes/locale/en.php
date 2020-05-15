@@ -408,7 +408,6 @@ $lang = array(
     'search res' => 'Search Result',
     'Back to Post Item' => "Back to Post Item",
     'Invalid' => "Invalid",
-    'Should' => "Invalid",
     'unknown' => 'Unknown',
     'unlisted' => '-- Unlisted --',
     'today' => 'Today',
