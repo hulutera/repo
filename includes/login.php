@@ -36,7 +36,7 @@ require_once $documnetRootPath . '/includes/validate.php';
         }
         $sessionName = 'login';
         $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-        $_SESSION['lan'] = isset($_GET['lan'])?$_GET['lan']:"en";
+        $_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 
         if (!isset($_SESSION[$sessionName])) {
             $object = new HtUserAll("*");

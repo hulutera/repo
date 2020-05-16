@@ -956,6 +956,7 @@ $user_specific_array = [
     'user' =>    [
         'registeration' => 'User Registeration',
         'login' => 'Login',
+        'contactus' => 'Contact Us',
         'passwordRecovery' => [
             0 => 'Password Recovery',
             1 => 'Recovery'
@@ -1031,6 +1032,32 @@ $user_specific_array = [
                 'message' => 'Click here to read <strong>Privacy Policy</strong>'
             ]
         ],
+        'fieldCompany'       => [
+            0 => 'Company Name',
+            1 => 'Write your Company Name or write private'
+        ],
+        'fieldSubject'       => [
+            0 => 'Subject',
+            1 => 'Write your subject here'
+        ],
+        'fieldMessage'       => [
+            0 => 'Message',
+            1 => 'Write your message here'
+        ],
+        'fieldPurpose'       => [
+            0 => 'Contact Purpose',
+            1 => 'Choose your purpose',
+            2 => [
+                1 => 'General comment',
+                2 => 'I can not find my Ad',
+                3 => 'My Ad is not approved',
+                4 => 'My Ad is still pending',
+                5 => 'Technical problems in Ad',
+                6 => 'Problems with picture',
+                7 => 'I want to report suspected fraud',
+                8 => 'Feedback and suggestions for hulutera',
+            ]
+        ],
     ],
 
     'message' => [
@@ -1039,7 +1066,7 @@ $user_specific_array = [
             'body' => 'Thank you for registering. A confirmation mail has been sent to your email.
             Please click on the activation link to activate your account.',
         ],
-        'passRecovery' => [
+        'password-recovery' => [
             'subject' => '"Your New Password',
             'body' => [
                 0 => 'Dear Customer,<br>
@@ -1054,11 +1081,21 @@ $user_specific_array = [
                 ],
             ]
         ],
-        'editProfile' => [
+        'edit-profile' => [
             'subject' => 'Confirmation for your profile update',
             'body' => [
                 0 => 'Dear Customer,<br>
                       You have asked to update your Hulutera profile. Per your request, you have successfully.
+                      <br>Sincerely,<br>The hulutera Team<br>'
+            ]
+        ],
+        'contact-us' => [
+            'subject' => 'Thank you for getting in touch',
+            'body' => [
+                0 => 'We have received your message and would like to thank you for writing to us. 
+                      If your inquiry is urgent,  please use the telephone number listed above
+                      to talk to one of our staff members. 
+                      Otherwise, we will reply by email as soon as possible.
                       <br>Sincerely,<br>The hulutera Team<br>'
             ]
         ]

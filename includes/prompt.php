@@ -27,7 +27,7 @@ function createMessage($type)
 			case 2:
 				$message = 'The Email address or the Username has already been used.
 						Try <a href="../includes/register.php"> to Register!</a> or Try to </br>
-						<a href="../includes/passRecovery.php">Recover your account</a> again!';
+						<a href="../includes/password-recovery.php">Recover your account</a> again!';
 				break;
 
 			case 3:

@@ -23,21 +23,21 @@ require_once $documnetRootPath . '/includes/validate.php';
     <div class="row" style="width:60%;margin:80px;margin-left:20%;margin-right:20%;">
         <?php
         ///reset/cleanup session variables
-        if (!isset($_GET['function']) or $_GET['function'] !== 'passRecovery' or $_SESSION['lan'] != isset($_GET['lan'])) {
+        if (!isset($_GET['function']) or $_GET['function'] !== 'password-recovery' or $_SESSION['lan'] != isset($_GET['lan'])) {
             unset($_SESSION['POST']);
             unset($_SESSION['errorRaw']);
         }
-        $sessionName = 'passRecovery';
+        $sessionName = 'password-recovery';
         $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
         $_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 
         if (!isset($_SESSION[$sessionName])) {
             $object = new HtUserAll("*");
-            $object->passRecovery();
+            $object->passwordRecovery();
             $_SESSION[$sessionName] = base64_encode(serialize($object));
         } else {
             $object = unserialize(base64_decode($_SESSION[$sessionName]));
-            $object->passRecovery();
+            $object->passwordRecovery();
         }
         ?>
     </div>

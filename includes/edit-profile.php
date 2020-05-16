@@ -34,11 +34,11 @@ if (!isset($_SESSION['uID'])) {
 	?>
 	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
 		<?php
-		if (!isset($_GET['function']) or $_GET['function'] !== 'editProfile' or $_SESSION['lan'] != $_GET['lan']) {
+		if (!isset($_GET['function']) or $_GET['function'] !== 'edit-profile' or $_SESSION['lan'] != $_GET['lan']) {
 			unset($_SESSION['POST']);
 			unset($_SESSION['errorRaw']);
 		}
-		$sessionName = 'editProfile';
+		$sessionName = 'edit-profile';
 		$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
 		$_SESSION['lan'] = $_GET['lan'];
 		if (!isset($_SESSION[$sessionName])) {

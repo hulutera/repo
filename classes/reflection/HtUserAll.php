@@ -878,14 +878,14 @@ SQL;
         echo '</form>';
     }
 
-    public function passRecovery()
+    public function passwordRecovery()
     {
         if (isset($_GET['lan'])) {
             $lang_url = "&lan=" . $_GET['lan'];
         } else {
             $lang_url = "";
         }
-        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=passRecovery' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=password-recovery' . $lang_url . '" method="post" enctype="multipart/form-data">';
         $this->insertPassRecoveryField();
         echo '</form>';
     }
@@ -1032,7 +1032,7 @@ SQL;
         ___open_div_("col-md-12", '');
         ___open_div_("col-md-12", '');
         ___open_div_("col-md-6", '');
-        echo '<a class="forgot" href="../includes/passRecovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
+        echo '<a class="forgot" href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
         ___open_div_("col-md-6", '" style="text-align:right;');
         echo '<a class="forgot" href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
@@ -1116,11 +1116,11 @@ SQL;
         $this->update($this->getId());
 
         $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $activation . "&newPass=yes";
-        $subject = $GLOBALS['user_specific_array']['message']['passRecovery']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['passRecovery']['body'][0];
-        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][0] . $recoveryLink . "<br><br><br>";
-        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][1] . $randomPassword08 . "<br>";
-        $body .= $GLOBALS['user_specific_array']['message']['passRecovery']['body'][1][2] . "<br><br>";
+        $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
+        $body = $GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] . $recoveryLink . "<br><br><br>";
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . "<br>";
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "<br><br>";
 
         /// temporary disable for message sending
         if (DBHOST == 'localhost') {
@@ -1181,14 +1181,14 @@ SQL;
 
             $this->update($_SESSION['uID']);
 
-            $subject = $GLOBALS['user_specific_array']['message']['editProfile']['subject'];
-            $body = $GLOBALS['user_specific_array']['message']['editProfile']['body'][0] . "<br><br>";
+            $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
+            $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
 
 
             /// temporary disable for message sending
             if (DBHOST == 'localhost') {
                 $_SESSION['editProfileSuccess'] = 1;
-                header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+                header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
                 return;
             }
             $isMailDelivered = mail($this->field_email, $subject, $body, 'From:admin@hulutera.com');
@@ -1197,10 +1197,10 @@ SQL;
                 die("Sending Email Failed. Please Contact Site Admin!");
             } else {
                 $_SESSION['editProfileSuccess'] = 1;
-                header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+                header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
             }
         } else {
-            header('Location: ../includes/editProfile.php?function=editProfile' . $lang_sw);
+            header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         }
     }
     public function updateProfile()
@@ -1253,7 +1253,7 @@ SQL;
             global $lang_url;
 
             echo '
-            <a href="../../includes/editProfile.php' . $lang_url . '&function=editProfile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md" 
+            <a href="../../includes/edit-profile.php' . $lang_url . '&function=edit-profile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md" 
                         style="float:right;color:black;font-size:16px;font-weight:bold;">' .  $GLOBALS['lang']['edit'] . '</a>';
             ___close_div_(3);
         }
@@ -1288,7 +1288,7 @@ SQL;
         } else {
             $lang_url = "";
         }
-        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=editProfile' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=edit-profile' . $lang_url . '" method="post" enctype="multipart/form-data">';
 
         ___open_div_("container-fluid ", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
@@ -1340,7 +1340,7 @@ SQL;
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['save changes'] . '</button>';
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        echo '<a href="../../includes/editProfile.php?' . $lang_url . '&function=editProfile&update=' . $field . '&order=cancel" type="button" class="btn btn-danger btn-lg btn-block"
+        echo '<a href="../../includes/edit-profile.php?' . $lang_url . '&function=edit-profile&update=' . $field . '&order=cancel" type="button" class="btn btn-danger btn-lg btn-block"
                                 style="float:right;">' . $GLOBALS['lang']['cancel changes'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);

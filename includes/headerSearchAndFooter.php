@@ -70,7 +70,7 @@ function headerAndSearchCode($item)
 	___open_div_('container', '');
 	___open_div_('ht-left', '');
 	___open_div_('mail-service', '');
-	echo '<a href="../../includes/template.proxy.php?type=contact' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>Contact us<br>info@hulutera.com</a>';
+	echo '<a href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>'.$GLOBALS['lang']['Contact Us'].'<br>info@hulutera.com</a>';
 	___close_div_(1);
 	___open_div_('phone-service', '');
 	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
@@ -434,7 +434,7 @@ function footerCode()
 		<p class="h4">' . $lang['INFORMATION'] . '</p>
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
-		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/help.php">' . $lang['Help'] . '</a></p>
 		</div>';
 	echo '<div id="followUs_fo" >
@@ -556,7 +556,7 @@ function yourPage()
 										<div class="row">
 											<div class="col-md-12">
 											
-									<a href="../../includes/editProfile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
+									<a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
 												style="float:right;">{$toMyProfileButton}</a>
 											</div>
 										</div>

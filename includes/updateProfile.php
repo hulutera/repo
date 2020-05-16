@@ -50,7 +50,7 @@ else
 				die ("Sending Email Failed. Please Contact Site Admin!");
 			}
 			ob_start();
-			header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+			header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 			ob_end_flush();
 		}
 		else
@@ -60,7 +60,7 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+			header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 			ob_end_flush();
 		}
 
@@ -113,7 +113,7 @@ else
 			if($result2)
 			{
 				ob_start();
-				header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+				header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 				ob_end_flush();
 			}
 		}
@@ -124,7 +124,7 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+			header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 			ob_end_flush();
 		}
 	}
@@ -143,7 +143,7 @@ else
 				uAddress   = '$new_address'
 				WHERE uID  = '$user_id'");
 		ob_start();
-		header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+		header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 		ob_end_flush();
 	}
 	elseif($_POST['submit4']) //to handle form for contact method changes
@@ -172,9 +172,9 @@ else
 		$table = "user";
 	    $result = DatabaseClass::getInstance()->updateTable($table, $condition);
 		ob_start();
-		header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+		header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 		ob_end_flush();
-		header('Location: ../includes/editProfile.php'.$lang_url);
+		header('Location: ../includes/edit-profile.php'.$lang_url);
 	}
 	elseif($_POST['submit5'])//to handle form for terminating account
 	{
@@ -235,14 +235,14 @@ else
 			}
 				
 			ob_start();
-			header('Location: ../includes/editProfile.php?error='.$error_message.$str_url);
+			header('Location: ../includes/edit-profile.php?error='.$error_message.$str_url);
 			ob_end_flush();
 		}
 	}
 	elseif($_POST['submit']) //to handle form for all close submits
 	{
 		ob_start();
-		header('Location: ../includes/editProfile.php' . $lang_url);
+		header('Location: ../includes/edit-profile.php' . $lang_url);
 		ob_end_flush();
 	}
 

@@ -10,14 +10,26 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/validate.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
+$function = isset($_GET['function']) ? $_GET['function'] : '';
+$validFunctions = ['register', 'login','password-recovery','edit-profile','contact-us'];
+
+if(!in_array($function, $validFunctions))
+{
+    header('Location: ../../index.php');
+}
+else{
+    foreach ($validFunctions as $key => $value) {
+        if($function != $value)
+        {
+            unset($_SESSION[$value]);
+        }
+    }
+}
+//exit;
+
 $validate = null;
 $errPre = [];
-$function = isset($_GET['function']) ? $_GET['function'] : '';
-if ($function == 'register') {
-    $validate = new ValidateRegister($errPre);
-} else if ($function == 'login' || $function == 'passRecovery' || $function == 'editProfile') {
-    $validate = new ValidateLogin($errPre);
-}
+$validate = new ValidateUser($errPre);
 var_dump($errPre);
 var_dump($_POST);
 // var_dump($_SERVER['HTTP_REFERER']);
@@ -30,7 +42,7 @@ if (!empty($errPre)) {
 
     $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
     $redirectLink = '';
-    if ($function == 'editProfile') {
+    if ($function == 'edit-profile') {
         $redirectLink = $_SERVER['HTTP_REFERER'];
     } else {
         $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
@@ -46,7 +58,7 @@ if (!empty($errPre)) {
         $object = new HtUserTemp("*");
         $object->register();
         clearSessionVariables($function); // reset Error
-    } else if ($function == 'login' || $function == 'passRecovery' || $function == 'editProfile') {
+    } else if ($function == 'login' || $function == 'password-recovery' || $function == 'edit-profile' || $function == 'contact-us') {
         $validate->postValidation($errPost, $function);
         var_dump($errPost);
         //exit;
@@ -55,7 +67,7 @@ if (!empty($errPre)) {
             $_SESSION['POST'] = $_POST;
             $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
             $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
-            header('Location: ' . $redirectLink);
+            //header('Location: ' . $redirectLink);
         } else {
             clearSessionVariables($function);
         }

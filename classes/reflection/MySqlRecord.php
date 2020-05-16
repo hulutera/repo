@@ -167,6 +167,7 @@ class MySqlRecord extends Model
         if (isset($_SESSION['POST'][$fieldName])) {
             $choose = $_SESSION['POST'][$fieldName];
         }
+
         $typetype = isset($type) ? $type : "text";
 
         ___open_div_("row", '');
@@ -180,9 +181,17 @@ EOD;
             echo $errorMsg;
             ___close_div_(1);
         }
-        echo <<< EOD
+        if ($typetype == "textarea") {
+            ___open_div_("col-md-12", '" style="width:100%');
+            echo <<< EOD
+        <textarea id="{$fieldName}" name="{$fieldName}" rows="5" value="{$choose}" autocomplete="off" spellcheck="false" class="form-control"></textarea>
+EOD;
+            ___close_div_(1);
+        } else {
+            echo <<< EOD
     <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
 EOD;
+        }
         if ($type === 'password') {
             if (strpos($fieldName, "fieldPasswordRepeat") === false) {
                 echo '<input type="checkbox" onclick="showPassword()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
@@ -362,7 +371,6 @@ EOD;
             }
         }
 
-
         $style = "display: block;";
         if (!empty($option)) {
             $style = "display: none;";
@@ -390,7 +398,7 @@ EOD;
 EOD;
         ___close_div_(3);
     }
-    
+
     protected function insertSelectable($fieldName, $globalArrayName, $source = null, $selectable = null, $newLabel = null)
     {
         $errorMsg = "";
@@ -580,15 +588,3 @@ EOD;
         return $selectable;
     }
 }
-// function ___open_div_($class, $options)
-// {
-//     echo '<div class="' . $class . ' ' . $options . '">';
-// }
-// function ___close_div_($number)
-// {
-//     $div = "";
-//     for ($i = 0; $i < $number; $i++) {
-//         $div .= "</div>";
-//     }
-//     echo $div;
-// }

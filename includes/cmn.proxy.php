@@ -1,143 +1,13 @@
 <?php
 
+$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/includes/cmn.proxy.php';
+require_once $documnetRootPath . '/classes/reflection/HtUtilContactUs.php';
 if (isset($_GET['lan'])) {
 	$lang_url = "?&lan=" . $_GET['lan'];
 } else {
 	$lang_url = "";
-}
-
-function contact()
-{
-	global $connect, $lang, $lang_url;
-	$error_message = "";
-	if (isset($_POST['submit'])) {
-		$error = array();
-
-		/*check name*/
-		if (empty($_POST['name'])) {
-			$error[] = $lang['Please enter your name'];
-		} else if (ctype_alpha($_POST['name'])) {
-			$name = $_POST['name'];
-		} else {
-			$error[] = $lang['Enter only your first name'];
-		}
-
-		//email
-		if (empty($_POST['email'])) {
-			$error[] = $lang['Please enter your email'];
-		} else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$email = $connect->real_escape_string($_POST['email']);
-		} else {
-			$error[] = $lang['Your e-mail address is invalid'];
-		}
-
-		/*check message*/
-		if (!empty($_POST['description'])) {
-			$description = $connect->real_escape_string($_POST['description']);
-		}
-		/*check subject*/
-		if (empty($_POST['subject'])) {
-			$error[] = $lang['Please enter a subject'];
-		} else {
-			$subject = $connect->real_escape_string($_POST['subject']);
-		}
-		/*check purpose*/
-		if ($_POST['contactpurpose'] == "000") {
-			$error[] = $lang['Please state choose your purpose'];
-		} else {
-			$contactpurpose = $connect->real_escape_string($_POST['contactpurpose']);
-		}
-		/*check company*/
-		if (!empty($_POST['company'])) {
-			$company = $connect->real_escape_string($_POST['company']);
-		}
-
-		if (empty($error)) {
-			$result = $connect->query("INSERT INTO contactus (name, company, email, subject ,purpose, description, messageStatus)
-					VALUES ('$name','$company','$email','$subject','$contactpurpose','$description','unread')")
-				or die(mysqli_error());
-			if (!$result) {
-				die('Could not insert into database: ' . mysqli_error());
-			} else {
-				$message = $lang['This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n'];
-				$isMailDelivered = mail($email, 'Contact confirmation', $message, 'From:noreply@hulutera.com');
-
-				if (!$isMailDelivered) {
-					die("Sending Email Failed. Please Contact Site Admin!");
-				} else {
-					redirect("../includes/prompt.php?type=7");
-				}
-			}
-		} else {
-			$endl = '<br>';
-			$error_message = '<div class="error">';
-			foreach ($error as $key => $values) {
-				$error_message .= "$values";
-				$error_message .= $endl;
-			}
-			$error_message .= "</div>";
-		}
-	}
-
-	$nameValue = (isset($_POST['name'])) ? $_POST['name'] : '';
-	$companyValue = (isset($_POST['company'])) ? $_POST['company'] : '';
-	$emailValue = (isset($_POST['email'])) ? $_POST['email'] : '';
-	$subjectValue = (isset($_POST['subject'])) ? $_POST['subject'] : '';
-	$descriptionValue = (isset($_POST['description'])) ? $_POST['description'] : '';
-
-	if ($lang_url !== NULL) {
-		$str_url = str_replace("?", "", $lang_url);
-	} else {
-		$str_url = "";
-	}
-	echo '<div id="mainColumn">';
-	echo '<div id="contactUs">';
-	echo '<form class="container" method="POST" action="../includes/template.proxy.php?type=contact' . $str_url . '">';
-	echo '<br>';
-	echo  $error_message;
-	echo '<table>';
-	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Your name'] . '</div></td>';
-	echo '<td><input type="text" class="input" id="name" name="name" maxlength="80" value="' . $nameValue . '"/></td>';
-	echo '</tr>';
-	echo '<tr>';
-	echo '<td  style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Email'] . '</div></td>';
-	echo '<td><input type="text" style="text-transform:lowercase"class="input" id="email" name="email" maxlength="80" value="' . $emailValue . '"/></td>';
-	echo '</tr>';
-	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Company'] . '</div></td>';
-	echo '<td><input type="text" class="input" id="company" name="company" maxlength="80" value="' . $companyValue . '"/></td>';
-	echo '</tr>';
-	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Subject'] . '</div></td>';
-	echo '<td><input type="text" class="input" id="subject" name="subject" maxlength="80" value="' . $subjectValue . '"/></td>';
-	echo '</tr>';
-	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Contact Purpose'] . '</div></td>';
-	echo '<td>';
-	echo '<select name="contactpurpose" id="contactpurpose">';
-	echo '<option value="000"> ' . $lang['choose your puropse'] . '</ option>';
-	echo '<option value="I can not find my Ad">' . $lang['I can not find my Ad'] . '</ option>';
-	echo '<option value="My Ad is not approved">' . $lang['My Ad is not approved'] . '</ option>';
-	echo '<option value="My Ad is still pending">' . $lang['My Ad is still pending'] . ' </ option>';
-	echo '<option value="Technical problems in Ad"> ' . $lang['Technical problems in Ad'] . '</ option>';
-	echo '<option value="Problems with picture">' . $lang['Problems with picture'] . '</ option>';
-	echo '<option value="I want to report suspected fraud"> ' . $lang['I want to report suspected fraud'] . ' </ option>';
-	echo '<option value="Feedback and suggestions for hulutera"> ' . $lang['Feedback and suggestions for hulutera'] . '</ option>';
-	echo '<option value="General">' . $lang['General comment'] . '</option>';
-	echo '</select>';
-	echo '</td>';
-	echo '</tr>';
-	echo '<tr>';
-	echo '<td style="padding-top: 10%;float: right;padding-right: 8%;"><div>' . $lang['Message'] . '</div></td>';
-	echo '<td><textarea name="description" id="description" rows="8" value="Enter your message here...">' . $descriptionValue . '</textarea></td>';
-	echo '</tr>';
-	echo '<tr><td colspan="2"><div id="buttonInput"><input type="submit" name="submit" id="submit" class="button" value="' . $lang['Send'] . '"/></div></td>';
-	echo '</tr>';
-	echo '</table>';
-	echo '</form>';
-	echo '</div>';
-	echo '</div>';
 }
 
 function aboutUs()
@@ -268,11 +138,25 @@ function help()
 			echo '</p>';
 		}
 		echo '</ul>';
-		echo '<p style="text-align:start"><a class="btn" href="#">Watch Video »</a></p>';
+		echo '<p style="text-align:start"><a class="btn" href="#">Watch Clip »</a></p>';
 		___close_div_(2);
 	}
 	// help2();
 	___close_div_(1);
+
+
+	// echo 'Welcome to the online Demo on how to register for Hulutera . 
+	// Hulutera provides a safe and simple online advertising service. 
+	// This allows you to advertise your item to rent, sell, or both. 
+	// You can register to Hulutera by entering your personal details online. 
+	// To begin the registration click on the Register link.
+ 	//  Enter your personal information username, first and last name, email address, phone, 
+	//  and then create your password and confirm your password.
+	// Make sure to select the option "YES, I have read and agree to the Term and Conditions", 
+	// before completing your registration. Upon completion, you will receive a confirmation email 
+	// that contains an activation link and click the link to confirm and complete registration. 
+	// You see a message, "Your account is active. You may now log in and use Hulutera\'s free service".
+	// Thank you.';
 
 	//---------------------------
 	___close_div_(3);
@@ -1090,7 +974,7 @@ function title($proxyType)
 		case 'terms':
 			$isValidUrl = array(0 => "የመተዳደርያ ደንብ", 1 => true);
 			break;
-		case 'contact':
+		case 'contact-us':
 			$isValidUrl = array(0 => "ይጠይቁን", 1 => true);
 			break;
 		case 'help':
@@ -1113,10 +997,6 @@ function routerProxy($proxyType)
 		case 'terms':
 			termAndConditions();
 			$isValidUrl = array(0 => "የመተዳደርያ ደንብ", 1 => true);
-			break;
-		case 'contact':
-			contact();
-			$isValidUrl = array(0 => "ይጠይቁን", 1 => true);
 			break;
 		case 'help':
 			help();

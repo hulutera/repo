@@ -122,7 +122,7 @@ function priceCommon($hash)
 }
 function contactMethod($hash)
 {
-	$contact = isset($_GET['contact'])?$_GET['contact']:'';
+	$contact = isset($_GET['contact-us'])?$_GET['contact-us']:'';
 	global $lang;
 
 	echo '<div id ="contactMethod">';

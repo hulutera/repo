@@ -3,9 +3,9 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath.'/db/database.class.php';
 $connect = DatabaseClass::getInstance()->getConnection();
 $key = $connect->real_escape_string($_GET['key']);
-$passRecovery = $_GET['newPass'];
+$password-recovery = $_GET['newPass'];
 var_dump($GET);
-if(!empty($passRecovery) && !empty($key)){
+if(!empty($password-recovery) && !empty($key)){
 	$userTable = "user";
 	$filter = "uNewPassword";
     $result = DatabaseClass::getInstance()->userPassword($userTable, $filter, $key);

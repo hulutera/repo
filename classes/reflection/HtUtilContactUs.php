@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtUtilContactUs
  * @extends MySqlRecord
  * @filesource HtUtilContactUs.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -164,7 +164,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -177,7 +177,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldName($fieldName)
     {
-        $this->fieldName = (string)$fieldName;
+        $this->fieldName = (string) $fieldName;
     }
 
     /**
@@ -190,7 +190,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldCompany($fieldCompany)
     {
-        $this->fieldCompany = (string)$fieldCompany;
+        $this->fieldCompany = (string) $fieldCompany;
     }
 
     /**
@@ -203,7 +203,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldEmail($fieldEmail)
     {
-        $this->fieldEmail = (string)$fieldEmail;
+        $this->fieldEmail = (string) $fieldEmail;
     }
 
     /**
@@ -216,7 +216,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldSubject($fieldSubject)
     {
-        $this->fieldSubject = (string)$fieldSubject;
+        $this->fieldSubject = (string) $fieldSubject;
     }
 
     /**
@@ -229,7 +229,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldPurpose($fieldPurpose)
     {
-        $this->fieldPurpose = (string)$fieldPurpose;
+        $this->fieldPurpose = (string) $fieldPurpose;
     }
 
     /**
@@ -242,7 +242,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldDescription($fieldDescription)
     {
-        $this->fieldDescription = (string)$fieldDescription;
+        $this->fieldDescription = (string) $fieldDescription;
     }
 
     /**
@@ -255,7 +255,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldMessageStatus($fieldMessageStatus)
     {
-        $this->fieldMessageStatus = (string)$fieldMessageStatus;
+        $this->fieldMessageStatus = (string) $fieldMessageStatus;
     }
 
     /**
@@ -268,7 +268,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function setFieldReceivedDate($fieldReceivedDate)
     {
-        $this->fieldReceivedDate = (string)$fieldReceivedDate;
+        $this->fieldReceivedDate = (string) $fieldReceivedDate;
     }
 
     /**
@@ -399,10 +399,10 @@ class HtUtilContactUs extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "util_contact_us";
@@ -438,7 +438,6 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -452,19 +451,19 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM util_contact_us";
         } else { //id
-            $sql =  "SELECT * FROM util_contact_us WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM util_contact_us WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
+            @$this->id = (int) $rowObject->id;
             @$this->fieldName = $this->replaceAposBackSlash($rowObject->field_name);
             @$this->fieldCompany = $this->replaceAposBackSlash($rowObject->field_company);
             @$this->fieldEmail = $this->replaceAposBackSlash($rowObject->field_email);
@@ -475,10 +474,9 @@ class HtUtilContactUs extends MySqlRecord
             @$this->fieldReceivedDate = $rowObject->field_received_date;
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -489,15 +487,15 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM util_contact_us WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM util_contact_us WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -519,23 +517,24 @@ class HtUtilContactUs extends MySqlRecord
             INSERT INTO util_contact_us
             (field_name,field_company,field_email,field_subject,field_purpose,field_description,field_message_status,field_received_date)
             VALUES(
-			{$this->parseValue($this->fieldName,'notNumber')},
-			{$this->parseValue($this->fieldCompany,'notNumber')},
-			{$this->parseValue($this->fieldEmail,'notNumber')},
-			{$this->parseValue($this->fieldSubject,'notNumber')},
-			{$this->parseValue($this->fieldPurpose,'notNumber')},
-			{$this->parseValue($this->fieldDescription,'notNumber')},
-			{$this->parseValue($this->fieldMessageStatus,'notNumber')},
-			{$this->parseValue($this->fieldReceivedDate,'notNumber')})
+			{$this->parseValue($this->fieldName, 'notNumber')},
+			{$this->parseValue($this->fieldCompany, 'notNumber')},
+			{$this->parseValue($this->fieldEmail, 'notNumber')},
+			{$this->parseValue($this->fieldSubject, 'notNumber')},
+			{$this->parseValue($this->fieldPurpose, 'notNumber')},
+			{$this->parseValue($this->fieldDescription, 'notNumber')},
+			{$this->parseValue($this->fieldMessageStatus, 'notNumber')},
+			{$this->parseValue($this->fieldReceivedDate, 'notNumber')})
 SQL;
+echo $sql;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -562,24 +561,24 @@ SQL;
             UPDATE
                 util_contact_us
             SET 
-				field_name={$this->parseValue($this->fieldName,'notNumber')},
-				field_company={$this->parseValue($this->fieldCompany,'notNumber')},
-				field_email={$this->parseValue($this->fieldEmail,'notNumber')},
-				field_subject={$this->parseValue($this->fieldSubject,'notNumber')},
-				field_purpose={$this->parseValue($this->fieldPurpose,'notNumber')},
-				field_description={$this->parseValue($this->fieldDescription,'notNumber')},
-				field_message_status={$this->parseValue($this->fieldMessageStatus,'notNumber')},
-				field_received_date={$this->parseValue($this->fieldReceivedDate,'notNumber')}
+				field_name={$this->parseValue($this->fieldName, 'notNumber')},
+				field_company={$this->parseValue($this->fieldCompany, 'notNumber')},
+				field_email={$this->parseValue($this->fieldEmail, 'notNumber')},
+				field_subject={$this->parseValue($this->fieldSubject, 'notNumber')},
+				field_purpose={$this->parseValue($this->fieldPurpose, 'notNumber')},
+				field_description={$this->parseValue($this->fieldDescription, 'notNumber')},
+				field_message_status={$this->parseValue($this->fieldMessageStatus, 'notNumber')},
+				field_received_date={$this->parseValue($this->fieldReceivedDate, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -605,31 +604,127 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for util_contact_us previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for util_contact_us previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into util_contact_us.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into util_contact_us.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
 
+    /**
+     * Facility for upload a new row into util_contact_us.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
+    public function contactUs()
+    {
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=contact-us' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        $this->insertContactUsField();
+        echo '</form>';
+    }
+
+    /**
+     * 
+     */
+    public function insertContactUsField()
+    {
+        ___open_div_("container-fluid", '');
+        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:20%; margin-right:25%; padding: 20px;');
+
+        ___open_div_("row", "");
+        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['contactus'] . '</strong></p>';
+        ___close_div_(2);
+        ///
+        $style = '" style="text-align: left;font-size:18px;';
+        ///
+        $fillableFields = ['fieldName', 'fieldEmail', 'fieldCompany', 'fieldSubject'];
+        ___open_div_("row", '" style="margin-top:15px;');
+        ___open_div_("col-md-12", $style);
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        foreach ($fillableFields as $value) {
+            ___open_div_("col-md-12", '');
+            ___open_div_("col-md-12", '');
+            $this->insertFillable($value,  'user_specific_array', 'user');
+            ___close_div_(2);
+        }
+
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertSelectable('fieldPurpose',  'user_specific_array', 'user');
+        ___close_div_(2);
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        $this->insertFillable('fieldMessage',  'user_specific_array', 'user', 'textarea');
+        ___close_div_(2);
+        ___close_div_(4);
+
+        ///
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12", '');
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Send'] . '</button>';
+        ___close_div_(5);
+        ___close_div_(2);
+    }
+
+    public function finalizeContactUs()
+    {
+        $this->fieldName    = isset($_POST['fieldName']) ? $_POST['fieldName'] : $this->fieldName;
+        $this->fieldEmail   = isset($_POST['fieldEmail']) ? $_POST['fieldEmail'] : $this->fieldEmail;
+        $this->fieldCompany = isset($_POST['fieldCompany']) ? $_POST['fieldCompany'] : $this->fieldCompany;
+        $this->fieldSubject = isset($_POST['fieldSubject']) ? $_POST['fieldSubject'] : $this->fieldSubject;
+        $this->fieldMessage = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
+        $this->fieldPurpose = isset($_POST['fieldPurpose']) ? $_POST['fieldPurpose'] : $this->fieldPurpose;
+        $this->fieldDescription = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
+        $this->fieldMessageStatus = 'unread';
+        $this->fieldReceivedDate = date("Y-m-d H:i:s");
+
+        $this->insert();
+
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+        $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
+        $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "<br><br>";
+        /// temporary disable for message sending
+        if (DBHOST == 'localhost') {
+            header('Location: ../includes/prompt.php?type=7' . $lang_sw);
+            return;
+        }
+        $isMailDelivered = mail($this->field_email, $subject, $body, 'From:noreply@hulutera.com');
+        //Check if mail Delivered or die
+        if (!$isMailDelivered) {
+            die("Sending Email Failed. Please Contact Site Admin!");
+        } else {
+            header('Location: ../includes/prompt.php?type=7' . $lang_sw);
+        }
+    }
 }
-?>

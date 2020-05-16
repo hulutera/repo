@@ -3,7 +3,7 @@ session_start();
 ob_flush();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+require_once $documnetRootPath . '/classes/reflection/HtUtilContactUs.php';
 require_once $documnetRootPath . '/includes/validate.php';
 
 
@@ -12,7 +12,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 <html lang="en">
 
 <head>
-<title><?php echo $GLOBALS['lang']['Register'];?></title>
+	<title><?php echo $GLOBALS['lang']['Contact Us']; ?></title>
 	<?php commonHeader(); ?>
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
@@ -30,35 +30,25 @@ require_once $documnetRootPath . '/includes/validate.php';
 	headerAndSearchCode("");
 	?>
 	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
-
 		<?php
-		if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {
+		if (!isset($_GET['function']) or $_GET['function'] !== 'contact-us' or $_SESSION['lan'] != $_GET['lan']) {
 			unset($_SESSION['POST']);
 			unset($_SESSION['errorRaw']);
 		}
-		$sessionName = 'register';
+		$sessionName = 'contact-us';
 		$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-        $_SESSION['lan'] = isset($_GET['lan'])?$_GET['lan']:"en";
+		$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 		if (!isset($_SESSION[$sessionName])) {
-			$object = new HtUserAll("*");
-			$object->register();
+			$object = new HtUtilContactUs();
+			$object->contactUs();
 			$_SESSION[$sessionName] = base64_encode(serialize($object));
 		} else {
 			$object = unserialize(base64_decode($_SESSION[$sessionName]));
-			$object->register();
+			$object->contactUs();
 		}
-		var_dump($_SESSION);
 		?>
 	</div>
 	<?php footerCode(); ?>
-	<script>
-		function showPassword() {
-			var fieldPassword = document.getElementById("fieldPassword");
-			var fieldPasswordRepeat = document.getElementById("fieldPasswordRepeat");
-			fieldPassword.type = (fieldPassword.type === "password") ? "text" : "password";
-			fieldPasswordRepeat.type = (fieldPasswordRepeat.type === "password") ? "text" : "password";
-		}
-	</script>
 </body>
 
 </html>
