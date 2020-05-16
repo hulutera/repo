@@ -911,7 +911,8 @@ $upload_specific_array = [
                 'unknown' => '-- አልተዘረዘረም --'
             ]
         ],
-        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ'
+        'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
+        'upload successful msg' => 'አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን። ንብረትዎ በተሳካ ሁኔታ ገብቷል። ስለንብረቶ ተጨማሪ መረጃ በኢሜይሎት መረጃ ልከንልዎታል '
     ]
 ];
 

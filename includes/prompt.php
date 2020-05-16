@@ -69,11 +69,7 @@ function createMessage($type)
 				$message = $lang['prompt msg for a wrong access to upload'];
 				break;
 			case 10:
-				$message = "Thank you for using our service! 
-							Your item was successfuly uploaded. 
-							Please follow instructions in the email we sent you to follow status of your item! 
-				</br>";
-				$message .= 'አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን። ንብረትዎ በጥሩ ሁኔታ ገብቷል። ስለንብረቶ ተጨማሪ መረጃ በኢሜይሎት መረጃ ልከንልዎታል ';
+				$message = $GLOBALS['upload_specific_array']['common']['upload successful msg'];
 				break;
 			case 11:
 				$message = 'Your activation key has expired.

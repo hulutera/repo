@@ -315,6 +315,14 @@ class HtItemOther extends MySqlRecord
      */
     public function setIdCategory($idCategory)
     {
+        $object = new HtCategoryOther("*");
+        $result = $object->getResultSet();
+        while ($row = $result->fetch_array()) {
+            if ($row['field_name'] === $idCategory) {
+                $idCategory = $row['id'];                
+                break;
+            }
+        }
         $this->idCategory = (int)$idCategory;
     }
 
@@ -512,7 +520,7 @@ class HtItemOther extends MySqlRecord
         $this->setFieldContactMethod($_POST['fieldContactMethod']);
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
-        $this->setFieldStatus("pending");
+        $this->setFieldStatus("pending55");
 
         if (isset($_POST['fieldPriceSell'])) {
             $market = "sell";
@@ -1193,7 +1201,7 @@ SQL;
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
         $itemName = $this->getTableNameShort();        
-        $this->insertAllField($itemName, 2);
+        $this->insertAllField($itemName);
         echo '</form>';
     }
 

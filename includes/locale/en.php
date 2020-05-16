@@ -831,7 +831,7 @@ $upload_specific_array = [
                 'Tools' => 'Tools',
                 'Sport' => 'Sport',
                 'Entertainment' => 'Entertainment',
-                'Other' => '-- unlisted --'
+                'Other' => '-- not listed --'
             ]
         ]
     ],
@@ -924,7 +924,10 @@ $upload_specific_array = [
                 'unknown' => '-- Not listed --',
             ]
         ],
-        'Choose Images here' => 'Choose Images here'
+        'Choose Images here' => 'Choose Images here',
+        'upload successful msg' => 'Thank you for using our service! 
+                                    Your item was successfuly uploaded.
+                                    Please follow instructions in the email we sent you to follow status of your item!'
     ]
 ];
 
