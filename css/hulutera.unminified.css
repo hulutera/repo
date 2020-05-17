@@ -805,22 +805,21 @@ li .col2 {
 	border-radius: 6px;
 }
 
-/*
+
 #divCommon {
-	font-family: Georgia, Times New Roman, serif !important;
-	font-size: 12px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	padding: 16px;
-	border: 1px solid #CCC;
-	border-top: 1px solid #CCC;
-	overflow: hidden;
-} */
+	margin-left: auto;
+	margin-right: auto;
+	display: inline-block;
+	float:none;
+	text-align: center;
+} 
+
 
 #divCommon .thumbnail p {
 	margin: 0px;
 	font-size: 15px;
 	font-family: Snell Roundhand, cursive;
+	text-align: center;
 }
 
 #divCommon .thumb-image{
@@ -3079,6 +3078,8 @@ th {
 	}
 	#divCommon {
 		height: 100%;
+		width: 50%;
+		float:none;
 	}
 	div .featured_left_side {
 		width: 100%;
@@ -3385,7 +3386,7 @@ th {
 	}
 	#divCommon {
 		width: 50%;
-		float:left;
+		float:none;
 	}
 	.img-thumbnail{
 		width: auto;
