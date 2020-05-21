@@ -14,6 +14,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 <head>
 <title><?php echo $GLOBALS['lang']['Register'];?></title>
 	<?php commonHeader(); ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/font-awesome.min.css" rel="stylesheet">
@@ -47,7 +48,6 @@ require_once $documnetRootPath . '/includes/validate.php';
 			$object = unserialize(base64_decode($_SESSION[$sessionName]));
 			$object->register();
 		}
-		var_dump($_SESSION);
 		?>
 	</div>
 	<?php footerCode(); ?>

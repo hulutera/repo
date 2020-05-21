@@ -19,7 +19,12 @@ $type = isset($_GET['type']) ? $_GET['type'] : '';
 	<?php
 	headerAndSearchCode("");
 	accountLinks();
-	routerControlPanel($type, $err);
+	?>
+	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+		<?php
+		controlPanel($type, $err); ?>
+	</div>
+	<?php
 	footerCode();
 	?>
 </body>

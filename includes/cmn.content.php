@@ -4,8 +4,12 @@ require_once $documnetRootPath . '/includes/userStatus.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/includes/token.php';
-require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/view/main.view.class.php';
+require_once $documnetRootPath . '/db/database.class.php';
+require_once $documnetRootPath . '/view/main.view.class.php';
+require_once $documnetRootPath . '/classes/reflection/HtItemAll.php';
+require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
+
 $connect = DatabaseClass::getInstance()->getConnection();
 
 function show($query)
@@ -39,7 +43,7 @@ function show($query)
 }
 function reportedItems()
 {
-	
+
 	$arrayCid  = array();
 	$arrayHid  = array();
 	$arrayDid  = array();
@@ -79,19 +83,24 @@ function reportedItems()
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_ignore").show();});</script>';
 }
-function countRow($status, $Id)
+function countRow($status, $id)
 {
-	if ($Id != '')
-		$specific = "'$status'" . " AND uID = $Id";
-	else
-		$specific = "'$status'";
 
-	$result = DatabaseClass::getInstance()->queryUnionAllItemWithStatus($specific);
-	if ($result) {
-		return  mysqli_num_rows($result);
+    $withId = !empty($id)?(" AND id_user = $id"):"";
+	$rowCount = 0;
+	$sql = "";
+	$items = ['car', 'house', 'computer', 'electronic', 'phone', 'household', 'other'];
+	foreach ($items as $key => $value) {
+		$sql = <<< SQL
+		 SELECT id FROM item_$value WHERE field_status = "{$status}" {$withId} 
+SQL;
+		$record = new MySqlRecord();
+
+		$record->fetch_all($sql);
+		$rowCount += $record->affected_rows;
 	}
-
-	return 0;
+	
+	return $rowCount;
 }
 function maxQuery($status, $Id, $start)
 {
@@ -99,7 +108,7 @@ function maxQuery($status, $Id, $start)
 		$specific = "'$status' AND uID = '$Id'";
 	else
 		$specific = "'$status'";
-    $itemPerPage = HtGlobal::get('itemPerPage');
+	$itemPerPage = HtGlobal::get('itemPerPage');
 	$sql = "SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
 			UNION ALL
 			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
@@ -114,7 +123,7 @@ function maxQuery($status, $Id, $start)
 			UNION ALL
 			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
 			ORDER BY UploadedDate DESC LIMIT $start, $itemPerPage";
-    $result = DatabaseClass::getInstance()->runQuery($sql);
+	$result = DatabaseClass::getInstance()->runQuery($sql);
 	return $result;
 }
 function userActive()
@@ -168,7 +177,7 @@ function userPending()
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userPendingButton").show();});</script>';
 }
 function deletedItems()
-{	
+{
 	$deletedStatus = 'modDelete';
 	$sum = countRow($deletedStatus, '');
 
@@ -193,7 +202,7 @@ function deletedItems()
 }
 
 function pendingItems()
-{	
+{
 	$sum = countRow('pending', '');
 	if ($sum >= 1) {
 		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
@@ -214,12 +223,12 @@ function pendingItems()
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_activate").show();});</script>';
 }
-function display($query)
+function display2($query)
 {
 	global $lang, $lang_url, $str_url;
 
-	echo '<table style="font-family: Arial, Helvetica, sans-serif">';
-	echo '<tr class="cpheader">';
+	echo '<div style="font-family: Arial, Helvetica, sans-serif">';
+	echo '<tr class="cpheaders">';
 	echo '<th>';
 	echo $lang['id'];
 	echo '</th>';
@@ -233,24 +242,88 @@ function display($query)
 
 	$i = 1;
 	while ($result = $query->fetch_assoc()) {
-		echo '<tr>';
-
-		echo '<td style="width:10%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uID'] . '</a>';
-		echo '</td>';
-
-		echo '<td style="width:35%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uEmail'] . '</a>';
-		echo '</td>';
-
-		echo '<td style="width:35%;">';
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url .'">' . $result['uPhone'] . '</a>';
-		echo '</td>';
-		echo '<td><input type="hidden" name="token"  value="' . Token::generate();
-		echo '"></td></tr>';
+		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url . '">
+		<li>';
+		echo '<div style="width:10%;">' . $result['uID']     . '</div>';
+		echo '<div style="width:35%;">' . $result['uEmail'] . '</div>';
+		echo '<div style="width:35%;">' . $result['uPhone'] . '</div>';
+		echo '<div><input type="hidden" name="token"  value="' . Token::generate() . '</td>';
+		echo '</li></a>';
 		$i++;
 	}
-	echo '</table>';
+	echo '</div>';
+}
+function listUsers()
+{
+	$roleList = ['webmaster', 'admin', 'mod', 'user'];
+	$sql =  array('sql' => "SELECT * FROM user_all ORDER BY field_privilege");
+	$userAll = new HtUserAll($sql);
+	$result = $userAll->getResultSet();
+	global $lang_sw;
+	echo <<< EOD
+	<div class="container-fluid" style="text-align:left;">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-4">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									UserId
+								</th>
+								<th>
+									Email
+								</th>
+								<th>
+									Phone
+								</th>
+								<th>
+								   Privilege
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+EOD;
+
+	while ($row = $result->fetch_object()) {
+		$style = "";
+		if ($_GET["ID"] == $row->id) {
+			$style = '"background-color:#00203FFF;color:#ADEFD1FF"';
+		}
+
+		echo <<< EOD
+						
+							<tr style={$style}>
+								<td>
+									{$row->id}
+								</td>
+								<td>
+									{$row->field_email}
+								</td>
+								<td>
+									{$row->field_phone_nr}
+								</td>
+								<td>
+									<a href="../includes/template.content.php?type=controlPanel&ID={$row->id}{$lang_sw}">{$row->field_privilege}</a>
+								</td>
+							</tr>
+										
+EOD;
+	}
+	$token = Token::generate();
+	echo <<< EOD
+  				</tbody>
+				</table>
+				</div>
+				<div class="col-md-8">
+				<input type="hidden" name="token"  value="{$token}">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+EOD;
 }
 function controlPanel()
 {
@@ -259,56 +332,43 @@ function controlPanel()
 	echo '<div class="controlPanelLeft">';
 
 	$myId    = $_SESSION['uID'];
-	$result  = queryUserWithId($myId);
+	$object  = new HtUserAll($myId);
+	$result  = $object->getResultSet(); //queryUserWithId($myId);
 	$val     = $result->fetch_assoc();
-	$myRole  = $val['uRole'];
+	$myRole  = $object->getFieldPrivilege(); //$val['fieldPrivilege'];
 
-	$roleList = array(4 => 'webmaster', 3 => 'admin', 2 => 'mod', 1 => 'user');
-	foreach ($roleList as $val) {
-		$result = queryUserWithTypeWithIDAndType($_SESSION['uID'], $val);
-		$noOfResults = mysqli_num_rows($result);
-		if ($noOfResults != 0) {
-			echo '<strong>' . $lang['your role'] . strtoupper($val) . '</strong>';
-			display($result);
-		}
+	listUsers();
+	// echo '<strong>' . $lang['your role'] . strtoupper("webmaster") . '</strong>';
+	// display("webmaster");
+	// echo '<strong>' . $lang['Other'] . ' ' . strtoupper("admin") . 'S</strong>';
+	// display("admin");
+	if ($myRole == "webmaster" or $myRole == "admin") {
+		echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php' . $lang_url . '" >' . $lang['all users'] . '</a></strong></td></tr></table>';
 	}
-	foreach ($roleList as $val) {
-		if (found($myRole) >= found($val)) {
-			if (found($val) > 2) {
-				$result = queryUserWithNotIdButType($_SESSION['uID'], $val);
-
-				$noOfResults = mysqli_num_rows($result);
-				if ($noOfResults != 0) {
-					echo '<strong>' . $lang['Other'] .' '. strtoupper($val) . 'S</strong>';
-					display($result);
-				}
-			} 
-		}
-	}
-	if($myRole == "webmaster" or $myRole == "admin") { echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php' .$lang_url. '" >' .$lang['all users']. '</a></strong></td></tr></table>';}
 	echo '</div>';
 
 	echo '<div class="controlPanelRight">';
 	if (isset($_GET['ID'])) {
-		$result = queryUserWithId($_GET['ID']);
-		$rows = mysqli_num_rows($result);
-		if ($rows == 0) {
-			header('Location: ../index.php' .$lang_url. '');
+		$id = $_GET['ID'];
+		$object  = new HtUserAll($id);
+		if ($object->select($id) == 0) {
+			//header('Location: ../index.php' . $lang_url . '');
+			return;
 		}
 
 		$val = $result->fetch_assoc();
-		$active  = countRow('active', $_GET['ID']);
-		$pending = countRow('pending', $_GET['ID']);
-		$delete  = countRow('modDelete', $_GET['ID']);
+		$active  = countRow('active', $id);
+		$pending = countRow('pending', $id);
+		$delete  = countRow('modDelete', $id);
 		echo '<div>';
 		echo '<table>';
-		echo '<tr><td>' .$lang['Email']. '&nbsp&nbsp</td><td>' . $val['uEmail'] . '</td></tr>' .
-			'<tr><td>' .$lang['Phone']. '&nbsp&nbsp</td><td>' . $val['uPhone'] . '</td></tr>' .
-			'<tr><td>' .$lang['role']. '&nbsp&nbsp</td><td>' . $val['uRole'] . '</td></tr>' .
-			'<tr><td>' .$lang['active items']. '</td><td><a href="../includes/template.content.php?type=userActive' .$str_url. '">'. $lang['active'] .'(' . $active . ')</a></td></tr>' .
-			'<tr><td>' .$lang['pending items']. '</td><td><a href="../includes/template.content.php?type=userPending' .$str_url. '">'. $lang['pending'] .'(' . $pending . ')</a></td></tr>' .
-			'<tr><td>' .$lang['deleted items']. '</td><td><a href="../includes/template.content.php?type=deletedItems' .$str_url. '">'. $lang['deleted'] .'(' . $delete . ')</a></td></tr>';
-	
+		echo '<tr><td>' . $lang['Email'] . '&nbsp&nbsp</td><td>' . $object->getFieldEmail() . '</td></tr>' .
+			'<tr><td>' . $lang['Phone'] . '&nbsp&nbsp</td><td>' . $object->getFieldPhoneNr() . '</td></tr>' .
+			'<tr><td>' . $lang['role'] . '&nbsp&nbsp</td><td>' . $object->getFieldPrivilege() . '</td></tr>' .
+			'<tr><td>' . $lang['active items'] . '</td><td><a href="../includes/template.content.php?type=userActive' . $str_url . '">' . $lang['active'] . '(' . $active . ')</a></td></tr>' .
+			'<tr><td>' . $lang['pending items'] . '</td><td><a href="../includes/template.content.php?type=userPending' . $str_url . '">' . $lang['pending'] . '(' . $pending . ')</a></td></tr>' .
+			'<tr><td>' . $lang['deleted items'] . '</td><td><a href="../includes/template.content.php?type=deletedItems' . $str_url . '">' . $lang['deleted'] . '(' . $delete . ')</a></td></tr>';
+
 		echo '</table>';
 		echo '</div>';
 		//For future
@@ -321,28 +381,26 @@ function controlPanel()
 		//echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
 		//echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
 
-		echo '<form enctype="multipart/form-data" action="../includes/privilege.php' .$lang_url. '" name="myform" id="myform" method="POST">';
+		echo '<form enctype="multipart/form-data" action="../includes/privilege.php' . $lang_url . '" name="myform" id="myform" method="POST">';
 		echo $lang['change role'];
 		echo '<select id="privilege" name="privilege">';
-		echo '<option value="000">[' . $lang['Choose']. ']</option>';
-		echo '<option value="user">' . $lang['user']. '</option>';
+		echo '<option value="000">[' . $lang['Choose'] . ']</option>';
+		echo '<option value="user">' . $lang['user'] . '</option>';
 		if (found($myRole) >= found('mod'))
-			echo '<option value="mod">' . $lang['mod']. '</option>';
+			echo '<option value="mod">' . $lang['mod'] . '</option>';
 		if (found($myRole) >= found('admin'))
-			echo '<option value="admin">' . $lang['admin']. '</option>';
+			echo '<option value="admin">' . $lang['admin'] . '</option>';
 		if (found($myRole) >= found('webmaster'))
-			echo '<option value="webmaster">' . $lang['webmaster']. '</option>';
+			echo '<option value="webmaster">' . $lang['webmaster'] . '</option>';
 		echo '</select>';
-		echo '<input type="submit" name="Save" value="' . $lang['Submit']. '">';
+		echo '<input type="submit" name="Save" value="' . $lang['Submit'] . '">';
 		echo '<input name="modId" style="display:none;" type="text" value="' . $_GET['ID'] . '">';
 		echo '<input name="modtype" style="display:none;" type="text" value="' . $val['uRole'] . '">';
 		echo '</form>';
 	} else {
 
-		echo '<div id="myform_errorloc" class="error_strings">' .$lang['cp home txt1'] . $myRole . '!';
+		echo '<div id="myform_errorloc" class="error_strings">' . $lang['cp home txt1'] . $myRole . '!';
 		echo $lang['cp home txt2'] . '</div>';
-				
-		
 	}
 	echo '</div>';
 	echo '</div>';
@@ -383,14 +441,11 @@ function routerContent($contentType)
 	}
 
 	if (!isset($_SESSION['uID']) || !$isValidUrl) {
-		header('Location:../index.php' .$lang_url. '');
+		header('Location:../index.php' . $lang_url . '');
 	}
-
 }
 
 function getSessionId()
 {
 	return $_SESSION['uID'];
 }
-
-

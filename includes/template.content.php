@@ -17,10 +17,15 @@ global $lang;
 <body>
 	<?php
 	headerAndSearchCode("");
-	accountLinks();
-	routerContent($_GET['type']);
-	footerCode();
 	?>
+	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+
+		<?php
+		accountLinks();
+		routerContent($_GET['type']);
+		?>
+	</div>
+	<?php footerCode(); ?>
 </body>
 </body>
 

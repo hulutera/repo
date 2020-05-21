@@ -11,34 +11,31 @@ require_once $documnetRootPath . '/includes/validate.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
 $function = isset($_GET['function']) ? $_GET['function'] : '';
-$validFunctions = ['register', 'login','password-recovery','edit-profile','contact-us'];
+$validFunctions = ['register', 'login', 'password-recovery', 'edit-profile', 'contact-us'];
 
-if(!in_array($function, $validFunctions))
-{
+if (!in_array($function, $validFunctions)) {
     header('Location: ../../index.php');
-}
-else{
+} else {
     foreach ($validFunctions as $key => $value) {
-        if($function != $value)
-        {
+        if ($function != $value) {
             unset($_SESSION[$value]);
         }
     }
 }
-//exit;
 
+//exit;
 $validate = null;
 $errPre = [];
 $validate = new ValidateUser($errPre);
 var_dump($errPre);
 var_dump($_POST);
-// var_dump($_SERVER['HTTP_REFERER']);
+
 //exit;
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
+    $_SESSION['POST'] = $_POST;
     var_dump($errPre[0]);
     var_dump($_SESSION['errorRaw']);
-    $_SESSION['POST'] = $_POST;
 
     $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
     $redirectLink = '';
@@ -58,18 +55,22 @@ if (!empty($errPre)) {
         $object = new HtUserTemp("*");
         $object->register();
         clearSessionVariables($function); // reset Error
-    } else if ($function == 'login' || $function == 'password-recovery' || $function == 'edit-profile' || $function == 'contact-us') {
-        $validate->postValidation($errPost, $function);
-        var_dump($errPost);
-        //exit;
-        if (!empty($errPost)) {
-            $_SESSION['errorRaw'] = getInnerArray($errPost);
-            $_SESSION['POST'] = $_POST;
-            $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-            $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
-            //header('Location: ' . $redirectLink);
-        } else {
-            clearSessionVariables($function);
+    } else {
+        $validFunctions = ['login', 'password-recovery', 'edit-profile', 'contact-us'];
+        if (in_array($function, $validFunctions)) {
+            $validate->postValidation($errPost, $function);
+            var_dump($errPost);
+
+            //exit;
+            if (!empty($errPost)) {
+                $_SESSION['errorRaw'] = getInnerArray($errPost);
+                $_SESSION['POST'] = $_POST;
+                $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+                $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
+                //header('Location: ' . $redirectLink);
+            } else {
+                clearSessionVariables($function);
+            }
         }
     }
 }

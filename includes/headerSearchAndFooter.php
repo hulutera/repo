@@ -2,6 +2,7 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
+require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 
 
 if (isset($_GET['lan'])) {
@@ -197,12 +198,7 @@ function topRightLinks($style = null)
 		topRightHelpLink();
 	} else {
 		$userId = $_SESSION['uID'];
-		$connect = DatabaseClass::getInstance()->getConnection();
-		$result0 = $connect->query("SELECT userName FROM user WHERE uID=$userId");
-		while ($theName = $result0->fetch_assoc()) {
-			$name = $theName['userName'];
-		}
-		$result0->close();
+		$object = new HtUserAll($userId);
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</a>';
@@ -213,8 +209,8 @@ function topRightLinks($style = null)
 
 		echo '<a href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
-		echo '</a>';
-		echo '<a href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $name . '</div></div></a>';
+		echo '</a>';		
+		echo '<a href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $object->getFieldUserName() . '<br>'.$object->getFieldPrivilege().'</div></div></a>';
 	}
 	___close_div_(1);
 }
@@ -591,6 +587,7 @@ function yourPage()
 	$myProfileTitle = $GLOBALS['lang']['my profile'];
 	$myProfileMessage = $GLOBALS['lang']['my-page msg3'];
 	$toMyProfileButton = $GLOBALS['lang']['to my profile'];
+
 	echo <<< EOD
 	<div class="container-fluid alert alert-info" role="alert" style="color:black; width:70%;text-align: initial;">
 	<div class="row">
@@ -607,6 +604,36 @@ function yourPage()
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="margin-left:5%;margin-right:5%;">
+				<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-4">
+								<img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
+							</div>
+							<div class="col-md-8">
+								<div class="row">
+									<p class="h2 font-weight-bold">
+										{$myProfileTitle}
+									</p>
+								</div>
+								<div class="row">
+									<p>
+										{$myProfileMessage}
+									</p>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+									
+							<a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
+										style="float:right;">{$toMyProfileButton}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
 						<div class="row">
 							<div class="col-md-12">
@@ -636,36 +663,7 @@ function yourPage()
 							</div>
 						</div>
 					</div>
-					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-4">
-										<img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
-									</div>
-									<div class="col-md-8">
-										<div class="row">
-											<p class="h2 font-weight-bold">
-												{$myProfileTitle}
-											</p>
-										</div>
-										<div class="row">
-											<p>
-												{$myProfileMessage}
-											</p>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-											
-									<a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
-												style="float:right;">{$toMyProfileButton}</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
