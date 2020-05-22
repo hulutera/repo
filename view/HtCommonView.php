@@ -12,7 +12,7 @@ class HtCommonView extends MySqlRecord {
 
     private $_itemName;
     
-    function __construct($itemName)
+    function __construct($itemName=NULL)
     {
         $this->_itemName = $itemName;
     }
@@ -188,7 +188,7 @@ class HtCommonView extends MySqlRecord {
     {
         $title = $itemObj->getFieldTitle();
         echo "<h5>";
-        echo $title != null ? $title : $this->$_itemName;
+        echo $title != null ? $title : $this->_itemName;
         echo "</h5>";
     }
     /*@function to display location of item
@@ -222,7 +222,7 @@ class HtCommonView extends MySqlRecord {
     public function displayMarketType($itemObj)
     {
         $mrkTyp = $itemObj->getFieldMarketCategory();
-       
+               
         if ($mrkTyp != "No Action") {
             echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"][$mrkTyp] . "</p>";
         } else {
@@ -506,7 +506,7 @@ class HtCommonView extends MySqlRecord {
                 $noprice   =  !$sellValue && !$negoValue;
                 $nego      =  !$sellValue &&  $negoValue;
                 $curr  =  $itemObj->getFieldPriceCurrency();
-
+                
                 //display var
                 $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
                 $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
@@ -630,7 +630,7 @@ class HtCommonView extends MySqlRecord {
     }
 
 
-    private function displaySearch()
+    public function displaySearch()
     {
         global $locationPerTable, $lang, $str_url;
         
@@ -640,14 +640,15 @@ class HtCommonView extends MySqlRecord {
         else { 
             $lang_url = "";
         }
-        $searchWordRaw = $_GET['search_text'];
+        $searchWordSanitized = $_GET['search_text'];
         $city = $_GET['cities'];
         $item = $_GET['item'];
-
+        $globalVarObj = new HtGlobal();
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-        $itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
+        $itemstart = ($page - 1) * $globalVarObj::get('itemPerPage');
 
-        $searchWordSanitized = DatabaseClass::getInstance()->getConnection()->real_escape_string($searchWordRaw);
+        //$searchWordSanitized = $this->parseValue($searchWordRaw, "string");
+        //echo $searchWordSanitized;
         $bigQuery = "";
         $itemToStatus = array(
             "car" => "cStatus",
@@ -670,10 +671,11 @@ class HtCommonView extends MySqlRecord {
         );
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            $this->itemNotFound($searchWordRaw, $city, $item);
+            $this->itemNotFound($searchWordSanitized, $city, $item);
             return;
         } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
-            $this->displayAllItem();
+            //$this->displayAllItem();
+            $this->showLatest();
         } elseif ($searchWordSanitized == "" and $item == "All") {
             $table = "latestupdate";
             $countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "");

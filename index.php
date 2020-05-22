@@ -116,7 +116,7 @@ require_once $documnetRootPath . '/db/database.class.php';
 								$items = mysqli_num_rows($countItems);
 								$totalItems = $totalItems + $items;
 							}
-							echo '<a href="../includes/adverts.php?&item=All&cities=' . $key . $str_url . '" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
+							echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
 						}
 					}
 					?>

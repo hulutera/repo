@@ -385,7 +385,9 @@ $lang = array(
     'item specification' => 'ንጥል ዝርዝር',
     'Enter your message' => 'መልዕክቱን እዚህ ላይ ይጻፉ ...',
     'contact owner' => 'ለባለንብረቱ መልዕክት ይላኩ',
-    'You forgort to enter your name, email address and Message' => 'ስምዎን ፣ ኢሜልዎን እና ምልዕክትዎን ማስገባት ይኖርቦታል።'
+    'You forgort to enter your name, email address and Message' => 'ስምዎን ፣ ኢሜልዎን እና ምልዕክትዎን ማስገባት ይኖርቦታል።',
+    'search' => 'መፈለግ'
+    
 );
 
 $city_lang_arr = array(

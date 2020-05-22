@@ -416,7 +416,8 @@ $lang = array(
     'item specification' => 'Specification',
     'Enter your message' => 'Enter your message here ....',
     'contact owner' => 'Contact the owner',
-    'You forgort to enter your name, email address and Message' => 'You need to enter your name, email and message.'
+    'You forgort to enter your name, email address and Message' => 'You need to enter your name, email and message.',
+    'search' => 'Search'
 );
 
 $city_lang_arr = array(

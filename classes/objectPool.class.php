@@ -58,7 +58,7 @@ class ObjectPool
 
     public function getObjectWithId($item, $id=null)
     {
-        $itemName = str_replace("item_","",$item); 
+        $itemName = str_replace("item_","",$item);
         switch ($itemName) {
             case 'car':
                 return (new HtItemCar($id));

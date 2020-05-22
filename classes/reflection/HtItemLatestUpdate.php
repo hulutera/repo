@@ -250,7 +250,7 @@ class HtItemLatestUpdate extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id, $status = null)
     {
         if($id == "*"){
             $sql = "SELECT * FROM item_latest_update";
@@ -262,18 +262,30 @@ class HtItemLatestUpdate extends MySqlRecord
         $result =  $this->query($sql);
         $this->resultSet=$result;
         $this->lastSql = $sql;
-        if ($result){
-            $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->idItem = (integer)$rowObject->id_item;
-            @$this->fieldItemName = $this->replaceAposBackSlash($rowObject->field_item_name);
-            @$this->fieldUploadTime = (integer)$rowObject->field_upload_time;
-            $this->allowUpdate = true;
-        } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
-        }
-        return $this->affected_rows;
+        $this->affected_rows;
         
+    }
+
+    /**
+     * Run a others query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function runQuery($start=null, $itemPerPage=null)
+    {
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_latest_update";
+        } else {
+            $sql =  "SELECT * FROM item_latest_update ORDER BY field_upload_time DESC LIMIT $start, $itemPerPage";
+        }
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
     }
 
     /**

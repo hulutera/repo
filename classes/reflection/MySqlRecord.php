@@ -106,6 +106,8 @@ class MySqlRecord extends Model
             return    "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATETIME_FORMAT'] . "')";
         } else if ($value != null && $type == "number" && is_numeric($value)) {
             return $value;
+        } else if ($value != null && $type == "string") {
+            return  $this->real_escape_string($value);
         } else {
             return "NULL";
         }

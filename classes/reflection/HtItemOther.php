@@ -520,7 +520,7 @@ class HtItemOther extends MySqlRecord
         $this->setFieldContactMethod($_POST['fieldContactMethod']);
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
-        $this->setFieldStatus("pending55");
+        $this->setFieldStatus("pending");
 
         if (isset($_POST['fieldPriceSell'])) {
             $market = "sell";
@@ -893,7 +893,6 @@ class HtItemOther extends MySqlRecord
         } else { //id
             $sql =  "SELECT * FROM item_other WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
         }
-
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
