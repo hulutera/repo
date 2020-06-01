@@ -233,12 +233,13 @@ function topRightHelpLink()
 function miniSearch()
 {
 	global $str_url;
-	echo '<div class="col-xs-12 col-md-12 miniSearch">';
+	echo '<div class="miniSearch">';
 	echo '<form class="" action="../../includes/adverts.php" method="get">';
-	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="width:40%">';
+	echo '<div style="border: 1px solid;padding:4px"><input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="padding: 6px 2px;margin-right:10px;border-radius: 1px;">';
 	item();
 	city();
-	echo '<button type="submit	button"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
+	echo '<button type="submit	button" class="btn btn-warning" style="width:calc(20% - 15px)"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
+	echo '</div>';
 	carSearch();
 	lang_sw();
 	echo '</form></div>';
@@ -248,7 +249,7 @@ function miniSearch()
 function item()
 {
 	global $item_lang_arr;
-	echo '<select id="item" name="item" style="border:none" onchange="itemSelect()">';
+	echo '<select id="item" name="item"  onchange="itemSelect()" style="padding: 6px 2px;margin-right:10px;width:calc(20% - 10px)">';
 	foreach ($item_lang_arr as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
@@ -259,7 +260,7 @@ function city()
 {
 	// Choose city
 	echo ' 
-		<select id="city" name="cities">';
+		<select id="city" name="cities" style="padding: 6px 2px; margin-right:10px;width:calc(20% - 10px)">';
 		foreach ($GLOBALS['city_lang_arr'] as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
