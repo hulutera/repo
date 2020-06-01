@@ -1,3 +1,15 @@
+
+function itemSelect() {
+    $(document).ready(function () {
+        item = $("#item").val();
+        item_class = item + "_search_cl";
+        //alert(item_class);
+        $(".se-el").hide();
+        $("." + item_class).attr('style','display: block !important');
+        
+    })
+}
+
 function showSection(e) {
     var t = e;
     $(document).ready(function () {

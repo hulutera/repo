@@ -74,10 +74,7 @@ function search_pagination($page, $totpage, $searchWordSanitized, $item,  $locat
                     $pagerange = 4;
                     $nextpage = $page + 1;
                     $previouspage = $page - 1;
-                    if($searchWordSanitized == "No searchword given"){
-                        $searchWordSanitized = "";
-                    }
-
+                    
                     if ($page > 1) {
                         echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url .'">' . $lang['first page']. '</a></li>';
                         echo '<li><a href="?page=' . $previouspage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' .$lang['previous']. '</a></li>';
@@ -101,4 +98,56 @@ function search_pagination($page, $totpage, $searchWordSanitized, $item,  $locat
                         echo '<li class = "previous-off"> <b>' .$lang['last page']. '</b></li>';
                     }
                     echo "</ul></div>";
+}
+
+function search_item_pagination($page, $totpage, $get_array) {
+	global $lang, $lang_url, $str_url;
+	echo "<div id=\"pagination\"><ul>";
+	/*====a variable which describes the page bar*/
+	$pagerange = 4;
+	$nextpage = $page + 1;
+	$previouspage = $page - 1;
+	
+	
+		if ($page > 1) {
+			echo '<li><a href="?page=1';
+					foreach($get_array as $key=>$value) { echo '&' . $key . '=' . $value;}
+					echo '">' . $lang["first page"]. '</a></li>';
+			echo '<li><a href="?page=' . $previouspage;
+					foreach($get_array as $key=>$value) { echo '&' .$key . '=' . $value;}
+					echo '">' .$lang["previous"]. '</a></li>';
+		} else {
+			echo '<li class = "previous-off"> <b>' .$lang['first page']. '</b></li>';
+			echo '<li class = "previous-off"><b>' .$lang['previous']. '</b></li>';
+		}
+
+		for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
+			if ($i > 0 && $i <= $totpage) {
+				if ($i == $page) {
+					echo '<li><strong><a href="?page=' . $i; 
+						foreach($get_array as $key=>$value) { echo '&' .$key . '=' . $value;} 
+						echo '">' . $i . '</a></strong></li>';
+				} else {
+					echo '<li><a href="?page=' . $i;
+						foreach($get_array as $key=>$value) { echo '&' .$key . '=' . $value;}
+						echo '">' . $i . '</a></li>';
+				}
+			}
+		}
+
+		if ($page < $totpage) {
+			echo '<li><a href="?page=' . $nextpage;
+					foreach($get_array as $key=>$value) { echo '&' . $key . '=' . $value;}
+					echo '"> > </a></li>';
+			echo '<li><a href="?page=' . $totpage;
+					foreach($get_array as $key=>$value) { echo '&' .$key . '=' . $value;}
+					echo '"> >> </a></li>';
+		} else {
+			echo '<li class = "previous-off"> <b>' .$lang['next']. '</b></li>';
+			echo '<li class = "previous-off"> <b>' .$lang['last page']. '</b></li>';
+		}
+
+		
+	
+	echo "</ul></div>";
 }

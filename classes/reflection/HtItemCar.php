@@ -1247,6 +1247,16 @@ class HtItemCar extends MySqlRecord
     {
         return "item_car";
     }
+
+    /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_car";
+    }
     
     /**
     * Gets the name of the managed table short name
@@ -1332,15 +1342,107 @@ class HtItemCar extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_car WHERE $filter";
+            $sql =  "SELECT * FROM item_car $filter";
         } else {
-            $sql =  "SELECT * FROM item_car WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_car $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
         return $this->affected_rows;
+    }
+
+    /**
+ * Run a car search query with a request
+ * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+ * $start: the first item to fetch
+ * $itemPerPage: the total number of items to be fetched from the table
+ * return: the number of affected rows
+ * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+ */
+    public function searchQuery($keyword=null, $location=null, $start=null, $itemPerPage=null)
+    {
+        
+        $itemTable = $this->getTableName();
+        $catTableName =   $this->getCatTableName();
+        $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
+        $statusFilter = " WHERE field_status LIKE 'active'";
+        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
+        $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "field_make LIKE '%'";
+        $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "field_name LIKE '%'";
+        $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "field_color LIKE '%'";
+        $modelYearFilter = $this->modelYrFilter();
+        $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'": "field_gear_type LIKE '%'";
+        $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'": "field_fuel_type LIKE '%'";
+        
+        $filter = "$statusFilter AND $maxPriceFilter AND $makeFilter AND $typeFilter AND $colorFilter AND  $modelYearFilter AND  $gearFilter AND $fuelFilter AND $locationFilter ";
+        
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+        } else {
+            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+    public function modelYrFilter(){
+
+        $model = (int) $_GET['car_model_year'];
+
+        if ($model == 0) {
+            $filter = "field_model_year LIKE '%'";
+        } else {
+            if ($model  <= 1940) {
+                $lower = 1939;
+                $upper = 1940;
+            } else if ($model > 1940 and $model < 1950) {
+                $lower = 1940;
+                $upper = 1950;
+            } else if ($model >= 1950 and $model < 1960) {
+                $lower = 1950;
+                $upper = 1960;
+            } else if ($model >= 1960 and $model < 1970) {
+                $lower = 1960;
+                $upper = 1970;
+            } else if ($model >= 1970 and $model < 1980) {
+                $lower = 1970;
+                $upper = 1980;
+            } else if ($model >= 1980 and $model < 1990) {
+                $lower = 1980;
+                $upper = 1990;
+            } else if ($model >= 1990 and $model < 2000) {
+                $lower = 1990;
+                $upper = 2000;
+            } else if ($model >= 2000 and $model < 2005) {
+                $lower = 2000;
+                $upper = 2005;
+            } else if ($model >= 2005 and $model < 2010) {
+                $lower = 2005;
+                $upper = 2010;
+            } else if ($model >= 2010 and $model < 2015) {
+                $lower = 2010;
+                $upper = 2015;
+            } else if ($model >= 2015 and $model < 2020) {
+                $lower = 2015;
+                $upper = 2020;
+            } else if ($model >= 2020 and $model < 2025) {
+                $lower = 2020;
+                $upper = 2025;
+            }
+            
+            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
+
+        }
+
+        return $filter;
     }
 
     /* 

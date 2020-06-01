@@ -85,11 +85,11 @@ function headerAndSearchCode($item)
 	___open_div_('inner-header', '');
 	___open_div_('row', '');
 
-	___open_div_('col-md-4', '');
+	___open_div_('col-xs-6 col-md-4', '');
 	___open_div_('logox', '');
 	logoText();
 	___close_div_(2);
-	___open_div_('col-md-8', '');
+	___open_div_('col-xs-12 col-md-8', '');
 	miniSearch();
 	___close_div_(1);
 	___close_div_(3);
@@ -233,33 +233,34 @@ function topRightHelpLink()
 function miniSearch()
 {
 	global $str_url;
+	echo '<div class="col-xs-12 col-md-12 miniSearch">';
 	echo '<form class="" action="../../includes/adverts.php" method="get">';
-	___open_div_("advanced-search", '');
-	___open_div_("input-group", '');
-	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="width:55%">';
-	city();
+	echo '<input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="width:40%">';
 	item();
-	lang_sw();
+	city();
 	echo '<button type="submit	button"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
-	___close_div_(1);
-	___close_div_(1);
-	echo '</form>';
+	carSearch();
+	lang_sw();
+	echo '</form></div>';
 }
 
-function city()
+
+function item()
 {
-	echo ' <select id="city" name="cities" style="border:none;">';
-	foreach ($GLOBALS['city_lang_arr'] as $key => $value) {
+	global $item_lang_arr;
+	echo '<select id="item" name="item" style="border:none" onchange="itemSelect()">';
+	foreach ($item_lang_arr as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
 	echo '</select>';
 }
 
-function item()
+function city()
 {
-	global $item_lang_arr;
-	echo '<select id="item" name="item" style="border:none;">';
-	foreach ($item_lang_arr as $key => $value) {
+	// Choose city
+	echo ' 
+		<select id="city" name="cities">';
+		foreach ($GLOBALS['city_lang_arr'] as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
 	echo '</select>';
@@ -269,6 +270,96 @@ function lang_sw() {
 	global $language ;
 
 	echo '<input class="hide" type="text" name="lan" value="'. $language .'">';
+}
+
+function carSearch() {
+	
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][5] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][5][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Car make
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['car']['fieldMake'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_make">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['car']['fieldMake'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['fieldMake'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldMake'][2][$value] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Car type
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['car']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['car']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+	
+	// Car color
+	$colors = [
+		"black"    => ["#000000", "#000000"],
+		"green"    => ["#009f6b", "#FFFFFF"],
+		"red"      => ["#C40233", "#FFFFFF"],
+		"yellow"   => ["#FFD300", "#000000"],
+		"blue"     => ["#0087BD", "#FFFFFF"],
+		"white"    => ["#ffffff", "#000000"],
+		"brown"    => ["#a52a2a", "#FFFFFF"],
+		"silver"   => ["#c0c0c0", "#FFFFFF"],
+		"liver"    => ["#534b4f", "#FFFFFF"]
+	];
+	$selectable = [];
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldColor'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_color">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['common']['fieldColor'][1] .'</option>';
+	 	   	    foreach ($colors as $key => $value) {
+					echo '<option  style="background-color:' . $value[0] . ';color:'. $value[1].';width:90%">'. $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+
+	// Car Year of made
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['car']['fieldModelYear'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_model_year">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['car']['fieldModelYear'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['fieldModelYear'][3] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldModelYear'][3][$key] .'</option>';
+		   	}
+	echo'</select></div>'; 
+
+
+	// Car gear type
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['car']['fieldGearType'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_gear_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['car']['fieldGearType'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['fieldGearType'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldGearType'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+
+	// Car fuel type
+	echo'<div class="col-xs-6 col-md-4 car_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['car']['fieldFuelType'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="car_fuel_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['car']['fieldFuelType'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['fieldFuelType'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldFuelType'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	
 }
 
 function svgMapElement()

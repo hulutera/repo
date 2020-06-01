@@ -827,6 +827,16 @@ class HtItemOther extends MySqlRecord
     }
 
     /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_other";
+    }
+
+    /**
     * Gets the name of the managed table short name
     * @return string
     * @category Accessor
@@ -834,7 +844,8 @@ class HtItemOther extends MySqlRecord
     public function getTableNameShort()
     {
         return "other";
-    }  
+    }
+
 
     /**
      * The HtItemOther constructor
@@ -912,9 +923,9 @@ class HtItemOther extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_other WHERE $filter";
+            $sql =  "SELECT * FROM item_other $filter";
         } else {
-            $sql =  "SELECT * FROM item_other WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_other $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);

@@ -491,7 +491,8 @@ $upload_specific_array = [
                 'Station Wagon' => 'Station Wagon',
                 'SUV' => 'SUV',
                 'Taxi' => 'Taxi',
-                'Truck' => 'Truck'
+                'Truck' => 'Truck',
+                'Other' => '-- unlisted --'
             ]
         ],
         'fieldMake'        => [
@@ -525,6 +526,19 @@ $upload_specific_array = [
                 '1950' => '1950 - 1959',
                 '1940' => 'Before 1950',
                 '000' => 'unknown'
+            ],
+            3 => [
+                '2020' => '2020 - 2021',
+                '2015' => '2015 - 2019',
+                '2010' => '2010 - 2014',
+                '2005' => '2005 - 2009',
+                '2000' => '2000 - 2004',
+                '1990' => '1990 - 1999',
+                '1980' => '1980 - 1989',
+                '1970' => '1970 - 1979',
+                '1960' => '1960 - 1969',
+                '1950' => '1950 - 1959',
+                '1940' => 'Before 1950'
             ]
         ],
         'fieldGearType'   => [
@@ -871,7 +885,20 @@ $upload_specific_array = [
         'fieldPriceSell' => [
             0 => 'Sell Price',
             1 => 'Write Selling Price',
-            2 => 'Not for sell'
+            2 => 'Not for sell',
+            3 => 'Choose max sell price',
+            4 => 'Max price',
+            5 => [
+                '6000000' => 'Over 5 000 000 ETB',
+                '5000000' => '5 000 000 ETB',
+                '3000000' =>  '3 000 000 ETB',
+                '1000000' =>  '1 000 000 ETB',
+                '800000' => '800 000 ETB',
+                '700000' =>  '700 000 ETB',
+                '600000' =>  '600 000 ETB',
+                '500000' => '500 000 ETB',
+                '300000' =>  'Under 300 000 ETB'
+            ]
         ],
         'fieldPriceCurrency' => [
             0 => 'Currency',

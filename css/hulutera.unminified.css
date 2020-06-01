@@ -374,6 +374,14 @@ form.signin input.button {
 	;
 }
 
+.miniSearch {
+	text-align: left;
+}
+
+.miniSearch p{
+	margin: 10px 0 5px 0;
+}
+
 #mainColumnXa {
 	display: inline-block;
 	border: 1px solid gray;
@@ -3043,20 +3051,7 @@ th {
 		width: 32%;
 		padding: 0px;
 	}
-	.miniSearch {
-		width: 100%;
-		padding: 0px;
-		margin: auto;
-	}
-	.searchform {
-		padding: 0px;
-		width: 100%;
-		margin: auto;
-	}
-	.searchform .searchfield {
-		height: 20px;
-		padding: 0px;
-	}
+	
 	#sidelist #menu_mobile {
 		display: none;
 		padding: 0px 5px;

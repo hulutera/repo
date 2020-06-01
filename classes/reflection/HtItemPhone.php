@@ -997,6 +997,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_phone";
+    }
+
+    /**
     * Gets the name of the managed table
     * @return string
     * @category Accessor
@@ -1081,9 +1091,9 @@ class HtItemPhone extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_phone WHERE $filter";
+            $sql =  "SELECT * FROM item_phone $filter";
         } else {
-            $sql =  "SELECT * FROM item_phone WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_phone $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);

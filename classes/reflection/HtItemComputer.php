@@ -1108,6 +1108,16 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_computer";
+    }
+
+    /**
      * Gets the name of the managed table short name
      * @return string
      * @category Accessor
@@ -1191,9 +1201,9 @@ class HtItemComputer extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_computer WHERE $filter";
+            $sql =  "SELECT * FROM item_computer $filter";
         } else {
-            $sql =  "SELECT * FROM item_computer WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_computer $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);

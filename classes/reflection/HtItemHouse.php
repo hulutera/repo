@@ -1282,6 +1282,16 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_house";
+    }
+
+    /**
      * Gets the name of the managed table short name
      * @return string
      * @category Accessor
@@ -1364,9 +1374,9 @@ class HtItemHouse extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_house WHERE $filter";
+            $sql =  "SELECT * FROM item_house $filter";
         } else {
-            $sql =  "SELECT * FROM item_house WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_house $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);

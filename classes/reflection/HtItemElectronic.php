@@ -826,6 +826,16 @@ class HtItemElectronic extends MySqlRecord
     }
 
     /**
+    * Gets the name of the corresponding category table name
+    * @return string
+    * @category Accessor
+    */
+    public function getCatTableName()
+    {
+        return "category_electronic";
+    }
+
+    /**
     * Gets the name of the managed table short name
     * @return string
     * @category Accessor
@@ -909,9 +919,9 @@ class HtItemElectronic extends MySqlRecord
     public function runQuery($filter, $start=null, $itemPerPage=null)
     {
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_electronic WHERE $filter";
+            $sql =  "SELECT * FROM item_electronic $filter";
         } else {
-            $sql =  "SELECT * FROM item_electronic WHERE $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT * FROM item_electronic $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
         $this->resetLastSqlError();
         $result =  $this->query($sql);
