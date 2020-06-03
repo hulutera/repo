@@ -905,6 +905,7 @@ class HtItemHousehold extends MySqlRecord
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
+        $this->setFieldValuesForOneItem($result);
         $this->resultSet = $result;
         $this->lastSql = $sql;
         return $this->affected_rows; 
@@ -938,9 +939,13 @@ class HtItemHousehold extends MySqlRecord
     ** Set the household element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldValues($row)
+    public function setFieldValues($input)
     {
-        $rowObject = (object)$row;
+        if (!is_object($input)) {
+            $rowObject = (object) $input;
+        } else {
+            $rowObject = $input->fetch_object();
+        }        
         @$this->id = (int) $rowObject->id;	
         @$this->idTemp = (int) $rowObject->id_temp;	
         @$this->idUser = (int) $rowObject->id_user;	
@@ -960,6 +965,11 @@ class HtItemHousehold extends MySqlRecord
         @$this->fieldTableType = (integer)$rowObject->field_table_type;
     }
 
+    public function setFieldValuesForOneItem($input)
+    {
+        $this->allowUpdate = true;
+        $this->setFieldValues($input);
+    }
     /* 
     ** Set the household category elements
     * 
@@ -1001,10 +1011,14 @@ class HtItemHousehold extends MySqlRecord
      * @return mixed MySQL insert result
      * @category DML
      */
-    public function insert()
+    public function insertPost()
     {
         $this->setFieldPost();
-        
+        $this->insert();
+    }
+
+    public function insert()
+    {        
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }

@@ -4,7 +4,6 @@ session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
-//require_once $documnetRootPath . '/includes/form_user.php';
 require_once $documnetRootPath . '/includes/validate.php';
 global $lang, $lang_url, $str_url;
 
@@ -34,39 +33,7 @@ if (!isset($_SESSION['uID'])) {
 	?>
 	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
 		<?php
-		if (!isset($_GET['function']) or $_GET['function'] !== 'edit-profile' or $_SESSION['lan'] != $_GET['lan']) {
-			unset($_SESSION['POST']);
-			unset($_SESSION['errorRaw']);
-		}
-		$sessionName = 'edit-profile';
-		$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-		$_SESSION['lan'] = $_GET['lan'];
-		if (!isset($_SESSION[$sessionName])) {
-			$object = new HtUserAll($_SESSION['uID']);
-			$object->updateProfile();
-			$_SESSION[$sessionName] = base64_encode(serialize($object));
-		} else {
-			$object = unserialize(base64_decode($_SESSION[$sessionName]));
-			//$object->updateProfile();
-			if (isset($_GET['function'])) {
-				$function = $_GET['function'];
-				if (isset($_GET['update'])) {
-					$update = $_GET['update'];
-					if (isset($_GET['order'])) {
-						$order = $_GET['order'];
-						if ($order == 'open') {
-							$object->editProfile($update);
-						} elseif ($order == 'cancel') {
-							$object->updateProfile();
-						}
-					}
-				} else {
-					$object->updateProfile();
-				}
-			} else {
-				$object->updateProfile();
-			}
-		}
+		editProfile();
 		// var_dump($_SESSION);
 		?>
 	</div>

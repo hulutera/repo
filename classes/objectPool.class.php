@@ -1,6 +1,6 @@
 <?php
 
-spl_autoload_register(function($className) {
+spl_autoload_register(function ($className) {
     include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
 });
 
@@ -8,7 +8,15 @@ class ObjectPool
 {
     private static $_instance;
 
-    /*
+    private $tableType2item = [
+        1 => 'car',
+        2 => 'house',
+        3 => 'computer',
+        4 => 'phone',
+        5 => 'electronic',
+        6 => 'household',
+        7 => 'other'
+    ];    /*
 	Get an instance of the ObjecPool class
 	@return Instance
 	*/
@@ -56,9 +64,9 @@ class ObjectPool
         }*/
     }
 
-    public function getObjectWithId($item, $id=null)
+    public function getObjectWithId($item, $id = null)
     {
-        $itemName = str_replace("item_","",$item);
+        $itemName = str_replace("item_", "", $item);
         switch ($itemName) {
             case 'car':
                 return (new HtItemCar($id));
@@ -73,7 +81,7 @@ class ObjectPool
             case 'phone':
                 return (new HtItemPhone($id));
             case 'other':
-                return (new HtItemOther($id));            
+                return (new HtItemOther($id));
             case 'latest':
                 return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
             default:
@@ -83,9 +91,16 @@ class ObjectPool
         }
     }
 
+    public function getObjectWithTableType($result)
+    {
+        $tableType = $result['field_table_type'];
+        $itemName = $this->tableType2item[$tableType];
+        return $this->getObjectWithId($itemName, $result['id']);
+    }
+
     public function getObjectSpecial($item, $id)
     {
-        $itemName = str_replace("item_","",$item); 
+        $itemName = str_replace("item_", "", $item);
 
         $objects = array(
             'car' => (new HtItemCar($id)),
@@ -98,8 +113,7 @@ class ObjectPool
         );
         if (!empty($itemName) && $itemName !== 'all') {
             return array($objects[$itemName]);
-        }
-        else {
+        } else {
             return $objects;
         }
     }

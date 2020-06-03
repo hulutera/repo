@@ -11,7 +11,7 @@ class HtMainView
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
 
-    function __construct($newRunnerName, $newRunnerId=null)
+    function __construct($newRunnerName, $newRunnerId = null)
     {
         $this->_runnerName = $newRunnerName;
         $this->_runnerId = $newRunnerId;
@@ -22,6 +22,10 @@ class HtMainView
         // Exit
     }
 
+    public function getItemObject()
+    {
+        return $this->_pItem;
+    }
     /**
      * Main interface to display item
      * e.g.
@@ -32,19 +36,19 @@ class HtMainView
      *  
      * @param resolved by construtor
      */
-    public function show($filter=null)
+    public function show($filter = null)
     {
         if ($this->_runnerName == 'search') {
             $this->displaySearch();
         } else {
-                if ($filter != null) {
-                    $this->showItem($filter);
-                } else {
-                    //$this->showItemWithId();
-                }
+            if ($filter != null) {
+                $this->showItem($filter);
+            } else {
+                //$this->showItemWithId();
+            }
         }
     }
-    
+
     /**
      * Alternative interface to display item
      * e.g.
@@ -56,8 +60,8 @@ class HtMainView
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId("latest");
         $rows = $this->_pItem->runQuery();
-        
-        if($rows > 0) {
+
+        if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
             $globalVarObj = new HtGlobal();
             $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
@@ -68,7 +72,7 @@ class HtMainView
                 $this->_runnerName = $row['field_item_name'];
                 $this->_pItem = ObjectPool::getInstance()->getObjectWithId($row['field_item_name'], $row['id_item']);
                 $fetchItemRow = $this->_pItem->getResultSet();
-                while ($itemRow = $fetchItemRow->fetch_assoc()){
+                while ($itemRow = $fetchItemRow->fetch_assoc()) {
                     $this->showItemWithId($itemRow);
                 }
             }
@@ -79,19 +83,32 @@ class HtMainView
         }
     }
 
+
+    public function showRawData($filter)
+    {
+        $dataOnly = [];
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
+        $condition = "field_status = '$filter'";
+        $this->_pItem->runQuery($condition);
+        $result = $this->_pItem->getResultSet();
+        while ($row = $result->fetch_assoc()) {
+            array_push($dataOnly, $row);
+        }
+        return $dataOnly;
+    }
     /**
      * Alternative interface to display item
      * e.g.
      *  (new HtMainView("car",null))->showItem();  //select * item 
      * @param resolved by construtor
      */
-    public function showItem($filter)
+    public function showItem($filter, &$dataOnly = null, $isRawData = false)
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
         $condition = "field_status = '$filter'";
         $rows = $this->_pItem->runQuery($condition);
-        if($rows > 0) {
+        if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
             $globalVarObj = new HtGlobal();
             $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
@@ -99,10 +116,16 @@ class HtMainView
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
-                $this->showItemWithId($row);
+                if ($isRawData) {
+                    array_push($dataOnly, $row);
+                } else {
+                    $this->showItemWithId($row);
+                }
             }
             echo '</div>';
-            pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
+            if (empty($dataOnly) && empty($this->_runnerId)) {
+                pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
+            }
         } else {
             $this->itemNotFound();
         }
@@ -122,26 +145,26 @@ class HtMainView
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . $id;
         $commonViewObj = new HtCommonView($itemName);
-             
+
         //image handler
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
-        if ($image != null){
+        if ($image != null) {
             $imageArr = explode(',', $image);
             $numimage = sizeof($imageArr);
         } else {
             $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
-            $imageDir = "../images/". $language ."/";
+            $imageDir = "../images/" . $language . "/";
             $numimage = 0;
             $imageArr = ["itemnotfound.png"];
         }
-        
+
         $jsImg = implode(',', $imageArr);
-        $strReplArr= array('[', ']', '"');
+        $strReplArr = array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
         $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
         //---------------------------------------------------------
-       
+
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
         echo "<div class=\"thumbnail tn_$uniqueId\">";  // .thumbnail starts
         if ($numimage == 0) {
@@ -171,7 +194,7 @@ class HtMainView
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section 
         echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
 		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
-		value=\"".$GLOBALS['lang']['Hide Detail']."\"/></div>";
+		value=\"" . $GLOBALS['lang']['Hide Detail'] . "\"/></div>";
         $commonViewObj->displayTitle($this->_pItem);
         $this->_pItem->display();
         $commonViewObj->displayPrice($this->_pItem);
@@ -183,8 +206,8 @@ class HtMainView
         echo "</div>"; // left side div end
         $commonViewObj->displayGallery($imageDir, $imageArr, $numimage, $id, $itemName);
         echo "</div>"; // .featured_detailed2 end
-       
-          
+
+
     }
 
     /**
@@ -210,7 +233,7 @@ class HtMainView
     public function displaySearch()
     {
         global $locationPerTable, $lang, $str_url, $lang_url;
-        
+
         $searchWordSanitized = $_GET['search_text'];
         $city = $_GET['cities'];
         $item = $_GET['item'];
@@ -225,34 +248,34 @@ class HtMainView
         } else {
 
             // To avoid a wildcard value for search word 
-            if($searchWordSanitized == "") {
+            if ($searchWordSanitized == "") {
                 $keyWord = "%";
             } else {
-                $keyWord = $searchWordSanitized; 
+                $keyWord = $searchWordSanitized;
             }
 
             // To set value for city
-            if ($city == "All" or $city == "000"){
+            if ($city == "All" or $city == "000") {
                 $location = "%";
             } else {
                 $location = $city;
             }
-            
+
             // To set value for item
             if ($item == "All" or $item == "000") {
                 $queryItem = ObjectPool::getInstance()->getObjectSpecial("all");
             } else {
                 $queryItem = ObjectPool::getInstance()->getObjectSpecial($item);
             }
-            
+
             $rows = 0;
-            foreach ($queryItem as $key=>$value){
+            foreach ($queryItem as $key => $value) {
                 $row =  $value->searchQuery($keyWord, $location);
                 $rows += $row;
             }
-            
+
             if ($rows > 0) {
-                foreach ($queryItem as $key=>$value) {
+                foreach ($queryItem as $key => $value) {
                     $this->_pItem = $value;
                     $calculatePageArray = calculatePage($rows);
                     $globalVarObj = new HtGlobal();
@@ -270,20 +293,19 @@ class HtMainView
             } else {
                 $this->itemNotFound();
             }
-        }   
-            
+        }
     }
 
     /**
      * Shall be used when there is no item to show
      * This function shall expect to take more args for search
      */
-
-    public function itemNotFound($searchWordSanitized=null, $city=null , $item=null) {
+    public function itemNotFound($searchWordSanitized = null, $city = null, $item = null)
+    {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
-            echo '<p class="col-xs-12 col-md-12 bg-primary">'.$GLOBALS["lang"]["search res"].'</p>';
-            echo '<div id="spanMainColumnXRemove" style="color: red">';
-            echo $GLOBALS['lang']['full no match msg'];
+        echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
+        echo '<div id="spanMainColumnXRemove" style="color: red">';
+        echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
     }
 }

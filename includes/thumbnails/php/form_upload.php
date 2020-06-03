@@ -45,7 +45,7 @@ if (!empty($err2)) {
 	//get item instance
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
 	//insert item
-	$_pItem->insert();
+	$_pItem->insertPost();
 
 	//reset uploaded sessions per item
 	$items = new HtItemAll("*");

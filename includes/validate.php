@@ -326,6 +326,9 @@ class ValidateUser
                 }
                 $_SESSION['uID'] = $userAll->getId();
                 $_SESSION['time'] = time();
+                if($userAll->canUpdate())
+                    header("Location: ../../index.php" . $langURL);
+                else
                 header("Location: ../../includes/mypage.php" . $langURL);
             } else {
                 $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];

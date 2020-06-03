@@ -135,18 +135,18 @@ class HtItemComputer extends MySqlRecord
     private $fieldPriceCurrency;
 
     /**
-     * Class attribute for mapping table field field_make
+     * Class attribute for mapping table field field_made
      *
-     * Comment for field field_make: Not specified.<br>
+     * Comment for field field_made: Not specified.<br>
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var string $fieldMake
+     * @var string $fieldMade
      */
-    private $fieldMake;
+    private $fieldMade;
 
     /**
      * Class attribute for mapping table field field_os
@@ -417,7 +417,7 @@ class HtItemComputer extends MySqlRecord
         $result = $object->getResultSet();
         while ($row = $result->fetch_array()) {
             if ($row['field_name'] === $idCategory) {
-                $idCategory = $row['id'];                
+                $idCategory = $row['id'];
                 break;
             }
         }
@@ -477,16 +477,16 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
-     * setFieldMake Sets the class attribute fieldMake with a given value
+     * setfieldMade Sets the class attribute fieldMade with a given value
      *
-     * The attribute FieldMake maps the field field_make defined as varchar(20).<br>
-     * Comment for field field_make: Not specified.<br>
-     * @param string $fieldMake
+     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
+     * Comment for field field_made: Not specified.<br>
+     * @param string $fieldMade
      * @category Modifier
      */
-    public function setFieldMake($fieldMake)
+    public function setfieldMade($fieldMade)
     {
-        $this->fieldMake = (string) $fieldMake;
+        $this->fieldMade = (string) $fieldMade;
     }
 
     /**
@@ -701,7 +701,7 @@ class HtItemComputer extends MySqlRecord
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setFieldMake($_POST['fieldMake']);
+        $this->setfieldMade($_POST['fieldMade']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldProcessor($_POST['fieldProcessor']);
@@ -880,16 +880,16 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
-     * getFieldMake gets the class attribute fieldMake value
+     * getfieldMade gets the class attribute fieldMade value
      *
-     * The attribute FieldMake maps the field field_make defined as varchar(20).<br>
-     * Comment for field field_make: Not specified.
-     * @return string $fieldMake
-     * @category Accessor of $fieldMake
+     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
+     * Comment for field field_made: Not specified.
+     * @return string $fieldMade
+     * @category Accessor of $fieldMade
      */
-    public function getFieldMake()
+    public function getfieldMade()
     {
-        return $this->fieldMake;
+        return $this->fieldMade;
     }
 
     /**
@@ -1142,7 +1142,7 @@ class HtItemComputer extends MySqlRecord
         if (!empty($id)) {
             $this->select($id, $status);
         }
-        $this->setCategoryName(); 
+        $this->setCategoryName();
     }
 
     /**
@@ -1186,8 +1186,9 @@ class HtItemComputer extends MySqlRecord
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
+        $this->setFieldValuesForOneItem($result);
         $this->lastSql = $sql;
-        return $this->affected_rows;        
+        return $this->affected_rows;
     }
 
     /**
@@ -1198,10 +1199,10 @@ class HtItemComputer extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function runQuery($filter, $start=null, $itemPerPage=null)
+    public function runQuery($filter, $start = null, $itemPerPage = null)
     {
-        if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_computer $filter";
+        if ($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_computer WHERE $filter";
         } else {
             $sql =  "SELECT * FROM item_computer $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
@@ -1216,18 +1217,22 @@ class HtItemComputer extends MySqlRecord
     ** Set the computer element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldValues($row)
+    public function setFieldValues($input)
     {
-        $rowObject = (object)$row;
-        @$this->id = (int) $rowObject->id;	
-        @$this->idTemp = (int) $rowObject->id_temp;	
-        @$this->idUser = (int) $rowObject->id_user;	
-        @$this->idCategory = (int) $rowObject->id_category;	
+        if (!is_object($input)) {
+            $rowObject = (object) $input;
+        } else {
+            $rowObject = $input->fetch_object();
+        }
+        @$this->id = (int) $rowObject->id;
+        @$this->idTemp = (int) $rowObject->id_temp;
+        @$this->idUser = (int) $rowObject->id_user;
+        @$this->idCategory = (int) $rowObject->id_category;
         @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
         @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
         @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
         @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
+        @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_made);
         @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
         @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
         @$this->fieldProcessor = $this->replaceAposBackSlash($rowObject->field_processor);
@@ -1245,17 +1250,23 @@ class HtItemComputer extends MySqlRecord
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
 
+    public function setFieldValuesForOneItem($input)
+    {
+        $this->allowUpdate = true;
+        $this->setFieldValues($input);
+    }
     /* 
     ** Set the computer category elements
     * 
     */
-    public function setCategoryName(){
+    public function setCategoryName()
+    {
         $object = new HtCategoryComputer("*");
         $result = $object->getResultSet();
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }
-        $this->categoryNameArray = $catArray;                
+        $this->categoryNameArray = $catArray;
     }
 
     /**
@@ -1268,7 +1279,7 @@ class HtItemComputer extends MySqlRecord
     {
         $sql = "DELETE FROM item_computer WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1286,17 +1297,21 @@ class HtItemComputer extends MySqlRecord
      * @return mixed MySQL insert result
      * @category DML
      */
-    public function insert()
+    public function insertPost()
     {
         $this->setFieldPost();
+        $this->insert();
+    }
 
+    public function insert()
+    {
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_computer
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_made,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1305,7 +1320,7 @@ class HtItemComputer extends MySqlRecord
 			{$this->parseValue($this->fieldPriceSell, 'notNumber')},
 			{$this->parseValue($this->fieldPriceNego, 'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-			{$this->parseValue($this->fieldMake, 'notNumber')},
+			{$this->parseValue($this->fieldMade, 'notNumber')},
 			{$this->parseValue($this->fieldOs, 'notNumber')},
 			{$this->parseValue($this->fieldModel, 'notNumber')},
 			{$this->parseValue($this->fieldProcessor, 'notNumber')},
@@ -1322,10 +1337,8 @@ class HtItemComputer extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-
-        echo $sql;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1365,7 +1378,7 @@ SQL;
 				field_price_sell={$this->parseValue($this->fieldPriceSell, 'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego, 'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-				field_make={$this->parseValue($this->fieldMake, 'notNumber')},
+				field_made={$this->parseValue($this->fieldMade, 'notNumber')},
 				field_os={$this->parseValue($this->fieldOs, 'notNumber')},
 				field_model={$this->parseValue($this->fieldModel, 'notNumber')},
 				field_processor={$this->parseValue($this->fieldProcessor, 'notNumber')},
@@ -1384,11 +1397,13 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
+echo $sql;
+//exit;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
@@ -1397,6 +1412,7 @@ SQL;
                 return $result;
             }
         } else {
+            echo "NOT ALLOWED";
             return false;
         }
     }
@@ -1427,29 +1443,28 @@ SQL;
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
-        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        
-        if ($this->getidCategory() != null){
-            if ($this->getidCategory() != 6){
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
+
+        if ($this->getidCategory() != null) {
+            if ($this->getidCategory() != 6) {
                 $compCategory = $GLOBALS['upload_specific_array']['computer']['idCategory'][2][$this->computerCategory($this->getidCategory())];
-                echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['computer']['idCategory'][0].":&nbsp<strong>".  $compCategory . "</strong></p>" : "";
+                echo $this->getIdCategory() ? "<p>" . $GLOBALS['upload_specific_array']['computer']['idCategory'][0] . ":&nbsp<strong>" .  $compCategory . "</strong></p>" : "";
             }
         }
-        
-        echo $this->getFieldMake() != "unlisted" ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
-        echo $this->getFieldModel() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
-        echo $this->getFieldOs() != "unlisted"   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldOs"][2][$this->getFieldOs()].'</strong></p>' : "";
-        echo $this->getFieldProcessor() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][2][$this->getFieldProcessor()].'</strong></p>' : "";
-        echo $this->getFieldRam() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldRam"][2][$this->getFieldRam()].'</strong></p>' : "";
-        echo $this->getFieldHardDrive() != null   ? '<p>'.$GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][2][$this->getFieldHardDrive()].'</strong></p>' : "";
-        echo $this->getFieldColor() != "unknown"     ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
+
+        echo $this->getfieldMade() != "unlisted" ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldMade"][0] . ':&nbsp<strong>' . $this->getfieldMade() . '</strong></p>' : "";
+        echo $this->getFieldModel() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldModel"][0] . ':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
+        echo $this->getFieldOs() != "unlisted"   ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldOs"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["computer"]["fieldOs"][2][$this->getFieldOs()] . '</strong></p>' : "";
+        echo $this->getFieldProcessor() != null   ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["computer"]["fieldProcessor"][2][$this->getFieldProcessor()] . '</strong></p>' : "";
+        echo $this->getFieldRam() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldRam"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["computer"]["fieldRam"][2][$this->getFieldRam()] . '</strong></p>' : "";
+        echo $this->getFieldHardDrive() != null   ? '<p>' . $GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["computer"]["fieldHardDrive"][2][$this->getFieldHardDrive()] . '</strong></p>' : "";
+        echo $this->getFieldColor() != "unknown"     ? '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()] . '</strong></p>' : "";
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
 
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
-
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
 
     /**
@@ -1462,7 +1477,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMake' => 'make',
+        'fieldMade' => 'make',
         'fieldOs' => 'OS (Operting System)',
         'fieldModel' => 'Model',
         'fieldProcessor' => 'Processor',
@@ -1485,7 +1500,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMake' => 'make',
+        'fieldMade' => 'make',
         'fieldModel' => 'Model',
         'fieldOs' => 'OS (Operting System)',
         'fieldProcessor' => 'Processor',
@@ -1544,12 +1559,12 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
 
-        ___open_div_("col-md-4", '');        
+        ___open_div_("col-md-4", '');
         $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
+        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
@@ -1610,7 +1625,8 @@ SQL;
         ___close_div_(1);
     }
 
-    public function computerCategory($categoryId) {
+    public function computerCategory($categoryId)
+    {
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];
         return $cat;

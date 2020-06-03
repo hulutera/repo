@@ -7,19 +7,19 @@ function accountLinks()
 	$contactusMessage = queryContactUs();
 
 	//calculate all items pending for moderator
-	$pendingItems = queryStatus(0,"pending");
+	$pendingItems = countRow("pending","*");
 
 	//calculate all items pending for moderator
-	$deletedItems = queryStatus(0,"modDelete");
+	$deletedItems = countRow("modDelete","*");
 
 	//calculate all items reported for moderator
 	$reportedItems = queryReported();
 
 	//calculate users active items
-	$usersActiveItem = queryStatus($uId,"active");
+	$usersActiveItem = countRow("active",$uId);
 
 	//calculate users pending items
-	$usersPendingItem = queryStatus($uId,"pending");
+	$usersPendingItem = countRow("pending",$uId);
 
 	//calculate users unread messages
 	$usersUnreadMessages = queryMsgs($uId,"unread");
@@ -36,26 +36,16 @@ function accountLinks()
 	$webmasterTotal = mysqli_num_rows($result);
 	
 	echo "<div id=\"modnav\" ><div class=\"item-list-by-status\">";
-	echo "<a ";
-	if (activatetab() == 14)
-	{
-		echo "class=\"active\"";
-	}
+	echo "<a ";	
 	echo 'href="../includes/userActive.php' .$lang_url. '"> ';
 	echo "<div class='item-list'>";
 	echo "<span>" .$lang['active']. "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
-	echo "<a ";
-	if (activatetab() == 15) {
-		echo "class=\"active\"";
-	}
+	
+	echo "<a ";	
 	echo 'href="../includes/userPending.php' .$lang_url. '" >';
 	echo "<div class='item-list'>";
 	echo "<span>" .$lang['pending']. "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
 	echo "<a ";
-	if (activatetab() == 17)
-	{
-		echo "class=\"active\"";
-	}
 	echo 'href="../includes/upload.php' .$lang_url. '" >';
 	echo "<div class='item-list'>";
 	echo "<span>" .$lang['Post Items']. "</span></div></a>";
@@ -83,26 +73,18 @@ function accountLinks()
 		if($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
 			if($adminTotal == 1 || $webmasterTotal == 1) {
 				echo "<a ";
-				if (activatetab() == 16)
-				{
-					echo "class=\"active\"";
-				}
 				echo 'href="../includes/deletedItems.php' .$lang_url. '">';
 				echo "<div class='item-list'>";
 				echo "<span>" .$lang['deleted']. "(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
 			}
-			echo "<a ";
-			if (activatetab() == 13)
-			{
-				echo "class=\"active\" ";
-			}
+			echo "<a ";			
 			echo 'href="../includes/userMessages.php' .$lang_url. '">';
 			echo "<div class='item-list'>";
 			echo "<span>" .$lang['messages']. "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 			
-			echo '<a class="item-list-cp" href="../includes/controlPanel.php' .$lang_url. '">';
+			echo '<a class="item-list-cp" href="../includes/controlPanel.php">';
 			echo "<div class='item-list-cp'>";
-			echo "<span>" .$lang['cp']. "</span></div></a>";
+			echo "<span>" .$lang['admin-panel']. "</span></div></a>";
 			echo "</div>";
 		}			
 	}
@@ -110,30 +92,7 @@ function accountLinks()
 }
 function queryStatus($uId, $status)
 {
-	$connect = DatabaseClass::getInstance()->getConnection();
-
-	if($uId)
-	{
-		$value = "uID = ".$uId." AND";
-	}
-	else
-	{
-		$value = "";
-	}
-	$sum = 0;
-	$itemsId = array("cID", "hID", "dID", "eID", "pID", "hhID", "oID");
-	$tablesName = array("car", "house", "computer", "electronics", "phone", "household", "others");
-	$itemStatus = array("cStatus", "hStatus", "dStatus", "eStatus", "pStatus", "hhStatus", "oStatus");
-	
-	for ($i=0; $i<=6; $i++){
-		$cond2 = "WHERE $value $itemStatus[$i]  = '$status'";
-		$table = $tablesName[$i];
-		$filter = $itemsId[$i];
-	    $qr = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond2);
-		$sum_item = mysqli_num_rows($qr);
-        $sum += $sum_item;		
-	}
-	return ($sum);
+	return countRow($status,$uId);
 }
 function queryContactUs()
 {

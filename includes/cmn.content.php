@@ -1,5 +1,7 @@
 <?php
+ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/userStatus.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/message.php';
@@ -8,6 +10,7 @@ require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/view/main.view.class.php';
 require_once $documnetRootPath . '/classes/reflection/HtItemAll.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
 
 $connect = DatabaseClass::getInstance()->getConnection();
@@ -83,55 +86,33 @@ function reportedItems()
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_ignore").show();});</script>';
 }
+
 function countRow($status, $id)
 {
-
-    $withId = !empty($id)?(" AND id_user = $id"):"";
-	$rowCount = 0;
-	$sql = "";
-	$items = ['car', 'house', 'computer', 'electronic', 'phone', 'household', 'other'];
-	foreach ($items as $key => $value) {
-		$sql = <<< SQL
-		 SELECT id FROM item_$value WHERE field_status = "{$status}" {$withId} 
-SQL;
-		$record = new MySqlRecord();
-
-		$record->fetch_all($sql);
-		$rowCount += $record->affected_rows;
-	}
-	
-	return $rowCount;
+	$record = new MySqlRecord();
+	return $record->countRow($status, $id);
 }
-function maxQuery($status, $Id, $start)
+function countRowOfItem($item, $status)
 {
-	if ($Id != '')
-		$specific = "'$status' AND uID = '$Id'";
-	else
-		$specific = "'$status'";
-	$itemPerPage = HtGlobal::get('itemPerPage');
-	$sql = "SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
-			UNION ALL
-			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
-			UNION ALL
-			SELECT dID, tableType, UploadedDate FROM computer    WHERE dStatus LIKE  $specific
-			UNION ALL
-			SELECT eID, tableType, UploadedDate FROM electronics WHERE eStatus LIKE  $specific
-			UNION ALL
-			SELECT pID, tableType, UploadedDate FROM phone       WHERE pStatus LIKE  $specific
-			UNION ALL
-			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
-			UNION ALL
-			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
-			ORDER BY UploadedDate DESC LIMIT $start, $itemPerPage";
-	$result = DatabaseClass::getInstance()->runQuery($sql);
-	return $result;
+	$record = new MySqlRecord();
+	return $record->countRowOfItem($item, $status);
+}
+
+function maxQuery($status, $id, $start)
+{
+	$record = new MySqlRecord();
+	return $record->maxQuery($status, $id, $start);
+}
+function allItemOfStatus($item, $status)
+{
+	return countRowOfItem($item, $status);
 }
 function userActive()
 {
 	global $connect;
 	$Id  = $_SESSION['uID'];
 	$sum = countRow('active', $Id);
-
+	return $sum;
 	if ($sum >= 1) {
 		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
@@ -143,7 +124,25 @@ function userActive()
 		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
 		$result = maxQuery('active', $Id, $itemstart);
-		show($result);
+
+		echo  $result['field_table_type'];
+		$tableType2item = [
+			1 => 'car',
+			2 => 'house',
+			3 => 'computer',
+			4 => 'phone',
+			5 => 'electronic',
+			6 => 'household',
+			7 => 'other'
+		];
+		foreach ($result as $key => $value) {
+			# code...
+			$itemName = $tableType2item[$value['field_table_type']];
+			$view = new HtMainView($itemName, $value['id']);
+			$view->showItem('active');
+		}
+		echo '<pre>' . print_r($result) . '</pre>';
+		//show($result);
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
@@ -168,6 +167,9 @@ function userPending()
 		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
 		$result = maxQuery('pending', $Id, $itemstart);
+		echo '<pre>';
+		var_dump($result);
+		echo '</pre>';
 		show($result);
 		pagination('userPending', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
@@ -223,39 +225,208 @@ function pendingItems()
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_activate").show();});</script>';
 }
-function display2($query)
+
+function activityTable()
 {
-	global $lang, $lang_url, $str_url;
 
-	echo '<div style="font-family: Arial, Helvetica, sans-serif">';
-	echo '<tr class="cpheaders">';
-	echo '<th>';
-	echo $lang['id'];
-	echo '</th>';
-	echo '<th>';
-	echo $lang['Email'];
-	echo '</th>';
-	echo '<th>';
-	echo $lang['Phone'];
-	echo '</th>';
-	echo '</tr>';
+	___open_div_('container-fluid');
+	___open_div_('row', '" style="width:50%;');
+	___open_div_('col-md-12', '" ');
 
-	$i = 1;
-	while ($result = $query->fetch_assoc()) {
-		echo '<a href="../includes/template.content.php?type=controlPanel&ID=' . $result['uID'] . $lang_url . '">
-		<li>';
-		echo '<div style="width:10%;">' . $result['uID']     . '</div>';
-		echo '<div style="width:35%;">' . $result['uEmail'] . '</div>';
-		echo '<div style="width:35%;">' . $result['uPhone'] . '</div>';
-		echo '<div><input type="hidden" name="token"  value="' . Token::generate() . '</td>';
-		echo '</li></a>';
-		$i++;
+
+	echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
+	$items = [
+		'car' => 'item_car',
+		'house' => 'item_house',
+		'computer' => 'item_computer',
+		'electronic' => 'item_electronic',
+		'phone' => 'item_phone',
+		'household' => 'item_household',
+		'other' => 'item_other',
+		'total' => 'total'
+	];
+	$activities = [
+		'Active' => [
+			'item' => $items,
+			'style' => ['text' => 'text-success bg-dark text-center', 'fas' => 'fas fa-check']
+		],
+		'Pending' => [
+			'item' => $items,
+			'style' => ['text' => 'text-warning bg-dark text-center', 'fas' => 'fas fa-pause']
+		],
+		'Reported' => [
+			'item' => $items,
+			'style' => ['text' => 'text-danger bg-dark text-center', 'fas' => 'fas fa-exclamation']
+		],
+		'Deleted' => [
+			'item' => $items,
+			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-trash']
+		],
+		'total' => [
+			'item' => $items,
+			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-plus']
+		]
+	];
+	___close_div_(1);
+	___close_div_(1);
+	___open_div_('row', '" style="width:50%;');
+	___open_div_('col-md-12');
+
+	echo '<table class="table">
+          <thead>
+          <tr><th scope="col">Items</th>';
+	foreach ($activities  as $key => $value) {
+		echo '<th scope="col" class="' . $value['style']['text'] . '">' . strtoupper($key) . '</th>'; //<i class="' . $value['style']['fas'] . '"></i>
 	}
-	echo '</div>';
+	echo '</tr></thead><tbody id="activity-table">';
+
+	foreach ($items  as $key => $value) {
+		$totalActivePerItem   = allItemOfStatus($value, 'active');
+		$totalPendingPerItem  = allItemOfStatus($value, 'pending');
+		$totalReportedPerItem = allItemOfStatus($value, 'reported');
+		$totalDeletedPerItem  = allItemOfStatus($value, 'deleted');
+		$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
+		$totalActive    +=  $totalActivePerItem > 0 ?  $totalActivePerItem : 0;
+		$totalPending   +=  $totalPendingPerItem > 0 ? $totalPendingPerItem : 0;
+		$totalReported  +=  $totalReportedPerItem > 0 ? $totalReportedPerItem : 0;
+		$totalDeleted   +=  $totalDeletedPerItem > 0 ? $totalDeletedPerItem : 0;
+		$grandTotal   = $totalActive    +		$totalPending   +		$totalReported  +		$totalDeleted;
+		if ($value == "total") {
+			echo <<< EOD
+			<th scope="col">{$value}</th>
+                        <td style="font-size:20px;">{$totalActive}</td>
+                        <td style="font-size:20px;">{$totalPending}</td>
+                        <td style="font-size:20px;">{$totalReported}</td>
+						<td style="font-size:20px;">{$totalDeleted}</td>
+						<td style="font-size:20px;">{$grandTotal}</td>
+                        </tr>
+EOD;
+		} else {
+			echo '<tr>';
+			echo '<th scope="col">' . $value . '</th>';
+			$totalSumLinks = [$totalActivePerItem, $totalPendingPerItem, $totalReportedPerItem, $totalDeletedPerItem];
+			foreach ($totalSumLinks as $key2 => $value2) {
+				if ($value2 == 0) {
+					echo '<td style="font-size:18px;">0</td>';
+				} else {
+					echo '<td style="font-size:18px;" ><a href="./admin.php?function=activity-table&type=' . $key . '&status=active">' . $value2  . '</td>';
+				}
+			}
+			echo '<td style="font-size:18px;" >' . $totalItem . '</td>';
+			echo '</tr>';
+		}
+	}
+
+	echo '
+                    </tbody>
+				  </table>';
+	___close_div_(1);
+	___close_div_(1);
+	___close_div_(1);
+	___open_div_('row', '" style="width:80%;');
+	___open_div_('col-md-12');
+
+	if (isset($_GET['function']) && isset($_GET['type']) && isset($_GET['action'])) {
+		$id = $_GET['id'];
+		$item = $_GET['type'];
+		$status = $_GET['status'];
+		$action = $_GET['action'];
+		$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
+		$object->setFieldStatus($action);
+		$object->updateCurrent();
+		header('Location: ./admin.php?function=activity-table&type=' . $item . '&status=' . $status);
+	}
+	if (isset($_GET['function']) && isset($_GET['type']) && isset($_GET['status'])) {
+		$item = $_GET['type'];
+		$status = $_GET['status'];
+		echo '<p class="h1">List of ' . $item . ' with status=' . $status . '</p>';
+		$view = new HtMainView($item);
+		$dataOnly = $view->showRawData($status);
+		$header = $dataOnly[0];
+		___open_div_('col-md-12');
+		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+		echo '<thead><tr><th class="th-sm">
+		Action
+		<br>(Change status)
+		</th>';
+		foreach ($header as $k1 => $v1) {
+			$k11 = explode("_", $k1);
+			$final = "";
+			foreach ($k11 as $k111 => $v111) {
+				$final .= $v111[0][0];
+			}
+			echo '<th class="th-sm" title="' . $k1 . '">' . strtoupper($k1) . '</th>';
+		}
+		$allActionButtons = [
+			'active' => [  // change
+				'activate', // button name
+				'btn-success', // button style,
+				' style="color:black;margin-left:5px;font-weight:bold" '
+			],
+			'pending' => [
+				'pend', // button name
+				'btn-warning',
+				' style="color:black;margin-left:5px;font-weight:bold" '
+			],
+			'reported' => [
+				'report', // button name
+				'btn-mute',
+				' style="color:black;margin-left:5px;font-weight:bold" '
+			],
+			'deleted' => [  // change
+				'delete', // button name
+				'btn-warning', // button style,
+				' style="color:black;margin-left:5px;font-weight:bold" '
+			], 
+			'distroy' => [  // change
+				'erase', // button name
+				'btn-danger', // button style
+				' style="color:yellow;margin-left:5px;font-weight:bold;background-color:red;" '
+			]
+		];
+
+		$edit = [
+			'active'   => $allActionButtons,
+			'pending'  => $allActionButtons,
+			'reported' => $allActionButtons,
+			'deleted'  => $allActionButtons,
+		];
+
+		echo '</tr></thead>';
+
+		echo '<tbody>';
+		foreach ($dataOnly as $k1 => $v1) {
+			echo '<tr>';
+			$onlyOneTime = true;
+			$temp = 0;
+			foreach ($v1 as $k2 => $v2) {
+				if ($onlyOneTime) {
+					echo '<td style=""><span class="table-remove">';
+					foreach ($edit[$status] as $key => $value) {
+						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?function=activity-table&type=' . $item . '&id=' . $v2 . '&action=' . $key . '&status=' . $status . '" method="post">';
+						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' 
+						class="btn btn-rounded btn-sm ' . $value[1] .
+							'" id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
+						echo '</form>';
+					}
+					echo '</span></td>';
+					$onlyOneTime = false;
+				}
+				//TODO: add image//<img style="width:100px; height:100px;" src="../../images/hulutera.PNG">
+				echo '<td>' . $v2 . '</td>';
+			}
+			echo '</tr>';
+		}
+		echo '</tbody>';
+		echo '</table>';
+		___close_div_(1);
+	}
+	___close_div_(2);
 }
+
 function listUsers()
 {
-	$roleList = ['webmaster', 'admin', 'mod', 'user'];
+	$roleList = ['webmaster', 'admin', 'user'];
 	$sql =  array('sql' => "SELECT * FROM user_all ORDER BY field_privilege");
 	$userAll = new HtUserAll($sql);
 	$result = $userAll->getResultSet();
@@ -325,6 +496,7 @@ EOD;
 </div>
 EOD;
 }
+
 function controlPanel()
 {
 	global $connect, $lang, $lang_url, $str_url;
