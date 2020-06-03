@@ -297,7 +297,7 @@ $lang = array(
     'Choose City' => 'Choose City',
     'All Cities' => 'All Cities',
     'hulutera' => 'Hulutera',
-    'failed search' => 'Please enter the search word or select City or select Item </br>',
+    'failed search' => 'Please enter the search word or any other search options',
     'missing email msg' => 'Please enter your e-mail',
     'missing password msg' => 'Please enter the password',
     'missing e-mail and password msg' => 'Please enter your e-mail and password',
@@ -592,6 +592,7 @@ $upload_specific_array = [
             0 => 'Property (Land) Size Sq.m',
             1 => 'Choose Size',
             2 => [],
+            3 => 'Max '
         ],
         'fieldKebele'        => [
             0 => 'Kebele',
@@ -602,7 +603,7 @@ $upload_specific_array = [
             1 => 'Choose Wereda',
         ],
         'fieldBuildYear'   => [
-            0 => 'Built Year',
+            0 => 'Built Year (E.C)',
             1 => 'Choose Built Year',
             2 => [
                 '1940' => 'Before 1940',
@@ -610,7 +611,20 @@ $upload_specific_array = [
                 '1960' => '1950-1960',
                 '1970' => '1970-1980',
                 'unknown' => 'unknown'
-            ]
+            ],
+            3 => [
+                '2011' => '2010 - 2012',
+                '2010' => '2005 - 2009',
+                '2000' => '2000 - 2004',
+                '1995' => '1995 - 1999',
+                '1990' => '1990 - 1999',
+                '1980' => '1980 - 1989',
+                '1970' => '1970 - 1979',
+                '1960' => '1960 - 1969',
+                '1950' => '1950 - 1959',
+                '1940' => 'Before 1950'
+            ]      
+
         ],
         'fieldBathroom'   => [
             0 => 'Bathroom',
@@ -619,10 +633,14 @@ $upload_specific_array = [
         'fieldToilet'   => [
             0 => 'Toilet',
             1 => 'Choose Toilet',
+            2 => 'Over 100',
+            3 => 'Max Toilet'
         ],
         'fieldNrBedroom' => [
             0 => 'Bedroom',
             1 => 'Choose Bedroom',
+            2 => 'Over 100',
+            3 => 'Max Bedroom'
         ],
         'fieldWater' => [
             0 => 'House have water?',
@@ -886,19 +904,33 @@ $upload_specific_array = [
             0 => 'Sell Price',
             1 => 'Write Selling Price',
             2 => 'Not for sell',
-            3 => 'Choose max sell price',
+            3 => 'Choose max price (ETB)',
             4 => 'Max price',
             5 => [
-                '6000000' => 'Over 5 000 000 ETB',
-                '5000000' => '5 000 000 ETB',
-                '3000000' =>  '3 000 000 ETB',
-                '1000000' =>  '1 000 000 ETB',
-                '800000' => '800 000 ETB',
-                '700000' =>  '700 000 ETB',
-                '600000' =>  '600 000 ETB',
-                '500000' => '500 000 ETB',
-                '300000' =>  'Under 300 000 ETB'
-            ]
+                '6000000' => 'Over 5 000 000',
+                '5000000' => '5 000 000',
+                '3000000' =>  '3 000 000',
+                '1000000' =>  '1 000 000',
+                '800000' => '800 000',
+                '700000' =>  '700 000',
+                '600000' =>  '600 000',
+                '500000' => '500 000',
+                '300000' =>  'Under 300 000'
+                 ],
+            6 => [
+                '20000001' => 'Over 20 000 000',
+                '20000000' => '20 000 000',
+                '10000000' => '10 000 000',
+                '8000000' => '8 000 000',
+                '5000000' => '5 000 000',
+                '3000000' =>  '3 000 000',
+                '1000000' =>  '1 000 000',
+                '900000' => '900 000',
+                '700000' =>  '700 000',
+                '500000' => '500 000',
+                '300000' =>  'Under 300 000'
+                ]
+
         ],
         'fieldPriceCurrency' => [
             0 => 'Currency',

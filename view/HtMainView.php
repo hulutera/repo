@@ -89,7 +89,7 @@ class HtMainView
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
-        $condition = "field_status = '$filter'";
+        $condition = "WHERE field_status = '$filter'";
         $rows = $this->_pItem->runQuery($condition);
         if($rows > 0) {
             $calculatePageArray = calculatePage($rows);
@@ -219,7 +219,7 @@ class HtMainView
         $itemstart = ($page - 1) * $globalVarObj::get('itemPerPage');
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            $this->itemNotFound($searchWordSanitized, $city, $item);
+            $this->failedSearch($searchWordSanitized, $city, $item);
         } else if ($searchWordSanitized == "" and ($city == "All" or $city == "000") and ($item == "All" or $item == "000")) {
             $this->showLatest();
         } else {
@@ -261,6 +261,7 @@ class HtMainView
                     $result = $value->getResultSet();
                     echo '<div class="row items-board">';
                     while ($row = $result->fetch_assoc()) {
+                        $this->_runnerName = $key;
                         $this->showItemWithId($row);
                     }
                     echo '</div>';
@@ -278,7 +279,6 @@ class HtMainView
      * Shall be used when there is no item to show
      * This function shall expect to take more args for search
      */
-
     public function itemNotFound($searchWordSanitized=null, $city=null , $item=null) {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
             echo '<p class="col-xs-12 col-md-12 bg-primary">'.$GLOBALS["lang"]["search res"].'</p>';
@@ -286,4 +286,14 @@ class HtMainView
             echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
     }
+
+    public function failedSearch($searchWordSanitized=null, $city=null , $item=null) {
+        echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
+            echo '<p class="col-xs-12 col-md-12 bg-primary">'.$GLOBALS["lang"]["search res"].'</p>';
+            echo '<div id="spanMainColumnXRemove" style="color: red">';
+            echo $GLOBALS['lang']['failed search'];
+        echo '</div></div>';
+    }
+
+
 }

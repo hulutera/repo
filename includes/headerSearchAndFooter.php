@@ -241,6 +241,7 @@ function miniSearch()
 	echo '<button type="submit	button" class="btn btn-warning" style="width:calc(20% - 15px)"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
 	echo '</div>';
 	carSearch();
+	houseSearch();
 	lang_sw();
 	echo '</form></div>';
 }
@@ -359,6 +360,64 @@ function carSearch() {
 					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldFuelType'][2][$key] .'</option>';
 		   	}
 	echo'</select></div>';
+
+	
+}
+
+function houseSearch() {
+	
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 house_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="house_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][6] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][6][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// House type
+	echo'<div class="col-xs-6 col-md-4 house_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['house']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="house_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['house']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['house']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['house']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// House bedroom
+	echo'<div class="col-xs-6 col-md-4 house_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['house']['fieldNrBedroom'][3].'</p>
+			<select  class="col-xs-12 col-md-8" name="house_bedroom">';
+			echo '<option value="0">'. $GLOBALS['upload_specific_array']['house']['fieldNrBedroom'][1] .'</option>';
+	 	   	    for ($i=1; $i<=100; $i++) {
+					echo '<option value="'.$i.'">'. $i .'</option>';
+			   }
+			echo '<option value="101">' . $GLOBALS['upload_specific_array']['house']['fieldNrBedroom'][2] . '</option>';
+	echo'</select></div>';
+
+	// House toilet number
+	echo'<div class="col-xs-6 col-md-4 house_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['house']['fieldToilet'][3].'</p>
+			<select  class="col-xs-12 col-md-8" name="house_toilet">';
+			echo '<option value="0">'. $GLOBALS['upload_specific_array']['house']['fieldToilet'][1] .'</option>';
+			for ($i=1; $i<=100; $i++) {
+				echo '<option value="'.$i.'">'. $i .'</option>';
+		    }
+		    echo '<option value="101">' . $GLOBALS['upload_specific_array']['house']['fieldToilet'][2] . '</option>';
+
+	echo'</select></div>';
+	
+	// House built year
+	echo'<div class="col-xs-6 col-md-4 house_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['house']['fieldBuildYear'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="house_built_year">';
+			echo '<option value="0">'. $GLOBALS['upload_specific_array']['house']['fieldBuildYear'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['house']['fieldBuildYear'][3] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['house']['fieldBuildYear'][3][$key] .'</option>';
+		   	}
+	echo'</select></div>'; 
 
 	
 }

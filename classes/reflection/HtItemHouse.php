@@ -1385,6 +1385,94 @@ class HtItemHouse extends MySqlRecord
         return $this->affected_rows;
     }
 
+    /**
+     * Run a house search query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function searchQuery($keyword=null, $location=null, $start=null, $itemPerPage=null)
+    {
+        
+        $itemTable = $this->getTableName();
+        $catTableName =   $this->getCatTableName();
+        $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
+        $statusFilter = " WHERE field_status LIKE 'active'";
+        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+        $maxPriceFilter = ($_GET['house_max_price'] != "000")  ? ($_GET['house_max_price'] == 20000001) ? "field_price_sell >= " .  (int) ($_GET['house_max_price']) : "field_price_sell <= " .  (int) ($_GET['house_max_price']) : "field_price_sell LIKE '%'";
+        $typeFilter = ($_GET['house_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['house_type']) . "'": "field_name LIKE '%'";
+        $maxBedroomFilter = ($_GET['house_bedroom'] != 0)  ? ($_GET['house_bedroom'] == 101) ? "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom LIKE '%'";
+        $maxToiletFilter = ($_GET['house_toilet'] != 0)  ? ($_GET['house_toilet'] == 101) ? "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet LIKE '%'";
+        $builtYrFilter = $this->builtYear();
+       
+        $filter = "$statusFilter AND $maxPriceFilter AND $typeFilter AND $keywordFilter AND  $maxBedroomFilter AND  $maxToiletFilter AND $builtYrFilter AND $locationFilter";
+        
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+        } else {
+            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+
+        
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+
+    public function builtYear(){
+
+        $yr = (int) $_GET['house_built_year'];
+
+        if ($yr == 0) {
+            $filter = "field_build_year LIKE '%'";
+        } else {
+            if ($yr  <= 1940) {
+                $lower = 1939;
+                $upper = 1940;
+            } else if ($yr > 1940 and $yr < 1950) {
+                $lower = 1940;
+                $upper = 1950;
+            } else if ($yr >= 1950 and $yr < 1960) {
+                $lower = 1950;
+                $upper = 1960;
+            } else if ($yr >= 1960 and $yr < 1970) {
+                $lower = 1960;
+                $upper = 1970;
+            } else if ($yr >= 1970 and $yr < 1980) {
+                $lower = 1970;
+                $upper = 1980;
+            } else if ($yr >= 1980 and $yr < 1990) {
+                $lower = 1980;
+                $upper = 1990;
+            } else if ($yr >= 1990 and $yr < 2000) {
+                $lower = 1990;
+                $upper = 2000;
+            } else if ($yr >= 2000 and $yr < 2005) {
+                $lower = 2000;
+                $upper = 2005;
+            } else if ($yr >= 2005 and $yr < 2010) {
+                $lower = 2005;
+                $upper = 2010;
+            } else if ($yr >= 2010 and $yr < 2015) {
+                $lower = 2010;
+                $upper = 2015;
+            } 
+            
+            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
+
+        }
+
+        return $filter;
+    }
+
+
+
     /* 
     ** Set the house element values
     * $rows: it takes the array of one item row and it sets the values

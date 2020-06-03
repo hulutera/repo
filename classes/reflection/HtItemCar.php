@@ -1353,7 +1353,7 @@ class HtItemCar extends MySqlRecord
         return $this->affected_rows;
     }
 
-    /**
+/**
  * Run a car search query with a request
  * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
  * $start: the first item to fetch
@@ -1370,7 +1370,7 @@ class HtItemCar extends MySqlRecord
         $statusFilter = " WHERE field_status LIKE 'active'";
         $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
         $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell >= " .  (int) ($_GET['car_max_price']) : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
         $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "field_make LIKE '%'";
         $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "field_name LIKE '%'";
         $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "field_color LIKE '%'";
@@ -1378,7 +1378,7 @@ class HtItemCar extends MySqlRecord
         $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'": "field_gear_type LIKE '%'";
         $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'": "field_fuel_type LIKE '%'";
         
-        $filter = "$statusFilter AND $maxPriceFilter AND $makeFilter AND $typeFilter AND $colorFilter AND  $modelYearFilter AND  $gearFilter AND $fuelFilter AND $locationFilter ";
+        $filter = "$statusFilter AND $maxPriceFilter AND $makeFilter AND $typeFilter AND $colorFilter AND  $modelYearFilter AND  $gearFilter AND $fuelFilter AND $locationFilter AND $keywordFilter ";
         
         if($itemPerPage == null) {
             $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
