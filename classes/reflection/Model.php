@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Model
  * Class to interact with MySQL (simply by extending PHP msqli)
@@ -21,14 +22,13 @@ abstract class Model extends mysqli
 
     public function __construct()
     {
-        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME);
+        @parent::__construct(DBHOST, DBUSER, DBPASSWORD, DBNAME);
         $this->throwIfDBError();
         $this->autorun();
     }
 
     protected function autorun()
     {
-
     }
 
     public function setResultSet($mysqliResult)
@@ -48,15 +48,66 @@ abstract class Model extends mysqli
         $this->setResultSet($result);
     }
 
+    # fetches all result rows as an associative array, a numeric array, or both
+    # mysqli_fetch_all (PHP 5 >= 5.3.0)
+    public function fetch_all($query)
+    {
+        $result = parent::query($query);
+        if ($result) {
+            # check if mysqli_fetch_all function exist or not
+            if (function_exists('mysqli_fetch_all')) {
+                # NOTE: this below always gets error on certain live server
+                # Fatal error: Call to undefined method mysqli_result::fetch_all() in /.../class_database.php on line 28
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            # fall back to use while to loop through the result using fetch_assoc
+            else {
+                while ($row = $result->fetch_assoc()) {
+                    $return_this[] = $row;
+                }
+
+                if (isset($return_this)) {
+                    return $return_this;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return self::get_error();
+        }
+    }
+
+    # fetch a result row as an associative array
+    public function fetch_assoc($query)
+    {
+        $result = parent::query($query);
+        if ($result) {
+            return $result->fetch_assoc();
+        } else {
+            # call the get_error function
+            return self::get_error();
+            # or:
+            # return $this->get_error();
+        }
+    }
+
+    public function get_error() 
+    {
+        if($this->errno || $this->error)
+        {
+            return sprintf("Error (%d): %s",$this->errno,$this->error);
+        }
+    }
+    
     private function throwIfDBError()
     {
 
-        If ($this->connect_error) {
+        if ($this->connect_error) {
             throw new Exception($this->connect_error);
         }
         if ($this->error) {
             throw new Exception($this->error);
         }
-
     }
 }

@@ -1358,9 +1358,10 @@ class HtItemHouse extends MySqlRecord
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
+        $this->setFieldValuesForOneItem($result);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        return $this->affected_rows; 
+        return $this->affected_rows;
     }
 
     /**
@@ -1371,10 +1372,10 @@ class HtItemHouse extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function runQuery($filter, $start=null, $itemPerPage=null)
+    public function runQuery($filter, $start = null, $itemPerPage = null)
     {
-        if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_house $filter";
+        if ($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_house WHERE $filter";
         } else {
             $sql =  "SELECT * FROM item_house $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
@@ -1477,13 +1478,17 @@ class HtItemHouse extends MySqlRecord
     ** Set the house element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldValues($row)
+    public function setFieldValues($input)
     {
-        $rowObject = (object)$row;
-        @$this->id = (int) $rowObject->id;	
-        @$this->idTemp = (int) $rowObject->id_temp;	
-        @$this->idUser = (int) $rowObject->id_user;	
-        @$this->idCategory = (int) $rowObject->id_category;	
+        if (!is_object($input)) {
+            $rowObject = (object) $input;
+        } else {
+            $rowObject = $input->fetch_object();
+        }
+        @$this->id = (int) $rowObject->id;
+        @$this->idTemp = (int) $rowObject->id_temp;
+        @$this->idUser = (int) $rowObject->id_user;
+        @$this->idCategory = (int) $rowObject->id_category;
         @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
         @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
         @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
@@ -1510,17 +1515,23 @@ class HtItemHouse extends MySqlRecord
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
 
+    public function setFieldValuesForOneItem($input)
+    {
+        $this->allowUpdate = true;
+        $this->setFieldValues($input);
+    }
     /* 
     ** Set the house category elements
     * 
     */
-    public function setCategoryName(){
+    public function setCategoryName()
+    {
         $object = new HtCategoryHouse("*");
         $result = $object->getResultSet();
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }
-        $this->categoryNameArray = $catArray;                
+        $this->categoryNameArray = $catArray;
     }
 
     /**
@@ -1533,7 +1544,7 @@ class HtItemHouse extends MySqlRecord
     {
         $sql = "DELETE FROM item_house WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1551,9 +1562,14 @@ class HtItemHouse extends MySqlRecord
      * @return mixed MySQL insert result
      * @category DML
      */
-    public function insert()
+    public function insertPost()
     {
         $this->setFieldPost();
+        $this->insert();
+    }
+
+    public function insert()
+    {
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
@@ -1592,7 +1608,7 @@ class HtItemHouse extends MySqlRecord
 SQL;
         echo $sql;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1656,10 +1672,10 @@ SQL;
                 id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
@@ -1698,37 +1714,37 @@ SQL;
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
-        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        
-        if ($this->getidCategory() != null){
-            if ($this->getidCategory() != 6){
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
+
+        if ($this->getidCategory() != null) {
+            if ($this->getidCategory() != 6) {
                 $houseCategory = $GLOBALS['upload_specific_array']['house']['idCategory'][2][$this->houseCategory($this->getIdCategory())];
-                echo $this->getIdCategory() != null ? "<p>".$GLOBALS['upload_specific_array']['house']['idCategory'][0].":&nbsp<strong>".  $houseCategory . "</strong></p>" : "";
+                echo $this->getIdCategory() != null ? "<p>" . $GLOBALS['upload_specific_array']['house']['idCategory'][0] . ":&nbsp<strong>" .  $houseCategory . "</strong></p>" : "";
             }
         }
 
-        echo $this->getFieldKebele() != null ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldKebele"][0].':&nbsp<strong>' . $this->getFieldKebele() . '</strong></p>' : "";
-        echo $this->getFieldWereda() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldWereda"][0].':&nbsp<strong>' . $this->getFieldWereda() . '</strong></p>' : "";
-        echo $this->getFieldLotSize() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldLotSize"][0].':&nbsp<strong>' . $this->getFieldLotSize() . '</strong></p>' : "";
-        echo $this->getFieldNrBedroom() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldNrBedroom"][0].':&nbsp<strong>' . $this->getFieldNrBedroom() . '</strong></p>' : "";
-        echo $this->getFieldToilet() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldToilet"][0].':&nbsp<strong>' . $this->getFieldToilet() . '</strong></p>' : "";
-        echo $this->getFieldBathroom() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldBathroom"][0].':&nbsp<strong>' . $this->getFieldBathroom() . '</strong></p>' : "";
+        echo $this->getFieldKebele() != null ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldKebele"][0] . ':&nbsp<strong>' . $this->getFieldKebele() . '</strong></p>' : "";
+        echo $this->getFieldWereda() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldWereda"][0] . ':&nbsp<strong>' . $this->getFieldWereda() . '</strong></p>' : "";
+        echo $this->getFieldLotSize() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldLotSize"][0] . ':&nbsp<strong>' . $this->getFieldLotSize() . '</strong></p>' : "";
+        echo $this->getFieldNrBedroom() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldNrBedroom"][0] . ':&nbsp<strong>' . $this->getFieldNrBedroom() . '</strong></p>' : "";
+        echo $this->getFieldToilet() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldToilet"][0] . ':&nbsp<strong>' . $this->getFieldToilet() . '</strong></p>' : "";
+        echo $this->getFieldBathroom() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldBathroom"][0] . ':&nbsp<strong>' . $this->getFieldBathroom() . '</strong></p>' : "";
 
-        if ($this->getFieldBuildYear() != null){
-            if ($this->getFieldBuildYear() < 1970 or $this->getFieldBuildYear() == "unknown"){
+        if ($this->getFieldBuildYear() != null) {
+            if ($this->getFieldBuildYear() < 1970 or $this->getFieldBuildYear() == "unknown") {
                 $buildYear = $GLOBALS["upload_specific_array"]["house"]["fieldBuildYear"][2][$this->getFieldBuildYear()];
             } else {
                 $buildYear =  $this->getFieldBuildYear();
             }
 
-            echo $this->getFieldBuildYear() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldBuildYear"][0].':&nbsp<strong>' . $buildYear . '</strong></p>' : "";
+            echo $this->getFieldBuildYear() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldBuildYear"][0] . ':&nbsp<strong>' . $buildYear . '</strong></p>' : "";
         }
-        echo $this->getFieldWater() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["house"]["fieldWater"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["house"]["fieldWater"][2][$this->getFieldWater()] . '</strong></p>' : "";
+        echo $this->getFieldWater() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["house"]["fieldWater"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["house"]["fieldWater"][2][$this->getFieldWater()] . '</strong></p>' : "";
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
 
     private $uploadOption = array(
@@ -1891,7 +1907,8 @@ SQL;
     {
         $style = "display: block;";
 
-        if (isset($_SESSION['POST']["idCategory"]) &&
+        if (
+            isset($_SESSION['POST']["idCategory"]) &&
             ($_SESSION['POST']["idCategory"] === "Land")
         ) {
             $style = "display: none;";
@@ -1916,15 +1933,15 @@ SQL;
         ___close_div_(3);
     }
 
-     /**
+    /**
      * input: category id
      * returns car category name
      */
 
-    public function houseCategory($categoryId) {
+    public function houseCategory($categoryId)
+    {
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];
         return $cat;
     }
-
 }

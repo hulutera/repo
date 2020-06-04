@@ -2,6 +2,7 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/includes/locale/locale.php';
+require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 
 
 if (isset($_GET['lan'])) {
@@ -70,7 +71,7 @@ function headerAndSearchCode($item)
 	___open_div_('container', '');
 	___open_div_('ht-left', '');
 	___open_div_('mail-service', '');
-	echo '<a href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>'.$GLOBALS['lang']['Contact Us'].'<br>info@hulutera.com</a>';
+	echo '<a href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
 	___close_div_(1);
 	___open_div_('phone-service', '');
 	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
@@ -197,24 +198,23 @@ function topRightLinks($style = null)
 		topRightHelpLink();
 	} else {
 		$userId = $_SESSION['uID'];
-		$connect = DatabaseClass::getInstance()->getConnection();
-		$result0 = $connect->query("SELECT userName FROM user WHERE uID=$userId");
-		while ($theName = $result0->fetch_assoc()) {
-			$name = $theName['userName'];
-		}
-		$result0->close();
+		$user = new HtUserAll($userId);
 		echo '<a href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</a>';
-
-		echo '<a href="../../includes/mypage.php' . $lang_url . '">';
-		echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['my page'] . '</div>';
-		echo '</a>';
-
+		if ($user->canUpdate()) {
+			echo '<a href="../../includes/admin.php' . $lang_url . '">';
+			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['admin panel'] . '</div>';
+			echo '</a>';
+		} else {
+			echo '<a href="../../includes/mypage.php' . $lang_url . '">';
+			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['my page'] . '</div>';
+			echo '</a>';
+		}
 		echo '<a href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
 		echo '</a>';
-		echo '<a href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $name . '</div></div></a>';
+		echo '<a href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></div></a>';
 	}
 	___close_div_(1);
 }
@@ -626,7 +626,7 @@ function footerCode()
 
 	echo '</footer>';
 }
-function ___open_div_($class, $options)
+function ___open_div_($class = null, $options = null)
 {
 	echo '<div class="' . $class . ' ' . $options . '">';
 }
@@ -650,6 +650,7 @@ function yourPage()
 	$myProfileTitle = $GLOBALS['lang']['my profile'];
 	$myProfileMessage = $GLOBALS['lang']['my-page msg3'];
 	$toMyProfileButton = $GLOBALS['lang']['to my profile'];
+
 	echo <<< EOD
 	<div class="container-fluid alert alert-info" role="alert" style="color:black; width:70%;text-align: initial;">
 	<div class="row">
@@ -666,7 +667,37 @@ function yourPage()
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="margin-left:5%;margin-right:5%;">
-					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+				<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-4">
+								<img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
+							</div>
+							<div class="col-md-8">
+								<div class="row">
+									<p class="h2 font-weight-bold">
+										{$myProfileTitle}
+									</p>
+								</div>
+								<div class="row">
+									<p>
+										{$myProfileMessage}
+									</p>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+									
+							<a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
+										style="float:right;">{$toMyProfileButton}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>;
+ 			<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="row">
@@ -679,11 +710,11 @@ function yourPage()
 												{$myItemsTitle}
 											</p>
 										</div>
-										<div class="row">
-											<p>
-												{$myItemMessage}
-											</p>
-										</div>
+									<div class="row">
+									<p>
+										{$myItemMessage}
+									</p>
+								</div>
 										<div class="row">
 											<div class="col-md-12">
 									<a href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active" 
@@ -695,36 +726,7 @@ function yourPage()
 							</div>
 						</div>
 					</div>
-					<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-4">
-										<img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
-									</div>
-									<div class="col-md-8">
-										<div class="row">
-											<p class="h2 font-weight-bold">
-												{$myProfileTitle}
-											</p>
-										</div>
-										<div class="row">
-											<p>
-												{$myProfileMessage}
-											</p>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-											
-									<a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active" 
-												style="float:right;">{$toMyProfileButton}</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -732,4 +734,43 @@ function yourPage()
 </div>
 EOD;
 }
+
+
+function editProfile()
+{
+	if (!isset($_GET['function']) or $_GET['function'] !== 'edit-profile' or $_SESSION['lan'] != $_GET['lan']) {
+		unset($_SESSION['POST']);
+		unset($_SESSION['errorRaw']);
+	}
+	$sessionName = 'edit-profile';
+	$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+	$_SESSION['lan'] = $_GET['lan'];
+	if (!isset($_SESSION[$sessionName])) {
+		$object = new HtUserAll($_SESSION['uID']);
+		$object->updateProfile();
+		$_SESSION[$sessionName] = base64_encode(serialize($object));
+	} else {
+		$object = unserialize(base64_decode($_SESSION[$sessionName]));
+		//$object->updateProfile();
+		if (isset($_GET['function'])) {
+			$function = $_GET['function'];
+			if (isset($_GET['update'])) {
+				$update = $_GET['update'];
+				if (isset($_GET['order'])) {
+					$order = $_GET['order'];
+					if ($order == 'open') {
+						$object->editProfile($update);
+					} elseif ($order == 'cancel') {
+						$object->updateProfile();
+					}
+				}
+			} else {
+				$object->updateProfile();
+			}
+		} else {
+			$object->updateProfile();
+		}
+	}
+}
+
 ?>

@@ -528,6 +528,46 @@ class HtUserAll extends MySqlRecord
     }
 
     /**
+     * Check if user has Webmaster Privilege
+     */
+    public function isWebMaster()
+    {
+        return $this->fieldPrivilege == 'webmaster' ? true : false;
+    }
+
+    /**
+     * Check if user has admin Privilege
+     */
+    public function isAdmin()
+    {
+        return $this->fieldPrivilege == 'admin' ? true : false;
+    }
+
+    /**
+     * Check if user has Moderator Privilege
+     */
+    public function isModerator()
+    {
+        return $this->fieldPrivilege == 'moderator' ? true : false;
+    }
+
+    /**
+     * Check if user has user Privilege
+     */
+    public function isUser()
+    {
+        return $this->fieldPrivilege == 'user' ? true : false;
+    }
+
+    /**
+     * Check if user is admin Privilege
+     */
+    public function canUpdate()
+    {
+        return $this->isWebMaster() || $this->isAdmin() || $this->isModerator() ? true : false;
+    }
+
+    /**
      * getFieldContactMethod gets the class attribute fieldContactMethod value
      *
      * The attribute fieldContactMethod maps the field field_contact_method defined as varchar(40).<br>

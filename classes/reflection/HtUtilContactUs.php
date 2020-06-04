@@ -709,7 +709,7 @@ SQL;
         $this->fieldMessageStatus = 'unread';
         $this->fieldReceivedDate = date("Y-m-d H:i:s");
 
-        $this->insert();
+        $this->insertPost();
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];

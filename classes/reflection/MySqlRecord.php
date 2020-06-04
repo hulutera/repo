@@ -14,11 +14,14 @@
 
 class MySqlRecord extends Model
 {
+    private $items = ['item_car', 'item_house', 'item_computer', 'item_electronic', 'item_phone', 'item_household', 'item_other'];
+
     /**
      * A control attribute for storing the last executed SQL statement.
      * @var string
      */
     protected $lastSql = null;
+
 
     /**
      * A control attribute for storing the last SQL error.
@@ -126,6 +129,63 @@ class MySqlRecord extends Model
         return $r2;
     }
 
+    /****
+     * 
+     */
+    public function countRow($status, $id)
+    {
+        if (!empty($id) && $id !== "*") {
+            $withId = " AND id_user = $id";
+        } else {
+            $withId = "";
+        }
+
+        $lastElement = end($this->items);
+        foreach ($this->items as $key => $value) {
+            if ($lastElement != $value) {
+                $union = " UNION ALL ";
+            }else{
+                $union = " ";
+            }
+            $sql .= 'SELECT id FROM ' . $value . ' WHERE field_status LIKE "' . $status .'"'. $withId . $union;
+        }
+        $this->query($sql);
+        return $this->affected_rows;
+    }
+    public function countRowOfItem($item, $status)
+    {
+        $sql = 'SELECT * FROM ' . $item . ' WHERE field_status = "' . $status.'"';
+        $this->query($sql);
+        return $this->affected_rows;
+    }
+    /****
+     * 
+     */
+    public function maxQuery($status, $id, $start, $end=null)
+    {
+        if (!empty($id) && $id !== "*") {
+            $withId = " AND id_user = $id";
+        } else {
+            $withId = "";
+        }
+
+        $itemPerPage = isset($end)?$end:30;
+        $lastElement = end($this->items);
+        $union = "";
+        foreach ($this->items as $key => $value) {
+            if ($lastElement != $value) {
+                $union = " UNION ALL ";
+            }else{
+                $union = " ";
+            }
+            $sql .= 'SELECT id,field_table_type, field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status .'"'. $withId . $union;
+        }
+        $sql .= ' ORDER BY field_upload_date DESC LIMIT '. $start .','. $itemPerPage;        
+        return $this->fetch_all($sql);
+    }
+    /***
+     * 
+     */
     protected function insertHeader($item)
     {
         ___open_div_("row", "");

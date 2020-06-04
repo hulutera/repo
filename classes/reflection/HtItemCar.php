@@ -466,7 +466,7 @@ class HtItemCar extends MySqlRecord
         $result = $object->getResultSet();
         while ($row = $result->fetch_array()) {
             if ($row['field_name'] === $idCategory) {
-                $idCategory = $row['id'];                
+                $idCategory = $row['id'];
                 break;
             }
         }
@@ -1257,12 +1257,12 @@ class HtItemCar extends MySqlRecord
     {
         return "category_car";
     }
-    
+
     /**
-    * Gets the name of the managed table short name
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table short name
+     * @return string
+     * @category Accessor
+     */
     public function getTableNameShort()
     {
         return "car";
@@ -1326,23 +1326,24 @@ class HtItemCar extends MySqlRecord
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
+        $this->setFieldValuesForOneItem($result);
         $this->resultSet = $result;
         $this->lastSql = $sql;
         return $this->affected_rows;
     }
 
-/**
- * Run a car query with a request
- * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
- * $start: the first item to fetch
- * $itemPerPage: the total number of items to be fetched from the table
- * return: the number of affected rows
- * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
- */
-    public function runQuery($filter, $start=null, $itemPerPage=null)
+    /**
+     * Run a car query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function runQuery($filter, $start = null, $itemPerPage = null)
     {
-        if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_car $filter";
+        if ($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_car WHERE $filter";
         } else {
             $sql =  "SELECT * FROM item_car $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
@@ -1449,49 +1450,60 @@ class HtItemCar extends MySqlRecord
     ** Set the car element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldValues($row)
+    public function setFieldValues($input)
     {
-        $rowObject = (object)$row;
-        @$this->id = (int) $rowObject->id;	
-        @$this->idTemp = (int) $rowObject->id_temp;	
-        @$this->idUser = (int) $rowObject->id_user;	
-        @$this->idCategory = (int) $rowObject->id_category;	
-        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);	
-        @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);	
-        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);	
-        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);	
-        @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);	
-        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);	
-        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);	
-        @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);	
-        @$this->fieldModelYear = $rowObject->field_model_year;	
-        @$this->fieldNoOfSeat = (int) $rowObject->field_no_of_seat;	
-        @$this->fieldFuelType = $this->replaceAposBackSlash($rowObject->field_fuel_type);	
-        @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);	
-        @$this->fieldGearType = $this->replaceAposBackSlash($rowObject->field_gear_type);	
-        @$this->fieldMilage = $this->replaceAposBackSlash($rowObject->field_milage);	
-        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);	
-        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);	
-        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);	
-        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);	
-        @$this->fieldUploadDate = $rowObject->field_upload_date;	
-        @$this->fieldTotalView = (int) $rowObject->field_total_view;	
-        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);	
-        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);	
+        if (!is_object($input)) {
+            $rowObject = (object) $input;
+        } else {
+            $rowObject = $input->fetch_object();
+        }
+        @$this->id = (int) $rowObject->id;
+        @$this->idTemp = (int) $rowObject->id_temp;
+        @$this->idUser = (int) $rowObject->id_user;
+        @$this->idCategory = (int) $rowObject->id_category;
+        @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
+        @$this->fieldPriceRent = $this->replaceAposBackSlash($rowObject->field_price_rent);
+        @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
+        @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
+        @$this->fieldPriceRate = $this->replaceAposBackSlash($rowObject->field_price_rate);
+        @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
+        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
+        @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
+        @$this->fieldModelYear = $rowObject->field_model_year;
+        @$this->fieldNoOfSeat = (int) $rowObject->field_no_of_seat;
+        @$this->fieldFuelType = $this->replaceAposBackSlash($rowObject->field_fuel_type);
+        @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
+        @$this->fieldGearType = $this->replaceAposBackSlash($rowObject->field_gear_type);
+        @$this->fieldMilage = $this->replaceAposBackSlash($rowObject->field_milage);
+        @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
+        @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
+        @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
+        @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
+        @$this->fieldUploadDate = $rowObject->field_upload_date;
+        @$this->fieldTotalView = (int) $rowObject->field_total_view;
+        @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
         @$this->fieldTableType = (int) $rowObject->field_table_type;
+    }
+
+    public function setFieldValuesForOneItem($input)
+    {
+        $this->allowUpdate = true;
+        $this->setFieldValues($input);
     }
 
     /* 
     ** Set the computer category elements
     * 
     */
-    public function setCategoryName(){
+    public function setCategoryName()
+    {
         $object = new HtCategoryCar("*");
         $result = $object->getResultSet();
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }
-        $this->categoryNameArray = $catArray;                
+        $this->categoryNameArray = $catArray;
     }
 
     /**
@@ -1504,7 +1516,7 @@ class HtItemCar extends MySqlRecord
     {
         $sql = "DELETE FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1522,10 +1534,13 @@ class HtItemCar extends MySqlRecord
      * @return mixed MySQL insert result
      * @category DML
      */
-    public function insert()
-    {
+    public function insertPost()
+    {        
         $this->setFieldPost();
-
+        $this->insert();
+    }    
+    public function insert()
+    {            
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
@@ -1561,9 +1576,7 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        echo $sql;
         $this->resetLastSqlError();
-        
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -1625,11 +1638,12 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
+
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
@@ -1668,48 +1682,46 @@ SQL;
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
-        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
-        echo $this->getFieldMake() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
-        echo $this->getFieldModel() != null       ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
-        
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
+        echo $this->getFieldMake() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldMake"][0] . ':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
+        echo $this->getFieldModel() != null       ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldModel"][0] . ':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
+
         $carCategory = $GLOBALS['upload_specific_array']['car']['idCategory'][2][$this->carCategory($this->getidCategory())];
-        echo $this->getIdCategory() ? "<p>".$GLOBALS['upload_specific_array']['car']['idCategory'][0].":&nbsp<strong>".  $carCategory . "</strong></p>" : "";
-        
+        echo $this->getIdCategory() ? "<p>" . $GLOBALS['upload_specific_array']['car']['idCategory'][0] . ":&nbsp<strong>" .  $carCategory . "</strong></p>" : "";
+
         // Due to the inclusion of some words
-        if($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
+        if ($this->getFieldModelYear() == "000" or ((int) ($this->getFieldModelYear()) < 1980)) {
             $year = $GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][2][$this->getFieldModelYear()];
         } else {
             $year = $this->getFieldModelYear();
         }
-        echo $this->getFieldModelYear() != "0000"   ? '<p>'.$GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0].':&nbsp<strong>'.$year.'</strong></p>' : "";
-        echo $this->getFieldFuelType()  != null  ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] .':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</strong></p>' : "";
-        
+        echo $this->getFieldModelYear() != "0000"   ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldModelYear"][0] . ':&nbsp<strong>' . $year . '</strong></p>' : "";
+        echo $this->getFieldFuelType()  != null  ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["car"]["fieldFuelType"][2][$this->getFieldFuelType()] . '</strong></p>' : "";
+
         // Due to the inclusion of some words
-        if($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
+        if ($this->getFieldNoOfSeat() == "101" or $this->getFieldNoOfSeat() == "000") {
             $noSeat = $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][2][$this->getFieldNoOfSeat()];
         } else {
             $noSeat = $this->getFieldNoOfSeat();
         }
-        echo $this->getFieldNoOfSeat()     ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0].':&nbsp<strong>' . $noSeat . '</strong></p>' : "";
-        echo $this->getFieldColor() != null    ? '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][0].':&nbsp<strong>'.$GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()].'</strong></p>' : "";
+        echo $this->getFieldNoOfSeat()     ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldNoOfSeat"][0] . ':&nbsp<strong>' . $noSeat . '</strong></p>' : "";
+        echo $this->getFieldColor() != null    ? '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()] . '</strong></p>' : "";
 
         // Due to the inclusion of some words
-        if($this->getFieldMilage() == "unlisted") {
+        if ($this->getFieldMilage() == "unlisted") {
             $milage = $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][2][$this->getFieldMilage()];
         } else {
             $milage = $this->getFieldMilage();
         }
-        echo $this->getFieldMilage()  != null  ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0].':&nbsp<strong>'.  $milage . "</strong></p>" : "";
-        
-        echo $this->getFieldGearType()  != null ? '<p>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0].':&nbsp<strong>'. $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
+        echo $this->getFieldMilage()  != null  ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldMilage"][0] . ':&nbsp<strong>' .  $milage . "</strong></p>" : "";
+
+        echo $this->getFieldGearType()  != null ? '<p>' . $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["car"]["fieldGearType"][2][$this->getFieldGearType()] . '</strong></p>' : "";
         //echo $this->getFieldExtraInfo()      ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
 
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
-
-
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
 
     /**
@@ -1790,11 +1802,11 @@ SQL;
      * @return mixed MySQLi update result
      */
     public function upload()
-    {        
+    {
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
         $itemName = $this->getTableNameShort();
-        $this->insertAllField($itemName);        
+        $this->insertAllField($itemName);
         echo '</form>';
     }
 
@@ -1807,20 +1819,20 @@ SQL;
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
-        
-        ___open_div_("col-md-12", '');        
+
+        ___open_div_("col-md-12", '');
         $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
-        
+
         ___open_div_("col-md-4", '');
         $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
         ___close_div_(1);
-        
+
         ___open_div_("col-md-4", '');
         $this->insertFillable('fieldModel', 'upload_specific_array', $itemName);
         ___close_div_(1);
-        
-        ___close_div_(3);//top-3
+
+        ___close_div_(3); //top-3
         ////
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
@@ -1894,23 +1906,23 @@ SQL;
 
     private function insertFieldMilage()
     {
-        $selectable = [];        
-        $selectable = $this->lister(0,500000, 50000);        
+        $selectable = [];
+        $selectable = $this->lister(0, 500000, 50000);
         $moreOptions = $GLOBALS['upload_specific_array']['car']['fieldMilage'][2];
         foreach ($moreOptions as $key => $value) {
             array_push($selectable, [$key => $value]);
-        } 
+        }
         $this->insertSelectable('fieldMilage', 'upload_specific_array', 'car', $selectable);
     }
 
     private function insertFieldNoOfSeat()
     {
-        $selectable = [];        
-        $selectable = $this->lister(1,100);
+        $selectable = [];
+        $selectable = $this->lister(1, 100);
         $moreOptions = $GLOBALS['upload_specific_array']['car']['fieldNoOfSeat'][2];
         foreach ($moreOptions as $key => $value) {
             array_push($selectable, [$key => $value]);
-        }        
+        }
         $this->insertSelectable('fieldNoOfSeat', 'upload_specific_array', 'car', $selectable);
     }
 
@@ -1919,7 +1931,8 @@ SQL;
      * returns car category name
      */
 
-    public function carCategory($categoryId) {
+    public function carCategory($categoryId)
+    {
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];
         return $cat;

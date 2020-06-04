@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtItemPhone
  * @extends MySqlRecord
  * @filesource HtItemPhone.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -135,18 +135,18 @@ class HtItemPhone extends MySqlRecord
     private $fieldPriceCurrency;
 
     /**
-     * Class attribute for mapping table field field_make
+     * Class attribute for mapping table field field_made
      *
-     * Comment for field field_make: Not specified.<br>
+     * Comment for field field_made: Not specified.<br>
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var string $fieldMake
+     * @var string $fieldMade
      */
-    private $fieldMake;
+    private $fieldMade;
 
     /**
      * Class attribute for mapping table field field_model
@@ -332,7 +332,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -345,7 +345,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setIdTemp($idTemp)
     {
-        $this->idTemp = (int)$idTemp;
+        $this->idTemp = (int) $idTemp;
     }
 
     /**
@@ -358,7 +358,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setIdUser($idUser)
     {
-        $this->idUser = (int)$idUser;
+        $this->idUser = (int) $idUser;
     }
 
     /**
@@ -375,11 +375,11 @@ class HtItemPhone extends MySqlRecord
         $result = $object->getResultSet();
         while ($row = $result->fetch_array()) {
             if ($row['field_name'] === $idCategory) {
-                $idCategory = $row['id'];                
+                $idCategory = $row['id'];
                 break;
             }
         }
-        $this->idCategory = (int)$idCategory;
+        $this->idCategory = (int) $idCategory;
     }
 
     /**
@@ -392,7 +392,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->fieldContactMethod = (string)$fieldContactMethod;
+        $this->fieldContactMethod = (string) $fieldContactMethod;
     }
 
     /**
@@ -405,7 +405,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldPriceSell($fieldPriceSell)
     {
-        $this->fieldPriceSell = (string)$fieldPriceSell;
+        $this->fieldPriceSell = (string) $fieldPriceSell;
     }
 
     /**
@@ -418,7 +418,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldPriceNego($fieldPriceNego)
     {
-        $this->fieldPriceNego = (string)$fieldPriceNego;
+        $this->fieldPriceNego = (string) $fieldPriceNego;
     }
 
     /**
@@ -431,20 +431,20 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldPriceCurrency($fieldPriceCurrency)
     {
-        $this->fieldPriceCurrency = (string)$fieldPriceCurrency;
+        $this->fieldPriceCurrency = (string) $fieldPriceCurrency;
     }
 
     /**
-     * setFieldMake Sets the class attribute fieldMake with a given value
+     * setfieldMade Sets the class attribute fieldMade with a given value
      *
-     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
-     * Comment for field field_make: Not specified.<br>
-     * @param string $fieldMake
+     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
+     * Comment for field field_made: Not specified.<br>
+     * @param string $fieldMade
      * @category Modifier
      */
-    public function setFieldMake($fieldMake)
+    public function setfieldMade($fieldMade)
     {
-        $this->fieldMake = (string)$fieldMake;
+        $this->fieldMade = (string) $fieldMade;
     }
 
     /**
@@ -457,7 +457,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldModel($fieldModel)
     {
-        $this->fieldModel = (string)$fieldModel;
+        $this->fieldModel = (string) $fieldModel;
     }
 
     /**
@@ -470,7 +470,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldOs($fieldOs)
     {
-        $this->fieldOs = (string)$fieldOs;
+        $this->fieldOs = (string) $fieldOs;
     }
 
     /**
@@ -483,7 +483,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldCamera($fieldCamera)
     {
-        $this->fieldCamera = (string)$fieldCamera;
+        $this->fieldCamera = (string) $fieldCamera;
     }
 
     /**
@@ -496,7 +496,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldImage($fieldImage)
     {
-        $this->fieldImage = (string)$fieldImage;
+        $this->fieldImage = (string) $fieldImage;
     }
 
     /**
@@ -509,7 +509,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldLocation($fieldLocation)
     {
-        $this->fieldLocation = (string)$fieldLocation;
+        $this->fieldLocation = (string) $fieldLocation;
     }
 
     /**
@@ -522,7 +522,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldExtraInfo($fieldExtraInfo)
     {
-        $this->fieldExtraInfo = (string)$fieldExtraInfo;
+        $this->fieldExtraInfo = (string) $fieldExtraInfo;
     }
 
     /**
@@ -535,7 +535,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldTitle($fieldTitle)
     {
-        $this->fieldTitle = (string)$fieldTitle;
+        $this->fieldTitle = (string) $fieldTitle;
     }
 
     /**
@@ -548,7 +548,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldUploadDate($fieldUploadDate)
     {
-        $this->fieldUploadDate = (string)$fieldUploadDate;
+        $this->fieldUploadDate = (string) $fieldUploadDate;
     }
 
     /**
@@ -561,7 +561,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldTotalView($fieldTotalView)
     {
-        $this->fieldTotalView = (int)$fieldTotalView;
+        $this->fieldTotalView = (int) $fieldTotalView;
     }
 
     /**
@@ -574,7 +574,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldStatus($fieldStatus)
     {
-        $this->fieldStatus = (string)$fieldStatus;
+        $this->fieldStatus = (string) $fieldStatus;
     }
 
     /**
@@ -587,7 +587,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldMarketCategory($fieldMarketCategory)
     {
-        $this->fieldMarketCategory = (string)$fieldMarketCategory;
+        $this->fieldMarketCategory = (string) $fieldMarketCategory;
     }
 
     /**
@@ -600,7 +600,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function setFieldTableType($fieldTableType)
     {
-        $this->fieldTableType = (int)$fieldTableType;
+        $this->fieldTableType = (int) $fieldTableType;
     }
 
     /**
@@ -615,12 +615,12 @@ class HtItemPhone extends MySqlRecord
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
         $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
-        $_itemTempId = (int)$result->fetch_object()->id_temp + 1;
+        $_itemTempId = (int) $result->fetch_object()->id_temp + 1;
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setFieldMake($_POST['fieldMake']);
+        $this->setfieldMade($_POST['fieldMade']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldCamera($_POST['fieldCamera']);
@@ -808,16 +808,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * getFieldMake gets the class attribute fieldMake value
+     * getfieldMade gets the class attribute fieldMade value
      *
-     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
-     * Comment for field field_make: Not specified.
-     * @return string $fieldMake
-     * @category Accessor of $fieldMake
+     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
+     * Comment for field field_made: Not specified.
+     * @return string $fieldMade
+     * @category Accessor of $fieldMade
      */
-    public function getFieldMake()
+    public function getfieldMade()
     {
-        return $this->fieldMake;
+        return $this->fieldMade;
     }
 
     /**
@@ -987,10 +987,10 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "item_phone";
@@ -1007,14 +1007,15 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableNameShort()
     {
         return "phone";
     }
+
     /**
      * The HtItemPhone constructor
      *
@@ -1046,7 +1047,6 @@ class HtItemPhone extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -1060,7 +1060,7 @@ class HtItemPhone extends MySqlRecord
      */
     public function select($id, $status = null)
     {
-        
+
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -1075,6 +1075,7 @@ class HtItemPhone extends MySqlRecord
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
+        $this->setFieldValuesForOneItem($result);
         $this->resultSet = $result;
         $this->lastSql = $sql;
         return $this->affected_rows;
@@ -1088,10 +1089,10 @@ class HtItemPhone extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function runQuery($filter, $start=null, $itemPerPage=null)
+    public function runQuery($filter, $start = null, $itemPerPage = null)
     {
-        if($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_phone $filter";
+        if ($itemPerPage == null) {
+            $sql =  "SELECT * FROM item_phone WHERE $filter";
         } else {
             $sql =  "SELECT * FROM item_phone $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
@@ -1106,18 +1107,22 @@ class HtItemPhone extends MySqlRecord
     ** Set the phone element values
     * $rows: it takes the array of one item row and it sets the values
     */
-    public function setFieldValues($row)
+    public function setFieldValues($input)
     {
-        $rowObject = (object)$row;
-        @$this->id = (int) $rowObject->id;	
-        @$this->idTemp = (int) $rowObject->id_temp;	
-        @$this->idUser = (int) $rowObject->id_user;	
-        @$this->idCategory = (int) $rowObject->id_category;	
+        if (!is_object($input)) {
+            $rowObject = (object) $input;
+        } else {
+            $rowObject = $input->fetch_object();
+        }
+        @$this->id = (int) $rowObject->id;
+        @$this->idTemp = (int) $rowObject->id_temp;
+        @$this->idUser = (int) $rowObject->id_user;
+        @$this->idCategory = (int) $rowObject->id_category;
         @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
         @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
         @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
         @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
+        @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_made);
         @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
         @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
         @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
@@ -1126,23 +1131,29 @@ class HtItemPhone extends MySqlRecord
         @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
         @$this->fieldTitle = $this->replaceAposBackSlash($rowObject->field_title);
         @$this->fieldUploadDate = $rowObject->field_upload_date;
-        @$this->fieldTotalView = (integer)$rowObject->field_total_view;
+        @$this->fieldTotalView = (int) $rowObject->field_total_view;
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
-        @$this->fieldTableType = (integer)$rowObject->field_table_type;
+        @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
 
+    public function setFieldValuesForOneItem($input)
+    {
+        $this->allowUpdate = true;
+        $this->setFieldValues($input);
+    }
     /* 
     ** Set the phone category elements
     * 
     */
-    public function setCategoryName(){
+    public function setCategoryName()
+    {
         $object = new HtCategoryPhone("*");
         $result = $object->getResultSet();
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }
-        $this->categoryNameArray = $catArray;                
+        $this->categoryNameArray = $catArray;
     }
 
     /**
@@ -1153,15 +1164,15 @@ class HtItemPhone extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM item_phone WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM item_phone WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -1173,47 +1184,51 @@ class HtItemPhone extends MySqlRecord
      * @return mixed MySQL insert result
      * @category DML
      */
-    public function insert()
+    public function insertPost()
     {
         $this->setFieldPost();
+        $this->insert();
+    }
 
+    public function insert()
+    {
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_made,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
 			{$this->parseValue($this->idCategory)},
-			{$this->parseValue($this->fieldContactMethod,'notNumber')},
-			{$this->parseValue($this->fieldPriceSell,'notNumber')},
-			{$this->parseValue($this->fieldPriceNego,'notNumber')},
-			{$this->parseValue($this->fieldPriceCurrency,'notNumber')},
-			{$this->parseValue($this->fieldMake,'notNumber')},
-			{$this->parseValue($this->fieldModel,'notNumber')},
-			{$this->parseValue($this->fieldOs,'notNumber')},
-			{$this->parseValue($this->fieldCamera,'notNumber')},
-			{$this->parseValue($this->fieldImage,'notNumber')},
-			{$this->parseValue($this->fieldLocation,'notNumber')},
-			{$this->parseValue($this->fieldExtraInfo,'notNumber')},
-			{$this->parseValue($this->fieldTitle,'notNumber')},
-			{$this->parseValue($this->fieldUploadDate,'notNumber')},
+			{$this->parseValue($this->fieldContactMethod, 'notNumber')},
+			{$this->parseValue($this->fieldPriceSell, 'notNumber')},
+			{$this->parseValue($this->fieldPriceNego, 'notNumber')},
+			{$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
+			{$this->parseValue($this->fieldMade, 'notNumber')},
+			{$this->parseValue($this->fieldModel, 'notNumber')},
+			{$this->parseValue($this->fieldOs, 'notNumber')},
+			{$this->parseValue($this->fieldCamera, 'notNumber')},
+			{$this->parseValue($this->fieldImage, 'notNumber')},
+			{$this->parseValue($this->fieldLocation, 'notNumber')},
+			{$this->parseValue($this->fieldExtraInfo, 'notNumber')},
+			{$this->parseValue($this->fieldTitle, 'notNumber')},
+			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
-			{$this->parseValue($this->fieldStatus,'notNumber')},
-			{$this->parseValue($this->fieldMarketCategory,'notNumber')},
+			{$this->parseValue($this->fieldStatus, 'notNumber')},
+			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -1243,33 +1258,32 @@ SQL;
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
-				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
-				field_price_sell={$this->parseValue($this->fieldPriceSell,'notNumber')},
-				field_price_nego={$this->parseValue($this->fieldPriceNego,'notNumber')},
-				field_price_currency={$this->parseValue($this->fieldPriceCurrency,'notNumber')},
-				field_make={$this->parseValue($this->fieldMake,'notNumber')},
-				field_model={$this->parseValue($this->fieldModel,'notNumber')},
-				field_os={$this->parseValue($this->fieldOs,'notNumber')},
-				field_camera={$this->parseValue($this->fieldCamera,'notNumber')},
-				field_image={$this->parseValue($this->fieldImage,'notNumber')},
-				field_location={$this->parseValue($this->fieldLocation,'notNumber')},
-				field_extra_info={$this->parseValue($this->fieldExtraInfo,'notNumber')},
-				field_title={$this->parseValue($this->fieldTitle,'notNumber')},
-				field_upload_date={$this->parseValue($this->fieldUploadDate,'notNumber')},
+				field_contact_method={$this->parseValue($this->fieldContactMethod, 'notNumber')},
+				field_price_sell={$this->parseValue($this->fieldPriceSell, 'notNumber')},
+				field_price_nego={$this->parseValue($this->fieldPriceNego, 'notNumber')},
+				field_price_currency={$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
+				field_made={$this->parseValue($this->fieldMade, 'notNumber')},
+				field_model={$this->parseValue($this->fieldModel, 'notNumber')},
+				field_os={$this->parseValue($this->fieldOs, 'notNumber')},
+				field_camera={$this->parseValue($this->fieldCamera, 'notNumber')},
+				field_image={$this->parseValue($this->fieldImage, 'notNumber')},
+				field_location={$this->parseValue($this->fieldLocation, 'notNumber')},
+				field_extra_info={$this->parseValue($this->fieldExtraInfo, 'notNumber')},
+				field_title={$this->parseValue($this->fieldTitle, 'notNumber')},
+				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
-				field_status={$this->parseValue($this->fieldStatus,'notNumber')},
-				field_market_category={$this->parseValue($this->fieldMarketCategory,'notNumber')},
+				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
+				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -1295,47 +1309,47 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for item_phone previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for item_phone previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('".$this->getTableNameShort()."', '".$this->getId()."')\"><i id=\"spec_down_". $this->getTableNameShort() . $this->getId() ."\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>".$GLOBALS['lang']['item specification']."</strong></p>";
-        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() .'" class="itemSpecDiv col-xs-12 col-md-12">';
+        echo "<p class=\"bg-success\"><a href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
         if ($this->getIdCategory() != null or $this->getIdCategory() != 7) {
             $phoneCategory = $GLOBALS['upload_specific_array']['phone']['idCategory'][2][$this->phoneCategory($this->getIdCategory())];
-            echo "<p>".$GLOBALS['upload_specific_array']['phone']['idCategory'][0].":&nbsp<strong>".  $phoneCategory ."</strong></p>";
+            echo "<p>" . $GLOBALS['upload_specific_array']['phone']['idCategory'][0] . ":&nbsp<strong>" .  $phoneCategory . "</strong></p>";
         }
-        echo $this->getFieldMake() != "unlisted" ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldMake"][0].':&nbsp<strong>' . $this->getFieldMake() . '</strong></p>' : "";
-        echo $this->getFieldModel() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldModel"][0].':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
-        
+        echo $this->getfieldMade() != "unlisted" ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldMade"][0] . ':&nbsp<strong>' . $this->getfieldMade() . '</strong></p>' : "";
+        echo $this->getFieldModel() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldModel"][0] . ':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
+
         if ($this->getFieldOs() != null or $this->getFieldOs() != "unlisted") {
-            echo $this->getFieldOs() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldOs"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldOs"][2][$this->getFieldOs()] . '</strong></p>' : "";
+            echo $this->getFieldOs() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldOs"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldOs"][2][$this->getFieldOs()] . '</strong></p>' : "";
         }
-        
-        echo $this->getFieldCamera() != null  ? '<p>'.$GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][0].':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][2][$this->getFieldCamera()] . '</strong></p>' : "";
+
+        echo $this->getFieldCamera() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][2][$this->getFieldCamera()] . '</strong></p>' : "";
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>'.$GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3].'</strong></p></div>';
+        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
-    
-   /**
-    * Class attribute for storing default upload values from upload functionality     
-    */
+
+    /**
+     * Class attribute for storing default upload values from upload functionality     
+     */
     private $uploadOptionShort = array(
         'idCategory' => 'Type',
         'fieldContactMethod' => 'Contact Method',
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMake' => 'Made',
+        'fieldMade' => 'Made',
         'fieldOs' => 'OS (Operting System)',
         'fieldModel' => 'Model',
         'fieldCamera' => 'Camera Size',
@@ -1346,9 +1360,10 @@ SQL;
         'fieldLocation' => 'Location',
         'fieldExtraInfo' => 'Extra Info',
         'fieldTitle' => 'Title',
-        'fieldTableType' => 'Table Type');
+        'fieldTableType' => 'Table Type'
+    );
 
-      /**
+    /**
      * Class attribute for storing default upload values from upload functionality     
      */
     private $uploadOption = array(
@@ -1357,7 +1372,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMake' => 'Made',
+        'fieldMade' => 'Made',
         'fieldModel' => 'Model',
         'fieldOs' => 'OS (Operting System)',
         'fieldCamera' => 'Camera Size',
@@ -1368,9 +1383,10 @@ SQL;
         'fieldLocation' => 'option',
         'fieldExtraInfo' => 'Extra Info',
         'fieldTitle' => 'Title',
-        'fieldTableType' => 'Table Type');   
+        'fieldTableType' => 'Table Type'
+    );
 
-            /**
+    /**
      * Facility for access upload options
      * @category DML Helper
      * @return uploadOptions
@@ -1391,12 +1407,12 @@ SQL;
     }
 
     /**
-    * Facility for upload a new row into item_computer.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into item_computer.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
 
     public function upload()
     {
@@ -1416,12 +1432,12 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
 
-        ___open_div_("col-md-4", '');        
+        ___open_div_("col-md-4", '');
         $this->insertSelectable('idCategory', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
+        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
@@ -1468,10 +1484,10 @@ SQL;
         ___close_div_(1);
     }
 
-    public function phoneCategory($categoryId) {
+    public function phoneCategory($categoryId)
+    {
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];
         return $cat;
     }
 }
-?>
