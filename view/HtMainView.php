@@ -301,7 +301,7 @@ class HtMainView
      * Shall be used when there is no item to show
      * This function shall expect to take more args for search
      */
-<
+
     public function itemNotFound($searchWordSanitized = null, $city = null, $item = null)
     {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
