@@ -22,18 +22,8 @@ require_once $documnetRootPath . '/includes/common.inc.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>Hulutera | ሁሉተራ </title>
 
-    <!-- Bootstrap CSS CDN -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
-    <!-- Our Custom CSS -->
-
-    <!-- Font Awesome JS -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
-    <!-- <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
-    <link href="../../css/font-awesome.min.css" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="../../css/style4.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -76,13 +66,18 @@ require_once $documnetRootPath . '/includes/common.inc.php';
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Hulutera Admin Panel</h3>
+                <h2>Hulutera Admin Panel</h2>
+                <?php
+                $user = new HtUserAll($_SESSION['uID']);
+                echo '<h4>Hi! '.$user->getFieldUserName() .'</h4>';
+                
+                ?>
                 <strong>HT</strong>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                    <?php
+                    <?php                    
                     echo <<<EOD
                     <a href="./admin.php{$lang_url}&order=open&function=edit-profile">
                     <i class="fas fa-user"></i>
@@ -137,7 +132,7 @@ EOD;
 
         <div id="mainColumn">
 
-            <h2>Welcome to your Admin Panel Abiy</h2>
+            <h2>Welcome to your Admin Panel</h2>
 
             <?php
             if (isset($_GET['function'])) {
@@ -166,15 +161,6 @@ EOD;
             });
         });
 
-        function showPassword() {
-            var fieldPassword = document.getElementById("fieldPassword");
-            var fieldPasswordRepeat = document.getElementById("fieldPasswordRepeat");
-            var fieldPasswordRepeat2 = document.getElementById("fieldPasswordRepeat2");
-            fieldPassword.type = (fieldPassword.type === "password") ? "text" : "password";
-            fieldPasswordRepeat.type = (fieldPasswordRepeat.type === "password") ? "text" : "password";
-            fieldPasswordRepeat2.type = (fieldPasswordRepeat2.type === "password") ? "text" : "password";
-        }
-
         $(document).ready(function() {
             $("#activity-search").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -184,41 +170,13 @@ EOD;
             });
         });
 
-        // $(document).ready(function() {
-        //     $('#dtBasicExample').DataTable();
-        //     $('.dataTables_length').addClass('bs-select');
-        // });
-
         $(document).ready(function() {
             $('#dtBasicExample').DataTable({
                 "scrollX": true
             });
             $('.dataTables_length').addClass('bs-select');
         });
-
-        $(document).ready(function() {
-
-            // $(".myBtn").click(function() {
-            //     var id = $(this).attr('id');
-            //     $('#myModal').modal('show');
-            //     var idStr = id.toString();
-            //     var array = idStr.split('_');
-            //     if (array[1].indexOf("delete") >= 0)
-            //     {
-            //         $('#myModal .modal-title').text('Action :' + array[1].toUpperCase());
-            //         $('#myModal .modal-body').text('Are you sure you want to change status to '+  array[1] + '?');
-            //     }
-            //     if (array[1].indexOf("activate") >= 0)
-            //     {
-            //         $('#myModal .modal-title').text('Action :' + array[1].toUpperCase());
-            //         $('#myModal .modal-body').text('Are you sure you want to change status to '+  array[1] + '?');
-            //     }
-
-
-            // });
-        });
     </script>
-
 </body>
 
 </html>

@@ -233,7 +233,7 @@ function activityTable()
 	___open_div_('row', '" style="width:50%;');
 	___open_div_('col-md-12', '" ');
 
-
+	echo '<p class="h3">Click on the number links to start admistrative action</p>';
 	echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
 	$allItems = [
 		'car' => 'item_car',
@@ -247,23 +247,23 @@ function activityTable()
 	];
 	$activities = [
 		'Active' => [
-			'item' => $items,
+			'item' => $allItems,
 			'style' => ['text' => 'text-success bg-dark text-center', 'fas' => 'fas fa-check']
 		],
 		'Pending' => [
-			'item' => $items,
+			'item' => $allItems,
 			'style' => ['text' => 'text-warning bg-dark text-center', 'fas' => 'fas fa-pause']
 		],
 		'Reported' => [
-			'item' => $items,
+			'item' => $allItems,
 			'style' => ['text' => 'text-danger bg-dark text-center', 'fas' => 'fas fa-exclamation']
 		],
 		'Deleted' => [
-			'item' => $items,
+			'item' => $allItems,
 			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-trash']
 		],
 		'total' => [
-			'item' => $items,
+			'item' => $allItems,
 			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-plus']
 		]
 	];
