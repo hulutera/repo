@@ -88,7 +88,7 @@ class HtMainView
     {
         $dataOnly = [];
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
-        $condition = "field_status = '$filter'";
+        $condition = "WHERE field_status = '$filter'";
         $this->_pItem->runQuery($condition);
         $result = $this->_pItem->getResultSet();
         while ($row = $result->fetch_assoc()) {

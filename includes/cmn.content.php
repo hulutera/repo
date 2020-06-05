@@ -235,7 +235,7 @@ function activityTable()
 
 
 	echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
-	$items = [
+	$allItems = [
 		'car' => 'item_car',
 		'house' => 'item_house',
 		'computer' => 'item_computer',
@@ -280,46 +280,59 @@ function activityTable()
 	}
 	echo '</tr></thead><tbody id="activity-table">';
 
-	foreach ($items  as $key => $value) {
-		$totalActivePerItem   = allItemOfStatus($value, 'active');
-		$totalPendingPerItem  = allItemOfStatus($value, 'pending');
-		$totalReportedPerItem = allItemOfStatus($value, 'reported');
-		$totalDeletedPerItem  = allItemOfStatus($value, 'deleted');
-		$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
-		$totalActive    +=  $totalActivePerItem > 0 ?  $totalActivePerItem : 0;
-		$totalPending   +=  $totalPendingPerItem > 0 ? $totalPendingPerItem : 0;
-		$totalReported  +=  $totalReportedPerItem > 0 ? $totalReportedPerItem : 0;
-		$totalDeleted   +=  $totalDeletedPerItem > 0 ? $totalDeletedPerItem : 0;
-		$grandTotal   = $totalActive    +		$totalPending   +		$totalReported  +		$totalDeleted;
-		if ($value == "total") {
-			echo <<< EOD
-			<th scope="col">{$value}</th>
-                        <td style="font-size:20px;">{$totalActive}</td>
-                        <td style="font-size:20px;">{$totalPending}</td>
-                        <td style="font-size:20px;">{$totalReported}</td>
-						<td style="font-size:20px;">{$totalDeleted}</td>
-						<td style="font-size:20px;">{$grandTotal}</td>
-                        </tr>
-EOD;
+	$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
+	$grandTotal = $totalActive  = $totalPending = $totalReported =	$totalDeleted = 0;
+
+	foreach ($allItems  as $table_name_short => $table_name) {
+
+		$totalActivePerItem   = allItemOfStatus($table_name, 'active');
+		$totalPendingPerItem  = allItemOfStatus($table_name, 'pending');
+		$totalReportedPerItem = allItemOfStatus($table_name, 'reported');
+		$totalDeletedPerItem  = allItemOfStatus($table_name, 'deleted');
+
+		$totalActive    +=  $totalActivePerItem;
+		$totalPending   +=  $totalPendingPerItem;
+		$totalReported  +=  $totalReportedPerItem;
+		$totalDeleted   +=  $totalDeletedPerItem;
+
+		$grandTotal   = $totalActive + $totalPending  + $totalReported + $totalDeleted;
+		if ($table_name == "total") {
+			$totalArray = [
+				'totalActive' => $totalActive,
+				'totalPending' => $totalPending,
+				'totalReported' => $totalReported,
+				'totalDeleted' => $totalDeleted,
+				'grandTotal' => $grandTotal
+
+			];
+			echo '<tr>';
+			echo '<th scope="col">' . $table_name . '</th>';
+			foreach ($totalArray as $totalStatus => $totalStatusSum) {
+				echo '<td style="font-size:20px;">' . $totalStatusSum . '</td>';
+			}
+			echo '</tr>';
 		} else {
 			echo '<tr>';
-			echo '<th scope="col">' . $value . '</th>';
-			$totalSumLinks = [$totalActivePerItem, $totalPendingPerItem, $totalReportedPerItem, $totalDeletedPerItem];
-			foreach ($totalSumLinks as $key2 => $value2) {
-				if ($value2 == 0) {
+			echo '<th scope="col">' . $table_name . '</th>';
+			$status2TotalArray = [
+				'active' => $totalActivePerItem,
+				'pending' => $totalPendingPerItem,
+				'reported' => $totalReportedPerItem,
+				'deleted' => $totalDeletedPerItem
+			];
+			foreach ($status2TotalArray as $status => $totalStatusSum) {
+				if ($totalStatusSum == 0) {
 					echo '<td style="font-size:18px;">0</td>';
 				} else {
-					echo '<td style="font-size:18px;" ><a href="./admin.php?function=activity-table&type=' . $key . '&status=active">' . $value2  . '</td>';
+					echo '<td style="font-size:18px;" ><a href="./admin.php?function=activity-table&type=' . $table_name_short . '&status=' . $status . '">' . $totalStatusSum  . '</td>';
 				}
 			}
+			$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
 			echo '<td style="font-size:18px;" >' . $totalItem . '</td>';
 			echo '</tr>';
 		}
 	}
-
-	echo '
-                    </tbody>
-				  </table>';
+	echo '</tbody></table>';
 	___close_div_(1);
 	___close_div_(1);
 	___close_div_(1);
@@ -377,7 +390,7 @@ EOD;
 				'delete', // button name
 				'btn-warning', // button style,
 				' style="color:black;margin-left:5px;font-weight:bold" '
-			], 
+			],
 			'distroy' => [  // change
 				'erase', // button name
 				'btn-danger', // button style

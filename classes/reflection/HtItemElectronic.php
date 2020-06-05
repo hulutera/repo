@@ -911,10 +911,10 @@ class HtItemElectronic extends MySqlRecord
 
     /**
      * Run a Electronic query with a request
-     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
-     * $start: the first item to fetch
-     * $itemPerPage: the total number of items to be fetched from the table
-     * return: the number of affected rows
+     * @param $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * @param $start: the first item to fetch
+     * @param $itemPerPage: the total number of items to be fetched from the table
+     * @return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
     public function runQuery($filter, $start=null, $itemPerPage=null)
@@ -931,13 +931,13 @@ class HtItemElectronic extends MySqlRecord
         return $this->affected_rows;
     }
 
-
     /**
+     * 
      * Run a electronic search query with a request
-     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
-     * $start: the first item to fetch
-     * $itemPerPage: the total number of items to be fetched from the table
-     * return: the number of affected rows
+     * @param $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * @param $start: the first item to fetch
+     * @param $itemPerPage: the total number of items to be fetched from the table
+     * @return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
     public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null)

@@ -1375,7 +1375,7 @@ class HtItemHouse extends MySqlRecord
     public function runQuery($filter, $start = null, $itemPerPage = null)
     {
         if ($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_house WHERE $filter";
+            $sql =  "SELECT * FROM item_house $filter";
         } else {
             $sql =  "SELECT * FROM item_house $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }

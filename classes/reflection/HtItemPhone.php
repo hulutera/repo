@@ -135,18 +135,18 @@ class HtItemPhone extends MySqlRecord
     private $fieldPriceCurrency;
 
     /**
-     * Class attribute for mapping table field field_made
+     * Class attribute for mapping table field field_make
      *
-     * Comment for field field_made: Not specified.<br>
+     * Comment for field field_make: Not specified.<br>
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var string $fieldMade
+     * @var string $fieldMake
      */
-    private $fieldMade;
+    private $fieldMake;
 
     /**
      * Class attribute for mapping table field field_model
@@ -435,16 +435,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * setfieldMade Sets the class attribute fieldMade with a given value
+     * setfieldMade Sets the class attribute fieldMake with a given value
      *
-     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
-     * Comment for field field_made: Not specified.<br>
-     * @param string $fieldMade
+     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
+     * Comment for field field_make: Not specified.<br>
+     * @param string $fieldMake
      * @category Modifier
      */
-    public function setfieldMade($fieldMade)
+    public function setfieldMade($fieldMake)
     {
-        $this->fieldMade = (string) $fieldMade;
+        $this->fieldMake = (string) $fieldMake;
     }
 
     /**
@@ -620,7 +620,7 @@ class HtItemPhone extends MySqlRecord
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setfieldMade($_POST['fieldMade']);
+        $this->setfieldMade($_POST['fieldMake']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldCamera($_POST['fieldCamera']);
@@ -808,16 +808,16 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-     * getfieldMade gets the class attribute fieldMade value
+     * getfieldMade gets the class attribute fieldMake value
      *
-     * The attribute fieldMade maps the field field_made defined as varchar(20).<br>
-     * Comment for field field_made: Not specified.
-     * @return string $fieldMade
-     * @category Accessor of $fieldMade
+     * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
+     * Comment for field field_make: Not specified.
+     * @return string $fieldMake
+     * @category Accessor of $fieldMake
      */
     public function getfieldMade()
     {
-        return $this->fieldMade;
+        return $this->fieldMake;
     }
 
     /**
@@ -1160,7 +1160,7 @@ class HtItemPhone extends MySqlRecord
         @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
         @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
         @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-        @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_make);
+        @$this->fieldMake = $this->replaceAposBackSlash($rowObject->field_make);
         @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
         @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
         @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
@@ -1236,7 +1236,7 @@ class HtItemPhone extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_made,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1245,7 +1245,7 @@ class HtItemPhone extends MySqlRecord
 			{$this->parseValue($this->fieldPriceSell, 'notNumber')},
 			{$this->parseValue($this->fieldPriceNego, 'notNumber')},
 			{$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-			{$this->parseValue($this->fieldMade, 'notNumber')},
+			{$this->parseValue($this->fieldMake, 'notNumber')},
 			{$this->parseValue($this->fieldModel, 'notNumber')},
 			{$this->parseValue($this->fieldOs, 'notNumber')},
 			{$this->parseValue($this->fieldCamera, 'notNumber')},
@@ -1300,7 +1300,7 @@ SQL;
 				field_price_sell={$this->parseValue($this->fieldPriceSell, 'notNumber')},
 				field_price_nego={$this->parseValue($this->fieldPriceNego, 'notNumber')},
 				field_price_currency={$this->parseValue($this->fieldPriceCurrency, 'notNumber')},
-				field_made={$this->parseValue($this->fieldMade, 'notNumber')},
+				field_make={$this->parseValue($this->fieldMake, 'notNumber')},
 				field_model={$this->parseValue($this->fieldModel, 'notNumber')},
 				field_os={$this->parseValue($this->fieldOs, 'notNumber')},
 				field_camera={$this->parseValue($this->fieldCamera, 'notNumber')},
@@ -1387,7 +1387,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMade' => 'Made',
+        'fieldMake' => 'Made',
         'fieldOs' => 'OS (Operting System)',
         'fieldModel' => 'Model',
         'fieldCamera' => 'Camera Size',
@@ -1410,7 +1410,7 @@ SQL;
         'fieldPriceSell' => 'Price Sell',
         'fieldPriceNego' => 'Price Nego',
         'fieldPriceCurrency' => 'Price Currency',
-        'fieldMade' => 'Made',
+        'fieldMake' => 'Made',
         'fieldModel' => 'Model',
         'fieldOs' => 'OS (Operting System)',
         'fieldCamera' => 'Camera Size',
@@ -1475,7 +1475,7 @@ SQL;
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');
-        $this->insertSelectable('fieldMade', 'upload_specific_array', $itemName);
+        $this->insertSelectable('fieldMake', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
         ___open_div_("col-md-4", '');

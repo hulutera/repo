@@ -1013,6 +1013,7 @@ class HtItemOther extends MySqlRecord
     {
         $object = new HtCategoryOther("*");
         $result = $object->getResultSet();
+        $catArray = [];    
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }
