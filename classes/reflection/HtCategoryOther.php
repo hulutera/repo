@@ -182,6 +182,8 @@ class HtCategoryOther extends MySqlRecord
         $result =  $this->query($sql);
         $this->resultSet=$result;
         $this->lastSql = $sql;
+
+        /*
         if ($result){
             $rowObject = $result->fetch_object();
             @$this->id = (integer)$rowObject->id;
@@ -191,6 +193,7 @@ class HtCategoryOther extends MySqlRecord
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
+        */
         
     }
 

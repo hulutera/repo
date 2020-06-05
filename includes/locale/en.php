@@ -465,13 +465,13 @@ $item_lang_arr = array(
     'house' => 'House',
     'computer' => 'Computer',
     'phone' => 'Phone',
-    'electronic' => 'Electronic',
+    'electronic' => 'Electronics',
     // 'electronic_memory' => 'Hardisk, USB, ...',
     // 'electronic_sound' => 'Headphone, Speakers, ...',    
     // 'electronic_tv' => 'Tv',
     // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',    
     'household' => 'Household',
-    'others' => 'Miscellaneous'
+    'other' => 'Miscellaneous'
 );
 
 $upload_specific_array = [
@@ -694,9 +694,9 @@ $upload_specific_array = [
                 "lenovo" => "lenovo",
                 "sony" => "sony",
                 "toshiba" => "toshiba",
-                "msi" => "msi",
-                'unlisted' => '-- not listed --'
-            ]
+                'msi' => 'msi',
+                'unlisted' => '--not listed--',
+            ],
         ],
         'fieldModel'       => [
             0 => 'Model',
@@ -734,11 +734,11 @@ $upload_specific_array = [
             0 => 'Processor',
             1 => 'Choose Processor',
             2 => [
-                "Under 1 GHz" => "Under 1 GHz",
-                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
-                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
-                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
                 "Over 3.0GHz" => "Over 3.0GHz",
+                "2.0 - 2.49GHz" => "2.0 - 2.49GHz",
+                "1.5 - 1.99GHz" => "1.5 - 1.99GHz",
+                "1.0 - 1.49GHz" => "1.0 - 1.49GHz",
+                "Under 1 GHz" => "Under 1 GHz",
                 "unknown" => "unknown"
             ]
         ],
@@ -746,11 +746,11 @@ $upload_specific_array = [
             0 => 'RAM',
             1 => 'Choose RAM',
             2 => [
-                "Under 1GB" => "Under 1GB",
-                "1.0 - 1.9GB" => "1.0 - 1.9GB",
-                "2.0 - 2.9GB" => "2.0 - 2.9GB",
-                "3.0 - 3.9GB" => "3.0 - 3.9GB",
                 "Over 4.0GB" => "Over 4.0GB",
+                "3.0 - 3.9GB" => "3.0 - 3.9GB",
+                "2.0 - 2.9GB" => "2.0 - 2.9GB",
+                "1.0 - 1.9GB" => "1.0 - 1.9GB",
+                "Under 1GB" => "Under 1GB",               
                 "unknown" => "unknown"
             ]
         ]
@@ -799,15 +799,15 @@ $upload_specific_array = [
             1 => 'Write Model'
         ],
         'fieldCamera'   => [
-            0 => 'Camera Resolution',
+            0 => 'Camera Resolution (MP)',
             1 => 'Choose Camera Resolution',
             2 => [
-                "under 1.0 MP" => "under 1.0 MP",
-                "1.0 - 3.9 MP" => "1.0 - 3.9 MP",
-                "4.0 - 7.9 MP" => "4.0 - 7.9 MP",
-                "8.0 - 10.9 MP" => "8.0 - 10.9 MP",
-                "11.0 - 15.9 MP" => "11.0 - 15.9 MP",
-                "more than 16 MP" => "more than 16 MP",
+                "more than 16 MP" => "more than 16",
+                "11.0 - 15.9 MP" => "11.0 - 15.9",
+                "8.0 - 10.9 MP" => "8.0 - 10.9",
+                "4.0 - 7.9 MP" => "4.0 - 7.9",
+                "1.0 - 3.9 MP" => "1.0 - 3.9",
+                "under 1.0 MP" => "under 1.0",              
                 'unknown' => 'unknown'
             ]
         ],
@@ -817,7 +817,7 @@ $upload_specific_array = [
             2 => [
                 "Windows" => "Windows",
                 "Android" => "Android",
-                "iPhone" => "iPhone",
+                "iOS" => "iOS",
                 "Symbian" => "Symbian",
                 'unlisted' => '-- Not listed --',
             ]
@@ -908,8 +908,10 @@ $upload_specific_array = [
             0 => 'Sell Price',
             1 => 'Write Selling Price',
             2 => 'Not for sell',
-            3 => 'Choose max price (ETB)',
-            4 => 'Max price',
+            3 => 'Choose max price',
+            4 => 'Max price (ETB)',
+            
+            // max price list for car
             5 => [
                 '6000000' => 'Over 5 000 000',
                 '5000000' => '5 000 000',
@@ -921,6 +923,8 @@ $upload_specific_array = [
                 '500000' => '500 000',
                 '300000' =>  'Under 300 000'
                  ],
+            
+            // max price list for house
             6 => [
                 '20000001' => 'Over 20 000 000',
                 '20000000' => '20 000 000',
@@ -933,7 +937,40 @@ $upload_specific_array = [
                 '700000' =>  '700 000',
                 '500000' => '500 000',
                 '300000' =>  'Under 300 000'
-                ]
+            ],
+
+            // max price list for computer
+            7 => [
+                '100001' => 'Over 100 000',
+                '100000' => '100 000',
+                '75000' => '75 000',
+                '50000' => '50 000',
+                '40000' => '40 000',
+                '35000' => '35 000',
+                '30000' =>  '30 000',
+                '25000' =>  '25 000',
+                '20000' => '20 000',
+                '15000' =>  '15 000',
+                '10000' => '10 000',
+                '5000' =>  'Under 5 000'
+            ],
+
+            // max price list for phone
+            8 => [
+                '50001' => 'Over 50 000',
+                '50000' => '50 000',
+                '40000' => '40 000',
+                '35000' => '35 000',
+                '30000' =>  '30 000',
+                '25000' =>  '25 000',
+                '20000' => '20 000',
+                '15000' =>  '15 000',
+                '10000' => '10 000',
+                '7500' =>  '7 500',
+                '5000' => '5 000',
+                '2500' => '2 500',
+                '1500' =>  'Under 1 500'
+            ]
 
         ],
         'fieldPriceCurrency' => [

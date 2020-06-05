@@ -242,6 +242,11 @@ function miniSearch()
 	echo '</div>';
 	carSearch();
 	houseSearch();
+	computerSearch();
+	phoneSearch();
+	electronicSearch();
+	householdSearch();
+	otherSearch();
 	lang_sw();
 	echo '</form></div>';
 }
@@ -292,7 +297,7 @@ function carSearch() {
 			<select  class="col-xs-12 col-md-8" name="car_make">';
 			echo '<option value="none">'. $GLOBALS['upload_specific_array']['car']['fieldMake'][1] .'</option>';
 	 	   	    foreach ($GLOBALS['upload_specific_array']['car']['fieldMake'][2] as $key => $value) {
-					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldMake'][2][$value] .'</option>';
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['car']['fieldMake'][2][$key] .'</option>';
 		   	}
 	echo'</select></div>';
 
@@ -364,6 +369,7 @@ function carSearch() {
 	
 }
 
+// House search elements
 function houseSearch() {
 	
 	// Choose max price
@@ -422,10 +428,217 @@ function houseSearch() {
 	
 }
 
+
+// Computer search elements
+function computerSearch() {
+
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][7] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][7][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Computer type
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['computer']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['computer']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['computer']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['computer']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Computer make
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['computer']['fieldMake'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_make">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['computer']['fieldMake'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['computer']['fieldMake'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['computer']['fieldMake'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Computer OS
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['computer']['fieldOs'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_os">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['computer']['fieldOs'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['computer']['fieldOs'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['computer']['fieldOs'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Computer processor
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['computer']['fieldProcessor'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_proc">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['computer']['fieldProcessor'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['computer']['fieldProcessor'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['computer']['fieldProcessor'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Computer harddrive
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['computer']['fieldHardDrive'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_hd">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['computer']['fieldHardDrive'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['computer']['fieldHardDrive'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['computer']['fieldHardDrive'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	
+	// Computer color
+	$colors = [
+		"black"    => ["#000000", "#ffffff"],
+		"white"    => ["#ffffff", "#000000"],
+		"silver"   => ["#c0c0c0", "#FFFFFF"],
+		
+	];
+	$selectable = [];
+	echo'<div class="col-xs-6 col-md-4 computer_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldColor'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="computer_color">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['common']['fieldColor'][1] .'</option>';
+	 	   	    foreach ($colors as $key => $value) {
+					echo '<option  style="background-color:' . $value[0] . ';color:'. $value[1].';width:90%">'. $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+}
+
+
+// Computer search elements
+function phoneSearch() {
+
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 phone_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="phone_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Phone type
+	echo'<div class="col-xs-6 col-md-4 phone_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['phone']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="phone_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['phone']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['phone']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['phone']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Phone make
+	echo'<div class="col-xs-6 col-md-4 phone_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['phone']['fieldMake'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="phone_make">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['phone']['fieldMake'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['phone']['fieldMake'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['phone']['fieldMake'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Phone OS
+	echo'<div class="col-xs-6 col-md-4 phone_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['phone']['fieldOs'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="phone_os">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['phone']['fieldOs'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['phone']['fieldOs'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['phone']['fieldOs'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Phone camera
+	echo'<div class="col-xs-6 col-md-4 phone_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['phone']['fieldCamera'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="phone_camera">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['phone']['fieldCamera'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['phone']['fieldCamera'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['phone']['fieldCamera'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+}
+
+// Electronic search 
+function electronicSearch() {
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 electronic_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="electronic_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Electronic type
+	echo'<div class="col-xs-6 col-md-4 electronic_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['electronic']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="electronic_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['electronic']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['electronic']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['electronic']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+}
+
+// Household Search elements
+function householdSearch() {
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 household_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="household_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Electronic type
+	echo'<div class="col-xs-6 col-md-4 household_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['household']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="household_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['electronic']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['household']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['household']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+}
+
+// Other Search elements
+function otherSearch() {
+	// Choose max price
+	echo'<div class="col-xs-6 col-md-4 other_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['common']['fieldPriceSell'][4].'</p>
+			<select  class="col-xs-12 col-md-8" name="other_max_price">';
+			echo '<option value="000">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][3] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['common']['fieldPriceSell'][8][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+
+	// Other type
+	echo'<div class="col-xs-6 col-md-4 other_search_cl se-el hide">
+			<p > '.$GLOBALS['upload_specific_array']['other']['idCategory'][0].'</p>
+			<select  class="col-xs-12 col-md-8" name="other_type">';
+			echo '<option value="none">'. $GLOBALS['upload_specific_array']['other']['idCategory'][1] .'</option>';
+	 	   	    foreach ($GLOBALS['upload_specific_array']['other']['idCategory'][2] as $key => $value) {
+					echo '<option value="'.$key.'">'. $GLOBALS['upload_specific_array']['other']['idCategory'][2][$key] .'</option>';
+		   	}
+	echo'</select></div>';
+}
+
 function svgMapElement()
 {
 	global $lang, $str_url;
-	$base_link = '<a href="../includes/adverts.php?item=All&search_text=&';
+	$base_link = '<a href="../includes/adverts.php?it iem=All&search_text=&';
 
 ?>
 	<?php echo $base_link . 'cities=Harar' . $str_url . '"><title>' . $lang['Harar'] . '</title><path class="ET-HA" title="Harari" stroke="black" d="M494.01,310.19L494.92,309.65L495.36,308.61L495.05,307.64L494.49,306.68L494.16,305.68L494.29,305L494.92,303.85L495.03,303.22L495.05,302.64L495.25,301.25L495.24,300.78L494.43,299.6L493.29,299.71L492.04,300.33L490.86,300.73L489.46,300.36L488.5,299.73L487.61,299.66L486.43,300.97L484.82,303.72L484.29,305.17L484.01,306.79L484.15,307.97L484.96,308.14L486.06,307.91L487.09,307.86L487.56,308.12L488.36,308.89L488.79,309.12L489.52,309.03L490.26,308.69L490.98,308.43L491.69,308.6L493.19,309.93L494.01,310.19z"/></a>'; ?>

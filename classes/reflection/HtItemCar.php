@@ -1343,7 +1343,7 @@ class HtItemCar extends MySqlRecord
     public function runQuery($filter, $start = null, $itemPerPage = null)
     {
         if ($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_car WHERE $filter";
+            $sql =  "SELECT * FROM item_car $filter";
         } else {
             $sql =  "SELECT * FROM item_car $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
@@ -1371,7 +1371,7 @@ class HtItemCar extends MySqlRecord
         $statusFilter = " WHERE field_status LIKE 'active'";
         $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
         $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell >= " .  (int) ($_GET['car_max_price']) : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
         $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "field_make LIKE '%'";
         $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "field_name LIKE '%'";
         $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "field_color LIKE '%'";

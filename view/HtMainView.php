@@ -273,7 +273,7 @@ class HtMainView
                 $row =  $value->searchQuery($keyWord, $location);
                 $rows += $row;
             }
-
+            
             if ($rows > 0) {
                 foreach ($queryItem as $key => $value) {
                     $this->_pItem = $value;

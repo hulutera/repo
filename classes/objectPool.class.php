@@ -98,7 +98,7 @@ class ObjectPool
         return $this->getObjectWithId($itemName, $result['id']);
     }
 
-    public function getObjectSpecial($item, $id)
+    public function getObjectSpecial($item, $id = null)
     {
         $itemName = str_replace("item_", "", $item);
 
@@ -112,7 +112,7 @@ class ObjectPool
             'other' => (new HtItemOther($id))
         );
         if (!empty($itemName) && $itemName !== 'all') {
-            return array($objects[$itemName]);
+            return array($itemName => $objects[$itemName]);
         } else {
             return $objects;
         }

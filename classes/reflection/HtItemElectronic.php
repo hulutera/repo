@@ -931,6 +931,42 @@ class HtItemElectronic extends MySqlRecord
         return $this->affected_rows;
     }
 
+
+    /**
+     * Run a electronic search query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null)
+    {
+        
+        $itemTable = $this->getTableName();
+        $catTableName =   $this->getCatTableName();
+        $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
+        $statusFilter = " WHERE field_status LIKE 'active'";
+        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+        $maxPriceFilter = ($_GET['electronic_max_price'] != "000")  ? ($_GET['electronic_max_price'] == 50001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['electronic_max_price']) : "field_price_sell LIKE '%'";
+        $typeFilter = ($_GET['electronic_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['electronic_type']) . "'": "field_name LIKE '%'";
+        
+        $filter = "$statusFilter AND $maxPriceFilter AND $locationFilter AND $keywordFilter AND $typeFilter";
+        
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+        } else {
+            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+     
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
     /* 
     ** Set the electronic element values
     * $rows: it takes the array of one item row and it sets the values

@@ -1403,7 +1403,7 @@ class HtItemHouse extends MySqlRecord
         $statusFilter = " WHERE field_status LIKE 'active'";
         $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
         $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-        $maxPriceFilter = ($_GET['house_max_price'] != "000")  ? ($_GET['house_max_price'] == 20000001) ? "field_price_sell >= " .  (int) ($_GET['house_max_price']) : "field_price_sell <= " .  (int) ($_GET['house_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($_GET['house_max_price'] != "000")  ? ($_GET['house_max_price'] == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['house_max_price']) : "field_price_sell LIKE '%'";
         $typeFilter = ($_GET['house_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['house_type']) . "'": "field_name LIKE '%'";
         $maxBedroomFilter = ($_GET['house_bedroom'] != 0)  ? ($_GET['house_bedroom'] == 101) ? "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom LIKE '%'";
         $maxToiletFilter = ($_GET['house_toilet'] != 0)  ? ($_GET['house_toilet'] == 101) ? "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet LIKE '%'";

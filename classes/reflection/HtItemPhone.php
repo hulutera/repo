@@ -1092,10 +1092,48 @@ class HtItemPhone extends MySqlRecord
     public function runQuery($filter, $start = null, $itemPerPage = null)
     {
         if ($itemPerPage == null) {
-            $sql =  "SELECT * FROM item_phone WHERE $filter";
+            $sql =  "SELECT * FROM item_phone $filter";
         } else {
             $sql =  "SELECT * FROM item_phone $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
+        $this->resetLastSqlError();
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        return $this->affected_rows;
+    }
+
+    /**
+     * Run a phone search query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null)
+    {
+        
+        $itemTable = $this->getTableName();
+        $catTableName =   $this->getCatTableName();
+        $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
+        $statusFilter = " WHERE field_status LIKE 'active'";
+        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+        $maxPriceFilter = ($_GET['phone_max_price'] != "000")  ? ($_GET['phone_max_price'] == 50001) ? "field_price_sell LIKE  '%'" : "field_price_sell <= " .  (int) ($_GET['phone_max_price']) : "field_price_sell LIKE '%'";
+        $typeFilter = ($_GET['phone_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['phone_type']) . "'": "field_name LIKE '%'";
+        $makeFilter = ($_GET['phone_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['phone_make']) . "'": "field_make LIKE '%'";
+        $osFilter = ($_GET['phone_os'] != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($_GET['phone_os']) . "'": "field_os LIKE '%'";
+        $cameraFilter = ($_GET['phone_camera'] != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($_GET['phone_camera']) . "'": "field_camera LIKE '%'";
+
+        $filter = "$statusFilter AND $maxPriceFilter AND $locationFilter AND $keywordFilter AND $typeFilter AND  $makeFilter AND  $osFilter AND $cameraFilter";
+        
+        if($itemPerPage == null) {
+            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+        } else {
+            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+        }
+     
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1122,7 +1160,7 @@ class HtItemPhone extends MySqlRecord
         @$this->fieldPriceSell = $this->replaceAposBackSlash($rowObject->field_price_sell);
         @$this->fieldPriceNego = $this->replaceAposBackSlash($rowObject->field_price_nego);
         @$this->fieldPriceCurrency = $this->replaceAposBackSlash($rowObject->field_price_currency);
-        @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_made);
+        @$this->fieldMade = $this->replaceAposBackSlash($rowObject->field_make);
         @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
         @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
         @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
@@ -1326,7 +1364,7 @@ SQL;
             $phoneCategory = $GLOBALS['upload_specific_array']['phone']['idCategory'][2][$this->phoneCategory($this->getIdCategory())];
             echo "<p>" . $GLOBALS['upload_specific_array']['phone']['idCategory'][0] . ":&nbsp<strong>" .  $phoneCategory . "</strong></p>";
         }
-        echo $this->getfieldMade() != "unlisted" ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldMade"][0] . ':&nbsp<strong>' . $this->getfieldMade() . '</strong></p>' : "";
+        echo $this->getfieldMade() != "unlisted" ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldMake"][0] . ':&nbsp<strong>' . $this->getfieldMade() . '</strong></p>' : "";
         echo $this->getFieldModel() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldModel"][0] . ':&nbsp<strong>' . $this->getFieldModel() . '</strong></p>' : "";
 
         if ($this->getFieldOs() != null or $this->getFieldOs() != "unlisted") {
