@@ -7,8 +7,8 @@ spl_autoload_register(function ($className) {
 class ObjectPool
 {
     private static $_instance;
-
-    private $tableType2item = [
+    
+    public $tableType2item = [
         1 => 'car',
         2 => 'house',
         3 => 'computer',
@@ -95,7 +95,7 @@ class ObjectPool
     {
         $tableType = $result['field_table_type'];
         $itemName = $this->tableType2item[$tableType];
-        return $this->getObjectWithId($itemName, $result['id']);
+        return $this::getInstance()->getObjectWithId($itemName, $result['id']);
     }
 
     public function getObjectSpecial($item, $id = null)

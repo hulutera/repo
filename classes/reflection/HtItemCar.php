@@ -1362,27 +1362,42 @@ class HtItemCar extends MySqlRecord
  * return: the number of affected rows
  * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
  */
-    public function searchQuery($keyword=null, $location=null, $start=null, $itemPerPage=null)
+    public function searchQuery($keyword=null, $location=null, $start=null, $itemPerPage=null, $searchType)
     {
         
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
-        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
         $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
-        $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "field_make LIKE '%'";
-        $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "field_name LIKE '%'";
-        $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "field_color LIKE '%'";
         $modelYearFilter = $this->modelYrFilter();
-        $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'": "field_gear_type LIKE '%'";
-        $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'": "field_fuel_type LIKE '%'";
         
-        $filter = "$statusFilter AND $maxPriceFilter AND $makeFilter AND $typeFilter AND $colorFilter AND  $modelYearFilter AND  $gearFilter AND $fuelFilter AND $locationFilter AND $keywordFilter ";
+        if ($searchType == "single-item") {
+            $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "( field_name LIKE '%' OR field_name is null )";
+            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "( field_make LIKE '%' OR field_make is null )";
+            $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "( field_color LIKE '%' OR field_color is null )";
+            $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'": "( field_gear_type LIKE '%' OR field_gear_type is null )";
+            $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'": "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+        
+            $itemFilter = "$titleFilter AND  $typeFilter AND $makeFilter AND $colorFilter AND $gearFilter AND $fuelFilter AND $locationFilter";
+        } else {
+            $typeFilter = " field_name LIKE '%$keyword%'";
+            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $makeFilter =  "field_make LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
+            $colorFilter = "field_color LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
+            $gearFilter = "field_gear_type LIKE '&" . $this->replaceAposBackSlash($keyword) . "%'";
+            $fuelFilter =  "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) ."%'";
+
+            $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter)";
+        }
+
+        $filter = "$statusFilter AND $maxPriceFilter AND $modelYearFilter AND $itemFilter";
         
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+            $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }

@@ -526,7 +526,7 @@ class HtItemHousehold extends MySqlRecord
             $market = "sell";
         }
         $this->setFieldMarketCategory($market);
-        $this->setFieldTableType(1);
+        $this->setFieldTableType(6);
 
         //create a folder for image upload
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
@@ -943,22 +943,33 @@ class HtItemHousehold extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null)
+    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
     {
         
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
-        $keywordFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
         $maxPriceFilter = ($_GET['household_max_price'] != "000")  ? ($_GET['household_max_price'] == 50001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['household_max_price']) : "field_price_sell LIKE '%'";
-        $typeFilter = ($_GET['household_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['household_type']) . "'": "field_name LIKE '%'";
         
-        $filter = "$statusFilter AND $maxPriceFilter AND $locationFilter AND $keywordFilter AND $typeFilter";
+        if ($searchType == "single-item") {
+            $typeFilter = ($_GET['household_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['household_type']) . "'": "( field_name LIKE '%' OR field_name is null )";
+            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+
+            $itemFilter = "$titleFilter AND  $typeFilter AND $locationFilter";
+        } else {
+            $typeFilter = " field_name LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) ."%'";
+
+            $itemFilter = "( $titleFilter OR  $typeFilter OR  $locationFilter )";
+        }
+
+        $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
         
         if($itemPerPage == null) {
-            $sql =  "SELECT * FROM $itemTable  $joinCatTable $filter";
+            $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }

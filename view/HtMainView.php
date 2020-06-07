@@ -70,7 +70,10 @@ class HtMainView
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
                 $this->_runnerName = $row['field_item_name'];
-                $this->_pItem = ObjectPool::getInstance()->getObjectWithId($row['field_item_name'], $row['id_item']);
+                $this->_pItem = ObjectPool::getInstance()->getObjectWithId($row['field_item_name']);
+                $item_id = $row['id_item'];
+                $condition = "WHERE id = $item_id";
+                $this->_pItem->runQuery($condition);
                 $fetchItemRow = $this->_pItem->getResultSet();
                 while ($itemRow = $fetchItemRow->fetch_assoc()) {
                     $this->showItemWithId($itemRow);
@@ -241,67 +244,138 @@ class HtMainView
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $itemstart = ($page - 1) * $globalVarObj::get('itemPerPage');
 
+        // Wildcard for searchword
+        if ($searchWordSanitized == "") {
+            $keyWord = "%";
+        } else {
+            $keyWord = $searchWordSanitized;
+        }
+
+        // To set value for city
+        if ($city == "All" or $city == "000") {
+            $location = "%";
+        } else {
+            $location = $city;
+        }
+
+        // To set value for item
+        if ($item == "All" or $item == "000") {
+            $queryItem = ObjectPool::getInstance()->getObjectSpecial("all");
+        } else {
+            $queryItem = ObjectPool::getInstance()->getObjectSpecial($item);
+        }
+
+
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
             $this->failedSearch($searchWordSanitized, $city, $item);
         } else if ($searchWordSanitized == "" and ($city == "All" or $city == "000") and ($item == "All" or $item == "000")) {
             $this->showLatest();
+        } else if ($searchWordSanitized != "" and ($item == "All" or $item == "000")) {
+            $this->allItemSearch($queryItem, $location, $keyWord);
         } else {
-
-            // To avoid a wildcard value for search word 
-            if ($searchWordSanitized == "") {
-                $keyWord = "%";
-            } else {
-                $keyWord = $searchWordSanitized;
-            }
-
-            // To set value for city
-            if ($city == "All" or $city == "000") {
-                $location = "%";
-            } else {
-                $location = $city;
-            }
-
-            // To set value for item
-            if ($item == "All" or $item == "000") {
-                $queryItem = ObjectPool::getInstance()->getObjectSpecial("all");
-            } else {
-                $queryItem = ObjectPool::getInstance()->getObjectSpecial($item);
-            }
-
-            $rows = 0;
-            foreach ($queryItem as $key => $value) {
-                $row =  $value->searchQuery($keyWord, $location);
-                $rows += $row;
-            }
-            
-            if ($rows > 0) {
-                foreach ($queryItem as $key => $value) {
-                    $this->_pItem = $value;
-                    $calculatePageArray = calculatePage($rows);
-                    $globalVarObj = new HtGlobal();
-                    $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
-                    $res = $value->searchQuery($keyWord, $location, $start, $globalVarObj::get('itemPerPage'));
-                    $result = $value->getResultSet();
-                    echo '<div class="row items-board">';
-                    while ($row = $result->fetch_assoc()) {
-                        $this->_runnerName = $key;
-                        $this->showItemWithId($row);
-                    }
-                    echo '</div>';
-                }
-                $get_array = $_GET;
-                search_item_pagination($calculatePageArray[0], $calculatePageArray[1], $get_array);
-            } else {
-                $this->itemNotFound();
-            }
+            $this->singleItemSearch($queryItem, $location, $keyWord);
         }
     }
+
+    /*
+      Search a keyword in all Items
+    */
+    public function allItemSearch($queryItem, $location, $keyWord) {
+        
+        $elements_array = array();
+        foreach ($queryItem as $key => $value) {
+            $value->searchQuery($keyWord, $location, null, null, "all-items");
+            $result = $value->getResultSet();
+            while ($elm = $result->fetch_assoc()) {
+                array_push($elements_array, $elm);
+            }
+        }
+
+        $rows = count($elements_array);
+        
+        if ($rows > 0) {
+        // Sort matched element with date
+            uasort($elements_array, array($this, 'date_compare'));
+
+            // descending order
+            array_reverse($elements_array);
+
+            $calculatePageArray = calculatePage($rows);
+            $globalVarObj = new HtGlobal();
+            $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
+
+            // fetched elements per page 
+            $elm_rows = array_slice($elements_array,  $start,  $globalVarObj::get('itemPerPage'));
+            
+            echo '<div class="row items-board">';
+            foreach ($elm_rows as $value) {
+                $obj_pool = new ObjectPool();
+                $it = $obj_pool->tableType2item[$value['field_table_type']];
+                $main_obj = $obj_pool-> getObjectWithId($it);
+                $this->_runnerName = $it;
+                $this->_pItem = $main_obj;
+                $item_id = $value['id'];
+                $condition = "WHERE id = $item_id";
+                $obj = $main_obj->runQuery($condition);
+                $fetchItemRow = $this->_pItem->getResultSet();
+                while ($ab = $fetchItemRow->fetch_assoc()) {
+                    $this->showItemWithId($ab);
+                }
+                
+
+            }
+            echo '</div>';
+            $get_array = $_GET;
+            search_item_pagination($calculatePageArray[0], $calculatePageArray[1], $get_array);
+
+        } else {
+            $this->itemNotFound();
+        }
+    }
+
+    /*
+      Search per Items
+    */
+    public function singleItemSearch($queryItem, $location, $keyWord) {
+        $rows = 0;
+        foreach ($queryItem as $key => $value) {
+            $row =  $value->searchQuery($keyWord, $location, null, null, "single-item");
+            $rows += $row;
+        }
+        
+        if ($rows > 0) {
+            foreach ($queryItem as $key => $value) {
+                $this->_pItem = $value;
+                $calculatePageArray = calculatePage($rows);
+                $globalVarObj = new HtGlobal();
+                $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
+                $res = $value->searchQuery($keyWord, $location, $start, $globalVarObj::get('itemPerPage'), "single-item");
+                $result = $value->getResultSet();
+                echo '<div class="row items-board">';
+                while ($row = $result->fetch_assoc()) {
+                    $this->_runnerName = $key;
+                    $this->showItemWithId($row);
+                }
+                echo '</div>';
+            }
+            $get_array = $_GET;
+            search_item_pagination($calculatePageArray[0], $calculatePageArray[1], $get_array);
+        } else {
+            $this->itemNotFound();
+        }
+    }
+
+    // Compare dates function 
+    public function date_compare($element1, $element2) { 
+        $datetime1 = strtotime($element1['field_upload_date']); 
+        $datetime2 = strtotime($element2['field_upload_date']); 
+        return $datetime1 - $datetime2; 
+    }  
 
     /**
      * Shall be used when there is no item to show
      * This function shall expect to take more args for search
      */
-
     public function itemNotFound($searchWordSanitized = null, $city = null, $item = null)
     {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
