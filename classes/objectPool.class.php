@@ -7,7 +7,7 @@ spl_autoload_register(function ($className) {
 class ObjectPool
 {
     private static $_instance;
-    
+
     public $tableType2item = [
         1 => 'car',
         2 => 'house',
@@ -64,24 +64,24 @@ class ObjectPool
         }*/
     }
 
-    public function getObjectWithId($item, $id = null)
+    public function getObjectWithId($item, $id = null, $status = null)
     {
         $itemName = str_replace("item_", "", $item);
         switch ($itemName) {
             case 'car':
-                return (new HtItemCar($id));
+                return (new HtItemCar($id, $status));
             case 'computer':
-                return (new HtItemComputer($id));
+                return (new HtItemComputer($id, $status));
             case 'house':
-                return (new HtItemHouse($id));
+                return (new HtItemHouse($id, $status));
             case 'household':
-                return (new HtItemHousehold($id));
+                return (new HtItemHousehold($id, $status));
             case 'electronic':
-                return (new HtItemElectronic($id));
+                return (new HtItemElectronic($id, $status));
             case 'phone':
-                return (new HtItemPhone($id));
+                return (new HtItemPhone($id, $status));
             case 'other':
-                return (new HtItemOther($id));
+                return (new HtItemOther($id, $status));
             case 'latest':
                 return !empty($id) ? (new HtItemLatestUpdate($id)) : (new HtItemLatestUpdate());
             default:

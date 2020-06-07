@@ -889,8 +889,10 @@ class HtItemHousehold extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id, $status = null)
+    public function select($id = NULL, $status = NULL)
     {
+        $useQuery = true;
+
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -901,14 +903,17 @@ class HtItemHousehold extends MySqlRecord
             $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_household WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
+            $useQuery = false;
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->setFieldValuesForOneItem($result);
-        $this->resultSet = $result;
+        if ($useQuery) {            
+            $result =  $this->query($sql);
+            $this->resultSet = $result;
+            $this->setFieldValuesForOneItem($result);           
+        }        
         $this->lastSql = $sql;
-        return $this->affected_rows; 
+        return $this->affected_rows;
         
     }
 
@@ -1274,4 +1279,3 @@ SQL;
         return $cat;
     }
 }
-?>

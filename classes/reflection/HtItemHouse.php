@@ -1282,10 +1282,10 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
-    * Gets the name of the corresponding category table name
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the corresponding category table name
+     * @return string
+     * @category Accessor
+     */
     public function getCatTableName()
     {
         return "category_house";
@@ -1342,8 +1342,9 @@ class HtItemHouse extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id, $status = null)
+    public function select($id = null, $status = null)
     {
+        $useQuery = true;
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -1354,12 +1355,15 @@ class HtItemHouse extends MySqlRecord
             $sql =  "SELECT * FROM item_house WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_house WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
+            $useQuery = false;
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->setFieldValuesForOneItem($result);
-        $this->resultSet = $result;
+        if ($useQuery) {
+            $result =  $this->query($sql);
+            $this->resultSet = $result;
+            $this->setFieldValuesForOneItem($result);
+        }
         $this->lastSql = $sql;
         return $this->affected_rows;
     }
@@ -1396,40 +1400,40 @@ class HtItemHouse extends MySqlRecord
      */
     public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
     {
-        
+
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
         $maxPriceFilter = ($_GET['house_max_price'] != "000")  ? ($_GET['house_max_price'] == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['house_max_price']) : "field_price_sell LIKE '%'";
-               
+
         $maxBedroomFilter = ($_GET['house_bedroom'] != 0)  ? ($_GET['house_bedroom'] == 101) ? "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom LIKE '%'";
         $maxToiletFilter = ($_GET['house_toilet'] != 0)  ? ($_GET['house_toilet'] == 101) ? "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet LIKE '%'";
         $builtYrFilter = $this->builtYear();
-       
+
         if ($searchType == "single-item") {
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $typeFilter = ($_GET['house_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['house_type']) . "'": "( field_name LIKE '%' OR field_name is null )";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $typeFilter = ($_GET['house_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['house_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
 
             $itemFilter = "$typeFilter AND  $titleFilter AND $locationFilter";
         } else {
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $typeFilter = "field_name LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) ."%'";
-            
-            $itemFilter = "( $typeFilter OR $titleFilter OR $locationFilter )"; 
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $typeFilter = "field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+
+            $itemFilter = "( $typeFilter OR $titleFilter OR $locationFilter )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND  $itemFilter AND  $maxBedroomFilter AND  $maxToiletFilter AND $builtYrFilter";
-        
-        if($itemPerPage == null) {
+
+        if ($itemPerPage == null) {
             $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
 
-        
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1438,7 +1442,8 @@ class HtItemHouse extends MySqlRecord
     }
 
 
-    public function builtYear(){
+    public function builtYear()
+    {
 
         $yr = (int) $_GET['house_built_year'];
 
@@ -1475,10 +1480,9 @@ class HtItemHouse extends MySqlRecord
             } else if ($yr >= 2010 and $yr < 2015) {
                 $lower = 2010;
                 $upper = 2015;
-            } 
-            
-            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
+            }
 
+            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
         }
 
         return $filter;

@@ -1249,10 +1249,10 @@ class HtItemCar extends MySqlRecord
     }
 
     /**
-    * Gets the name of the corresponding category table name
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the corresponding category table name
+     * @return string
+     * @category Accessor
+     */
     public function getCatTableName()
     {
         return "category_car";
@@ -1312,6 +1312,7 @@ class HtItemCar extends MySqlRecord
      */
     public function select($id = NULL, $status = NULL)
     {
+        $useQuery = true;
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -1322,12 +1323,15 @@ class HtItemCar extends MySqlRecord
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_car WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
+            $useQuery = false;
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->setFieldValuesForOneItem($result);
-        $this->resultSet = $result;
+        if ($useQuery) {
+            $result =  $this->query($sql);
+            $this->resultSet = $result;
+            $this->setFieldValuesForOneItem($result);
+        }
         $this->lastSql = $sql;
         return $this->affected_rows;
     }
@@ -1354,49 +1358,49 @@ class HtItemCar extends MySqlRecord
         return $this->affected_rows;
     }
 
-/**
- * Run a car search query with a request
- * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
- * $start: the first item to fetch
- * $itemPerPage: the total number of items to be fetched from the table
- * return: the number of affected rows
- * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
- */
-    public function searchQuery($keyword=null, $location=null, $start=null, $itemPerPage=null, $searchType)
+    /**
+     * Run a car search query with a request
+     * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
+     * $start: the first item to fetch
+     * $itemPerPage: the total number of items to be fetched from the table
+     * return: the number of affected rows
+     * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
+     */
+    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
     {
-        
+
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
         $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
         $modelYearFilter = $this->modelYrFilter();
-        
+
         if ($searchType == "single-item") {
-            $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'": "( field_name LIKE '%' OR field_name is null )";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'": "( field_make LIKE '%' OR field_make is null )";
-            $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'": "( field_color LIKE '%' OR field_color is null )";
-            $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'": "( field_gear_type LIKE '%' OR field_gear_type is null )";
-            $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'": "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
-        
+            $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'" : "( field_make LIKE '%' OR field_make is null )";
+            $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'" : "( field_color LIKE '%' OR field_color is null )";
+            $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'" : "( field_gear_type LIKE '%' OR field_gear_type is null )";
+            $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'" : "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+
             $itemFilter = "$titleFilter AND  $typeFilter AND $makeFilter AND $colorFilter AND $gearFilter AND $fuelFilter AND $locationFilter";
         } else {
             $typeFilter = " field_name LIKE '%$keyword%'";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
             $makeFilter =  "field_make LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
             $colorFilter = "field_color LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
             $gearFilter = "field_gear_type LIKE '&" . $this->replaceAposBackSlash($keyword) . "%'";
             $fuelFilter =  "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) ."%'";
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
 
             $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter)";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $modelYearFilter AND $itemFilter";
-        
-        if($itemPerPage == null) {
+
+        if ($itemPerPage == null) {
             $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
@@ -1409,7 +1413,8 @@ class HtItemCar extends MySqlRecord
         return $this->affected_rows;
     }
 
-    public function modelYrFilter(){
+    public function modelYrFilter()
+    {
 
         $model = (int) $_GET['car_model_year'];
 
@@ -1453,9 +1458,8 @@ class HtItemCar extends MySqlRecord
                 $lower = 2020;
                 $upper = 2025;
             }
-            
-            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
 
+            $filter = "field_model_year >=  $lower AND field_model_year < $upper";
         }
 
         return $filter;
@@ -1550,12 +1554,12 @@ class HtItemCar extends MySqlRecord
      * @category DML
      */
     public function insertPost()
-    {        
+    {
         $this->setFieldPost();
         $this->insert();
-    }    
+    }
     public function insert()
-    {            
+    {
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }

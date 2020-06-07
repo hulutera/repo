@@ -889,9 +889,9 @@ class HtItemOther extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id, $status = null)
+    public function select($id = null, $status = null)
     {
-
+        $useQuery = true;
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -902,11 +902,15 @@ class HtItemOther extends MySqlRecord
             $sql =  "SELECT * FROM item_other WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_other WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
+            $useQuery = false;
         }
+
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->setFieldValuesForOneItem($result);
-        $this->resultSet = $result;
+        if ($useQuery) {
+            $result =  $this->query($sql);
+            $this->resultSet = $result;
+            $this->setFieldValuesForOneItem($result);
+        }
         $this->lastSql = $sql;
         return $this->affected_rows;
     }
@@ -944,7 +948,7 @@ class HtItemOther extends MySqlRecord
      */
     public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
     {
-        
+
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
@@ -953,26 +957,26 @@ class HtItemOther extends MySqlRecord
 
         if ($searchType == "single-item") {
             $typeFilter = ($_GET['other_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['other_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
 
             $itemFilter = "$titleFilter AND  $typeFilter AND $locationFilter";
         } else {
-            $typeFilter = " field_name LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) ."%'";
+            $typeFilter = " field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
 
             $itemFilter = "( $titleFilter OR  $typeFilter OR  $locationFilter )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
-        
-        if($itemPerPage == null) {
+
+        if ($itemPerPage == null) {
             $sql =  "SELECT  $itemTable.id, field_upload_date, field_table_type  FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-        
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1024,7 +1028,7 @@ class HtItemOther extends MySqlRecord
     {
         $object = new HtCategoryOther("*");
         $result = $object->getResultSet();
-        $catArray = [];    
+        $catArray = [];
         while ($row = $result->fetch_assoc()) {
             $catArray[] = $row;
         }

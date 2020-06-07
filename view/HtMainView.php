@@ -11,10 +11,11 @@ class HtMainView
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
 
-    function __construct($newRunnerName, $newRunnerId = null)
+    function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
     {
         $this->_runnerName = $newRunnerName;
         $this->_runnerId = $newRunnerId;
+        $this->_runnerStatus = $newRunnerStatus;
     }
 
     function __destruct()
@@ -99,13 +100,14 @@ class HtMainView
         }
         return $dataOnly;
     }
+
     /**
      * Alternative interface to display item
      * e.g.
      *  (new HtMainView("car",null))->showItem();  //select * item 
      * @param resolved by construtor
      */
-    public function showItem($filter, &$dataOnly = null, $isRawData = false)
+    public function showItem($filter)
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
@@ -119,11 +121,7 @@ class HtMainView
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
-                if ($isRawData) {
-                    array_push($dataOnly, $row);
-                } else {
-                    $this->showItemWithId($row);
-                }
+                $this->showItemWithId($row);
             }
             echo '</div>';
             if (empty($dataOnly) && empty($this->_runnerId)) {
@@ -132,6 +130,22 @@ class HtMainView
         } else {
             $this->itemNotFound();
         }
+    }
+
+    /**
+     * 
+     */
+    public function showOneItem()
+    {
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $this->_runnerStatus);
+        $result = $this->_pItem->getResultSet();
+        echo '<div class="row items-board">';
+        $sql =  $this->_pItem->lastSql();
+        $result = $this->_pItem->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $this->showItemWithId($row);
+        }
+        echo '</div>';
     }
 
     /**
@@ -280,8 +294,9 @@ class HtMainView
     /*
       Search a keyword in all Items
     */
-    public function allItemSearch($queryItem, $location, $keyWord) {
-        
+    public function allItemSearch($queryItem, $location, $keyWord)
+    {
+
         $elements_array = array();
         foreach ($queryItem as $key => $value) {
             $value->searchQuery($keyWord, $location, null, null, "all-items");
@@ -292,9 +307,9 @@ class HtMainView
         }
 
         $rows = count($elements_array);
-        
+
         if ($rows > 0) {
-        // Sort matched element with date
+            // Sort matched element with date
             uasort($elements_array, array($this, 'date_compare'));
 
             // descending order
@@ -306,12 +321,12 @@ class HtMainView
 
             // fetched elements per page 
             $elm_rows = array_slice($elements_array,  $start,  $globalVarObj::get('itemPerPage'));
-            
+
             echo '<div class="row items-board">';
             foreach ($elm_rows as $value) {
                 $obj_pool = new ObjectPool();
                 $it = $obj_pool->tableType2item[$value['field_table_type']];
-                $main_obj = $obj_pool-> getObjectWithId($it);
+                $main_obj = $obj_pool->getObjectWithId($it);
                 $this->_runnerName = $it;
                 $this->_pItem = $main_obj;
                 $item_id = $value['id'];
@@ -321,13 +336,10 @@ class HtMainView
                 while ($ab = $fetchItemRow->fetch_assoc()) {
                     $this->showItemWithId($ab);
                 }
-                
-
             }
             echo '</div>';
             $get_array = $_GET;
             search_item_pagination($calculatePageArray[0], $calculatePageArray[1], $get_array);
-
         } else {
             $this->itemNotFound();
         }
@@ -336,13 +348,14 @@ class HtMainView
     /*
       Search per Items
     */
-    public function singleItemSearch($queryItem, $location, $keyWord) {
+    public function singleItemSearch($queryItem, $location, $keyWord)
+    {
         $rows = 0;
         foreach ($queryItem as $key => $value) {
             $row =  $value->searchQuery($keyWord, $location, null, null, "single-item");
             $rows += $row;
         }
-        
+
         if ($rows > 0) {
             foreach ($queryItem as $key => $value) {
                 $this->_pItem = $value;
@@ -366,11 +379,12 @@ class HtMainView
     }
 
     // Compare dates function 
-    public function date_compare($element1, $element2) { 
-        $datetime1 = strtotime($element1['field_upload_date']); 
-        $datetime2 = strtotime($element2['field_upload_date']); 
-        return $datetime1 - $datetime2; 
-    }  
+    public function date_compare($element1, $element2)
+    {
+        $datetime1 = strtotime($element1['field_upload_date']);
+        $datetime2 = strtotime($element2['field_upload_date']);
+        return $datetime1 - $datetime2;
+    }
 
     /**
      * Shall be used when there is no item to show
@@ -385,13 +399,12 @@ class HtMainView
         echo '</div></div>';
     }
 
-    public function failedSearch($searchWordSanitized = null, $city = null , $item = null) {
+    public function failedSearch($searchWordSanitized = null, $city = null, $item = null)
+    {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
-            echo '<p class="col-xs-12 col-md-12 bg-primary">'.$GLOBALS["lang"]["search res"].'</p>';
-            echo '<div id="spanMainColumnXRemove" style="color: red">';
-            echo $GLOBALS['lang']['failed search'];
+        echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
+        echo '<div id="spanMainColumnXRemove" style="color: red">';
+        echo $GLOBALS['lang']['failed search'];
         echo '</div></div>';
     }
-
-
 }

@@ -228,7 +228,7 @@ function pendingItems()
 
 function activityTable()
 {
-
+	global $lang_sw, $lang_url;
 	___open_div_('container-fluid');
 	___open_div_('row', '" style="width:50%;');
 	___open_div_('col-md-12', '" ');
@@ -411,30 +411,59 @@ function activityTable()
 		foreach ($dataOnly as $k1 => $v1) {
 			echo '<tr>';
 			$onlyOneTime = true;
-			$temp = 0;
+			$i = 0;
 			foreach ($v1 as $k2 => $v2) {
+
 				if ($onlyOneTime) {
-					echo '<td style=""><span class="table-remove">';
+					echo '<td><span class="table-remove">';
+
 					foreach ($edit[$status] as $key => $value) {
+						$disabled = "";
+						if ($key == $_GET['status']) {
+							$disabled = ' disabled';
+						}
+						// TODO: Apply encryption
+						// $cryto = new Cryptor();
+						// $itemEn    = urlencode($cryto->encryptor(base64_encode($item)));
+						// $idEn      = urlencode($cryto->encryptor(base64_encode($v2)));
+						// $actionEn  = urlencode($cryto->encryptor(base64_encode($key)));
+						// $statusEn  = urlencode($cryto->encryptor(base64_encode($status)));
+						//urlencode(base64_encode($itemEn)).
+
 						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?function=activity-table&type=' . $item . '&id=' . $v2 . '&action=' . $key . '&status=' . $status . '" method="post">';
 						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' 
-						class="btn btn-rounded btn-sm ' . $value[1] .
-							'" id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
+						class="btn btn-rounded btn-sm ' . $value[1] . '"' . $disabled .
+							' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
 						echo '</form>';
 					}
 					echo '</span></td>';
 					$onlyOneTime = false;
 				}
-				//TODO: add image//<img style="width:100px; height:100px;" src="../../images/hulutera.PNG">
-				echo '<td>' . $v2 . '</td>';
+				//TODO: add image
+				//<img style="width:100px; height:100px;" src="../../images/hulutera.PNG">
+				if ($i == 0) {					
+					echo '<td><a href="./admin.php?function=activity-table&type=' . 
+					$item . '&id=' . $v2 . '&status=' . $status . '"><button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
+					$i++;
+				} else {
+					echo '<td>' . $v2 . '</td>';
+				}
 			}
 			echo '</tr>';
 		}
 		echo '</tbody>';
 		echo '</table>';
 		___close_div_(1);
+		___close_div_(1);		
 	}
-	___close_div_(2);
+	$function = isset($_GET['function']) ? $_GET['function'] : null;
+	$id = isset($_GET['id']) ? $_GET['id'] : null;
+	$status = isset($_GET['status']) ? $_GET['status'] : null;
+
+	if (isset($function) && isset($id) && isset($status)) {
+		echo '<p class="h1">'.$item.'#'.$id.'</p>';
+		(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
+	}
 }
 
 function listUsers()
@@ -444,55 +473,51 @@ function listUsers()
 	$userAll = new HtUserAll($sql);
 	$result = $userAll->getResultSet();
 	global $lang_sw;
-	echo <<< EOD
-	<div class="container-fluid" style="text-align:left;">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-4">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>
-									UserId
-								</th>
-								<th>
-									Email
-								</th>
-								<th>
-									Phone
-								</th>
-								<th>
-								   Privilege
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-EOD;
+	echo '<div class="container-fluid" style="text-align:left;">';
+	___open_div_("row");
+	___open_div_("col-md-12");
+	___open_div_("row");
+	___open_div_("col-md-4");
+	echo '
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					UserId
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Phone
+				</th>
+				<th>
+				   Privilege
+				</th>
+			</tr>
+		</thead>
+		<tbody>';
 
 	while ($row = $result->fetch_object()) {
 		$style = "";
 		if ($_GET["ID"] == $row->id) {
 			$style = '"background-color:#00203FFF;color:#ADEFD1FF"';
 		}
-
 		echo <<< EOD
-						
-							<tr style={$style}>
-								<td>
-									{$row->id}
-								</td>
-								<td>
-									{$row->field_email}
-								</td>
-								<td>
-									{$row->field_phone_nr}
-								</td>
-								<td>
-									<a href="../includes/template.content.php?type=controlPanel&ID={$row->id}{$lang_sw}">{$row->field_privilege}</a>
-								</td>
-							</tr>
-										
+		<tr style={$style}>
+			<td>
+				{$row->id}
+			</td>
+			<td>
+				{$row->field_email}
+			</td>
+			<td>
+				{$row->field_phone_nr}
+			</td>
+			<td>
+				<a href="../includes/template.content.php?type=controlPanel&ID={$row->id}{$lang_sw}">{$row->field_privilege}</a>
+			</td>
+		</tr>										
 EOD;
 	}
 	$token = Token::generate();
@@ -509,127 +534,6 @@ EOD;
 </div>
 EOD;
 }
-
-function controlPanel()
-{
-	global $connect, $lang, $lang_url, $str_url;
-	echo '<div class="controlPanel">';
-	echo '<div class="controlPanelLeft">';
-
-	$myId    = $_SESSION['uID'];
-	$object  = new HtUserAll($myId);
-	$result  = $object->getResultSet(); //queryUserWithId($myId);
-	$val     = $result->fetch_assoc();
-	$myRole  = $object->getFieldPrivilege(); //$val['fieldPrivilege'];
-
-	listUsers();
-	// echo '<strong>' . $lang['your role'] . strtoupper("webmaster") . '</strong>';
-	// display("webmaster");
-	// echo '<strong>' . $lang['Other'] . ' ' . strtoupper("admin") . 'S</strong>';
-	// display("admin");
-	if ($myRole == "webmaster" or $myRole == "admin") {
-		echo '<table><tr><td><strong><a target="_blank" href="../includes/userList.php' . $lang_url . '" >' . $lang['all users'] . '</a></strong></td></tr></table>';
-	}
-	echo '</div>';
-
-	echo '<div class="controlPanelRight">';
-	if (isset($_GET['ID'])) {
-		$id = $_GET['ID'];
-		$object  = new HtUserAll($id);
-		if ($object->select($id) == 0) {
-			//header('Location: ../index.php' . $lang_url . '');
-			return;
-		}
-
-		$val = $result->fetch_assoc();
-		$active  = countRow('active', $id);
-		$pending = countRow('pending', $id);
-		$delete  = countRow('modDelete', $id);
-		echo '<div>';
-		echo '<table>';
-		echo '<tr><td>' . $lang['Email'] . '&nbsp&nbsp</td><td>' . $object->getFieldEmail() . '</td></tr>' .
-			'<tr><td>' . $lang['Phone'] . '&nbsp&nbsp</td><td>' . $object->getFieldPhoneNr() . '</td></tr>' .
-			'<tr><td>' . $lang['role'] . '&nbsp&nbsp</td><td>' . $object->getFieldPrivilege() . '</td></tr>' .
-			'<tr><td>' . $lang['active items'] . '</td><td><a href="../includes/template.content.php?type=userActive' . $str_url . '">' . $lang['active'] . '(' . $active . ')</a></td></tr>' .
-			'<tr><td>' . $lang['pending items'] . '</td><td><a href="../includes/template.content.php?type=userPending' . $str_url . '">' . $lang['pending'] . '(' . $pending . ')</a></td></tr>' .
-			'<tr><td>' . $lang['deleted items'] . '</td><td><a href="../includes/template.content.php?type=deletedItems' . $str_url . '">' . $lang['deleted'] . '(' . $delete . ')</a></td></tr>';
-
-		echo '</table>';
-		echo '</div>';
-		//For future
-		//$delComm = 1.50;
-		//$actComm = 3.00;
-		//$penComm = 2.50;
-		//$curr = 'Birr';
-		//$commission = $delete * $delComm + $pending * $penComm + $active * $actComm;
-
-		//echo 'COMMSISSION FORMULA:=> delete x ' . $delComm . $curr . '+' . 'pending x ' . $penComm . $curr . '+' . 'active x ' . $actComm . $curr . '<br>';
-		//echo 'TOTAL COMMISSION=' . $commission . $curr . '<br>';
-
-		echo '<form enctype="multipart/form-data" action="../includes/privilege.php' . $lang_url . '" name="myform" id="myform" method="POST">';
-		echo $lang['change role'];
-		echo '<select id="privilege" name="privilege">';
-		echo '<option value="000">[' . $lang['Choose'] . ']</option>';
-		echo '<option value="user">' . $lang['user'] . '</option>';
-		if (found($myRole) >= found('mod'))
-			echo '<option value="mod">' . $lang['mod'] . '</option>';
-		if (found($myRole) >= found('admin'))
-			echo '<option value="admin">' . $lang['admin'] . '</option>';
-		if (found($myRole) >= found('webmaster'))
-			echo '<option value="webmaster">' . $lang['webmaster'] . '</option>';
-		echo '</select>';
-		echo '<input type="submit" name="Save" value="' . $lang['Submit'] . '">';
-		echo '<input name="modId" style="display:none;" type="text" value="' . $_GET['ID'] . '">';
-		echo '<input name="modtype" style="display:none;" type="text" value="' . $val['uRole'] . '">';
-		echo '</form>';
-	} else {
-
-		echo '<div id="myform_errorloc" class="error_strings">' . $lang['cp home txt1'] . $myRole . '!';
-		echo $lang['cp home txt2'] . '</div>';
-	}
-	echo '</div>';
-	echo '</div>';
-}
-
-function routerContent($contentType)
-{
-	global $documnetRootPath;
-	$isValidUrl = false;
-	switch ($contentType) {
-		case 'deletedItems':
-			$isValidUrl = true;
-			deletedItems();
-			break;
-		case 'pendingItems':
-			$isValidUrl = true;
-			pendingItems();
-			break;
-		case 'reportedItems':
-			$isValidUrl = true;
-			reportedItems();
-			break;
-		case 'userActive':
-			$isValidUrl = true;
-			userActive();
-			break;
-		case 'userPending':
-			$isValidUrl = true;
-			userPending();
-			break;
-		case 'userMessages':
-			$isValidUrl = true;
-			break;
-		case 'controlPanel':
-			$isValidUrl = true;
-			controlPanel();
-			break;
-	}
-
-	if (!isset($_SESSION['uID']) || !$isValidUrl) {
-		header('Location:../index.php' . $lang_url . '');
-	}
-}
-
 function getSessionId()
 {
 	return $_SESSION['uID'];

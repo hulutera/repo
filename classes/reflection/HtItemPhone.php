@@ -997,10 +997,10 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
-    * Gets the name of the corresponding category table name
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the corresponding category table name
+     * @return string
+     * @category Accessor
+     */
     public function getCatTableName()
     {
         return "category_phone";
@@ -1058,9 +1058,9 @@ class HtItemPhone extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id, $status = null)
+    public function select($id = NULL, $status = null)
     {
-
+        $useQuery = true;
         if ($id == NULL and $status == NULL) {
             $sql = [];
         } elseif ($id == "*" and $status == NULL) {
@@ -1071,12 +1071,15 @@ class HtItemPhone extends MySqlRecord
             $sql =  "SELECT * FROM item_phone WHERE id={$this->parseValue($id, 'int')}";
         } else { //id
             $sql =  "SELECT * FROM item_phone WHERE id={$this->parseValue($id, 'int')} AND field_status={$this->parseValue($status, 'notNumber')}";
+            $useQuery = false;
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->setFieldValuesForOneItem($result);
-        $this->resultSet = $result;
+        if ($useQuery) {
+            $result =  $this->query($sql);
+            $this->resultSet = $result;
+            $this->setFieldValuesForOneItem($result);
+        }
         $this->lastSql = $sql;
         return $this->affected_rows;
     }
@@ -1113,42 +1116,41 @@ class HtItemPhone extends MySqlRecord
      */
     public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
     {
-        
+
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
         $maxPriceFilter = ($_GET['phone_max_price'] != "000")  ? ($_GET['phone_max_price'] == 50001) ? "field_price_sell LIKE  '%'" : "field_price_sell <= " .  (int) ($_GET['phone_max_price']) : "field_price_sell LIKE '%'";
-        
+
         if ($searchType == "single-item") {
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) ."'";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $typeFilter = ($_GET['phone_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['phone_type']) . "'": "( field_name LIKE '%' OR field_name is null )";
-            $makeFilter = ($_GET['phone_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['phone_make']) . "'": "( field_make LIKE '%' OR field_make is null )";
-            $osFilter = ($_GET['phone_os'] != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($_GET['phone_os']) . "'": "( field_os LIKE '%' OR field_os is null )";
-            $cameraFilter = ($_GET['phone_camera'] != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($_GET['phone_camera']) . "'": "( field_camera LIKE '%' OR field_camera is null )";
-   
-            $itemFilter = "$locationFilter AND $titleFilter AND $typeFilter AND $makeFilter AND $osFilter AND $cameraFilter";  
+            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $typeFilter = ($_GET['phone_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['phone_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $makeFilter = ($_GET['phone_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['phone_make']) . "'" : "( field_make LIKE '%' OR field_make is null )";
+            $osFilter = ($_GET['phone_os'] != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($_GET['phone_os']) . "'" : "( field_os LIKE '%' OR field_os is null )";
+            $cameraFilter = ($_GET['phone_camera'] != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($_GET['phone_camera']) . "'" : "( field_camera LIKE '%' OR field_camera is null )";
+
+            $itemFilter = "$locationFilter AND $titleFilter AND $typeFilter AND $makeFilter AND $osFilter AND $cameraFilter";
         } else {
-            $locationFilter = "field_location LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $titleFilter = "field_title LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $typeFilter = "field_name LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $makeFilter = "field_make LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $osFilter = "field_os LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-            $cameraFilter = "field_camera LIKE '%" .$this->replaceAposBackSlash($keyword) ."%'";
-   
+            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $typeFilter = "field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $makeFilter = "field_make LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $osFilter = "field_os LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $cameraFilter = "field_camera LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+
             $itemFilter = "( $locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter )";
-      
         }
-        
+
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
-        
-        if($itemPerPage == null) {
+
+        if ($itemPerPage == null) {
             $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-     
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
