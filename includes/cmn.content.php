@@ -318,7 +318,7 @@ function activityTable()
 				'active' => $totalActivePerItem,
 				'pending' => $totalPendingPerItem,
 				'reported' => $totalReportedPerItem,
-				'deleted' => $totalDeletedPerItem
+				'deleted' => $totalDeletedPerItem,
 			];
 			foreach ($status2TotalArray as $status => $totalStatusSum) {
 				if ($totalStatusSum == 0) {
@@ -345,8 +345,12 @@ function activityTable()
 		$status = $_GET['status'];
 		$action = $_GET['action'];
 		$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
-		$object->setFieldStatus($action);
-		$object->updateCurrent();
+		if ($action == 'distroy') {
+			$object->delete($id);
+		} else {
+			$object->setFieldStatus($action);
+			$object->updateCurrent();
+		}
 		header('Location: ./admin.php?function=activity-table&type=' . $item . '&status=' . $status);
 	}
 	if (isset($_GET['function']) && isset($_GET['type']) && isset($_GET['status'])) {
@@ -359,8 +363,7 @@ function activityTable()
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
 		echo '<thead><tr><th class="th-sm">
-		Action
-		<br>(Change status)
+		Action (Change status)
 		</th>';
 		foreach ($header as $k1 => $v1) {
 			$k11 = explode("_", $k1);
@@ -403,6 +406,7 @@ function activityTable()
 			'pending'  => $allActionButtons,
 			'reported' => $allActionButtons,
 			'deleted'  => $allActionButtons,
+			'distroy'  => $allActionButtons,
 		];
 
 		echo '</tr></thead>';
@@ -441,9 +445,9 @@ function activityTable()
 				}
 				//TODO: add image
 				//<img style="width:100px; height:100px;" src="../../images/hulutera.PNG">
-				if ($i == 0) {					
-					echo '<td><a href="./admin.php?function=activity-table&type=' . 
-					$item . '&id=' . $v2 . '&status=' . $status . '"><button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
+				if ($i == 0) {
+					echo '<td><a href="./admin.php?function=activity-table&type=' .
+						$item . '&id=' . $v2 . '&status=' . $status . '"><button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
 					$i++;
 				} else {
 					echo '<td>' . $v2 . '</td>';
@@ -454,14 +458,14 @@ function activityTable()
 		echo '</tbody>';
 		echo '</table>';
 		___close_div_(1);
-		___close_div_(1);		
+		___close_div_(1);
 	}
 	$function = isset($_GET['function']) ? $_GET['function'] : null;
 	$id = isset($_GET['id']) ? $_GET['id'] : null;
 	$status = isset($_GET['status']) ? $_GET['status'] : null;
 
 	if (isset($function) && isset($id) && isset($status)) {
-		echo '<p class="h1">'.$item.'#'.$id.'</p>';
+		echo '<p class="h1">' . $item . '#' . $id . '</p>';
 		(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
 	}
 }
