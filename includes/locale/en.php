@@ -466,10 +466,6 @@ $item_lang_arr = array(
     'computer' => 'Computer',
     'phone' => 'Phone',
     'electronic' => 'Electronics',
-    // 'electronic_memory' => 'Hardisk, USB, ...',
-    // 'electronic_sound' => 'Headphone, Speakers, ...',    
-    // 'electronic_tv' => 'Tv',
-    // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',    
     'household' => 'Household',
     'other' => 'Miscellaneous'
 );

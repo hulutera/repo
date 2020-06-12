@@ -420,6 +420,17 @@ class HtItemHouse extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIE5PVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgZmllbGRfY29udGFjdF9tZXRob2RgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9yZW50YCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX3JhdGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2tlYmVsZWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3dlcmVkYWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2xvdF9zaXplYCBpbnQoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbnJfYmVkcm9vbWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3RvaWxldGAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2JhdGhyb29tYCBpbnQoMTApIE5PVCBOVUxMLAogIGBmaWVsZF9idWlsZF95ZWFyYCB5ZWFyKDQpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfd2F0ZXJgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZWxlY3RyaWNpdHlgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTUpIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzInLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzNgIChgaWRfdXNlcmApLAogIEtFWSBgaENhdGVnb3J5SURfRktgIChgaWRfY2F0ZWdvcnlgKSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2hvdXNlYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTE3IERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
 
+     /*
+     * prop for search elements
+    */
+    private $maxPriceValue;
+    private $typeValue;
+    private $maxBedroomValue;
+    private $maxToiletValue;
+    private $builtYrValue;
+    private $locationValue;
+    private $keyWordValue;
+
     /**
      * setId Sets the class attribute id with a given value
      *
@@ -1391,6 +1402,19 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
+     * $GET search elements of house
+    */
+    public function setSearchElements(){
+        $this->maxPriceValue = (isset($_GET['house_max_price'])) ? $_GET['house_max_price'] : "000";
+        $this->typeValue = (isset($_GET['house_type'])) ? $_GET['house_type'] : "none";
+        $this->maxBedroomValue = (isset($_GET['house_bedroom'])) ? $_GET['house_bedroom'] : 0;
+        $this->maxToiletValue = (isset($_GET['house_toilet'])) ? $_GET['house_toilet'] : 0;
+        $this->builtYrValue = (isset($_GET['house_built_year'])) ? $_GET['house_built_year'] : 0;
+        $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "%";
+        $this->keyWordValue = (isset($_GET['search_text'])) ? $_GET['search_text'] : "No search word given";
+    }
+
+    /**
      * Run a house search query with a request
      * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
      * $start: the first item to fetch
@@ -1398,31 +1422,31 @@ class HtItemHouse extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
+    public function searchQuery($start = null, $itemPerPage = null, $searchType)
     {
 
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($_GET['house_max_price'] != "000")  ? ($_GET['house_max_price'] == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['house_max_price']) : "field_price_sell LIKE '%'";
-
-        $maxBedroomFilter = ($_GET['house_bedroom'] != 0)  ? ($_GET['house_bedroom'] == 101) ? "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom >= " .  (int) ($_GET['house_bedroom']) : "field_nr_bedroom LIKE '%'";
-        $maxToiletFilter = ($_GET['house_toilet'] != 0)  ? ($_GET['house_toilet'] == 101) ? "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet >= " .  (int) ($_GET['house_toilet']) : "field_toilet LIKE '%'";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%'";
+        $maxBedroomFilter = ($this->maxBedroomValue != 0)  ? ($this->maxBedroomValue == 101) ? "field_nr_bedroom >= " .  (int) ($this->maxBedroomValue) : "field_nr_bedroom >= " .  (int) ($this->maxBedroomValue) : "field_nr_bedroom LIKE '%'";
+        $maxToiletFilter = ($this->maxToiletValue != 0)  ? ($this->maxToiletValue == 101) ? "field_toilet >= " .  (int) ($this->maxToiletValue) : "field_toilet >= " .  (int) ($this->maxToiletValue) : "field_toilet LIKE '%'";
         $builtYrFilter = $this->builtYear();
 
         if ($searchType == "single-item") {
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $typeFilter = ($_GET['house_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['house_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
+            $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $locationFilter =  ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
 
             $itemFilter = "$typeFilter AND  $titleFilter AND $locationFilter";
         } else {
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $typeFilter = "field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
+            $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
+            $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
+            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
 
-            $itemFilter = "( $typeFilter OR $titleFilter OR $locationFilter )";
+            $itemFilter = "( $typeFilter OR $titleFilter OR $locationFilter OR $locationFilter2 )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND  $itemFilter AND  $maxBedroomFilter AND  $maxToiletFilter AND $builtYrFilter";
@@ -1445,7 +1469,7 @@ class HtItemHouse extends MySqlRecord
     public function builtYear()
     {
 
-        $yr = (int) $_GET['house_built_year'];
+        $yr = (int) ($this->builtYrValue);
 
         if ($yr == 0) {
             $filter = "field_build_year LIKE '%'";

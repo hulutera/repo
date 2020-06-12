@@ -4,13 +4,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/common.inc.php';
-require_once $documnetRootPath . '/db/database.class.php';
+require_once $documnetRootPath . '/classes/objectPool.class.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Hulutera | ሁሉተራ </title>
+	<title><?php echo $GLOBALS['lang']['hulutera']; ?></title>
 	<?php
 	global $lang_url, $str_url;
 	commonHeader(); ?>
@@ -26,45 +27,22 @@ require_once $documnetRootPath . '/db/database.class.php';
 	?>
 	<div id="whole" style="width:100%;margin-left:0px;margin-right:0px">
 		<div id="wrapper" style="width:100%">
-			<div class="leftNav-index">
+			<div class="leftNav-index col-xs-2 col-md-2">   <!!----#leftNav start-------!!>
 				<?php
 				foreach ($item_lang_arr as $key => $value) {
 
-					switch ($key) {
-						case 'car':
-							$status = "cStatus";
-							break;
-						case 'house':
-							$status = "hStatus";
-							break;
-						case 'computer':
-							$status = "dStatus";
-							break;
-						case 'electronics':
-							$status = "eStatus";
-							break;
-						case 'household':
-							$status = "hhStatus";
-							break;
-						case 'phone':
-							$status = "pStatus";
-							break;
-						case 'other':
-							$status = "oStatus";
-							break;
-					}
-
 					if ($key == "All") echo '<li style="background-color:#378de5; color: #fff"> ' . $value . '</li>';
-					elseif ($key != "000") {
-						$countItems = DatabaseClass::getInstance()->findTotalItemNumb("*", $key, "WHERE $status LIKE 'active'");
-						$totalItems = mysqli_num_rows($countItems);
-						echo '<a href="../../includes/template.item.php?type=' . $key . $str_url . '" style="color:black"><li>' . $value . ' (' . $totalItems . ')</li></a>';
+					else if ($key != "000") {
+						$item_obj = ObjectPool::getInstance()->getObjectWithId($key);
+						$condition = "WHERE field_status LIKE 'active'";
+						$rows = $item_obj->runQuery($condition);
+						echo '<a href="../../includes/template.item.php?type=' . $key . $str_url . '" style="color:black"><li>' . $value . ' (' . $rows . ')</li></a>';
 					}
 				}
 				?>
-			</div>
-			<div id="mainColumn-index">
-				<!!----#mainColumn start-------!!>
+			</div>  <!!----#leftNav end-------!!>
+
+			<div id="mainColumn-index" class="col-xs-9 col-md-8">  <!!----#mainColumn start-------!!>
 					<p class="index-txt"> <?php echo $lang['select city from map']; ?></p>
 
 					<!!----SVG for bigger screens----!!>
@@ -72,57 +50,37 @@ require_once $documnetRootPath . '/db/database.class.php';
 							<?php svgMapElement(); ?>
 						</svg>
 
-						<!!----SVG for mid screens----!!>
-							<svg class="svg-mid-sc" width="798.71997" height="620.46997" viewbox="0 0 1000 900" fill="#378de5">
-								<?php svgMapElement(); ?>
-							</svg>
+					<!!----SVG for mid screens----!!>
+						<svg class="svg-mid-sc" width="798.71997" height="620.46997" viewbox="0 0 1000 900" fill="#378de5">
+							<?php svgMapElement(); ?>
+						</svg>
 
-							<!!----SVG for small screens----!!>
-								<svg class="svg-small-sc" width="798.71997" height="620.46997" viewbox="0 0 1600 1400" fill="#378de5">
-									<?php svgMapElement(); ?>
-								</svg>
+					<!!----SVG for small screens----!!>
+						<svg class="svg-small-sc" width="798.71997" height="620.46997" viewbox="0 0 1600 1400" fill="#378de5">
+							<?php svgMapElement(); ?>
+						</svg>
 
-			</div>
-			<!!----#mainColumn end-------!!>
-				<div class="rightNav-index">
-					<?php
-					foreach ($city_lang_arr as $key => $value) {
-						$totalItems = 0;
-						if ($key == "All") echo '<li style="background-color:#378de5; color: #fff;text-align:center"> ' . $value . '</li>';
-						elseif ($key != "000") {
-							$itemToStatus = array(
-								"car" => "cStatus",
-								"house" => "hStatus",
-								"computer" => "dStatus",
-								"electronics" => "eStatus",
-								"phone" => "pStatus",
-								"household" => "hhStatus",
-								"others" => "oStatus"
-							);
+			</div>  <!!----#mainColumn end-------!!>
 
-							$locationPerTable = array(
-								"car" => "cLocation",
-								"house" => "hLocation",
-								"computer" => "dLocation",
-								"electronics" => "eLocation",
-								"phone" => "pLocation",
-								"household" => "hhLocation",
-								"others" => "oLocation"
-							);
-
-							$allItem = DatabaseClass::getInstance()->getAllItem();
-							foreach ($allItem as $key2 => $value2) {
-								$stat = $itemToStatus[$value2['table_name']];
-								$loc =  $locationPerTable[$value2['table_name']];
-								$countItems = DatabaseClass::getInstance()->findTotalItemNumb("*",  $value2['table_name'], "WHERE $stat LIKE 'active' AND $loc LIKE '%$key%'");
-								$items = mysqli_num_rows($countItems);
-								$totalItems = $totalItems + $items;
+			<div class="rightNav-index col-xs-3 col-md-2">  <!!----#rightNav starts-------!!>
+				<?php
+				foreach ($city_lang_arr as $key => $value) {
+					$totalItems = 0;
+					if ($key == "All") echo '<li style="background-color:#378de5; color: #fff;text-align:center"> ' . $value . '</li>';
+					else if ($key != "000") {
+						foreach ($item_lang_arr as $key2 => $value2) {
+							if ($key2 != "000" and $key2 != "All") {
+								$item_obj = ObjectPool::getInstance()->getObjectWithId($key2);
+								$condition = "WHERE field_status LIKE 'active' AND field_location LIKE '$key'";
+								$rows = $item_obj->runQuery($condition);
+								$totalItems = $totalItems + $rows;
 							}
-							echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
 						}
+						echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
 					}
-					?>
-				</div>
+				}
+				?>
+			</div>  <!!----#rightNav ends-------!!>
 		</div>
 	</div>
 	<?php footerCode(); ?>

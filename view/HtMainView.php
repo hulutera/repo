@@ -258,20 +258,6 @@ class HtMainView
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $itemstart = ($page - 1) * $globalVarObj::get('itemPerPage');
 
-        // Wildcard for searchword
-        if ($searchWordSanitized == "") {
-            $keyWord = "%";
-        } else {
-            $keyWord = $searchWordSanitized;
-        }
-
-        // To set value for city
-        if ($city == "All" or $city == "000") {
-            $location = "%";
-        } else {
-            $location = $city;
-        }
-
         // To set value for item
         if ($item == "All" or $item == "000") {
             $queryItem = ObjectPool::getInstance()->getObjectSpecial("all");
@@ -284,30 +270,31 @@ class HtMainView
             $this->failedSearch($searchWordSanitized, $city, $item);
         } else if ($searchWordSanitized == "" and ($city == "All" or $city == "000") and ($item == "All" or $item == "000")) {
             $this->showLatest();
-        } else if ($searchWordSanitized != "" and ($item == "All" or $item == "000")) {
-            $this->allItemSearch($queryItem, $location, $keyWord);
+        } else if (($searchWordSanitized != "" or $searchWordSanitized == "") and ($item == "All" or $item == "000")) {
+            $this->allItemSearch($queryItem);
         } else {
-            $this->singleItemSearch($queryItem, $location, $keyWord);
+           $this->singleItemSearch($queryItem);
         }
     }
 
     /*
       Search a keyword in all Items
     */
-    public function allItemSearch($queryItem, $location, $keyWord)
-    {
+    public function allItemSearch($queryItem) {
 
         $elements_array = array();
         foreach ($queryItem as $key => $value) {
-            $value->searchQuery($keyWord, $location, null, null, "all-items");
+            $value->setSearchElements();
+            $value->searchQuery(null, null, "all-items");
             $result = $value->getResultSet();
             while ($elm = $result->fetch_assoc()) {
                 array_push($elements_array, $elm);
             }
+            
         }
 
         $rows = count($elements_array);
-
+        
         if ($rows > 0) {
             // Sort matched element with date
             uasort($elements_array, array($this, 'date_compare'));
@@ -348,11 +335,12 @@ class HtMainView
     /*
       Search per Items
     */
-    public function singleItemSearch($queryItem, $location, $keyWord)
+    public function singleItemSearch($queryItem)
     {
         $rows = 0;
         foreach ($queryItem as $key => $value) {
-            $row =  $value->searchQuery($keyWord, $location, null, null, "single-item");
+            $value->setSearchElements();
+            $row =  $value->searchQuery(null, null, "single-item");
             $rows += $row;
         }
 
@@ -362,7 +350,7 @@ class HtMainView
                 $calculatePageArray = calculatePage($rows);
                 $globalVarObj = new HtGlobal();
                 $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
-                $res = $value->searchQuery($keyWord, $location, $start, $globalVarObj::get('itemPerPage'), "single-item");
+                $res = $value->searchQuery($start, $globalVarObj::get('itemPerPage'), "single-item");
                 $result = $value->getResultSet();
                 echo '<div class="row items-board">';
                 while ($row = $result->fetch_assoc()) {

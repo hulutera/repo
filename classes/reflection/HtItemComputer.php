@@ -364,6 +364,19 @@ class HtItemComputer extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2NvbXB1dGVyYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCg0MCkgTk9UIE5VTEwsCiAgYGlkX2NvbnRhY3RfY2F0ZWdvcnlgIGludCgzKSBOT1QgTlVMTCwKICBgZmllbGRfcHJpY2VgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9wcmljZV9jdXJyZW5jeWAgdmFyY2hhcigyMCkgTk9UIE5VTEwgREVGQVVMVCAnQmlycicsCiAgYGZpZWxkX21hZGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfb3NgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbW9kZWxgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJvY2Vzc29yYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3JhbWAgdmFyY2hhcigyMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9oYXJkX2RyaXZlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NvbG9yYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2ltYWdlYCBsb25ndGV4dCBOT1QgTlVMTCwKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzMnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzJgIChgaWRfdXNlcmApLAogIEtFWSBgZF9DYXRlZ29yeUlEX0ZLYCAoYGlkX2NhdGVnb3J5YCksCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9jb21wdXRlcl9pYmZrXzJgIEZPUkVJR04gS0VZIChgaWRfY2F0ZWdvcnlgKSBSRUZFUkVOQ0VTIGBjYXRlZ29yeV9jb21wdXRlcmAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD01NyBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
 
+    /*
+     * prop for search elements
+    */
+    private $maxPriceValue;
+    private $typeValue;
+    private $makeValue;
+    private $osValue;
+    private $procValue;
+    private $hdValue;
+    private $colorValue;
+    private $locationValue;
+    private $keyWordValue;
+
     /**
      * setId Sets the class attribute id with a given value
      *
@@ -1217,6 +1230,21 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+     * $GET search elements of computer
+     */
+    public function setSearchElements(){
+        $this->maxPriceValue = (isset($_GET['computer_max_price'])) ? $_GET['computer_max_price'] : "000";
+        $this->typeValue = (isset($_GET['computer_type'])) ? $_GET['computer_type'] : "none";
+        $this->makeValue = (isset($_GET['computer_make'])) ? $_GET['computer_make'] : "none";
+        $this->osValue = (isset($_GET['computer_os'])) ? $_GET['computer_os'] : "none";
+        $this->procValue = (isset($_GET['computer_proc'])) ? $_GET['computer_proc'] : "none";
+        $this->hdValue = (isset($_GET['computer_hd'])) ? $_GET['computer_hd'] : "none";
+        $this->colorValue = (isset($_GET['computer_color'])) ? $_GET['computer_color'] : "none";
+        $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "000";
+        $this->keyWordValue = (isset($_GET['search_text'])) ? $_GET['search_text'] : "No search word given";
+    }
+
+    /**
      * Run a computer search query with a request
      * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
      * $start: the first item to fetch
@@ -1224,49 +1252,48 @@ class HtItemComputer extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
+    public function searchQuery($start = null, $itemPerPage = null, $searchType)
     {
 
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($_GET['computer_max_price'] != "000")  ? ($_GET['computer_max_price'] == 100001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['computer_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 100001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%'";
 
         if ($searchType == "single-item") {
-            $typeFilter = ($_GET['computer_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['computer_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $makeFilter = ($_GET['computer_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['computer_make']) . "'" : "( field_make LIKE '%' OR field_make is null )";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $osFilter = ($_GET['computer_os'] != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($_GET['computer_os']) . "'" : "( field_os LIKE '%' OR field_color is null )";
-            $procFilter = ($_GET['computer_proc'] != "none") ? "field_processor LIKE '" .  $this->replaceAposBackSlash($_GET['computer_proc']) . "'" : "( field_processor LIKE '%' OR field_processor is null )";
-            $hdFilter = ($_GET['computer_hd'] != "none") ? "field_hard_drive LIKE '" .  $this->replaceAposBackSlash($_GET['computer_hd']) . "'" : "( field_hard_drive LIKE '%' OR field_hard_drive is null )";
-            $colorFilter = ($_GET['computer_color'] != "none") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($_GET['computer_color']) . "'" : "( field_color LIKE '%' OR field_color is null )";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+            $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $makeFilter = ($this->makeValue != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($this->makeValue) . "'" : "( field_make LIKE '%' OR field_make is null )";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
+            $osFilter = ($this->osValue != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($this->osValue) . "'" : "( field_os LIKE '%' OR field_color is null )";
+            $procFilter = ($this->procValue != "none") ? "field_processor LIKE '" .  $this->replaceAposBackSlash($this->procValue) . "'" : "( field_processor LIKE '%' OR field_processor is null )";
+            $hdFilter = ($this->hdValue != "none") ? "field_hard_drive LIKE '" .  $this->replaceAposBackSlash($this->hdValue) . "'" : "( field_hard_drive LIKE '%' OR field_hard_drive is null )";
+            $colorFilter = ($this->colorValue  != "none") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($this->colorValue) . "'" : "( field_color LIKE '%' OR field_color is null )";
+            $locationFilter = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";;
 
             $itemFilter = "$typeFilter AND  $makeFilter AND $titleFilter AND $osFilter AND $procFilter AND $hdFilter AND $colorFilter AND $locationFilter";
         } else {
-            $typeFilter =  "field_name LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $makeFilter = "field_make LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $osFilter =  "field_os LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $procFilter = "field_processor LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $hdFilter = "field_hard_drive LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $colorFilter = "field_color LIKE '%" .  $this->replaceAposBackSlash($keyword) . "'%";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
+            $makeFilter = ($this->keyWordValue != "") ? "field_make LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_make LIKE 'No search word given'";
+            $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
+            $osFilter = ($this->keyWordValue != "") ? "field_os LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_os LIKE 'No search word given'";
+            $procFilter = ($this->keyWordValue != "") ? "field_processor LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_processor LIKE 'No search word given'";
+            $hdFilter = ($this->keyWordValue != "") ? "field_hard_drive LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_hard_drive LIKE 'No search word given'";
+            $colorFilter = ($this->keyWordValue != "") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_color LIKE 'No search word given'";
+            $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
+            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
 
-            $itemFilter = "( $typeFilter OR  $makeFilter OR $titleFilter OR $osFilter OR $procFilter OR $hdFilter OR $colorFilter OR $locationFilter )";
+            $itemFilter = "( $typeFilter OR  $makeFilter OR $titleFilter OR $osFilter OR $procFilter OR $hdFilter OR $colorFilter OR $locationFilter OR $locationFilter2)";
         }
-
+        
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
-
+        
         if ($itemPerPage == null) {
             $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-
-        echo $sql;
-
+        
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;

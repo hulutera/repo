@@ -421,10 +421,24 @@ class HtItemCar extends MySqlRecord
      * @param int $id
      * @category Modifier
      */
+
     public function setId($id)
     {
         $this->id = (int) $id;
     }
+
+     /*
+     * prop for search elements
+    */
+    private $maxPriceValue;
+    private $typeValue;
+    private $makeValue;
+    private $modelYrValue;
+    private $gearValue;
+    private $fuelValue;
+    private $colorValue;
+    private $locationValue;
+    private $keyWordValue;
 
     /**
      * setIdTemp Sets the class attribute idTemp with a given value
@@ -1359,6 +1373,21 @@ class HtItemCar extends MySqlRecord
     }
 
     /**
+     * $GET search elements of computer
+     */
+    public function setSearchElements() {
+        $this->maxPriceValue = (isset($_GET['car_max_price'])) ? $_GET['car_max_price'] : "000";
+        $this->typeValue = (isset($_GET['car_type'])) ? $_GET['car_type'] : "none";
+        $this->makeValue = (isset($_GET['car_make'])) ? $_GET['car_make'] : "none";
+        $this->modelYrValue = (isset($_GET['car_model_year'])) ? $_GET['car_model_year'] : 0;
+        $this->colorValue = (isset($_GET['car_color'])) ? $_GET['car_color'] : "none";
+        $this->gearValue = (isset($_GET['car_gear_type'])) ? $_GET['car_gear_type'] : "none";
+        $this->fuelValue = (isset($_GET['car_fuel_type'])) ? $_GET['car_fuel_type'] : "none";
+        $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "000";
+        $this->keyWordValue = (isset($_GET['search_text'])) ? $_GET['search_text'] : "No search word given";
+    }
+
+    /**
      * Run a car search query with a request
      * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
      * $start: the first item to fetch
@@ -1366,36 +1395,37 @@ class HtItemCar extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
+    public function searchQuery($start = null, $itemPerPage = null, $searchType)
     {
 
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($_GET['car_max_price'] != "000")  ? ($_GET['car_max_price'] == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['car_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%'";
         $modelYearFilter = $this->modelYrFilter();
 
         if ($searchType == "single-item") {
-            $typeFilter = ($_GET['car_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['car_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $makeFilter = ($_GET['car_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['car_make']) . "'" : "( field_make LIKE '%' OR field_make is null )";
-            $colorFilter = ($_GET['car_color'] != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($_GET['car_color']) . "'" : "( field_color LIKE '%' OR field_color is null )";
-            $gearFilter = ($_GET['car_gear_type'] != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_gear_type']) . "'" : "( field_gear_type LIKE '%' OR field_gear_type is null )";
-            $fuelFilter = ($_GET['car_fuel_type'] != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($_GET['car_fuel_type']) . "'" : "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+            $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
+            $makeFilter = ($this->makeValue != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($this->makeValue) . "'" : "( field_make LIKE '%' OR field_make is null )";
+            $colorFilter = ($this->colorValue != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($this->colorValue) . "'" : "( field_color LIKE '%' OR field_color is null )";
+            $gearFilter = ($this->gearValue != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($this->gearValue) . "'" : "( field_gear_type LIKE '%' OR field_gear_type is null )";
+            $fuelFilter = ($this->fuelValue != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($this->fuelValue) . "'" : "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
+            $locationFilter = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
 
             $itemFilter = "$titleFilter AND  $typeFilter AND $makeFilter AND $colorFilter AND $gearFilter AND $fuelFilter AND $locationFilter";
         } else {
-            $typeFilter = " field_name LIKE '%$keyword%'";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $makeFilter =  "field_make LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
-            $colorFilter = "field_color LIKE '%" .  $this->replaceAposBackSlash($keyword) . "%'";
-            $gearFilter = "field_gear_type LIKE '&" . $this->replaceAposBackSlash($keyword) . "%'";
-            $fuelFilter =  "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-
-            $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter)";
+            $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
+            $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
+            $makeFilter =  ($this->keyWordValue != "") ? "field_make LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_make LIKE 'No search word given'";
+            $colorFilter = ($this->keyWordValue != "") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_color LIKE 'No search word given'";
+            $gearFilter = ($this->keyWordValue != "") ? "field_gear_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_gear_type LIKE 'No search word given'";
+            $fuelFilter = ($this->keyWordValue != "") ? "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_fuel_type LIKE 'No search word given'";
+            $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
+            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
+            
+            $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter OR $locationFilter2)";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $modelYearFilter AND $itemFilter";
@@ -1416,7 +1446,7 @@ class HtItemCar extends MySqlRecord
     public function modelYrFilter()
     {
 
-        $model = (int) $_GET['car_model_year'];
+        $model = (int) ($this->modelYrValue);
 
         if ($model == 0) {
             $filter = "field_model_year LIKE '%'";

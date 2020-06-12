@@ -322,6 +322,17 @@ class HtItemPhone extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX3Bob25lYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIERFRkFVTFQgTlVMTCwKICBgaWRfdXNlcmAgaW50KDQwKSBOT1QgTlVMTCwKICBgaWRfY2F0ZWdvcnlgIGludCgxMSkgTk9UIE5VTEwsCiAgYGZpZWxkX2NvbnRhY3RfbWV0aG9kYCB2YXJjaGFyKDUwKSBOT1QgTlVMTCwKICBgZmllbGRfcHJpY2Vfc2VsbGAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9wcmljZV9uZWdvYCB2YXJjaGFyKDIwKSBERUZBVUxUICdOZWdvdGlhYmxlJywKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9tYWRlYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX21vZGVsYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX29zYCB2YXJjaGFyKDIwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2NhbWVyYWAgdmFyY2hhcig0MCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2V4dHJhX2luZm9gIG1lZGl1bXRleHQsCiAgYGZpZWxkX3RpdGxlYCB2YXJjaGFyKDEyNSkgTk9UIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIERFRkFVTFQgJ1NhbGUnLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzQnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIENPTlNUUkFJTlQgYGl0ZW1fcGhvbmVfaWJma18xYCBGT1JFSUdOIEtFWSAoYGlkX3VzZXJgKSBSRUZFUkVOQ0VTIGB1c2VyX2FsbGAgKGBpZGApIE9OIERFTEVURSBDQVNDQURFIE9OIFVQREFURSBDQVNDQURFCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0zMCBERUZBVUxUIENIQVJTRVQ9bGF0aW4x";
 
+    /*
+     * prop for search elements
+    */
+    private $maxPriceValue;
+    private $typeValue;
+    private $makeValue;
+    private $osValue;
+    private $cameraValue;
+    private $locationValue;
+    private $keyWordValue;
+
     /**
      * setId Sets the class attribute id with a given value
      *
@@ -1107,6 +1118,19 @@ class HtItemPhone extends MySqlRecord
     }
 
     /**
+     * $GET search elements of house
+    */
+    public function setSearchElements(){
+        $this->maxPriceValue = (isset($_GET['phone_max_price'])) ? $_GET['phone_max_price'] : "000";
+        $this->typeValue = (isset($_GET['phone_type'])) ? $_GET['phone_type'] : "none";
+        $this->makeValue = (isset($_GET['phone_make'])) ? $_GET['phone_make'] : "none";
+        $this->osValue = (isset($_GET['phone_os'])) ? $_GET['phone_os'] : "none";
+        $this->cameraValue = (isset($_GET['phone_camera'])) ? $_GET['phone_camera'] : "none";
+        $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "000";
+        $this->keyWordValue = (isset($_GET['search_text'])) ? $_GET['search_text'] : "No search word given";
+    }
+
+    /**
      * Run a phone search query with a request
      * $filter: query condition e.g field_status = 'active' or field_status = 'pending'
      * $start: the first item to fetch
@@ -1114,33 +1138,34 @@ class HtItemPhone extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
+    public function searchQuery($start = null, $itemPerPage = null, $searchType)
     {
 
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($_GET['phone_max_price'] != "000")  ? ($_GET['phone_max_price'] == 50001) ? "field_price_sell LIKE  '%'" : "field_price_sell <= " .  (int) ($_GET['phone_max_price']) : "field_price_sell LIKE '%'";
-
-        if ($searchType == "single-item") {
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $typeFilter = ($_GET['phone_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['phone_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $makeFilter = ($_GET['phone_make'] != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($_GET['phone_make']) . "'" : "( field_make LIKE '%' OR field_make is null )";
-            $osFilter = ($_GET['phone_os'] != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($_GET['phone_os']) . "'" : "( field_os LIKE '%' OR field_os is null )";
-            $cameraFilter = ($_GET['phone_camera'] != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($_GET['phone_camera']) . "'" : "( field_camera LIKE '%' OR field_camera is null )";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 50001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%'";
+        
+        if ($searchType == "single-item") { 
+            $locationFilter = ($this->locationValue != "000") ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";;
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
+            $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $makeFilter = ($this->makeValue != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($this->makeValue) . "'" : "( field_make LIKE '%' OR field_make is null )";
+            $osFilter = ($this->osValue != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($this->osValue) . "'" : "( field_os LIKE '%' OR field_os is null )";
+            $cameraFilter = ($this->cameraValue != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($$this->cameraValue) . "'" : "( field_camera LIKE '%' OR field_camera is null )";
 
             $itemFilter = "$locationFilter AND $titleFilter AND $typeFilter AND $makeFilter AND $osFilter AND $cameraFilter";
         } else {
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $typeFilter = "field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $makeFilter = "field_make LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $osFilter = "field_os LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $cameraFilter = "field_camera LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
+            $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
+            $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
+            $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
+            $makeFilter = ($this->keyWordValue != "") ? "field_make LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_make LIKE 'No search word given'";
+            $osFilter = ($this->keyWordValue != "") ? "field_os LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_os LIKE 'No search word given'";
+            $cameraFilter = ($this->keyWordValue != "") ? "field_camera LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_camera LIKE  'No search word given'";
+            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
 
-            $itemFilter = "( $locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter )";
+            $itemFilter = "( $locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter OR $locationFilter2 )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";

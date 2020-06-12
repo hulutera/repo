@@ -235,10 +235,10 @@ function miniSearch()
 	global $str_url;
 	echo '<div class="miniSearch">';
 	echo '<form class="" action="../../includes/adverts.php" method="get">';
-	echo '<div style="border: 1px solid;padding:4px"><input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa" style="padding: 6px 2px;margin-right:10px;border-radius: 1px;">';
+	echo '<div style="border: 1px solid;padding:4px"><input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa">';
 	item();
 	city();
-	echo '<button type="submit	button" class="btn btn-warning" style="width:calc(20% - 15px)"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
+	echo '<button type="submit	button" class="search-btn btn btn-warning"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
 	echo '</div>';
 	carSearch();
 	houseSearch();
@@ -255,7 +255,7 @@ function miniSearch()
 function item()
 {
 	global $item_lang_arr;
-	echo '<select id="item" name="item"  onchange="itemSelect()" style="padding: 6px 2px;margin-right:10px;width:calc(20% - 10px)">';
+	echo '<select id="item" name="item"  onchange="itemSelect()">';
 	foreach ($item_lang_arr as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
@@ -266,7 +266,7 @@ function city()
 {
 	// Choose city
 	echo ' 
-		<select id="city" name="cities" style="padding: 6px 2px; margin-right:10px;width:calc(20% - 10px)">';
+		<select id="city" name="cities">';
 		foreach ($GLOBALS['city_lang_arr'] as $key => $value) {
 		echo '<option value = "' . $key . '">' . $value . '</option>';
 	}
@@ -638,7 +638,7 @@ function otherSearch() {
 function svgMapElement()
 {
 	global $lang, $str_url;
-	$base_link = '<a href="../includes/adverts.php?it iem=All&search_text=&';
+	$base_link = '<a href="../includes/adverts.php?item=All&search_text=&';
 
 ?>
 	<?php echo $base_link . 'cities=Harar' . $str_url . '"><title>' . $lang['Harar'] . '</title><path class="ET-HA" title="Harari" stroke="black" d="M494.01,310.19L494.92,309.65L495.36,308.61L495.05,307.64L494.49,306.68L494.16,305.68L494.29,305L494.92,303.85L495.03,303.22L495.05,302.64L495.25,301.25L495.24,300.78L494.43,299.6L493.29,299.71L492.04,300.33L490.86,300.73L489.46,300.36L488.5,299.73L487.61,299.66L486.43,300.97L484.82,303.72L484.29,305.17L484.01,306.79L484.15,307.97L484.96,308.14L486.06,307.91L487.09,307.86L487.56,308.12L488.36,308.89L488.79,309.12L489.52,309.03L490.26,308.69L490.98,308.43L491.69,308.6L493.19,309.93L494.01,310.19z"/></a>'; ?>
@@ -737,10 +737,10 @@ function sidelist($item)
 	$itemList = [
 		'car', 'computer', 'electronic', 'house', 'household', 'phone', 'other'
 	];
-	echo '<div id="sidelist">
-	<div id="menu_mobile"><span style="float:left;padding:0px;line-height:30px;vertical-align:middle">' . $lang['MENU'] .
-		'</span><span style="float:right;padding:0px;line-height:30px;"><a href="javascript:void(0)" onClick="mobSidelist()">' .
-		'<img  src="../../images/menu.jpg" width="20px" height="20px" style="line-height:30px;vertical-align:middle" /></a></span>
+	echo '<div id="sidelist" class="col-xs-12 col-md-12">
+	<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
+		'</span><span class="mob-menu-img"><a href="javascript:void(0)" onClick="mobSidelist()">
+		<i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
 	</div><ul>';
 	foreach ($itemList as $key => $value) {
 		echo '<li><a ';

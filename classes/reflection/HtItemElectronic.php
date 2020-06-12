@@ -266,6 +266,14 @@ class HtItemElectronic extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2VsZWN0cm9uaWNgICgKICBgaWRgIGludCg0MCkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX3RlbXBgIGludCgyMCkgREVGQVVMVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgZmllbGRfY29udGFjdF9tZXRob2RgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9zZWxsYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX25lZ29gIHZhcmNoYXIoMjApIERFRkFVTFQgJ05lZ290aWFibGUnLAogIGBmaWVsZF9wcmljZV9jdXJyZW5jeWAgdmFyY2hhcigyMCkgTk9UIE5VTEwgREVGQVVMVCAnQmlycicsCiAgYGZpZWxkX2ltYWdlYCBsb25ndGV4dCBOT1QgTlVMTCwKICBgZmllbGRfbG9jYXRpb25gIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTApIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzUnLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzFgIChgaWRfdXNlcmApLAogIEtFWSBgZWxlY3Ryb25pY3NDYXRlZ3JvZ3lJRGAgKGBpZF9jYXRlZ29yeWApLAogIENPTlNUUkFJTlQgYGl0ZW1fZWxlY3Ryb25pY19pYmZrXzFgIEZPUkVJR04gS0VZIChgaWRfdXNlcmApIFJFRkVSRU5DRVMgYHVzZXJfYWxsYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUsCiAgQ09OU1RSQUlOVCBgaXRlbV9lbGVjdHJvbmljX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2VsZWN0cm9uaWNgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERQopIEVOR0lORT1Jbm5vREIgQVVUT19JTkNSRU1FTlQ9MTUgREVGQVVMVCBDSEFSU0VUPWxhdGluMQ==";
 
+    /*
+     * prop for search elements
+    */
+    private $maxPriceValue;
+    private $typeValue;
+    private $locationValue;
+    private $keyWordValue;
+
     /**
      * setId Sets the class attribute id with a given value
      *
@@ -935,6 +943,16 @@ class HtItemElectronic extends MySqlRecord
     }
 
     /**
+     * $GET search elements of computer
+     */
+    public function setSearchElements() {
+        $this->maxPriceValue = (isset($_GET['electronic_max_price'])) ? $_GET['electronic_max_price'] : "000";
+        $this->typeValue = (isset($_GET['electronic_type'])) ? $_GET['electronic_type'] : "none";
+        $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "000";
+        $this->keyWordValue = (isset($_GET['search_text'])) ? $_GET['search_text'] : "No search word given";
+    }
+
+    /**
      * 
      * Run a electronic search query with a request
      * @param $filter: query condition e.g field_status = 'active' or field_status = 'pending'
@@ -943,27 +961,28 @@ class HtItemElectronic extends MySqlRecord
      * @return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function searchQuery($keyword = null, $location = null, $start = null, $itemPerPage = null, $searchType)
+    public function searchQuery($start = null, $itemPerPage = null, $searchType)
     {
 
         $itemTable = $this->getTableName();
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($_GET['electronic_max_price'] != "000")  ? ($_GET['electronic_max_price'] == 50001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($_GET['electronic_max_price']) : "field_price_sell LIKE '%'";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 50001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%'";
 
         if ($searchType == "single-item") {
-            $typeFilter = ($_GET['electronic_type'] != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($_GET['electronic_type']) . "'" : "( field_name LIKE '%' OR field_name is null )";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $locationFilter = "field_location LIKE '" . $this->replaceAposBackSlash($location) . "'";
+            $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
+            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
+            $locationFilter = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
 
             $itemFilter = "$titleFilter AND  $typeFilter AND $locationFilter";
         } else {
-            $typeFilter = " field_name LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-            $locationFilter = "field_location LIKE '%" . $this->replaceAposBackSlash($keyword) . "%'";
-
-            $itemFilter = "( $titleFilter OR  $typeFilter OR $locationFilter )";
+            $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
+            $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
+            $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
+            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
+            
+            $itemFilter = "( $titleFilter OR  $typeFilter OR $locationFilter OR $locationFilter2 )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
