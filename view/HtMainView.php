@@ -10,6 +10,7 @@ class HtMainView
     private $_runnerName; //track current running item name (car, ..., all, latest)
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
+    private $_itemNumber;
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
     {
@@ -120,7 +121,12 @@ class HtMainView
             $res = $this->_pItem->runQuery($condition, $start, $globalVarObj::get('itemPerPage'));
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
+            $number = 0;
             while ($row = $result->fetch_assoc()) {
+                $number ++;
+                //item count
+                $this->_itemNumber = $number;
+
                 $this->showItemWithId($row);
             }
             echo '</div>';
@@ -157,6 +163,7 @@ class HtMainView
     public function showItemWithId($row)
     {
         global $documnetRootPath;
+        $itemNumber = $this->_itemNumber;
         $this->_pItem->setFieldValues($row);
         $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
@@ -183,7 +190,7 @@ class HtMainView
         //---------------------------------------------------------
 
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
-        echo "<div class=\"thumbnail tn_$uniqueId\">";  // .thumbnail starts
+        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber ."\">";  // .thumbnail starts
         if ($numimage == 0) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
@@ -195,7 +202,7 @@ class HtMainView
         //-------------------------------------------------------------------
         echo "<div class=\"caption\">";  // .caption start
         echo "<a href=\"javascript:void(0)\"
-        onclick=\"swap($id,'$itemName')\">";
+        onclick=\"swap($id, '$itemName', " . $itemNumber . ")\">";
         $commonViewObj->displayTitle($this->_pItem);
         echo "</a>";
         $commonViewObj->displayLocation($this->_pItem);
@@ -207,7 +214,7 @@ class HtMainView
         echo "</div>"; // .thumbnail end
         echo "</div>"; // #divCommon end
         //---------------------------------------------------------
-        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$uniqueId\">"; // .featured_detailed2 start
+        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber ."\">"; // .featured_detailed2 start
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section 
         echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
 		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
@@ -278,7 +285,7 @@ class HtMainView
     }
 
     /*
-      Search a keyword in all Items
+      Search in all Items
     */
     public function allItemSearch($queryItem) {
 
