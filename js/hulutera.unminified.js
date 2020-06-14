@@ -252,7 +252,7 @@ function func_moderatorShow(e, t, n) {
     })
 }
 
-function swap(id, item, itemNumber) {
+function swap(item, itemNumber) {
     $(document).ready(function () {
         var i;
         var thumbnailWidth;
@@ -314,11 +314,11 @@ function swap(id, item, itemNumber) {
     })
 }
 
-function swapback(id, item) {
+function swapback(item, itemNumber) {
     $(document).ready(function () {
-        $(".thumblist_" + item + id).slideDown("fast");
-        $(".tn_" + item + id).css("border", "1px solid #ddd");
-        $("#divDetail_" + item + id).slideUp("fast");
+        $(".thumblist_" + item + "_" + itemNumber).slideDown("fast");
+        $(".tn_" + item + "_" + itemNumber).css("border", "1px solid #ddd");
+        $("#divDetail_" + item + "_" + itemNumber).slideUp("fast");
     })
 }
 
