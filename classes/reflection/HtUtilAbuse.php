@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtUtilAbuse
  * @extends MySqlRecord
  * @filesource HtUtilAbuse.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -206,7 +206,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -219,7 +219,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdCategory($idCategory)
     {
-        $this->idCategory = (int)$idCategory;
+        $this->idCategory = (int) $idCategory;
     }
 
     /**
@@ -232,7 +232,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdUser($idUser)
     {
-        $this->idUser = (int)$idUser;
+        $this->idUser = (int) $idUser;
     }
 
     /**
@@ -245,7 +245,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdCar($idCar)
     {
-        $this->idCar = (int)$idCar;
+        $this->idCar = (int) $idCar;
     }
 
     /**
@@ -258,7 +258,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdComputer($idComputer)
     {
-        $this->idComputer = (int)$idComputer;
+        $this->idComputer = (int) $idComputer;
     }
 
     /**
@@ -271,7 +271,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdElectronic($idElectronic)
     {
-        $this->idElectronic = (int)$idElectronic;
+        $this->idElectronic = (int) $idElectronic;
     }
 
     /**
@@ -284,7 +284,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdHouse($idHouse)
     {
-        $this->idHouse = (int)$idHouse;
+        $this->idHouse = (int) $idHouse;
     }
 
     /**
@@ -297,7 +297,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdPhone($idPhone)
     {
-        $this->idPhone = (int)$idPhone;
+        $this->idPhone = (int) $idPhone;
     }
 
     /**
@@ -310,7 +310,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdHousehold($idHousehold)
     {
-        $this->idHousehold = (int)$idHousehold;
+        $this->idHousehold = (int) $idHousehold;
     }
 
     /**
@@ -323,7 +323,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setIdOther($idOther)
     {
-        $this->idOther = (int)$idOther;
+        $this->idOther = (int) $idOther;
     }
 
     /**
@@ -336,7 +336,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setFieldMessage($fieldMessage)
     {
-        $this->fieldMessage = (string)$fieldMessage;
+        $this->fieldMessage = (string) $fieldMessage;
     }
 
     /**
@@ -349,7 +349,7 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function setFieldIpAddress($fieldIpAddress)
     {
-        $this->fieldIpAddress = (string)$fieldIpAddress;
+        $this->fieldIpAddress = (string) $fieldIpAddress;
     }
 
     /**
@@ -519,10 +519,10 @@ class HtUtilAbuse extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "util_abuse";
@@ -537,11 +537,11 @@ class HtUtilAbuse extends MySqlRecord
      * @param int $id. If omitted an empty (not fetched) instance is created.
      * @return HtUtilAbuse Object
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $field = null, $clause = null)
     {
         parent::__construct();
         if (!empty($id)) {
-            $this->select($id);
+            $this->select($id, $field, $clause);
         }
     }
 
@@ -558,7 +558,6 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -570,38 +569,41 @@ class HtUtilAbuse extends MySqlRecord
      * @return int affected selected row
      * @category DML
      */
-    public function select($id)
+    public function select($id, $field = null, $clause = null)
     {
-        if($id == "*"){
-            $sql = "SELECT * FROM util_abuse";
+        if ($id == "*") {
+            if (isset($field) && isset($clause)) {
+                $sql = "SELECT $field FROM util_abuse $clause";
+            } else {
+                $sql = "SELECT * FROM util_abuse";
+            }
         } else { //id
-            $sql =  "SELECT * FROM util_abuse WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM util_abuse WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->idCategory = (integer)$rowObject->id_category;
-            @$this->idUser = (integer)$rowObject->id_user;
-            @$this->idCar = (integer)$rowObject->id_car;
-            @$this->idComputer = (integer)$rowObject->id_computer;
-            @$this->idElectronic = (integer)$rowObject->id_electronic;
-            @$this->idHouse = (integer)$rowObject->id_house;
-            @$this->idPhone = (integer)$rowObject->id_phone;
-            @$this->idHousehold = (integer)$rowObject->id_household;
-            @$this->idOther = (integer)$rowObject->id_other;
+            @$this->id = (int) $rowObject->id;
+            @$this->idCategory = (int) $rowObject->id_category;
+            @$this->idUser = (int) $rowObject->id_user;
+            @$this->idCar = (int) $rowObject->id_car;
+            @$this->idComputer = (int) $rowObject->id_computer;
+            @$this->idElectronic = (int) $rowObject->id_electronic;
+            @$this->idHouse = (int) $rowObject->id_house;
+            @$this->idPhone = (int) $rowObject->id_phone;
+            @$this->idHousehold = (int) $rowObject->id_household;
+            @$this->idOther = (int) $rowObject->id_other;
             @$this->fieldMessage = $this->replaceAposBackSlash($rowObject->field_message);
             @$this->fieldIpAddress = $this->replaceAposBackSlash($rowObject->field_ip_address);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -612,15 +614,15 @@ class HtUtilAbuse extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM util_abuse WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM util_abuse WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -651,17 +653,17 @@ class HtUtilAbuse extends MySqlRecord
 			{$this->parseValue($this->idPhone)},
 			{$this->parseValue($this->idHousehold)},
 			{$this->parseValue($this->idOther)},
-			{$this->parseValue($this->fieldMessage,'notNumber')},
-			{$this->parseValue($this->fieldIpAddress,'notNumber')})
+			{$this->parseValue($this->fieldMessage, 'notNumber')},
+			{$this->parseValue($this->fieldIpAddress, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -697,18 +699,18 @@ SQL;
 				id_phone={$this->parseValue($this->idPhone)},
 				id_household={$this->parseValue($this->idHousehold)},
 				id_other={$this->parseValue($this->idOther)},
-				field_message={$this->parseValue($this->fieldMessage,'notNumber')},
-				field_ip_address={$this->parseValue($this->fieldIpAddress,'notNumber')}
+				field_message={$this->parseValue($this->fieldMessage, 'notNumber')},
+				field_ip_address={$this->parseValue($this->fieldIpAddress, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -734,31 +736,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for util_abuse previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for util_abuse previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into util_abuse.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into util_abuse.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

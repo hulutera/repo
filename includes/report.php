@@ -1,57 +1,72 @@
-<?php 
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/db/database.class.php';
+<?php
+$documnetRootPath = $_SERVER["DOCUMENT_ROOT"];
+require_once $documnetRootPath . "/db/database.class.php";
+require_once $documnetRootPath . '/classes/objectPool.class.php';
+require_once $documnetRootPath . "/classes/reflection/HtUtilAbuse.php";
+require_once $documnetRootPath . "/classes/reflection/HtCategoryAbuse.php";
 session_start();
-$oMessage = NULL;
-$Item_id  = $_GET['itemid'];
-$Itemtype = $_GET['itemtype'];
-$Selected = $_GET['selected'];
-//$user_ID  = 0;  //user not logged-in
 
-if(isset($_SESSION['uID'])){
-	$user_ID = $_SESSION['uID'];
+if (!isset($_SESSION["uID"]) || !(isset($_GET["itemid"]) && isset($_GET["itemtype"]) && isset($_GET["selected"]))) {
+	header("Location: ../index.php");
 }
-switch($Selected){
-	case "Bullying":
-		$selectedIndex = 1;
-		break;
-	case "Copyright":
-		$selectedIndex = 2;
-		break;
-	case "Discrimination":
-		$selectedIndex = 3;
-		break;
-	case "Spam":
-		$selectedIndex = 4;
-		break;
-	case "Identity theft":
-		$selectedIndex = 5;
-		break;
-	case "Political violence":
-		$selectedIndex = 6;
-		break;
-	case "Race violence":
-		$selectedIndex = 7;
-		break;
-	case "Sex abuse":
-		$selectedIndex = 8;
-		break;
-	case "Sexual content" :
-		$selectedIndex = 9;
-		break;
-	case "Age abuse" :
-		$selectedIndex = 10;
-		break;
-	case "Religious violence" :
-		$selectedIndex = 11;
-		break;
-	case "Other" :
-		$selectedIndex = 12;
-		break;
-	default:
-		break;
+
+/**
+ * Get CategoryId
+ * all Abuse Categories and get the id matching
+ */
+$abuseCategoryObject = new HtCategoryAbuse();
+$abuseCategoryObject->select("*");
+$result = $abuseCategoryObject->getResultSet();
+$found = false;
+while ($row = $result->fetch_assoc()) {
+	if (strtolower($_GET["selected"]) == strtolower($row["field_name"])) {
+		$categoryId = $row["id"];
+		$found = true;
+	}
 }
-$sql = "INSERT INTO abuse (`$Itemtype`, `abuseCategoryID`,`userID`, `otherMessage`)
-VALUES ('$Item_id', '$selectedIndex','$user_ID','$oMessage')";
-DatabaseClass::getInstance()->runQuery($sql);
-?>
+if (!$found) {
+	header('Location: ../index.php');
+}
+
+$id  = $_GET["itemid"];
+$item = $_GET["itemtype"];
+
+//// Item not in table abort 
+$allItems = new HtItemAll("*");
+$result = $allItems->getResultSet();
+$result->data_seek(0);
+$found = false;
+while ($row = $result->fetch_assoc()) {
+	if (strtolower($item) == strtolower($row["field_name"])) {
+		$found = true;
+	}
+}
+if (!$found) {
+	header('Location: ../index.php');
+}
+
+/**
+ * Add the item missing and set one
+ */
+$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
+$result = $object->getResultSet();
+$result->data_seek(0);
+$currentReport = $object->getFieldReport();
+$delimiter = ($currentReport == null) ? "" : ",";
+
+///fetch databse if there exists a similar
+/// report before and ignore if theres exist
+/// otherwise add the new abuse report
+$found = false;
+if ($currentReport !== null) {
+	$reportsArray = explode(',', $currentReport);
+	foreach ($reportsArray as $key => $value) {
+		if ((int) $value == (int) $categoryId) {
+			$found = true;
+		}
+	}
+}
+if (!$found) {
+	$object->setFieldReport($currentReport . $delimiter . (string) $categoryId);
+	$object->updateCurrent();
+}

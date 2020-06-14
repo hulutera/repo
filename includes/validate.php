@@ -47,6 +47,16 @@ class Cryptor
         );
         return $out;
     }
+
+    public function urlencode_base64_encode_encryptor($input)
+    {
+        return urlencode($this->encryptor(base64_encode($input)));
+    }
+
+    public function urldecode_base64_decode_decryptor($input)
+    {
+        return urldecode(base64_decode($this->decryptor($input)));
+    }
 }
 class ValidateUpload
 {
@@ -321,17 +331,17 @@ class ValidateUser
             $userAll = new HtUserAll($sql);
             $result = $userAll->getResultSet();
             if ($result->num_rows !== 0) {
-                if (session_status() !== PHP_SESSION_ACTIVE) {                    
-                    session_start();                    
-                }else{
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                } else {
                     $_SESSION['uID'] = $userAll->getId();
                     $_SESSION['time'] = time();
                 }
 
-                if($userAll->canUpdate())
+                if ($userAll->canUpdate())
                     header("Location: ../../index.php" . $langURL);
                 else
-                header("Location: ../../includes/mypage.php" . $langURL);
+                    header("Location: ../../includes/mypage.php" . $langURL);
             } else {
                 $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
                 array_push($err, $input);

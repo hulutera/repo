@@ -375,6 +375,20 @@ class HtItemCar extends MySqlRecord
     private $fieldStatus;
 
     /**
+     * Class attribute for mapping table field field_report
+     *
+     * Comment for field field_report: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index: 
+     *  - Default: NULL
+     *  - Extra:  
+     * @var string $fieldReport
+     */
+    private $fieldReport;
+
+    /**
      * Class attribute for mapping table field field_market_category
      *
      * Comment for field field_market_category: Not specified.<br>
@@ -427,7 +441,7 @@ class HtItemCar extends MySqlRecord
         $this->id = (int) $id;
     }
 
-     /*
+    /*
      * prop for search elements
     */
     private $maxPriceValue;
@@ -758,6 +772,19 @@ class HtItemCar extends MySqlRecord
     public function setFieldStatus($fieldStatus)
     {
         $this->fieldStatus = (string) $fieldStatus;
+    }
+
+    /**
+     * setFieldReport Sets the class attribute fieldReport with a given value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.<br>
+     * @param string $fieldReport
+     * @category Modifier
+     */
+    public function setFieldReport($fieldReport)
+    {
+        $this->fieldReport = (string) $fieldReport;
     }
 
     /**
@@ -1217,6 +1244,19 @@ class HtItemCar extends MySqlRecord
     }
 
     /**
+     * getFieldReport gets the class attribute fieldReport value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.
+     * @return string $fieldReport
+     * @category Accessor of $fieldReport
+     */
+    public function getFieldReport()
+    {
+        return $this->fieldReport;
+    }
+
+    /**
      * getFieldMarketCategory gets the class attribute fieldMarketCategory value
      *
      * The attribute fieldMarketCategory maps the field field_market_category defined as varchar(15).<br>
@@ -1375,7 +1415,8 @@ class HtItemCar extends MySqlRecord
     /**
      * $GET search elements of computer
      */
-    public function setSearchElements() {
+    public function setSearchElements()
+    {
         $this->maxPriceValue = (isset($_GET['car_max_price'])) ? $_GET['car_max_price'] : "000";
         $this->typeValue = (isset($_GET['car_type'])) ? $_GET['car_type'] : "none";
         $this->makeValue = (isset($_GET['car_make'])) ? $_GET['car_make'] : "none";
@@ -1424,7 +1465,7 @@ class HtItemCar extends MySqlRecord
             $fuelFilter = ($this->keyWordValue != "") ? "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_fuel_type LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
             $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
-            
+
             $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter OR $locationFilter2)";
         }
 
@@ -1531,6 +1572,7 @@ class HtItemCar extends MySqlRecord
         @$this->fieldUploadDate = $rowObject->field_upload_date;
         @$this->fieldTotalView = (int) $rowObject->field_total_view;
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldReport = $this->replaceAposBackSlash($rowObject->field_report);
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
@@ -1596,7 +1638,7 @@ class HtItemCar extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_car
-            (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_make,field_model,field_model_year,field_no_of_seat,field_fuel_type,field_color,field_gear_type,field_milage,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_make,field_model,field_model_year,field_no_of_seat,field_fuel_type,field_color,field_gear_type,field_milage,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1622,6 +1664,7 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
 			{$this->parseValue($this->fieldStatus, 'notNumber')},
+            {$this->parseValue($this->fieldReport, 'notNumber')},
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
@@ -1682,6 +1725,7 @@ SQL;
 				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
 				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
+                field_report={$this->parseValue($this->fieldReport, 'notNumber')},
 				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE

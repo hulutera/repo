@@ -446,7 +446,7 @@ function swapabuseback(e, t) {
         } else {
             $(".errorabuse_" + t + e).slideUp("fast");
             $.ajax({
-                url: "/includes/report.php?itemid=" + e + "&selected=" + n + "&itemtype=" + t + "ID",
+                url: "/includes/report.php?itemid=" + e + "&selected=" + n + "&itemtype=" + t,
                 method: "GET"
             });
             $(".reportbox_" + t + e).slideUp("fast");

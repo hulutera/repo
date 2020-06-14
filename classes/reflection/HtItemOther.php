@@ -232,6 +232,21 @@ class HtItemOther extends MySqlRecord
      */
     private $fieldStatus;
 
+
+    /**
+     * Class attribute for mapping table field field_report
+     *
+     * Comment for field field_report: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index: 
+     *  - Default: NULL
+     *  - Extra:  
+     * @var string $fieldReport
+     */
+    private $fieldReport;
+
     /**
      * Class attribute for mapping table field field_market_category
      *
@@ -475,6 +490,19 @@ class HtItemOther extends MySqlRecord
     public function setFieldStatus($fieldStatus)
     {
         $this->fieldStatus = (string) $fieldStatus;
+    }
+
+    /**
+     * setFieldReport Sets the class attribute fieldReport with a given value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.<br>
+     * @param string $fieldReport
+     * @category Modifier
+     */
+    public function setFieldReport($fieldReport)
+    {
+        $this->fieldReport = (string) $fieldReport;
     }
 
     /**
@@ -789,6 +817,19 @@ class HtItemOther extends MySqlRecord
     }
 
     /**
+     * getFieldReport gets the class attribute fieldReport value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.
+     * @return string $fieldReport
+     * @category Accessor of $fieldReport
+     */
+    public function getFieldReport()
+    {
+        return $this->fieldReport;
+    }
+
+    /**
      * getFieldMarketCategory gets the class attribute fieldMarketCategory value
      *
      * The attribute fieldMarketCategory maps the field field_market_category defined as varchar(10).<br>
@@ -864,11 +905,11 @@ class HtItemOther extends MySqlRecord
      * @param int $id. If omitted an empty (not fetched) instance is created.
      * @return HtItemOther Object
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $status = null)
     {
         parent::__construct();
         if (!empty($id)) {
-            $this->select($id);
+            $this->select($id, $status);
         }
         $this->setCategoryName();
     }
@@ -948,7 +989,8 @@ class HtItemOther extends MySqlRecord
     /**
      * $GET search elements of computer
      */
-    public function setSearchElements() {
+    public function setSearchElements()
+    {
         $this->maxPriceValue = (isset($_GET['other_max_price'])) ? $_GET['other_max_price'] : "000";
         $this->typeValue = (isset($_GET['other_type'])) ? $_GET['other_type'] : "none";
         $this->locationValue = (isset($_GET['cities'])) ? $_GET['cities'] : "%";
@@ -1029,6 +1071,7 @@ class HtItemOther extends MySqlRecord
         @$this->fieldUploadDate = $rowObject->field_upload_date;
         @$this->fieldTotalView = (int) $rowObject->field_total_view;
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldReport = $this->replaceAposBackSlash($rowObject->field_report);
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
@@ -1094,7 +1137,7 @@ class HtItemOther extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_other
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1110,6 +1153,7 @@ class HtItemOther extends MySqlRecord
 			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
 			{$this->parseValue($this->fieldStatus, 'notNumber')},
+            {$this->parseValue($this->fieldReport, 'notNumber')},
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
@@ -1161,6 +1205,7 @@ SQL;
 				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
 				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
+                field_report={$this->parseValue($this->fieldReport, 'notNumber')},
 				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE

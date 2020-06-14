@@ -10,6 +10,7 @@ require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/view/main.view.class.php';
 require_once $documnetRootPath . '/classes/reflection/HtItemAll.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
 require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
 
@@ -105,8 +106,53 @@ function maxQuery($status, $id, $start)
 }
 function allItemOfStatus($item, $status)
 {
-	return countRowOfItem($item, $status);
+	$result = countRowOfItem($item, $status);
+	return $result >= 0 ? $result : 0;
 }
+
+function allReportedItem($item, $id = null)
+{
+	$record = new MySqlRecord();
+	return $record->countReportedOfItem($item);
+
+	// $reportedItemArray = [
+	// 	'car' => ['id_car', 'WHERE id_car IS NOT NULL'],
+	// 	'house' => ['id_house', 'WHERE id_house IS NOT NULL'],
+	// 	'computer' => ['id_computer', 'WHERE id_computer IS NOT NULL'],
+	// 	'electronic' => ['id_electronic', 'WHERE id_electronic IS NOT NULL'],
+	// 	'phone' => ['id_phone', 'WHERE id_phone IS NOT NULL'],
+	// 	'household' => ['id_household', 'WHERE id_household IS NOT NULL'],
+	// 	'other' => ['id_other', 'WHERE id_other IS NOT NULL']
+	// ];
+
+	// $found = false;
+	// foreach ($reportedItemArray as $key => $value) {
+	// 	if ($item == $key) {
+	// 		$found = true;
+	// 		break;
+	// 	}
+	// }
+
+	// if (!$found) {
+	// 	header('Location: ../index.php');
+	// }
+
+	// $field = $reportedItemArray[$item][0];
+	// $caluse = $reportedItemArray[$item][1];
+
+	// if (isset($id)) {
+	// 	if ($id == '*') {
+	// 		$field .= ', id_category';
+	// 	} else {
+	// 		$field = $reportedItemArray[$item][0];
+	// 		$caluse = 'WHERE ' . $field . '=' . $id;
+	// 		$field = 'id';
+	// 	}
+	// }
+
+	// return (new HtUtilAbuse('*', $field, $caluse));
+}
+
 function userActive()
 {
 	global $connect;
@@ -276,18 +322,23 @@ function activityTable()
           <thead>
           <tr><th scope="col">Items</th>';
 	foreach ($activities  as $key => $value) {
-		echo '<th scope="col" class="' . $value['style']['text'] . '">' . strtoupper($key) . '</th>'; //<i class="' . $value['style']['fas'] . '"></i>
+		echo '<th scope="col" class="' . $value['style']['text'] . '">' . strtoupper($key) . '</th>'; //<i class="' . $value['style']['fas fa-exclamation'] . '"></i>
 	}
 	echo '</tr></thead><tbody id="activity-table">';
 
 	$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
 	$grandTotal = $totalActive  = $totalPending = $totalReported =	$totalDeleted = 0;
 
+
+	// displays main activity table with some statistics
+	// sum across item over status and report type is presented
+	// at the same time sum of status across item is shown
+	// grand total sum should be equal.
 	foreach ($allItems  as $table_name_short => $table_name) {
 
 		$totalActivePerItem   = allItemOfStatus($table_name, 'active');
 		$totalPendingPerItem  = allItemOfStatus($table_name, 'pending');
-		$totalReportedPerItem = allItemOfStatus($table_name, 'reported');
+		$totalReportedPerItem = allReportedItem($table_name)[0];
 		$totalDeletedPerItem  = allItemOfStatus($table_name, 'deleted');
 
 		$totalActive    +=  $totalActivePerItem;
@@ -320,11 +371,18 @@ function activityTable()
 				'reported' => $totalReportedPerItem,
 				'deleted' => $totalDeletedPerItem,
 			];
+
+			$cryto = new Cryptor();
+			$itemEn    = urlencode($cryto->encryptor(base64_encode($table_name_short)));
+
 			foreach ($status2TotalArray as $status => $totalStatusSum) {
+				$url = 'function=activity-table&type=' . $table_name_short . '&status=' . $status;
+				$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+
 				if ($totalStatusSum == 0) {
 					echo '<td style="font-size:18px;">0</td>';
 				} else {
-					echo '<td style="font-size:18px;" ><a href="./admin.php?function=activity-table&type=' . $table_name_short . '&status=' . $status . '">' . $totalStatusSum  . '</td>';
+					echo '<td style="font-size:18px;" ><a href="./admin.php?actionId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
 				}
 			}
 			$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
@@ -339,32 +397,108 @@ function activityTable()
 	___open_div_('row', '" style="width:80%;');
 	___open_div_('col-md-12');
 
-	if (isset($_GET['function']) && isset($_GET['type']) && isset($_GET['action'])) {
-		$id = $_GET['id'];
-		$item = $_GET['type'];
-		$status = $_GET['status'];
-		$action = $_GET['action'];
-		$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
-		if ($action == 'distroy') {
-			$object->delete($id);
-		} else {
-			$object->setFieldStatus($action);
-			$object->updateCurrent();
-		}
-		header('Location: ./admin.php?function=activity-table&type=' . $item . '&status=' . $status);
+	///Get pointer to Cryptor class
+	$cryto = new Cryptor();
+
+	/// decode Url
+	$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($_GET['actionId']);
+	/// extract content similar to $_GET action
+	$actionIdDecodeArr = explode("&", $actionIdDecode);
+
+	///prepare finalArray simlat to $_GET
+	for ($i = 0; $i < count($actionIdDecodeArr); ++$i) {
+		$keyValue = explode("=", $actionIdDecodeArr[$i]);
+		$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
 	}
-	if (isset($_GET['function']) && isset($_GET['type']) && isset($_GET['status'])) {
-		$item = $_GET['type'];
-		$status = $_GET['status'];
+	if (HtGlobal::get('DEBUG')) {
+		var_dump($actionIdDecode);
+		var_dump($actionIdDecodeArr);
+		var_dump($ACTIVITY_ARRAY);
+	}
+
+	/**
+	 * ACTION EXECUTIONS HERE
+	 */
+	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
+		$id = $ACTIVITY_ARRAY['id'];
+		$item = $ACTIVITY_ARRAY['type'];
+		$status = $ACTIVITY_ARRAY['status'];
+		$action = $ACTIVITY_ARRAY['action'];
+		if ($action == 'reported') {
+			/// take action on specific report type by removing from the list in field_report
+			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			if (isset($ACTIVITY_ARRAY['unreport'])) {
+				$clearSpecificReport = $ACTIVITY_ARRAY['unreport'];
+				$reportsArray = explode(',', $itemObject->getFieldReport());
+				foreach ($reportsArray as $key => $value) {
+					if ($value == $clearSpecificReport) {
+						unset($reportsArray[$key]); //remove the matching abuse type
+					}
+				}
+				/// rebuild the array and save to field_report , commad delimited
+				$newReportsArray = implode(',', $reportsArray);				
+				$itemObject->setFieldReport($newReportsArray);
+			} else {
+				//clears all report types
+				$itemObject->setFieldReport(NULL);
+			}
+			/// finally update table with new data
+			$itemObject->updateCurrent();
+		} else {
+			/// Change status of item 
+			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			if ($action == 'distroy') {
+				///here permanent damage, data unrecoverable!!
+				$object->delete($id);
+			} else {
+				///set new status and update table
+				$object->setFieldStatus($action);
+				$object->updateCurrent();
+			}
+		}
+		/// To activity table 
+		$url = 'function=activity-table&type=' . $item . '&status=' . $status;
+		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+		header('Location: ./admin.php?actionId=' . $urlEn);
+	}
+	/**
+	 * ACTION TRIGGERED HERE
+	 */
+	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['status'])) {
+		$item = $ACTIVITY_ARRAY['type'];
+		$status = $ACTIVITY_ARRAY['status'];
 		echo '<p class="h1">List of ' . $item . ' with status=' . $status . '</p>';
-		$view = new HtMainView($item);
-		$dataOnly = $view->showRawData($status);
-		$header = $dataOnly[0];
+
+		//main array to display for table below
+		$itemRawDataToTable = [];
+		// report is not a status hence speciall handling is required
+		/// here search if an item have a field_report is set
+		if ($status == 'reported') {
+			$itemObject = ObjectPool::getInstance()->getObjectWithId($item);
+			$itemObject->runQuery("WHERE field_report IS NOT NULL");
+			$result = $itemObject->getResultSet();
+			$result->data_seek(0);
+			while ($row = $result->fetch_assoc()) {
+				array_push($itemRawDataToTable, $row);
+			}
+		} else {
+			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
+			$result = $itemObject->getResultSet();
+			$result->data_seek(0);
+			while ($row = $result->fetch_assoc()) {
+				array_push($itemRawDataToTable, $row);
+			}
+		}
+
+		//var_dump($itemRawDataToTable);
+		/// use the first row for the table header
+		$header = $itemRawDataToTable[0];
+		/// start : table header
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
-		echo '<thead><tr><th class="th-sm">
-		Action (Change status)
-		</th>';
+		echo '<thead><tr><th class="th-sm">	Action (Change status)</th>';
+		// echo '<th class="th-sm">	Reported For</th>';
+
 		foreach ($header as $k1 => $v1) {
 			$k11 = explode("_", $k1);
 			$final = "";
@@ -373,34 +507,39 @@ function activityTable()
 			}
 			echo '<th class="th-sm" title="' . $k1 . '">' . strtoupper($k1) . '</th>';
 		}
+		echo '</tr></thead>';
+		/// end : table header
+
+		//// array for action to be take, 
 		$allActionButtons = [
-			'active' => [  // change
-				'activate', // button name
-				'btn-success', // button style,
-				' style="color:black;margin-left:5px;font-weight:bold" '
+			'active' => [ // action to be taken
+				'activate', // action button name
+				'btn-success', // button style bts,
+				' style="color:black;margin-left:5px;font-weight:bold" ' // more style
 			],
-			'pending' => [
-				'pend', // button name
-				'btn-warning',
-				' style="color:black;margin-left:5px;font-weight:bold" '
+			'pending' => [ // action to be taken
+				'pend', // action button name
+				'btn-warning', // button style bts,
+				' style="color:black;margin-left:5px;font-weight:bold" ' // more style
 			],
-			'reported' => [
-				'report', // button name
-				'btn-mute',
-				' style="color:black;margin-left:5px;font-weight:bold" '
+			'reported' => [ // action to be taken
+				'clear report', // action button name
+				'btn-mute', // button style bts,
+				' style="color:black;margin-left:5px;font-weight:bold;border:1px dashed;" ' // more style
 			],
-			'deleted' => [  // change
-				'delete', // button name
-				'btn-warning', // button style,
-				' style="color:black;margin-left:5px;font-weight:bold" '
+			'deleted' => [ // action to be taken
+				'delete', // action button name
+				'btn-warning', // button style bts,
+				' style="color:black;margin-left:5px;font-weight:bold" ' // more style
 			],
-			'distroy' => [  // change
-				'erase', // button name
-				'btn-danger', // button style
-				' style="color:yellow;margin-left:5px;font-weight:bold;background-color:red;" '
+			'distroy' => [ // action to be taken
+				'erase', // action button name
+				'btn-danger', // button style bts,
+				' style="color:yellow;margin-left:5px;font-weight:bold;background-color:red;" ' // more style
 			]
 		];
 
+		/// Actions possible to take within a status
 		$edit = [
 			'active'   => $allActionButtons,
 			'pending'  => $allActionButtons,
@@ -409,48 +548,65 @@ function activityTable()
 			'distroy'  => $allActionButtons,
 		];
 
-		echo '</tr></thead>';
 
 		echo '<tbody>';
-		foreach ($dataOnly as $k1 => $v1) {
+		$itemId = 0;
+		foreach ($itemRawDataToTable as $k1 => $v1) {
 			echo '<tr>';
-			$onlyOneTime = true;
-			$i = 0;
+			$displayActionButtonOnce = true;
+			$j = 0;
 			foreach ($v1 as $k2 => $v2) {
-
-				if ($onlyOneTime) {
+				///Make action forms per item once 
+				if ($displayActionButtonOnce) {
 					echo '<td><span class="table-remove">';
-
-					foreach ($edit[$status] as $key => $value) {
+					foreach ($edit[$status] as $action => $value) {
 						$disabled = "";
-						if ($key == $_GET['status']) {
+						if ($action == $ACTIVITY_ARRAY['status'] && $ACTIVITY_ARRAY['status'] !== 'reported') {
 							$disabled = ' disabled';
 						}
-						// TODO: Apply encryption
-						// $cryto = new Cryptor();
-						// $itemEn    = urlencode($cryto->encryptor(base64_encode($item)));
-						// $idEn      = urlencode($cryto->encryptor(base64_encode($v2)));
-						// $actionEn  = urlencode($cryto->encryptor(base64_encode($key)));
-						// $statusEn  = urlencode($cryto->encryptor(base64_encode($status)));
-						//urlencode(base64_encode($itemEn)).
+						// FIRST CELL OF ROW IS THE ITEM ID SAVE FOR LATER USE 
+						////////////////////////////////
+						$itemId = $v2;  ////////////////
+						////////////////////////////////
+						$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&action=' . $action . '&status=' . $status;
+						$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
 
-						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?function=activity-table&type=' . $item . '&id=' . $v2 . '&action=' . $key . '&status=' . $status . '" method="post">';
-						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' 
-						class="btn btn-rounded btn-sm ' . $value[1] . '"' . $disabled .
-							' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
+						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?actionId=' . $urlEn . '" method="post">';
+						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' class="btn btn-rounded btn-sm ' . $value[1]
+							. '"' . $disabled .	' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
 						echo '</form>';
 					}
 					echo '</span></td>';
-					$onlyOneTime = false;
+					$displayActionButtonOnce = false;
 				}
-				//TODO: add image
-				//<img style="width:100px; height:100px;" src="../../images/hulutera.PNG">
-				if ($i == 0) {
-					echo '<td><a href="./admin.php?function=activity-table&type=' .
-						$item . '&id=' . $v2 . '&status=' . $status . '"><button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
-					$i++;
+
+				if ($j == 0) {
+					/// To display Item on Id
+					$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&status=' . $status;
+					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+					echo '<td><a href="./admin.php?actionId=' . $urlEn . '">';
+					echo '<button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
+					$j++;
 				} else {
-					echo '<td>' . $v2 . '</td>';
+					/// TO clear a specific abuse reports
+					if ($k2 == 'field_report') {
+						if (isset($v2)) {
+							$abuse = explode(',', $v2);
+							echo '<td>';
+							foreach ($abuse as $key => $value) {
+								$allAbuse = new HtCategoryAbuse((int) $value);
+								$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&action=reported&unreport=' . $value . '&status=' . $status;
+								$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+								echo '<a href="./admin.php?actionId=' . $urlEn . '">Clear <strong>' . $allAbuse->getFieldName() . '</strong> Report</a><br>';
+							}
+							echo '</td>';
+						} else {
+							echo '<td></td>';
+						}
+					} else {
+						///display remaining table content
+						echo '<td>' . $v2 . '</td>';
+					}
 				}
 			}
 			echo '</tr>';
@@ -460,13 +616,19 @@ function activityTable()
 		___close_div_(1);
 		___close_div_(1);
 	}
-	$function = isset($_GET['function']) ? $_GET['function'] : null;
-	$id = isset($_GET['id']) ? $_GET['id'] : null;
-	$status = isset($_GET['status']) ? $_GET['status'] : null;
+
+	////SHOW ITEM below table here before action be taken
+	$function = isset($ACTIVITY_ARRAY['function']) ? $ACTIVITY_ARRAY['function'] : null;
+	$id = isset($ACTIVITY_ARRAY['id']) ? $ACTIVITY_ARRAY['id'] : null;
+	$status = isset($ACTIVITY_ARRAY['status']) ? $ACTIVITY_ARRAY['status'] : null;
 
 	if (isset($function) && isset($id) && isset($status)) {
 		echo '<p class="h1">' . $item . '#' . $id . '</p>';
-		(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
+		if ($status == 'reported') {
+			(new  HtMainView($item, $id, null))->showOneItem();
+		} else {
+			(new  HtMainView($item, $id, $status))->showOneItem();
+		}
 	}
 }
 

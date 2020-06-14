@@ -49,6 +49,21 @@ class HtCategoryAbuse extends MySqlRecord
      * @var string $fieldName
      */
     private $fieldName;
+    
+    /**
+     * Class attribute for mapping table field field_name
+     *
+     * Comment for field field_prio: Not specified.<br>
+     * Field information:
+     *  - Data type: int(10)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $fieldPrio
+     */
+
+    private $fieldPrio;
 
     /**
      * Class attribute for storing the SQL DDL of table category_abuse
@@ -83,6 +98,19 @@ class HtCategoryAbuse extends MySqlRecord
     }
 
     /**
+     * setFieldPrio Sets the class attribute fieldPrio with a given value
+     *
+     * The attribute fieldPrio maps the field field_name defined as varchar(255).<br>
+     * Comment for field field_prio: Not specified.<br>
+     * @param string $fieldPrio
+     * @category Modifier
+     */
+    public function setFieldPrio($fieldPrio)
+    {
+        $this->fieldPrio = (int)$fieldPrio;
+    }
+
+    /**
      * getId gets the class attribute id value
      *
      * The attribute id maps the field id defined as int(40).<br>
@@ -108,6 +136,19 @@ class HtCategoryAbuse extends MySqlRecord
         return $this->fieldName;
     }
 
+    /**
+     * getFieldPrio gets the class attribute fieldPrio value
+     *
+     * The attribute fieldPrio maps the field field_name defined as varchar(255).<br>
+     * Comment for field field_name: Not specified.
+     * @return string $fieldPrio
+     * @category Accessor of $fieldPrio
+     */
+    public function getFieldPrio()
+    {
+        return $this->fieldPrio;
+    }
+    
     /**
      * Gets DDL SQL code of the table category_abuse
      * @return string
@@ -173,24 +214,24 @@ class HtCategoryAbuse extends MySqlRecord
     public function select($id)
     {
         if($id == "*"){
-            $sql = "SELECT * FROM category_abuse";
+            $sql = "SELECT * FROM category_abuse ORDER BY field_prio DESC";
         } else { //id
-            $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id,'int')} ORDER BY field_prio DESC";
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);
+        $result =  $this->query($sql);        
         $this->resultSet=$result;
         $this->lastSql = $sql;
-        // if ($result){
-        //     $rowObject = $result->fetch_object();
-        //     @$this->id = (integer)$rowObject->id;
-        //     @$this->fieldName = $this->replaceAposBackSlash($rowObject->field_name);
-        //     $this->allowUpdate = true;
-        // } else {
-        //     $this->lastSqlError = $this->sqlstate . " - ". $this->error;
-        // }
-        // return $this->affected_rows;
+        if ($result){
+            $rowObject = $result->fetch_object();
+            @$this->id = (integer)$rowObject->id;
+            @$this->fieldName = $this->replaceAposBackSlash($rowObject->field_name);
+            $this->allowUpdate = true;
+        } else {
+            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+        }
+        return $this->affected_rows;
         
     }
 
@@ -227,9 +268,10 @@ class HtCategoryAbuse extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO category_abuse
-            (field_name)
+            (field_name,field_prio)
             VALUES(
-			{$this->parseValue($this->fieldName,'notNumber')})
+			{$this->parseValue($this->fieldName,'notNumber')},
+            {$this->parseValue($this->fieldPrio)})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
@@ -262,7 +304,8 @@ SQL;
             UPDATE
                 category_abuse
             SET 
-				field_name={$this->parseValue($this->fieldName,'notNumber')}
+				field_name={$this->parseValue($this->fieldName,'notNumber')},
+                field_prio={$this->parseValue($this->fieldPrio)}
             WHERE
                 id={$this->parseValue($id,'int')}
 SQL;

@@ -141,9 +141,11 @@ EOD;
                 } else if ($_GET['function'] == 'message') {
                     message();
                 }
-                if ($_GET['function'] == 'activity-table') {
+                else {
                     activityTable();
                 }
+            }else {
+                activityTable();
             }
             ?>
         </div>

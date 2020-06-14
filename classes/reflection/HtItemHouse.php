@@ -387,6 +387,20 @@ class HtItemHouse extends MySqlRecord
     private $fieldStatus;
 
     /**
+     * Class attribute for mapping table field field_report
+     *
+     * Comment for field field_report: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index: 
+     *  - Default: NULL
+     *  - Extra:  
+     * @var string $fieldReport
+     */
+    private $fieldReport;
+
+    /**
      * Class attribute for mapping table field field_market_category
      *
      * Comment for field field_market_category: Not specified.<br>
@@ -420,7 +434,7 @@ class HtItemHouse extends MySqlRecord
      */
     private $ddl = "Q1JFQVRFIFRBQkxFIGBpdGVtX2hvdXNlYCAoCiAgYGlkYCBpbnQoNDApIE5PVCBOVUxMIEFVVE9fSU5DUkVNRU5ULAogIGBpZF90ZW1wYCBpbnQoMjApIE5PVCBOVUxMLAogIGBpZF91c2VyYCBpbnQoNDApIE5PVCBOVUxMLAogIGBpZF9jYXRlZ29yeWAgaW50KDQwKSBOT1QgTlVMTCwKICBgZmllbGRfY29udGFjdF9tZXRob2RgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGBmaWVsZF9wcmljZV9yZW50YCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3ByaWNlX3NlbGxgIHZhcmNoYXIoNDApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfbmVnb2AgdmFyY2hhcigyMCkgREVGQVVMVCAnTmVnb3RpYWJsZScsCiAgYGZpZWxkX3ByaWNlX3JhdGVgIHZhcmNoYXIoMjApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfcHJpY2VfY3VycmVuY3lgIHZhcmNoYXIoMTApIERFRkFVTFQgJ0JpcnInLAogIGBmaWVsZF9pbWFnZWAgbG9uZ3RleHQgTk9UIE5VTEwsCiAgYGZpZWxkX2xvY2F0aW9uYCB2YXJjaGFyKDQwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2tlYmVsZWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3dlcmVkYWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2xvdF9zaXplYCBpbnQoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfbnJfYmVkcm9vbWAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3RvaWxldGAgaW50KDEwKSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX2JhdGhyb29tYCBpbnQoMTApIE5PVCBOVUxMLAogIGBmaWVsZF9idWlsZF95ZWFyYCB5ZWFyKDQpIERFRkFVTFQgTlVMTCwKICBgZmllbGRfd2F0ZXJgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZWxlY3RyaWNpdHlgIHZhcmNoYXIoMTApIERFRkFVTFQgTlVMTCwKICBgZmllbGRfZXh0cmFfaW5mb2AgbWVkaXVtdGV4dCwKICBgZmllbGRfdGl0bGVgIHZhcmNoYXIoMTI1KSBERUZBVUxUIE5VTEwsCiAgYGZpZWxkX3VwbG9hZF9kYXRlYCB0aW1lc3RhbXAgTk9UIE5VTEwgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUCBPTiBVUERBVEUgQ1VSUkVOVF9USU1FU1RBTVAsCiAgYGZpZWxkX3RvdGFsX3ZpZXdgIGludCgxMCkgREVGQVVMVCBOVUxMLAogIGBmaWVsZF9zdGF0dXNgIHZhcmNoYXIoMTApIE5PVCBOVUxMIERFRkFVTFQgJ3BlbmRpbmcnLAogIGBmaWVsZF9tYXJrZXRfY2F0ZWdvcnlgIHZhcmNoYXIoMTUpIE5PVCBOVUxMLAogIGBmaWVsZF90YWJsZV90eXBlYCBpbnQoMTApIE5PVCBOVUxMIERFRkFVTFQgJzInLAogIFBSSU1BUlkgS0VZIChgaWRgKSwKICBLRVkgYHVJRF9GSzNgIChgaWRfdXNlcmApLAogIEtFWSBgaENhdGVnb3J5SURfRktgIChgaWRfY2F0ZWdvcnlgKSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMWAgRk9SRUlHTiBLRVkgKGBpZF91c2VyYCkgUkVGRVJFTkNFUyBgdXNlcl9hbGxgIChgaWRgKSBPTiBERUxFVEUgQ0FTQ0FERSBPTiBVUERBVEUgQ0FTQ0FERSwKICBDT05TVFJBSU5UIGBpdGVtX2hvdXNlX2liZmtfMmAgRk9SRUlHTiBLRVkgKGBpZF9jYXRlZ29yeWApIFJFRkVSRU5DRVMgYGNhdGVnb3J5X2hvdXNlYCAoYGlkYCkgT04gREVMRVRFIENBU0NBREUgT04gVVBEQVRFIENBU0NBREUKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTE3IERFRkFVTFQgQ0hBUlNFVD1sYXRpbjE=";
 
-     /*
+    /*
      * prop for search elements
     */
     private $maxPriceValue;
@@ -775,6 +789,19 @@ class HtItemHouse extends MySqlRecord
     public function setFieldStatus($fieldStatus)
     {
         $this->fieldStatus = (string) $fieldStatus;
+    }
+
+    /**
+     * setFieldStatus Sets the class attribute fieldReport with a given value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.<br>
+     * @param string $fieldReport
+     * @category Modifier
+     */
+    public function setFieldReport($fieldReport)
+    {
+        $this->fieldReport = (string) $fieldReport;
     }
 
     /**
@@ -1247,6 +1274,19 @@ class HtItemHouse extends MySqlRecord
     }
 
     /**
+     * getFieldReport gets the class attribute fieldReport value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.
+     * @return string $fieldReport
+     * @category Accessor of $fieldReport
+     */
+    public function getFieldReport()
+    {
+        return $this->fieldReport;
+    }
+
+    /**
      * getFieldMarketCategory gets the class attribute fieldMarketCategory value
      *
      * The attribute fieldMarketCategory maps the field field_market_category defined as varchar(15).<br>
@@ -1320,14 +1360,15 @@ class HtItemHouse extends MySqlRecord
      * @param int $id. If omitted an empty (not fetched) instance is created.
      * @return HtItemHouse Object
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $status = null)
     {
         parent::__construct();
         if (!empty($id)) {
-            $this->select($id);
+            $this->select($id, $status);
         }
         $this->setCategoryName();
     }
+
 
     /**
      * The implicit destructor
@@ -1403,8 +1444,9 @@ class HtItemHouse extends MySqlRecord
 
     /**
      * $GET search elements of house
-    */
-    public function setSearchElements(){
+     */
+    public function setSearchElements()
+    {
         $this->maxPriceValue = (isset($_GET['house_max_price'])) ? $_GET['house_max_price'] : "000";
         $this->typeValue = (isset($_GET['house_type'])) ? $_GET['house_type'] : "none";
         $this->maxBedroomValue = (isset($_GET['house_bedroom'])) ? $_GET['house_bedroom'] : 0;
@@ -1551,6 +1593,7 @@ class HtItemHouse extends MySqlRecord
         @$this->fieldUploadDate = $rowObject->field_upload_date;
         @$this->fieldTotalView = (int) $rowObject->field_total_view;
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldReport = $this->replaceAposBackSlash($rowObject->field_report);
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
@@ -1616,7 +1659,7 @@ class HtItemHouse extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_house
-            (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_image,field_location,field_kebele,field_wereda,field_lot_size,field_nr_bedroom,field_toilet,field_bathroom,field_build_year,field_water,field_electricity,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_image,field_location,field_kebele,field_wereda,field_lot_size,field_nr_bedroom,field_toilet,field_bathroom,field_build_year,field_water,field_electricity,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1646,7 +1689,7 @@ class HtItemHouse extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        echo $sql;
+
         $this->resetLastSqlError();
 
         $this->set_charset('utf8');
@@ -1706,7 +1749,8 @@ SQL;
 				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
 				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
-				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
+                field_report={$this->parseValue($this->fieldReport, 'notNumber')},
+                field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE
                 id={$this->parseValue($id, 'int')}

@@ -158,6 +158,13 @@ class MySqlRecord extends Model
         $this->query($sql);
         return $this->affected_rows;
     }
+
+    public function countReportedOfItem($item)
+    {
+        $sql = 'SELECT * FROM ' . $item . ' WHERE field_report IS NOT NULL';
+        $result = $this->query($sql);
+        return [$this->affected_rows, $result];
+    }
     /****
      * 
      */

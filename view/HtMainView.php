@@ -93,7 +93,7 @@ class HtMainView
     }
 
 
-    public function showRawData($filter)
+    public function showRawData($filter=null)
     {
         $dataOnly = [];
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);

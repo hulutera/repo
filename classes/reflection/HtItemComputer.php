@@ -331,6 +331,20 @@ class HtItemComputer extends MySqlRecord
     private $fieldStatus;
 
     /**
+     * Class attribute for mapping table field field_report
+     *
+     * Comment for field field_report: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index: 
+     *  - Default: NULL
+     *  - Extra:  
+     * @var string $fieldReport
+     */
+    private $fieldReport;
+
+    /**
      * Class attribute for mapping table field field_market_category
      *
      * Comment for field field_market_category: Not specified.<br>
@@ -490,14 +504,14 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
-     * setfieldMade Sets the class attribute fieldMake with a given value
+     * setFieldMake Sets the class attribute fieldMake with a given value
      *
      * The attribute fieldMake maps the field field_make defined as varchar(20).<br>
      * Comment for field field_make: Not specified.<br>
      * @param string $fieldMake
      * @category Modifier
      */
-    public function setfieldMade($fieldMake)
+    public function setFieldMake($fieldMake)
     {
         $this->fieldMake = (string) $fieldMake;
     }
@@ -672,6 +686,19 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+     * setFieldReport Sets the class attribute fieldReport with a given value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.<br>
+     * @param string $fieldReport
+     * @category Modifier
+     */
+    public function setFieldReport($fieldReport)
+    {
+        $this->fieldReport = (string) $fieldReport;
+    }
+
+    /**
      * setFieldMarketCategory Sets the class attribute fieldMarketCategory with a given value
      *
      * The attribute fieldMarketCategory maps the field field_market_category defined as varchar(10).<br>
@@ -714,7 +741,7 @@ class HtItemComputer extends MySqlRecord
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setfieldMade($_POST['fieldMake']);
+        $this->setFieldMake($_POST['fieldMake']);
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldProcessor($_POST['fieldProcessor']);
@@ -1075,6 +1102,19 @@ class HtItemComputer extends MySqlRecord
     }
 
     /**
+     * getFieldReport gets the class attribute fieldReport value
+     *
+     * The attribute fieldReport maps the field field_report defined as varchar(10).<br>
+     * Comment for field field_report: Not specified.
+     * @return string $fieldReport
+     * @category Accessor of $fieldReport
+     */
+    public function getFieldReport()
+    {
+        return $this->fieldReport;
+    }
+
+    /**
      * getFieldMarketCategory gets the class attribute fieldMarketCategory value
      *
      * The attribute fieldMarketCategory maps the field field_market_category defined as varchar(10).<br>
@@ -1232,7 +1272,8 @@ class HtItemComputer extends MySqlRecord
     /**
      * $GET search elements of computer
      */
-    public function setSearchElements(){
+    public function setSearchElements()
+    {
         $this->maxPriceValue = (isset($_GET['computer_max_price'])) ? $_GET['computer_max_price'] : "000";
         $this->typeValue = (isset($_GET['computer_type'])) ? $_GET['computer_type'] : "none";
         $this->makeValue = (isset($_GET['computer_make'])) ? $_GET['computer_make'] : "none";
@@ -1285,15 +1326,15 @@ class HtItemComputer extends MySqlRecord
 
             $itemFilter = "( $typeFilter OR  $makeFilter OR $titleFilter OR $osFilter OR $procFilter OR $hdFilter OR $colorFilter OR $locationFilter OR $locationFilter2)";
         }
-        
+
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
-        
+
         if ($itemPerPage == null) {
             $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
             $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-        
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1335,6 +1376,7 @@ class HtItemComputer extends MySqlRecord
         @$this->fieldUploadDate = $rowObject->field_upload_date;
         @$this->fieldTotalView = (int) $rowObject->field_total_view;
         @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
+        @$this->fieldReport = $this->replaceAposBackSlash($rowObject->field_report);
         @$this->fieldMarketCategory = $this->replaceAposBackSlash($rowObject->field_market_category);
         @$this->fieldTableType = (int) $rowObject->field_table_type;
     }
@@ -1400,7 +1442,7 @@ class HtItemComputer extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_computer
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_os,field_model,field_processor,field_ram,field_hard_drive,field_color,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1423,6 +1465,7 @@ class HtItemComputer extends MySqlRecord
 			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
 			{$this->parseValue($this->fieldStatus, 'notNumber')},
+            {$this->parseValue($this->fieldReport, 'notNumber')},
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
@@ -1481,6 +1524,7 @@ SQL;
 				field_upload_date={$this->parseValue($this->fieldUploadDate, 'notNumber')},
 				field_total_view={$this->parseValue($this->fieldTotalView)},
 				field_status={$this->parseValue($this->fieldStatus, 'notNumber')},
+                field_report={$this->parseValue($this->fieldReport, 'notNumber')},
 				field_market_category={$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 				field_table_type={$this->parseValue($this->fieldTableType)}
             WHERE
@@ -1489,7 +1533,6 @@ SQL;
             echo $sql;
             //exit;
             $this->resetLastSqlError();
-
             $this->set_charset('utf8');
             $this->query('SET NAMES utf8');
             $result = $this->query($sql);
