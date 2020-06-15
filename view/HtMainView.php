@@ -321,7 +321,11 @@ class HtMainView
             $elm_rows = array_slice($elements_array,  $start,  $globalVarObj::get('itemPerPage'));
 
             echo '<div class="row items-board">';
+            $number = 0;
             foreach ($elm_rows as $value) {
+                $number ++;
+                //item count
+                $this->_itemNumber = $number;
                 $obj_pool = new ObjectPool();
                 $it = $obj_pool->tableType2item[$value['field_table_type']];
                 $main_obj = $obj_pool->getObjectWithId($it);
