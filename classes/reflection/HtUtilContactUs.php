@@ -708,8 +708,7 @@ SQL;
         $this->fieldDescription = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
         $this->fieldMessageStatus = 'unread';
         $this->fieldReceivedDate = date("Y-m-d H:i:s");
-
-        $this->insertPost();
+        $this->insert();
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];

@@ -878,7 +878,7 @@ SQL;
         $this->setFieldPrivilege('user');
         date_default_timezone_set('UTC');
         $this->setFieldRegisterDate(date("Y-m-d H:i:s"));
-        $this->insertPost();
+        $this->insert();
 
         //Now send mail for Confirmation of registration
         $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
