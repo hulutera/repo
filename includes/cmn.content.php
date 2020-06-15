@@ -272,6 +272,98 @@ function pendingItems()
 	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_activate").show();});</script>';
 }
 
+function allUsers()
+{
+	/// no session route to index.php
+	if (!isset($_SESSION['uID'])) {
+		header('Location: ../index.php');
+	}
+
+	___open_div_('container-fluid');
+	___open_div_('row', '" style="width:80%;');
+	___open_div_('col-md-12', '" ');
+	echo '<p class="h2">User Management Table</p>';
+
+	echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+
+	///use record to fetch the user_all table columns
+	$record = new MySqlRecord();
+	$recordResult = $record->query("SHOW columns FROM `user_all`");
+	$header = "";
+	$userColumnArray = [];
+	while ($row = $recordResult->fetch_assoc()) {
+		if ($row['Field'] != "id") {
+			array_push($userColumnArray, $row['Field']);
+		}
+	}
+	/*
+	userColumnArray:
+	0 => string 'field_user_name' (length=15)
+	1 => string 'field_first_name' (length=16)
+	2 => string 'field_last_name' (length=15)
+	3 => string 'field_email' (length=11)
+	4 => string 'field_phone_nr' (length=14)
+	5 => string 'field_address' (length=13)
+	6 => string 'field_password' (length=14)
+	7 => string 'field_privilege' (length=15)
+	8 => string 'field_contact_method' (length=20)
+	9 => string 'field_term_and_condition' (length=24)
+	10 => string 'field_register_date' (length=19)
+	11 => string 'field_new_password' (length=18)
+	12 => string 'field_activation' (length=16)
+	*/
+
+	///Array to hold hidden fields to from user_all userColumnArray 
+	$hiddenFieldsArray = [];
+	/// based on current login user privilege
+	/// populate hiddenFieldsArray with id of fields
+	/// webmaster: all
+	$currentUser = new HtUserAll($_SESSION['uID']);
+	$result = $currentUser->getResultSet();
+	$result->data_seek(0);
+	if ($currentUser->isWebMaster() || $currentUser->isAdmin()) {
+		$hiddenFieldsArray = [];
+	} else if ($currentUser->isModerator()) {
+		$hiddenFieldsArray = [5, 6, 10, 11, 12];
+	} else if ($currentUser->isUser()) {
+		$hiddenFieldsArray = $userColumnArray;
+	}
+
+	///now remove those in hiddenFieldsArray from the userColumnArray	
+	foreach ($hiddenFieldsArray as $key => $value) {
+		unset($userColumnArray[$value]);
+	}
+
+	/// get all Users here
+	$allUsers = new HtUserAll('*');
+	$result = $allUsers->getResultSet();
+	$result->data_seek(0);
+
+	/// populate table header found in userColumnArray
+	echo '<thead><tr>';
+	echo '<th class="th-sm">User Action </th>';
+	foreach ($userColumnArray as $key => $value) {
+		echo '<th class="th-sm" title=""test"">' . strtoupper($value) . '</th>';
+	}
+	echo '</tr></thead>';
+	/// populate table body found in userColumnArray
+	echo '<tbody>';
+	$result->data_seek(0);
+	while ($row = $result->fetch_assoc()) {
+		echo '<tr>';
+		echo '<td>ACTIONS</td>';	# code...
+		foreach ($row as $key => $value) {
+
+			if (in_array($key, array_values($userColumnArray))) {
+				echo '<td>' . $value . '</td>';
+			}
+		}
+		echo '</tr>';
+	}
+
+	echo '</tbody>';
+	___close_div_(3);
+}
 function activityTable()
 {
 	global $lang_sw, $lang_url;
@@ -279,7 +371,8 @@ function activityTable()
 	___open_div_('row', '" style="width:50%;');
 	___open_div_('col-md-12', '" ');
 
-	echo '<p class="h3">Click on the number links to start admistrative action</p>';
+	echo '<p class="h2">Item Management Table</p>';
+	echo '<p class="h3">Click on number links to take adminstrative actions</p>';
 	echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
 	$allItems = [
 		'car' => 'item_car',
@@ -373,8 +466,6 @@ function activityTable()
 			];
 
 			$cryto = new Cryptor();
-			$itemEn    = urlencode($cryto->encryptor(base64_encode($table_name_short)));
-
 			foreach ($status2TotalArray as $status => $totalStatusSum) {
 				$url = 'function=activity-table&type=' . $table_name_short . '&status=' . $status;
 				$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
@@ -436,7 +527,7 @@ function activityTable()
 					}
 				}
 				/// rebuild the array and save to field_report , commad delimited
-				$newReportsArray = implode(',', $reportsArray);				
+				$newReportsArray = implode(',', $reportsArray);
 				$itemObject->setFieldReport($newReportsArray);
 			} else {
 				//clears all report types

@@ -66,18 +66,18 @@ require_once $documnetRootPath . '/includes/common.inc.php';
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h2>Hulutera Admin Panel</h2>
+
                 <?php
                 $user = new HtUserAll($_SESSION['uID']);
-                echo '<h4>Hi! '.$user->getFieldUserName() .'</h4>';
-                
+                echo '<h4>Hi! ' . $user->getFieldUserName() . '</h4>';
+
                 ?>
                 <strong>HT</strong>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                    <?php                    
+                    <?php
                     echo <<<EOD
                     <a href="./admin.php{$lang_url}&order=open&function=edit-profile">
                     <i class="fas fa-user"></i>
@@ -101,7 +101,16 @@ EOD;
                     </a> -->
                     <!-- <ul class="collapse list-unstyled" id="pageSubmenu"> -->
                 <li>
-                    <a href="#" class="text-info bg-dark"><i class="fas fa-users"></i> All Users</a>
+
+                    <?php
+                    echo <<<EOD
+                    <a href="./admin.php{$lang_url}&order=open&function=all-users">
+                    <i class="fas fa-users"></i>
+                    All Users
+                    </a>
+EOD;
+                    ?>
+
                 </li>
 
                 <li>
@@ -132,7 +141,7 @@ EOD;
 
         <div id="mainColumn">
 
-            <h2>Welcome to your Admin Panel</h2>
+
 
             <?php
             if (isset($_GET['function'])) {
@@ -140,12 +149,16 @@ EOD;
                     editProfile();
                 } else if ($_GET['function'] == 'message') {
                     message();
-                }
-                else {
+                } else if ($_GET['function'] == 'all-users') {
+                    allUsers();
+                } else {
                     activityTable();
                 }
-            }else {
+            } else if (isset($_GET['actionId'])) {
                 activityTable();
+            } else {
+                //<img src="../images/admin_welcome.jpg" style="width:100%;">
+                echo '<p class="h1">Welcome! Please take action on the left, (under construction)</p>';
             }
             ?>
         </div>
