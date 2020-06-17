@@ -320,7 +320,7 @@ class ValidateUser
 
     public function postValidation(&$err, $function)
     {
-        $langURL = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "?&lan=en";
+        global $lang_url, $str_url;
         if ($function == 'login') {
             $email = $_POST['fieldEmail'];
             $password = $_POST['fieldPassword'];
@@ -339,15 +339,15 @@ class ValidateUser
                 }
 
                 if ($userAll->canUpdate())
-                    header("Location: ../../index.php" . $langURL);
+                    header("Location: ../../index.php" . $lang_url);
                 else
-                    header("Location: ../../includes/mypage.php" . $langURL);
+                    header("Location: ../../includes/mypage.php" . $lang_url);
             } else {
                 $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
                 array_push($err, $input);
                 $input = ['fieldPassword' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrPassword']];
                 array_push($err, $input);
-                header("Location: ../../includes/form_user.php?function=login" . $langURL);
+                header("Location: ../../includes/form_user.php?function=login" . $str_url);
             }
         } elseif ($function == 'password-recovery') {
             $email = $_POST['fieldEmail'];
@@ -361,7 +361,7 @@ class ValidateUser
                 array_push($err, $input);
                 $input = ['fieldUserName' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
                 array_push($err, $input);
-                header("Location: ../../includes/form_user.php?function=password-recovery" . $langURL);
+                header("Location: ../../includes/form_user.php?function=password-recovery" . $str_url);
             } else {
                 $userAll->recoverPassword();
             }

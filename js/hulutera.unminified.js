@@ -258,7 +258,7 @@ function swap(item, itemNumber) {
         var thumbnailWidth;
         thumbnailWidth = ($('#divCommon').width() / $('#divCommon').parent().width()) * 100;
         
-        $.each([ 'car', 'house', 'computer', 'phone', 'electronic', 'other'], function( index, value ) {
+        $.each([ 'car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'], function( index, value ) {
             
             // For bigger screens
             if (thumbnailWidth < 35) {

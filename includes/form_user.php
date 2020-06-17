@@ -27,16 +27,12 @@ if (!in_array($function, $validFunctions)) {
 $validate = null;
 $errPre = [];
 $validate = new ValidateUser($errPre);
-var_dump($errPre);
-var_dump($_POST);
 
 //exit;
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
     $_SESSION['POST'] = $_POST;
-    var_dump($errPre[0]);
-    var_dump($_SESSION['errorRaw']);
-
+  
     $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
     $redirectLink = '';
     if ($function == 'edit-profile') {
@@ -44,8 +40,6 @@ if (!empty($errPre)) {
     } else {
         $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
     }
-    var_dump($_SERVER['HTTP_REFERER']);
-    var_dump($redirectLink);
     //exit;
     header('Location: ' . $redirectLink);
 } else {
@@ -59,15 +53,14 @@ if (!empty($errPre)) {
         $validFunctions = ['login', 'password-recovery', 'edit-profile', 'contact-us'];
         if (in_array($function, $validFunctions)) {
             $validate->postValidation($errPost, $function);
-            var_dump($errPost);
-
+            
             //exit;
             if (!empty($errPost)) {
                 $_SESSION['errorRaw'] = getInnerArray($errPost);
                 $_SESSION['POST'] = $_POST;
                 $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
                 $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
-                //header('Location: ' . $redirectLink);
+                header('Location: ' . $redirectLink);
             } else {
                 clearSessionVariables($function);
             }
