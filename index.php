@@ -64,17 +64,16 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 
 			<div class="rightNav-index col-xs-3 col-md-2">  <!!----#rightNav starts-------!!>
 				<?php
+				
+				$item_obj = ObjectPool::getInstance()->getObjectSpecial("all");
 				foreach ($city_lang_arr as $key => $value) {
 					$totalItems = 0;
 					if ($key == "All") echo '<li style="background-color:#378de5; color: #fff;text-align:center"> ' . $value . '</li>';
 					else if ($key != "000") {
-						foreach ($item_lang_arr as $key2 => $value2) {
-							if ($key2 != "000" and $key2 != "All") {
-								$item_obj = ObjectPool::getInstance()->getObjectWithId($key2);
-								$condition = "WHERE field_status LIKE 'active' AND field_location LIKE '$key'";
-								$rows = $item_obj->runQuery($condition);
+ 						foreach ($item_obj as $key2 => $value2) {
+							    $condition = "WHERE field_status LIKE 'active' AND field_location LIKE '$key'";
+								$rows = $value2->runQuery($condition);
 								$totalItems = $totalItems + $rows;
-							}
 						}
 						echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
 					}

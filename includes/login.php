@@ -10,7 +10,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 <html lang="en">
 
 <head>
-    <title>Log In | ይግቡ </title>
+    <title><?php echo $GLOBALS['user_specific_array']['user']['login']; ?></title>
     <?php commonHeader(); ?>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/hulutera.unminified.css" rel="stylesheet">
