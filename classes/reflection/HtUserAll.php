@@ -325,9 +325,8 @@ class HtUserAll extends MySqlRecord
      * @category Modifier
      */
     public function setFieldPassword($fieldPassword)
-    {
-        $crypto = new Cryptor();
-        $cryptoPassword = base64_encode($crypto->encryptor($fieldPassword));
+    {        
+        $cryptoPassword = base64_encode(Cryptor::getInstance()->encryptor($fieldPassword));
         $this->fieldPassword = (string) $cryptoPassword;
     }
 
@@ -510,8 +509,7 @@ class HtUserAll extends MySqlRecord
      */
     public function getFieldPassword()
     {
-        $crypto = new Cryptor();
-        return  $crypto->decryptor(base64_decode($this->fieldPassword));
+        return  Cryptor::getInstance()->decryptor(base64_decode($this->fieldPassword));
     }
 
     /**
@@ -1147,8 +1145,7 @@ SQL;
         $randomPassword08 = substr($randomPassword, 0, 8);
 
         $email = $this->fieldEmail;
-        $crypto = new Cryptor();
-        $cryptoPassword = base64_encode($crypto->encryptor($randomPassword08));
+        $cryptoPassword = base64_encode(Cryptor::getInstance()->encryptor($randomPassword08));
         $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
 
         $this->fieldNewPassword = $cryptoPassword;

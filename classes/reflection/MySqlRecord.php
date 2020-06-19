@@ -144,31 +144,43 @@ class MySqlRecord extends Model
         foreach ($this->items as $key => $value) {
             if ($lastElement != $value) {
                 $union = " UNION ALL ";
-            }else{
+            } else {
                 $union = " ";
             }
-            $sql .= 'SELECT id FROM ' . $value . ' WHERE field_status LIKE "' . $status .'"'. $withId . $union;
+            $sql .= 'SELECT id FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
         }
         $this->query($sql);
         return $this->affected_rows;
     }
     public function countRowOfItem($item, $status)
     {
-        $sql = 'SELECT * FROM ' . $item . ' WHERE field_status = "' . $status.'"';
+        $sql = 'SELECT * FROM ' . $item . ' WHERE field_status = "' . $status . '"';
         $this->query($sql);
         return $this->affected_rows;
     }
 
-    public function countReportedOfItem($item)
+    public function getItemWithStatusReported($item)
     {
         $sql = 'SELECT * FROM ' . $item . ' WHERE field_report IS NOT NULL';
         $result = $this->query($sql);
         return [$this->affected_rows, $result];
     }
+
+    public function getItemPerUser($item, $userId, $status = null)
+    {
+        $andWithStatus = "";
+        if (isset($status)) {
+            $andWithStatus = ' AND field_status = "' . $status. '"';
+        }
+        $sql = 'SELECT * FROM ' . $item . ' WHERE id_user = "' . $userId . '" ' . $andWithStatus;
+        $result = $this->query($sql);
+        return [$this->affected_rows, $result];
+    }
+
     /****
      * 
      */
-    public function maxQuery($status, $id, $start, $end=null)
+    public function maxQuery($status, $id, $start, $end = null)
     {
         if (!empty($id) && $id !== "*") {
             $withId = " AND id_user = $id";
@@ -176,18 +188,18 @@ class MySqlRecord extends Model
             $withId = "";
         }
 
-        $itemPerPage = isset($end)?$end:30;
+        $itemPerPage = isset($end) ? $end : 30;
         $lastElement = end($this->items);
         $union = "";
         foreach ($this->items as $key => $value) {
             if ($lastElement != $value) {
                 $union = " UNION ALL ";
-            }else{
+            } else {
                 $union = " ";
             }
-            $sql .= 'SELECT id,field_table_type, field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status .'"'. $withId . $union;
+            $sql .= 'SELECT id,field_table_type, field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
         }
-        $sql .= ' ORDER BY field_upload_date DESC LIMIT '. $start .','. $itemPerPage;        
+        $sql .= ' ORDER BY field_upload_date DESC LIMIT ' . $start . ',' . $itemPerPage;
         return $this->fetch_all($sql);
     }
     /***

@@ -110,48 +110,18 @@ function allItemOfStatus($item, $status)
 	return $result >= 0 ? $result : 0;
 }
 
-function allReportedItem($item, $id = null)
+function getItemWithStatusReported($item, $id = null)
 {
 	$record = new MySqlRecord();
-	return $record->countReportedOfItem($item);
-
-	// $reportedItemArray = [
-	// 	'car' => ['id_car', 'WHERE id_car IS NOT NULL'],
-	// 	'house' => ['id_house', 'WHERE id_house IS NOT NULL'],
-	// 	'computer' => ['id_computer', 'WHERE id_computer IS NOT NULL'],
-	// 	'electronic' => ['id_electronic', 'WHERE id_electronic IS NOT NULL'],
-	// 	'phone' => ['id_phone', 'WHERE id_phone IS NOT NULL'],
-	// 	'household' => ['id_household', 'WHERE id_household IS NOT NULL'],
-	// 	'other' => ['id_other', 'WHERE id_other IS NOT NULL']
-	// ];
-
-	// $found = false;
-	// foreach ($reportedItemArray as $key => $value) {
-	// 	if ($item == $key) {
-	// 		$found = true;
-	// 		break;
-	// 	}
-	// }
-
-	// if (!$found) {
-	// 	header('Location: ../index.php');
-	// }
-
-	// $field = $reportedItemArray[$item][0];
-	// $caluse = $reportedItemArray[$item][1];
-
-	// if (isset($id)) {
-	// 	if ($id == '*') {
-	// 		$field .= ', id_category';
-	// 	} else {
-	// 		$field = $reportedItemArray[$item][0];
-	// 		$caluse = 'WHERE ' . $field . '=' . $id;
-	// 		$field = 'id';
-	// 	}
-	// }
-
-	// return (new HtUtilAbuse('*', $field, $caluse));
+	return $record->getItemWithStatusReported($item);
 }
+
+function getItemPerUser($item, $userId, $status = null)
+{
+	$record = new MySqlRecord();
+	return $record->getItemPerUser($item, $userId, $status);
+}
+
 
 function userActive()
 {
@@ -348,12 +318,15 @@ function allUsers()
 	echo '</tr></thead>';
 	/// populate table body found in userColumnArray
 	echo '<tbody>';
-	$result->data_seek(0);
+	$cryto = new Cryptor();
 	while ($row = $result->fetch_assoc()) {
 		echo '<tr>';
-		echo '<td>ACTIONS</td>';	# code...
-		foreach ($row as $key => $value) {
+		$url = 'function=all-users&action=view&userId=' . $row['id'];
+		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+		echo '<td><a href="./admin.php?allUserId=' . $urlEn . '">';
+		echo '<button style="font-style: italic;" class="btn btn-rounded btn-sm btn-primary btn-block">Action#' . $row['id'] . '</button></a></td>';
 
+		foreach ($row as $key => $value) {
 			if (in_array($key, array_values($userColumnArray))) {
 				echo '<td>' . $value . '</td>';
 			}
@@ -362,141 +335,190 @@ function allUsers()
 	}
 
 	echo '</tbody>';
+	___close_div_(2);
+	___open_div_('row', '');
+	___open_div_('col-md-12', '');
+	if (isset($_GET['allUserId'])) {
+		/// decode Url
+		$allUserIdDecode = $cryto->urldecode_base64_decode_decryptor($_GET['allUserId']);
+		/// extract content similar to $_GET action
+		$allUserIdDecodeArr = explode("&", $allUserIdDecode);
+
+		///prepare finalArray simlar to $_GET
+		for ($i = 0; $i < count($allUserIdDecodeArr); ++$i) {
+			$keyValue = explode("=", $allUserIdDecodeArr[$i]);
+			$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
+		}
+		if (HtGlobal::get('DEBUG')) {
+			var_dump($allUserIdDecode);
+			var_dump($allUserIdDecodeArr);
+			var_dump($ACTIVITY_ARRAY);
+		}
+
+		////
+		$userId = $ACTIVITY_ARRAY['userId'];
+		listUsers($userId);
+	}
 	___close_div_(3);
+
+	//if()
 }
+function listUsers($userId)
+{
+	$user = new HtUserAll($userId);
+	$result = $user->getResultSet();
+
+	/// task to be performed on user
+	$task = [
+		0 => ["field_privilege-default" => "Choose task"],
+		1 => ["field_privilege-webmaster" => "Update user privilege to Webmaster"],
+		2 => ["field_privilege-administrator" => "Update user privilege to Administrator"],
+		3 => ["field_privilege-moderator" => "Update user privilege to Moderator"],
+		4 => ["field_privilege-user" => "Update user privilege to User"],
+		5 => ["field_status-deactivate" => "Deactivate Account"],
+		6 => ["field_status-erase" => "Close Account"],
+	];
+
+	///
+	$allItems = [
+		'X' => ['X', 'X'],
+		'car' => ['../images/uploads/icons/car_dark.svg', 'item_car'],
+		'house' => ['../images/uploads/icons/house_dark.svg', 'item_house'],
+		'computer' => ['../images/uploads/icons/computer_dark.svg', 'item_computer'],
+		'electronic' => ['../images/uploads/icons/electronic_dark.svg', 'item_electronic'],
+		'phone' => ['../images/uploads/icons/phone_dark.svg', 'item_phone'],
+		'household' => ['../images/uploads/icons/household_dark.svg', 'item_household'],
+		'other' => ['../images/uploads/icons/other_dark.svg', 'item_other'],
+	];
+
+
+	///Array to hold hidden fields to from user_all userColumnArray 
+	$hiddenFieldsArray = [];
+	if ($user->isWebMaster()) {
+		$hiddenFieldsArray = [];
+	} else if ($user->isAdmin()) {
+		$hiddenFieldsArray = [1, 2];
+	} else if ($user->isModerator()) {
+		$hiddenFieldsArray = [1, 2, 3];
+	} else if ($user->isUser()) {
+		$hiddenFieldsArray = $task;
+	}
+
+	///now remove those in hiddenFieldsArray from the userColumnArray	
+	foreach ($hiddenFieldsArray as $key => $value) {
+		unset($task[$value]);
+	}
+
+	$result->data_seek(0);
+	while ($row = $result->fetch_object()) {
+		echo <<<EOD
+	<div class="container-fluid" style="margin:20px; border-radius:5px; border:2px solid #1593c4; width:60%;padding:20px">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row" style="text-align:left">
+					<div class="col-md-6">
+						<p>ACCOUNT INFORMATION </p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">User id : <strong>$userId</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Username :<strong> $row->field_user_name</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Privilege : <strong>$row->field_privilege</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Real Name : <strong>$row->field_first_name $row->field_last_name</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Email : <strong>$row->field_email</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Phone : <strong>$row->field_phone_nr</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Member Since: <strong>$row->field_register_date</strong></p>
+						<p class="h4" style="border-bottom:1px solid #c7c7c7;">User's Overview per Item </strong></p>
+EOD;
+		$status = [
+			'active' => ['Active', " background-color:#c6e5ef;"],
+			'pending' => ['Pending', " background-color:#f9daa0;"],
+			'reported' => ['Reported', " background-color:#efb09c;"],
+			'deleted' => ['Deleted', " background-color:#e6e6e6;"]
+		];
+		echo '<div class="grid-container" style="
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			gap: 1px 1px;
+			grid-template-areas: ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . .";
+		  ">
+		  
+		  ';
+		foreach ($allItems as $key => $value) {
+			if ($value[0] == 'X') {
+				echo '<div style="padding:5px;text-align:center;"></div>';
+			} else {
+				echo '<div style="padding:5px;text-align:center;" data-toggle="tooltip" title="' . $key . '"><a href="../includes/template.item.php?type=' . $key . '"><img style="width:40px;" src="' . $value[0] . '"></a></div>';
+			}
+		}
+		
+		foreach ($status as $statusName => $statusArray) {
+			echo '<div style="padding:5px;text-align:right;">' . $statusArray[0] . '</div>';
+			foreach ($allItems as $itemName => $itemArray) {
+				if ($itemArray[0] === 'X') {
+					continue;
+				}
+				$totalNumber = getItemPerUser($itemArray[1], $userId, $statusName)[0];
+				$totalNumber = ($totalNumber < 0) ? 0 : $totalNumber;
+				if ($totalNumber == 0) {
+					echo '<div style="padding:5px;text-align:center;">' . $totalNumber . '</div>';
+				} else {
+					$cryto = new Cryptor();
+					$url = 'function=activity-table&type=' . $itemName . '&status=' . $statusName . '&allUserAdvancedUserId=' . $userId;
+					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+					echo '<a href="../includes/admin.php?activityTableId=' . $urlEn . '"><div style="' . $statusArray[1] . ' padding:5px;border-radius:100px;text-align:center;data-toggle="tooltip" title="Total Number of item:' . $itemName . ' with status ' . $statusName . ' for user=' . $userId . '"><strong>' . $totalNumber . '</strong></div></a>';
+				}
+			}
+			$totalNumber = 0;
+		}
+		echo '</div>';
+		echo <<< EOD
+					</div>
+					<div class="col-md-6" style=";padding:50px; border-left:1px solid #c7c7c7;">
+						 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+  							<div class="form-group row">
+								<label for="select" class="col-4 col-form-label"></label> 
+								<p class="h4" >Task</p>
+								<p class="h5" >Choose here to trigger Adminstrative Task</p>
+  							  <div class="col-8">
+								  <select id="select" name="select" class="select form-control">
+EOD;
+		foreach ($task as $task_key => $task_value) {
+			foreach ($task_value as $key => $value) {
+				echo <<<EOD
+		<option value="$key">$value</option>
+EOD;
+			}
+		}
+		echo <<<EOD
+  							    </select>
+  							  </div>
+  							</div> 
+  							<div class="form-group row">
+  							  <div class="offset-4 col-8">
+  							    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+  							  </div>
+  							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+EOD;
+	}
+}
+
 function activityTable()
 {
 	global $lang_sw, $lang_url;
-	___open_div_('container-fluid');
-	___open_div_('row', '" style="width:50%;');
-	___open_div_('col-md-12', '" ');
-
-	echo '<p class="h2">Item Management Table</p>';
-	echo '<p class="h3">Click on number links to take adminstrative actions</p>';
-	echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
-	$allItems = [
-		'car' => 'item_car',
-		'house' => 'item_house',
-		'computer' => 'item_computer',
-		'electronic' => 'item_electronic',
-		'phone' => 'item_phone',
-		'household' => 'item_household',
-		'other' => 'item_other',
-		'total' => 'total'
-	];
-	$activities = [
-		'Active' => [
-			'item' => $allItems,
-			'style' => ['text' => 'text-success bg-dark text-center', 'fas' => 'fas fa-check']
-		],
-		'Pending' => [
-			'item' => $allItems,
-			'style' => ['text' => 'text-warning bg-dark text-center', 'fas' => 'fas fa-pause']
-		],
-		'Reported' => [
-			'item' => $allItems,
-			'style' => ['text' => 'text-danger bg-dark text-center', 'fas' => 'fas fa-exclamation']
-		],
-		'Deleted' => [
-			'item' => $allItems,
-			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-trash']
-		],
-		'total' => [
-			'item' => $allItems,
-			'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-plus']
-		]
-	];
-	___close_div_(1);
-	___close_div_(1);
-	___open_div_('row', '" style="width:50%;');
-	___open_div_('col-md-12');
-
-	echo '<table class="table">
-          <thead>
-          <tr><th scope="col">Items</th>';
-	foreach ($activities  as $key => $value) {
-		echo '<th scope="col" class="' . $value['style']['text'] . '">' . strtoupper($key) . '</th>'; //<i class="' . $value['style']['fas fa-exclamation'] . '"></i>
-	}
-	echo '</tr></thead><tbody id="activity-table">';
-
-	$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
-	$grandTotal = $totalActive  = $totalPending = $totalReported =	$totalDeleted = 0;
-
-
-	// displays main activity table with some statistics
-	// sum across item over status and report type is presented
-	// at the same time sum of status across item is shown
-	// grand total sum should be equal.
-	foreach ($allItems  as $table_name_short => $table_name) {
-
-		$totalActivePerItem   = allItemOfStatus($table_name, 'active');
-		$totalPendingPerItem  = allItemOfStatus($table_name, 'pending');
-		$totalReportedPerItem = allReportedItem($table_name)[0];
-		$totalDeletedPerItem  = allItemOfStatus($table_name, 'deleted');
-
-		$totalActive    +=  $totalActivePerItem;
-		$totalPending   +=  $totalPendingPerItem;
-		$totalReported  +=  $totalReportedPerItem;
-		$totalDeleted   +=  $totalDeletedPerItem;
-
-		$grandTotal   = $totalActive + $totalPending  + $totalReported + $totalDeleted;
-		if ($table_name == "total") {
-			$totalArray = [
-				'totalActive' => $totalActive,
-				'totalPending' => $totalPending,
-				'totalReported' => $totalReported,
-				'totalDeleted' => $totalDeleted,
-				'grandTotal' => $grandTotal
-
-			];
-			echo '<tr>';
-			echo '<th scope="col">' . $table_name . '</th>';
-			foreach ($totalArray as $totalStatus => $totalStatusSum) {
-				echo '<td style="font-size:20px;">' . $totalStatusSum . '</td>';
-			}
-			echo '</tr>';
-		} else {
-			echo '<tr>';
-			echo '<th scope="col">' . $table_name . '</th>';
-			$status2TotalArray = [
-				'active' => $totalActivePerItem,
-				'pending' => $totalPendingPerItem,
-				'reported' => $totalReportedPerItem,
-				'deleted' => $totalDeletedPerItem,
-			];
-
-			$cryto = new Cryptor();
-			foreach ($status2TotalArray as $status => $totalStatusSum) {
-				$url = 'function=activity-table&type=' . $table_name_short . '&status=' . $status;
-				$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-
-				if ($totalStatusSum == 0) {
-					echo '<td style="font-size:18px;">0</td>';
-				} else {
-					echo '<td style="font-size:18px;" ><a href="./admin.php?actionId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
-				}
-			}
-			$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
-			echo '<td style="font-size:18px;" >' . $totalItem . '</td>';
-			echo '</tr>';
-		}
-	}
-	echo '</tbody></table>';
-	___close_div_(1);
-	___close_div_(1);
-	___close_div_(1);
-	___open_div_('row', '" style="width:80%;');
-	___open_div_('col-md-12');
-
 	///Get pointer to Cryptor class
 	$cryto = new Cryptor();
 
 	/// decode Url
-	$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($_GET['actionId']);
+	$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($_GET['activityTableId']);
 	/// extract content similar to $_GET action
 	$actionIdDecodeArr = explode("&", $actionIdDecode);
 
-	///prepare finalArray simlat to $_GET
+	///prepare finalArray simlar to $_GET
 	for ($i = 0; $i < count($actionIdDecodeArr); ++$i) {
 		$keyValue = explode("=", $actionIdDecodeArr[$i]);
 		$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
@@ -507,6 +529,129 @@ function activityTable()
 		var_dump($ACTIVITY_ARRAY);
 	}
 
+	___open_div_('container-fluid');
+	if (!isset($ACTIVITY_ARRAY['allUserAdvancedUserId'])) {
+		___open_div_('row', '" style="width:50%;');
+		___open_div_('col-md-12', '" ');
+
+		echo '<p class="h2">Item Management Table</p>';
+		echo '<p class="h3">Click on number links to take adminstrative actions</p>';
+		echo '<input id="activity-search" class="form-control form-control-md" type="text" placeholder="Search.. for items car, house, computer, " style="width:50%;">';
+		$allItems = [
+			'car' => 'item_car',
+			'house' => 'item_house',
+			'computer' => 'item_computer',
+			'electronic' => 'item_electronic',
+			'phone' => 'item_phone',
+			'household' => 'item_household',
+			'other' => 'item_other',
+			'total' => 'total'
+		];
+		$activities = [
+			'Active' => [
+				'item' => $allItems,
+				'style' => ['text' => 'text-success bg-dark text-center', 'fas' => 'fas fa-check']
+			],
+			'Pending' => [
+				'item' => $allItems,
+				'style' => ['text' => 'text-warning bg-dark text-center', 'fas' => 'fas fa-pause']
+			],
+			'Reported' => [
+				'item' => $allItems,
+				'style' => ['text' => 'text-danger bg-dark text-center', 'fas' => 'fas fa-exclamation']
+			],
+			'Deleted' => [
+				'item' => $allItems,
+				'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-trash']
+			],
+			'total' => [
+				'item' => $allItems,
+				'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-plus']
+			]
+		];
+		___close_div_(1);
+		___close_div_(1);
+		___open_div_('row', '" style="width:50%;');
+		___open_div_('col-md-12');
+
+		echo '<table class="table">
+          <thead>
+          <tr><th scope="col">Items</th>';
+		foreach ($activities  as $key => $value) {
+			echo '<th scope="col" class="' . $value['style']['text'] . '">' . strtoupper($key) . '</th>'; //<i class="' . $value['style']['fas fa-exclamation'] . '"></i>
+		}
+		echo '</tr></thead><tbody id="activity-table">';
+
+		$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
+		$grandTotal = $totalActive  = $totalPending = $totalReported =	$totalDeleted = 0;
+
+
+		// displays main activity table with some statistics
+		// sum across item over status and report type is presented
+		// at the same time sum of status across item is shown
+		// grand total sum should be equal.
+		foreach ($allItems  as $table_name_short => $table_name) {
+
+			$totalActivePerItem   = allItemOfStatus($table_name, 'active');
+			$totalPendingPerItem  = allItemOfStatus($table_name, 'pending');
+			$totalReportedPerItem = getItemWithStatusReported($table_name)[0];
+			$totalDeletedPerItem  = allItemOfStatus($table_name, 'deleted');
+
+			$totalActive    +=  $totalActivePerItem;
+			$totalPending   +=  $totalPendingPerItem;
+			$totalReported  +=  $totalReportedPerItem;
+			$totalDeleted   +=  $totalDeletedPerItem;
+
+			$grandTotal   = $totalActive + $totalPending  + $totalReported + $totalDeleted;
+			if ($table_name == "total") {
+				$totalArray = [
+					'totalActive' => $totalActive,
+					'totalPending' => $totalPending,
+					'totalReported' => $totalReported,
+					'totalDeleted' => $totalDeleted,
+					'grandTotal' => $grandTotal
+
+				];
+				echo '<tr>';
+				echo '<th scope="col">' . $table_name . '</th>';
+				foreach ($totalArray as $totalStatus => $totalStatusSum) {
+					echo '<td style="font-size:20px;">' . $totalStatusSum . '</td>';
+				}
+				echo '</tr>';
+			} else {
+				echo '<tr>';
+				echo '<th scope="col">' . $table_name . '</th>';
+				$status2TotalArray = [
+					'active' => $totalActivePerItem,
+					'pending' => $totalPendingPerItem,
+					'reported' => $totalReportedPerItem,
+					'deleted' => $totalDeletedPerItem,
+				];
+
+				$cryto = new Cryptor();
+				foreach ($status2TotalArray as $status => $totalStatusSum) {
+					$url = 'function=activity-table&type=' . $table_name_short . '&status=' . $status;
+					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+
+					if ($totalStatusSum == 0) {
+						echo '<td style="font-size:18px;">0</td>';
+					} else {
+						echo '<td style="font-size:18px;" ><a href="./admin.php?activityTableId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
+					}
+				}
+				$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
+				echo '<td style="font-size:18px;" >' . $totalItem . '</td>';
+				echo '</tr>';
+			}
+		}
+		echo '</tbody></table>';
+		___close_div_(1);
+		___close_div_(1);
+		___close_div_(1);
+	}
+	___open_div_('row', '" style="width:80%;');
+	___open_div_('col-md-12');
+
 	/**
 	 * ACTION EXECUTIONS HERE
 	 */
@@ -515,8 +660,13 @@ function activityTable()
 		$item = $ACTIVITY_ARRAY['type'];
 		$status = $ACTIVITY_ARRAY['status'];
 		$action = $ACTIVITY_ARRAY['action'];
+		$allUserAdvancedUserId = isset($ACTIVITY_ARRAY['allUserAdvancedUserId']) ? $ACTIVITY_ARRAY['allUserAdvancedUserId'] : 0;
 		if ($action == 'reported') {
 			/// take action on specific report type by removing from the list in field_report
+			if ($allUserAdvancedUserId !== 0) {
+			} else {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			}
 			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
 			if (isset($ACTIVITY_ARRAY['unreport'])) {
 				$clearSpecificReport = $ACTIVITY_ARRAY['unreport'];
@@ -536,7 +686,7 @@ function activityTable()
 			/// finally update table with new data
 			$itemObject->updateCurrent();
 		} else {
-			/// Change status of item 
+			/// Update user status of item 
 			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
 			if ($action == 'distroy') {
 				///here permanent damage, data unrecoverable!!
@@ -550,7 +700,7 @@ function activityTable()
 		/// To activity table 
 		$url = 'function=activity-table&type=' . $item . '&status=' . $status;
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-		header('Location: ./admin.php?actionId=' . $urlEn);
+		header('Location: ./admin.php?activityTableId=' . $urlEn);
 	}
 	/**
 	 * ACTION TRIGGERED HERE
@@ -558,22 +708,39 @@ function activityTable()
 	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['status'])) {
 		$item = $ACTIVITY_ARRAY['type'];
 		$status = $ACTIVITY_ARRAY['status'];
-		echo '<p class="h1">List of ' . $item . ' with status=' . $status . '</p>';
+		$allUserAdvancedUserId = isset($ACTIVITY_ARRAY['allUserAdvancedUserId']) ? (int) $ACTIVITY_ARRAY['allUserAdvancedUserId'] : 0;
+		if ($allUserAdvancedUserId !== 0) {
+			echo '<p class="h1">List of ' . $item . ' with status=' . $status . ' for UserId='.$allUserAdvancedUserId .'</p>';
+		}
+		else {
+			echo '<p class="h1">List of ' . $item . ' with status=' . $status . '</p>';
+		}	
 
 		//main array to display for table below
 		$itemRawDataToTable = [];
 		// report is not a status hence speciall handling is required
 		/// here search if an item have a field_report is set
 		if ($status == 'reported') {
-			$itemObject = ObjectPool::getInstance()->getObjectWithId($item);
-			$itemObject->runQuery("WHERE field_report IS NOT NULL");
+			if ($allUserAdvancedUserId !== 0) {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item);
+				$itemObject->runQuery("WHERE field_report IS NOT NULL AND id_user = " . $allUserAdvancedUserId);
+			} else {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item);
+				$itemObject->runQuery("WHERE field_report IS NOT NULL");
+			}
 			$result = $itemObject->getResultSet();
 			$result->data_seek(0);
 			while ($row = $result->fetch_assoc()) {
 				array_push($itemRawDataToTable, $row);
 			}
 		} else {
-			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
+			if ($allUserAdvancedUserId !== 0) {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item);
+				$itemObject->runQuery('WHERE id_user = ' . $allUserAdvancedUserId . ' AND field_status = "' . $status . '"');
+			} else {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
+			}
+			//$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
 			$result = $itemObject->getResultSet();
 			$result->data_seek(0);
 			while ($row = $result->fetch_assoc()) {
@@ -587,7 +754,7 @@ function activityTable()
 		/// start : table header
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
-		echo '<thead><tr><th class="th-sm">	Action (Change status)</th>';
+		echo '<thead><tr><th class="th-sm">	Action (Update user status)</th>';
 		// echo '<th class="th-sm">	Reported For</th>';
 
 		foreach ($header as $k1 => $v1) {
@@ -662,7 +829,7 @@ function activityTable()
 						$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&action=' . $action . '&status=' . $status;
 						$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
 
-						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?actionId=' . $urlEn . '" method="post">';
+						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?activityTableId=' . $urlEn . '" method="post">';
 						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' class="btn btn-rounded btn-sm ' . $value[1]
 							. '"' . $disabled .	' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
 						echo '</form>';
@@ -675,7 +842,7 @@ function activityTable()
 					/// To display Item on Id
 					$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&status=' . $status;
 					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-					echo '<td><a href="./admin.php?actionId=' . $urlEn . '">';
+					echo '<td><a href="./admin.php?activityTableId=' . $urlEn . '">';
 					echo '<button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
 					$j++;
 				} else {
@@ -688,7 +855,7 @@ function activityTable()
 								$allAbuse = new HtCategoryAbuse((int) $value);
 								$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&action=reported&unreport=' . $value . '&status=' . $status;
 								$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-								echo '<a href="./admin.php?actionId=' . $urlEn . '">Clear <strong>' . $allAbuse->getFieldName() . '</strong> Report</a><br>';
+								echo '<a href="./admin.php?activityTableId=' . $urlEn . '">Clear <strong>' . $allAbuse->getFieldName() . '</strong> Report</a><br>';
 							}
 							echo '</td>';
 						} else {
@@ -718,79 +885,12 @@ function activityTable()
 		if ($status == 'reported') {
 			(new  HtMainView($item, $id, null))->showOneItem();
 		} else {
-			(new  HtMainView($item, $id, $status))->showOneItem();
+			echo '<p class="h1">SOMETHING IS BROKEN HERE DETAIL VIEW DOES NOT DISPLAY</p>';
+			(new  HtMainView($item, $id, $status))->showOneItem();			
 		}
 	}
 }
 
-function listUsers()
-{
-	$roleList = ['webmaster', 'admin', 'user'];
-	$sql =  array('sql' => "SELECT * FROM user_all ORDER BY field_privilege");
-	$userAll = new HtUserAll($sql);
-	$result = $userAll->getResultSet();
-	global $lang_sw;
-	echo '<div class="container-fluid" style="text-align:left;">';
-	___open_div_("row");
-	___open_div_("col-md-12");
-	___open_div_("row");
-	___open_div_("col-md-4");
-	echo '
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					UserId
-				</th>
-				<th>
-					Email
-				</th>
-				<th>
-					Phone
-				</th>
-				<th>
-				   Privilege
-				</th>
-			</tr>
-		</thead>
-		<tbody>';
-
-	while ($row = $result->fetch_object()) {
-		$style = "";
-		if ($_GET["ID"] == $row->id) {
-			$style = '"background-color:#00203FFF;color:#ADEFD1FF"';
-		}
-		echo <<< EOD
-		<tr style={$style}>
-			<td>
-				{$row->id}
-			</td>
-			<td>
-				{$row->field_email}
-			</td>
-			<td>
-				{$row->field_phone_nr}
-			</td>
-			<td>
-				<a href="../includes/template.content.php?type=controlPanel&ID={$row->id}{$lang_sw}">{$row->field_privilege}</a>
-			</td>
-		</tr>										
-EOD;
-	}
-	$token = Token::generate();
-	echo <<< EOD
-  				</tbody>
-				</table>
-				</div>
-				<div class="col-md-8">
-				<input type="hidden" name="token"  value="{$token}">
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-EOD;
-}
 function getSessionId()
 {
 	return $_SESSION['uID'];

@@ -103,8 +103,13 @@ EOD;
                 <li>
 
                     <?php
+                    if ((isset($_GET['function']) && $_GET['function'] == 'all-users') ||
+                        (isset($_GET['allUserId']) && $_GET['allUserId'] !== '')
+                    ) {
+                        $style1 = ' style="background-color:white;"';
+                    }
                     echo <<<EOD
-                    <a href="./admin.php{$lang_url}&order=open&function=all-users">
+                    <a href="./admin.php{$lang_url}&order=open&function=all-users" '.$style1.'">
                     <i class="fas fa-users"></i>
                     All Users
                     </a>
@@ -115,8 +120,13 @@ EOD;
 
                 <li>
                     <?php
+                    if ((isset($_GET['function']) && $_GET['function'] == 'activity-table') ||
+                        (isset($_GET['activityTableId']) && $_GET['activityTableId'] !== '')
+                    ) {
+                        $style2 = ' style="background-color:white;"';
+                    }
                     echo <<<EOD
-                    <a href="./admin.php{$lang_url}&order=open&function=activity-table">
+                    <a href="./admin.php{$lang_url}&order=open&function=activity-table" '.$style2.'>
                     <i class="fas fa-crosshairs"></i>
                     Activity Table
                     </a>
@@ -144,20 +154,15 @@ EOD;
 
 
             <?php
-            if (isset($_GET['function'])) {
-                if ($_GET['function'] == 'edit-profile') {
-                    editProfile();
-                } else if ($_GET['function'] == 'message') {
-                    message();
-                } else if ($_GET['function'] == 'all-users') {
-                    allUsers();
-                } else {
-                    activityTable();
-                }
-            } else if (isset($_GET['actionId'])) {
+            if ((isset($_GET['function']) && $_GET['function'] == 'edit-profile')) {
+                editProfile();
+            } else if ((isset($_GET['function']) && $_GET['function'] == 'message')) {
+                message();
+            } else if ((isset($_GET['function']) && $_GET['function'] == 'all-users') || isset($_GET['allUserId'])) {
+                allUsers();
+            } else if ((isset($_GET['function']) && $_GET['function'] == 'activity-table') || isset($_GET['activityTableId'])) {
                 activityTable();
             } else {
-                //<img src="../images/admin_welcome.jpg" style="width:100%;">
                 echo '<p class="h1">Welcome! Please take action on the left, (under construction)</p>';
             }
             ?>
