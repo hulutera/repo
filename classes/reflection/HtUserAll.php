@@ -150,6 +150,19 @@ class HtUserAll extends MySqlRecord
     private $fieldPrivilege;
 
     /**
+     * Class attribute for table field field_privilege
+     *
+     * Comment for field field_privilege: Not specified.<br>
+     * Field information:
+     *  1000 : Websmaster
+     *   100 : Administrator (Admin)
+     *    50 : Modertor (Mod)
+     *     0 : user
+     * @var int $fieldRank
+     */
+    private $fieldRank;
+
+    /**
      * Class attribute for mapping table field field_contact_method
      *
      * Comment for field field_contact_method: Not specified.<br>
@@ -325,8 +338,9 @@ class HtUserAll extends MySqlRecord
      * @category Modifier
      */
     public function setFieldPassword($fieldPassword)
-    {        
-        $cryptoPassword = base64_encode(Cryptor::getInstance()->encryptor($fieldPassword));
+    {
+        $crypto = new Cryptor();
+        $cryptoPassword = base64_encode($crypto->encryptor($fieldPassword));
         $this->fieldPassword = (string) $cryptoPassword;
     }
 
@@ -509,7 +523,8 @@ class HtUserAll extends MySqlRecord
      */
     public function getFieldPassword()
     {
-        return  Cryptor::getInstance()->decryptor(base64_decode($this->fieldPassword));
+        $crypto = new Cryptor();
+        return  $crypto->decryptor(base64_decode($this->fieldPassword));
     }
 
     /**
@@ -557,6 +572,29 @@ class HtUserAll extends MySqlRecord
         return $this->fieldPrivilege == 'user' ? true : false;
     }
 
+    /**
+     * Check if user has user Privilege
+     */
+    public function getFieldRank()
+    {
+        return (int) $this->fieldRank;
+    }
+
+    /**
+     * Check if user has user Privilege
+     */
+    public function setFieldRank()
+    {
+        if ($this->isWebMaster()) {
+            $this->fieldRank = 1000;
+        } else if ($this->isAdmin()) {
+            $this->fieldRank = 100;
+        } else if ($this->isModerator()) {
+            $this->fieldRank = 50;
+        } else if ($this->isUser()) {
+            $this->fieldRank = 0;
+        }
+    }
     /**
      * Check if user is admin Privilege
      */
@@ -731,6 +769,7 @@ class HtUserAll extends MySqlRecord
         } else {
             $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
+        $this->setFieldRank();
         return $this->affected_rows;
     }
 
@@ -831,8 +870,6 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
-            echo $sql;
-            //return;
             $this->set_charset('utf8');
             $this->query('SET NAMES utf8');
 
