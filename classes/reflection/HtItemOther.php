@@ -1017,24 +1017,24 @@ class HtItemOther extends MySqlRecord
         if ($searchType == "single-item") {
             $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
             $titleFilter = "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'";
-            $locationFilter = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
+            $locationFilter = ($this->locationValue != "000" and $this->locationValue != "All")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
 
             $itemFilter = "$titleFilter AND  $typeFilter AND $locationFilter";
         } else {
             $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" :  "field_name LIKE 'No search word given'";
             $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
 
-            $itemFilter = "( $titleFilter OR  $typeFilter OR  $locationFilter OR $locationFilter2)";
+            $itemFilter = "( ($titleFilter OR  $typeFilter OR  $locationFilter) $locationFilter2)";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
 
         if ($itemPerPage == null) {
-            $sql =  "SELECT  $itemTable.id, field_upload_date, field_table_type  FROM $itemTable  $joinCatTable $filter";
+            $sql =  "SELECT DISTINCT $itemTable.id, field_upload_date, field_table_type  FROM $itemTable  $joinCatTable $filter";
         } else {
-            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT DISTINCT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
 
         $this->resetLastSqlError();

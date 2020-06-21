@@ -1453,7 +1453,7 @@ class HtItemCar extends MySqlRecord
             $colorFilter = ($this->colorValue != "none") ? "field_color LIKE '" .  $this->replaceAposBackSlash($this->colorValue) . "'" : "( field_color LIKE '%' OR field_color is null )";
             $gearFilter = ($this->gearValue != "none") ? "field_gear_type LIKE '" .  $this->replaceAposBackSlash($this->gearValue) . "'" : "( field_gear_type LIKE '%' OR field_gear_type is null )";
             $fuelFilter = ($this->fuelValue != "none") ? "field_fuel_type LIKE '" .  $this->replaceAposBackSlash($this->fuelValue) . "'" : "( field_fuel_type LIKE '%' OR field_fuel_type is null )";
-            $locationFilter = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
+            $locationFilter = ($this->locationValue != "000" and $this->locationValue != "All")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE '%' OR field_location is null )";
 
             $itemFilter = "$titleFilter AND  $typeFilter AND $makeFilter AND $colorFilter AND $gearFilter AND $fuelFilter AND $locationFilter";
         } else {
@@ -1464,19 +1464,19 @@ class HtItemCar extends MySqlRecord
             $gearFilter = ($this->keyWordValue != "") ? "field_gear_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_gear_type LIKE 'No search word given'";
             $fuelFilter = ($this->keyWordValue != "") ? "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_fuel_type LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "') " : "OR ( field_location LIKE 'No search word given' )";
 
-            $itemFilter = "( $titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter OR $locationFilter2)";
+            $itemFilter = "( ($titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter) $locationFilter2)";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $modelYearFilter AND $itemFilter";
 
         if ($itemPerPage == null) {
-            $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
+            $sql =  "SELECT DISTINCT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
-            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT DISTINCT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-
+        
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;

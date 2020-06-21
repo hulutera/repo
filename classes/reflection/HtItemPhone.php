@@ -1195,7 +1195,7 @@ class HtItemPhone extends MySqlRecord
             $typeFilter = ($this->typeValue != "none") ? "field_name LIKE '" .  $this->replaceAposBackSlash($this->typeValue) . "'" : "( field_name LIKE '%' OR field_name is null )";
             $makeFilter = ($this->makeValue != "none") ? "field_make LIKE '" .  $this->replaceAposBackSlash($this->makeValue) . "'" : "( field_make LIKE '%' OR field_make is null )";
             $osFilter = ($this->osValue != "none") ? "field_os LIKE '" .  $this->replaceAposBackSlash($this->osValue) . "'" : "( field_os LIKE '%' OR field_os is null )";
-            $cameraFilter = ($this->cameraValue != "none") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($$this->cameraValue) . "'" : "( field_camera LIKE '%' OR field_camera is null )";
+            $cameraFilter = ($this->cameraValue != "none" and $this->locationValue != "All") ? "field_camera LIKE '" .  $this->replaceAposBackSlash($$this->cameraValue) . "'" : "( field_camera LIKE '%' OR field_camera is null )";
 
             $itemFilter = "$locationFilter AND $titleFilter AND $typeFilter AND $makeFilter AND $osFilter AND $cameraFilter";
         } else {
@@ -1205,17 +1205,17 @@ class HtItemPhone extends MySqlRecord
             $makeFilter = ($this->keyWordValue != "") ? "field_make LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_make LIKE 'No search word given'";
             $osFilter = ($this->keyWordValue != "") ? "field_os LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_os LIKE 'No search word given'";
             $cameraFilter = ($this->keyWordValue != "") ? "field_camera LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_camera LIKE  'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000")  ? "field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "'" : "( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
 
-            $itemFilter = "( $locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter OR $locationFilter2 )";
+            $itemFilter = "( ($locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter) $locationFilter2 )";
         }
 
         $filter = "$statusFilter AND $maxPriceFilter AND $itemFilter";
 
         if ($itemPerPage == null) {
-            $sql =  "SELECT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
+            $sql =  "SELECT DISTINCT $itemTable.id, field_upload_date, field_table_type FROM $itemTable  $joinCatTable $filter";
         } else {
-            $sql =  "SELECT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
+            $sql =  "SELECT DISTINCT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
 
         $this->resetLastSqlError();

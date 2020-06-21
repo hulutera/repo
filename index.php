@@ -29,6 +29,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 		<div id="wrapper" style="width:100%">
 			<div class="leftNav-index col-xs-2 col-md-2">   <!!----#leftNav start-------!!>
 				<?php
+				echo "<ul>";
 				foreach ($item_lang_arr as $key => $value) {
 
 					if ($key == "All") echo '<li style="background-color:#378de5; color: #fff"> ' . $value . '</li>';
@@ -39,6 +40,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 						echo '<a href="../../includes/template.item.php?type=' . $key . $str_url . '" style="color:black"><li>' . $value . ' (' . $rows . ')</li></a>';
 					}
 				}
+				echo "</ul>";
 				?>
 			</div>  <!!----#leftNav end-------!!>
 

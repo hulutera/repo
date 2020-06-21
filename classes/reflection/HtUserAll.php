@@ -1004,11 +1004,11 @@ SQL;
         //___open_div_("col-md-12", '');
         global $str_url;
         ___open_div_("col-md-6", '');
-        echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '">' .
+        echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        echo '<p ><a class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' .
+        echo '<p ><a class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldPrivacyPolicy'][0]['message'] . '</a></p>';
         ___close_div_(1);
         ___close_div_(5);

@@ -221,8 +221,8 @@ function topRightLinks($style = null)
 
 function topRightHelpLink()
 {
-	global $str_url;
-	echo '<a href="../../includes/template.proxy.php?type=help' . $str_url . '">';
+	global $str_url, $lang_url;
+	echo '<a href="../../includes/help.php' . $lang_url . '" target="_blank">';
 	echo '<div id="toplinktexts">';
 	echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
 	echo '</div>';
@@ -808,7 +808,7 @@ function footerCode()
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
 		<p style="margin-bottom:5px"><a href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
-		<p style="margin-bottom:5px"><a href="../../includes/help.php">' . $lang['Help'] . '</a></p>
+		<p style="margin-bottom:5px"><a href="../../includes/help.php'. $lang_url . '" target="_blank">' . $lang['Help'] . '</a></p>
 		</div>';
 	echo '<div id="followUs_fo" >
 		  <p class="h4">' . $lang['FOLLOW US'] . '</p>
