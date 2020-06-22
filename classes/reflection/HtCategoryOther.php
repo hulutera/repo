@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtCategoryOther
  * @extends MySqlRecord
  * @filesource HtCategoryOther.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,9 +43,9 @@ class HtCategoryOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldName
      */
     private $fieldName;
@@ -66,7 +66,7 @@ class HtCategoryOther extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -79,7 +79,7 @@ class HtCategoryOther extends MySqlRecord
      */
     public function setFieldName($fieldName)
     {
-        $this->fieldName = (string)$fieldName;
+        $this->fieldName = (string) $fieldName;
     }
 
     /**
@@ -119,10 +119,10 @@ class HtCategoryOther extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "category_other";
@@ -158,7 +158,6 @@ class HtCategoryOther extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -172,15 +171,15 @@ class HtCategoryOther extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM category_other";
         } else { //id
-            $sql =  "SELECT * FROM category_other WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM category_other WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
 
         /*
@@ -194,7 +193,6 @@ class HtCategoryOther extends MySqlRecord
         }
         return $this->affected_rows;
         */
-        
     }
 
     /**
@@ -205,12 +203,12 @@ class HtCategoryOther extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM category_other WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM category_other WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -232,13 +230,13 @@ class HtCategoryOther extends MySqlRecord
             INSERT INTO category_other
             (field_name)
             VALUES(
-			{$this->parseValue($this->fieldName,'notNumber')})
+			{$this->parseValue($this->fieldName, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -264,15 +262,15 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 category_other
-            SET 
-				field_name={$this->parseValue($this->fieldName,'notNumber')}
+            SET
+				field_name={$this->parseValue($this->fieldName, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -298,31 +296,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for category_other previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for category_other previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into category_other.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into category_other.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

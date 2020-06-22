@@ -32,4 +32,5 @@ if (!$isValidUrl)
 	</div>
 	<?php footerCode(); ?>
 </body>
+
 </html>

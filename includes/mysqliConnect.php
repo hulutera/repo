@@ -42,5 +42,3 @@ if ($connect) {
 	error_reporting(0);
 	die('Could not connect:' . mysqli_connect_errno());
 }
-
-?>

@@ -3,10 +3,10 @@
 /**
  * Defines the constants for MySQL database connection parameters.
  */
-define("DBHOST","localhost");
-define("DBUSER","root");
-define("DBPASSWORD","");
-define("DBNAME","hulutera_db");
+define("DBHOST", "localhost");
+define("DBUSER", "root");
+define("DBPASSWORD", "");
+define("DBNAME", "hulutera_db");
 define('DBPORT', '3306');
 
 /**
@@ -21,7 +21,7 @@ define('DBPORT', '3306');
  * For more information read the MySQL specifications for date format
  * Most used  format: define("FETCHED_DATE_FORMAT","d/m/Y");
  */
-define("FETCHED_DATE_FORMAT","d/m/Y");
+define("FETCHED_DATE_FORMAT", "d/m/Y");
 // define("FETCHED_DATE_FORMAT","Y-m-d");
 
 /**
@@ -32,7 +32,7 @@ define("FETCHED_DATE_FORMAT","d/m/Y");
  * Most used format: define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
  *
  */
-define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
+define("FETCHED_DATETIME_FORMAT", "d/m/Y H:i:s");
 // define("FETCHED_DATETIME_FORMAT","Y-m-d H:i:s");
 
 /**
@@ -42,7 +42,7 @@ define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
  * For more information read the MySQL specifications for date format
  * Most used format: define("STORED_DATE_FORMAT","%d/%m/%Y");
  */
-define("STORED_DATE_FORMAT","%d/%m/%Y");
+define("STORED_DATE_FORMAT", "%d/%m/%Y");
 // define("STORED_DATE_FORMAT","%Y-%m-%d");
 
 /**
@@ -52,7 +52,7 @@ define("STORED_DATE_FORMAT","%d/%m/%Y");
  * For more information read the MySQL specifications for date format
  * Most used format: define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
  */
-define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
+define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
 // define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
 
 /**
@@ -68,27 +68,27 @@ if (isWindows()) {
 /**
  * Defines the author name
  */
-define ("AUTHOR_NAME","Rosario Carvello");
+define("AUTHOR_NAME", "Rosario Carvello");
 
 /**
  * Defines the author email
  */
-define ("AUTHOR_EMAIL","rosario.carvello@gmail.com");
+define("AUTHOR_EMAIL", "rosario.carvello@gmail.com");
 
 /**
  * Defines the package name
  */
-define ("PACKAGE_NAME","beans");
+define("PACKAGE_NAME", "beans");
 
 /**
  * Defines the package version
  */
-define ("PACKAGE_VERSION","v1.0.0");
+define("PACKAGE_VERSION", "v1.0.0");
 
 /**
  * Defines the class parent for the generated classes
  */
-define ("CLASS_PARENT","MySqlRecord");
+define("CLASS_PARENT", "MySqlRecord");
 
 
 /**
@@ -106,7 +106,8 @@ include_once("mysqlreflection/MVCMySqlPKAnalyzer.php");
  * Return true if Linux
  * @return bool
  */
-function IsLinux() {
+function IsLinux()
+{
     return (stristr(PHP_OS, 'linux') !== false);
 }
 
@@ -114,6 +115,7 @@ function IsLinux() {
  * Return true if Windows
  * @return bool
  */
-function  IsWindows() {
-    return (stristr(PHP_OS, 'winnt')!==false || stristr(PHP_OS, 'win32')!==false);
+function  IsWindows()
+{
+    return (stristr(PHP_OS, 'winnt') !== false || stristr(PHP_OS, 'win32') !== false);
 }

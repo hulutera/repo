@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class MySqlRecord
  * Base class for the auto generated beans
@@ -73,37 +74,37 @@ class MySqlRecord extends Model
      * @param string $type The data type of first parameter, default is number (int/float) value
      * @return null|string|int|float quoted or not value
      */
-    protected function parseValue($value=null,$type="number")
+    protected function parseValue($value = null, $type = "number")
     {
         $constants = get_defined_constants();
 
-        if ( $type=="int" || $type=="float" || $type=="real" || $type=="double") {
-            if ($value !=null) {
+        if ($type == "int" || $type == "float" || $type == "real" || $type == "double") {
+            if ($value != null) {
                 switch ($type) {
                     case "double":
-                        $value = (double)$value;
+                        $value = (float) $value;
                         break;
                     case "float":
-                        $value = (float)$value;;
+                        $value = (float) $value;;
                         break;
                     case "real":
-                        $value = (real)$value;;
+                        $value = (float) $value;;
                         break;
                     default:
-                        $value = (int)$value;;
+                        $value = (int) $value;;
                 }
             }
             $type = "number";
         }
-        if ($value==null) {
+        if ($value == null) {
             return "NULL";
-        } else if ($value !=null && $type!="number" && $type!="date" && $type!="datetime") {
+        } else if ($value != null && $type != "number" && $type != "date" && $type != "datetime") {
             return "'" . $this->real_escape_string($value) . "'";
-        } else if ($value !=null && $type!="number" && $type=="date") {
+        } else if ($value != null && $type != "number" && $type == "date") {
             return    "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATE_FORMAT'] . "')";
-        } else if ($value !=null && $type!="number" && $type=="datetime") {
+        } else if ($value != null && $type != "number" && $type == "datetime") {
             return    "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATETIME_FORMAT'] . "')";
-        } else if ($value !=null && $type=="number" && is_numeric($value)){
+        } else if ($value != null && $type == "number" && is_numeric($value)) {
             return $value;
         } else {
             return "NULL";
@@ -116,10 +117,10 @@ class MySqlRecord extends Model
      * @param  string $field The field to replace
      * @return string the field without backslash for the aphos
      */
-    protected function replaceAposBackSlash($field){
-        $r1 =  str_replace("\'","'",$field);
-        $r2 =  str_replace("\\\\","\\",$r1);
+    protected function replaceAposBackSlash($field)
+    {
+        $r1 =  str_replace("\'", "'", $field);
+        $r2 =  str_replace("\\\\", "\\", $r1);
         return $r2;
     }
-
 }

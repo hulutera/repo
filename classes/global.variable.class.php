@@ -3,7 +3,8 @@ class HtGlobal
 {
     private static $htGlobal;
 
-    public function __construct(){
+    public function __construct()
+    {
         self::init();
     }
 
@@ -92,7 +93,7 @@ class HtGlobal
             "imagePerItem"
             => 5,
             "noItemToShow"
-             => "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>",
+            => "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>",
 
         ];
 

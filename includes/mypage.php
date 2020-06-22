@@ -24,10 +24,11 @@ if (!isset($_SESSION['uID'])) {
 </head>
 
 <body>
-   	<?php headerAndSearchCode(""); ?>
-	<div class="row" style="text-align:start;width:100%;margin:10px;">
-		<?php yourPage(); ?>
-	</div>
-	<?php footerCode(); ?>
+    <?php headerAndSearchCode(""); ?>
+    <div class="row" style="text-align:start;width:100%;margin:10px;">
+        <?php yourPage(); ?>
+    </div>
+    <?php footerCode(); ?>
 </body>
+
 </html>

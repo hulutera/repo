@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtUserAdmin
  * @extends MySqlRecord
  * @filesource HtUserAdmin.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,9 +43,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldUserName
      */
     private $fieldUserName;
@@ -57,9 +57,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldFirstName
      */
     private $fieldFirstName;
@@ -71,9 +71,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLastName
      */
     private $fieldLastName;
@@ -85,9 +85,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldEmail
      */
     private $fieldEmail;
@@ -99,9 +99,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPhoneNr
      */
     private $fieldPhoneNr;
@@ -113,9 +113,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldAddress
      */
     private $fieldAddress;
@@ -127,9 +127,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPassword
      */
     private $fieldPassword;
@@ -141,9 +141,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: user
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPrivilege
      */
     private $fieldPrivilege;
@@ -155,9 +155,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -169,9 +169,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: tinyint(1)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTermAndCondition
      */
     private $fieldTermAndCondition;
@@ -183,7 +183,7 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldRegisterDate
@@ -197,9 +197,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldNewPassword
      */
     private $fieldNewPassword;
@@ -211,9 +211,9 @@ class HtUserAdmin extends MySqlRecord
      * Field information:
      *  - Data type: varchar(60)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldActivation
      */
     private $fieldActivation;
@@ -234,7 +234,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -247,7 +247,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldUserName($fieldUserName)
     {
-        $this->fieldUserName = (string)$fieldUserName;
+        $this->fieldUserName = (string) $fieldUserName;
     }
 
     /**
@@ -260,7 +260,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldFirstName($fieldFirstName)
     {
-        $this->fieldFirstName = (string)$fieldFirstName;
+        $this->fieldFirstName = (string) $fieldFirstName;
     }
 
     /**
@@ -273,7 +273,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldLastName($fieldLastName)
     {
-        $this->fieldLastName = (string)$fieldLastName;
+        $this->fieldLastName = (string) $fieldLastName;
     }
 
     /**
@@ -286,7 +286,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldEmail($fieldEmail)
     {
-        $this->fieldEmail = (string)$fieldEmail;
+        $this->fieldEmail = (string) $fieldEmail;
     }
 
     /**
@@ -299,7 +299,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldPhoneNr($fieldPhoneNr)
     {
-        $this->fieldPhoneNr = (string)$fieldPhoneNr;
+        $this->fieldPhoneNr = (string) $fieldPhoneNr;
     }
 
     /**
@@ -312,7 +312,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldAddress($fieldAddress)
     {
-        $this->fieldAddress = (string)$fieldAddress;
+        $this->fieldAddress = (string) $fieldAddress;
     }
 
     /**
@@ -325,7 +325,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldPassword($fieldPassword)
     {
-        $this->fieldPassword = (string)$fieldPassword;
+        $this->fieldPassword = (string) $fieldPassword;
     }
 
     /**
@@ -338,7 +338,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldPrivilege($fieldPrivilege)
     {
-        $this->fieldPrivilege = (string)$fieldPrivilege;
+        $this->fieldPrivilege = (string) $fieldPrivilege;
     }
 
     /**
@@ -351,7 +351,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldContactMethod($fieldContactMethod)
     {
-        $this->fieldContactMethod = (string)$fieldContactMethod;
+        $this->fieldContactMethod = (string) $fieldContactMethod;
     }
 
     /**
@@ -364,7 +364,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldTermAndCondition($fieldTermAndCondition)
     {
-        $this->fieldTermAndCondition = (int)$fieldTermAndCondition;
+        $this->fieldTermAndCondition = (int) $fieldTermAndCondition;
     }
 
     /**
@@ -377,7 +377,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldRegisterDate($fieldRegisterDate)
     {
-        $this->fieldRegisterDate = (string)$fieldRegisterDate;
+        $this->fieldRegisterDate = (string) $fieldRegisterDate;
     }
 
     /**
@@ -390,7 +390,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldNewPassword($fieldNewPassword)
     {
-        $this->fieldNewPassword = (string)$fieldNewPassword;
+        $this->fieldNewPassword = (string) $fieldNewPassword;
     }
 
     /**
@@ -403,7 +403,7 @@ class HtUserAdmin extends MySqlRecord
      */
     public function setFieldActivation($fieldActivation)
     {
-        $this->fieldActivation = (string)$fieldActivation;
+        $this->fieldActivation = (string) $fieldActivation;
     }
 
     /**
@@ -599,10 +599,10 @@ class HtUserAdmin extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "user_admin";
@@ -638,7 +638,6 @@ class HtUserAdmin extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -652,19 +651,19 @@ class HtUserAdmin extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM user_admin";
         } else { //id
-            $sql =  "SELECT * FROM user_admin WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM user_admin WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
+            @$this->id = (int) $rowObject->id;
             @$this->fieldUserName = $this->replaceAposBackSlash($rowObject->field_user_name);
             @$this->fieldFirstName = $this->replaceAposBackSlash($rowObject->field_first_name);
             @$this->fieldLastName = $this->replaceAposBackSlash($rowObject->field_last_name);
@@ -674,16 +673,15 @@ class HtUserAdmin extends MySqlRecord
             @$this->fieldPassword = $this->replaceAposBackSlash($rowObject->field_password);
             @$this->fieldPrivilege = $this->replaceAposBackSlash($rowObject->field_privilege);
             @$this->fieldContactMethod = $this->replaceAposBackSlash($rowObject->field_contact_method);
-            @$this->fieldTermAndCondition = (integer)$rowObject->field_term_and_condition;
+            @$this->fieldTermAndCondition = (int) $rowObject->field_term_and_condition;
             @$this->fieldRegisterDate = $rowObject->field_register_date;
             @$this->fieldNewPassword = $this->replaceAposBackSlash($rowObject->field_new_password);
             @$this->fieldActivation = $this->replaceAposBackSlash($rowObject->field_activation);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -694,15 +692,15 @@ class HtUserAdmin extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM user_admin WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM user_admin WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -724,28 +722,28 @@ class HtUserAdmin extends MySqlRecord
             INSERT INTO user_admin
             (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation)
             VALUES(
-			{$this->parseValue($this->fieldUserName,'notNumber')},
-			{$this->parseValue($this->fieldFirstName,'notNumber')},
-			{$this->parseValue($this->fieldLastName,'notNumber')},
-			{$this->parseValue($this->fieldEmail,'notNumber')},
-			{$this->parseValue($this->fieldPhoneNr,'notNumber')},
-			{$this->parseValue($this->fieldAddress,'notNumber')},
-			{$this->parseValue($this->fieldPassword,'notNumber')},
-			{$this->parseValue($this->fieldPrivilege,'notNumber')},
-			{$this->parseValue($this->fieldContactMethod,'notNumber')},
+			{$this->parseValue($this->fieldUserName, 'notNumber')},
+			{$this->parseValue($this->fieldFirstName, 'notNumber')},
+			{$this->parseValue($this->fieldLastName, 'notNumber')},
+			{$this->parseValue($this->fieldEmail, 'notNumber')},
+			{$this->parseValue($this->fieldPhoneNr, 'notNumber')},
+			{$this->parseValue($this->fieldAddress, 'notNumber')},
+			{$this->parseValue($this->fieldPassword, 'notNumber')},
+			{$this->parseValue($this->fieldPrivilege, 'notNumber')},
+			{$this->parseValue($this->fieldContactMethod, 'notNumber')},
 			{$this->parseValue($this->fieldTermAndCondition)},
-			{$this->parseValue($this->fieldRegisterDate,'notNumber')},
-			{$this->parseValue($this->fieldNewPassword,'notNumber')},
-			{$this->parseValue($this->fieldActivation,'notNumber')})
+			{$this->parseValue($this->fieldRegisterDate, 'notNumber')},
+			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
+			{$this->parseValue($this->fieldActivation, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -771,30 +769,30 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 user_admin
-            SET 
-				field_user_name={$this->parseValue($this->fieldUserName,'notNumber')},
-				field_first_name={$this->parseValue($this->fieldFirstName,'notNumber')},
-				field_last_name={$this->parseValue($this->fieldLastName,'notNumber')},
-				field_email={$this->parseValue($this->fieldEmail,'notNumber')},
-				field_phone_nr={$this->parseValue($this->fieldPhoneNr,'notNumber')},
-				field_address={$this->parseValue($this->fieldAddress,'notNumber')},
-				field_password={$this->parseValue($this->fieldPassword,'notNumber')},
-				field_privilege={$this->parseValue($this->fieldPrivilege,'notNumber')},
-				field_contact_method={$this->parseValue($this->fieldContactMethod,'notNumber')},
+            SET
+				field_user_name={$this->parseValue($this->fieldUserName, 'notNumber')},
+				field_first_name={$this->parseValue($this->fieldFirstName, 'notNumber')},
+				field_last_name={$this->parseValue($this->fieldLastName, 'notNumber')},
+				field_email={$this->parseValue($this->fieldEmail, 'notNumber')},
+				field_phone_nr={$this->parseValue($this->fieldPhoneNr, 'notNumber')},
+				field_address={$this->parseValue($this->fieldAddress, 'notNumber')},
+				field_password={$this->parseValue($this->fieldPassword, 'notNumber')},
+				field_privilege={$this->parseValue($this->fieldPrivilege, 'notNumber')},
+				field_contact_method={$this->parseValue($this->fieldContactMethod, 'notNumber')},
 				field_term_and_condition={$this->parseValue($this->fieldTermAndCondition)},
-				field_register_date={$this->parseValue($this->fieldRegisterDate,'notNumber')},
-				field_new_password={$this->parseValue($this->fieldNewPassword,'notNumber')},
-				field_activation={$this->parseValue($this->fieldActivation,'notNumber')}
+				field_register_date={$this->parseValue($this->fieldRegisterDate, 'notNumber')},
+				field_new_password={$this->parseValue($this->fieldNewPassword, 'notNumber')},
+				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -820,31 +818,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for user_admin previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for user_admin previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into user_admin.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into user_admin.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

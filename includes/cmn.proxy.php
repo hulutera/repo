@@ -100,7 +100,7 @@ function privacyPolicy()
 			<p class="aboutus">
 			' . $lang['hulutera Admin'] . '
 			</p>
-			</div></div>		
+			</div></div>
 			';
 }
 
@@ -121,13 +121,13 @@ function help()
 	];
 	___open_div_('row', '');
 	foreach ($GLOBALS['help'][1] as $key => $value) {
-		//echo '<h3 style="color:#050598a6">' . $GLOBALS['help'][1][$key]['head'] . '</h3>';//' . $picture[$key] .'  
-		 ___open_div_('col-md-12 ', '');
+		//echo '<h3 style="color:#050598a6">' . $GLOBALS['help'][1][$key]['head'] . '</h3>';//' . $picture[$key] .'
+		___open_div_('col-md-12 ', '');
 		echo '<button type="button" class="collapsible" style="font-size:25px">' . $GLOBALS['help'][1][$key]['head'] . '</button>';
 
-		___open_div_('col-md-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');	
+		___open_div_('col-md-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');
 
-  
+
 		$body = $GLOBALS['help'][1][$key]['body'];
 		echo '<ul style="text-align:start">';
 		foreach ($body as $key2 => $value2) {
@@ -145,16 +145,16 @@ function help()
 	___close_div_(1);
 
 
-	// echo 'Welcome to the online Demo on how to register for Hulutera . 
-	// Hulutera provides a safe and simple online advertising service. 
-	// This allows you to advertise your item to rent, sell, or both. 
-	// You can register to Hulutera by entering your personal details online. 
+	// echo 'Welcome to the online Demo on how to register for Hulutera .
+	// Hulutera provides a safe and simple online advertising service.
+	// This allows you to advertise your item to rent, sell, or both.
+	// You can register to Hulutera by entering your personal details online.
 	// To begin the registration click on the Register link.
- 	//  Enter your personal information username, first and last name, email address, phone, 
+	//  Enter your personal information username, first and last name, email address, phone,
 	//  and then create your password and confirm your password.
-	// Make sure to select the option "YES, I have read and agree to the Term and Conditions", 
-	// before completing your registration. Upon completion, you will receive a confirmation email 
-	// that contains an activation link and click the link to confirm and complete registration. 
+	// Make sure to select the option "YES, I have read and agree to the Term and Conditions",
+	// before completing your registration. Upon completion, you will receive a confirmation email
+	// that contains an activation link and click the link to confirm and complete registration.
 	// You see a message, "Your account is active. You may now log in and use Hulutera\'s free service".
 	// Thank you.';
 
@@ -957,7 +957,7 @@ function locationRegion()
 			<option value = "Hosaena">' . $lang['Hosaena'] . '</option>
 			<option value = "Sodo">' . $lang['Sodo'] . '</option>
 			<option value = "Jijiga">' . $lang['Jijiga'] . '</option>
-			<option value = "Axum">' . $lang['Adigrat'] . '</option> 
+			<option value = "Axum">' . $lang['Adigrat'] . '</option>
 			<option value = "Axum">' . $lang['Ambo'] . '</option>
 			<option value = "Axum">' . $lang['Axum'] . '</option>
 			<option value = "Axum">' . $lang['Debre Markos'] . '</option>

@@ -90,7 +90,7 @@ class {ClassName} extends {ClassParent}
      */
     public function close()
     {
-        
+
     }
 <!-- END Constructor -->
 <!-- BEGIN ConstructorForMultiplePK -->
@@ -124,7 +124,7 @@ class {ClassName} extends {ClassParent}
     */
     public function close()
     {
-        
+
     }
 <!-- END ConstructorForMultiplePK -->
 <!-- BEGIN Setters -->
@@ -207,7 +207,7 @@ class {ClassName} extends {ClassParent}
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
         return $this->affected_rows;
-        
+
     }
 <!-- END Select -->
 <!-- BEGIN SelectForMultiplePK -->
@@ -421,7 +421,7 @@ SQL;
             return false;
         }
     }
-    
+
     /**
     * Facility for display a row for {TableName} previously loaded.
     *
@@ -433,7 +433,7 @@ SQL;
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
     * Facility for upload a new row into {TableName}.
     *

@@ -44,9 +44,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldUserName
      */
     private $fieldUserName;
@@ -58,9 +58,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldFirstName
      */
     private $fieldFirstName;
@@ -72,9 +72,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLastName
      */
     private $fieldLastName;
@@ -86,9 +86,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldEmail
      */
     private $fieldEmail;
@@ -100,9 +100,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPhoneNr
      */
     private $fieldPhoneNr;
@@ -114,9 +114,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldAddress
      */
     private $fieldAddress;
@@ -128,9 +128,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPassword
      */
     private $fieldPassword;
@@ -142,9 +142,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: user
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPrivilege
      */
     private $fieldPrivilege;
@@ -169,9 +169,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -183,9 +183,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: tinyint(1)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTermAndCondition
      */
     private $fieldTermAndCondition;
@@ -197,7 +197,7 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldRegisterDate
@@ -211,9 +211,9 @@ class HtUserAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldNewPassword
      */
     private $fieldNewPassword;
@@ -223,14 +223,28 @@ class HtUserAll extends MySqlRecord
      *
      * Comment for field field_activation: Not specified.<br>
      * Field information:
-     *  - Data type: varchar(60)
+     *  - Data type: varchar(255)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldActivation
      */
     private $fieldActivation;
+
+    /**
+     * Class attribute for mapping table field field_account_status
+     *
+     * Comment for field field_account_status: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
+     * @var string $fieldActivation
+     */
+    private $fieldAccountStatus;
 
     /**
      * Class attribute for storing the SQL DDL of table user_all
@@ -412,7 +426,7 @@ class HtUserAll extends MySqlRecord
     /**
      * setFieldActivation Sets the class attribute fieldActivation with a given value
      *
-     * The attribute fieldActivation maps the field field_activation defined as varchar(60).<br>
+     * The attribute fieldActivation maps the field field_activation defined as varchar(255).<br>
      * Comment for field field_activation: Not specified.<br>
      * @param string $fieldActivation
      * @category Modifier
@@ -421,6 +435,25 @@ class HtUserAll extends MySqlRecord
     {
         $this->fieldActivation = (string) $fieldActivation;
     }
+
+    /**
+     * setFieldAccountStatus Sets the class attribute fieldAccountStatus with a given value
+     *
+     * The attribute fieldAccountStatus maps the field field_acccount_status defined as varchar(125).<br>
+     * Comment for field field_acccount_status: Not specified.<br>
+     * @param string $fieldAccountStatus
+     * @category Modifier
+     */
+    public function setFieldAccountStatus($fieldAccountStatus)
+    {
+        $this->fieldAccountStatus = (string) $fieldAccountStatus;
+    }
+
+    public function isAccountStatusActive()
+    {
+        return $this->fieldAccountStatus == 'active' ? true : false;
+    }
+
 
     /**
      * getId gets the class attribute id value
@@ -658,7 +691,7 @@ class HtUserAll extends MySqlRecord
     /**
      * getFieldActivation gets the class attribute fieldActivation value
      *
-     * The attribute fieldActivation maps the field field_activation defined as varchar(60).<br>
+     * The attribute fieldActivation maps the field field_activation defined as varchar(255).<br>
      * Comment for field field_activation: Not specified.
      * @return string $fieldActivation
      * @category Accessor of $fieldActivation
@@ -667,6 +700,20 @@ class HtUserAll extends MySqlRecord
     {
         return $this->fieldActivation;
     }
+
+    /**
+     * getFieldAccountStatus gets the class attribute fieldAccountStatus value
+     *
+     * The attribute fieldAccountStatus maps the field field_account_status defined as varchar(125).<br>
+     * Comment for field field_account_status: Not specified.
+     * @return string $fieldAccountStatus
+     * @category Accessor of $fieldAccountStatus
+     */
+    public function getFieldAccountStatus()
+    {
+        return $this->fieldAccountStatus;
+    }
+
 
     /**
      * Gets DDL SQL code of the table user_all
@@ -765,6 +812,7 @@ class HtUserAll extends MySqlRecord
             @$this->fieldRegisterDate = $rowObject->field_register_date;
             @$this->fieldNewPassword = $this->replaceAposBackSlash($rowObject->field_new_password);
             @$this->fieldActivation = $this->replaceAposBackSlash($rowObject->field_activation);
+            @$this->fieldAccountStatus = $this->replaceAposBackSlash($rowObject->field_account_status);
             $this->allowUpdate = true;
         } else {
             $this->lastSqlError = $this->sqlstate . " - " . $this->error;
@@ -807,7 +855,7 @@ class HtUserAll extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO user_all
-            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation)
+            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation,field_account_status)
             VALUES(
 			{$this->parseValue($this->fieldUserName, 'notNumber')},
 			{$this->parseValue($this->fieldFirstName, 'notNumber')},
@@ -821,7 +869,8 @@ class HtUserAll extends MySqlRecord
 			{$this->parseValue($this->fieldTermAndCondition)},
 			{$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
-			{$this->parseValue($this->fieldActivation, 'notNumber')})
+			{$this->parseValue($this->fieldActivation, 'notNumber')},
+			{$this->parseValue($this->fieldAccountStatus, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
@@ -853,7 +902,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 user_all
-            SET 
+            SET
 				field_user_name={$this->parseValue($this->fieldUserName, 'notNumber')},
 				field_first_name={$this->parseValue($this->fieldFirstName, 'notNumber')},
 				field_last_name={$this->parseValue($this->fieldLastName, 'notNumber')},
@@ -866,7 +915,8 @@ SQL;
 				field_term_and_condition={$this->parseValue($this->fieldTermAndCondition)},
 				field_register_date={$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 				field_new_password={$this->parseValue($this->fieldNewPassword, 'notNumber')},
-				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')}
+				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')},
+                field_account_status={$this->parseValue($this->fieldAccountStatus, 'notNumber')}
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
@@ -913,6 +963,29 @@ SQL;
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+    }
+
+    /*
+    ** Set the car element values
+    * $rows: it takes the array of one item row and it sets the values
+    */
+    public function setFieldValues($object)
+    {
+        $this->id = (int) $object->getId();
+        $this->fieldUserName =  $object->getFieldUserName();
+        $this->fieldFirstName = $object->getFieldFirstName();
+        $this->fieldLastName =  $object->getFieldLastName();
+        $this->fieldEmail = $object->getFieldEmail();
+        $this->fieldPhoneNr = $object->getFieldPhoneNr();
+        $this->fieldAddress =  $object->getFieldAddress();
+        $this->fieldPassword = $object->getFieldPassword();
+        $this->fieldPrivilege =  $object->getFieldPrivilege();
+        $this->fieldContactMethod =  $object->getFieldContactMethod();
+        $this->fieldTermAndCondition =  $object->getFieldTermAndCondition();
+        $this->fieldRegisterDate = $object->getFieldRegisterDate();
+        $this->fieldNewPassword =  $object->getFieldNewPassword();
+        $this->fieldActivation =  $object->getFieldActivation();
+        $this->fieldAccountStatus =   $object->getFieldAccountStatus();
     }
 
     /**
@@ -965,7 +1038,7 @@ SQL;
         echo '</form>';
     }
     /**
-     * 
+     *
      */
     public function insertRegisterField()
     {
@@ -1072,7 +1145,7 @@ SQL;
         ___open_div_("container-fluid", '');
         ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
 
-        ////        
+        ////
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['login'] . '</strong></p>';
@@ -1173,7 +1246,7 @@ SQL;
     }
 
     /**
-     * 
+     *
      */
     public function recoverPassword()
     {
@@ -1182,7 +1255,8 @@ SQL;
         $randomPassword08 = substr($randomPassword, 0, 8);
 
         $email = $this->fieldEmail;
-        $cryptoPassword = base64_encode(Cryptor::getInstance()->encryptor($randomPassword08));
+        $crypto = new Cryptor();
+        $cryptoPassword = base64_encode($crypto->encryptor($randomPassword08));
         $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
 
         $this->fieldNewPassword = $cryptoPassword;
@@ -1327,7 +1401,7 @@ SQL;
             global $lang_url;
 
             echo '
-            <a href="../../includes/edit-profile.php' . $lang_url . '&function=edit-profile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md" 
+            <a href="../../includes/edit-profile.php' . $lang_url . '&function=edit-profile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md"
                         style="float:right;color:black;font-size:16px;font-weight:bold;">' .  $GLOBALS['lang']['edit'] . '</a>';
             ___close_div_(3);
         }

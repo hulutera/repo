@@ -43,9 +43,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: int(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idTemp
      */
     private $idTemp;
@@ -58,8 +58,8 @@ class HtItemOther extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idUser
      */
     private $idUser;
@@ -72,8 +72,8 @@ class HtItemOther extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idCategory
      */
     private $idCategory;
@@ -85,9 +85,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -99,9 +99,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceSell
      */
     private $fieldPriceSell;
@@ -113,9 +113,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Negotiable
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceNego
      */
     private $fieldPriceNego;
@@ -127,9 +127,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Birr
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceCurrency
      */
     private $fieldPriceCurrency;
@@ -141,9 +141,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: longtext
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldImage
      */
     private $fieldImage;
@@ -155,9 +155,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLocation
      */
     private $fieldLocation;
@@ -169,9 +169,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: mediumtext
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldExtraInfo
      */
     private $fieldExtraInfo;
@@ -183,9 +183,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldTitle
      */
     private $fieldTitle;
@@ -197,7 +197,7 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldUploadDate
@@ -211,9 +211,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTotalView
      */
     private $fieldTotalView;
@@ -225,9 +225,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: pending
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldStatus
      */
     private $fieldStatus;
@@ -240,9 +240,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: NULL
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldReport
      */
     private $fieldReport;
@@ -256,7 +256,7 @@ class HtItemOther extends MySqlRecord
      *  - Null : NO
      *  - DB Index: MUL
      *  - Default: Sale
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldMarketCategory
      */
     private $fieldMarketCategory;
@@ -268,9 +268,9 @@ class HtItemOther extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: 6
-     *  - Extra:  
+     *  - Extra:
      * @var int $fieldTableType
      */
     private $fieldTableType;
@@ -1045,7 +1045,7 @@ class HtItemOther extends MySqlRecord
     }
 
 
-    /* 
+    /*
     ** Set the others element values
     * $rows: it takes the array of one item row and it sets the values
     */
@@ -1081,9 +1081,9 @@ class HtItemOther extends MySqlRecord
         $this->allowUpdate = true;
         $this->setFieldValues($input);
     }
-    /* 
+    /*
     ** Set the others category elements
-    * 
+    *
     */
     public function setCategoryName()
     {
@@ -1190,7 +1190,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_other
-            SET 
+            SET
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
@@ -1265,7 +1265,7 @@ SQL;
     }
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOption = array(
         'idTemp' => 'id Temp',
@@ -1287,7 +1287,7 @@ SQL;
     );
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOptionShort = array(
         'idTemp' => 'id Temp',

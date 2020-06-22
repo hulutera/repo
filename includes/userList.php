@@ -16,7 +16,7 @@ $role = 'user';
 
 function query($role, $start)
 {
-	
+
 	$itemPerPage =  HtGlobal::get('itemPerPage');
 	$cond2 = "WHERE uRole='$role' LIMIT $start, $itemPerPage";
 	$table = "user";
@@ -32,17 +32,17 @@ function searchResult($search)
 
 	$terms = $search;
 	$clean = trim(preg_replace('/[^a-z0-9.@]/i', '', $terms));
-	
+
 	if (!empty($clean)) {
 		$clauses = "`uEmail` LIKE '%" . $clean . "%'" .
 			" OR `userName`      LIKE '%" . $clean . "%'" .
 			" OR `uID`           LIKE '%" . $clean . "%'";
 	}
-	
+
 	if (!empty($clauses)) {
 		$filter = $clauses;
-        $cond3 = "WHERE $filter";
-	    $table = "user";
+		$cond3 = "WHERE $filter";
+		$table = "user";
 		$filter = "*";
 		$users = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $cond3);
 		return $users;
@@ -64,8 +64,8 @@ function displayALL()
 	$start = HtGlobal::get('itemPerPage') * ($page - 1);
 	//
 	$result = query($role, $start);
-	
-	echo '<div style="float:none;width:100%"><h3><br><br>' .$lang['user list']. '</h3></div>';
+
+	echo '<div style="float:none;width:100%"><h3><br><br>' . $lang['user list'] . '</h3></div>';
 	display($result);
 
 	return $totpage;
@@ -74,16 +74,15 @@ function displayALL()
 function userSearch()
 {
 	global $lang, $lang_url, $str_url;
-	logoImage();	
-    echo '<div class="userSearch">';
-	echo '<h3>' .$lang['user page']. '</h3><br><br>';
-	echo '<form name="search-user-form" class="" action="../includes/userList.php' .$lang_url. '" method="POST">';
-	echo $lang['search user'] .': <input name="searhVal" style="width:40%" class="" type="text" placeholder="' .$lang['e.g ID username email']. '"/>';
-	echo '<input type="submit" value="' .$lang['Search']. '" />';
+	logoImage();
+	echo '<div class="userSearch">';
+	echo '<h3>' . $lang['user page'] . '</h3><br><br>';
+	echo '<form name="search-user-form" class="" action="../includes/userList.php' . $lang_url . '" method="POST">';
+	echo $lang['search user'] . ': <input name="searhVal" style="width:40%" class="" type="text" placeholder="' . $lang['e.g ID username email'] . '"/>';
+	echo '<input type="submit" value="' . $lang['Search'] . '" />';
 	echo '</form>';
 	echo '</div>';
 	echo '<br>';
-	
 }
 
 ?>
@@ -107,9 +106,10 @@ function userSearch()
 						$totpage = displayALL();
 						pagination("", $totpage, $page, 0);
 					} else {
-						if (isset($search)){
+						if (isset($search)) {
 							$search = $search;
-							$result = searchResult($search);}
+							$result = searchResult($search);
+						}
 						if (mysqli_num_rows($result)) {
 							display($result);
 						} else {

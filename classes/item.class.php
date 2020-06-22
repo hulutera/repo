@@ -7,4 +7,3 @@ class Item
         $this->itemName = $name;
     }
 }
-

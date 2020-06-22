@@ -43,9 +43,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: int(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idTemp
      */
     private $idTemp;
@@ -58,8 +58,8 @@ class HtItemPhone extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idUser
      */
     private $idUser;
@@ -71,9 +71,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: int(11)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idCategory
      */
     private $idCategory;
@@ -85,9 +85,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -99,9 +99,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceSell
      */
     private $fieldPriceSell;
@@ -113,9 +113,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Negotiable
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceNego
      */
     private $fieldPriceNego;
@@ -127,9 +127,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Birr
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceCurrency
      */
     private $fieldPriceCurrency;
@@ -141,9 +141,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMake
      */
     private $fieldMake;
@@ -155,9 +155,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldModel
      */
     private $fieldModel;
@@ -169,9 +169,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldOs
      */
     private $fieldOs;
@@ -183,9 +183,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldCamera
      */
     private $fieldCamera;
@@ -197,9 +197,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: longtext
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldImage
      */
     private $fieldImage;
@@ -211,9 +211,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLocation
      */
     private $fieldLocation;
@@ -225,9 +225,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: mediumtext
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldExtraInfo
      */
     private $fieldExtraInfo;
@@ -239,9 +239,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldTitle
      */
     private $fieldTitle;
@@ -253,7 +253,7 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldUploadDate
@@ -267,9 +267,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTotalView
      */
     private $fieldTotalView;
@@ -281,9 +281,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: pending
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldStatus
      */
     private $fieldStatus;
@@ -295,9 +295,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: NULL
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldReport
      */
     private $fieldReport;
@@ -310,9 +310,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Sale
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldMarketCategory
      */
     private $fieldMarketCategory;
@@ -324,9 +324,9 @@ class HtItemPhone extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: 4
-     *  - Extra:  
+     *  - Extra:
      * @var int $fieldTableType
      */
     private $fieldTableType;
@@ -1225,7 +1225,7 @@ class HtItemPhone extends MySqlRecord
         return $this->affected_rows;
     }
 
-    /* 
+    /*
     ** Set the phone element values
     * $rows: it takes the array of one item row and it sets the values
     */
@@ -1265,9 +1265,9 @@ class HtItemPhone extends MySqlRecord
         $this->allowUpdate = true;
         $this->setFieldValues($input);
     }
-    /* 
+    /*
     ** Set the phone category elements
-    * 
+    *
     */
     public function setCategoryName()
     {
@@ -1378,7 +1378,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_phone
-            SET 
+            SET
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
@@ -1403,7 +1403,6 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
-            echo $sql;
             $this->resetLastSqlError();
             $this->set_charset('utf8');
             $this->query('SET NAMES utf8');
@@ -1467,7 +1466,7 @@ SQL;
     }
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOptionShort = array(
         'idCategory' => 'Type',
@@ -1490,7 +1489,7 @@ SQL;
     );
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOption = array(
         'idCategory' => 'Type',
@@ -1595,7 +1594,7 @@ SQL;
         ___open_div_("form-group upload", "");
         $this->insertFieldContactMethod();
         ___close_div_(3);
-        ////        
+        ////
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");

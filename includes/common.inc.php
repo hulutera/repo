@@ -1,4 +1,5 @@
 <?php
+
 /***/
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 /**/

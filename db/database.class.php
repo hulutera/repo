@@ -246,7 +246,7 @@ class DatabaseClass
 					WHERE dStatus LIKE '" . $status . "'";
                 break;
             case 'house':
-                $sql = "SELECT hID FROM house 
+                $sql = "SELECT hID FROM house
 				LEFT JOIN housecategory ON	house.houseCategoryID = housecategory.categoryID
 					WHERE hStatus LIKE '" . $status . "'";
                 break;
@@ -380,23 +380,23 @@ class DatabaseClass
 
     public function getItemIdField($table)
     {
-        if ($table == "car"){
+        if ($table == "car") {
             return "cID";
-         } elseif ($table == "house") {
+        } elseif ($table == "house") {
             return "hID";
-         } elseif ($table == "computer") {
-             return "dID";
-         } elseif ($table == "electronics"){
+        } elseif ($table == "computer") {
+            return "dID";
+        } elseif ($table == "electronics") {
             return "eID";
-         } elseif ($table == "household") {
+        } elseif ($table == "household") {
             return "hhID";
-         } elseif ($table == "phone") {
-             return "pID";
-         } elseif ($table == "others") {
+        } elseif ($table == "phone") {
+            return "pID";
+        } elseif ($table == "others") {
             return "oID";
-         } else {
-             return "";
-         }
+        } else {
+            return "";
+        }
     }
 
     public function getAllFields($item)
@@ -494,12 +494,11 @@ class DatabaseClass
     // PempUser update
     public function insertUser($table, $username, $email, $password, $firstname, $lastname, $phone, $address, $activation)
     {
-		if ( $table == "user") {
-			$this->getConnection()->query("INSERT INTO $table (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
-		} else {
-			$this->getConnection()->query("INSERT INTO tempuser (username, email, password, firstname, lastname, address, phone, activation) VALUES ('$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation')") or die(mysqli_error());
-		}
-		
+        if ($table == "user") {
+            $this->getConnection()->query("INSERT INTO $table (userName, uEmail, uPassword, uFirstName, uLastName, uPhone, uAddress, uRole) VALUES ('$username', '$email', '$password','$firstname','$lastname','$phone','$address', 'user')") or die(mysqli_error());
+        } else {
+            $this->getConnection()->query("INSERT INTO tempuser (username, email, password, firstname, lastname, address, phone, activation) VALUES ('$username','$email','$hashed_password','$firstname','$lastname','$address','$phone','$activation')") or die(mysqli_error());
+        }
     }
 
     // return the total number of stored items from tables
@@ -524,7 +523,7 @@ class DatabaseClass
 				SELECT hhID,tableType,UploadedDate FROM household WHERE hhStatus LIKE '$itemStatus'
 				UNION ALL
 				SELECT oID,tableType,UploadedDate FROM others WHERE oStatus LIKE '$itemStatus'
-				ORDER BY UploadedDate DESC LIMIT $start ,".  HtGlobal::get('itemPerPage'));
+				ORDER BY UploadedDate DESC LIMIT $start ," .  HtGlobal::get('itemPerPage'));
     }
 
     // Run query
@@ -537,12 +536,13 @@ class DatabaseClass
     public function findIteamWithUser($queryCondition, $uid)
     {
         return $this->getConnection()->query(
-        "SELECT cID FROM car WHERE cStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
+            "SELECT cID FROM car WHERE cStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
         SELECT hID FROM house WHERE hStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
         SELECT dID FROM computer WHERE dStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
         SELECT eID FROM electronics WHERE eStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
         SELECT pID FROM phone WHERE pStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
         SELECT hhID FROM household WHERE hhStatus LIKE '$queryCondition' AND uID LIKE '$uid' UNION ALL
-        SELECT oID FROM others WHERE oStatus LIKE '$queryCondition' AND uID LIKE '$uid'");
+        SELECT oID FROM others WHERE oStatus LIKE '$queryCondition' AND uID LIKE '$uid'"
+        );
     }
 }

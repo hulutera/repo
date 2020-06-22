@@ -623,7 +623,7 @@ $upload_specific_array = [
                 '1960' => '1960 - 1969',
                 '1950' => '1950 - 1959',
                 '1940' => 'Before 1950'
-            ]      
+            ]
 
         ],
         'fieldBathroom'   => [
@@ -746,7 +746,7 @@ $upload_specific_array = [
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "1.0 - 1.9GB" => "1.0 - 1.9GB",
-                "Under 1GB" => "Under 1GB",               
+                "Under 1GB" => "Under 1GB",
                 "unknown" => "unknown"
             ]
         ]
@@ -803,7 +803,7 @@ $upload_specific_array = [
                 "8.0 - 10.9 MP" => "8.0 - 10.9",
                 "4.0 - 7.9 MP" => "4.0 - 7.9",
                 "1.0 - 3.9 MP" => "1.0 - 3.9",
-                "under 1.0 MP" => "under 1.0",              
+                "under 1.0 MP" => "under 1.0",
                 'unknown' => 'unknown'
             ]
         ],
@@ -906,7 +906,7 @@ $upload_specific_array = [
             2 => 'Not for sell',
             3 => 'Choose max price',
             4 => 'Max price (ETB)',
-            
+
             // max price list for car
             5 => [
                 '6000000' => 'Over 5 000 000',
@@ -918,8 +918,8 @@ $upload_specific_array = [
                 '600000' =>  '600 000',
                 '500000' => '500 000',
                 '300000' =>  'Under 300 000'
-                 ],
-            
+            ],
+
             // max price list for house
             6 => [
                 '20000001' => 'Over 20 000 000',
@@ -1022,7 +1022,7 @@ $upload_specific_array = [
             ]
         ],
         'Choose Images here' => 'Choose Images here',
-        'upload successful msg' => 'Thank you for using our service! 
+        'upload successful msg' => 'Thank you for using our service!
                                     Your item was successfuly uploaded.
                                     Please follow instructions in the email we sent you to follow status of your item!'
     ]
@@ -1154,7 +1154,7 @@ $user_specific_array = [
                 7 => 'I want to report suspected fraud',
                 8 => 'Feedback and suggestions for hulutera',
             ]
-        ],
+        ]
     ],
 
     'message' => [
@@ -1189,11 +1189,27 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Thank you for getting in touch',
             'body' => [
-                0 => 'We have received your message and would like to thank you for writing to us. 
+                0 => 'We have received your message and would like to thank you for writing to us.
                       If your inquiry is urgent,  please use the telephone number listed above
-                      to talk to one of our staff members. 
+                      to talk to one of our staff members.
                       Otherwise, we will reply by email as soon as possible.
                       <br>Sincerely,<br>The hulutera Team<br>'
+            ]
+        ],
+        'account-deactivation' => [
+            'subject' => 'You account have been deactivate',
+            'body' => [
+                0 => 'We have found a problem with your account not complying to our Term& conditions
+                       hence your account have been deactivated and your uploaded items will not be
+                       advertised. Please reach out to us for additional through contact us.
+                      <br>Sincerely,<br>The hulutera Admin<br>'
+            ]
+        ],
+        'account-closed' => [
+            'subject' => 'You account have been closed',
+            'body' => [
+                0 => 'We have closed your account! Have a good one!
+                      <br>Sincerely,<br>The hulutera Admin<br>'
             ]
         ]
     ]
@@ -1237,7 +1253,7 @@ $help = [
             "body" => [
                 "Step 1:" => 'Click the link button <strong style="color: blue;">Register</strong> on the top right of the website.',
                 "Step 2:" => 'Fill the required part of the form with your personal information and press <button class="btn btn-primary">Register</button> button',
-                "Step 3:" => 'You will get message that says <strong style="color: blue;">"Thank you for registering. 
+                "Step 3:" => 'You will get message that says <strong style="color: blue;">"Thank you for registering.
                              A confirmation mail has been sent to your email. Please click on the activation link to activate your account.
                              "</strong> Continue to Step 4 ...',
                 "Step 4:" => 'Open your email address (provided on the form) and click on
@@ -1260,8 +1276,8 @@ $help = [
             "head" => "How to recover password",
             "body" => [
                 "Step 1:" => 'Click <strong class="" style="color: #337ab7;">
-                Forgot your password</strong> link under the login form. It will direct you to a page that you can 
-                fill in either your 
+                Forgot your password</strong> link under the login form. It will direct you to a page that you can
+                fill in either your
                 your <strong style="color: blue;">email</strong> or <strong
                 class="" style="color: blue;">username</strong>
                 and click the <button class="btn btn-primary">Recovery</button> button.You
@@ -1282,7 +1298,7 @@ $help = [
         "upload"   => [
             "head" => "How to upload",
             "body" => [
-                "Step 1:" => "Click on the <button> Post Items </button> from the list presented 
+                "Step 1:" => "Click on the <button> Post Items </button> from the list presented
                 Choose the Item you want to advertise",
                 "Step 2:" => 'After you have filled detailed information of the item you want to annouce continue
                 with adding pictures of the item. It is good to have a visible image to get more viewers. After
@@ -1297,7 +1313,7 @@ $help = [
             "head" => "How to contact us",
             "body" => [
                 "Step 1:" => 'Click the link <strong style="color: blue;">Contact us info@hulutera.com</strong>
-                on the top left of the for web contact or the phone number shown on the top left side of this page. 
+                on the top left of the for web contact or the phone number shown on the top left side of this page.
                 For web contact see next step (Step 2:)',
                 "Step 2:" => 'If you have already logged-in your personal details will be automatically
                 filled.Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
@@ -1305,7 +1321,7 @@ $help = [
 			you don\'t find your reason listed on the dropdown choices. Write detail information why you
 			want to contact us on the <strong style="color: blue;">Message</strong>
             field.',
-            "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
+                "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
 			button to send your question. Then,you will see a message <strong
 			style="color: blue;">We appreciate your taking the time to
 			contact us"</strong>.'
@@ -1317,20 +1333,20 @@ $help = [
                 "" => 'The searchbox will help you find the item that you want based on the keyword that you are going to write on the text field.
 
                 Your keywords should be of the following types:<br>
-                
+
                 1) Manufacturer of car, phone, computer e.g. Toyota ,Apple,Acer<br>
-                
+
                 2) Color of a Car e.g. to search a red car, write only red but not red car,black.<br>
-                
+
                 3) Type of car, house, phone, computer, electronics, household. e.g. small car , condominium,TV, furniture, laptop<br>
-                
+
                 4) Model of car,phone, computer e.g. Carina ,iphone 4, Samsung UN60ES7100F,MacBook Air MD232LL/A',
                 "Step 1:" => 'Find the search box on the top right part of the website.',
                 "Step 2:" => 'Write the keyword on the text field',
                 "Step 3:" => 'Click the <button>search</button> button.',
-            "*" => 'If there is no items listed on the window it means there is no match found on our database to your keyword.'
+                "*" => 'If there is no items listed on the window it means there is no match found on our database to your keyword.'
             ]
-        ], 
+        ],
     ]
 ];
 $GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;

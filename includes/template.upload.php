@@ -27,10 +27,10 @@ if (isset($_GET['lan'])) {
 	<!-- styles -->
 	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-	
+
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
-	
+
 	<link href="../../css/custom.css" rel="stylesheet">
 
 	<!-- js -->
@@ -84,9 +84,10 @@ if (isset($_GET['lan'])) {
 </head>
 
 <body>
-<?php headerAndSearchCode("upload"); uploadListNav($lang_sw);?>
+	<?php headerAndSearchCode("upload");
+	uploadListNav($lang_sw); ?>
 	<div id="whole">
-		<div id="wrapper">			
+		<div id="wrapper">
 			<div id="main_section">
 
 				<?php
@@ -99,9 +100,9 @@ if (isset($_GET['lan'])) {
 					unset($_SESSION['errorRaw']);
 				}
 
-				$_SESSION['lan'] = isset($_GET['lan'])?$_GET['lan']:"en";
+				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-				
+
 				//define unique session
 				$sessionName = 'upload_' . $_GET['type'];
 				if (!isset($_SESSION[$sessionName])) {

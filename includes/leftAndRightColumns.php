@@ -1,28 +1,30 @@
 <?php
 /**/
-function leftcolumn(){
-echo '<!--#### LEFT COLUMN ##### -->
+function leftcolumn()
+{
+	echo '<!--#### LEFT COLUMN ##### -->
 			<div id="leftColumn">
 				<div id="listleftcol" >
 				    <ul id ="leftcol"> ';
-					carSubCat();
-					houseSubCat();
-					computerSubCat();
-					phoneSubCat();
-					electronicsSubCat();
-					householdsSubCat();
-					othersSubCat();
-	echo '			
+	carSubCat();
+	houseSubCat();
+	computerSubCat();
+	phoneSubCat();
+	electronicsSubCat();
+	householdsSubCat();
+	othersSubCat();
+	echo '
 		           </ul>
 			    </div>
 			</div>
 			';
 }
 // To put sub catagory for Car
-function carSubCat(){
-echo '
+function carSubCat()
+{
+	echo '
 <li> <a href="#">Car</a>
-    
+
     <ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Small Car\', \'car\' )">Small Car</a></li>
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Pick Up\', \'car\')">Pick up</a></li>
@@ -38,13 +40,14 @@ echo '
         <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Luxury Car\', \'car\')">Luxury Car</a></li>
         <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Convertible\', \'car\')">Convertible</a></li>
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'SUV\', \'car\')">SUV</a></li>
-		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Taxi/Buses\', \'car\')">Taxi/Buses</a></li>		
+		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Taxi/Buses\', \'car\')">Taxi/Buses</a></li>
 	</ul>
 </li>';
 }
 // To put sub catagory for House
-function houseSubCat(){
-echo '
+function houseSubCat()
+{
+	echo '
 <li><a href="#">House</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Residential sells\', \'house\')">Residential sells</a></li>
@@ -56,8 +59,9 @@ echo '
 ';
 }
 // To put sub catagory for Computer
-function computerSubCat(){
-echo '
+function computerSubCat()
+{
+	echo '
 <li><a href="#">Computer</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Laptop \', \'computer\')">Laptop</a></li>
@@ -69,20 +73,22 @@ echo '
 ';
 }
 // To put sub catagory for phone
-function phoneSubCat(){
-echo '
+function phoneSubCat()
+{
+	echo '
 <li> <a href="#">Phone</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Mobile\', \'phone\')">Mobile</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Fixed phone\', \'phone\')">Fixed phone</a></li>
-		
+
 	</ul>
 </li>
 ';
 }
 // To put sub catagory for electronics
-function electronicsSubCat(){
-echo '
+function electronicsSubCat()
+{
+	echo '
 <li> <a href="#">Electronics</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'TV\', \'electronics\')">TV</a></li>
@@ -93,44 +99,46 @@ echo '
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Headphone/earphone\', \'electronics\')">Head/Ear phones</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Game\', \'electronics\')">Video Games</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Other electronics\', \'electronics\')">other electronics</a></li>
-		
+
 	</ul>
-</li> 
+</li>
 ';
 }
 // To put sub catagory for household
-function householdsSubCat(){
-echo '
+function householdsSubCat()
+{
+	echo '
 <li> <a href="#">Household</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Furniture\',\'household\')">Furniture</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Kitchen Stuff\',\'household\')">Kitchen Stuff</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Shower Stuff\',\'household\')">Shower Stuff</a></li>
 	    <li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'Other households\',\'household\')">Other households</a></li>
-	    
-		
+
+
 	</ul>
 </li>
 ';
 }
 // To put sub catagory for Others
-function othersSubCat(){
-echo '
+function othersSubCat()
+{
+	echo '
 <li> <a href="#">Others</a>
 	<ul id ="submenu">
 		<li><a href="javascript:void(0)" onclick="jsfunctionsubmenu(\'%\', \'others\')">Other items</a></li>
-		
+
 	</ul>
 </li>
 ';
 }
 // To put right contents
-function rightcolumn(){
-echo '
+function rightcolumn()
+{
+	echo '
 <!--#### RIGHT COLUMN ##### -->
-	<div id="rightColumn">		
+	<div id="rightColumn">
 		<div class ="logo"><a href="../index.php"><img src="http://static.hulutera.com/images/mytest2.gif"></a></div>
 	</div>
 ';
 }
-?>

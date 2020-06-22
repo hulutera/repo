@@ -92,7 +92,7 @@ class MVCMySqlTableReflection extends mysqli
      */
     public function __construct($tableName)
     {
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        $this->connect(DBHOST, DBUSER, DBPASSWORD, DBNAME, DBPORT);
         $sqlFields = "SHOW FULL COLUMNS FROM $tableName";
         $sqlTableComment = "SELECT TABLE_COMMENT FROM information_schema.tables WHERE table_schema = DATABASE() AND TABLE_NAME='$tableName'";
         // $sqlPk = "SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'";
@@ -118,7 +118,7 @@ class MVCMySqlTableReflection extends mysqli
         $this->analyzer = $PKAnalyzer;
 
         // Set table primary key and type if single PK
-        if (! $PKAnalyzer->hasCompositePK()) {
+        if (!$PKAnalyzer->hasCompositePK()) {
             $this->setTablePkNameAndType();
         }
 
@@ -147,7 +147,7 @@ class MVCMySqlTableReflection extends mysqli
     public function generateClass()
     {
 
-        if (!$this->analyzer->hasCompositePK()){
+        if (!$this->analyzer->hasCompositePK()) {
             // Call class methods to generate the code for a table with a single field PK
             $this->generateHeader();
             $this->generateAttributes();
@@ -186,9 +186,9 @@ class MVCMySqlTableReflection extends mysqli
 
             // Sanitize generated code by removing all reference to the interface implementation
             // (Interface's contract of delete,update and select methods requires only one parameter)
-            $source = @str_replace("@implements ". CLASS_IMPLEMENTS,"@implements none",$this->getSource());
-            $source = @str_replace("use framework\\" . CLASS_IMPLEMENTS .";","",$source);
-            return @str_replace("implements ". CLASS_IMPLEMENTS,"",$source);
+            $source = @str_replace("@implements " . CLASS_IMPLEMENTS, "@implements none", $this->getSource());
+            $source = @str_replace("use framework\\" . CLASS_IMPLEMENTS . ";", "", $source);
+            return @str_replace("implements " . CLASS_IMPLEMENTS, "", $source);
         }
     }
 
@@ -203,10 +203,10 @@ class MVCMySqlTableReflection extends mysqli
     {
         $classFileName = $this->className . ".php";
         $ouputFile = $path . $classFileName;
-        @file_put_contents($ouputFile,$classSourceCode);
-        if (@file_exists($ouputFile)){
+        @file_put_contents($ouputFile, $classSourceCode);
+        if (@file_exists($ouputFile)) {
             return $ouputFile;
-        }   else {
+        } else {
             return false;
         }
     }
@@ -236,7 +236,7 @@ class MVCMySqlTableReflection extends mysqli
         $this->rewindFieldsResultSet();
         while ($object = $this->fieldsResultSet->fetch_object()) {
             $attribute = $this->parseAttributeWithObject($object);
-            if ($attribute->isPkField()){
+            if ($attribute->isPkField()) {
                 $this->builder->buildPkAttribute($attribute);
             } else {
                 $this->builder->buildAttribute($attribute);
@@ -274,7 +274,7 @@ class MVCMySqlTableReflection extends mysqli
         // $this->setTablePkNameAndType();
         $classPkAttributeName = MVCMySqlFieldToAttributeReflection::underscoreToCamelCase($this->tablePkName);
         $tablePKFieldTypeAndLenght = $this->tablePkType;
-        $this->builder->buildConstructor($classPkAttributeName,$tablePKFieldTypeAndLenght);
+        $this->builder->buildConstructor($classPkAttributeName, $tablePKFieldTypeAndLenght);
     }
 
     /**
@@ -289,7 +289,8 @@ class MVCMySqlTableReflection extends mysqli
     /**
      * Generates the class setter methods
      */
-    public function generateSetters(){
+    public function generateSetters()
+    {
         $this->rewindFieldsResultSet();
         while ($object = $this->fieldsResultSet->fetch_object()) {
             $attribute = $this->parseAttributeWithObject($object);
@@ -300,7 +301,8 @@ class MVCMySqlTableReflection extends mysqli
     /**
      * Generates the class getters methods
      */
-    public function generateGetters(){
+    public function generateGetters()
+    {
         $this->rewindFieldsResultSet();
         while ($object = $this->fieldsResultSet->fetch_object()) {
             $attribute = $this->parseAttributeWithObject($object);
@@ -332,7 +334,7 @@ class MVCMySqlTableReflection extends mysqli
         $classPkAttributeName = MVCMySqlFieldToAttributeReflection::underscoreToCamelCase($this->tablePkName);
         $classPkAttributeType = $this->tablePkType;
         $this->rewindFieldsResultSet();
-        $this->builder->buildSelectMethod($classPkAttributeName,$classPkAttributeType,$this->fieldsResultSet);
+        $this->builder->buildSelectMethod($classPkAttributeName, $classPkAttributeType, $this->fieldsResultSet);
     }
 
     /**
@@ -342,7 +344,7 @@ class MVCMySqlTableReflection extends mysqli
     public function generateSelectMethodForMultiplePK(MVCMySqlPKAnalyzer $analyzer)
     {
         $this->rewindFieldsResultSet();
-        $this->builder->buildSelectMethodForMultiplePk($this->fieldsResultSet,$analyzer);
+        $this->builder->buildSelectMethodForMultiplePk($this->fieldsResultSet, $analyzer);
     }
 
     /**
@@ -352,7 +354,7 @@ class MVCMySqlTableReflection extends mysqli
     {
         $classPkAttributeName = MVCMySqlFieldToAttributeReflection::underscoreToCamelCase($this->tablePkName);
         $classPkAttributeType = $this->tablePkType;
-        $this->builder->buildDeleteMethod($classPkAttributeName,$classPkAttributeType,$this->fieldsResultSet);
+        $this->builder->buildDeleteMethod($classPkAttributeName, $classPkAttributeType, $this->fieldsResultSet);
     }
 
     /**
@@ -363,7 +365,7 @@ class MVCMySqlTableReflection extends mysqli
     {
         $this->builder->buildDeleteMethodForMultiplePK($analyzer);
     }
-    
+
     /**
      * Generates the class insert method.
      */
@@ -373,7 +375,7 @@ class MVCMySqlTableReflection extends mysqli
         $classPkAttributeType = $this->tablePkType;
         $fields = $this->buildInsertFields();
         $values = $this->buildInsertValues();
-        $this->builder->buildInsertMethod($classPkAttributeName,$classPkAttributeType,$fields,$values);
+        $this->builder->buildInsertMethod($classPkAttributeName, $classPkAttributeType, $fields, $values);
     }
 
     /**
@@ -384,7 +386,7 @@ class MVCMySqlTableReflection extends mysqli
     {
         $fields = $this->buildInsertFields();
         $values = $this->buildInsertValues();
-        $this->builder->buildInsertMethodForMultiplePk($fields,$values,$analyzer);
+        $this->builder->buildInsertMethodForMultiplePk($fields, $values, $analyzer);
     }
 
     /**
@@ -425,7 +427,7 @@ class MVCMySqlTableReflection extends mysqli
     public function generateUpdateCurrentMethodForMultiplePK(MVCMySqlPKAnalyzer $analyzer)
     {
         $tableName = $this->table;
-        $this->builder->buildUpdateCurrentMethodForMultiplePk($tableName,$analyzer);
+        $this->builder->buildUpdateCurrentMethodForMultiplePk($tableName, $analyzer);
     }
 
     /**
@@ -456,21 +458,22 @@ class MVCMySqlTableReflection extends mysqli
         $attribute = new MVCMySqlFieldToAttributeReflection();
         $attribute->name = $object->Field;
         $setType = $object->Type;
-        if ($setType == "date" || $setType == "time" )
+        if ($setType == "date" || $setType == "time")
             $setType = "string|" . $object->Type;
         $attribute->type = $setType;
         $attribute->null = $object->Null;
         $attribute->key = $object->Key;
         $attribute->default = $object->Default;
         $attribute->extra = $object->Extra;
-        $attribute->comment = empty($object->Comment)?"Not specified":$object->Comment;
+        $attribute->comment = empty($object->Comment) ? "Not specified" : $object->Comment;
         return $attribute;
     }
 
     /**
      * Rewinds result set of table columns
      */
-    private function rewindFieldsResultSet(){
+    private function rewindFieldsResultSet()
+    {
         $this->fieldsResultSet = $this->query($this->sqlTableFields);
     }
 
@@ -481,13 +484,13 @@ class MVCMySqlTableReflection extends mysqli
     {
         $this->rewindFieldsResultSet();
         while ($object = $this->fieldsResultSet->fetch_object()) {
-            if ($object->Key == "PRI"){
+            if ($object->Key == "PRI") {
                 $attribute = new MVCMySqlFieldToAttributeReflection();
                 $attribute->name = $object->Field;
                 $attribute->type = $object->Type;
                 $this->tablePkName = $object->Field;
                 $this->tablePkType = $attribute->getType();
-                if ($attribute->getExtraInfo()=="auto_increment") {
+                if ($attribute->getExtraInfo() == "auto_increment") {
                     $this->isPkAutoIncrement = true;
                 }
                 break;
@@ -508,7 +511,7 @@ class MVCMySqlTableReflection extends mysqli
                 $fields = $fields . $object->Field . ",";
             }
         }
-        return substr($fields,0,-1);
+        return substr($fields, 0, -1);
     }
 
     /**
@@ -529,7 +532,7 @@ class MVCMySqlTableReflection extends mysqli
             }
             $fields = $fields . PHP_EOL . "\t" . "\t" . "\t";
         }
-        return substr($fields,0,PHP_EOL_SUBSTRING_LENGHT+1);
+        return substr($fields, 0, PHP_EOL_SUBSTRING_LENGHT + 1);
     }
 
     /**
@@ -539,34 +542,32 @@ class MVCMySqlTableReflection extends mysqli
      */
     private function buildUptateFileldsEqualValues()
     {
-        $tempFile= array();
+        $tempFile = array();
         $this->rewindFieldsResultSet();
-        $fieldsEqualValues = "" . PHP_EOL . "\t" . "\t" . "\t" . "\t" ;
+        $fieldsEqualValues = "" . PHP_EOL . "\t" . "\t" . "\t" . "\t";
         while ($object = $this->fieldsResultSet->fetch_object()) {
             if ($object->Key != "PRI") {
                 $attribute = new MVCMySqlFieldToAttributeReflection();
                 $attribute->name = $object->Field;
                 $attribute->type = $object->Type;
                 $tableFieldName = $attribute->name;
-                
+
                 array_push($tempFile, $attribute->getSqlFormattedValue2());
-                $fieldsEqualValues = $fieldsEqualValues . $tableFieldName . "=" .$attribute->getSqlFormattedValue();
+                $fieldsEqualValues = $fieldsEqualValues . $tableFieldName . "=" . $attribute->getSqlFormattedValue();
 
                 $fieldsEqualValues = $fieldsEqualValues . PHP_EOL . "\t" . "\t" . "\t" . "\t";
-             }
+            }
         }
         echo "---------------------- <br>";
         //var_dump($tempFile);
         echo "private \$uploadOption = array(";
         foreach ($tempFile as $key => $value) {
             # code...
-            echo $value.","."<br>";
+            echo $value . "," . "<br>";
         }
         echo ");";
         //echo $fieldsEqualValues;
-        return substr($fieldsEqualValues,0,PHP_EOL_SUBSTRING_LENGHT);
+        return substr($fieldsEqualValues, 0, PHP_EOL_SUBSTRING_LENGHT);
         // return $fieldsEqualValues;
     }
-
 }
-

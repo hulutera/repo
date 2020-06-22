@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class MVCMySqlBeanBuilder
  * Provides functions for building the class source code to manage a mysql table.
@@ -188,7 +189,7 @@ class MVCMySqlBeanBuilder
      */
     public function getTableComment()
     {
-        return empty($this->tableComment)?"Not specified":$this->tableComment;
+        return empty($this->tableComment) ? "Not specified" : $this->tableComment;
     }
 
     /**
@@ -310,7 +311,7 @@ class MVCMySqlBeanBuilder
         $this->source->setVar("ClassPkAttributeName", $attribute->getName());
         $this->source->setVar("Comment", $attribute->comment);
         $this->source->setVar("TableName", $this->getTableName());
-        if ($attribute->getExtraInfo() == "auto_increment"){
+        if ($attribute->getExtraInfo() == "auto_increment") {
             $this->source->setVar("AutoIncrement", "true");
         } else {
             $this->source->setVar("AutoIncrement", "false");
@@ -360,7 +361,7 @@ class MVCMySqlBeanBuilder
     {
         $this->source->setBlock("Constructor");
         $this->source->setVar("ClassName", $this->getClassName());
-        $this->setPkAttributeValues($classPkAttributeName,$classPkAttributeType);
+        $this->setPkAttributeValues($classPkAttributeName, $classPkAttributeType);
         $this->source->parse();
     }
 
@@ -442,7 +443,7 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeType the data type of attribute for the PK
      * @param mysqli_result $fieldsResultSet  The result set containing table fields
      */
-    public function buildSelectMethod($classPkAttributeName,$classPkAttributeType,$fieldsResultSet)
+    public function buildSelectMethod($classPkAttributeName, $classPkAttributeType, $fieldsResultSet)
     {
         // Loop for initializing attributes
         $this->source->setBlock("Select");
@@ -452,15 +453,15 @@ class MVCMySqlBeanBuilder
         $initFields = "";
         // Makes many replacement by calling initField for each element of the set
         while ($dbObject = $fieldsResultSet->fetch_object()) {
-            $initFields = $initFields . $this->initField($dbObject,$initFieldsTemplateBlock);
+            $initFields = $initFields . $this->initField($dbObject, $initFieldsTemplateBlock);
         }
         $this->source->setBlock("Select");
         // Replaces the sub-block template content with a the placeholder LoopInitFields
-        $this->source->setInnerBlock("InitFields","LoopInitFields");
+        $this->source->setInnerBlock("InitFields", "LoopInitFields");
 
         // Now replaces the placeholder LoopInitFields with content stored in $initFields
-        $this->source->setVar("LoopInitFields",$initFields);
-        $this->setPkAttributeValues($classPkAttributeName,$classPkAttributeType);
+        $this->source->setVar("LoopInitFields", $initFields);
+        $this->setPkAttributeValues($classPkAttributeName, $classPkAttributeType);
         $this->source->parse();
     }
 
@@ -470,7 +471,7 @@ class MVCMySqlBeanBuilder
      * @param mysqli_result $fieldsResultSet The result set containing table fields
      * @param MVCMySqlPKAnalyzer $analyzer
      */
-    public function buildSelectMethodForMultiplePk($fieldsResultSet,MVCMySqlPKAnalyzer $analyzer)
+    public function buildSelectMethodForMultiplePk($fieldsResultSet, MVCMySqlPKAnalyzer $analyzer)
     {
         // Loop for initializing attributes
         $this->source->setBlock("SelectForMultiplePK");
@@ -480,22 +481,21 @@ class MVCMySqlBeanBuilder
         $initFields = "";
         // Makes many replacement by calling initField for each element of the set
         while ($dbObject = $fieldsResultSet->fetch_object()) {
-            $initFields = $initFields . $this->initField($dbObject,$initFieldsTemplateBlock);
+            $initFields = $initFields . $this->initField($dbObject, $initFieldsTemplateBlock);
         }
 
         $this->source->setBlock("SelectForMultiplePK");
         // Replaces the sub-block template content with a the placeholder LoopInitFields
-        $this->source->setInnerBlock("InitFields","LoopInitFields");
+        $this->source->setInnerBlock("InitFields", "LoopInitFields");
         // Now replaces the placeholder LoopInitFields with content stored in $initFields
-        $this->source->setVar("LoopInitFields",$initFields);
+        $this->source->setVar("LoopInitFields", $initFields);
         // Replaces the others placeholders
         $this->source->setVar("ClassName", $this->getClassName());
         $this->source->setVar("PKDMLFunctionParameters", $analyzer->getPKDMLFunctionParameters());
         $this->source->setVar("PKParametersDocumentation", $analyzer->getPKParametersDocumentation());
         $this->source->setVar("PKWhereCondition", $analyzer->getPKWhereCondition());
-        $this->source->setVar("TableName",$this->tableName);
+        $this->source->setVar("TableName", $this->tableName);
         $this->source->parse();
-
     }
 
     /**
@@ -506,53 +506,52 @@ class MVCMySqlBeanBuilder
      * @param string $template template to processing
      * @return string  the result of template processing
      */
-    private function initField($dbObject,$template)
+    private function initField($dbObject, $template)
     {
         $cast = "";
-        $StartreplaceApos= "";
+        $StartreplaceApos = "";
         $EndreplaceApos = "";
-        if (preg_match('/int/',$dbObject->Type))
+        if (preg_match('/int/', $dbObject->Type))
             $cast = "(integer)";
-        if (preg_match('/decimal/',$dbObject->Type))
+        if (preg_match('/decimal/', $dbObject->Type))
             $cast = "(float)";
-        if (preg_match('/float/',$dbObject->Type))
+        if (preg_match('/float/', $dbObject->Type))
             $cast = "(float)";
-        if (preg_match('/double/',$dbObject->Type))
+        if (preg_match('/double/', $dbObject->Type))
             $cast = "(double)";
-        if (preg_match('/real/',$dbObject->Type))
+        if (preg_match('/real/', $dbObject->Type))
             $cast = "(real)";
-        if (preg_match('/fixed/',$dbObject->Type))
+        if (preg_match('/fixed/', $dbObject->Type))
             $cast = "(float)";
-        if (preg_match('/numeric/',$dbObject->Type))
+        if (preg_match('/numeric/', $dbObject->Type))
             $cast = "(float)";
 
-        if (preg_match('/char/',$dbObject->Type)) {
-            $StartreplaceApos= "$"."this->replaceAposBackSlash(";
+        if (preg_match('/char/', $dbObject->Type)) {
+            $StartreplaceApos = "$" . "this->replaceAposBackSlash(";
             $EndreplaceApos = ")";
         }
 
-        if (preg_match('/text/',$dbObject->Type)) {
-            $StartreplaceApos= "$"."this->replaceAposBackSlash(";
+        if (preg_match('/text/', $dbObject->Type)) {
+            $StartreplaceApos = "$" . "this->replaceAposBackSlash(";
             $EndreplaceApos = ")";
         }
 
-        $this->source->setBlock($template,true);
-        $this->source->setVar("Attribute",MVCMySqlFieldToAttributeReflection::underscoreToCamelCase($dbObject->Field));
-        $this->source->setVar("Cast",$cast);
+        $this->source->setBlock($template, true);
+        $this->source->setVar("Attribute", MVCMySqlFieldToAttributeReflection::underscoreToCamelCase($dbObject->Field));
+        $this->source->setVar("Cast", $cast);
 
-        $this->source->setVar("StartreplaceApos",$StartreplaceApos);
-        $this->source->setVar("EndreplaceApos",$EndreplaceApos);
+        $this->source->setVar("StartreplaceApos", $StartreplaceApos);
+        $this->source->setVar("EndreplaceApos", $EndreplaceApos);
 
         // if (preg_match('/date/',$dbObject->Type)) {
         if ($dbObject->Type == "date") {
             // $this->source->setVar("StartCaseDateField", 'date("'. FETCHED_DATE_FORMAT.'",strtotime(');
             // $this->source->setVar("StartCaseDateField", 'date(' . "FETCHED_DATE_FORMAT" . ',strtotime(');
-            $this->source->setVar("StartCaseDateField", 'empty(' . '$' . 'rowObject->' . $dbObject->Field .') ? null : date(' . "FETCHED_DATE_FORMAT" . ',strtotime(');
+            $this->source->setVar("StartCaseDateField", 'empty(' . '$' . 'rowObject->' . $dbObject->Field . ') ? null : date(' . "FETCHED_DATE_FORMAT" . ',strtotime(');
             $this->source->setVar("EndCaseDateField", '))');
-
         } else if ($dbObject->Type == "datetime") {
             // $this->source->setVar("StartCaseDateField", 'date(' . "FETCHED_DATETIME_FORMAT" . ',strtotime(');
-            $this->source->setVar("StartCaseDateField", 'empty(' . '$' . 'rowObject->' . $dbObject->Field .') ? null : date(' . "FETCHED_DATETIME_FORMAT" . ',strtotime(');
+            $this->source->setVar("StartCaseDateField", 'empty(' . '$' . 'rowObject->' . $dbObject->Field . ') ? null : date(' . "FETCHED_DATETIME_FORMAT" . ',strtotime(');
             $this->source->setVar("EndCaseDateField", '))');
         } else {
             $this->source->setVar("StartCaseDateField", "");
@@ -568,10 +567,10 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeName the name of attribute for the PK
      * @param string $classPkAttributeType the data type of attribute for the PK
      */
-    public function buildDeleteMethod($classPkAttributeName,$classPkAttributeType)
+    public function buildDeleteMethod($classPkAttributeName, $classPkAttributeType)
     {
         $this->source->setBlock("Delete");
-        $this->setPkAttributeValues($classPkAttributeName,$classPkAttributeType);
+        $this->setPkAttributeValues($classPkAttributeName, $classPkAttributeType);
         $this->source->parse();
     }
 
@@ -587,7 +586,7 @@ class MVCMySqlBeanBuilder
         $this->source->setVar("PKDMLFunctionParameters", $analyzer->getPKDMLFunctionParameters());
         $this->source->setVar("PKParametersDocumentation", $analyzer->getPKParametersDocumentation());
         $this->source->setVar("PKWhereCondition", $analyzer->getPKWhereCondition());
-        $this->source->setVar("TableName",$this->tableName);
+        $this->source->setVar("TableName", $this->tableName);
         $this->source->parse();
     }
 
@@ -599,13 +598,13 @@ class MVCMySqlBeanBuilder
      * @param string $fields  a string containing table fields for the INSERT sql statement
      * @param string $values  a string containing table values for the INSERT sql statement
      */
-    public function buildInsertMethod($classPkAttributeName,$classPkAttributeType,$fields,$values)
+    public function buildInsertMethod($classPkAttributeName, $classPkAttributeType, $fields, $values)
     {
         $this->source->setBlock("Insert");
-        $this->setPkAttributeValues($classPkAttributeName,$classPkAttributeType);
-        $this->source->setVar("TableName",$this->tableName);
-        $this->source->setVar("Fields",$fields);
-        $this->source->setVar("Values",$values);
+        $this->setPkAttributeValues($classPkAttributeName, $classPkAttributeType);
+        $this->source->setVar("TableName", $this->tableName);
+        $this->source->setVar("Fields", $fields);
+        $this->source->setVar("Values", $values);
         $this->source->parse();
     }
 
@@ -616,12 +615,12 @@ class MVCMySqlBeanBuilder
      * @param string $values A string containing table values for the INSERT sql statement
      * @param MVCMySqlPKAnalyzer $analyzer
      */
-    public function buildInsertMethodForMultiplePk($fields,$values, MVCMySqlPKAnalyzer $analyzer)
+    public function buildInsertMethodForMultiplePk($fields, $values, MVCMySqlPKAnalyzer $analyzer)
     {
         $this->source->setBlock("InsertForMultiplePK");
-        $this->source->setVar("TableName",$this->tableName);
-        $this->source->setVar("Fields",$fields);
-        $this->source->setVar("Values",$values);
+        $this->source->setVar("TableName", $this->tableName);
+        $this->source->setVar("Fields", $fields);
+        $this->source->setVar("Values", $values);
         $this->source->parse();
     }
 
@@ -632,11 +631,11 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeType the data type of attribute for the PK
      * @param string $fieldsEqualValues  a string containing the expression Field=Value for the UPDATE sql statement
      */
-    public function buildUdateMethod($classPkAttributeName,$classPkAttributeType,$fieldsEqualValues)
+    public function buildUdateMethod($classPkAttributeName, $classPkAttributeType, $fieldsEqualValues)
     {
         $this->source->setBlock("Update");
-        $this->setPkAttributeValues($classPkAttributeName,$classPkAttributeType);
-        $this->source->setVar("FileldsEqualValues",$fieldsEqualValues);
+        $this->setPkAttributeValues($classPkAttributeName, $classPkAttributeType);
+        $this->source->setVar("FileldsEqualValues", $fieldsEqualValues);
         $this->source->parse();
     }
 
@@ -646,15 +645,15 @@ class MVCMySqlBeanBuilder
      * @param string $fieldsEqualValues  a string containing the expression Field=Value for the UPDATE sql statement
      * @param MVCMySqlPKAnalyzer $analyzer
      */
-    public function buildUdateMethodForMultiplePk($fieldsEqualValues,MVCMySqlPKAnalyzer $analyzer)
+    public function buildUdateMethodForMultiplePk($fieldsEqualValues, MVCMySqlPKAnalyzer $analyzer)
     {
         $this->source->setBlock("UpdateForMultiplePK");
         $this->source->setVar("ClassName", $this->getClassName());
         $this->source->setVar("PKDMLFunctionParameters", $analyzer->getPKDMLFunctionParameters());
         $this->source->setVar("PKParametersDocumentation", $analyzer->getPKParametersDocumentation());
         $this->source->setVar("PKWhereCondition", $analyzer->getPKWhereCondition());
-        $this->source->setVar("TableName",$this->tableName);
-        $this->source->setVar("FileldsEqualValues",$fieldsEqualValues);
+        $this->source->setVar("TableName", $this->tableName);
+        $this->source->setVar("FileldsEqualValues", $fieldsEqualValues);
         $this->source->parse();
     }
 
@@ -664,11 +663,11 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeName the name of attribute for the PK
      * @param string $tableName The table tame
      */
-    public function buildUpdateCurrentMethod($classPkAttributeName,$tableName)
+    public function buildUpdateCurrentMethod($classPkAttributeName, $tableName)
     {
         $this->source->setBlock("UpdateCurrent");
-        $this->source->setVar("ClassPkAttributeName",$classPkAttributeName);
-        $this->source->setVar("TableName",$tableName);
+        $this->source->setVar("ClassPkAttributeName", $classPkAttributeName);
+        $this->source->setVar("TableName", $tableName);
         $this->source->parse();
     }
 
@@ -678,12 +677,12 @@ class MVCMySqlBeanBuilder
      * @param string $tableName The table tame
      * @param MVCMySqlPKAnalyzer $analyzer
      */
-    public function buildUpdateCurrentMethodForMultiplePk($tableName,MVCMySqlPKAnalyzer $analyzer)
+    public function buildUpdateCurrentMethodForMultiplePk($tableName, MVCMySqlPKAnalyzer $analyzer)
     {
         $this->source->setBlock("UpdateCurrentForMultiplePK");
-        $this->source->setVar("TableName",$tableName);
-        $this->source->setVar("PKAttributeIsNotNull",$analyzer->getPKAttributeIsNotNull());
-        $this->source->setVar("PKForUpdateCurrent",$analyzer->getPKForUpdateCurrent());
+        $this->source->setVar("TableName", $tableName);
+        $this->source->setVar("PKAttributeIsNotNull", $analyzer->getPKAttributeIsNotNull());
+        $this->source->setVar("PKForUpdateCurrent", $analyzer->getPKForUpdateCurrent());
         $this->source->parse();
     }
 
@@ -693,11 +692,11 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeName the name of attribute for the PK
      * @param string $tableName the table tame
      */
-    public function buildDeleteCurrentMethod($classPkAttributeName,$tableName)
+    public function buildDeleteCurrentMethod($classPkAttributeName, $tableName)
     {
         $this->source->setBlock("DeleteCurrent");
-        $this->source->setVar("ClassPkAttributeName",$classPkAttributeName);
-        $this->source->setVar("TableName",$tableName);
+        $this->source->setVar("ClassPkAttributeName", $classPkAttributeName);
+        $this->source->setVar("TableName", $tableName);
         $this->source->parse();
     }
 
@@ -718,9 +717,9 @@ class MVCMySqlBeanBuilder
      * @param string $classPkAttributeName the name of attribute for the PK
      * @param string $classPkAttributeType the data type of attribute for the PK
      */
-    private function setPkAttributeValues($classPkAttributeName,$classPkAttributeType)
+    private function setPkAttributeValues($classPkAttributeName, $classPkAttributeType)
     {
-        $this->source->setVar("ClassPkAttributeType",$classPkAttributeType);
+        $this->source->setVar("ClassPkAttributeType", $classPkAttributeType);
         $this->source->setVar("ClassPkAttributeName", $classPkAttributeName);
         $this->source->setVar("TablePkName", $this->getTablePkName());
         $this->source->setVar("TableName", $this->getTableName());
@@ -736,5 +735,4 @@ class MVCMySqlBeanBuilder
         $this->source->setVar("ClassAttributeType", $attribute->getTypeForPHPDoc());
         $this->source->setVar("ClassAttributeName", $attribute->getName());
     }
-
 }

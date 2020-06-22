@@ -267,23 +267,23 @@ function allUsers()
 		}
 	}
 	/*
-	userColumnArray:
-	0 => string 'field_user_name' (length=15)
-	1 => string 'field_first_name' (length=16)
-	2 => string 'field_last_name' (length=15)
-	3 => string 'field_email' (length=11)
-	4 => string 'field_phone_nr' (length=14)
-	5 => string 'field_address' (length=13)
-	6 => string 'field_password' (length=14)
-	7 => string 'field_privilege' (length=15)
-	8 => string 'field_contact_method' (length=20)
-	9 => string 'field_term_and_condition' (length=24)
-	10 => string 'field_register_date' (length=19)
-	11 => string 'field_new_password' (length=18)
-	12 => string 'field_activation' (length=16)
-	*/
+    userColumnArray:
+    0 => string 'field_user_name' (length=15)
+    1 => string 'field_first_name' (length=16)
+    2 => string 'field_last_name' (length=15)
+    3 => string 'field_email' (length=11)
+    4 => string 'field_phone_nr' (length=14)
+    5 => string 'field_address' (length=13)
+    6 => string 'field_password' (length=14)
+    7 => string 'field_privilege' (length=15)
+    8 => string 'field_contact_method' (length=20)
+    9 => string 'field_term_and_condition' (length=24)
+    10 => string 'field_register_date' (length=19)
+    11 => string 'field_new_password' (length=18)
+    12 => string 'field_activation' (length=16)
+    */
 
-	///Array to hold hidden fields to from user_all userColumnArray 
+	///Array to hold hidden fields to from user_all userColumnArray
 	$hiddenFieldsArray = [];
 	/// based on current login user privilege
 	/// populate hiddenFieldsArray with id of fields
@@ -299,15 +299,10 @@ function allUsers()
 		$hiddenFieldsArray = $userColumnArray;
 	}
 
-	///now remove those in hiddenFieldsArray from the userColumnArray	
+	///now remove those in hiddenFieldsArray from the userColumnArray
 	foreach ($hiddenFieldsArray as $key => $value) {
 		unset($userColumnArray[$value]);
 	}
-
-	/// get all Users here
-	$allUsers = new HtUserAll('*');
-	$result = $allUsers->getResultSet();
-	$result->data_seek(0);
 
 	/// populate table header found in userColumnArray
 	echo '<thead><tr>';
@@ -319,14 +314,39 @@ function allUsers()
 	/// populate table body found in userColumnArray
 	echo '<tbody>';
 	$cryto = new Cryptor();
+
+	/// get all Users here
+	$allUsers = new HtUserAll('*');
+	$result = $allUsers->getResultSet();
+	$result->data_seek(0);
 	$loggedInUser = new HtUserAll($_SESSION['uID']);
 	while ($row = $result->fetch_assoc()) {
 		$localUser = new HtUserAll($row['id']);
 		if ($localUser->isWebMaster() && !$loggedInUser->isWebMaster()) {
 			continue;
 		}
-		echo '<tr>';
+
+		echo '<tr style="background-color: #5be61c36;">';
 		$url = 'function=all-users&action=view&userId=' . $row['id'];
+		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
+		echo '<td><a href="./admin.php?allUserId=' . $urlEn . '">';
+		echo '<button style="font-style: italic;" class="btn btn-rounded btn-sm btn-primary btn-block">View User#' . $row['id'] . '</button></a></td>';
+
+		foreach ($row as $key => $value) {
+			if (in_array($key, array_values($userColumnArray))) {
+				echo '<td>' . $value . '</td>';
+			}
+		}
+		echo '</tr>';
+	}
+
+	/// fetch temp users
+	$allUsers = new HtUserTemp('*');
+	$result = $allUsers->getResultSet();
+	$result->data_seek(0);
+	while ($row = $result->fetch_assoc()) {
+		echo '<tr style="background-color: #ffa50075;">';
+		$url = 'function=all-users&action=view&table=user_temp&userId=' . $row['id'];
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
 		echo '<td><a href="./admin.php?allUserId=' . $urlEn . '">';
 		echo '<button style="font-style: italic;" class="btn btn-rounded btn-sm btn-primary btn-block">View User#' . $row['id'] . '</button></a></td>';
@@ -361,7 +381,7 @@ function allUsers()
 			var_dump($_POST);
 		}
 
-		////		
+		////
 		listUsers($ACTIVITY_ARRAY);
 	}
 	___close_div_(3);
@@ -385,46 +405,140 @@ function listUsers(&$ACTIVITY_ARRAY)
 		'other' => ['../images/uploads/icons/other_dark.svg', 'item_other'],
 	];
 
-
-
 	$userId = $ACTIVITY_ARRAY['userId'];
-	/// get user information
-	$user = new HtUserAll($userId);
+	if (isset($ACTIVITY_ARRAY['table']) && ($ACTIVITY_ARRAY['table'] == 'user_temp')) {
+		$user = new HtUserTemp($userId);
+	} else {
+		$user = new HtUserAll($userId);
+	}
 	if (isset($ACTIVITY_ARRAY['function']) && $ACTIVITY_ARRAY['function'] == 'task' && isset($_POST) && $_POST['admin-task']) {
 		$adminTask = $_POST['admin-task'];
 		if ($adminTask != 'field_privilege-default') {
+			///Part 1. Change user privilege
 			if (strpos($adminTask, 'field_privilege-') !== false) {
 				$privilege = str_replace('field_privilege-', '', $adminTask);
 				$user->setFieldPrivilege($privilege);
 				$user->updateCurrent();
 				header("Refresh:0");
 			}
+			/// Part 2: deactivate or activate user
+			if (strpos($adminTask, 'field_status-') !== false) {
+				$accountStatus = str_replace('field_status-', '', $adminTask);
+				if ($accountStatus != 'erase') {
+					if ($accountStatus == 'activate') {
+						$changeStatusOfUser = 'active';
+						$changeStatusOfItem = 'active';
+					} else if ($accountStatus == 'deactivate') {
+						$changeStatusOfUser = 'inactive';
+						$changeStatusOfItem = 'pending';
+					}
+
+					/// step 1: fetch the user from user_all::field_account_status and change account status
+					if (isset($ACTIVITY_ARRAY['table']) && ($ACTIVITY_ARRAY['table'] == 'user_temp')) {
+						/// we are copying from user_temp to user_all
+						$userTemp = new HtUserTemp((int) $userId);
+						$userAll = new HtUserAll();
+						$userAll->setFieldValues($userTemp);
+						$userAll->setFieldAccountStatus($changeStatusOfUser);
+						$userAll->insert();
+						$ACTIVITY_ARRAY['table'] = '';
+						header('Location: ' . $_SERVER['REQUEST_URI']);
+					} else {
+						$user = new HtUserAll($userId);
+						$user->setFieldAccountStatus($changeStatusOfUser);
+						$user->updateCurrent();
+					}
+
+					/// step 2: fetch items with userId and set item tables field_status pending
+					$userId = (int) $ACTIVITY_ARRAY['userId'];
+					foreach ($allItems as $itemName => $value) {
+						if ($itemName !== 'X') {
+							//fetch that specific user and get all element
+							$itemObject = ObjectPool::getInstance()->getObjectWithId($itemName);
+							$itemObject->runQuery("WHERE id_user = " . $userId);
+							$result = $itemObject->getResultSet();
+							$result->data_seek(0);
+							while ($row = $result->fetch_object()) {
+								///get the specific item and setFieldStatus to pending
+								$localObject = ObjectPool::getInstance()->getObjectWithId($itemName, $row->id);
+								$localObject->setFieldStatus($changeStatusOfItem);
+								$localObject->updateCurrent();
+							}
+						}
+					}
+					/// step 3: send notification to user
+					if (DBHOST !== 'localhost') {
+						///send mail to user
+						$subject = $GLOBALS['user_specific_array']['message']['account-deactivation']['subject'];
+						$body = $GLOBALS['user_specific_array']['message']['account-deactivation']['body'][0] . "<br><br>";
+
+						$isMailDelivered = mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
+						//Check if mail Delivered or die
+						if (!$isMailDelivered) {
+							die("Sending Email Failed. Please Contact Site Admin!");
+						}
+					}
+					header("Refresh:0");
+				} else if ($accountStatus == 'erase') { //close account
+					/// step 1: remove account and all connected links to this user
+					$user = new HtUserAll($userId);
+					$user->delete($userId);
+
+					/// step 2: fetch the user's uploaded folders per item and remove the folder(and contents)
+					foreach ($allItems as $itemName => $value) {
+						if ($itemName !== 'X') {
+							global $documnetRootPath;
+							$folderName = $documnetRootPath . '/upload/item_' . $itemName . '/user_id_' . $userId;
+							if (is_dir($folderName)) {
+								rmdir($folderName);
+							}
+						}
+					}
+
+					/// step 3: send a notification to user
+					if (DBHOST !== 'localhost') {
+						///send mail to user
+						$subject = $GLOBALS['user_specific_array']['message']['account-closed']['subject'];
+						$body = $GLOBALS['user_specific_array']['message']['account-closed']['body'][0] . "<br><br>";
+
+						/// temporary disable for message sending
+						$isMailDelivered = mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
+						//Check if mail Delivered or die
+						if (!$isMailDelivered) {
+							die("Sending Email Failed. Please Contact Site Admin!");
+						}
+					}
+					header("Refresh:0");
+				}
+			}
 		}
+		header("Refresh:0");
 	}
 	$result = $user->getResultSet();
 	$result->data_seek(0);
 	while ($row = $result->fetch_object()) {
-		echo <<<EOD
-	<div class="container-fluid" style="margin:20px; border-radius:5px; border:2px solid #1593c4; width:60%;padding:20px">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row" style="text-align:left">
-					<div class="col-md-6">
-						<p>ACCOUNT INFORMATION </p>
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">User id : <strong>$userId</strong></p>
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Username :<strong> $row->field_user_name</strong></p>
-EOD;
+		echo '<div class="container-fluid" style="margin:20px; border-radius:5px; border:2px solid #1593c4; width:60%;padding:20px">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" style="text-align:left">
+                    <div class="col-md-6">
+                        <p>ACCOUNT INFORMATION </p>
+                        <p class="h4" style="border-bottom:1px solid #c7c7c7;">User id :     <strong>' . $userId . '</strong></p>
+                        <p class="h4" style="border-bottom:1px solid #c7c7c7;">Username :    <strong>' . $row->field_user_name . '</strong></p>
+';
 		if (isset($privilege))
 			$changed = '<span style="color:lightgreen;">(Updated)</span>';
-		echo <<<EOD
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Privilege : <strong>$row->field_privilege</strong>$changed</p>
-EOD;
-		echo <<<EOD
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Real Name : <strong>$row->field_first_name $row->field_last_name</strong></p>
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Email : <strong>$row->field_email</strong></p>
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Phone : <strong>$row->field_phone_nr</strong></p>
-						<p class="h4" style="border-bottom:1px solid #c7c7c7;">Member Since: <strong>$row->field_register_date</strong></p>
-EOD;
+		echo '<p class="h4" style="border-bottom:1px solid #c7c7c7;">Privilege :     <strong>' . $row->field_privilege . '</strong>' . $changed . '</p>';
+		echo '<p class="h4" style="border-bottom:1px solid #c7c7c7;">Real Name :     <strong>' . $row->field_first_name . ' ' . $row->field_last_name . '</strong></p>
+              <p class="h4" style="border-bottom:1px solid #c7c7c7;">Email :     <strong>' . $row->field_email . '</strong></p>
+              <p class="h4" style="border-bottom:1px solid #c7c7c7;">Phone :     <strong>' . $row->field_phone_nr . '</strong></p>
+              <p class="h4" style="border-bottom:1px solid #c7c7c7;">Member Since:     <strong>' . $row->field_register_date . '</strong></p>';
+		if ($row->field_account_status === 'active') {
+			$style = ' style = "color:green;"';
+		} else if ($row->field_account_status === 'inactive') {
+			$style = ' style = "color:#c7c7c7;"';
+		}
+		echo '<p class="h4" style="border-bottom:1px solid #c7c7c7;">Account Status: <strong ' . $style . '>' . $row->field_account_status . '</strong></p>';
 		$status = [
 			'active' => ['Active', " background-color:#c6e5ef;"],
 			'pending' => ['Pending', " background-color:#f9daa0;"],
@@ -433,14 +547,14 @@ EOD;
 		];
 		echo '<p class="h4" style="text-align:center;"><strong>User\'s Overview per Item </strong></p>';
 		echo '<div class="grid-container" style="
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			gap: 1px 1px;
-			grid-template-areas: ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . .";
-		  ">
-		  
-		  ';
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 1px 1px;
+            grid-template-areas: ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . .";
+          ">
+
+          ';
 		foreach ($allItems as $key => $value) {
 			if ($value[0] == 'X') {
 				echo '<div style="padding:2px;text-align:center;"></div>';
@@ -468,19 +582,22 @@ EOD;
 			}
 			$totalNumber = 0;
 		}
+		if (isset($ACTIVITY_ARRAY['table']) && ($ACTIVITY_ARRAY['table'] == 'user_temp')) {
+			$tableUserTemp = '&table=user_temp';
+		}
 		$cryto = new Cryptor();
-		$url = 'function=all-users&action=view&userId=' . $userId . '&function=task';
+		$url = 'function=all-users&action=view&userId=' . $userId . '&function=task' . $tableUserTemp;
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-		echo '</div>		
-		</div>
-		<div class="col-md-6" style=";padding:50px; border-left:1px solid #c7c7c7;">
-		<form class="form-horizontal" action="../includes/admin.php?allUserId=' . $urlEn . '" method="post" enctype="multipart/form-data">
-  		<div class="form-group row">
-		<label for="select" class="col-4 col-form-label"></label> 
-		<p class="h4" >Task</p>
-		<p class="h5" >Choose here to trigger Adminstrative Task</p>
-  		<div class="col-8">
-		<select id="admin-task" name="admin-task" class="select form-control">';
+		echo '</div>
+        </div>
+        <div class="col-md-6" style=";padding:50px; border-left:1px solid #c7c7c7;">
+        <form class="form-horizontal" action="../includes/admin.php?allUserId=' . $urlEn . '" method="post" enctype="multipart/form-data">
+          <div class="form-group row">
+        <label for="select" class="col-4 col-form-label"></label>
+        <p class="h4" >Task</p>
+        <p class="h5" >Choose here to trigger Adminstrative Task</p>
+          <div class="col-8">
+        <select id="admin-task" name="admin-task" class="select form-control">';
 		/// task to be performed on user
 		$task = [
 			0 => ["field_privilege-default" => "Choose task"],
@@ -488,50 +605,51 @@ EOD;
 			2 => ["field_privilege-administrator" => "Update user privilege to Administrator"],
 			3 => ["field_privilege-moderator" => "Update user privilege to Moderator"],
 			4 => ["field_privilege-user" => "Update user privilege to User"],
-			5 => ["field_status-deactivate" => "Deactivate Account"],
-			6 => ["field_status-erase" => "Close Account"],
+			5 => ["field_status-activate" => "Activate user account"],
+			6 => ["field_status-deactivate" => "Deactivate user account"],
+			7 => ["field_status-erase" => "Close user account and delete data"],
 		];
-		///Array to hold hidden fields to from user_all userColumnArray 
+		///Array to hold hidden fields to from user_all userColumnArray
 		$hiddenFieldsArray = [];
 		///Get current logged in User
-		$loggedInUser = new HtUserAll($_SESSION['uID']);
+		//$loggedInUser = new HtUserAll($_SESSION['uID']);
 
 		/*
-		if ((int) $loggedInUser->getFieldRank() > (int) $user->getFieldRank()) {
-			if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
-				$hiddenFieldsArray = [];			
-			} else if ($loggedInUser->isModerator()) {
-				$hiddenFieldsArray = [1, 2, 3];
-			} else if ($loggedInUser->isUser()) {
-				$hiddenFieldsArray = $task;
-			}
-		} else if ((int) $loggedInUser->getFieldRank() == (int) $user->getFieldRank()) {
-			$found = false;
+        if ((int) $loggedInUser->getFieldRank() > (int) $user->getFieldRank()) {
+            if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
+                $hiddenFieldsArray = [];
+            } else if ($loggedInUser->isModerator()) {
+                $hiddenFieldsArray = [1, 2, 3];
+            } else if ($loggedInUser->isUser()) {
+                $hiddenFieldsArray = $task;
+            }
+        } else if ((int) $loggedInUser->getFieldRank() == (int) $user->getFieldRank()) {
+            $found = false;
 
-			foreach ($task as $task_key => $task_value) {
-				foreach ($task_value as $key => $value) {
-					if (strpos($key, $user->getFieldPrivilege()) === false) {
-						$found = true;
-						$indexToRemove = $task_key + 1;
-						break;
-					}
-				}
-				if ($found) {
-					break;
-				}
-			}
-			$hiddenFieldsArray = [$indexToRemove];
-		} else if ((int) $loggedInUser->getFieldRank() < (int) $user->getFieldRank()) {
-			if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
-				$hiddenFieldsArray = [];
-			} else if ($loggedInUser->isModerator()) {
-				$hiddenFieldsArray = [1, 2, 3];
-			} else if ($loggedInUser->isUser()) {
-				$hiddenFieldsArray = $task;
-			}
-		}*/
+            foreach ($task as $task_key => $task_value) {
+                foreach ($task_value as $key => $value) {
+                    if (strpos($key, $user->getFieldPrivilege()) === false) {
+                        $found = true;
+                        $indexToRemove = $task_key + 1;
+                        break;
+                    }
+                }
+                if ($found) {
+                    break;
+                }
+            }
+            $hiddenFieldsArray = [$indexToRemove];
+        } else if ((int) $loggedInUser->getFieldRank() < (int) $user->getFieldRank()) {
+            if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
+                $hiddenFieldsArray = [];
+            } else if ($loggedInUser->isModerator()) {
+                $hiddenFieldsArray = [1, 2, 3];
+            } else if ($loggedInUser->isUser()) {
+                $hiddenFieldsArray = $task;
+            }
+        }*/
 
-		///now remove those in hiddenFieldsArray from the userColumnArray	
+		///now remove those in hiddenFieldsArray from the userColumnArray
 		foreach ($hiddenFieldsArray as $key => $value) {
 			unset($task[$value]);
 		}
@@ -542,20 +660,20 @@ EOD;
 			}
 		}
 		echo '
-  		</select>
-  		</div>
-  		</div> 
-  		<div class="form-group row">
-  		<div class="offset-4 col-8">
-  		<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-  		</div>
-  		</div>
+          </select>
+          </div>
+          </div>
+          <div class="form-group row">
+          <div class="offset-4 col-8">
+          <button name="submit" type="submit" onclick="return ask()" class="btn btn-primary">Submit</button>
+          </div>
+          </div>
 		</form>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>';
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>';
 		//var_dump($loggedInUser->getFieldRank() . ' vs ' . $user->getFieldRank());
 	}
 }
@@ -636,7 +754,7 @@ function activityTable()
 		echo '</tr></thead><tbody id="activity-table">';
 
 		$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
-		$grandTotal = $totalActive  = $totalPending = $totalReported =	$totalDeleted = 0;
+		$grandTotal = $totalActive  = $totalPending = $totalReported =    $totalDeleted = 0;
 
 
 		// displays main activity table with some statistics
@@ -739,7 +857,7 @@ function activityTable()
 			/// finally update table with new data
 			$itemObject->updateCurrent();
 		} else {
-			/// Update user status of item 
+			/// Update user status of item
 			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
 			if ($action == 'distroy') {
 				///here permanent damage, data unrecoverable!!
@@ -750,7 +868,7 @@ function activityTable()
 				$object->updateCurrent();
 			}
 		}
-		/// To activity table 
+		/// To activity table
 		$url = 'function=activity-table&type=' . $item . '&status=' . $status;
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
 		header('Location: ./admin.php?activityTableId=' . $urlEn);
@@ -806,8 +924,8 @@ function activityTable()
 		/// start : table header
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
-		echo '<thead><tr><th class="th-sm">	Action (Update user status)</th>';
-		// echo '<th class="th-sm">	Reported For</th>';
+		echo '<thead><tr><th class="th-sm">    Action (Update user status)</th>';
+		// echo '<th class="th-sm">    Reported For</th>';
 
 		foreach ($header as $k1 => $v1) {
 			$k11 = explode("_", $k1);
@@ -820,7 +938,7 @@ function activityTable()
 		echo '</tr></thead>';
 		/// end : table header
 
-		//// array for action to be take, 
+		//// array for action to be take,
 		$allActionButtons = [
 			'active' => [ // action to be taken
 				'activate', // action button name
@@ -866,7 +984,7 @@ function activityTable()
 			$displayActionButtonOnce = true;
 			$j = 0;
 			foreach ($v1 as $k2 => $v2) {
-				///Make action forms per item once 
+				///Make action forms per item once
 				if ($displayActionButtonOnce) {
 					echo '<td><span class="table-remove">';
 					foreach ($edit[$status] as $action => $value) {
@@ -874,7 +992,7 @@ function activityTable()
 						if ($action == $ACTIVITY_ARRAY['status'] && $ACTIVITY_ARRAY['status'] !== 'reported') {
 							$disabled = ' disabled';
 						}
-						// FIRST CELL OF ROW IS THE ITEM ID SAVE FOR LATER USE 
+						// FIRST CELL OF ROW IS THE ITEM ID SAVE FOR LATER USE
 						////////////////////////////////
 						$itemId = $v2;  ////////////////
 						////////////////////////////////
@@ -883,7 +1001,7 @@ function activityTable()
 
 						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?activityTableId=' . $urlEn . '" method="post">';
 						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' class="btn btn-rounded btn-sm ' . $value[1]
-							. '"' . $disabled .	' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
+							. '"' . $disabled .    ' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
 						echo '</form>';
 					}
 					echo '</span></td>';

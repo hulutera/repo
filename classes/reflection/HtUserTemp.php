@@ -43,9 +43,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldUserName
      */
     private $fieldUserName;
@@ -57,9 +57,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldFirstName
      */
     private $fieldFirstName;
@@ -71,9 +71,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLastName
      */
     private $fieldLastName;
@@ -85,9 +85,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldEmail
      */
     private $fieldEmail;
@@ -99,9 +99,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPhoneNr
      */
     private $fieldPhoneNr;
@@ -113,9 +113,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldAddress
      */
     private $fieldAddress;
@@ -127,9 +127,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPassword
      */
     private $fieldPassword;
@@ -141,9 +141,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: user
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPrivilege
      */
     private $fieldPrivilege;
@@ -155,9 +155,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -169,9 +169,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: tinyint(1)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTermAndCondition
      */
     private $fieldTermAndCondition;
@@ -183,7 +183,7 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldRegisterDate
@@ -197,9 +197,9 @@ class HtUserTemp extends MySqlRecord
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldNewPassword
      */
     private $fieldNewPassword;
@@ -209,14 +209,28 @@ class HtUserTemp extends MySqlRecord
      *
      * Comment for field field_activation: Not specified.<br>
      * Field information:
-     *  - Data type: varchar(60)
+     *  - Data type: varchar(255)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldActivation
      */
     private $fieldActivation;
+
+    /**
+     * Class attribute for mapping table field field_account_status
+     *
+     * Comment for field field_account_status: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(125)
+     *  - Null : YES
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
+     * @var string $fieldActivation
+     */
+    private $fieldAccountStatus;
 
     /**
      * Class attribute for storing the SQL DDL of table user_temp
@@ -396,7 +410,7 @@ class HtUserTemp extends MySqlRecord
     /**
      * setFieldActivation Sets the class attribute fieldActivation with a given value
      *
-     * The attribute fieldActivation maps the field field_activation defined as varchar(60).<br>
+     * The attribute fieldActivation maps the field field_activation defined as varchar(255).<br>
      * Comment for field field_activation: Not specified.<br>
      * @param string $fieldActivation
      * @category Modifier
@@ -404,6 +418,24 @@ class HtUserTemp extends MySqlRecord
     public function setFieldActivation($fieldActivation)
     {
         $this->fieldActivation = (string) $fieldActivation;
+    }
+
+    /**
+     * setFieldAccountStatus Sets the class attribute fieldAccountStatus with a given value
+     *
+     * The attribute fieldAccountStatus maps the field field_acccount_status defined as varchar(125).<br>
+     * Comment for field field_acccount_status: Not specified.<br>
+     * @param string $fieldAccountStatus
+     * @category Modifier
+     */
+    public function setFieldAccountStatus($fieldAccountStatus)
+    {
+        $this->fieldAccountStatus = (string) $fieldAccountStatus;
+    }
+
+    public function isAccountStatusActive()
+    {
+        return $this->fieldAccountStatus == 'active' ? true : false;
     }
 
     /**
@@ -589,6 +621,20 @@ class HtUserTemp extends MySqlRecord
     }
 
     /**
+     * getFieldAccountStatus gets the class attribute fieldAccountStatus value
+     *
+     * The attribute fieldAccountStatus maps the field field_account_status defined as varchar(125).<br>
+     * Comment for field field_account_status: Not specified.
+     * @return string $fieldAccountStatus
+     * @category Accessor of $fieldAccountStatus
+     */
+    public function getFieldAccountStatus()
+    {
+        return $this->fieldAccountStatus;
+    }
+
+
+    /**
      * Gets DDL SQL code of the table user_temp
      * @return string
      * @category Accessor
@@ -677,6 +723,7 @@ class HtUserTemp extends MySqlRecord
             @$this->fieldRegisterDate = $rowObject->field_register_date;
             @$this->fieldNewPassword = $this->replaceAposBackSlash($rowObject->field_new_password);
             @$this->fieldActivation = $this->replaceAposBackSlash($rowObject->field_activation);
+            @$this->fieldAccountStatus = $this->replaceAposBackSlash($rowObject->field_account_status);
             $this->allowUpdate = true;
         } else {
             $this->lastSqlError = $this->sqlstate . " - " . $this->error;
@@ -694,7 +741,7 @@ class HtUserTemp extends MySqlRecord
     {
         $sql = "DELETE FROM user_temp WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -720,7 +767,7 @@ class HtUserTemp extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO user_temp
-            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation)
+            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation,field_account_status)
             VALUES(
 			{$this->parseValue($this->fieldUserName, 'notNumber')},
 			{$this->parseValue($this->fieldFirstName, 'notNumber')},
@@ -734,11 +781,10 @@ class HtUserTemp extends MySqlRecord
 			{$this->parseValue($this->fieldTermAndCondition)},
 			{$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
-			{$this->parseValue($this->fieldActivation, 'notNumber')})
+			{$this->parseValue($this->fieldActivation, 'notNumber')},
+            {$this->parseValue($this->fieldAccountStatus, 'notNumber')})
 SQL;
-        echo $sql;
         $this->resetLastSqlError();
-        
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -770,7 +816,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 user_temp
-            SET 
+            SET
 				field_user_name={$this->parseValue($this->fieldUserName, 'notNumber')},
 				field_first_name={$this->parseValue($this->fieldFirstName, 'notNumber')},
 				field_last_name={$this->parseValue($this->fieldLastName, 'notNumber')},
@@ -783,15 +829,16 @@ SQL;
 				field_term_and_condition={$this->parseValue($this->fieldTermAndCondition)},
 				field_register_date={$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 				field_new_password={$this->parseValue($this->fieldNewPassword, 'notNumber')},
-				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')}
+				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')},
+                field_account_status={$this->parseValue($this->fieldAccountStatus, 'notNumber')}
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
@@ -852,7 +899,7 @@ SQL;
         }
         //check user exists in user_temp, if so delete it
         $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
