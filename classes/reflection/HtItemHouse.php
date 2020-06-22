@@ -43,9 +43,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(20)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idTemp
      */
     private $idTemp;
@@ -58,8 +58,8 @@ class HtItemHouse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idUser
      */
     private $idUser;
@@ -72,8 +72,8 @@ class HtItemHouse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idCategory
      */
     private $idCategory;
@@ -85,9 +85,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -99,9 +99,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceRent
      */
     private $fieldPriceRent;
@@ -113,9 +113,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceSell
      */
     private $fieldPriceSell;
@@ -127,9 +127,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Negotiable
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceNego
      */
     private $fieldPriceNego;
@@ -141,9 +141,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceRate
      */
     private $fieldPriceRate;
@@ -155,9 +155,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Birr
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceCurrency
      */
     private $fieldPriceCurrency;
@@ -169,9 +169,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: longtext
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldImage
      */
     private $fieldImage;
@@ -183,9 +183,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLocation
      */
     private $fieldLocation;
@@ -197,9 +197,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldKebele
      */
     private $fieldKebele;
@@ -211,9 +211,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldWereda
      */
     private $fieldWereda;
@@ -225,9 +225,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldLotSize
      */
     private $fieldLotSize;
@@ -239,9 +239,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldNrBedroom
      */
     private $fieldNrBedroom;
@@ -253,9 +253,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldToilet
      */
     private $fieldToilet;
@@ -267,9 +267,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldBathroom
      */
     private $fieldBathroom;
@@ -281,9 +281,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: year(4)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldBuildYear
      */
     private $fieldBuildYear;
@@ -295,9 +295,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldWater
      */
     private $fieldWater;
@@ -309,9 +309,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldElectricity
      */
     private $fieldElectricity;
@@ -323,9 +323,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: mediumtext
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldExtraInfo
      */
     private $fieldExtraInfo;
@@ -337,9 +337,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldTitle
      */
     private $fieldTitle;
@@ -351,7 +351,7 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldUploadDate
@@ -365,9 +365,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTotalView
      */
     private $fieldTotalView;
@@ -379,9 +379,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: pending
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldStatus
      */
     private $fieldStatus;
@@ -393,9 +393,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: NULL
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldReport
      */
     private $fieldReport;
@@ -407,9 +407,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(15)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMarketCategory
      */
     private $fieldMarketCategory;
@@ -421,9 +421,9 @@ class HtItemHouse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: 2
-     *  - Extra:  
+     *  - Extra:
      * @var int $fieldTableType
      */
     private $fieldTableType;
@@ -1556,7 +1556,7 @@ class HtItemHouse extends MySqlRecord
 
 
 
-    /* 
+    /*
     ** Set the house element values
     * $rows: it takes the array of one item row and it sets the values
     */
@@ -1603,9 +1603,9 @@ class HtItemHouse extends MySqlRecord
         $this->allowUpdate = true;
         $this->setFieldValues($input);
     }
-    /* 
+    /*
     ** Set the house category elements
-    * 
+    *
     */
     public function setCategoryName()
     {
@@ -1723,7 +1723,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_house
-            SET 
+            SET
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
@@ -1861,7 +1861,7 @@ SQL;
         'fieldTableType' => 'Table Type'
     );
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOptionShort = array(
         'idTemp' => 'id Temp',
@@ -1972,7 +1972,7 @@ SQL;
         ___open_div_("form-group upload", "");
         $this->insertFieldContactMethod();
         ___close_div_(3);
-        ////        
+        ////
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");

@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtItemLatestUpdate
  * @extends MySqlRecord
  * @filesource HtItemLatestUpdate.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,9 +43,9 @@ class HtItemLatestUpdate extends MySqlRecord
      * Field information:
      *  - Data type: int(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idItem
      */
     private $idItem;
@@ -57,9 +57,9 @@ class HtItemLatestUpdate extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldItemName
      */
     private $fieldItemName;
@@ -71,9 +71,9 @@ class HtItemLatestUpdate extends MySqlRecord
      * Field information:
      *  - Data type: int(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldUploadTime
      */
     private $fieldUploadTime;
@@ -94,7 +94,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -107,7 +107,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setIdItem($idItem)
     {
-        $this->idItem = (int)$idItem;
+        $this->idItem = (int) $idItem;
     }
 
     /**
@@ -120,7 +120,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setFieldItemName($fieldItemName)
     {
-        $this->fieldItemName = (string)$fieldItemName;
+        $this->fieldItemName = (string) $fieldItemName;
     }
 
     /**
@@ -133,7 +133,7 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function setFieldUploadTime($fieldUploadTime)
     {
-        $this->fieldUploadTime = (int)$fieldUploadTime;
+        $this->fieldUploadTime = (int) $fieldUploadTime;
     }
 
     /**
@@ -199,10 +199,10 @@ class HtItemLatestUpdate extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "item_latest_update";
@@ -238,7 +238,6 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -252,18 +251,17 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function select($id, $status = null)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM item_latest_update";
         } else { //id
-            $sql =  "SELECT * FROM item_latest_update WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM item_latest_update WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
         $this->affected_rows;
-        
     }
 
     /**
@@ -274,9 +272,9 @@ class HtItemLatestUpdate extends MySqlRecord
      * return: the number of affected rows
      * N.B: the query is done based on the number of items to be fetched and that is dueto the pagination
      */
-    public function runQuery($start=null, $itemPerPage=null)
+    public function runQuery($start = null, $itemPerPage = null)
     {
-        if($itemPerPage == null) {
+        if ($itemPerPage == null) {
             $sql =  "SELECT * FROM item_latest_update";
         } else {
             $sql =  "SELECT * FROM item_latest_update ORDER BY field_upload_time DESC LIMIT $start, $itemPerPage";
@@ -296,15 +294,15 @@ class HtItemLatestUpdate extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM item_latest_update WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM item_latest_update WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -327,17 +325,17 @@ class HtItemLatestUpdate extends MySqlRecord
             (id_item,field_item_name,field_upload_time)
             VALUES(
 			{$this->parseValue($this->idItem)},
-			{$this->parseValue($this->fieldItemName,'notNumber')},
+			{$this->parseValue($this->fieldItemName, 'notNumber')},
 			{$this->parseValue($this->fieldUploadTime)})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -363,20 +361,20 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_latest_update
-            SET 
+            SET
 				id_item={$this->parseValue($this->idItem)},
-				field_item_name={$this->parseValue($this->fieldItemName,'notNumber')},
+				field_item_name={$this->parseValue($this->fieldItemName, 'notNumber')},
 				field_upload_time={$this->parseValue($this->fieldUploadTime)}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -402,31 +400,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for item_latest_update previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for item_latest_update previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into item_latest_update.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into item_latest_update.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

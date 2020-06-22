@@ -2,7 +2,6 @@
 //get name of the calling script
 $file = basename($_SERVER['SCRIPT_NAME']);
 //remove php extention
-$file = str_replace(".php","",$file);
+$file = str_replace(".php", "", $file);
 //redirect to template.item file
-header('Location: ../../includes/template.proxy.php?type='.$file);
-?>
+header('Location: ../../includes/template.proxy.php?type=' . $file);

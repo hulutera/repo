@@ -8,11 +8,12 @@ require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 
 require_once $documnetRootPath . '/test/backtracer.php';
-class HtCommonView extends MySqlRecord {
+class HtCommonView extends MySqlRecord
+{
 
     private $_itemName;
-    
-    function __construct($itemName=NULL)
+
+    function __construct($itemName = NULL)
     {
         $this->_itemName = $itemName;
     }
@@ -32,14 +33,14 @@ class HtCommonView extends MySqlRecord {
         }
         $result->close();
     }
-    
+
     public function showRowContent($item, $id)
     {
         $itemObj = ObjectPool::getInstance()->getObjectWithId($item, $id);
         $pImage = new ImgHandler;
         $itemName = $this->_itemName;
         $id = $itemObj->getId();
-        $uniqueId = $itemName . $id; 
+        $uniqueId = $itemName . $id;
         $datetime = $itemObj->getFieldUploadDate();
         $title = $itemObj->getFieldTitle();
         $location = $itemObj->getFieldLocation();
@@ -49,13 +50,13 @@ class HtCommonView extends MySqlRecord {
         $image = $itemObj->getFieldImage();
         $imageArr = explode(',', $image);
         $numimage = sizeof($imageArr);
-                  
+
         $jsImg = implode(',', $imageArr);
-        $strReplArr= array('[', ']', '"');
+        $strReplArr = array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
-        
+
         //---------------------------------------------------------
-       echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
+        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
         echo "<div class=\"col1\">";
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
@@ -112,17 +113,17 @@ class HtCommonView extends MySqlRecord {
         //backTrace($row);
     }
 
-    /** 
+    /**
      * Get the image directory
      * */
-    public function getImageDir($itemObj) {
+    public function getImageDir($itemObj)
+    {
         $itemImageDir = "item_" . $this->_itemName;
         $userImageDir = "/user_id_" . $itemObj->getIdUser();
         $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
         $path = "../upload/";
         $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
-        return $dir ;     
-
+        return $dir;
     }
 
 
@@ -171,9 +172,9 @@ class HtCommonView extends MySqlRecord {
         $today       = strtotime("today");
         $yesterday   = strtotime("yesterday");
         $tomorrow    = strtotime("tomorrow");
-               
+
         if ($datetimestr >= $today) {
-            echo '<p>' .$GLOBALS['lang']["today"] . '</p>';
+            echo '<p>' . $GLOBALS['lang']["today"] . '</p>';
         } else if ($datetimestr >= $yesterday) {
             echo '<p>' . $GLOBALS['lang']["yesterday"] . '</p>';
         } else {
@@ -193,16 +194,16 @@ class HtCommonView extends MySqlRecord {
     }
     /*@function to display location of item
 	 * input : location /loc
-	* */ 
-    
+	* */
+
     /*@ function to display make of the item
-	 * 
+	 *
 	* input: item object
 	* */
     public function displayMake($itemObj)
     {
         $itemName = $this->_itemName;
-        if($itemName == "car" or $itemName == "phone" or $itemName == "computer") {
+        if ($itemName == "car" or $itemName == "phone" or $itemName == "computer") {
             echo "<div class=\"location\">";
             echo $itemObj->getFieldMake();
             echo "</div>";
@@ -211,9 +212,9 @@ class HtCommonView extends MySqlRecord {
 
     public function displayLocation($itemObj)
     {
-       $loc =  $itemObj->getFieldLocation();
+        $loc =  $itemObj->getFieldLocation();
         if ($loc != "") {
-            echo '<p>'.$GLOBALS['lang']["$loc"]. '</p>';
+            echo '<p>' . $GLOBALS['lang']["$loc"] . '</p>';
         }
     }
     /*@function to display market type /SELL/RENT
@@ -222,7 +223,7 @@ class HtCommonView extends MySqlRecord {
     public function displayMarketType($itemObj)
     {
         $mrkTyp = $itemObj->getFieldMarketCategory();
-               
+
         if ($mrkTyp != "No Action") {
             echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"][$mrkTyp] . "</p>";
         } else {
@@ -237,17 +238,17 @@ class HtCommonView extends MySqlRecord {
     {
         echo "<div class = \"reportabuse\">";
         echo "<div style=\"display:none;\" class=\"errorabuse_$uniqueId\">";
-        echo "<p style=\"background-color: #FFBABA; color: #D8000C;\">".$GLOBALS["abuse_type_lang_arr"][1]['You forgort to choose the Report type']."</p></div>";
-        echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";        
-        echo "<p>".$GLOBALS['lang']['Report Abuse']."</p>";
+        echo "<p style=\"background-color: #FFBABA; color: #D8000C;\">" . $GLOBALS["abuse_type_lang_arr"][1]['You forgort to choose the Report type'] . "</p></div>";
+        echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
+        echo "<p>" . $GLOBALS['lang']['Report Abuse'] . "</p>";
         echo "<select id=\"selectabuse_$uniqueId\">";
-        foreach($GLOBALS["abuse_type_lang_arr"][0] as $key=>$value){
-            echo "<option value=\"$key\">".$value."</option>";
+        foreach ($GLOBALS["abuse_type_lang_arr"][0] as $key => $value) {
+            echo "<option value=\"$key\">" . $value . "</option>";
         }
         echo "</select>";
         echo "<br>";
-        echo "<input class=\"report\" type=\"button\" onclick=\"swapabuseback($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['report']."\" />";
-        echo "<input class=\"closereport\" type=\"button\" onclick=\"closeAbusebox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
+        echo "<input class=\"report\" type=\"button\" onclick=\"swapabuseback($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['report'] . "\" />";
+        echo "<input class=\"closereport\" type=\"button\" onclick=\"closeAbusebox($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>"; //end_reportbox_*
         echo "</div>"; //end_reportabuse
     }
@@ -258,8 +259,8 @@ class HtCommonView extends MySqlRecord {
     {
         echo "<div class=\"msgcompleted col-xs-12 col-md-12\">";
         echo "<div style=\"width:100%;display:none;\" class=\"sent_$uniqueId\">";
-        echo "<p class=\"bg-success\">".$GLOBALS['lang']['msg sent']."</p> ";
-        echo "<input  class=\"closeInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
+        echo "<p class=\"bg-success\">" . $GLOBALS['lang']['msg sent'] . "</p> ";
+        echo "<input  class=\"closeInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapmailclose($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>"; //end_msgcompleted
         echo "</div>"; //end_sent_*
     }
@@ -270,8 +271,8 @@ class HtCommonView extends MySqlRecord {
     {
         echo "<div class=\"reportmsgcompleted\">";
         echo "<div style=\"width:100%; height:100px;display:none;\" class=\"reportcfrm_$uniqueId\">";
-        echo '<p>'.$GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"].'</p>';
-        echo "<input  class=\"closeReportInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
+        echo '<p>' . $GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"] . '</p>';
+        echo "<input  class=\"closeReportInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>"; //end_reportcfrm_*
         echo "</div>"; //end_reportmsgcompleted
     }
@@ -285,28 +286,28 @@ class HtCommonView extends MySqlRecord {
         echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\">";
         echo "<form class=\"msgcontainerRemove thumbnail\" method=\"post\">";
         echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
-             <p class=\"bg-danger\">".$GLOBALS['lang']['You forgort to enter your name, email address and Message']."
+             <p class=\"bg-danger\">" . $GLOBALS['lang']['You forgort to enter your name, email address and Message'] . "
              </div>";
         echo "<div style=\"display:none;\" class=\"error_2$uniqueId form-group\">
-             <p class=\"bg-danger\">".$GLOBALS['lang']['Your e-mail address is invalid']."
+             <p class=\"bg-danger\">" . $GLOBALS['lang']['Your e-mail address is invalid'] . "
              </div>";
         echo "<div class =\"msgformRemove\">";
-        echo '<p>'.$GLOBALS["lang"]["contact owner"].'</p>';
+        echo '<p>' . $GLOBALS["lang"]["contact owner"] . '</p>';
         echo "<div class=\"fieldRemove form-group\">";
-        echo "<label for=\"name\">".$GLOBALS['lang']['Your name']."</label></br>";
+        echo "<label for=\"name\">" . $GLOBALS['lang']['Your name'] . "</label></br>";
         echo '<input type="text" style="width:90%" id="name_' . $uniqueId . '" name="name"/>';
         echo "</div>"; //end_field
         echo "<div class=\"fieldRemove form-group\">";
-        echo "<label for=\"email\">".$GLOBALS['lang']['Email']."</label></br>";
+        echo "<label for=\"email\">" . $GLOBALS['lang']['Email'] . "</label></br>";
         echo '<input style="text-transform:lowercase;width:90%" type="email"  id="email_' . $uniqueId . '" name="email"/>';
         echo "</div>"; //end_field
         echo "<div class=\"fieldRemove form-group\">";
-        echo "<label for=\"description\">".$GLOBALS['lang']['Message']."</label>";
-        echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="'.$GLOBALS['lang']['Enter your message'].'"></textarea>';
+        echo "<label for=\"description\">" . $GLOBALS['lang']['Message'] . "</label>";
+        echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="' . $GLOBALS['lang']['Enter your message'] . '"></textarea>';
         echo "</div>"; //end_field
         echo "<div class=\"messageRouter1 form-group\">";
-        echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$email','$itemName')\" value=\"".$GLOBALS['lang']['Send']."\" />";
-        echo "<input class=\"closeRemove btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"".$GLOBALS['lang']['close']."\" />";
+        echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$email','$itemName')\" value=\"" . $GLOBALS['lang']['Send'] . "\" />";
+        echo "<input class=\"closeRemove btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>";
         echo "</div>"; //end_msgform
         echo "<div class=\"clear\"></div>";
@@ -326,16 +327,16 @@ class HtCommonView extends MySqlRecord {
         $userName = $userObj->getFieldFirstName() ? $userObj->getFieldFirstName() : NULL;
         $phone = $userObj->getFieldPhoneNr() ? $userObj->getFieldPhoneNr() : NULL;
         $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
-        
+
         echo "<div id=\"mail_reportRemove\" style=\"margin-top:20px\" class=\"contact_$uniqueId \">";
-        echo '<div class="headerRemove"><p class="bg-success"><strong>'.$GLOBALS["lang"]["Contact method"].'</strong></p></div>';
+        echo '<div class="headerRemove"><p class="bg-success"><strong>' . $GLOBALS["lang"]["Contact method"] . '</strong></p></div>';
         if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
-			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">".$GLOBALS['lang']['Send a message']."</a></p></div>";
+			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
         if ($contactType == "phone" or $contactType == "both")
             echo "<div class=\"phone\">
 			<p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">".$GLOBALS['lang']['Report Abuse']."</a></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -352,14 +353,14 @@ class HtCommonView extends MySqlRecord {
             echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
         }
         if ($numimage >= 1) {
-            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1\"><img class=\"largeImg\"  id=\"largeImg" . $itemName . $itemId ."\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1\"><img class=\"largeImg\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
             echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {
-               $imageFileName = $imageNameArray[$i];
-               $fileName = str_replace($filterArr, '', $imageFileName);
-               $divName = $fileName . $i;
-               echo "<div id=\"featured_buttom1\" class=\"col-xs-3 col-md-2\" style=\"padding:0px\">";
-               echo "<div class=\"imagesGallery1 thumbnail\">";
+                $imageFileName = $imageNameArray[$i];
+                $fileName = str_replace($filterArr, '', $imageFileName);
+                $divName = $fileName . $i;
+                echo "<div id=\"featured_buttom1\" class=\"col-xs-3 col-md-2\" style=\"padding:0px\">";
+                echo "<div class=\"imagesGallery1 thumbnail\">";
                 echo "
 				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
 				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$dir$fileName\" />
@@ -369,17 +370,16 @@ class HtCommonView extends MySqlRecord {
                 echo "</div>";
             }
             echo "</div>";
-              
         }
         echo "</div>";
     }
     /*@ function to display item specific contents
 	 * input: $obj
     * */
-       
+
     private function displaySpecifics($itemObj, $itemName)
     {
-        switch ($itemName) { 
+        switch ($itemName) {
             case "car":
                 echo $itemObj->getFieldMake()   ? "<p><strong>Make:&nbsp</strong>" . $itemObj->getFieldMake() . "</p>" : "";
                 echo $itemObj->getFieldModel() != "0000"       ? "<p><strong>Model:&nbsp</strong>" . $itemObj->getFieldModel() . "</p>" : "";
@@ -441,7 +441,7 @@ class HtCommonView extends MySqlRecord {
                 break;
         }
     }
-    
+
     public function displayPrice($itemObj)
     {
         global $lang;
@@ -467,13 +467,13 @@ class HtCommonView extends MySqlRecord {
                 $nego          =  !$rentValue && !$sellValue &&  $negoDisplay;
 
                 //display var
-                if ($rate != NULL) $rent_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp' . $rentValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate]. '</p>';
-                $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                if ($rate != NULL) $rent_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0] . ':&nbsp' . $rentValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate] . '</p>';
+                $sell_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $sellValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . '</p>';
                 $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
-                //$not_for_sell = 
-                $not_for_rent = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0].':&nbsp'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][2].'</p>';
-                $not_for_sell = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][2].'</p>';
-                
+                //$not_for_sell =
+                $not_for_rent = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0] . ':&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][2] . '</p>';
+                $not_for_sell = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][2] . '</p>';
+
                 if ($rentsellwnego) {
                     echo $rent_var . $sell_var . $nego_var;
                 } else if ($sellnego) {
@@ -506,11 +506,11 @@ class HtCommonView extends MySqlRecord {
                 $noprice   =  !$sellValue && !$negoValue;
                 $nego      =  !$sellValue &&  $negoValue;
                 $curr  =  $itemObj->getFieldPriceCurrency();
-                
+
                 //display var
-                $sell_var = '<p>'.$GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0].':&nbsp' . $sellValue . ' ' .$GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr].'</p>';
+                $sell_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $sellValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . '</p>';
                 $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
-                               
+
                 if ($sellnego) {
                     echo $sell_var . $nego_var;
                 } else if ($nego) {
@@ -526,7 +526,7 @@ class HtCommonView extends MySqlRecord {
         }
         echo "</div>";
     }
-    
+
     /**/
     public function displayAllItem()
     {
@@ -558,7 +558,7 @@ class HtCommonView extends MySqlRecord {
                 ObjectPool::getInstance()->getViewObject("others")->show($row['oID']);
             }
         }
-        
+
         $calculatePageArray = calculatePage($totalItems);
         $result->close();
         item_list_pagination($calculatePageArray[0], $calculatePageArray[1], "", "All",  "All");
@@ -583,7 +583,7 @@ class HtCommonView extends MySqlRecord {
     private function displayAllActive()
     {
         $item = $this->_itemName;
-        $itemClass = "HtItem".ucfirst($item);
+        $itemClass = "HtItem" . ucfirst($item);
         //$total = DatabaseClass::getInstance()->queryGetTotalNumberOfItem($item, HtGlobal::get('ACTIVE'));
         $itemObj = new $itemClass();
         $rows = $itemObj->select("*", "active");
@@ -593,9 +593,9 @@ class HtCommonView extends MySqlRecord {
             $result = $itemObj->getResultSet();
             while ($row = $result->fetch_array()) {
                 $itemObj->setFieldAll($row);
-                $this->showRowContent($itemObj);                
+                $this->showRowContent($itemObj);
             }
-            
+
             pagination($item, $calculatePageArray[1], $calculatePageArray[0], 0);
         } else {
             ObjectPool::getInstance()->getViewObject("empty")->show($id);
@@ -633,11 +633,10 @@ class HtCommonView extends MySqlRecord {
     public function displaySearch()
     {
         global $locationPerTable, $lang, $str_url;
-        
+
         if (isset($_GET['lan'])) {
             $lang_url = "&lan=" . $_GET['lan'];
-        }
-        else { 
+        } else {
             $lang_url = "";
         }
         $searchWordSanitized = $_GET['search_text'];
@@ -673,7 +672,7 @@ class HtCommonView extends MySqlRecord {
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
             $this->itemNotFound($searchWordSanitized, $city, $item);
             return;
-        } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All"){
+        } elseif ($searchWordSanitized == "" and ($city == "All" or $city == "000") and $item == "All") {
             //$this->displayAllItem();
             $this->showLatest();
         } elseif ($searchWordSanitized == "" and $item == "All") {
@@ -684,178 +683,172 @@ class HtCommonView extends MySqlRecord {
                 ObjectPool::getInstance()->getViewObject("empty")->show(0);
                 return;
             }
-            $condition = " ORDER BY LatestTime DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
+            $condition = " ORDER BY LatestTime DESC LIMIT $itemstart," . HtGlobal::get('itemPerPage');
             $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, $condition);
             while ($row = $result->fetch_assoc()) {
                 if ($row['cID'] != 0) {
-                    $location = $this -> searchFieldInTables("cID", "car", $row['cID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("cID", "car", $row['cID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("car")->show($row['cID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['hID'] != 0) {
-                    $location = $this -> searchFieldInTables("hID", "house", $row['hID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("hID", "house", $row['hID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("house")->show($row['hID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['dID'] != 0) {
-                    $location = $this -> searchFieldInTables("dID", "computer", $row['dID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("dID", "computer", $row['dID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("computer")->show($row['dID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['pID'] != 0) {
-                    $location = $this -> searchFieldInTables("pID", "phone", $row['pID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("pID", "phone", $row['pID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("phone")->show($row['pID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['eID'] != 0) {
-                    $location = $this -> searchFieldInTables("eID", "electronics", $row['eID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("eID", "electronics", $row['eID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("electronics")->show($row['eID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['hhID'] != 0) {
-                    $location = $this -> searchFieldInTables("hhID", "household", $row['hhID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("hhID", "household", $row['hhID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("household")->show($row['hhID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 } else if ($row['oID'] != 0) {
-                    $location = $this -> searchFieldInTables("oID", "others", $row['oID']);
-                    if($city == $location){
+                    $location = $this->searchFieldInTables("oID", "others", $row['oID']);
+                    if ($city == $location) {
                         ObjectPool::getInstance()->getViewObject("others")->show($row['oID']);
-                    }else{
+                    } else {
                         $totalItems = $totalItems - 1;
                     }
                 }
             }
-            
+
             if ($totalItems == 0) {
-                $this->itemNotFound($searchWordRaw, $city , $item);
+                $this->itemNotFound($searchWordRaw, $city, $item);
             } else {
                 $calculatePageArray = calculatePage($totalItems);
                 $result->close();
                 item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
             }
-            
         } else {
-                //To avoid a wildcard value for search word 
-                if($searchWordSanitized == "" and ($city != "000" or $item != "000")){
-                    $searchWordSanitized = "No searchword given";
-                    $connector = "OR";
-                } else {
-                    $connector = "AND";
-                }
+            //To avoid a wildcard value for search word
+            if ($searchWordSanitized == "" and ($city != "000" or $item != "000")) {
+                $searchWordSanitized = "No searchword given";
+                $connector = "OR";
+            } else {
+                $connector = "AND";
+            }
 
-                if($city == "All" or $city == "000"){
-                    $location = "%";
-                } else{
-                    $location = $city;
+            if ($city == "All" or $city == "000") {
+                $location = "%";
+            } else {
+                $location = $city;
+            }
+
+            if ($item == "All" or $item == "000" or (isset($_GET['item']) == false)) {
+                $allItem = DatabaseClass::getInstance()->getAllItem();
+            } else {
+                $allItem = array(
+                    'array' => array('table_name' => $item)
+                );
+            }
+
+            foreach ($allItem as $key => $value) {
+                $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
+                $tmpStr = "";
+                for ($i = 0; $i < sizeof($tableName); $i++) {
+                    if ($i == 0) {
+                        $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " INNER JOIN ";
+                        $tmpStr .= $value['table_name'] . "category ON ";
+                        $tmpStr .= $value['table_name'] . "category.categoryID = ";
+                        $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
+                        $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND (";
+                        $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%'";
+                        $tmpStr .= " " . $connector;
+                        $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%') OR (";
+                    }
+                    $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
                 }
-                
-                if ($item == "All" or $item == "000" or (isset($_GET['item']) == false)) {
-                    $allItem = DatabaseClass::getInstance()->getAllItem();
-                } else {
-                    $allItem = array(
-                        'array' => array('table_name' => $item)
-                    );
-                }
-                
-                foreach ($allItem as $key => $value) { 
+                $tmpStrFinal = rtrim($tmpStr, '\' OR ');
+                $tmpStrFinal .=  "'))";
+                $bigQuery .= " + " . $tmpStrFinal;
+                //break;
+            }
+            $finalStr = rtrim($bigQuery, 'OR ');
+            $finalStr2 = ltrim($finalStr, '+ ');
+            $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
+            echo "<div id= \"mainColumn\">";
+            $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
+            while ($dmatchChecker = $totalMatch->fetch_assoc()) {
+                $numbreOfMatches = $dmatchChecker['count_row'];
+            }
+
+            if ($numbreOfMatches >= 1) {
+                $bigQuery = "";
+                foreach ($allItem as $key => $value) {
                     $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
                     $tmpStr = "";
                     for ($i = 0; $i < sizeof($tableName); $i++) {
                         if ($i == 0) {
-                            $tmpStr .= "(SELECT COUNT(" . $tableName[$i] . ") FROM " . $value['table_name'] . " INNER JOIN ";
+                            $tmpStr .= "SELECT " . $tableName[$i] . ",UploadedDate,tableType FROM " . $value['table_name'] . " INNER JOIN ";
                             $tmpStr .= $value['table_name'] . "category ON ";
                             $tmpStr .= $value['table_name'] . "category.categoryID = ";
                             $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
                             $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND (";
                             $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%'";
                             $tmpStr .= " " . $connector;
-                            $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%') OR (";
-                            
+                            $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%' ) OR (";
                         }
                         $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
+                        //break;
                     }
-                    $tmpStrFinal = rtrim($tmpStr, '\' OR ');
-                    $tmpStrFinal .=  "'))";
-                    $bigQuery .= " + " . $tmpStrFinal;
-                    //break;
-                }
-                $finalStr = rtrim($bigQuery, 'OR ');
-                $finalStr2 = ltrim($finalStr, '+ ');
-                $matchChecker = "SELECT (" . $finalStr2  . ") AS count_row";
-                echo "<div id= \"mainColumn\">";
-                $totalMatch = DatabaseClass::getInstance()->runQuery($matchChecker);
-                while ($dmatchChecker = $totalMatch->fetch_assoc()) {
-                    $numbreOfMatches = $dmatchChecker['count_row'];
-                }
-      
-                if ($numbreOfMatches >= 1) {
-                    $bigQuery ="";
-                    foreach ($allItem as $key => $value) {
-                        $tableName = DatabaseClass::getInstance()->getAllFields($value['table_name']);
-                        $tmpStr = "";
-                        for ($i = 0; $i < sizeof($tableName); $i++) {
-                            if ($i == 0) {
-                                $tmpStr .= "SELECT " . $tableName[$i] . ",UploadedDate,tableType FROM " . $value['table_name'] . " INNER JOIN ";
-                                $tmpStr .= $value['table_name'] . "category ON ";
-                                $tmpStr .= $value['table_name'] . "category.categoryID = ";
-                                $tmpStr .= $value['table_name'] . "." . $value['table_name'] . "CategoryID WHERE ";
-                                $tmpStr .= $itemToStatus[$value['table_name']] . " = 'active' AND (";
-                                $tmpStr .= $locationPerTable[$value['table_name']] . " LIKE '%" . $location . "%'"; 
-                                $tmpStr .= " " . $connector;
-                                $tmpStr .= " categoryName LIKE '%" . $searchWordSanitized . "%' ) OR (";
-                            }
-                            $tmpStr .= $tableName[$i] . " LIKE '%" . $searchWordSanitized . "%' OR ";
-                            //break;
-                        }
                     $tmpStrFinal = rtrim($tmpStr, '\' OR ');
                     $tmpStrFinal .=  "'";
                     $finalStr = rtrim($tmpStrFinal, 'OR ');
-                    $finalStr .= ") ORDER BY UploadedDate DESC LIMIT $itemstart,". HtGlobal::get('itemPerPage');
+                    $finalStr .= ") ORDER BY UploadedDate DESC LIMIT $itemstart," . HtGlobal::get('itemPerPage');
                     $querySearch =  $finalStr;
                     $displaySearchResult = DatabaseClass::getInstance()->runQuery($querySearch);
                     while ($ddisplaySearchResult = $displaySearchResult->fetch_assoc()) {
                         $tabletype = $ddisplaySearchResult['tableType'];
                         $name = DatabaseClass::getInstance()->getTableNameById($tabletype);
                         $tableId = DatabaseClass::getInstance()->getItemIdField($name);
-                        $id = $ddisplaySearchResult[$tableId];            
+                        $id = $ddisplaySearchResult[$tableId];
                         ObjectPool::getInstance()->getViewObject($name)->show($id);
-                    } }
-
-                    $calculatePageArray = calculatePage($numbreOfMatches);
-                    item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
-   
-                } else if ($numbreOfMatches < 1) {
-                    $this->itemNotFound($searchWordRaw, $city , $item);
+                    }
                 }
 
-                echo "</div>";
+                $calculatePageArray = calculatePage($numbreOfMatches);
+                item_list_pagination($calculatePageArray[0], $calculatePageArray[1], $searchWordSanitized, $item,  $city);
+            } else if ($numbreOfMatches < 1) {
+                $this->itemNotFound($searchWordRaw, $city, $item);
             }
 
+            echo "</div>";
+        }
+    }
 
-
-            
-  }
-
-  public function itemQuery($id, $status=NULL)
+    public function itemQuery($id, $status = NULL)
     {
         if ($id == "*" and $status == NULL) {
             $sql = "SELECT * FROM item_car";
-        } elseif($id == "*" and $status != NULL){
+        } elseif ($id == "*" and $status != NULL) {
             $sql =  "SELECT * FROM item_car WHERE field_status='$status'";
-        } elseif($id != "*" and $status == NULL){
+        } elseif ($id != "*" and $status == NULL) {
             $sql =  "SELECT * FROM item_car WHERE id='$id'";
         } else { //id
             $sql =  "SELECT * FROM item_car WHERE id=$id AND field_status='$status'";
@@ -868,20 +861,20 @@ class HtCommonView extends MySqlRecord {
         return $result;
     }
 
-    public function itemNotFound($searchWordSanitized, $city , $item) {
+    public function itemNotFound($searchWordSanitized, $city, $item)
+    {
         global $lang;
         echo '<div id="mainColumnX" style="width:80%; margin-left:auto;margin-right:auto;float:none;">
-            <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">'.$lang['search res'].'</p>';
-            echo '<div id="spanMainColumnX" style="color: red">';
-            if($searchWordSanitized == "" and $city == "000" and $item == "000"){
-                echo $lang['failed search'].$lang['no match msg part3'];
-            } elseif ($searchWordSanitized != ""){
-               echo $lang['no match msg part1'].' "'. $searchWordSanitized.'" '. $lang['no match msg part2'].$lang['no match msg part3'];
-            } else {
-                echo $lang['full no match msg'];
-            }
-           
+            <p style="text-align:center;padding-top:10px;padding-bottom:10px;background-color:#378de5;color:white">' . $lang['search res'] . '</p>';
+        echo '<div id="spanMainColumnX" style="color: red">';
+        if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
+            echo $lang['failed search'] . $lang['no match msg part3'];
+        } elseif ($searchWordSanitized != "") {
+            echo $lang['no match msg part1'] . ' "' . $searchWordSanitized . '" ' . $lang['no match msg part2'] . $lang['no match msg part3'];
+        } else {
+            echo $lang['full no match msg'];
+        }
+
         echo '</div></div>';
     }
 }
-

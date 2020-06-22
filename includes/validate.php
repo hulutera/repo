@@ -1,16 +1,16 @@
 <?php
 class Cryptor
 {
-    // Non-NULL Initialization Vector for decryption 
+    // Non-NULL Initialization Vector for decryption
     private  $iv = '1234567891011121';
 
-    // Store the decryption key 
+    // Store the decryption key
     private  $key = "hulutera";
 
-    // Store the cipher method 
+    // Store the cipher method
     private $ciphering = "AES-128-CTR";
 
-    // Use OpenSSl Encryption method 
+    // Use OpenSSl Encryption method
     //private $iv_length = openssl_cipher_iv_length($this->ciphering);
     private $options = 0;
 
@@ -24,7 +24,7 @@ class Cryptor
 
     public function encryptor($input)
     {
-        // Use openssl_encrypt() function to encrypt the data 
+        // Use openssl_encrypt() function to encrypt the data
         $in = openssl_encrypt(
             $input,
             $this->ciphering,
@@ -37,7 +37,7 @@ class Cryptor
 
     public function decryptor($input)
     {
-        // Use openssl_decrypt() function to decrypt the data 
+        // Use openssl_decrypt() function to decrypt the data
         $out =  openssl_decrypt(
             $input,
             $this->ciphering,
@@ -101,7 +101,7 @@ class ValidateUpload
         }
 
         /**
-         * check if rentOrSell radio is selected report if not 
+         * check if rentOrSell radio is selected report if not
          */
         if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) !== false) {
             $input = array("rentOrSell" => $GLOBALS['validate_specific_array'][0]);
@@ -186,7 +186,7 @@ class ValidateUpload
  *  include/login.php
  *  include/pass-recovery.php
  *  include/edit-profile.php
- *  include/contact-us.php 
+ *  include/contact-us.php
  */
 class ValidateUser
 {
@@ -203,7 +203,7 @@ class ValidateUser
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
-                    if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write                    
+                    if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write
                     {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
@@ -397,7 +397,7 @@ function unicodeStrToArray($str, $l = 0)
 
 /**
  * validateUtf8
- * 
+ *
  * @param  mixed $key
  * @param  mixed $input
  * @param  mixed $err

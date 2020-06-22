@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtUtilMessage
  * @extends MySqlRecord
  * @filesource HtUtilMessage.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,9 +43,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: int(11)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldReceiver
      */
     private $fieldReceiver;
@@ -57,9 +57,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: int(11)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldSender
      */
     private $fieldSender;
@@ -71,9 +71,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: varchar(80)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldSubject
      */
     private $fieldSubject;
@@ -85,9 +85,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: mediumtext
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldBody
      */
     private $fieldBody;
@@ -99,9 +99,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: datetime
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldSentDate
      */
     private $fieldSentDate;
@@ -113,9 +113,9 @@ class HtUtilMessage extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldStatus
      */
     private $fieldStatus;
@@ -136,7 +136,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -149,7 +149,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldReceiver($fieldReceiver)
     {
-        $this->fieldReceiver = (int)$fieldReceiver;
+        $this->fieldReceiver = (int) $fieldReceiver;
     }
 
     /**
@@ -162,7 +162,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldSender($fieldSender)
     {
-        $this->fieldSender = (int)$fieldSender;
+        $this->fieldSender = (int) $fieldSender;
     }
 
     /**
@@ -175,7 +175,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldSubject($fieldSubject)
     {
-        $this->fieldSubject = (string)$fieldSubject;
+        $this->fieldSubject = (string) $fieldSubject;
     }
 
     /**
@@ -188,7 +188,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldBody($fieldBody)
     {
-        $this->fieldBody = (string)$fieldBody;
+        $this->fieldBody = (string) $fieldBody;
     }
 
     /**
@@ -201,7 +201,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldSentDate($fieldSentDate)
     {
-        $this->fieldSentDate = (string)$fieldSentDate;
+        $this->fieldSentDate = (string) $fieldSentDate;
     }
 
     /**
@@ -214,7 +214,7 @@ class HtUtilMessage extends MySqlRecord
      */
     public function setFieldStatus($fieldStatus)
     {
-        $this->fieldStatus = (string)$fieldStatus;
+        $this->fieldStatus = (string) $fieldStatus;
     }
 
     /**
@@ -319,10 +319,10 @@ class HtUtilMessage extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "util_message";
@@ -358,7 +358,6 @@ class HtUtilMessage extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -372,31 +371,30 @@ class HtUtilMessage extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM util_message";
         } else { //id
-            $sql =  "SELECT * FROM util_message WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM util_message WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->fieldReceiver = (integer)$rowObject->field_receiver;
-            @$this->fieldSender = (integer)$rowObject->field_sender;
+            @$this->id = (int) $rowObject->id;
+            @$this->fieldReceiver = (int) $rowObject->field_receiver;
+            @$this->fieldSender = (int) $rowObject->field_sender;
             @$this->fieldSubject = $this->replaceAposBackSlash($rowObject->field_subject);
             @$this->fieldBody = $this->replaceAposBackSlash($rowObject->field_body);
-            @$this->fieldSentDate = empty($rowObject->field_sent_date) ? null : date(FETCHED_DATETIME_FORMAT,strtotime($rowObject->field_sent_date));
+            @$this->fieldSentDate = empty($rowObject->field_sent_date) ? null : date(FETCHED_DATETIME_FORMAT, strtotime($rowObject->field_sent_date));
             @$this->fieldStatus = $this->replaceAposBackSlash($rowObject->field_status);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -407,15 +405,15 @@ class HtUtilMessage extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM util_message WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM util_message WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -439,19 +437,19 @@ class HtUtilMessage extends MySqlRecord
             VALUES({$this->parseValue($this->id)},
 			{$this->parseValue($this->fieldReceiver)},
 			{$this->parseValue($this->fieldSender)},
-			{$this->parseValue($this->fieldSubject,'notNumber')},
-			{$this->parseValue($this->fieldBody,'notNumber')},
-			{$this->parseValue($this->fieldSentDate,'datetime')},
-			{$this->parseValue($this->fieldStatus,'notNumber')})
+			{$this->parseValue($this->fieldSubject, 'notNumber')},
+			{$this->parseValue($this->fieldBody, 'notNumber')},
+			{$this->parseValue($this->fieldSentDate, 'datetime')},
+			{$this->parseValue($this->fieldStatus, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -477,23 +475,23 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 util_message
-            SET 
+            SET
 				field_receiver={$this->parseValue($this->fieldReceiver)},
 				field_sender={$this->parseValue($this->fieldSender)},
-				field_subject={$this->parseValue($this->fieldSubject,'notNumber')},
-				field_body={$this->parseValue($this->fieldBody,'notNumber')},
-				field_sent_date={$this->parseValue($this->fieldSentDate,'datetime')},
-				field_status={$this->parseValue($this->fieldStatus,'notNumber')}
+				field_subject={$this->parseValue($this->fieldSubject, 'notNumber')},
+				field_body={$this->parseValue($this->fieldBody, 'notNumber')},
+				field_sent_date={$this->parseValue($this->fieldSentDate, 'datetime')},
+				field_status={$this->parseValue($this->fieldStatus, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -519,31 +517,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for util_message previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for util_message previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into util_message.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into util_message.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

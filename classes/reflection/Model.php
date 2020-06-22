@@ -92,14 +92,13 @@ abstract class Model extends mysqli
         }
     }
 
-    public function get_error() 
+    public function get_error()
     {
-        if($this->errno || $this->error)
-        {
-            return sprintf("Error (%d): %s",$this->errno,$this->error);
+        if ($this->errno || $this->error) {
+            return sprintf("Error (%d): %s", $this->errno, $this->error);
         }
     }
-    
+
     private function throwIfDBError()
     {
 

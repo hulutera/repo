@@ -1,6 +1,6 @@
 <?php
 ob_start();
-if (session_status() !== PHP_SESSION_ACTIVE) {                    
+if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 if (isset($_SESSION['uID'])) {
@@ -8,7 +8,7 @@ if (isset($_SESSION['uID'])) {
     require_once $documnetRootPath . '/db/database.class.php';
     $http_referer = $_SERVER['HTTP_REFERER'];
     session_destroy();
-    session_unset();    
+    session_unset();
     $_SESSION = array();
     if (isset($_GET['lan'])) {
         $lang_url = "?&lan=" . $_GET['lan'];
@@ -19,4 +19,3 @@ if (isset($_SESSION['uID'])) {
     header("Location:../index.php$lang_url");
 }
 ob_end_flush();
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MVCMySqlFieldToAttributeReflection
  * Maps a table field information and its related values in a form of class attribute.
@@ -73,7 +74,7 @@ class MVCMySqlFieldToAttributeReflection
      */
     public function getSetterName()
     {
-        return "set" . self::underscoreToCamelCase($this->name,true);
+        return "set" . self::underscoreToCamelCase($this->name, true);
     }
 
     /**
@@ -83,7 +84,7 @@ class MVCMySqlFieldToAttributeReflection
      */
     public function getGetterName()
     {
-        return "get" . self::underscoreToCamelCase($this->name,true);
+        return "get" . self::underscoreToCamelCase($this->name, true);
     }
 
     /**
@@ -100,82 +101,82 @@ class MVCMySqlFieldToAttributeReflection
     public function getType()
     {
         $result = "";
-        if (preg_match('/int/',$this->type))
+        if (preg_match('/int/', $this->type))
             $result =  "int";
 
-        if (preg_match('/year/',$this->type))
+        if (preg_match('/year/', $this->type))
             $result =  "int";
 
-        if (preg_match('/integer/',$this->type))
+        if (preg_match('/integer/', $this->type))
             $result =  "int";
 
-        if (preg_match('/tynyint/',$this->type))
+        if (preg_match('/tynyint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/smallint/',$this->type))
+        if (preg_match('/smallint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/mediumint/',$this->type))
+        if (preg_match('/mediumint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/bigint/',$this->type))
+        if (preg_match('/bigint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/varchar/',$this->type))
+        if (preg_match('/varchar/', $this->type))
             $result = "string";
 
-        if (preg_match('/char/',$this->type))
+        if (preg_match('/char/', $this->type))
             $result = "string";
 
-        if (preg_match('/text/',$this->type))
+        if (preg_match('/text/', $this->type))
             $result = "string";
 
-        if (preg_match('/tyntext/',$this->type))
+        if (preg_match('/tyntext/', $this->type))
             $result = "string";
 
-        if (preg_match('/mediumtext/',$this->type))
+        if (preg_match('/mediumtext/', $this->type))
             $result = "string";
 
-        if (preg_match('/longtext/',$this->type))
+        if (preg_match('/longtext/', $this->type))
             $result = "string";
 
-        if (preg_match('/char/',$this->type))
+        if (preg_match('/char/', $this->type))
             $result = "string";
 
-        if (preg_match('/enum/',$this->type))
+        if (preg_match('/enum/', $this->type))
             $result = "enum";
 
-        if (preg_match('/set/',$this->type))
+        if (preg_match('/set/', $this->type))
             $result = "string";
 
-        if (preg_match('/date/',$this->type))
+        if (preg_match('/date/', $this->type))
             $result = "date";
 
-        if (preg_match('/time/',$this->type))
+        if (preg_match('/time/', $this->type))
             $result = "time";
 
-        if (preg_match('/datetime/',$this->type))
+        if (preg_match('/datetime/', $this->type))
             $result = "datetime";
 
-        if (preg_match('/decimal/',$this->type))
+        if (preg_match('/decimal/', $this->type))
             $result = "float";
 
-        if (preg_match('/float/',$this->type))
+        if (preg_match('/float/', $this->type))
             $result = "float";
 
-        if (preg_match('/double/',$this->type))
+        if (preg_match('/double/', $this->type))
             $result = "double";
 
-        if (preg_match('/real/',$this->type))
+        if (preg_match('/real/', $this->type))
             $result = "real";
 
-        if (preg_match('/fixed/',$this->type))
+        if (preg_match('/fixed/', $this->type))
             $result = "float";
 
-        if (preg_match('/numeric/',$this->type))
+        if (preg_match('/numeric/', $this->type))
             $result = "float";
 
-        if (empty($result)){
+        if (empty($result)) {
             // $result = $this->type;
             $result = "string";
         }
@@ -187,82 +188,82 @@ class MVCMySqlFieldToAttributeReflection
     public function getTypeForPHPDoc()
     {
         $result = "";
-        if (preg_match('/int/',$this->type))
+        if (preg_match('/int/', $this->type))
             $result =  "int";
 
-        if (preg_match('/year/',$this->type))
+        if (preg_match('/year/', $this->type))
             $result =  "int";
 
-        if (preg_match('/integer/',$this->type))
+        if (preg_match('/integer/', $this->type))
             $result =  "int";
 
-        if (preg_match('/tynyint/',$this->type))
+        if (preg_match('/tynyint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/smallint/',$this->type))
+        if (preg_match('/smallint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/mediumint/',$this->type))
+        if (preg_match('/mediumint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/bigint/',$this->type))
+        if (preg_match('/bigint/', $this->type))
             $result =  "int";
 
-        if (preg_match('/varchar/',$this->type))
+        if (preg_match('/varchar/', $this->type))
             $result = "string";
 
-        if (preg_match('/char/',$this->type))
+        if (preg_match('/char/', $this->type))
             $result = "string";
 
-        if (preg_match('/text/',$this->type))
+        if (preg_match('/text/', $this->type))
             $result = "string";
 
-        if (preg_match('/tyntext/',$this->type))
+        if (preg_match('/tyntext/', $this->type))
             $result = "string";
 
-        if (preg_match('/mediumtext/',$this->type))
+        if (preg_match('/mediumtext/', $this->type))
             $result = "string";
 
-        if (preg_match('/longtext/',$this->type))
+        if (preg_match('/longtext/', $this->type))
             $result = "string";
 
-        if (preg_match('/char/',$this->type))
+        if (preg_match('/char/', $this->type))
             $result = "string";
 
-        if (preg_match('/enum/',$this->type))
+        if (preg_match('/enum/', $this->type))
             $result = "string";
 
-        if (preg_match('/set/',$this->type))
+        if (preg_match('/set/', $this->type))
             $result = "string";
 
-        if (preg_match('/date/',$this->type))
+        if (preg_match('/date/', $this->type))
             $result = "string";
 
-        if (preg_match('/time/',$this->type))
+        if (preg_match('/time/', $this->type))
             $result = "string";
 
-        if (preg_match('/datetime/',$this->type))
+        if (preg_match('/datetime/', $this->type))
             $result = "string";
 
-        if (preg_match('/decimal/',$this->type))
+        if (preg_match('/decimal/', $this->type))
             $result = "float";
 
-        if (preg_match('/float/',$this->type))
+        if (preg_match('/float/', $this->type))
             $result = "float";
 
-        if (preg_match('/double/',$this->type))
+        if (preg_match('/double/', $this->type))
             $result = "float";
 
-        if (preg_match('/real/',$this->type))
+        if (preg_match('/real/', $this->type))
             $result = "float";
 
-        if (preg_match('/fixed/',$this->type))
+        if (preg_match('/fixed/', $this->type))
             $result = "float";
 
-        if (preg_match('/numeric/',$this->type))
+        if (preg_match('/numeric/', $this->type))
             $result = "int";
 
-        if (empty($result)){
+        if (empty($result)) {
             // $result = $this->type;
             $result = "null";
         }
@@ -347,7 +348,7 @@ class MVCMySqlFieldToAttributeReflection
      */
     public function isPkField()
     {
-        if ($this->key == "PRI"){
+        if ($this->key == "PRI") {
             return true;
         } else {
             return false;
@@ -361,13 +362,13 @@ class MVCMySqlFieldToAttributeReflection
     public function getSqlFormattedValue()
     {
         if ($this->getType() == "string" || $this->getType() == "time" || $this->getType() == "enum") {
-           return "{" ."$". "this->parseValue(". "$". "this->". $this->getName() .",'notNumber')},";
+            return "{" . "$" . "this->parseValue(" . "$" . "this->" . $this->getName() . ",'notNumber')},";
         } else if ($this->getType() == "date") {
-            return "{" ."$". "this->parseValue(". "$". "this->". $this->getName() .",'date')},";
+            return "{" . "$" . "this->parseValue(" . "$" . "this->" . $this->getName() . ",'date')},";
         } else if ($this->getType() == "datetime") {
-            return "{" ."$". "this->parseValue(". "$". "this->". $this->getName() .",'datetime')},";;
+            return "{" . "$" . "this->parseValue(" . "$" . "this->" . $this->getName() . ",'datetime')},";;
         } else {
-            return "{". "$". "this->parseValue(". "$". "this->". $this->getName().")},";
+            return "{" . "$" . "this->parseValue(" . "$" . "this->" . $this->getName() . ")},";
         }
         /*
          } else if ($this->getType() == "date_OLD") {
@@ -375,7 +376,6 @@ class MVCMySqlFieldToAttributeReflection
          } else if ($this->getType() == "datetime_OLD") {
             return "STR_TO_DATE(". "{"."$". "this->parseValue(". "$". "this->". $this->getName().",'date')},"."'". "{"."$"."constants['STORED_DATETIME_FORMAT']}" ."'),";
         */
-
     }
 
     private function deliciousCamelcase($str)
@@ -391,12 +391,12 @@ class MVCMySqlFieldToAttributeReflection
         $formattedStr = implode(' ', $a);
         return $formattedStr;
     }
-    
+
     public function getSqlFormattedValue2()
     {
         $str = $this->getName();
-        $arr = str_replace("field ","", $this->deliciousCamelcase($str));
-        return "'". $str ."' => '".$arr."'" ;
+        $arr = str_replace("field ", "", $this->deliciousCamelcase($str));
+        return "'" . $str . "' => '" . $arr . "'";
     }
 
     /**
@@ -410,11 +410,12 @@ class MVCMySqlFieldToAttributeReflection
     {
         $string = strtolower($string);
 
-        if( $pascalCase == true )
-        {
+        if ($pascalCase == true) {
             $string[0] = strtoupper($string[0]);
         }
-        $func = function($c){return strtoupper($c[1]);};
+        $func = function ($c) {
+            return strtoupper($c[1]);
+        };
         return preg_replace_callback('/_([a-z])/', $func, $string);
     }
 }

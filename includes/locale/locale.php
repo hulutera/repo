@@ -64,7 +64,7 @@ function locale($current_link)
         //use mb_substr($value,0,2) to get the first two characters
         echo $key;
         echo '<option value = "' . $key . '" data-image="../images/icons/ethiopia.png" ><strong>' . $value . '</strong></option>';
-    }    
+    }
     echo '</select>';
     ___close_div_(1);
 }

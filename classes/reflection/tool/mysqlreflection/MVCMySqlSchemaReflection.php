@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MVCMySqlSchemaReflection
  * Reflection class for a given MySQL database schema.
@@ -23,13 +24,13 @@
  */
 class MVCMySqlSchemaReflection extends  mysqli
 {
-    public $totalTables=0;
+    public $totalTables = 0;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        $this->connect(DBHOST, DBUSER, DBPASSWORD, DBNAME, DBPORT);
         if ($this->connect_errno) {
             printf("Connection failed. Modify MySQL connection settings into <b>mysql_connection.inc.php</b> file.");
             exit();
@@ -41,7 +42,8 @@ class MVCMySqlSchemaReflection extends  mysqli
      * Generates the PHP Classes for managing all tables of the given MySql schema.
      * @param null $path Output for the generated classes
      */
-    public function generateClassesFromSchema($path=null){
+    public function generateClassesFromSchema($path = null)
+    {
         //$sql = "show full tables where Table_Type != 'VIEW'";
         //$sql = "show full tables where Tables_in_hulutera_db = 'item_*'";
         $sql = "show full tables where Tables_in_hulutera_db LIKE 'item_house'";
@@ -55,31 +57,30 @@ class MVCMySqlSchemaReflection extends  mysqli
             $source = $reflection->generateClass();
             $class = $reflection->saveClass($source, $path);
             if ($class) {
-               $msg = "<br> Class <b>$class</b> was generated for table <b>$table</b>";$msgjs= strip_tags($msg);$msgjs= strip_tags($msg);
-               $msgjs= strip_tags($msg);
-               $msgjs = str_replace("\\","\\\\",$msgjs);
+                $msg = "<br> Class <b>$class</b> was generated for table <b>$table</b>";
+                $msgjs = strip_tags($msg);
+                $msgjs = strip_tags($msg);
+                $msgjs = strip_tags($msg);
+                $msgjs = str_replace("\\", "\\\\", $msgjs);
             } else if (!file_exists($path)) {
                 $msg = "<br> <b>Destination path error!</b> Unable to create classes. <br> Check if your destination path: <b>$path</b> really exists.";
-                $msgjs= strip_tags($msg);
-                $msgjs = str_replace("\\","\\\\",$msgjs);  
-                echo "<script>aggiornaTextArea('" . $msgjs ."')</script>";
+                $msgjs = strip_tags($msg);
+                $msgjs = str_replace("\\", "\\\\", $msgjs);
+                echo "<script>aggiornaTextArea('" . $msgjs . "')</script>";
                 return false;
             } else {
                 $msg = "<br> <b>Unknow error!</b> Unable to generate classes.";
-                $msgjs= strip_tags($msg);
-                $msgjs = str_replace("\\","\\\\",$msgjs);
-                echo "<script>aggiornaTextArea('" . $msgjs ."')</script>";
+                $msgjs = strip_tags($msg);
+                $msgjs = str_replace("\\", "\\\\", $msgjs);
+                echo "<script>aggiornaTextArea('" . $msgjs . "')</script>";
                 return false;
             }
             echo "<script>setNumberOfTables(" . $this->totalTables . ")</script>";
-            echo "<script>aggiornaTextArea('" . $msgjs ."')</script>";
+            echo "<script>aggiornaTextArea('" . $msgjs . "')</script>";
             echo "<script>aggiornaProgressBar();</script>";
             @flush();
             @ob_flush();
         }
         return true;
     }
-
-
-
 }

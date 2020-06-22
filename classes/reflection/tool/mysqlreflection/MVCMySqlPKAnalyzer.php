@@ -29,7 +29,7 @@ class MVCMySqlPKAnalyzer extends mysqli
 
     public function __construct()
     {
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        $this->connect(DBHOST, DBUSER, DBPASSWORD, DBNAME, DBPORT);
         if ($this->connect_errno) {
             printf("Connection failed. Modify MySQL connection settings into <b>mysql_connection.inc.php</b> file.");
             exit();
@@ -41,7 +41,7 @@ class MVCMySqlPKAnalyzer extends mysqli
      */
     public function getPKWhereCondition()
     {
-        return substr($this->PKWhereCondition,0,-5);
+        return substr($this->PKWhereCondition, 0, -5);
     }
 
     /**
@@ -49,34 +49,34 @@ class MVCMySqlPKAnalyzer extends mysqli
      */
     public function getPKDMLFunctionParameters()
     {
-        return substr($this->PKDMLFunctionParameters,0,-1);
+        return substr($this->PKDMLFunctionParameters, 0, -1);
     }
 
 
     public function getPKDMLFunctionParametersDefaultNull()
     {
-        return substr($this->PKDMLFunctionParametersDefaultNull,0,-1);
+        return substr($this->PKDMLFunctionParametersDefaultNull, 0, -1);
     }
 
 
     public function getPKDMLFunctionParametersIsNotNull()
     {
-        return substr($this->PKDMLFunctionParametersIsNotNull,0,-4);
+        return substr($this->PKDMLFunctionParametersIsNotNull, 0, -4);
     }
 
     public function getPKParametersDocumentation()
     {
-        return substr($this->PKParametersDocumentation,0,-1);
+        return substr($this->PKParametersDocumentation, 0, -1);
     }
 
     public function getPKAttributeIsNotNull()
     {
-        return substr($this->PKAttributeIsNotNull,0,-4);
+        return substr($this->PKAttributeIsNotNull, 0, -4);
     }
 
     public function getPKForUpdateCurrent()
     {
-        return substr($this->PKForUpdateCurrent,0,-1);
+        return substr($this->PKForUpdateCurrent, 0, -1);
     }
     /**
      * @return array
@@ -86,29 +86,30 @@ class MVCMySqlPKAnalyzer extends mysqli
         return $this->PKeys;
     }
 
-    public function getTableName() {
+    public function getTableName()
+    {
         return $this->tableName;
     }
 
     public function analyze($tableName)
     {
         $this->tableName = $tableName;
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        $this->connect(DBHOST, DBUSER, DBPASSWORD, DBNAME, DBPORT);
 
         $sqlFields = "SHOW FULL COLUMNS FROM $tableName";
         $sqlPk = "SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'";
 
         $result = $this->query($sqlPk);
-        if ($result){
+        if ($result) {
             while ($row = $result->fetch_object()) {
 
                 $pk = $row->Column_name;
-                $resultType= $this->query($sqlFields);
+                $resultType = $this->query($sqlFields);
                 $pkType = "int";
                 $pkComment = "";
                 while ($rowTypeInfo = $resultType->fetch_object()) {
                     $fieldName = $rowTypeInfo->Field;
-                    if ($fieldName == $pk){
+                    if ($fieldName == $pk) {
                         $pkType = $this->getType($rowTypeInfo->Type);
                         $pkComment = $this->getType($rowTypeInfo->Comment);
                         break;
@@ -118,18 +119,18 @@ class MVCMySqlPKAnalyzer extends mysqli
                     }
                 }
                 $this->PKeys[$pk] = $pkType;
-                $this->buildPKDMLFunctionParameters($pk,$pkType,$pkComment);
-                $this->buildPKWhereCondition($pk,$pkType);
+                $this->buildPKDMLFunctionParameters($pk, $pkType, $pkComment);
+                $this->buildPKWhereCondition($pk, $pkType);
             }
         }
     }
 
     public function hasCompositePK()
     {
-        return count($this->PKeys)==1 ? false:true;
+        return count($this->PKeys) == 1 ? false : true;
     }
 
-    public function buildPKDMLFunctionParameters($pk,$pkType,$pkComment)
+    public function buildPKDMLFunctionParameters($pk, $pkType, $pkComment)
     {
         $this->PKDMLFunctionParameters .= "\$" . $this->underscoreToCamelCase($pk) . ",";
         $this->PKDMLFunctionParametersDefaultNull .= "\$" . $this->underscoreToCamelCase($pk) . "=NULL,";
@@ -139,7 +140,7 @@ class MVCMySqlPKAnalyzer extends mysqli
         $this->PKForUpdateCurrent .= "\$this->" . $this->underscoreToCamelCase($pk) . ",";
     }
 
-    public function buildPKWhereCondition($pk,$pkType)
+    public function buildPKWhereCondition($pk, $pkType)
     {
         /*
         if ($pkType == "date") {
@@ -166,12 +167,13 @@ class MVCMySqlPKAnalyzer extends mysqli
     {
         $string = strtolower($string);
 
-        if( $pascalCase == true )
-        {
+        if ($pascalCase == true) {
             $string[0] = strtoupper($string[0]);
         }
 
-        $func = function($c) {return strtoupper($c[1]);};
+        $func = function ($c) {
+            return strtoupper($c[1]);
+        };
         return preg_replace_callback('/_([a-z])/', $func, $string);
     }
 
@@ -189,82 +191,82 @@ class MVCMySqlPKAnalyzer extends mysqli
     public function getType($type)
     {
         $result = "";
-        if (preg_match('/int/',$type))
+        if (preg_match('/int/', $type))
             $result =  "int";
 
-        if (preg_match('/year/',$type))
+        if (preg_match('/year/', $type))
             $result =  "int";
 
-        if (preg_match('/integer/',$type))
+        if (preg_match('/integer/', $type))
             $result =  "int";
 
-        if (preg_match('/tynyint/',$type))
+        if (preg_match('/tynyint/', $type))
             $result =  "int";
 
-        if (preg_match('/smallint/',$type))
+        if (preg_match('/smallint/', $type))
             $result =  "int";
 
-        if (preg_match('/mediumint/',$type))
+        if (preg_match('/mediumint/', $type))
             $result =  "int";
 
-        if (preg_match('/bigint/',$type))
+        if (preg_match('/bigint/', $type))
             $result =  "int";
 
-        if (preg_match('/varchar/',$type))
+        if (preg_match('/varchar/', $type))
             $result = "string";
 
-        if (preg_match('/char/',$type))
+        if (preg_match('/char/', $type))
             $result = "string";
 
-        if (preg_match('/text/',$type))
+        if (preg_match('/text/', $type))
             $result = "string";
 
-        if (preg_match('/tyntext/',$type))
+        if (preg_match('/tyntext/', $type))
             $result = "string";
 
-        if (preg_match('/mediumtext/',$type))
+        if (preg_match('/mediumtext/', $type))
             $result = "string";
 
-        if (preg_match('/longtext/',$type))
+        if (preg_match('/longtext/', $type))
             $result = "string";
 
-        if (preg_match('/char/',$type))
+        if (preg_match('/char/', $type))
             $result = "string";
 
-        if (preg_match('/enum/',$type))
+        if (preg_match('/enum/', $type))
             $result = "enum";
 
-        if (preg_match('/set/',$type))
+        if (preg_match('/set/', $type))
             $result = "string";
 
-        if (preg_match('/date/',$type))
+        if (preg_match('/date/', $type))
             $result = "date";
 
-        if (preg_match('/time/',$type))
+        if (preg_match('/time/', $type))
             $result = "time";
 
-        if (preg_match('/datetime/',$type))
+        if (preg_match('/datetime/', $type))
             $result = "datetime";
 
-        if (preg_match('/decimal/',$type))
+        if (preg_match('/decimal/', $type))
             $result = "float";
 
-        if (preg_match('/float/',$type))
+        if (preg_match('/float/', $type))
             $result = "float";
 
-        if (preg_match('/double/',$type))
+        if (preg_match('/double/', $type))
             $result = "double";
 
-        if (preg_match('/real/',$type))
+        if (preg_match('/real/', $type))
             $result = "real";
 
-        if (preg_match('/fixed/',$type))
+        if (preg_match('/fixed/', $type))
             $result = "float";
 
-        if (preg_match('/numeric/',$type))
+        if (preg_match('/numeric/', $type))
             $result = "float";
 
-        if (empty($result)){
+        if (empty($result)) {
             // $result = $this->type;
             $result = "string";
         }
@@ -272,7 +274,4 @@ class MVCMySqlPKAnalyzer extends mysqli
         // TODO EVALUATES BIT, TIMESTAMP, VARBINARY, BLOB MySQL data types
         return $result;
     }
-
-
-
 }

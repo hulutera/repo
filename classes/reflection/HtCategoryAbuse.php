@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtCategoryAbuse
  * @extends MySqlRecord
  * @filesource HtCategoryAbuse.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,13 +43,13 @@ class HtCategoryAbuse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(255)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldName
      */
     private $fieldName;
-    
+
     /**
      * Class attribute for mapping table field field_name
      *
@@ -57,9 +57,9 @@ class HtCategoryAbuse extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPrio
      */
 
@@ -81,7 +81,7 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -94,7 +94,7 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function setFieldName($fieldName)
     {
-        $this->fieldName = (string)$fieldName;
+        $this->fieldName = (string) $fieldName;
     }
 
     /**
@@ -107,7 +107,7 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function setFieldPrio($fieldPrio)
     {
-        $this->fieldPrio = (int)$fieldPrio;
+        $this->fieldPrio = (int) $fieldPrio;
     }
 
     /**
@@ -148,7 +148,7 @@ class HtCategoryAbuse extends MySqlRecord
     {
         return $this->fieldPrio;
     }
-    
+
     /**
      * Gets DDL SQL code of the table category_abuse
      * @return string
@@ -160,10 +160,10 @@ class HtCategoryAbuse extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "category_abuse";
@@ -199,7 +199,6 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -213,26 +212,25 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM category_abuse ORDER BY field_prio DESC";
         } else { //id
-            $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id,'int')} ORDER BY field_prio DESC";
+            $sql =  "SELECT * FROM category_abuse WHERE id={$this->parseValue($id, 'int')} ORDER BY field_prio DESC";
         }
 
         $this->resetLastSqlError();
-        $result =  $this->query($sql);        
-        $this->resultSet=$result;
+        $result =  $this->query($sql);
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
+            @$this->id = (int) $rowObject->id;
             @$this->fieldName = $this->replaceAposBackSlash($rowObject->field_name);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -243,12 +241,12 @@ class HtCategoryAbuse extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM category_abuse WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM category_abuse WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -270,14 +268,14 @@ class HtCategoryAbuse extends MySqlRecord
             INSERT INTO category_abuse
             (field_name,field_prio)
             VALUES(
-			{$this->parseValue($this->fieldName,'notNumber')},
+			{$this->parseValue($this->fieldName, 'notNumber')},
             {$this->parseValue($this->fieldPrio)})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -303,16 +301,16 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 category_abuse
-            SET 
-				field_name={$this->parseValue($this->fieldName,'notNumber')},
+            SET
+				field_name={$this->parseValue($this->fieldName, 'notNumber')},
                 field_prio={$this->parseValue($this->fieldPrio)}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -338,31 +336,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for category_abuse previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for category_abuse previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into category_abuse.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into category_abuse.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Model
  * Class to interact with MySQL (simply by extending PHP msqli)
@@ -21,14 +22,13 @@ abstract class Model extends mysqli
 
     public function __construct()
     {
-        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME);
+        @parent::__construct(DBHOST, DBUSER, DBPASSWORD, DBNAME);
         $this->throwIfDBError();
         $this->autorun();
     }
 
     protected function autorun()
     {
-
     }
 
     public function setResultSet($mysqliResult)
@@ -51,12 +51,11 @@ abstract class Model extends mysqli
     private function throwIfDBError()
     {
 
-        If ($this->connect_error) {
+        if ($this->connect_error) {
             throw new Exception($this->connect_error);
         }
         if ($this->error) {
             throw new Exception($this->error);
         }
-
     }
 }

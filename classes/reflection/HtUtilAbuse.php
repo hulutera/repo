@@ -44,8 +44,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idCategory
      */
     private $idCategory;
@@ -58,8 +58,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idUser
      */
     private $idUser;
@@ -72,8 +72,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idCar
      */
     private $idCar;
@@ -86,8 +86,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idComputer
      */
     private $idComputer;
@@ -100,8 +100,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idElectronic
      */
     private $idElectronic;
@@ -114,8 +114,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idHouse
      */
     private $idHouse;
@@ -128,8 +128,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idPhone
      */
     private $idPhone;
@@ -142,8 +142,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idHousehold
      */
     private $idHousehold;
@@ -156,8 +156,8 @@ class HtUtilAbuse extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : YES
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idOther
      */
     private $idOther;
@@ -169,9 +169,9 @@ class HtUtilAbuse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(255)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMessage
      */
     private $fieldMessage;
@@ -183,9 +183,9 @@ class HtUtilAbuse extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldIpAddress
      */
     private $fieldIpAddress;
@@ -689,7 +689,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 util_abuse
-            SET 
+            SET
 				id_category={$this->parseValue($this->idCategory)},
 				id_user={$this->parseValue($this->idUser)},
 				id_car={$this->parseValue($this->idCar)},

@@ -130,7 +130,7 @@ class MySqlRecord extends Model
     }
 
     /****
-     * 
+     *
      */
     public function countRow($status, $id)
     {
@@ -139,7 +139,7 @@ class MySqlRecord extends Model
         } else {
             $withId = "";
         }
-
+        $sql = '';
         $lastElement = end($this->items);
         foreach ($this->items as $key => $value) {
             if ($lastElement != $value) {
@@ -170,7 +170,7 @@ class MySqlRecord extends Model
     {
         $andWithStatus = "";
         if (isset($status)) {
-            $andWithStatus = ' AND field_status = "' . $status. '"';
+            $andWithStatus = ' AND field_status = "' . $status . '"';
         }
         $sql = 'SELECT * FROM ' . $item . ' WHERE id_user = "' . $userId . '" ' . $andWithStatus;
         $result = $this->query($sql);
@@ -178,7 +178,7 @@ class MySqlRecord extends Model
     }
 
     /****
-     * 
+     *
      */
     public function maxQuery($status, $id, $start, $end = null)
     {
@@ -187,7 +187,7 @@ class MySqlRecord extends Model
         } else {
             $withId = "";
         }
-
+        $sql = '';
         $itemPerPage = isset($end) ? $end : 30;
         $lastElement = end($this->items);
         $union = "";
@@ -203,7 +203,7 @@ class MySqlRecord extends Model
         return $this->fetch_all($sql);
     }
     /***
-     * 
+     *
      */
     protected function insertHeader($item)
     {
@@ -286,7 +286,7 @@ EOD;
         ___open_div_("col-md-4", "");
         ___open_div_("form-group", "");
         echo '
-        <label for="fieldExtraInfo">Extra Info</label> 
+        <label for="fieldExtraInfo">Extra Info</label>
           <textarea id="fieldExtraInfo" name="fieldExtraInfo" cols="50" rows="2" class="form-control">' . $_SESSION['POST']['fieldExtraInfo'] . '</textarea>';
         ___close_div_(2);
     }
@@ -323,7 +323,7 @@ EOD;
                     <input type="file" name="files">
             </div>
         </div>
-        </div>        
+        </div>
 EOD;
     }
 
@@ -632,7 +632,7 @@ EOD;
             $this->insertFieldContactMethod();
             ___close_div_(3);
         }
-        ///  
+        ///
         if ($skipRow != 5) {
             ___open_div_("row", "");
             ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');

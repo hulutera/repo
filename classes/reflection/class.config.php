@@ -4,10 +4,10 @@
  * Defines the constants for MySQL database connection parameters used by a Bean.
  */
 
-define("DBHOST","localhost");
-define("DBUSER","root");
-define("DBPASSWORD","");
-define("DBNAME","hulutera_db");
+define("DBHOST", "localhost");
+define("DBUSER", "root");
+define("DBPASSWORD", "");
+define("DBNAME", "hulutera_db");
 define('DBPORT', '3306');
 
 /**
@@ -22,7 +22,7 @@ define('DBPORT', '3306');
  * For more information read the MySQL specifications for date format
  * Most used  format: define("FETCHED_DATE_FORMAT","d/m/Y");
  */
-define("FETCHED_DATE_FORMAT","d/m/Y");
+define("FETCHED_DATE_FORMAT", "d/m/Y");
 // define("FETCHED_DATE_FORMAT","Y-m-d");
 
 /**
@@ -33,7 +33,7 @@ define("FETCHED_DATE_FORMAT","d/m/Y");
  * Most used format: define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
  *
  */
-define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
+define("FETCHED_DATETIME_FORMAT", "d/m/Y H:i:s");
 // define("FETCHED_DATETIME_FORMAT","Y-m-d H:i:s");
 
 /**
@@ -43,7 +43,7 @@ define("FETCHED_DATETIME_FORMAT","d/m/Y H:i:s");
  * For more information read the MySQL specifications for date format
  * Most used format: define("STORED_DATE_FORMAT","%d/%m/%Y");
  */
-define("STORED_DATE_FORMAT","%d/%m/%Y");
+define("STORED_DATE_FORMAT", "%d/%m/%Y");
 // define("STORED_DATE_FORMAT","%Y-%m-%d");
 
 /**
@@ -53,7 +53,7 @@ define("STORED_DATE_FORMAT","%d/%m/%Y");
  * For more information read the MySQL specifications for date format
  * Most used format: define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
  */
-define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
+define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
 // define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
 
 /**

@@ -34,8 +34,8 @@ class HtMainView
      *  (new HtMainView("all",null))->show();    // select * from all  (car, computer, ...)
      *  (new HtMainView("car",null))->show();     // select * car
      *  (new HtMainView("car",13))->show();       // select * car where id=13
-     *  (new HtMainView("latest",null))->show();  //select * latestupdate 
-     *  
+     *  (new HtMainView("latest",null))->show();  //select * latestupdate
+     *
      * @param resolved by construtor
      */
     public function show($filter = null)
@@ -54,8 +54,8 @@ class HtMainView
     /**
      * Alternative interface to display item
      * e.g.
-     *  (new HtMainView("latest",null))->showLatest();  //select * latestupdate 
-     *  
+     *  (new HtMainView("latest",null))->showLatest();  //select * latestupdate
+     *
      * @param resolved by construtor
      */
     public function showLatest()
@@ -79,7 +79,7 @@ class HtMainView
                 $this->_pItem->runQuery($condition);
                 $fetchItemRow = $this->_pItem->getResultSet();
                 while ($itemRow = $fetchItemRow->fetch_assoc()) {
-                    $number ++;
+                    $number++;
                     //item count
                     $this->_itemNumber = $number;
                     $this->showItemWithId($itemRow);
@@ -93,7 +93,7 @@ class HtMainView
     }
 
 
-    public function showRawData($filter=null)
+    public function showRawData($filter = null)
     {
         $dataOnly = [];
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
@@ -109,7 +109,7 @@ class HtMainView
     /**
      * Alternative interface to display item
      * e.g.
-     *  (new HtMainView("car",null))->showItem();  //select * item 
+     *  (new HtMainView("car",null))->showItem();  //select * item
      * @param resolved by construtor
      */
     public function showItem($filter)
@@ -127,10 +127,14 @@ class HtMainView
             echo '<div class="row items-board">';
             $number = 0;
             while ($row = $result->fetch_assoc()) {
-                $number ++;
+                // check if the user is alos active fetching
+                $user = new HtUserAll($row['id_user']);
+                if ($filter == 'active' && !$user->isAccountStatusActive()) {
+                    continue;
+                }
+                $number++;
                 //item count
                 $this->_itemNumber = $number;
-
                 $this->showItemWithId($row);
             }
             echo '</div>';
@@ -143,7 +147,7 @@ class HtMainView
     }
 
     /**
-     * 
+     *
      */
     public function showOneItem()
     {
@@ -194,7 +198,7 @@ class HtMainView
         //---------------------------------------------------------
 
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
-        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber ."\">";  // .thumbnail starts
+        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         if ($numimage == 0) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap('$itemName', " . $itemNumber . ")\" >";
             echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
@@ -218,8 +222,8 @@ class HtMainView
         echo "</div>"; // .thumbnail end
         echo "</div>"; // #divCommon end
         //---------------------------------------------------------
-        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber ."\">"; // .featured_detailed2 start
-        echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section 
+        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
+        echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
         echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
 		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback('$itemName', " . $itemNumber . ")\"
 		value=\"" . $GLOBALS['lang']['Hide Detail'] . "\"/></div>";
@@ -244,8 +248,8 @@ class HtMainView
      *  (new HtMainView("all",null))->show();    // select * from all  (car, computer, ...)
      *  (new HtMainView("car",null))->show();     // select * car
      *  (new HtMainView("car",13))->show();       // select * car where id=13
-     *  (new HtMainView("latest",null))->show();  //select * latestupdate 
-     *  
+     *  (new HtMainView("latest",null))->show();  //select * latestupdate
+     *
      * @param resolved by construtor
      */
     public function upload()
@@ -256,7 +260,7 @@ class HtMainView
 
     /**
      *  This function shows a search result
-     * 
+     *
      */
     public function displaySearch()
     {
@@ -284,15 +288,15 @@ class HtMainView
         } else if (($searchWordSanitized != "" or $searchWordSanitized == "") and ($item == "All" or $item == "000")) {
             $this->allItemSearch($queryItem);
         } else {
-           $this->singleItemSearch($queryItem);
+            $this->singleItemSearch($queryItem);
         }
     }
 
     /*
       Search in all Items
     */
-    public function allItemSearch($queryItem) {
-
+    public function allItemSearch($queryItem)
+    {
         $elements_array = array();
         foreach ($queryItem as $key => $value) {
             $value->setSearchElements();
@@ -301,11 +305,10 @@ class HtMainView
             while ($elm = $result->fetch_assoc()) {
                 array_push($elements_array, $elm);
             }
-            
         }
 
         $rows = count($elements_array);
-        
+
         if ($rows > 0) {
             // Sort matched element with date
             uasort($elements_array, array($this, 'date_compare'));
@@ -317,13 +320,13 @@ class HtMainView
             $globalVarObj = new HtGlobal();
             $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
 
-            // fetched elements per page 
+            // fetched elements per page
             $elm_rows = array_slice($elements_array,  $start,  $globalVarObj::get('itemPerPage'));
 
             echo '<div class="row items-board">';
             $number = 0;
             foreach ($elm_rows as $value) {
-                $number ++;
+                $number++;
                 //item count
                 $this->_itemNumber = $number;
                 $obj_pool = new ObjectPool();
@@ -381,7 +384,7 @@ class HtMainView
         }
     }
 
-    // Compare dates function 
+    // Compare dates function
     public function date_compare($element1, $element2)
     {
         $datetime1 = strtotime($element1['field_upload_date']);

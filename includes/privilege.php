@@ -1,15 +1,14 @@
 <?php
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath.'/db/database.class.php';
-require_once $documnetRootPath.'/includes/userStatus.php';
+require_once $documnetRootPath . '/db/database.class.php';
+require_once $documnetRootPath . '/includes/userStatus.php';
 
-if(!isset($_SESSION['uID']) ){
-	header('Location:'. $documnetRootPath.'index.php');
+if (!isset($_SESSION['uID'])) {
+	header('Location:' . $documnetRootPath . 'index.php');
 }
 
-if(isset($_POST['Save']))
-{
+if (isset($_POST['Save'])) {
 	$err = crypt(100);
 	$objectWantedRole  =  $_POST['privilege'];
 	$objectCurrentRole =  $_POST['modtype'];
@@ -20,21 +19,22 @@ if(isset($_POST['Save']))
 	$val     = $result->fetch_assoc();
 	$myRole  = $val['uRole'];
 
-	if($objectWantedRole!='000' && $objectId != $myId)    //you can not change your role
+	if ($objectWantedRole != '000' && $objectId != $myId)    //you can not change your role
 	{
-		if(found($objectCurrentRole) <= found($myRole))   //object role should be less than your role 
+		if (found($objectCurrentRole) <= found($myRole))   //object role should be less than your role
 		{
-			if(found($objectWantedRole) <= found($myRole)) //wanted role should be below your role 
+			if (found($objectWantedRole) <= found($myRole)) //wanted role should be below your role
 			{
 				func_changeprevliage($objectWantedRole, $objectId);
 				$err = 0;
 			}
 		}
 	}
-	header('Location: ../includes/controlPanel.php?err='.$err.'&uId='.$myId);
+	header('Location: ../includes/controlPanel.php?err=' . $err . '&uId=' . $myId);
 }
 
-function func_changeprevliage($privilege,$uId){
+function func_changeprevliage($privilege, $uId)
+{
 	$table = "user";
 	$cond = "uRole = '$privilege' WHERE uID = '$uId'";
 	DatabaseClass::getInstance()->updateTable($table, $cond);
@@ -47,4 +47,3 @@ function func_changeprevliage($privilege,$uId){
 // 		'<br>His Current Role is '.$objectCurrentRole.
 // 		'<br>His Wanted  Role is '.$objectWantedRole;
 // //exit;
-?>

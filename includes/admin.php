@@ -196,6 +196,30 @@ EOD;
             });
             $('.dataTables_length').addClass('bs-select');
         });
+
+        function ask() {
+            var adminTask = document.getElementById("admin-task").value;
+            var message = '';
+            if (adminTask == 'field_status-erase') {
+                message = 'Are you sure you want Close user account and delete data? ' +
+                    '\n\nAfter this action user will be removed from hulutera.com' +
+                    ' and any data in relation to the user will be erased and are unrecoverable.' +
+                    ' \n\nIf you want to erase user click "OK" , otherwise "Cancel" to exit operation.';
+            } else {
+                return;
+            }
+
+
+            // 0 => ["field_privilege-default" => "Choose task"],
+            // 1 => ["field_privilege-webmaster" => "Update user privilege to Webmaster"],
+            // 2 => ["field_privilege-administrator" => "Update user privilege to Administrator"],
+            // 3 => ["field_privilege-moderator" => "Update user privilege to Moderator"],
+            // 4 => ["field_privilege-user" => "Update user privilege to User"],
+            // 5 => ["field_status-activate" => "Activate user account"],
+            // 6 => ["field_status-deactivate" => "Deactivate user account"],
+            // 7 => ["field_status-erase" => "Close user account"],
+            return confirm(message);
+        }
     </script>
 </body>
 

@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
  * Class HtItemAll
  * @extends MySqlRecord
  * @filesource HtItemAll.php
-*/
+ */
 
 // namespace hulutera;
 
@@ -43,9 +43,9 @@ class HtItemAll extends MySqlRecord
      * Field information:
      *  - Data type: int(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idTable
      */
     private $idTable;
@@ -57,9 +57,9 @@ class HtItemAll extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldName
      */
     private $fieldName;
@@ -80,7 +80,7 @@ class HtItemAll extends MySqlRecord
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -93,7 +93,7 @@ class HtItemAll extends MySqlRecord
      */
     public function setIdTable($idTable)
     {
-        $this->idTable = (int)$idTable;
+        $this->idTable = (int) $idTable;
     }
 
     /**
@@ -106,7 +106,7 @@ class HtItemAll extends MySqlRecord
      */
     public function setFieldName($fieldName)
     {
-        $this->fieldName = (string)$fieldName;
+        $this->fieldName = (string) $fieldName;
     }
 
     /**
@@ -159,10 +159,10 @@ class HtItemAll extends MySqlRecord
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "item_all";
@@ -198,7 +198,6 @@ class HtItemAll extends MySqlRecord
      */
     public function close()
     {
-        
     }
 
     /**
@@ -212,27 +211,26 @@ class HtItemAll extends MySqlRecord
      */
     public function select($id)
     {
-        if($id == "*"){
+        if ($id == "*") {
             $sql = "SELECT * FROM item_all";
         } else { //id
-            $sql =  "SELECT * FROM item_all WHERE id={$this->parseValue($id,'int')}";
+            $sql =  "SELECT * FROM item_all WHERE id={$this->parseValue($id, 'int')}";
         }
 
         $this->resetLastSqlError();
         $result =  $this->query($sql);
-        $this->resultSet=$result;
+        $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result){
+        if ($result) {
             $rowObject = $result->fetch_object();
-            @$this->id = (integer)$rowObject->id;
-            @$this->idTable = (integer)$rowObject->id_table;
+            @$this->id = (int) $rowObject->id;
+            @$this->idTable = (int) $rowObject->id_table;
             @$this->fieldName = $this->replaceAposBackSlash($rowObject->field_name);
             $this->allowUpdate = true;
         } else {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
-        
     }
 
     /**
@@ -243,15 +241,15 @@ class HtItemAll extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM item_all WHERE id={$this->parseValue($id,'int')}";
+        $sql = "DELETE FROM item_all WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         }
         return $this->affected_rows;
     }
@@ -274,16 +272,16 @@ class HtItemAll extends MySqlRecord
             (id,id_table,field_name)
             VALUES({$this->parseValue($this->id)},
 			{$this->parseValue($this->idTable)},
-			{$this->parseValue($this->fieldName,'notNumber')})
+			{$this->parseValue($this->fieldName, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
-        
+
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
@@ -309,19 +307,19 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_all
-            SET 
+            SET
 				id_table={$this->parseValue($this->idTable)},
-				field_name={$this->parseValue($this->fieldName,'notNumber')}
+				field_name={$this->parseValue($this->fieldName, 'notNumber')}
             WHERE
-                id={$this->parseValue($id,'int')}
+                id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-            
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
+
+            $this->set_charset('utf8');
+            $this->query('SET NAMES utf8');
+            $result = $this->query($sql);
             if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             } else {
                 $this->select($id);
                 $this->lastSql = $sql;
@@ -347,31 +345,29 @@ SQL;
             return false;
         }
     }
-    
+
     /**
-    * Facility for display a row for item_all previously loaded.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for display a row for item_all previously loaded.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function display()
     {
         echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-    
+
     /**
-    * Facility for upload a new row into item_all.
-    *
-    * All class attribute values defined for mapping all table fields are automatically used during updating.
-    * @category DML Helper
-    * @return mixed MySQLi update result
-    */
+     * Facility for upload a new row into item_all.
+     *
+     * All class attribute values defined for mapping all table fields are automatically used during updating.
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function upload()
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
     }
-
 }
-?>

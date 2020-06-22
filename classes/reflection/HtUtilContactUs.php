@@ -43,9 +43,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldName
      */
     private $fieldName;
@@ -57,9 +57,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldCompany
      */
     private $fieldCompany;
@@ -71,9 +71,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldEmail
      */
     private $fieldEmail;
@@ -85,9 +85,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldSubject
      */
     private $fieldSubject;
@@ -99,9 +99,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPurpose
      */
     private $fieldPurpose;
@@ -113,9 +113,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: mediumtext
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldDescription
      */
     private $fieldDescription;
@@ -127,9 +127,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMessageStatus
      */
     private $fieldMessageStatus;
@@ -141,9 +141,9 @@ class HtUtilContactUs extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldReceivedDate
      */
     private $fieldReceivedDate;
@@ -526,7 +526,7 @@ class HtUtilContactUs extends MySqlRecord
 			{$this->parseValue($this->fieldMessageStatus, 'notNumber')},
 			{$this->parseValue($this->fieldReceivedDate, 'notNumber')})
 SQL;
-echo $sql;
+        echo $sql;
         $this->resetLastSqlError();
 
         $this->set_charset('utf8');
@@ -560,7 +560,7 @@ echo $sql;
             $sql = <<< SQL
             UPDATE
                 util_contact_us
-            SET 
+            SET
 				field_name={$this->parseValue($this->fieldName, 'notNumber')},
 				field_company={$this->parseValue($this->fieldCompany, 'notNumber')},
 				field_email={$this->parseValue($this->fieldEmail, 'notNumber')},
@@ -650,7 +650,7 @@ SQL;
     }
 
     /**
-     * 
+     *
      */
     public function insertContactUsField()
     {

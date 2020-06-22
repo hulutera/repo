@@ -1,126 +1,127 @@
-<?php 
+<?php
 
 class CommonItemPrintout
 {
     public $language;
 
-    public function __construct($language){
+    public function __construct($language)
+    {
         $this->language = $language;
     }
 
-    public function extraInfo(){
-        if(($this->language) == "en"){
+    public function extraInfo()
+    {
+        if (($this->language) == "en") {
             return "Extra Info";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ተጨማሪ መረጃ";
         }
     }
 
-    public function price(){
-        if(($this->language) == "en"){
+    public function price()
+    {
+        if (($this->language) == "en") {
             return "Price";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ዋጋ";
-        } 
+        }
     }
 
-    public function negotiable(){
-        if(($this->language) == "en"){
+    public function negotiable()
+    {
+        if (($this->language) == "en") {
             return "Negotiable";
-        }
-        else if(($this->language) == "am"){
-            return "መደራደር ይቻላል";
-        }
-    } 
-
-    public function noPriceInfo(){
-        if(($this->language) == "en"){
-            return "price information not available";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "መደራደር ይቻላል";
         }
     }
 
-    public function rent(){
-        if(($this->language) == "en"){
-            return "Rent";
+    public function noPriceInfo()
+    {
+        if (($this->language) == "en") {
+            return "price information not available";
+        } else if (($this->language) == "am") {
+            return "መደራደር ይቻላል";
         }
-        else if(($this->language) == "am"){
+    }
+
+    public function rent()
+    {
+        if (($this->language) == "en") {
+            return "Rent";
+        } else if (($this->language) == "am") {
             return "ኪራይ";
         }
     }
 
-    public function perHour(){
-        if(($this->language) == "en"){
+    public function perHour()
+    {
+        if (($this->language) == "en") {
             return "per hour";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "በሰዓት";
         }
     }
 
-    public function perDay(){
-        if(($this->language) == "en"){
+    public function perDay()
+    {
+        if (($this->language) == "en") {
             return "per day";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "በቀን";
         }
     }
 
-    public function perMonth(){
-        if(($this->language) == "en"){
+    public function perMonth()
+    {
+        if (($this->language) == "en") {
             return "per month";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "በወር";
         }
     }
 
-    public function sell(){
-        if(($this->language) == "en"){
+    public function sell()
+    {
+        if (($this->language) == "en") {
             return "Sell";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ችያጭ";
         }
     }
 
-    public function showDetail(){
-        if(($this->language) == "en"){
+    public function showDetail()
+    {
+        if (($this->language) == "en") {
             return "Show Detail";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ተጨማሪ አሳይ";
         }
     }
 
-    public function hideDetail(){
-        if(($this->language) == "en"){
+    public function hideDetail()
+    {
+        if (($this->language) == "en") {
             return "Hide Detail";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ዝርዝር ሸፍን";
         }
     }
 
-    public function contact(){
-        if(($this->language) == "en"){
+    public function contact()
+    {
+        if (($this->language) == "en") {
             return "Contact";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "መገናኛ መንገድ";
         }
     }
 
-    public function contactMethod($cm){
-        if(($this->language) == "en"){
+    public function contactMethod($cm)
+    {
+        if (($this->language) == "en") {
             return $cm;
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             switch ($cm) {
                 case "contact method":
                     return "የመገናኛ መንገድ";
@@ -138,11 +139,11 @@ class CommonItemPrintout
         }
     }
 
-    public function pic($pic){
-        if(($this->language) == "en"){
+    public function pic($pic)
+    {
+        if (($this->language) == "en") {
             return $pic;
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             switch ($pic) {
                 case "Picture":
                     return "ፎቶ";
@@ -160,48 +161,48 @@ class CommonItemPrintout
         }
     }
 
-    public function sendMsg(){
-        if(($this->language) == "en"){
+    public function sendMsg()
+    {
+        if (($this->language) == "en") {
             return "Send a message";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "መልእክት ለባለንብረቱ ይላኩ";
         }
     }
 
-    public function reportAbuse(){
-        if(($this->language) == "en"){
+    public function reportAbuse()
+    {
+        if (($this->language) == "en") {
             return "Report Abuse";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ";
         }
     }
 
-    public function title(){
-        if(($this->language) == "en"){
+    public function title()
+    {
+        if (($this->language) == "en") {
             return "Title";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ርዕስ";
         }
     }
 
-    public function des(){
-        if(($this->language) == "en"){
+    public function des()
+    {
+        if (($this->language) == "en") {
             return "Description";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ገለጻ";
         }
     }
 
-    public function requireTxt($var){
-        if(($this->language) == "en"){
-            return $var.' is required';
-        }
-        else if(($this->language) == "am"){
-            switch ($var){
+    public function requireTxt($var)
+    {
+        if (($this->language) == "en") {
+            return $var . ' is required';
+        } else if (($this->language) == "am") {
+            switch ($var) {
                 case "Model":
                     $txt = "ሞዴል";
                     break;
@@ -225,19 +226,19 @@ class CommonItemPrintout
                     break;
                 case "Gear type":
                     $txt = "የማርሽ ዓይነት";
-                    break; 
+                    break;
                 case "Fuel type":
                     $txt = "የነዳጅ ዓይነት";
-                    break; 
+                    break;
                 case "Year of Manufactured":
                     $txt = "የተመረተበተ ዓመት";
                     break;
                 case "City":
                     $txt = "ከተማ";
-                    break; 
+                    break;
                 case "Subcity":
                     $txt = "ክፍለ ከተማ";
-                    break; 
+                    break;
                 case "Currency":
                     $txt = "ገንዘብ";
                     break;
@@ -255,12 +256,12 @@ class CommonItemPrintout
             return $txt . ' አስፈላጊ ነው';
         }
     }
-  
-    public function city($city){
-        if(($this->language) == "en"){
+
+    public function city($city)
+    {
+        if (($this->language) == "en") {
             return $city;
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             switch ($city) {
                 case "City":
                     return "ከተማ";
@@ -369,7 +370,7 @@ class CommonItemPrintout
                     break;
                 case "Lideta":
                     return "ልደታ";
-                    break; 
+                    break;
                 case "Nifassilk Lafto":
                     return "ነፋስ ስልክ ላፍቶ";
                     break;
@@ -380,12 +381,12 @@ class CommonItemPrintout
         }
     }
 
-    public function choiceTxt($var){
-        if(($this->language) == "en"){
+    public function choiceTxt($var)
+    {
+        if (($this->language) == "en") {
             return 'Choose ' . $var;
-        }
-        else if(($this->language) == "am"){
-            switch ($var){
+        } else if (($this->language) == "am") {
+            switch ($var) {
                 case "type":
                     $txt = "አይነት";
                     break;
@@ -395,20 +396,18 @@ class CommonItemPrintout
                 case "Subcity":
                     $txt = "ክፍለ ከተማ";
                     break;
-                
-                   
             }
 
             return $txt . ' ይምረጡ';
         }
     }
 
-    public function curr($curr){
-        if(($this->language) == "en"){
+    public function curr($curr)
+    {
+        if (($this->language) == "en") {
             return $curr;
-        }
-        else if(($this->language) == "am"){
-            switch ($curr){
+        } else if (($this->language) == "am") {
+            switch ($curr) {
                 case "Currency":
                     return "ገንዘብ";
                     break;
@@ -417,40 +416,38 @@ class CommonItemPrintout
                     break;
                 case "USD":
                     return "የአሜሪካን ዶላር";
-                    break;                  
+                    break;
             }
         }
     }
-
-
 }
 
 class CarPrintout extends CommonItemPrintout
 {
 
-    public function name(){
-        if($this->language == "en"){
-            $this -> _name = "car";
-        }
-        else if($this->language == "am"){
-            $this -> _name = "መኪና";
+    public function name()
+    {
+        if ($this->language == "en") {
+            $this->_name = "car";
+        } else if ($this->language == "am") {
+            $this->_name = "መኪና";
         }
     }
 
-    public function make(){
-        if($this->language == "en"){
+    public function make()
+    {
+        if ($this->language == "en") {
             return "Make";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "አምራች ድርጅት";
         }
     }
 
-    public function milage($dis){
-        if($this->language == "en"){
+    public function milage($dis)
+    {
+        if ($this->language == "en") {
             return $dis;
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             switch ($dis) {
                 case "Milage":
                     return "የተጓዘው መጠን";
@@ -462,29 +459,29 @@ class CarPrintout extends CommonItemPrintout
         }
     }
 
-    public function type(){
-        if($this->language == "en"){
+    public function type()
+    {
+        if ($this->language == "en") {
             return "Type";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "አይነት";
         }
-    } 
+    }
 
-    public function yearOfMake(){
-        if($this->language == "en"){
+    public function yearOfMake()
+    {
+        if ($this->language == "en") {
             return "Year of Make";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "የተሰራበት ዓመት";
         }
     }
 
-    public function year($year){
-        if($this->language == "en"){
+    public function year($year)
+    {
+        if ($this->language == "en") {
             return $year;
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             switch ($year) {
                 case "Before 50s":
                     return "ከሀምሳዎቹ በፊት";
@@ -493,7 +490,7 @@ class CarPrintout extends CommonItemPrintout
                     return "ሀምሳዎቹ ውስጥ";
                     break;
                 case "In 60s":
-                    return "ስልሳዎቹ ውስጥ"; 
+                    return "ስልሳዎቹ ውስጥ";
                     break;
                 case "In 70s":
                     return "ሰባዎቹ ውስጥ";
@@ -502,20 +499,20 @@ class CarPrintout extends CommonItemPrintout
         }
     }
 
-    public function fuel(){
-        if($this->language == "en"){
+    public function fuel()
+    {
+        if ($this->language == "en") {
             return "Fuel";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "ነዳጅ";
         }
     }
 
-    public function fuelType($type){
-        if(($this->language) == "en"){
+    public function fuelType($type)
+    {
+        if (($this->language) == "en") {
             return $type;
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             switch ($type) {
                 case "Bensine":
                     return "ቤንዚን";
@@ -530,38 +527,38 @@ class CarPrintout extends CommonItemPrintout
         }
     }
 
-    public function numbOfSeat(){
-        if($this->language == "en"){
+    public function numbOfSeat()
+    {
+        if ($this->language == "en") {
             return "Nr of Seats";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "የወንበር ቁጥር";
         }
     }
 
-    public function seat(){
-        if($this->language == "en"){
+    public function seat()
+    {
+        if ($this->language == "en") {
             return "Seats";
-        }
-        else if($this->language == "am"){
+        } else if ($this->language == "am") {
             return "ወንበር";
         }
     }
 
-    public function color(){
-        if (($this->language) == "en"){
+    public function color()
+    {
+        if (($this->language) == "en") {
             return "Color";
-        }
-        else if (($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ቀለም";
         }
     }
 
-    public function getColor($color){
-        if (($this->language) == "en"){
-            return $color; 
-        }
-        else if (($this->language) == "am"){
+    public function getColor($color)
+    {
+        if (($this->language) == "en") {
+            return $color;
+        } else if (($this->language) == "am") {
             switch ($color) {
                 case "Red":
                     return "ቀይ";
@@ -596,24 +593,24 @@ class CarPrintout extends CommonItemPrintout
                 case "Other":
                     return "ሌላ";
                     break;
-                }
+            }
         }
     }
 
-    public function gear(){
-        if(($this->language) == "en"){
+    public function gear()
+    {
+        if (($this->language) == "en") {
             return "Gear type";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "የማርሽ ዓይነት";
         }
-    } 
+    }
 
-    public function gearType($type){
-        if(($this->language) == "en"){
+    public function gearType($type)
+    {
+        if (($this->language) == "en") {
             return $type;
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             switch ($type) {
                 case "Manual":
                     return "ማንዋል";
@@ -629,29 +626,29 @@ class CarPrintout extends CommonItemPrintout
     }
 
 
-    public function uploadingTxt(){
-        if(($this->language) == "en"){
+    public function uploadingTxt()
+    {
+        if (($this->language) == "en") {
             return "Uploading Car ...";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "መኪና የማስገባት ሂደት ...";
         }
-    } 
+    }
 
-    public function model(){
-        if(($this->language) == "en"){
+    public function model()
+    {
+        if (($this->language) == "en") {
             return "Model";
-        }
-        else if(($this->language) == "am"){
+        } else if (($this->language) == "am") {
             return "ሞዴል";
         }
-    } 
+    }
 
-    public function carType($type){
-        if (($this->language) == "en"){
-            return $type; 
-        }
-        else if (($this->language) == "am"){
+    public function carType($type)
+    {
+        if (($this->language) == "en") {
+            return $type;
+        } else if (($this->language) == "am") {
             switch ($type) {
                 case "Bus":
                     return "አውቶቢስ";
@@ -701,57 +698,46 @@ class CarPrintout extends CommonItemPrintout
                 case "Other":
                     return "ሌላ";
                     break;
-                }
-        }
-    }
-    
-    public function advContent(){
-        if(($this->language) == "en"){
-            return "More Detailed Info";
-        }
-        else if(($this->language) == "am"){
-            return "የበለጠ ዝርዝር  ለማስገባትት";
+            }
         }
     }
 
+    public function advContent()
+    {
+        if (($this->language) == "en") {
+            return "More Detailed Info";
+        } else if (($this->language) == "am") {
+            return "የበለጠ ዝርዝር  ለማስገባትት";
+        }
+    }
 }
 
 
 
 class ComputerPrintout
 {
-
 }
 
 class ElectronicsPrintout
 {
-
 }
 
 class FurniturePrintout
 {
-
 }
 
 class HousePrintout
 {
-
 }
 
 class HouseholdPrintout
 {
-
 }
 
 class OthersPrintout
 {
-
 }
 
 class ErrorsPrintout
 {
-
 }
-
-
-?>

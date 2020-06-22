@@ -45,9 +45,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: int(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $idTemp
      */
     private $idTemp;
@@ -60,8 +60,8 @@ class HtItemCar extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idUser
      */
     private $idUser;
@@ -74,8 +74,8 @@ class HtItemCar extends MySqlRecord
      *  - Data type: int(40)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idCategory
      */
     private $idCategory;
@@ -87,9 +87,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(50)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: phone
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldContactMethod
      */
     private $fieldContactMethod;
@@ -101,9 +101,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceRent
      */
     private $fieldPriceRent;
@@ -115,9 +115,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceSell
      */
     private $fieldPriceSell;
@@ -129,9 +129,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Negotiable
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceNego
      */
     private $fieldPriceNego;
@@ -143,9 +143,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldPriceRate
      */
     private $fieldPriceRate;
@@ -157,9 +157,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: Birr
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldPriceCurrency
      */
     private $fieldPriceCurrency;
@@ -171,9 +171,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMake
      */
     private $fieldMake;
@@ -185,9 +185,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldModel
      */
     private $fieldModel;
@@ -199,9 +199,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: year(4)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldModelYear
      */
     private $fieldModelYear;
@@ -213,9 +213,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: int(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldNoOfSeat
      */
     private $fieldNoOfSeat;
@@ -227,9 +227,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldFuelType
      */
     private $fieldFuelType;
@@ -241,9 +241,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldColor
      */
     private $fieldColor;
@@ -255,9 +255,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldGearType
      */
     private $fieldGearType;
@@ -269,9 +269,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(20)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMilage
      */
     private $fieldMilage;
@@ -283,9 +283,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: longtext
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldImage
      */
     private $fieldImage;
@@ -297,9 +297,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(40)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldLocation
      */
     private $fieldLocation;
@@ -311,9 +311,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: longtext
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldExtraInfo
      */
     private $fieldExtraInfo;
@@ -325,9 +325,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldTitle
      */
     private $fieldTitle;
@@ -339,7 +339,7 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: timestamp
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: CURRENT_TIMESTAMP
      *  - Extra:  on update CURRENT_TIMESTAMP
      * @var string $fieldUploadDate
@@ -353,9 +353,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : YES
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var int $fieldTotalView
      */
     private $fieldTotalView;
@@ -367,9 +367,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: pending
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldStatus
      */
     private $fieldStatus;
@@ -381,9 +381,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(125)
      *  - Null : YES
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: NULL
-     *  - Extra:  
+     *  - Extra:
      * @var string $fieldReport
      */
     private $fieldReport;
@@ -395,9 +395,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: varchar(15)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $fieldMarketCategory
      */
     private $fieldMarketCategory;
@@ -409,9 +409,9 @@ class HtItemCar extends MySqlRecord
      * Field information:
      *  - Data type: int(10)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: 1
-     *  - Extra:  
+     *  - Extra:
      * @var int $fieldTableType
      */
     private $fieldTableType;
@@ -1476,7 +1476,7 @@ class HtItemCar extends MySqlRecord
         } else {
             $sql =  "SELECT DISTINCT * FROM $itemTable $joinCatTable $filter ORDER BY field_upload_date DESC LIMIT $start, $itemPerPage";
         }
-        
+
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet = $result;
@@ -1536,7 +1536,7 @@ class HtItemCar extends MySqlRecord
         return $filter;
     }
 
-    /* 
+    /*
     ** Set the car element values
     * $rows: it takes the array of one item row and it sets the values
     */
@@ -1583,9 +1583,9 @@ class HtItemCar extends MySqlRecord
         $this->setFieldValues($input);
     }
 
-    /* 
+    /*
     ** Set the computer category elements
-    * 
+    *
     */
     public function setCategoryName()
     {
@@ -1700,7 +1700,7 @@ SQL;
             $sql = <<< SQL
             UPDATE
                 item_car
-            SET 
+            SET
 				id_temp={$this->parseValue($this->idTemp)},
 				id_user={$this->parseValue($this->idUser)},
 				id_category={$this->parseValue($this->idCategory)},
@@ -1818,7 +1818,7 @@ SQL;
     }
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOption = array(
         'fieldLocation' => 'option',
@@ -1843,7 +1843,7 @@ SQL;
     );
 
     /**
-     * Class attribute for storing default upload values from upload functionality     
+     * Class attribute for storing default upload values from upload functionality
      */
     private $uploadOptionShort = array(
         'fieldLocation' => 'Location',
@@ -1966,7 +1966,7 @@ SQL;
         ___open_div_("form-group upload", "");
         $this->insertFieldContactMethod();
         ___close_div_(3);
-        ////        
+        ////
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");

@@ -1,2 +1,2 @@
 <?php
-define('LOCALE_ALL_ITEMS' , "ኵሉ ንብረታት");
+define('LOCALE_ALL_ITEMS', "ኵሉ ንብረታት");

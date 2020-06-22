@@ -31,7 +31,7 @@ if (!$found) {
 $id  = $_GET["itemid"];
 $item = $_GET["itemtype"];
 
-//// Item not in table abort 
+//// Item not in table abort
 $allItems = new HtItemAll("*");
 $result = $allItems->getResultSet();
 $result->data_seek(0);
