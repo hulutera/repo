@@ -214,7 +214,7 @@ class HtCommonView extends MySqlRecord
     {
         $loc =  $itemObj->getFieldLocation();
         if ($loc != "") {
-            echo '<p>' . $GLOBALS['lang']["$loc"] . '</p>';
+            echo '<p>' . $GLOBALS['city_lang_arr']["$loc"] . '</p>';
         }
     }
     /*@function to display market type /SELL/RENT
