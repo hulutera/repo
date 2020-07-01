@@ -302,8 +302,8 @@ $lang = array(
     'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
     'Back to Post Item' => "Back to Post Item",
     //Search related
-    'search' => 'Search', //title
-    'Search' => 'Search', //button
+    'search-title' => 'Search', //title
+    'search-button' => 'Search', //button
     'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'no match msg part1' => 'Sorry, there is no item found for',
     'no match msg part2' => '</br>',

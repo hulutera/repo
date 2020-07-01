@@ -285,8 +285,8 @@ $lang = array(
     'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     //Search related
-    'search' => 'መፈለግ', //title
-    'Search' => 'ፈልግ',  //button
+    'search-title' => 'መፈለግ', //title
+    'search-button' => 'ፈልግ',  //button
     'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',

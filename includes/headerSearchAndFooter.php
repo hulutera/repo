@@ -238,7 +238,7 @@ function miniSearch()
 	echo '<div style="border: 1px solid;padding:4px"><input name="search_text" class="searchfield" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa">';
 	item();
 	city();
-	echo '<button type="submit    button" class="search-btn btn btn-warning"><i class="search">' . $GLOBALS['lang']['Search'] . '</i></button>';
+	echo '<button type="submit    button" class="search-btn btn btn-warning"><i class="search">' . $GLOBALS['lang']['search-button'] . '</i></button>';
 	echo '</div>';
 	carSearch();
 	houseSearch();

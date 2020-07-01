@@ -14,7 +14,7 @@ if (!isset($_GET['search_text']) or !isset($_GET['lan']) or !isset($_GET['cities
 <html lang="en">
 
 <head>
-	<title><?php echo $GLOBALS['lang']['search']; ?></title>
+	<title><?php echo $GLOBALS['lang']['search-title']; ?></title>
 	<?php commonHeader(); ?>
 </head>
 

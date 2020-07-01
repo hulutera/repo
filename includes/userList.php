@@ -79,7 +79,7 @@ function userSearch()
 	echo '<h3>' . $lang['user page'] . '</h3><br><br>';
 	echo '<form name="search-user-form" class="" action="../includes/userList.php' . $lang_url . '" method="POST">';
 	echo $lang['search user'] . ': <input name="searhVal" style="width:40%" class="" type="text" placeholder="' . $lang['e.g ID username email'] . '"/>';
-	echo '<input type="submit" value="' . $lang['Search'] . '" />';
+	echo '<input type="submit" value="' . $lang['search-button'] . '" />';
 	echo '</form>';
 	echo '</div>';
 	echo '<br>';
