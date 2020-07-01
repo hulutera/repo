@@ -21,41 +21,16 @@ $lang = array(
     'cancel changes' => 'Cancel changes',
     'edit' => 'Edit',
     'Edit Profile' => 'Edit Profile',
-    //Item related
-    'Picture' => 'Picture',
-    'Item Pictures' => 'Item Pictures',
-    'exceeds size 5MB' => 'exceeds size 5MB',
-    'is not of type jpeg ,bmp,gif,jpg or png' => 'is not of type jpeg ,bmp,gif,jpg or png',
-    'Send a message' => 'Send a message',
-    'Report Abuse' => 'Report Abuse',
-    'Title' => 'Title',
-    'Description' => 'Description',
-    'More Detailed Info' => 'More Detailed Info',
-    'Uploading' => 'Uploading',
-    //Addis Sub-city related
-    'Addis ketema' => 'Addis ketema',
-    'Akaki Kality' => 'Akaki Kality',
-    'Arada' => 'Arada',
-    'Bole' => 'Bole',
-    'Gullele' => 'Gullele',
-    'Kirkos' => 'Kirkos',
-    'Kolfe Keraniyo' => 'Kolfe Keraniyo',
-    'Lideta' => 'Lideta',
-    'Nifassilk Lafto' => 'Nifassilk Lafto',
-    'Yeka' => 'Yeka',
-    'Choose' => 'Choose',
-    'Write' => 'Write',
-    'type' => 'type',
     //Register related
-    'Please enter a username' => 'Please enter a username',
-    'Username must consist of letters and numbers only' => 'Username must consist of letters and numbers only',
-    'Please enter a password' => 'Please enter a password',
+    'Please enter a username' => 'Please enter a username.',
+    'Username must consist of letters and numbers only' => 'Username must consist of letters and numbers only.',
+    'Please enter a password' => 'Please enter a password.',
     'Passwords do not match' => 'Passwords do not match',
-    'Firstname must consist of letters and numbers only' => 'Firstname must consist of letters and numbers only',
-    'Enter your Firstname' => 'Enter your Firstname',
-    'Lastname must consist of letters and numbers only' => 'Lastname must consist of letters and numbers only',
-    'Enter your Lastname' => 'Enter your Lastname',
-    'Phone must be a number' => 'Phone must be a number',
+    'Firstname must consist of letters and numbers only' => 'Firstname must consist of letters and numbers only.',
+    'Enter your Firstname' => 'Enter your Firstname.',
+    'Lastname must consist of letters and numbers only' => 'Lastname must consist of letters and numbers only.',
+    'Enter your Lastname' => 'Enter your Lastname.',
+    'Phone must be a number' => 'Phone must be a number.',
     'username' => 'Username',
     'First Name' => 'First Name',
     'Full Name' => 'Full Name',
@@ -72,7 +47,7 @@ $lang = array(
     'submit' => 'Submit',
     //Private Policy related
     'privacy policy paragraph1 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.',
-    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.',
+    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website. We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any of our changes.',
     'What we collect' => 'What we collect',
     'Your name' => 'Your name',
     'Contact Information including email address' => 'Contact Information including email address',
@@ -86,40 +61,30 @@ $lang = array(
     //Contact Us related
     'Company' => 'Company',
     'Subject' => 'Subject',
-    'Please enter your name' => 'Please enter your name',
-    'Enter only your first name' => 'Enter only your first name',
-    'Please enter your email' => 'Please enter your email',
-    'Your e-mail address is invalid' => 'Your e-mail address is invalid',
-    'Please enter a subject' => 'Please enter a subject',
-    'Please state choose your purpose' => 'Please state choose your purpose',
+    'Please enter your name' => 'Please enter your name.',
+    'Enter only your first name' => 'Please enter only your first name.',
+    'Please enter your email' => 'Please enter your email.',
+    'Your e-mail address is invalid' => 'Your e-mail address is invalid.',
+    'Please enter a subject' => 'Please enter a subject.',
+    'Please state choose your purpose' => 'Please state choose your purpose.',
     'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n' => 'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n',
-    'Contact Purpose' => 'Contact Purpose',
-    'choose your puropse' => 'choose your puropse',
-    'I can not find my Ad' => 'I can not find my Ad',
-    'My Ad is not approved' => 'My Ad is not approved',
-    'My Ad is still pending' => 'My Ad is still pending',
-    'Technical problems in Ad' => 'Technical problems in Ad',
-    'Problems with picture' => 'Problems with picture',
-    'I want to report suspected fraud' => 'I want to report suspected fraud',
-    'Feedback and suggestions for hulutera' => 'Feedback and suggestions for hulutera',
-    'General comment' => 'General comment',
     'Message' => 'Message',
     'Send' => 'Send',
     'Contact Us' => 'Contact Us',
     //About Us related
     'about us page paragraph1 text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. One can Sell, Buy and Rent a used and non-used items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
     =>
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.',
     'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.'
     =>
-    'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.',
+    'This page is available in English, Amharic, Afaan Oromoo, Tigrigna, Somali, Sidama Afoo, Guragigna and Wolaytigna languages. You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.',
     'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'
     =>
     'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,',
-    'For any compliant , improvements or other issues you can use' => 'For any compliant , improvements or other issues you can use',
+    'For any compliant , improvements or other issues you can use' => 'For any compliant, improvements or other issues you can use',
     'For inappropriate items you can “Report” button' => 'For inappropriate items you can “Report” button',
     'If you need help, click' => 'If you need help, click',
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'
@@ -134,7 +99,7 @@ $lang = array(
     This agreement is in effect as of May 01, 2020.
     <br/><br/>
 	We reserve the right to change this User Agreement from time to time without notice. You acknowledge and agree that it is your responsibility to review this User Agreement periodically to familiarize yourself with any modifications. Your continued use of this site after such modifications will constitute acknowledgment and agreement of the modified terms and conditions.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Responsible Use and Conduct</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">Responsible Use and Conduct</span>
     <br /><br />
 	By visiting our website and accessing the information, resources, services, products, and tools we provide for you, either directly or indirectly (hereafter referred to as "Resources"), you agree to use these Resources only for the purposes intended as permitted by the terms of this User Agreement and applicable laws, regulations and generally accepted online practices.
 	<br /><br />
@@ -164,19 +129,19 @@ $lang = array(
     h. We do not assume any liability for any content posted by you or any other 3rd party users of our website.  However, any content posted by you using any open communication tools on our website, provided that it doesn"t violate or infringe on any 3rd party copyrights or trademarks, becomes the property of hulutera, and as such, gives us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce, modify, adapt, translate, publish, publicly display and/or distribute as we see fit.  This only refers and applies to content posted via open communication tools as described, and does not refer to information that is provided as part of the registration  process, necessary in order to use our Resources.
     <br /><br />
     You agree to indemnify and hold harmless hulutera and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfill any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defense of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Warranties</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">Limitation of Warranties</span>
     <br /><br />
     By using our website, you understand and agree that all Resources we provide are "as is" and "as available".  This means that we do not represent or warrant to you that:<br />
     i) the use of our Resources will meet your needs or requirements.<br />
     ii) the use of our Resources will be uninterrupted, timely and free from errors.<br />
     iii) the information obtained by using our Resources will be accurate or reliable, and
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Limitation of Liability</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">Limitation of Liability</span>
     <br /><br />
     hulutera will not be liable for any direct, indirect, incidental, consequential or exemplary loss or damages which may be incurred by you as a result of using our Resources, or as a result of any changes, data loss or corruption, cancellation, loss of access, or downtime to the full extent that applicable limitation of liability laws apply.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Copyrights/Trademarks</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">Copyrights/Trademarks</span>
     <br /><br />
     All content and materials available on hulutera, including but not limited to text, graphics, website name, code, images and logos are the intellectual property of hulutera, and are protected by applicable copyright and trademark law.  Any inappropriate use, including but not limited to the reproduction, distribution, display or transmission of any content on this site is strictly prohibited, unless specifically authorized by hulutera.
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">Termination of Use</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">Termination of Use</span>
     <br /><br />
     You agree that we may, at our sole discretion, suspend or terminate your access to all or part of our website and Resources with or without notice and for any reason, including, without limitation, breach of this User Agreement. Any suspected illegal, fraudulent or abusive activity may be grounds for terminating your account and may be referred to appropriate law enforcement authorities.  Upon suspension or termination, your right to use the Resources we provide will immediately cease, and we reserve the right to remove or delete any information that you may have on file with us, including any account or login information.
     <br /><br />
@@ -184,11 +149,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT both used and unused items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click ',
-    'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion.Click'
-    => 'hulutera.com is a FREE online trading website where one can sell, buy or rent both used and unused items.  hulutera is designed and developed for Ethiopian market with prosperity of large expansion. Click ',
-    'here' => 'here',
-    'to know more about hulutera.com' => ' to know more about hulutera.com',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',
@@ -200,13 +161,13 @@ $lang = array(
     '2020 hulutera. All Rights Reserved.' => '2020 hulutera. All Rights Reserved.',
     'hulutera' => 'Hulutera',
     //
-    'missing email msg' => 'Please enter your e-mail',
-    'missing password msg' => 'Please enter the password',
-    'missing e-mail and password msg' => 'Please enter your e-mail and password',
-    'invalid email msg' => 'Your e-mail is invalid',
-    'Incorrect e-mail or password msg' => 'Invalid e-mail or password',
-    'non-existing email msg' => 'There is no user registered with this e-mail',
-    'Forgot your password' => 'Forgot your password',
+    'missing email msg' => 'Please enter your e-mail.',
+    'missing password msg' => 'Please enter the password.',
+    'missing e-mail and password msg' => 'Please enter your e-mail and password.',
+    'invalid email msg' => 'Your e-mail is invalid.',
+    'Incorrect e-mail or password msg' => 'Invalid e-mail or password.',
+    'non-existing email msg' => 'There is no user registered with this e-mail.',
+    'Forgot your password' => 'Forgot your password?',
     //Messages related
     'delete' => 'Delete',
     'follow' => 'Follow',
@@ -302,8 +263,8 @@ $lang = array(
     'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
     'Back to Post Item' => "Back to Post Item",
     //Search related
-    'search-title' => 'Search', //title
-    'search-button' => 'Search', //button
+    'search-title' => 'Search',
+    'search-button' => 'Search',
     'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'no match msg part1' => 'Sorry, there is no item found for',
     'no match msg part2' => '</br>',
@@ -365,6 +326,19 @@ $city_lang_arr = array(
     'Other' => 'Other'
 );
 
+$addis_sub_city = array(
+    'Choose sub-city' => 'Choose Sub-city',
+    'Addis ketema' => 'Addis ketema',
+    'Akaki Kality' => 'Akaki Kality',
+    'Arada' => 'Arada',
+    'Bole' => 'Bole',
+    'Gullele' => 'Gullele',
+    'Kirkos' => 'Kirkos',
+    'Kolfe Keraniyo' => 'Kolfe Keraniyo',
+    'Lideta' => 'Lideta',
+    'Nifassilk Lafto' => 'Nifassilk Lafto',
+    'Yeka' => 'Yeka',
+);
 
 $item_lang_arr = array(
     '000' => 'Choose Item',
@@ -407,18 +381,55 @@ $upload_specific_array = [
             0 => 'Make',
             1 => 'Choose Make',
             2 => [
-                "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
-                "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
-                "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
-                "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
-                "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
-                "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
-                "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
-                "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
-                "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
-                "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
-                "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-                "volkswagen" => "volkswagen", "volvo" => "volvo"
+                "aston-martin" => "aston-martin",
+                "audi" => "audi",
+                "bentley" => "bentley",
+                "bmw" => "bmw",
+                "buick" => "buick",
+                "cadillac" => "cadillac",
+                "chevrolet" => "chevrolet",
+                "chevrolet-truck" => "chevrolet-truck",
+                "chrysler" => "chrysler",
+                "dodge" => "dodge",
+                "ferrari" => "ferrari",
+                "fiat" => "fiat",
+                "fisker" => "fisker",
+                "ford" => "ford",
+                "ford-truck" => "ford-truck",
+                "freightliner" => "freightliner",
+                "gmc" => "gmc",
+                "gmc-truck" => "gmc-truck",
+                "honda" => "honda",
+                "hyundai" => "hyundai",
+                "infiniti" => "infiniti",
+                "jaguar" => "jaguar",
+                "jeep" => "jeep",
+                "kia" => "kia",
+                "lamborghini" => "lamborghini",
+                "land-rover" => "land-rover",
+                "lexus" => "lexus",
+                "lincoln" => "lincoln",
+                "lotus" => "lotus",
+                "maserati" => "maserati",
+                "maybach" => "maybach",
+                "mazda" => "mazda",
+                "mercedes-benz" => "mercedes-benz",
+                "mini" => "mini",
+                "mitsubishi" => "mitsubishi",
+                "nissan" => "nissan",
+                "nissan-truck" => "nissan-truck",
+                "porsche" => "porsche",
+                "ram" => "ram",
+                "rolls-royce" => "rolls-royce",
+                "saab" => "saab",
+                "scion" => "scion",
+                "smart" => "smart",
+                "subaru" => "subaru",
+                "suzuki" => "suzuki",
+                "tesla" => "tesla",
+                "toyota" => "toyota",
+                "volkswagen" => "volkswagen",
+                "volvo" => "volvo"
             ]
         ],
         'fieldModel'       => [
@@ -932,7 +943,7 @@ $upload_specific_array = [
         'Choose Images here' => 'Choose Images here',
         'upload successful msg' => 'Thank you for using our service!
                                     Your item was successfuly uploaded.
-                                    Please follow instructions in the email we sent you to follow status of your item!'
+                                    Please follow instructions in the email we sent you to follow the status of your item!'
     ]
 ];
 
@@ -1265,3 +1276,4 @@ $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['lang'] = $lang;
 $GLOBALS['message'] = $message;
 $GLOBALS['help'] = $help;
+$GLOBALS['addis_sub_city'] = $addis_sub_city;

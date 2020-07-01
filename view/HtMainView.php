@@ -363,8 +363,10 @@ class HtMainView
         }
 
         if ($rows > 0) {
+            $number = 0;
             foreach ($queryItem as $key => $value) {
                 $this->_pItem = $value;
+                $this->_runnerName = $key;
                 $calculatePageArray = calculatePage($rows);
                 $globalVarObj = new HtGlobal();
                 $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
@@ -372,7 +374,9 @@ class HtMainView
                 $result = $value->getResultSet();
                 echo '<div class="row items-board">';
                 while ($row = $result->fetch_assoc()) {
-                    $this->_runnerName = $key;
+                    $number++;
+                    //item count
+                    $this->_itemNumber = $number;
                     $this->showItemWithId($row);
                 }
                 echo '</div>';

@@ -806,8 +806,7 @@ function footerCode()
 	___close_div_(2);
 
 	echo '
-        <p style="font-size:16px;text-align:start">' . $lang['about us on footer text'] . ' <a href="../../includes/template.proxy.php?type=about' . $str_url . '" style="color:#97caf0;font-weight:bold">' . $lang['here'] . '</a>' . $lang['to know more about hulutera.com'] . '
-        </p>
+        <p style="font-size:16px;text-align:start">' . $lang['about us on footer text'] . '</p>
         </div>';
 	echo '<div id="information_fo">
         <p class="h4">' . $lang['INFORMATION'] . '</p>

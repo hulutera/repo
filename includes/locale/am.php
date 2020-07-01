@@ -21,41 +21,16 @@ $lang = array(
     'cancel changes' => 'ለውጦችን ሰርዝ',
     'edit' => 'ለውጥ', //'ያርትዑ',
     'Edit Profile' => 'መረጃ ለማስተካከል',
-    //Item related
-    'Picture' => 'ፎቶ',
-    'Item Pictures' => 'የንብረቱ ፎቶ',
-    'exceeds size 5MB' => 'ፎቶዉ መጠኑ ከ 5MB መብለጥ የለበትም',
-    'is not of type jpeg ,bmp,gif,jpg or png' => 'ከሚከተሉት ውስጥ የለም jpeg ,bmp,gif,jpg ወይም png',
-    'Send a message' => 'መልእክት ለባለንብረቱ ይላኩ',
-    'Report Abuse' => 'ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ',
-    'Title' => 'ርዕስ',
-    'Description' => 'ገለጻ',
-    'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
-    'Uploading' => 'የማስገባት ሂደት',
-    //Addis Sub-city related
-    'Addis ketema' => 'አዲስ ከተማ',
-    'Akaki Kality' => 'አቃቂ ቃሊቲ',
-    'Arada' => 'አራዳ',
-    'Bole' => 'ቦሌ',
-    'Gullele' => 'ጉለሌ',
-    'Kirkos' => 'ቂርቆስ',
-    'Kolfe Keraniyo' => 'ኮልፌ ቀራንዮ',
-    'Lideta' => 'ልደታ',
-    'Nifassilk Lafto' => 'ነፋስ ስልክ ላፍቶ',
-    'Yeka' => 'የካ',
-    'Choose' => 'ይምረጡ',
-    'Write' => 'ይጻፉ',
-    'type' => 'አይነት',
     //Register related
-    'Please enter a username' => 'የመጠቀምያ ስምዎን ያስገቡ.',
-    'Username must consist of letters and numbers only' => 'የመጠቀምያ ስሙ ፊደል እና ቁጥር ብቻ ነው ሊኖረው የሚገባው.',
-    'Please enter a password' => 'የምስጢር ቃል ያስገቡ.',
-    'Passwords do not match' => 'የምስጢር ቃሎቹ ተመሳሳይ መሆን አለባቸው.',
-    'Firstname must consist of letters and numbers only' => 'ስምዎን ብቻ ያስገቡ. ',
-    'Enter your Firstname' => 'ስምዎን ያስገቡ. ',
-    'Lastname must consist of letters and numbers only' => 'የአባትዎን ስም ብቻ ያስገቡ. ',
-    'Enter your Lastname' => 'የአባትዎን ስም ያስገቡ. ',
-    'Phone must be a number' => 'ቁጥሩን ብቻ ያስገቡ ',
+    'Please enter a username' => 'የመጠቀምያ ስምዎን ያስገቡ።',
+    'Username must consist of letters and numbers only' => 'የመጠቀምያ ስሙ ፊደል እና ቁጥር ብቻ ነው ሊኖረው የሚገባው።',
+    'Please enter a password' => 'የምስጢር ቃል ያስገቡ።',
+    'Passwords do not match' => 'የምስጢር ቃሎቹ ተመሳሳይ መሆን አለባቸው።',
+    'Firstname must consist of letters and numbers only' => 'ስምዎን ብቻ ያስገቡ።',
+    'Enter your Firstname' => 'ስምዎን ያስገቡ።',
+    'Lastname must consist of letters and numbers only' => 'የአባትዎን ስም ብቻ ያስገቡ።',
+    'Enter your Lastname' => 'የአባትዎን ስም ያስገቡ።',
+    'Phone must be a number' => 'ቁጥሩን ብቻ ያስገቡ።',
     'username' => 'መጠቀምያ ስም',
     'First Name' => 'ስም',
     'Full Name' => 'ሙሉ ስም',
@@ -72,50 +47,40 @@ $lang = array(
     'submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
     //Private Policy related
     'privacy policy paragraph1 text' => 'የግልዎን መረጃ አንሸጥም ፣ አንበትንም እንዲሁም ከእርስዎ ፍቃድ ውጪ ለሌላ አካል አናጋራም ሆኖም ግን በህግ ከተጠየቅን የማሳየ ግዴት ይኖርብናል።',
-    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ተጠቃሚው በሁሉተራ ላይ ያስገባውን ማንኛውም ነገር እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
+    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ላይ ተጠቃሚው በሁሉተራ ገፅ ላይ ያስገባውን ማንኛውንም ኢንፎርሜሽን እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
     'What we collect' => 'እንዲያስገቡ የምንጠይቆት',
     'Your name' => 'ስም',
-    'Contact Information including email address' => 'የሚገኙበት መረጃ ማለትም ስልክ፣ኢሜይል ወዘተ',
-    'What we do with the information we gather:' => 'ያስገቧቸውን መረጃዎች',
-    'We may use the information to improve our services.' => 'አገልግሎታችንን ለማሻሻል ልንጠቀምባቸው እንችላለን',
-    'We may periodically send promotional emails msg' => 'የተለያዩ አዳዲስ ውጤቶች እና ለእርሶ ይጠቅማሉ ብለን ያሰብናቸውን ነገሮች ለመላክ ልንጠቀምባቸው እንችላለን',
-    'From time to time send info msg' => 'ድሕረ ገፁ ከጊዜው ጋር የሚራመድ እና የርሶን ፍላጎት ያሟላ ስለመሆኑ ልንጠይቆት ልንጠቀምባቸው እንችላለን',
+    'Contact Information including email address' => 'የሚገኙበት መረጃ ማለትም ስልክ ፣ ኢሜይል ወዘተ...',
+    'What we do with the information we gather:' => 'ያስገቧቸውን መረጃዎች እንዴት እንደምንጠቀምበት፦',
+    'We may use the information to improve our services.' => 'አገልግሎታችንን ለማሻሻል ልንጠቀምባቸው እንችላለን።',
+    'We may periodically send promotional emails msg' => 'የተለያዩ አዳዲስ ውጤቶች እና ለእርሶ ይጠቅማሉ ብለን ያሰብናቸውን ነገሮች ለመላክ ልንጠቀምባቸው እንችላለን።',
+    'From time to time send info msg' => 'ድሕረ ገፁ ከጊዜው ጋር የሚራመድ እና የርሶን ፍላጎት ያሟላ ስለመሆኑ ልንጠይቆት ልንጠቀምባቸው እንችላለን።',
     'Links to other websites' => 'ሌሎች ድሕረ ገፆች',
-    'Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.' => 'በድሕረ ገፃችን ላይ ሌሎች ድሕረ ገፆች ሊታዩ ይችላሉ በማናቸውም ጊዜያት እነዚህ ድሕረ ገፆችን ተጭነው ወደነሱ ገፅ ላይ ከሄደ፤ ከዛ ወዲያ ሁሉተራ ምንም አይነት ሀላፊነት የለበትም።',
+    'Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.' => 'በድሕረ ገፃችን ላይ ሌሎች ድሕረ ገፆች ሊታዩ ይችላሉ። በማናቸውም ጊዜያት እነዚህ ድሕረ ገፆችን ተጭነው ወደነሱ ገፆች ላይ ከሄደ ፤ ከዛ ወዲያ ሁሉተራ ምንም አይነት ሀላፊነት የለበትም። በመሆኑም ይህ የግል መርህ እነዚህን ገፆች ያካተተ አይሆንም።',
     'hulutera Admin' => 'የሁሉተራ አስተዳደር',
     //Contact Us related
     'Company' => 'ድርጅት',
     'Subject' => 'ርዕስ',
-    'Please enter your name' => 'ስምዎን ያስገቡ',
-    'Enter only your first name' => 'ስምዎን ብቻ ያስገቡ',
-    'Please enter your email' => 'ኢሜይልዎን ያስገቡ',
-    'Your e-mail address is invalid' => 'ኢሜይሉ ልክ አይደለም',
-    'Please enter a subject' => 'የመልእክቱን ዓላማ ያስገቡ',
-    'Please state choose your purpose' => 'ስለምን ሊያገኙን ፈለጉ',
+    'Please enter your name' => 'እባክዎን ስምዎን ያስገቡ።',
+    'Please Enter only your first name' => 'እባክዎን ስምዎን ብቻ ያስገቡ።',
+    'Please enter your email' => 'እባክዎን ኢሜይልዎን ያስገቡ።',
+    'Your e-mail address is invalid' => 'ኢሜይሉ ልክ አይደለም።',
+    'Please enter a subject' => 'እባክዎን የመልእክቱን ዓላማ ያስገቡ።',
+    'Please state choose your purpose' => 'እባክዎን ስለምን ሊያገኙን ፈለጉ።',
     'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,hulutera Admin\n\n' => 'ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.hulutera.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።\n\n ከሁሉተራ አስተዳደር',
-    'Contact Purpose' => 'ሊያናግሩን የፈለጉበት ምክንያት',
-    'choose your puropse' => 'ሊያናግሩነ የፈለጉበት ምክንያት ይምረጡ',
-    'I can not find my Ad' => 'ያስተዋወኩት ንብረት ላገኘው አልቻልኩም',
-    'My Ad is not approved' => 'ያስተዋወኩት ንብረት አልጸደቀም',
-    'My Ad is still pending' => 'ያስተዋወኩት ንብረት አክቲቭ አልሆነም',
-    'Technical problems in Ad' => 'የቴክኒክ ችግር',
-    'Problems with picture' => 'ምስል በደንብ አይታይም',
-    'I want to report suspected fraud' => 'የማጭበርበር ድርጊት ሪፖርት ማረግ ፈልጋለው',
-    'Feedback and suggestions for hulutera' => 'ለሁሉተራ አስተያየት መስጠት ፈልጋለው',
-    'General comment' => 'አጠቃላይ አስተያየት',
     'Message' => 'መልዕክት',
     'Send' => 'ይላኩ',
     'Contact Us' => 'ሊጠይቁን ይፈልጋሉ',
     //About Us related
     'about us page paragraph1 text'
     =>
-    'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገፁ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ።   ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው',
+    'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድሕረገፁ ላይ የተላያዩ ንብረቶችን መግዛት ፣ መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው።',
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
     =>
-    'ሁሉተራ የህብረተሰባችንን ፍላጎት እንዲያሟላ በማሰብ የተሰራ ድህረገፅ ነው። ለመጠቀም ቀለል ያለ ሲሆን በፈለጉት መልኩ ሊጠቀሙበት ይችላሉ። ንብረት ለማስገባት ካሰቡ በቅድሚያ መመዝገብ ሲኖሩቦት፤ ምዝገባውንም በቀላሉ ማከናወን ይችላሉ።ንብረት ለማስገባትም ሆነ ያስገቡትን ንብረት ለመቆጣጠር በጣም ቀላል ነው። ሰፋ ያለ የአጠቃቀም  ዝርዝር ካስፈለግዎ መረጃ የሚለው ውስጥ ያገኛሉ።',
+    'ሁሉተራ የህብረተሰባችንን ፍላጎት እንዲያሟላ በማሰብ የተሰራ ድሕረገፅ ነው። ለመጠቀም ቀለል ያለ ሲሆን በፈለጉት መልኩ ሊጠቀሙበት ይችላሉ። ንብረት ለማስገባት ካሰቡ በቅድሚያ መመዝገብ ሲኖሩቦት ፤ ምዝገባውንም በቀላሉ ማከናወን ይችላሉ። ንብረት ለማስገባትም ሆነ ያስገቡትን ንብረት ለመቆጣጠር በጣም ቀላል ነው። ሰፋ ያለ የአጠቃቀም ዝርዝር ካስፈለግዎ መረጃ የሚለው ውስጥ ያገኛሉ።',
     'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.'
     =>
-    'በአሁን ጊዜ ድሕረገፁን በአማርኛና በእግሊዝኛ ሊያዩት የሚችሉ ቢሆንም ለወደፊቱ የተለያዩ ብሔረሰቦች ቋንቋዎችን እናካትታለን። ድሕረ ገፁን በሁሉም ክልልሎች ውስጥ የሚኖሩ ሰዎች ሊጠቀሙበት ይችላሉ። ለባለንብረቱ መልእት በመላክ ወይም ስልክ በመደወል ስለንብረቱ ያለማንም ጣልቃ ገብነት መነጋገር ይችላሉ።',
+    'በአሁን ጊዜ ድሕረገፁን በእግሊዝኛ ፣ በአማርኛ ፣ በኦሮምኛ ፣ በትግርኛ ፣ በሶማልኛ ፣ በሲዳምኛ ፣ በጉራግኛ እና በወላይትኛ ሊያዩት የሚችሉ ቢሆንም ለወደፊቱ የተለያዩ ብሔረሰቦች ቋንቋዎችን እናካትታለን። ድሕረገፁን በሁሉም ክልልሎች ውስጥ የሚኖሩ ሰዎች ሊጠቀሙበት ይችላሉ። ለባለንብረቱ መልእክት በመላክ ወይም ስልክ በመደወል ስለንብረቱ ያለማንም ጣልቃ ገብነት መወያየት ይችላሉ።',
     'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'
     =>
     'ሁሉተራን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን',
@@ -131,48 +96,47 @@ $lang = array(
     'terms and conditions text'
     =>
     'እንኳን ወደ hulutera.com በደህና መጡ። hulutera.com ንብረትነቱ የሁሉተራ ነው። ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ፤ የሚከተለውን የመተዳደርያ ደንብ ተረድተው እና ተስማምተው ነው(ስምምነቱንም የተጠቃሚ ስምምነት በሚል እንገልጸዋለን)።<br /><br />
-    ይህ ስምምነት ከግንቦት 8 2012 ጀምሮ ተግባራዊ ሆኗል።<br />
-    ይህንን የተጠቃሚ ስምምነት በማንኛውም ጊዜ የመቀየር መብት አለን ፤  በሚቀየርበት ወቅት በድሕረ ገጻችን ላይ እንገልጻለን። የተጠቃሚ ስምምነትን የማንበብም ሆነ ለውጡን የማየት የተጠቃሚው ሀላፊነት ነው።<br /><br />
-    ሀላፊነት ያለው አጠቃቀም እና ምግባር<br /><br />
-    ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ፤ድሕረ ገጹ ላይ ያገኙትን በቀጥታም ሆነ በተዘዋዋሪ የሚከተሉትን ደንቦች ላልጣሰ ጥቅም ላያውሉ ተስማምተው ነው ሀ)  በዚህ የተጠቃሚ ስምምነት ደንብ መሰረት ለ)  ተግባር ላይ በዋሉ ህጎች፣ መተዳደርያ ደንቦች  በአጠቃላይ ተቀባይነት ባላቸው የኦን ላየን ልምዶች ወይም መመሪያዎች።<br /><br />
-    ሀ)  ድሕረ ገጹን በሚጠቀሙበት ወቅት ስለ እርስዎ መረጃ ማስገባት ሊኖርቦት ይችላል፤ የሚያስገቡ መረጃ ትክክለኛ እና እውነተኛ ስለ መሆኑ ተስማምተው ነው።<br />
-    ለ)  ሁሉተራ ላይ እንደተጠቃሚ ተመዝግበው ከሆነ የመግብያ መረጃዎትን በምስጢር የመያዝ ሀላፊነት የእርስዎ ነው። በእርስዎ የመግብያ መረጃዎች የሚደረጉ ማናቸውም ተግባራት ሀላፊነቱ የእርስዎ ነው።<br />
+    ይህ ስምምነት ከግንቦት 8 2012 ጀምሮ ተግባራዊ ሆኗል።<br/><br/>
+    ይህንን የተጠቃሚ ስምምነት በማንኛውም ጊዜ የመቀየር መብት አለን ፤ በሚቀየርበት ወቅት በድሕረ ገጻችን ላይ እንገልጻለን። የተጠቃሚ ስምምነትን የማንበብም ሆነ ለውጡን የማየት የተጠቃሚው ሀላፊነት ነው።<br /><br />
+    <span class="tosTitle" style="font-size:12pt;">ሀላፊነት ያለው አጠቃቀም እና ምግባር</span><br /><br />
+    ድሕረ ገጻችንን ሲጎበኙ እና በድሕረ ገጻችን ላይ ያሉትን መረጃዎችም ሆነ ማናቸውንም ነገሮች ሲጠቀሙ ፤ ድሕረገጹ ላይ ያገኙትን በቀጥታም ሆነ በተዘዋዋሪ የተጠቃሚ ስምምነት ደንብን ፣ ተግባር ላይ የዋሉ ህጎችን እንዲሁም በአጠቃላይ ተቀባይነት ባላቸው የኦንላየን ልምዶች ወይም መመሪያዎችን በማይጥስ መልኩ እንደሆነ ተስማምተው ነው።<br /><br />
+    ይህም በመሆኑ የሚከተለውን ይገንዘቡ፥<br /><br />
+    ሀ) ድሕረ ገጹን በሚጠቀሙበት ወቅት ስለ እርስዎ መረጃ ማስገባት ሊኖርቦት ይችላል ፤ የሚያስገቡ መረጃ ትክክለኛ እና እውነተኛ ስለ መሆኑ ተስማምተው ነው።<br />
+    ለ) ሁሉተራ ላይ እንደተጠቃሚ ተመዝግበው ከሆነ የመግብያ መረጃዎትን በምስጢር የመያዝ ሀላፊነት የእርስዎ ነው። በእርስዎ የመግብያ መረጃዎች የሚደረጉ ማናቸውም ተግባራት ሀላፊነቱ የእርስዎ ነው።<br />
     ሐ) እኛ ካቀረብነው የመጠቀሚያ መንገዶች ውጪ ድሕረ ገጹን መጠቀም በጥብቅ የተከለከለ ነው። ይህንንም ለማድረግ ተስማምተዋል።<br />
     መ) ድሕረ ገጹ እንዳይሰራ ወይም እንዲቋረጥ የሚያደርግ ተግባር መፈጸም በጥብቅ የተከለከለ ነው።<br />
-    ሠ)  በድሕረ ገጹ ላይ ያሉትን ማናቸውም ነገሮች ኮፒ ማድረግ፣ ማባዛት፣ መሸጥ ወይም መለወጥ በጥብቅ የተከለከለ ነው።<br />
-    ረ ) ማናቸውም አይነት ቀጥታም ሆነ ተዘዋዋሪ ችግር እርስዎ ያልተፈቀደ የድሕረ ገጽ ጉብኘታ በማድረግዎ ቢከሰት፤ ሙሉ በሙሉ ሀላፊነቱ የእርስዎ ነው።<br />
-    ሰ)  እኛ ማናቸውንም መረጃዎች ቅድመ ማጣሪያ አናደርግም፤ ስለዚህ እርስዎ ለሚያስገቡት መረጃም ሆነ ሌሎች ተጠያቂው እርስዎ ኖት። ማናቸውንም መረጃዎችም  ሆነ ሌሎች ሲያስገቡ፤ የሚቀጥሉትን የሚጻረር ላለማስገባት ተስማምተው ነው፥
-    <br /><br />
-    ፩)  ህገወጥ፣ ማስፈራሪያ ፣ የሌላውን ሞራል የሚነካ፣ አሳሳች፣ ፀያፍ የሆነ እንዲሁ ዘረኛ የሆነ <br />
-    ፪)  የማናቸውንም አካል የንግድ ፍቃድ፣ የፓትንት መብት እና የኮፒ ራይት መብት ያልጣሰ <br />
+    ሠ) በድሕረ ገጹ ላይ ያሉትን ማናቸውም ነገሮች ኮፒ ማድረግ ፣ ማባዛት ፣ መሸጥ ወይም መለወጥ በጥብቅ የተከለከለ ነው።<br />
+    ረ) ማናቸውም አይነት ቀጥታም ሆነ ተዘዋዋሪ ችግር እርስዎ ያልተፈቀደ የድሕረ ገጽ ጉብኘታ በማድረግዎ ቢከሰት ፤ ሙሉ በሙሉ ሀላፊነቱ የእርስዎ ነው።<br />
+    ሰ) እኛ ማናቸውንም መረጃዎች ቅድመ ማጣሪያ አናደርግም ፤ ስለዚህ እርስዎ ለሚያስገቡት መረጃም ሆነ ሌሎች ተጠያቂው እርስዎ ኖት። ማናቸውንም መረጃዎችም ሆነ ሌሎች ሲያስገቡ ፤ የሚቀጥሉትን የሚጻረር ላለማስገባት ተስማምተው ነው፥
+    <br />
+    ፩) ህገወጥ ፣ ማስፈራሪያ ፣ የሌላውን ሞራል የሚነካ ፣ አሳሳች ፣ ፀያፍ የሆነ እንዲሁ ዘረኛ የሆነ <br />
+    ፪) የማናቸውንም አካል የንግድ ፍቃድ ፣ የፓትንት መብት እና የኮፒ ራይት መብት ያልጣሰ <br />
     ፫) ያልተፈቀደ ማስታወቂያ <br />
-    ፬)  ሌላን ሰው ወይንም አካል ነን ብሎ መገኘት <br />
+    ፬) ሌላን ሰው ወይንም አካል ነን ብሎ መገኘት <br />
     <br /><br />
     ይህንን የተጠቃሚ ስምምነት ይቃረናል ብለን ያሰብነውን ድሕረ ገጻችን ላይ በተጠቃሚው የገባውን ማንኛውንም ጽሁፍ ወይም ምስል የማሶጣት መብት አለን።
     ይህንን የማሶጣት ለሚፈጠረው መዘግየት ወይም ስህተት ተጠያቂው ይህንን ጽሁፍ ወይም ምስል ያስገባው ተጠቃሚ ብቻ ነው።
     <br /><br />
-    <span class="tosTitle" style="font-size:14pt;">የዋስትና ገደብ</span>
+    <span class="tosTitle" style="font-size:12pt;">የዋስትና ገደብ</span>
     <br/><br />
     እንደተገለፀው በሁሉተራ ላይ የሚታዩት መረጃዎች የቀረቡት በራሱ በተጠቃሚው የገባ ነው።<br />
-    ስለሆነም <br />
-    ፩)  ሁሉም ተጠቃሚ የፈለገውን ሙሉ በሙሉ ያገኛል ብለን ዋስትና አንሰጥም<br />
-    ፪)  የሚታዩት ንብረቶች ከስተት ነጻ፣ እጅግ ወቅታዊ እና የማይቆራረጡ ናቸው ብለን ዋስትና አንሰጥም<br />
-    ፫)  በድሕረ ገጹ ላይ የሚገኙት መረጃዎች ሙሉ በሙሉ እውነተኛ ናቸው ብለን ዋስትና አንሰጥም
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">ኮፒ ራይት አና የንግድ ምልክት</span>
+    ስለሆነም<br />
+    ፩) ሁሉም ተጠቃሚ የፈለገውን ሙሉ በሙሉ ያገኛል ብለን ዋስትና አንሰጥም<br />
+    ፪) የሚታዩት ንብረቶች ከስተት ነጻ፣ እጅግ ወቅታዊ እና የማይቆራረጡ ናቸው ብለን ዋስትና አንሰጥም<br />
+    ፫) በድሕረ ገጹ ላይ የሚገኙት መረጃዎች ሙሉ በሙሉ እውነተኛ ናቸው ብለን ዋስትና አንሰጥም
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">ኮፒ ራይት አና የንግድ ምልክት</span>
     <br /><br />
     ሁሉተራ ላይ የሚታዩት ማናቸውም ነገሮች ማለትም ጽሁፎች፣ ምስሎች፣ የድሕረ ገጹ ስም፣ ሎጎ እንዲሁም የመሳሰሉት ንብረትነታቸው የሁሉተራ ነው።
     እነዚህን ይዘቶች ለማንኛውም ያልተገባ ተግባራት ከሁሉተራ እውቅና ውጪ መጠቀም በጥብቅ የተከለከለ ነው።
-    <br /><br /><span class="tosTitle" style="font-size:14pt;">የመጠቀም ውል መቋረጥ</span>
+    <br /><br /><span class="tosTitle" style="font-size:12pt;">የመጠቀም ውል መቋረጥ</span>
     <br /><br />
     ይህንን የተጠቃሚ ስምምነት ውል የሚጥስ ማንኛውም ተግባር ከፈፀሙ እንደሁኔታው በከፊል ወይም ሙሉ በሙሉ ከመጠቀም ልናግዶት እንደምንችል ተስማምተዋል። ይህንንም እገዳ በማሳወቅ ወይም ባለማሳወቅ ተግባራዊ ልናደርገው እንደምንችል ተስማምተዋል።
     ማንኛውም በወንጀል የሚጠረጠር ወይም የማጭበርበር ወይም ሌላውን የመተንኮስ ተግባራት ፤ ፈጣን የሆነ የተጠቃሚነት መብት እገዳ ያስከትላል እንዲሁም እንደሁኔታው ለፀጥታ አካላት የማሳወቅ ሀላፊነታችንን እንወጣለን። የተጠቃሚነት መብቶን ለተወሰነ ጊዜ ወይም ከናካቴው ስናቋርጥ ፤ እርሶ ያስገቡትን አጠቃላይ መረጃ የማጥፋት መብቱ ይኖረናል። ሁሉተራ በአብዛኛዎቹ የዓለም ሀገራት መጠቀም የሚቻል ሲሆን የምንቆጣጠረው እኛ ነን።
     <br /><br />
-    በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት  በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
+    በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
     //Footer related
     'about us on footer text'
-    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች።',
-    'here' => 'ይሄን',
-    'to know more about hulutera.com' => '<p>ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
+    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች። <a href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">ይሄንን</a> ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
     'ABOUT US' => 'ስለ እኛ',
     'INFORMATION' => 'መረጃ',
     'Privacy Policy' => 'ግላዊ መርህ',
@@ -186,10 +150,10 @@ $lang = array(
     //
     'missing email msg' => 'እባክዎ የኢሜይል አድራሻ ያስገቡ።',
     'missing password msg' => 'እባክዎ የሚስጥር ቃል ያስገቡ።',
-    'missing e-mail and password msg' => 'እባክዎ የኢሜይል አድራሻ እና  የሚስጥር ቃል  ያስገቡ።',
+    'missing e-mail and password msg' => 'እባክዎ የኢሜይል አድራሻ እና የሚስጥር ቃል ያስገቡ።',
     'invalid email msg' => 'ያስገቡት ኢሜይል ትክክል አይደለም።',
-    'Incorrect e-mail or password msg' => 'ኢሜይሉ  ወይም የምስጢር ቃሉ ትክክል አይደለም።',
-    'non-existing email msg' => 'ባስገቡት ኢሜይል አድራሻ  የተመዘገበ ደንበኛ የለንም',
+    'Incorrect e-mail or password msg' => 'ኢሜይሉ ወይም የምስጢር ቃሉ ትክክል አይደለም።',
+    'non-existing email msg' => 'ባስገቡት ኢሜይል አድራሻ የተመዘገበ ደንበኛ የለንም።',
     'email already exists msg' => 'ኢሜይሉ የተያዘ ስለሆነ ሌላ ያስገቡ።',
     'Forgot your password' => 'የምስጢር ቃልዎን ረሱት?',
     //Message related
@@ -218,7 +182,7 @@ $lang = array(
     'my page header' => 'እንኳን ወደ እኔ ገጽ መጡ፤',
     'my-page msg' => 'በእዚህ ገጽ ላይ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ
     <a class="alert-link" href="../../includes/template.proxy.php?type=contact' . $str_url . '">ይሄንን</a> ተጭነው ማግኘት ይችላሉ። ',
-    'my-page msg2' => 'እዚህ ያስገቧቸውን ንብረቶች ያሉበትን ሁናቴ ማረጋገጥ ይችላሉ። ማለትም የሚታዩ (ገቢሮች)፣ በመጠባበቅ ላይ ያሉ፣ ሪፖርት የተደረጉ፣ ወይም የጠፉ ንብረቶችን ያካትታል። ከስር ተጭነው ይቀጥሉ።',
+    'my-page msg2' => 'እዚህ ያስገቧቸውን ንብረቶች ያሉበትን ሁናቴ ማረጋገጥ ይችላሉ። ማለትም የሚታዩ (ገቢሮች) ፣ በመጠባበቅ ላይ ያሉ ፣ ሪፖርት የተደረጉ ወይም የጠፉ ንብረቶችን ያካትታል። ከስር ተጭነው ይቀጥሉ።',
     'my-page msg3' => 'እዚህ ስለእርስዎ የግል መረጃ መቀየር፤ማስተካከል ይችላሉ። ማለትም የይለፍ ምስጢር ቃል፣ የመጠቀምያ ስም፣ የመገኛ መንገድ፣ ወዘተ የመሳሰሉትን ያካትታል። ከስር ተጭነው ይቀጥሉ።',
     'to my page' => 'ወደ የእኔ ገጽ',
     'to my items'  => 'ወደ ንብረቶቼ',
@@ -255,7 +219,7 @@ $lang = array(
                               በስተቀር መግባት አይችሉም።በተጨማሪም በስምዎ ያስገቧቸው ንብረቶችም ከመረጃ ቋታችን ላይ ይደመሰሳሉ።',
     'close acc msg part2' => 'በርግጥ ሁሉተራ አካውንትዎን መዝጋት ይፈልጋሉ?',
     'email update succ' => 'ኢሜይልዎ በተሳካ መልኩ ተቀይርሯል።',
-    'correct answer msg' => 'እባክዎ መልስዎን ያስተካክሉ.',
+    'correct answer msg' => 'እባክዎ መልስዎን ያስተካክሉ።',
     'close acc email msg part2' => 'የሁሉተራ አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ። ይሁንና አካውንቱን መዝጋት እርስዎ ካልጠየቁ ፣ በ admin@hulutera.com መልእክት ይላኩልን።',
     'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n',
     //User related
@@ -348,6 +312,20 @@ $city_lang_arr = array(
     'Other' => 'ሌላ'
 );
 
+$addis_sub_city = array(
+    'Choose sub-city' => 'ክፍለ ከተማ ይምረጡ',
+    'Addis ketema' => 'አዲስ ከተማ',
+    'Akaki Kality' => 'አቃቂ ቃሊቲ',
+    'Arada' => 'አራዳ',
+    'Bole' => 'ቦሌ',
+    'Gullele' => 'ጉለሌ',
+    'Kirkos' => 'ቂርቆስ',
+    'Kolfe Keraniyo' => 'ኮልፌ ቀራንዮ',
+    'Lideta' => 'ልደታ',
+    'Nifassilk Lafto' => 'ነፋስ ስልክ ላፍቶ',
+    'Yeka' => 'የካ',
+);
+
 $item_lang_arr = array(
     '000' => 'ንብረት ይምረጡ',
     'All' => 'ሁሉም ንብረቶች',
@@ -356,10 +334,6 @@ $item_lang_arr = array(
     'computer' => 'ኮምፒዩተር',
     'phone' => 'ስልክ',
     'electronic' => 'ኤሌክትሮኒክስ',
-    // 'electronic_memory' => 'Hardisk, USB, ...',
-    // 'electronic_sound' => 'Headphone, Speakers, ...',
-    // 'electronic_tv' => 'Tv',
-    // 'electronic_white' => 'Fridge, Washing Machine, Stove, ...',
     'household' => 'የቤት ዕቃዎች',
     'other' => 'ሌሎች'
 );
@@ -393,18 +367,56 @@ $upload_specific_array = [
             0 => 'ስሪት (አምራች ድርጅት)',
             1 => 'ስሪት ይምረጡ',
             2 => [
-                "aston-martin" => "aston-martin", "audi" => "audi", "bentley" => "bentley", "bmw" => "bmw",
-                "buick" => "buick", "cadillac" => "cadillac", "chevrolet" => "chevrolet", "chevrolet-truck" => "chevrolet-truck",
-                "chrysler" => "chrysler", "dodge" => "dodge", "ferrari" => "ferrari", "fiat" => "fiat", "fisker" => "fisker",
-                "ford" => "ford", "ford-truck" => "ford-truck", "freightliner" => "freightliner", "gmc" => "gmc",
-                "gmc-truck" => "gmc-truck", "honda" => "honda", "hyundai" => "hyundai", "infiniti" => "infiniti",
-                "jaguar" => "jaguar", "jeep" => "jeep", "kia" => "kia", "lamborghini" => "lamborghini", "land-rover" => "land-rover",
-                "lexus" => "lexus", "lincoln" => "lincoln", "lotus" => "lotus", "maserati" => "maserati", "maybach" => "maybach",
-                "mazda" => "mazda", "mercedes-benz" => "mercedes-benz", "mini" => "mini", "mitsubishi" => "mitsubishi",
-                "nissan" => "nissan", "nissan-truck" => "nissan-truck", "porsche" => "porsche", "ram" => "ram",
-                "rolls-royce" => "rolls-royce", "saab" => "saab", "scion" => "scion", "smart" => "smart", "subaru" => "subaru",
-                "suzuki" => "suzuki", "tesla" => "tesla", "toyota" => "toyota", "toyota-truck" => "toyota-truck",
-                "volkswagen" => "volkswagen", "volvo" => "volvo", 'unlisted' => '-- አልተዘረዘረም --'
+                "aston-martin" => "aston-martin",
+                "audi" => "audi",
+                "bentley" => "bentley",
+                "bmw" => "bmw",
+                "buick" => "buick",
+                "cadillac" => "cadillac",
+                "chevrolet" => "chevrolet",
+                "chevrolet-truck" => "chevrolet-truck",
+                "chrysler" => "chrysler",
+                "dodge" => "dodge",
+                "ferrari" => "ferrari",
+                "fiat" => "fiat",
+                "fisker" => "fisker",
+                "ford" => "ford",
+                "ford-truck" => "ford-truck",
+                "freightliner" => "freightliner",
+                "gmc" => "gmc",
+                "gmc-truck" => "gmc-truck",
+                "honda" => "honda",
+                "hyundai" => "hyundai",
+                "infiniti" => "infiniti",
+                "jaguar" => "jaguar",
+                "jeep" => "jeep",
+                "kia" => "kia",
+                "lamborghini" => "lamborghini",
+                "land-rover" => "land-rover",
+                "lexus" => "lexus",
+                "lincoln" => "lincoln",
+                "lotus" => "lotus",
+                "maserati" => "maserati",
+                "maybach" => "maybach",
+                "mazda" => "mazda",
+                "mercedes-benz" => "mercedes-benz",
+                "mini" => "mini",
+                "mitsubishi" => "mitsubishi",
+                "nissan" => "nissan",
+                "nissan-truck" => "nissan-truck",
+                "porsche" => "porsche",
+                "ram" => "ram",
+                "rolls-royce" => "rolls-royce",
+                "saab" => "saab",
+                "scion" => "scion",
+                "smart" => "smart",
+                "subaru" => "subaru",
+                "suzuki" => "suzuki",
+                "tesla" => "tesla",
+                "toyota" => "toyota",
+                "volkswagen" => "volkswagen",
+                "volvo" => "volvo",
+                'unlisted' => '-- አልተዘረዘረም --'
             ]
         ],
         'fieldModel'       => [
@@ -436,8 +448,8 @@ $upload_specific_array = [
             ]
         ],
         'fieldGearType'   => [
-            0 => 'ማርሽ ዓይነት (ጊር ቦክስ)',
-            1 => 'ማርሽ ዓይነት ይምረጡ',
+            0 => 'የማርሽ ዓይነት (ጊር ቦክስ)',
+            1 => 'የማርሽ ዓይነት ይምረጡ',
             2 => [
                 'Manual' => 'ማንዋል',
                 'Automatic' => 'አውቶማቲክ',
@@ -445,8 +457,8 @@ $upload_specific_array = [
             ]
         ],
         'fieldFuelType'   => [
-            0 => 'ነዳጅ ዓይነት',
-            1 => 'ነዳጅ ዓይነት ይምረጡ',
+            0 => 'የነዳጅ ዓይነት',
+            1 => 'የነዳጅ ዓይነት ይምረጡ',
             2 => [
                 'Bensine' => 'በቤንዚን',
                 'Diesel'  => 'ናፍጣ',
@@ -536,8 +548,8 @@ $upload_specific_array = [
             ]
         ],
         'fieldBathroom'   => [
-            0 => 'መታጠቢያ ቤት ብዛት',
-            1 => 'መታጠቢያ ቤት  ይምረጡ',
+            0 => 'የመታጠቢያ ቤት ብዛት',
+            1 => 'የመታጠቢያ ቤት ይምረጡ',
         ],
         'fieldToilet'   => [
             0 => 'መጸዳጃ ቤት ብዛት',
@@ -932,7 +944,7 @@ $upload_specific_array = [
             ]
         ],
         'Choose Images here' => 'ምስሎችን እዚህ ያስገቡ',
-        'upload successful msg' => 'አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን። ንብረትዎ በተሳካ ሁኔታ ገብቷል። ስለንብረቶ ተጨማሪ መረጃ በኢሜይሎት መረጃ ልከንልዎታል '
+        'upload successful msg' => 'አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን። ንብረትዎ በተሳካ ሁኔታ ገብቷል። ስለንብረቶ ተጨማሪ መረጃ በኢሜይሎት መረጃ ልከንልዎታል።'
     ]
 ];
 
@@ -1057,9 +1069,9 @@ $user_specific_array = [
             1 => 'ሊያናግሩን የፈለጉበት ምክንያት ይምረጡ',
             2 => [
                 1 => 'አጠቃላይ አስተያየት',
-                2 => 'ያስተዋወኩት ንብረት ላገኘው አልቻልኩም',
-                3 => 'ያስተዋወኩት ንብረት አልጸደቀም',
-                4 => 'ያስተዋወኩት ንብረት አክቲቭ አልሆነም',
+                2 => 'ያስገባሁት ንብረት ላገኘው አልቻልኩም',
+                3 => 'ያስገባሁት ንብረት አልጸደቀም',
+                4 => 'ያስገባሁት ንብረት አክቲቭ አልሆነም',
                 5 => 'ለማስተዋወቅ ስሞክር የቴክኒክ ችግር አጋጥሞኛል',
                 6 => 'ምስል በደንብ አይታይም',
                 7 => 'የማጭበርበር ድርጊት ሪፖርት ማረግ ፈልጋለው',
