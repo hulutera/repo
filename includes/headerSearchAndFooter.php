@@ -154,7 +154,7 @@ function uploadListNav($lang_sw)
 		} else {
 			$style = 'background-color: #c7c7c7; border-radius:4px; width:120px;height:120px;text-align:center';
 		}
-		$itemName = $GLOBALS['lang'][$value];
+		$itemName = $GLOBALS['item_lang_arr'][$value];
 		echo <<< EOD
         <li class="list-group-item image-container" style="{$style}" ><div class="md-v-line ">
         <a href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 16px;color: #000000;">
