@@ -125,7 +125,7 @@ function uploadListMain($lang_sw)
 		'car', 'computer', 'electronic', 'house', 'household', 'phone', 'other'
 	];
 	foreach ($itemList as $key => $value) {
-		$itemName = $GLOBALS['lang'][$value];
+		$itemName = $GLOBALS['item_lang_arr'][$value];
 		echo <<< EOD
         <li class="list-group-item image-container" style="border-radius:4px; width:160px;height:160px;text-align:center"><div class="md-v-line ">
         <a href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
