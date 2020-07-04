@@ -271,6 +271,12 @@ $lang = array(
     'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'search res' => 'Search Result',
     'failed search' => 'Please enter the search word or any other search options',
+    //Item related
+    'Send a message' => 'Send a message',
+    'Report Abuse' => 'Report Abuse',
+    'Title' => 'Title',
+    'Description' => 'Description',
+    'More Detailed Info' => 'More Detailed Info',
     //Miscellaneous
     'Invalid' => "Invalid",
     'unknown' => 'Unknown',
@@ -290,6 +296,7 @@ $lang = array(
     'Choose City' => 'Choose City',
     'All Cities' => 'All Cities',
     'select city from map' => 'Select a city on the map',
+    'Choose' => 'Choose'
 
 );
 

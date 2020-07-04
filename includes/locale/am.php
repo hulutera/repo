@@ -257,6 +257,12 @@ $lang = array(
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'search res' => 'የፍለጋ ውጤት',
     'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ ወይም ሌሎች የመፈለጊያ አማራጮች ይምረጡ።',
+    //Item related
+    'Send a message' => 'መልእክት ለባለንብረቱ ይላኩ',
+    'Report Abuse' => 'ያልተገባ መረጃ ከሆነ ጥቆማ ያድርጉ',
+    'Title' => 'ርዕስ',
+    'Description' => 'ገለጻ',
+    'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
     //Miscellaneous
     'Invalid' => "የተከለከለ",
     'unknown' => 'አይታወቅም',
@@ -276,6 +282,8 @@ $lang = array(
     'Choose City' => 'ከተማ ይምረጡ',
     'All Cities' => 'በሁሉም ከተሞች',
     'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ',
+    'Choose' => 'ይምረጡ',
+
 
 );
 
