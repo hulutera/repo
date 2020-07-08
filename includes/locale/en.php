@@ -1113,28 +1113,26 @@ $user_specific_array = [
             ]
         ],
         'contact-us' => [
-            'subject' => 'Thank you for getting in touch',
+            'subject' => 'Thank you for contacting us',
             'body' => [
                 0 => 'We have received your message and would like to thank you for writing to us.
-                      If your inquiry is urgent,  please use the telephone number listed above
-                      to talk to one of our staff members.
-                      Otherwise, we will reply by email as soon as possible.
-                      <br>Sincerely,<br>The hulutera Team<br>'
+                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website.
+                      Otherwise, we will reply by email as fast as we can. <br>Sincerely,<br>The hulutera Team<br>'
             ]
         ],
         'account-deactivation' => [
-            'subject' => 'You account have been deactivate',
+            'subject' => 'Your account has been deactivated',
             'body' => [
-                0 => 'We have found a problem with your account not complying to our Term& conditions
-                       hence your account have been deactivated and your uploaded items will not be
-                       advertised. Please reach out to us for additional through contact us.
+                0 => 'We have found a problem with your account not complying to our Term & conditions
+                       hence, your account have been deactivated and your uploaded items will not be
+                       advertised on our website. Please reach out to us for more information through contact us.
                       <br>Sincerely,<br>The hulutera Admin<br>'
             ]
         ],
         'account-closed' => [
-            'subject' => 'You account have been closed',
+            'subject' => 'Your account has been closed',
             'body' => [
-                0 => 'We have closed your account! Have a good one!
+                0 => 'We have closed your account! Goodbye for now and you are always welocme to comeback.
                       <br>Sincerely,<br>The hulutera Admin<br>'
             ]
         ]
@@ -1164,9 +1162,9 @@ $validate_specific_array = [
 ];
 $message = [
     'change' =>  [
-        'name' => 'If you want to change the name associated with your Hulutera customer account,
+        'name' => "If you want to change the name associated with your Hulutera customer account,
                  you may do so below. Be sure to click the <strong>Save Changes</strong> button when you are done.
-                 If you don\'t want your change be sure to click on <strong>Cancel</strong>.'
+                 If you don't want your change be sure to click on <strong>Cancel</strong>."
     ],
     'success' => 'You have successfully modified your account!',
 ];
@@ -1177,110 +1175,90 @@ $help = [
         "register" => [
             "head" => "How to register",
             "body" => [
-                "Step 1:" => 'Click the link button <strong style="color: blue;">Register</strong> on the top right of the website.',
+                "Step 1:" => 'Click the link text <strong>Register</strong> on the top right corner of our website.',
                 "Step 2:" => 'Fill the required part of the form with your personal information and press <button class="btn btn-primary">Register</button> button',
-                "Step 3:" => 'You will get message that says <strong style="color: blue;">"Thank you for registering.
-                             A confirmation mail has been sent to your email. Please click on the activation link to activate your account.
-                             "</strong> Continue to Step 4 ...',
-                "Step 4:" => 'Open your email address (provided on the form) and click on
-                             the link sent from us.This will activate your account.You
-                             will see a message saying <strong style="color: blue;">Your
-                             acount is now active.You may now login </strong>.At this
-                             step your Regsitration is completed.',
+                "Step 3:" => 'Upon successfully submitting the registration form, you will get message that says <strong>Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.</strong> To complete
+                              the registration, proceed to the next step.',
+                "Step 4:" => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
+                             acount is now active.You may now login </strong>.At this step your Regsitration is completed.',
             ]
         ],
         "logIn"    => [
             "head" => "How to login",
             "body" => [
-                "Step 1:" => 'Click the link <strong style="color: blue;">Log in</strong>
-                on the top right of the website.',
+                "Step 1:" => 'Click the link <strong>Log in</strong> on the top right corner of our website.',
                 "Step 2:" => 'Provide your email and password. Click <button class="btn btn-primary">Log in</button> button.If you have account with us, you will be
-                directed to your account page.',
+                              directed to your account page.',
             ]
         ],
         "recovery"   => [
             "head" => "How to recover password",
             "body" => [
-                "Step 1:" => 'Click <strong class="" style="color: #337ab7;">
-                Forgot your password</strong> link under the login form. It will direct you to a page that you can
-                fill in either your
-                your <strong style="color: blue;">email</strong> or <strong
-                class="" style="color: blue;">username</strong>
-                and click the <button class="btn btn-primary">Recovery</button> button.You
-                will see a message <strong class=""
-                style="color: blue;">Password recovery information has now
-                been sent to the e-mail associated with this user. Please
-                follow instructions in the email.</strong>. To complete
-                recovery proceed to next step (Step 2:9)',
+                "Step 1:" => 'Click <strong>Forgot your password</strong> text link under the login form. It will redirect you to a page that you can
+                              fill in either your <strong>email</strong> or <strong>username</strong>
+                              and click the <button class="btn btn-primary">Recovery</button> button. You
+                              will see a message <strong>Password recovery information has now
+                              been sent to the e-mail associated with this user. Please
+                              follow instructions in the email.</strong>. To complete the
+                              recovery proceed to the next step.',
                 "Step 2:" => 'Open your email address (provided on the form) and click on
-                the link sent from us.This will recover your password.You
-                will see a message saying <strong style="color: blue;">Please
-                remember once you recovered your account, you can change
-                your password from your account page</strong>.After
-                providing new password ,your password recovery is completed
-                and now you can proceed to login.',
+                              the link sent from us.This will recover your password.You
+                              will see a message saying <strong>Please remember once you recovered your password, you can change
+                              your password in your account page</strong>. After
+                              providing new password, your password recovery is completed
+                              and now you can proceed to login.',
             ]
         ],
         "upload"   => [
             "head" => "How to upload",
             "body" => [
-                "Step 1:" => "Click on the <button> Post Items </button> from the list presented
-                Choose the Item you want to advertise",
-                "Step 2:" => 'After you have filled detailed information of the item you want to annouce continue
-                with adding pictures of the item. It is good to have a visible image to get more viewers. After
-                compeletion click on the <button class="btn btn-primary">Log in</button> button to compelete you
-                advert. You will see the message <strong style="color: blue;">Your item was successfuly uploaded.
-                Thank you for using our service!</strong> at this steg your
-                upload is completed. In order to see your uploaded items,we
-                will require 24hr to activate your uploaded Items.'
-            ]
+                "Step 1:" => "Be reminded that you first need to login inorder to upload.",
+                "Step 2:" => "Click on the <button> Post Items </button> which is located on the top-right corner of the logged-in page. Choose the Item you want to advertise",
+                "Step 3:" => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item inroder to catch the eyes of others and show a clear condition of the item.
+                              You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
+                              advert. You will see the message <strong>Your item was successfuly uploaded.
+                              Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.'
+                        ]
         ],
         "contactus"   => [
             "head" => "How to contact us",
             "body" => [
-                "Step 1:" => 'Click the link <strong style="color: blue;">Contact us info@hulutera.com</strong>
-                on the top left of the for web contact or the phone number shown on the top left side of this page.
-                For web contact see next step (Step 2:)',
+                "Step 1:" => 'Click the link <strong>Contact Us</strong> on the top left corner or footer of our website.',
                 "Step 2:" => 'If you have already logged-in your personal details will be automatically
-                filled.Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
-                Use <strong style="color: blue;">General</strong> reason if
-			you don\'t find your reason listed on the dropdown choices. Write detail information why you
-			want to contact us on the <strong style="color: blue;">Message</strong>
-            field.',
+                              filled. Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
+                              If you don\'t find anything to choose on the contact purpose then select <strong>General Comment</strong> reason. Write detail information why you
+                              want to contact us on the <strong>Message</strong>field.',
                 "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
-			button to send your question. Then,you will see a message <strong
-			style="color: blue;">We appreciate your taking the time to
-			contact us"</strong>.'
+                        button to send your inquiry. Then, you will see a message <strong>We appreciate your taking the time to
+                        contact us"</strong>.'
             ]
         ],
         "search"   => [
             "head" => "How to search",
             "body" => [
-                "" => 'The searchbox will help you find the item that you want based on the keyword that you are going to write on the text field.
-
-                Your keywords should be of the following types:<br>
-
-                1) Manufacturer of car, phone, computer e.g. Toyota ,Apple,Acer<br>
-
-                2) Color of a Car e.g. to search a red car, write only red but not red car,black.<br>
-
-                3) Type of car, house, phone, computer, electronics, household. e.g. small car , condominium,TV, furniture, laptop<br>
-
-                4) Model of car,phone, computer e.g. Carina ,iphone 4, Samsung UN60ES7100F,MacBook Air MD232LL/A',
-                "Step 1:" => 'Find the search box on the top right part of the website.',
-                "Step 2:" => 'Write the keyword on the text field',
-                "Step 3:" => 'Click the <button>search</button> button.',
-                "*" => 'If there is no items listed on the window it means there is no match found on our database to your keyword.'
+                "" => 'The searchbox will help you find the item that you want based on the information you provided on the searchbox.
+                        Our search functionality will provide you different kind of results based on your input. Here are some varieties:<br>
+                        1) Do not enter any text on the text-box, select all-items, select All-cities then click "Search" button. The result will be, it will show all the active items.<br>
+                        2) Enter your keyword on the text-box, select All-items, select All-cities then click "Search" button. The result will be, it will show the matched items from all items and cities. E.g "red", it will search red in all items and cities.<br>
+                        3) Do not enter any text on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click "Search" button. e.g. select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa".<br>
+                        4) Enter your keyword on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click "Search" button. e.g. Enter "red" on the text-box, select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa". <br>',
+                "Step 1:" => 'Find the search box on the top right section of our page.',
+                "Step 2:" => 'Enter and select the search criterias',
+                "Step 3:" => 'Click the <button class="btn-warning">search</button> button.',
+                "Hint for keyword:" => ' To search a red car, write only "red" for more matches. To search Toyota Cars, write only "toyota" for more matches. To search Samsung phones, write only "samsung" for more matches ...etc',
+                "*" => ' If the match does not found, it will show the corresponding message.'
             ]
         ],
     ]
 ];
-$GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
+
+$GLOBALS['lang'] = $lang;
 $GLOBALS['city_lang_arr'] = $city_lang_arr;
+$GLOBALS['addis_sub_city'] = $addis_sub_city;
+$GLOBALS['item_lang_arr'] = $item_lang_arr;
 $GLOBALS['upload_specific_array'] = $upload_specific_array;
+$GLOBALS['abuse_type_lang_arr'] = $abuse_type_lang_arr;
 $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
-$GLOBALS['lang'] = $lang;
 $GLOBALS['message'] = $message;
 $GLOBALS['help'] = $help;
-$GLOBALS['addis_sub_city'] = $addis_sub_city;
