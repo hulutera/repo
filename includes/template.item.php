@@ -26,7 +26,7 @@ $item = $_GET['type'];
 		<div id="wrapper">
 			<div id="main_section">
 				<div id="mainColumn">
-
+					<div class="row items-board">
 					<?php
 					$function = isset($_GET['function']) ? $_GET['function'] : null;
 					if (isset($function)) {
@@ -36,6 +36,7 @@ $item = $_GET['type'];
 					} else {
 						(new  HtMainView($item))->show("active");
 					} ?>
+					</div>
 				</div>
 			</div>
 		</div>

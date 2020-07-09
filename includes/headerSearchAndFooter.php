@@ -759,36 +759,7 @@ function sidelist($item)
 	}
 	echo '</ul>    </div>';
 }
-/*Fetch the active URL*/
-function activatetab()
-{
-	$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
-	if ($curPageName == "index.php") {
-		$tabactive = 1;
-	} else if ($curPageName == "includes/upload.php") {
-		$tabactive = 2;
-	} else if ($curPageName == "includes/help.php") {
-		$tabactive = 3;
-	} else if ($curPageName == "includes/pendingItems.php") {
-		$tabactive = 11;
-	} else if ($curPageName == "includes/reportedItems.php") {
-		$tabactive = 12;
-	} else if ($curPageName == "includes/userMessages.php") {
-		$tabactive = 13;
-	} else if ($curPageName == "includes/userActive.php") {
-		$tabactive = 14;
-	} else if ($curPageName == "includes/userPending.php") {
-		$tabactive = 15;
-	} else if ($curPageName == "includes/deletedItems.php") {
-		$tabactive = 16;
-	} else if ($curPageName == "includes/prompt.php") {
-		$tabactive = 18;
-	} else {
-		$tabactive = 0;
-	}
 
-	return $tabactive;
-}
 /*footer*/
 function footerCode()
 {
@@ -860,6 +831,7 @@ function ___close_div_($number)
 function yourPage()
 {
 	global $str_url, $lang_url;
+	$id=$_SESSION['uID'];
 	$myPageHeaderTitle = $GLOBALS['lang']['my page header'];
 	$myPageHeaderMessage = $GLOBALS['lang']['my-page msg'];
 	$myItemsTitle = $GLOBALS['lang']['My Items'];
@@ -941,8 +913,9 @@ function yourPage()
                                     </p>
                                 </div>
                                         <div class="row">
-                                            <div class="col-md-12 btn2">
-                                    <a href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
+
+											<div class="col-md-12 btn2">
+                                    <a href="../../includes/template.content.php?status=active&id={$id}{$str_url}" type="button" class="btn btn-primary btn-lg active"
                                                 style="float:right;">{$toMyItemsButton}</a>
                                             </div>
                                         </div>

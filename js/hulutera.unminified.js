@@ -865,7 +865,7 @@ function usernumber_of_pending_items(e, t) {
         })
     })
 }
-$(".LeftNav li a").live("click", function () {
+$(".LeftNav li a").click(function () {
     $(".LeftNav li a").removeClass("selected");
     $(this).addClass("selected");
     return false

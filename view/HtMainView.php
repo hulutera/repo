@@ -2,6 +2,7 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
+require_once $documnetRootPath . '/view/HtCommonView.php';
 class HtMainView
 {
 
@@ -9,12 +10,22 @@ class HtMainView
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
     private $_itemNumber;
+    private $_itemName2Id = [
+        'car' => 1,
+        'house' => 2,
+        'computer' => 3,
+        'phone' => 4,
+        'electronic' => 5,
+        'household' => 6,
+        'other' => 7,
+    ];
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
     {
         $this->_runnerName = $newRunnerName;
         $this->_runnerId = $newRunnerId;
         $this->_runnerStatus = $newRunnerStatus;
+        $this->_itemNumber = 100 * $this->_runnerId + $this->_itemName2Id[$this->_runnerName];
     }
 
     function __destruct()
@@ -68,7 +79,6 @@ class HtMainView
             $this->_pItem->runQuery($start, $globalVarObj::get('itemPerPage'));
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
-            $number = 0;
             while ($row = $result->fetch_assoc()) {
                 $this->_runnerName = $row['field_item_name'];
                 $this->_pItem = ObjectPool::getInstance()->getObjectWithId($row['field_item_name']);
@@ -77,9 +87,7 @@ class HtMainView
                 $this->_pItem->runQuery($condition);
                 $fetchItemRow = $this->_pItem->getResultSet();
                 while ($itemRow = $fetchItemRow->fetch_assoc()) {
-                    $number++;
-                    //item count
-                    $this->_itemNumber = $number;
+                    $this->_itemNumber = 100 * $item_id + $this->_itemName2Id[$this->_runnerName];
                     $this->showItemWithId($itemRow);
                 }
             }
@@ -118,9 +126,8 @@ class HtMainView
         $rows = $this->_pItem->runQuery($condition);
         if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
-            $globalVarObj = new HtGlobal();
-            $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
-            $res = $this->_pItem->runQuery($condition, $start, $globalVarObj::get('itemPerPage'));
+            $start = ($calculatePageArray[0] - 1) * HtGlobal::get('itemPerPage');
+            $res = $this->_pItem->runQuery($condition, $start, HtGlobal::get('itemPerPage'));
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             $number = 0;
@@ -151,15 +158,24 @@ class HtMainView
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $this->_runnerStatus);
         $result = $this->_pItem->getResultSet();
-        echo '<div class="row items-board">';
         $sql =  $this->_pItem->lastSql();
         $result = $this->_pItem->query($sql);
+        $result->data_seek(0);
+        //$this->dumpData();
         while ($row = $result->fetch_assoc()) {
+            //echo '<div class="row items-board">';
             $this->showItemWithId($row);
+            //echo '</div>';
         }
-        echo '</div>';
+
     }
 
+    private function dumpData(){
+        var_dump($this->_runnerName);
+        var_dump($this->_runnerId);
+        var_dump($this->_runnerStatus);
+        var_dump($this->_pItem->lastSql());
+    }
     /**
      * Alternative interface to display item with id
      * e.g.
@@ -175,7 +191,6 @@ class HtMainView
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . $id;
         $commonViewObj = new HtCommonView($itemName);
-
         //image handler
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
@@ -194,7 +209,6 @@ class HtMainView
         $imgString = str_replace($strReplArr, "", $jsImg);
         $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
         //---------------------------------------------------------
-
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         if ($numimage == 0) {

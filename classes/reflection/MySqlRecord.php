@@ -178,7 +178,32 @@ class MySqlRecord extends Model
     }
 
     /****
-     *
+     *function maxQuery($status,$Id,$start,$MAX)
+{
+	global $connect;
+	if($Id !='')
+		$specific = "'$status' AND uID = '$Id'";
+	else
+		$specific = "'$status'";
+
+	$result = $connect->query(
+			"SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
+			UNION ALL
+			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
+			UNION ALL
+			SELECT dID, tableType, UploadedDate FROM computer    WHERE dStatus LIKE  $specific
+			UNION ALL
+			SELECT eID, tableType, UploadedDate FROM electronics WHERE eStatus LIKE  $specific
+			UNION ALL
+			SELECT pID, tableType, UploadedDate FROM phone       WHERE pStatus LIKE  $specific
+			UNION ALL
+			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
+			UNION ALL
+			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
+			ORDER BY UploadedDate DESC LIMIT $start,$MAX ");
+
+	return $result;
+}
      */
     public function maxQuery($status, $id, $start, $end = null)
     {
@@ -197,9 +222,14 @@ class MySqlRecord extends Model
             } else {
                 $union = " ";
             }
-            $sql .= 'SELECT id,field_table_type, field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
+            $sql .= 'SELECT '. $value.'.id,'. $value.'.field_table_type, '. $value.'.field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
+            //var_dump($sql);
         }
         $sql .= ' ORDER BY field_upload_date DESC LIMIT ' . $start . ',' . $itemPerPage;
+        // echo '<prev>';
+        // $arrayWords = explode('SELECT', $sql);
+        // var_dump($arrayWords);
+        // echo '</prev>';
         return $this->fetch_all($sql);
     }
     /***
@@ -424,7 +454,7 @@ EOD;
             $errorMsg = $_SESSION['errorRaw']['fieldColor'];
             $errorClass = ' alert-custom';
         }
-
+        //return;
         $colors = [
             "black"    => ["#000000", "#FFFFFF"],
             "green"    => ["#009f6b", "#FFFFFF"],

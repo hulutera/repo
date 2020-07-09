@@ -2,7 +2,6 @@
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
-require_once $documnetRootPath . '/includes/userStatus.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/includes/token.php';
@@ -13,80 +12,6 @@ require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
 require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
-
-$connect = DatabaseClass::getInstance()->getConnection();
-
-function show($query)
-{
-	while ($result = $query->fetch_assoc()) {
-		$itemtype = $result['tableType'];
-		switch ($itemtype) {
-			case 1:
-				ObjectPool::getInstance()->getViewObject("car")->show($result['cID']);
-				break;
-			case 2:
-				ObjectPool::getInstance()->getViewObject("house")->show($result['cID']);
-				break;
-			case 3:
-				ObjectPool::getInstance()->getViewObject("computer")->show($result['cID']);
-				break;
-			case 4:
-				ObjectPool::getInstance()->getViewObject("phone")->show($result['cID']);
-				break;
-			case 5:
-				ObjectPool::getInstance()->getViewObject("electronics")->show($result['cID']);
-				break;
-			case 6:
-				ObjectPool::getInstance()->getViewObject("household")->show($result['cID']);
-				break;
-			case 7:
-				ObjectPool::getInstance()->getViewObject("others")->show($result['cID']);
-				break;
-		}
-	}
-}
-function reportedItems()
-{
-
-	$arrayCid  = array();
-	$arrayHid  = array();
-	$arrayDid  = array();
-	$arrayPid  = array();
-	$arrayEid  = array();
-	$arrayHHid = array();
-	$arrayOid  = array();
-	global $connect;
-	$filter = "*";
-	$table = "abuse";
-	$condition = "";
-	$reported = DatabaseClass::getInstance()->findTotalItemNumb($filter, $table, $condition);
-	$sum = mysqli_num_rows($reported);
-
-	if ($sum >= 1) {
-
-
-		while ($dRditems = $reported->fetch_assoc()) {
-			if ($dRditems['carID'] != NULL && !in_array($dRditems['carID'], $arrayCid)) {
-				ObjectPool::getInstance()->getViewObject("car")->show($dRditems['carID']);
-			} else if ($dRditems['houseID'] != NULL && !in_array($dRditems['houseID'], $arrayHid)) {
-				ObjectPool::getInstance()->getViewObject("house")->show($dRditems['houseID']);
-			} else if ($dRditems['computerID'] != NULL && !in_array($dRditems['computerID'], $arrayDid)) {
-				ObjectPool::getInstance()->getViewObject("computer")->show($dRditems['computerID']);
-			} else if ($dRditems['phoneID'] != NULL && !in_array($dRditems['phoneID'], $arrayPid)) {
-				ObjectPool::getInstance()->getViewObject("phone")->show($dRditems['phoneID']);
-			} else if ($dRditems['electronicsID'] != NULL && !in_array($dRditems['electronicsID'], $arrayEid)) {
-				ObjectPool::getInstance()->getViewObject("electronics")->show($dRditems['electronicsID']);
-			} else if ($dRditems['householdID'] != NULL && !in_array($dRditems['householdID'], $arrayHHid)) {
-				ObjectPool::getInstance()->getViewObject("household")->show($dRditems['householdID']);
-			} else if ($dRditems['othersID'] != NULL && !in_array($dRditems['othersID'], $arrayOid)) {
-				ObjectPool::getInstance()->getViewObject("others")->show($dRditems['othersID']);
-			}
-		}
-	} else if ($sum <= 0) {
-		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
-	}
-	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_ignore").show();});</script>';
-}
 
 function countRow($status, $id)
 {
@@ -122,13 +47,80 @@ function getItemPerUser($item, $userId, $status = null)
 	return $record->getItemPerUser($item, $userId, $status);
 }
 
-
-function userActive()
+function accountLinks()
 {
-	global $connect;
-	$Id  = $_SESSION['uID'];
-	$sum = countRow('active', $Id);
-	return $sum;
+	global $lang, $lang_url, $str_url;
+	$uId = getSessionId();
+
+	//calculate users active items
+	$usersActiveItem = countRow("active", $uId);
+
+	//calculate users pending items
+	$usersPendingItem = countRow("pending", $uId);
+
+	$url = '../includes/template.content.php' . $lang_url . '&status';
+	if (isset($_SESSION['uID'])) {
+		$id = $_SESSION['uID'];
+		echo "<div id=\"modnav\" ><div class=\"item-list-by-status\">";
+		echo "<a ";
+		echo 'href="' . $url . '=active&id='.$id.'"> ';
+		echo "<div class='item-list'>";
+		echo "<span>" . $lang['active'] . "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
+
+		echo "<a ";
+		echo 'href="' . $url . '=pending&id='.$id.'"> ';
+		echo "<div class='item-list'>";
+		echo "<span>" . $lang['pending'] . "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
+		echo "<a ";
+		echo 'href="../includes/upload.php" >';
+		echo "<div class='item-list'>";
+		echo "<span>" . $lang['Post Items'] . "</span></div></a>";
+		echo "</div>";
+	}
+	// if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
+	// 	echo "<div class=\"item-list-by-status-admin\">";
+	// 	echo "<a ";
+	// 	echo 'href="' . $url . '=pending&action=admin"> ';
+	// 	echo "<div class='item-list'>";
+	// 	echo "<span>" . $lang['all pending'] . "(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
+	// 	echo "<a ";
+
+	// 	echo 'href="' . $url . '=reported&action=admin"> ';
+	// 	echo "<div class='item-list'>";
+	// 	echo "<span>" . $lang['reported'] . "(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
+	// 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
+	// 		if ($adminTotal == 1 || $webmasterTotal == 1) {
+	// 			echo "<a ";
+	// 			echo 'href="' . $url . '=deleted&action=admin"> ';
+	// 			echo "<div class='item-list'>";
+	// 			echo "<span>" . $lang['deleted'] . "(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
+	// 		}
+	// 		echo "<a ";
+	// 		echo 'href="../includes/userMessages.php' . $lang_url . '">';
+	// 		echo "<div class='item-list'>";
+	// 		echo "<span>" . $lang['messages'] . "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
+
+	// 		echo '<a class="item-list-cp" href="../includes/controlPanel.php">';
+	// 		echo "<div class='item-list-cp'>";
+	// 		echo "<span>" . $lang['admin-panel'] . "</span></div></a>";
+	// 		echo "</div>";
+	// 	}
+	// }
+	echo "</div>";
+}
+
+function userContent()
+{
+	if (!isset($_GET['status']) || !isset($_GET['id'])) {
+		header('Location: ../index.php');
+	}
+
+	accountLinks();
+
+	$status = $_GET['status'];
+	$id = $_GET['id'];
+	$id  = (isset($id)) ? $id : '';
+	$sum = countRow($status, $id);
 	if ($sum >= 1) {
 		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
@@ -139,9 +131,8 @@ function userActive()
 
 		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
 
-		$result = maxQuery('active', $Id, $itemstart);
-
-		echo  $result['field_table_type'];
+		$result = maxQuery($status, $id, $itemstart);
+		//var_dump($result);
 		$tableType2item = [
 			1 => 'car',
 			2 => 'house',
@@ -151,95 +142,22 @@ function userActive()
 			6 => 'household',
 			7 => 'other'
 		];
+		echo '<div class="row items-board">';
 		foreach ($result as $key => $value) {
 			# code...
-			$itemName = $tableType2item[$value['field_table_type']];
-			$view = new HtMainView($itemName, $value['id']);
-			$view->showItem('active');
+			$id = (int)$value['id'];
+			$itemName = $tableType2item[(int)$value['field_table_type']];
+			$view = (new HtMainView($itemName, $id, $status));
+			$view->showOneItem();
 		}
-		echo '<pre>' . print_r($result) . '</pre>';
-		//show($result);
+		echo '</div>';
+
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 
 		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userActiveButton").show();});</script>';
-}
-function userPending()
-{
-	global $connect;
-	$Id  = $_SESSION['uID'];
-	$sum = countRow('pending', $Id);
-
-	if ($sum >= 1) {
-		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
-		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-		if ($page > $totpage)
-			$page = $totpage;
-		elseif ($page < 1)
-			$page = 1;
-
-		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
-
-		$result = maxQuery('pending', $Id, $itemstart);
-		echo '<pre>';
-		var_dump($result);
-		echo '</pre>';
-		show($result);
-		pagination('userPending', $totpage, $page, 0);
-	} elseif ($sum <= 0) {
-
-		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
-	}
-	echo '<script type="text/javascript">$(document).ready(function (){$(".userPendingButton").show();});</script>';
-}
-function deletedItems()
-{
-	$deletedStatus = 'modDelete';
-	$sum = countRow($deletedStatus, '');
-
-	if ($sum >= 1) {
-		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
-		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-		if ($page > $totpage)
-			$page = $totpage;
-		elseif ($page < 1)
-			$page = 1;
-
-		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
-
-		$result = maxQuery($deletedStatus, '', $itemstart);
-		show($result);
-		pagination('deletedItems', $totpage, $page, 0);
-	} elseif ($sum <= 0) {
-
-		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
-	}
-	echo '<script type="text/javascript">$(document).ready(function (){$(".moderatorDelete").show();});</script>';
-}
-
-function pendingItems()
-{
-	$sum = countRow('pending', '');
-	if ($sum >= 1) {
-		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
-		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-		if ($page > $totpage)
-			$page = $totpage;
-		elseif ($page < 1)
-			$page = 1;
-
-		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
-
-		$result = maxQuery('pending', '', $itemstart);
-		show($result);
-		pagination('pendingItems', $totpage, $page, 0);
-	} elseif ($sum <= 0) {
-
-		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
-	}
-	echo '<script type="text/javascript">$(document).ready(function (){$(".delete_activate").show();});</script>';
 }
 
 function allUsers()
@@ -1049,16 +967,16 @@ function activityTable()
 	$function = isset($ACTIVITY_ARRAY['function']) ? $ACTIVITY_ARRAY['function'] : null;
 	$id = isset($ACTIVITY_ARRAY['id']) ? $ACTIVITY_ARRAY['id'] : null;
 	$status = isset($ACTIVITY_ARRAY['status']) ? $ACTIVITY_ARRAY['status'] : null;
-
+	echo '<div class="row items-board">';
 	if (isset($function) && isset($id) && isset($status)) {
 		echo '<p class="h1">' . $item . '#' . $id . '</p>';
 		if ($status == 'reported') {
 			(new  HtMainView($item, $id, null))->showOneItem();
 		} else {
-			echo '<p class="h1">SOMETHING IS BROKEN HERE DETAIL VIEW DOES NOT DISPLAY</p>';
 			(new  HtMainView($item, $id, $status))->showOneItem();
 		}
 	}
+	echo '</div>';
 }
 
 function getSessionId()
