@@ -296,7 +296,8 @@ $lang = array(
     'Choose City' => 'Choose City',
     'All Cities' => 'All Cities',
     'select city from map' => 'Select a city on the map',
-    'Choose' => 'Choose'
+    'Choose' => 'Choose',
+    'help' => 'Help'
 
 );
 
@@ -1087,7 +1088,7 @@ $user_specific_array = [
         'activation' => [
             'subject' => 'Confirmation of registration',
             'body' => 'Thank you for registering. A confirmation mail has been sent to your email.
-            Please click on the activation link to activate your account.',
+                       Please click on the activation link to activate your account.',
         ],
         'password-recovery' => [
             'subject' => '"Your New Password',
@@ -1175,33 +1176,33 @@ $help = [
         "register" => [
             "head" => "How to register",
             "body" => [
-                "Step 1:" => 'Click the link text <strong>Register</strong> on the top right corner of our website.',
-                "Step 2:" => 'Fill the required part of the form with your personal information and press <button class="btn btn-primary">Register</button> button',
-                "Step 3:" => 'Upon successfully submitting the registration form, you will get message that says <strong>Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.</strong> To complete
+                "Step 1: " => 'Click the link text <strong>Register</strong> on the top right corner of our website.',
+                "Step 2: " => 'Fill the required part of the form with your personal information and press <button class="btn btn-primary">Register</button> button',
+                "Step 3: " => 'Upon successfully submitting the registration form, you will get message that says <strong>Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.</strong> To complete
                               the registration, proceed to the next step.',
-                "Step 4:" => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
+                "Step 4: " => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
                              acount is now active.You may now login </strong>.At this step your Regsitration is completed.',
             ]
         ],
         "logIn"    => [
             "head" => "How to login",
             "body" => [
-                "Step 1:" => 'Click the link <strong>Log in</strong> on the top right corner of our website.',
-                "Step 2:" => 'Provide your email and password. Click <button class="btn btn-primary">Log in</button> button.If you have account with us, you will be
+                "Step 1: " => 'Click the link <strong>Log in</strong> on the top right corner of our website.',
+                "Step 2: " => 'Provide your email and password. Click <button class="btn btn-primary">Log in</button> button.If you have account with us, you will be
                               directed to your account page.',
             ]
         ],
         "recovery"   => [
             "head" => "How to recover password",
             "body" => [
-                "Step 1:" => 'Click <strong>Forgot your password</strong> text link under the login form. It will redirect you to a page that you can
+                "Step 1: " => 'Click <strong>Forgot your password</strong> text link under the login form. It will redirect you to a page that you can
                               fill in either your <strong>email</strong> or <strong>username</strong>
                               and click the <button class="btn btn-primary">Recovery</button> button. You
                               will see a message <strong>Password recovery information has now
                               been sent to the e-mail associated with this user. Please
                               follow instructions in the email.</strong>. To complete the
                               recovery proceed to the next step.',
-                "Step 2:" => 'Open your email address (provided on the form) and click on
+                "Step 2: " => 'Open your email address (provided on the form) and click on
                               the link sent from us.This will recover your password.You
                               will see a message saying <strong>Please remember once you recovered your password, you can change
                               your password in your account page</strong>. After
@@ -1212,9 +1213,9 @@ $help = [
         "upload"   => [
             "head" => "How to upload",
             "body" => [
-                "Step 1:" => "Be reminded that you first need to login inorder to upload.",
-                "Step 2:" => "Click on the <button> Post Items </button> which is located on the top-right corner of the logged-in page. Choose the Item you want to advertise",
-                "Step 3:" => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item inroder to catch the eyes of others and show a clear condition of the item.
+                "Step 1: " => "Be reminded that you first need to login inorder to upload.",
+                "Step 2: " => "Click on the <button> Post Items </button> which is located on the top-right corner of the logged-in page. Choose the Item you want to advertise",
+                "Step 3: " => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item inroder to catch the eyes of others and show a clear condition of the item.
                               You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
                               advert. You will see the message <strong>Your item was successfuly uploaded.
                               Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.'
@@ -1223,8 +1224,8 @@ $help = [
         "contactus"   => [
             "head" => "How to contact us",
             "body" => [
-                "Step 1:" => 'Click the link <strong>Contact Us</strong> on the top left corner or footer of our website.',
-                "Step 2:" => 'If you have already logged-in your personal details will be automatically
+                "Step 1: " => 'Click the link <strong>Contact Us</strong> on the top left corner or footer of our website.',
+                "Step 2: " => 'If you have already logged-in your personal details will be automatically
                               filled. Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
                               If you don\'t find anything to choose on the contact purpose then select <strong>General Comment</strong> reason. Write detail information why you
                               want to contact us on the <strong>Message</strong>field.',
@@ -1238,13 +1239,13 @@ $help = [
             "body" => [
                 "" => 'The searchbox will help you find the item that you want based on the information you provided on the searchbox.
                         Our search functionality will provide you different kind of results based on your input. Here are some varieties:<br>
-                        1) Do not enter any text on the text-box, select all-items, select All-cities then click "Search" button. The result will be, it will show all the active items.<br>
-                        2) Enter your keyword on the text-box, select All-items, select All-cities then click "Search" button. The result will be, it will show the matched items from all items and cities. E.g "red", it will search red in all items and cities.<br>
-                        3) Do not enter any text on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click "Search" button. e.g. select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa".<br>
-                        4) Enter your keyword on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click "Search" button. e.g. Enter "red" on the text-box, select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa". <br>',
-                "Step 1:" => 'Find the search box on the top right section of our page.',
-                "Step 2:" => 'Enter and select the search criterias',
-                "Step 3:" => 'Click the <button class="btn-warning">search</button> button.',
+                        1) Do not enter any text on the text-box, select all-items, select All-cities then click <button class="btn btn-warning">Search</button> button. The result will be, it will show all the active items.<br>
+                        2) Enter your keyword on the text-box, select All-items, select All-cities then click <button class="btn btn-warning">Search</button> button. The result will be, it will show the matched items from all items and cities. E.g "red", it will search red in all items and cities.<br>
+                        3) Do not enter any text on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click <button class="btn btn-warning">Search</button> button. e.g. select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa".<br>
+                        4) Enter your keyword on the text-box, select "Car/Computer/Electronics/House/Household/Phone/Other": provide the item related information, select any city then click <button class="btn btn-warning">Search</button> button. e.g. Enter "red" on the text-box, select Car , select the Car related information and select "Addis Ababa". The result will be, it will show all matching Cars in "Addis Ababa". <br>',
+                "Step 1: " => 'Find the search box on the top right section of our page.',
+                "Step 2: " => 'Enter and select the search criterias',
+                "Step 3: " => 'Click the <button class="btn btn-warning">Search</button> button.',
                 "Hint for keyword:" => ' To search a red car, write only "red" for more matches. To search Toyota Cars, write only "toyota" for more matches. To search Samsung phones, write only "samsung" for more matches ...etc',
                 "*" => ' If the match does not found, it will show the corresponding message.'
             ]
