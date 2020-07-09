@@ -29,8 +29,9 @@ require_once $documnetRootPath . '/includes/validate.php';
 <body>
 	<?php
 	headerAndSearchCode("");
+	//style="width:60%;margin:20px;margin-left:20%;margin-right:20%;"
 	?>
-	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+	<div class="row">
 
 		<?php
 		if (!isset($_GET['function']) or $_GET['function'] !== 'register' or $_SESSION['lan'] != $_GET['lan']) {

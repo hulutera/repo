@@ -2,9 +2,6 @@
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
-$AB = "<span>hahaha</span>";
-echo "$AB";
-echo htmlentities('<span>hahaha</span>');
 class HtMainView
 {
 

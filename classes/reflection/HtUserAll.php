@@ -1042,39 +1042,26 @@ SQL;
      */
     public function insertRegisterField()
     {
-        //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:20%; margin-right:25%; padding: 20px;');
-        ////
-        // ___open_div_("row", "");
-        // ___open_div_("col-md-12", '');
-        // ___open_div_("form-group", "");
-        // ___open_div_("col-md-6", '');
-        // logoText();
-        // ___close_div_(1);
-        // ___open_div_("col-md-6", '" style="text-align:center; border:none;');
-        // topRightLinks('" style="text-align:center; border:none;');
-        // ___close_div_(1);
-        // ___close_div_(3);
-        ///
+        ___open_div_("col-md-6 col-xs-12 register-container", '');
+
         ___open_div_("row", "");
-        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        ___open_div_('col-md-12 col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['registeration'] . '</strong></p>';
         ___close_div_(2);
-        ///
         $style = '" style="text-align: left;font-size:18px;';
         ___open_div_("row", "");
-        ___open_div_("col-md-12", $style . 'padding-top: 10px;');
+        ___open_div_("col-md-12 col-xs-12", $style . 'padding-top: 10px;');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
         ___close_div_(2);
         $fillableFields = ['fieldFirstName', 'fieldLastName'];
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-6", '');
-            ___open_div_("col-md-12", '');
+            ___open_div_("col-md-6 col-xs-12", '');
+            ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
@@ -1082,12 +1069,12 @@ SQL;
         ///
         $fillableFields = ['fieldEmail', 'fieldPhoneNr'];
         ___open_div_("row", "");
-        ___open_div_("col-md-12", $style);
+        ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-6", '');
-            ___open_div_("col-md-12", '');
+            ___open_div_("col-md-6 col-xs-12", '');
+            ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
@@ -1095,39 +1082,39 @@ SQL;
         ___close_div_(4);
         ///
         ___open_div_("row", "");
-        ___open_div_("col-md-12 ", $style);
+        ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldContactMethod',  'upload_specific_array', 'common');
         ___close_div_(6);
         ///
         ___open_div_("row", "");
-        ___open_div_("col-md-12 ", $style);
+        ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldTermAndCondition',  'user_specific_array', 'user');
         ___close_div_(1);
         //___open_div_("col-md-12", '');
         global $str_url;
-        ___open_div_("col-md-6", '');
+        ___open_div_("col-md-6 col-xs-12", '');
         echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
         ___close_div_(1);
-        ___open_div_("col-md-6", '');
+        ___open_div_("col-md-6 col-xs-12", '');
         echo '<p ><a class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldPrivacyPolicy'][0]['message'] . '</a></p>';
         ___close_div_(1);
         ___close_div_(5);
         ///
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
 
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Register'] . '</button>';
         ___close_div_(5);
