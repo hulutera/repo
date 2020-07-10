@@ -655,10 +655,10 @@ SQL;
     public function insertContactUsField()
     {
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:60%; margin-left:20%; margin-right:25%; padding: 20px;');
+        ___open_div_("col-md-6 col-xs-12 contactus-container", '');
 
         ___open_div_("row", "");
-        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        ___open_div_('col-md-12 col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['contactus'] . '</strong></p>';
         ___close_div_(2);
         ///
@@ -666,32 +666,32 @@ SQL;
         ///
         $fillableFields = ['fieldName', 'fieldEmail', 'fieldCompany', 'fieldSubject'];
         ___open_div_("row", '" style="margin-top:15px;');
-        ___open_div_("col-md-12", $style);
+        ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-12", '');
-            ___open_div_("col-md-12", '');
+            ___open_div_("col-md-12 col-xs-12", '');
+            ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
 
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldPurpose',  'user_specific_array', 'user');
         ___close_div_(2);
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldMessage',  'user_specific_array', 'user', 'textarea');
         ___close_div_(2);
         ___close_div_(4);
 
         ///
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Send'] . '</button>';
         ___close_div_(5);
         ___close_div_(2);

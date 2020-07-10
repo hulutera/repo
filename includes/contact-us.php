@@ -29,7 +29,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 	<?php
 	headerAndSearchCode("");
 	?>
-	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+	<div class="row">
 		<?php
 		if (!isset($_GET['function']) or $_GET['function'] !== 'contact-us' or $_SESSION['lan'] != $_GET['lan']) {
 			unset($_SESSION['POST']);

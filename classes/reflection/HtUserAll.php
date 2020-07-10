@@ -1130,21 +1130,21 @@ SQL;
         }
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ___open_div_("col-md-4 col-xs-12 login-container", '');
 
         ////
         ___open_div_("row", "");
-        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        ___open_div_('col-md-12 col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['login'] . '</strong></p>';
         ___close_div_(2);
         ////
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '" style="text-align: left;font-size:18px;');
+        ___open_div_("col-md-12 col-xs-12", '" style="text-align: left;font-size:18px;');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
 
-        ___open_div_("col-md-12", '" style="margin-top:10px;');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-top:10px;');
         $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
         ___close_div_(1);
         ___open_div_("col-md-12", '');
@@ -1153,23 +1153,23 @@ SQL;
         ___close_div_(5);
         ////
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Login'] . '</button>';
         ___close_div_(5);
 
         ////
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-6", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '');
         echo '<a class="forgot" href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
-        ___open_div_("col-md-6", '" style="text-align:right;');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:right;');
         echo '<a class="forgot" href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);

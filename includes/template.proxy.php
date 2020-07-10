@@ -27,7 +27,7 @@ if (!$isValidUrl)
 
 <body>
 	<?php headerAndSearchCode(""); ?>
-	<div class="row" style="text-align:start;width:60%;margin:10px;margin-left:20%;margin-right:20%;">
+	<div class="row">
 		<?php routerProxy($proxyType); ?>
 	</div>
 	<?php footerCode(); ?>

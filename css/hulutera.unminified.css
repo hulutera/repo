@@ -319,9 +319,9 @@ form.signin input.button {
 	width: 100px;
 }
 
-#loginAmharic {
-	font-size: 20px;
-	padding: 0 7px 10px 0;
+.login-container {
+	border:1px solid #c7c7c7;
+	margin: 20px 33.3%;
 }
 
 #wrapper #main_section {
@@ -595,6 +595,10 @@ form.signin input.button {
 	font-size: 16px;
 }
 
+.help-container, .privacypolicy-container, .termsandcond-container {
+	margin: 20px 16.5%;
+}
+
 #aboutUs {
 	background-color: #dfefff;
 	border-bottom: 1px solid #ccc;
@@ -647,18 +651,6 @@ form.signin input.button {
 #termsDivAmharic {
 	padding: 30px 15px;
 	font-size: 16px;
-}
-
-#privacyPolicyEnglish {
-	padding: 30px 15px;
-	font-family: sans-serif, Arial, Helvetica;
-	;
-	font-size: 16px;
-}
-
-#privacyPolicyAmharic {
-	padding: 30px 15px;
-	font-size: 15px;
 }
 
 body, html {
@@ -1643,10 +1635,9 @@ div.clear {
 	margin: 2% 0 0 20%;
 }
 
-.register-container {
+.register-container, .contactus-container {
 	border:1px solid #c7c7c7;
-	margin-left:25%;
-	margin-right:25%;
+	margin: 20px 25%;
 }
 
 .field {
@@ -3139,10 +3130,9 @@ th {
 	#registernow select {
 		width: 150px;
 	}
-	.register-container {
+	.register-container, .contactus-container {
 		border:1px solid #c7c7c7;
-		margin-left:25%;
-		margin-right:25%;
+		margin: 20px 25%;
 	}
 	#stylized input {
 		width: 150px;
@@ -3198,6 +3188,12 @@ th {
 	#outerLogin {
 		padding: 0px;
 	}
+	.login-container {
+		border:1px solid #c7c7c7;
+		clear:both;
+		width:50%;
+		margin: 20px 25%;
+	}
 	.field {
 		width: 100%;
 	}
@@ -3238,6 +3234,9 @@ th {
 	.rightNav-index {
 		display: block;
 	}
+	.help-container, .privacypolicy-container, .termsandcond-container {
+		margin: 20px 16.5%;
+	}
 }
 
 /* */
@@ -3255,12 +3254,22 @@ th {
 		display: block;
 		width: 20%;
 	}
-	.register-container {
+	.register-container, .contactus-container {
 		border:1px solid #c7c7c7;
 		clear:both;
 		width:70%;
-		margin-left:15%;
-		margin-right:15%;
+		margin: 20px 15%;
+	}
+	.login-container {
+		border:1px solid #c7c7c7;
+		clear:both;
+		width:50%;
+		margin: 20px 25%;
+	}
+    .help-container, .privacypolicy-container, .termsandcond-container {
+		width:67%;
+		clear:both;
+		margin: 20px 16.5%;
 	}
 
 }
@@ -3347,12 +3356,11 @@ th {
 	#registernow select {
 		width: 150px;
 	}
-	.register-container {
+	.register-container, .contactus-container {
 		border:1px solid #c7c7c7;
 		clear:both;
 		width:90%;
-		margin-left:5%;
-		margin-right:5%;
+		margin: 20px 5%;
 	}
 	#stylized input {
 		width: 150px;
@@ -3408,6 +3416,12 @@ th {
 	#outerLogin {
 		padding: 0px;
 	}
+	.login-container {
+		border:1px solid #c7c7c7;
+		clear:both;
+		width:80%;
+		margin: 20px 10%;
+	}
 	.field {
 		width: 100%;
 	}
@@ -3458,6 +3472,12 @@ th {
 		width: auto;
 		height: 130px;
 	}
+	.help-container, .privacypolicy-container, .termsandcond-container {
+		width: 80%;
+		clear:both;
+		margin: 20px 10%;
+	}
+
 }
 
 /*
@@ -3568,10 +3588,9 @@ th {
 	#registernow select {
 		width: 150px;
 	}
-	.register-container {
+	.register-container, .contactus-container {
 		border:1px solid #c7c7c7;
-		margin-left:0px;
-		margin-right:0px;
+		margin:20px 5px;
 	}
 	#stylized input {
 		width: 150px;
@@ -3626,6 +3645,15 @@ th {
 	}
 	#outerLogin {
 		padding: 0px;
+	}
+	.login-container {
+		border:1px solid #c7c7c7;
+		clear:both;
+		margin: 20px 5px;
+	}
+	.help-container, .privacypolicy-container, .termsandcond-container {
+		clear:both;
+		margin: 20px 5px;
 	}
 	.field {
 		width: 100%;

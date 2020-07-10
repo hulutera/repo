@@ -51,7 +51,7 @@ $lang = array(
     'What we collect' => 'What we collect',
     'Your name' => 'Your name',
     'Contact Information including email address' => 'Contact Information including email address',
-    'What we do with the information we gather:' => 'What we do with the information we gather:',
+    'What we do with the information we gather' => 'What we do with the information we gather',
     'We may use the information to improve our services.' => 'We may use the information to improve our services.',
     'We may periodically send promotional emails msg' => ' We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.',
     'From time to time send info msg' => ' From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.',
@@ -978,7 +978,7 @@ $abuse_type_lang_arr = [
 
 $user_specific_array = [
     'user' =>    [
-        'registeration' => 'User Registeration',
+        'registeration' => 'User Registration',
         'login' => 'Login',
         'contactus' => 'Contact Us',
         'passwordRecovery' => [

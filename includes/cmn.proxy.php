@@ -61,9 +61,9 @@ function termAndConditions()
 {
 	global $lang_url, $lang;
 	echo '
-			<div id="termsAndCond">
-			<div style="background-color:#dfefff;">
-			<span style="padding-left:300px;padding-bottom:50px;font-weight:bold;font-size:14px">' . $lang['Terms and Conditions'] . ' </span></br></br>
+			<div id="row">
+			<div class="col-md-8 col-xs-12 termsandcond-container" style="background-color:#dfefff;text-align:left;padding:15px">
+			<span style="text-align:center;padding-bottom:50px;font-weight:bold;font-size:18px">' . $lang['Terms and Conditions'] . ' </span></br></br>
     ' . $lang['terms and conditions text'] . '
 	</div>
 	</div>
@@ -74,30 +74,25 @@ function privacyPolicy()
 {
 	global $lang;
 	echo '
-			<div id="aboutUs">
-			<div id="privacyPolicyEnglish">
-			<p class="aboutus">
-			Privacy Policy
+			<div class="row">
+			<div class="col-md-8 col-xs-12 privacypolicy-container" style="background-color: #dfefff;font-family: sans-serif, Arial, Helvetica; padding:15px; text-align:left">
+			<p style="font-size:18px"><strong>'. $lang['Privacy Policy'].'</strong></p>
+			<p>' . $lang['This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.'] . '	</p>
+			<p style="font-size:16px"><strong>' . $lang['What we collect'] . '</strong>
+			<li style="padding-left:20px">• ' . $lang['Your name'] . '</li>
+			<li style="padding-left:20px">• ' . $lang['Contact Information including email address'] . '</li>
 			</p>
-			<p class="aboutus">' . $lang['This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.'] . '	</p>
-			<p class="aboutus"> ' . $lang['What we collect'] . '
-			<li class="aboutUsli">• ' . $lang['Your name'] . '</li>
-			<li class="aboutUsli">• ' . $lang['Contact Information including email address'] . '</li>
+			<p style="font-size:16px"><strong>' . $lang['What we do with the information we gather'] . '</strong>
+			<li style="padding-left:20px">• ' . $lang['privacy policy paragraph1 text'] . '</li>
+			<li style="padding-left:20px">• ' . $lang['We may use the information to improve our services.'] . '</li>
+			<li style="padding-left:20px">• ' . $lang['We may periodically send promotional emails msg'] . '</li>
+			<li style="padding-left:20px">• ' . $lang['From time to time send info msg'] . '</li>
 			</p>
-			<p class="aboutus">
-			<big><strong>' . $lang['What we do with the information we gather:'] . '</strong></big>
-			<li class="aboutUsli">• ' . $lang['privacy policy paragraph1 text'] . '</li>
-			<li class="aboutUsli">• ' . $lang['We may use the information to improve our services.'] . '</li>
-			<li class="aboutUsli">• ' . $lang['We may periodically send promotional emails msg'] . '</li>
-			<li class="aboutUsli">• ' . $lang['From time to time send info msg'] . '</li>
-			</p>
-			<p class="aboutus">
-			<big><strong>' . $lang['Links to other websites'] . '</strong></big>
-			</p>
-			<p class="aboutus">
+			<p style="font-size:16px"><strong>' . $lang['Links to other websites'] . '</p></strong>
+			<p>
 			' . $lang['Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.'] . '
 			</p>
-			<p class="aboutus">
+			<p>
 			' . $lang['hulutera Admin'] . '
 			</p>
 			</div></div>
@@ -107,8 +102,8 @@ function privacyPolicy()
 function help()
 {
 	___open_div_('container-fluid', '');
-	___open_div_('row', '');
-	___open_div_('col-md-12', '');
+	___open_div_('col-md-8 col-xs-12 help-container', '');
+	___open_div_('col-md-12 col-xs-12', '');
 	//---------------------------
 	___open_div_('page-header', '');
 	echo '<h1>' . $GLOBALS['help'][0]['HuluteraFAQ'] . '<small></small></h1>';
@@ -122,10 +117,10 @@ function help()
 	___open_div_('row', '');
 	foreach ($GLOBALS['help'][1] as $key => $value) {
 		//echo '<h3 style="color:#050598a6">' . $GLOBALS['help'][1][$key]['head'] . '</h3>';//' . $picture[$key] .'
-		___open_div_('col-md-12 ', '');
+		___open_div_('col-md-12 col-xs-12', '');
 		echo '<button type="button" class="collapsible" style="font-size:25px">' . $GLOBALS['help'][1][$key]['head'] . '</button>';
 
-		___open_div_('col-md-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');
+		___open_div_('col-md-12 col-xs-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');
 
 
 		$body = $GLOBALS['help'][1][$key]['body'];

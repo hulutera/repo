@@ -26,7 +26,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 <body>
     <?php headerAndSearchCode("");
     ?>
-    <div class="row" style="width:60%;margin:80px;margin-left:20%;margin-right:20%;">
+    <div class="row">
 
         <?php
         ///reset/cleanup session variables
