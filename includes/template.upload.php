@@ -92,10 +92,8 @@ if (isset($_GET['lan'])) {
 
 				<?php
 
-				$lang_url = isset($_GET['lan']) ? "?&lan=" . $_GET['lan'] : "";
-
 				///reset/cleanup _SESSION variables
-				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_SESSION['lan'] != $_GET['lan']) {
+				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or (!isset($_SESSION['lan']))) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}
@@ -105,13 +103,17 @@ if (isset($_GET['lan'])) {
 
 				//define unique session
 				$sessionName = 'upload_' . $_GET['type'];
-				if (!isset($_SESSION[$sessionName])) {
-					$object = new HtMainView($_GET['type'], null);
-					$object->upload();
-					$_SESSION[$sessionName] = base64_encode(serialize($object));
+				if(isset($_SESSION['uID'])) {
+					if (!isset($_SESSION[$sessionName])) {
+						$object = new HtMainView($_GET['type'], null);
+						$object->upload();
+						$_SESSION[$sessionName] = base64_encode(serialize($object));
+					} else {
+						$object = unserialize(base64_decode($_SESSION[$sessionName]));
+						$object->upload();
+					}
 				} else {
-					$object = unserialize(base64_decode($_SESSION[$sessionName]));
-					$object->upload();
+					header('Location:../index.php' . $lang_url);
 				}
 				?>
 			</div>

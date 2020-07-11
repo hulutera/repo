@@ -19,6 +19,8 @@ abstract class Model extends mysqli
     // protected $resultArray;
     protected $resultSet;
     // protected $resultRecord;
+    const SESSION_EXPIRE_TIME = 1800; //30min inactive time
+    const SESSION_UPDATE_TIME = 60;
 
     public function __construct()
     {
@@ -29,6 +31,27 @@ abstract class Model extends mysqli
 
     protected function autorun()
     {
+        if (isset($_GET['lan'])) {
+            $lang_url = "?&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+
+        //Redirect to index page when session expired
+        if (isset($_SESSION['uID'])) {
+            if (isset($_SESSION["LAST_ACTIVITY"])) {
+                if (time() - $_SESSION["LAST_ACTIVITY"] > self::SESSION_EXPIRE_TIME) {
+                    session_unset();
+                    session_destroy();
+                    header('Location:../index.php' . $lang_url);
+                }
+                else if (time() - $_SESSION["LAST_ACTIVITY"] > self:: SESSION_UPDATE_TIME) {
+                    $_SESSION["LAST_ACTIVITY"] = time();
+                }
+            } else {
+                $_SESSION["LAST_ACTIVITY"] = time();
+            }
+        }
     }
 
     public function setResultSet($mysqliResult)

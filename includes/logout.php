@@ -15,7 +15,6 @@ if (isset($_SESSION['uID'])) {
     } else {
         $lang_url = "";
     }
-    var_dump($_SESSION);
     header("Location:../index.php$lang_url");
 }
 ob_end_flush();

@@ -413,6 +413,18 @@ EOD;
     }
     protected function insertFieldColor()
     {
+        $errorMsg = "";
+        $errorClass = '';
+        if (isset($_SESSION['POST']['fieldColor'])) {
+            if ($_SESSION['POST']['fieldColor'] == '') {
+                $_SESSION['errorRaw']['fieldColor'] = $GLOBALS['validate_specific_array'][0];
+            }
+        }
+        if (isset($_SESSION['errorRaw']['fieldColor'])) {
+            $errorMsg = $_SESSION['errorRaw']['fieldColor'];
+            $errorClass = ' alert-custom';
+        }
+
         $colors = [
             "black"    => ["#000000", "#FFFFFF"],
             "green"    => ["#009f6b", "#FFFFFF"],
@@ -426,12 +438,30 @@ EOD;
             "unknown"  => ["#ffffff", "#000000"]
         ];
         $selectable = [];
-        $type = $GLOBALS['upload_specific_array']['common']['fieldColor'][2];
         foreach ($colors as $key => $value) {
-            $input = [$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key]];
+            $input = ['value="'.$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key]];
             array_push($selectable, $input);
         }
-        $this->insertSelectable('fieldColor', 'upload_specific_array', 'common', $selectable);
+
+        ___open_div_("row", "");
+        ___open_div_("col-md-12", '');
+        ___open_div_("form-group", "");
+        echo '<label for="fieldColor">'.$GLOBALS['upload_specific_array']['common']['fieldColor'][0].'</label>';
+        if (isset($errorMsg)) {
+            ___open_div_("col-md-12", $errorClass);
+            echo $errorMsg;
+            ___close_div_(1);
+
+        }
+        echo '<select id="fieldColor" name="fieldColor" class="select form-control">
+            <option value="">'.$GLOBALS['upload_specific_array']['common']['fieldColor'][1].'</option>';
+            foreach ( $selectable as $key => $value) {
+                foreach ( $value as $key1 => $value1) {
+                    echo '<option '.$key1.'>' . $value1 . '</option>';
+                }
+            }
+        echo '</select>';
+        ___close_div_(3);
     }
     protected function insertPriceType($marketType, $option = null)
     {
