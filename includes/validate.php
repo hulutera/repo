@@ -167,10 +167,12 @@ class ValidateUpload
      */
     private function validatePrice(&$err, $key)
     {
-        if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
+        if (isset($_POST[$key]) && ($_POST[$key] == "")){
             $input = array($key => $GLOBALS['validate_specific_array'][1]);
-            array_push($err, $input);
+        } else if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
+            $input = array($key => 'Invalid input, Should be number greater than zero (0)!Please try again!');
         }
+        array_push($err, $input);
     }
     /**
      * get default_options

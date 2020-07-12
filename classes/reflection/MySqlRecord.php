@@ -473,7 +473,7 @@ EOD;
             $variable = explode(' ', trim($_SESSION['errorRaw'][$marketType]));
 
             if (
-                strpos($GLOBALS['lang'][$variable[0]], $GLOBALS['lang']['Invalid']) !== false &&
+                strpos($variable[0], 'Invalid') !== false &&
                 $_SESSION['POST'][$marketType] !== ''
             ) {
                 $errorMsg = '<p> "' . $_SESSION['POST'][$marketType] . '" ' . $GLOBALS['validate_specific_array'][2]['number'];
@@ -614,9 +614,9 @@ EOD;
         ___open_div_("form-group", "");
 
         ___open_div_("col-md-6", '');
+        $this->insertFieldPriceCurrency();
         $this->selectPriceRentOrSell();
         $this->insertFieldPriceNego();
-        $this->insertFieldPriceCurrency();
         ___close_div_(1); //col-md-6
 
         ___open_div_("col-md-6", '');
