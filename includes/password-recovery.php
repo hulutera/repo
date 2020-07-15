@@ -13,14 +13,14 @@ require_once $documnetRootPath . '/includes/validate.php';
 <head>
     <title>Password Recovery | የይለፍ ቃል </title>
     <?php commonHeader(); ?>
-    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
 </head>
 
 <body>
     <?php headerAndSearchCode("");
     ?>
-    <div class="row" style="width:60%;margin:80px;margin-left:20%;margin-right:20%;">
+    <div class="row">
         <?php
         ///reset/cleanup session variables
         if (!isset($_GET['function']) or $_GET['function'] !== 'password-recovery' or $_SESSION['lan'] != isset($_GET['lan'])) {

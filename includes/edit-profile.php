@@ -31,7 +31,7 @@ if (!isset($_SESSION['uID'])) {
 	<?php
 	headerAndSearchCode("");
 	?>
-	<div class="row" style="width:60%;margin:20px;margin-left:20%;margin-right:20%;">
+	<div class="row">
 		<?php
 		editProfile();
 		// var_dump($_SESSION);

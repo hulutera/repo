@@ -1906,7 +1906,7 @@ SQL;
     protected function insertAllField($itemName,  $skipRow = null)
     {
         $itemName = $this->getTableNameShort();
-        ___open_div_("container-fluid", '" style="margin-left:15%; margin-right:15%;');
+        ___open_div_("col-md-8 col-xs-12 upload-container", '');
         $this->insertHeader($itemName);
         ////
         ___open_div_("row", "");

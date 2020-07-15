@@ -1192,22 +1192,22 @@ SQL;
     {
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
+        ___open_div_("col-md-4 col-xs-12 pass-recovery-container", '');
         ////
 
         ///
-        ___open_div_("row", "");
-        ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+        ___open_div_("row", '');
+        ___open_div_('col-md-12  col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][0] . '</strong></p>';
         ___close_div_(2);
         ///
         $style = '" style="text-align: left;font-size:18px;';
         ___open_div_("row", "");
-        ___open_div_("col-md-12", $style . 'padding-top: 10px;');
+        ___open_div_("col-md-12 col-xs-12", $style . 'padding-top: 10px;');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
         ___close_div_(2);
         ___close_div_(4);
@@ -1342,7 +1342,7 @@ SQL;
     {
         if (isset($_SESSION['editProfileSuccess'])) {
             ___open_div_("container-fluid", '');
-            ___open_div_("row justify-content-center", '" style=" width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
+            ___open_div_("row update-profile-container", '" style=" width:54%; margin-left:20%; margin-right:25%; padding: 20px;');
             ___open_div_("row", "");
             ___open_div_('col-md-12', '" style="text-align:center;color:#31708f;');
             ___open_div_('col-md-12 alert alert-success" role="alert', '');
@@ -1358,7 +1358,7 @@ SQL;
             'fieldContactMethod' => $this->getFieldContactMethod(),
         ];
         ___open_div_("container-fluid ", '');
-        ___open_div_('row justify-content-center alert alert-info" role="alert"', '" style=" color:black;width:54%; margin-left:20%; margin-right:25%; padding: 20px; border:1px solid #c7c7c7;');
+        ___open_div_('update-profile-container alert alert-info col-md-6 col-xs-12" role="alert"', '');
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         ___open_div_('col-md-12', ' ');
@@ -1425,8 +1425,8 @@ SQL;
         }
         echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=edit-profile' . $lang_url . '" method="post" enctype="multipart/form-data">';
 
-        ___open_div_("container-fluid ", '');
-        ___open_div_("row justify-content-center", '" style="border:1px solid #c7c7c7; width:50%; margin-left:25%; margin-right:25%; padding: 20px;');
+        ___open_div_("container-fluid", '');
+        ___open_div_("col-md-4 col-xs-12 edit-profile-container", '');
         ///
         ___open_div_("row", "");
         ___open_div_('col-md-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');

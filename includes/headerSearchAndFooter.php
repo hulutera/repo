@@ -883,16 +883,24 @@ function yourPage()
                     </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12" style="margin-left:5%;margin-right:5%;">
-                <div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
-                <div class="row">
+			<div class="row">
+			    <div class="col-xs-12 mobile-profile-btn">
+                            <a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
+                                        >{$toMyProfileButton}</a>
+				</div>
+				<div class="col-xs-12 mobile-item-btn">
+                                    <a href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
+									>{$toMyItemsButton}</a>
+                </div>
+				<div class="col-md-12 your-page-inner">
+				<div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+				<div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4">
-                                <img src="../images/profile.svg" style="margin-top:25%;width:100%;" />
+                            <div class="col-md-4 col-xs-5">
+                                <img src="../images/profile.svg" style="width:100%;" />
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-xs-7">
                                 <div class="row">
                                     <p class="h2 font-weight-bold">
                                         {$myProfileTitle}
@@ -905,7 +913,6 @@ function yourPage()
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-
                             <a href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
                                         style="float:right;">{$toMyProfileButton}</a>
                                     </div>
@@ -915,14 +922,14 @@ function yourPage()
                     </div>
                 </div>
             </div>;
-             <div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
+            <div class="col-md-5" style="margin:20px; padding:20px; border-radius:15px;border:1px solid #c7c7c7;background-color:whitesmoke">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="../images/allitems.svg" style="margin-top:25%;width:100%;" />
+                                    <div class="col-md-4 col-xs-5">
+                                        <img src="../images/allitems.svg" style="width:100%;" />
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 col-xs-7">
                                         <div class="row">
                                             <p class="h2 font-weight-bold">
                                                 {$myItemsTitle}
@@ -934,7 +941,7 @@ function yourPage()
                                     </p>
                                 </div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 btn2">
                                     <a href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
                                                 style="float:right;">{$toMyItemsButton}</a>
                                             </div>
