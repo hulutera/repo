@@ -354,14 +354,14 @@ class ValidateUser
         } elseif ($function == 'password-recovery') {
             $email = $_POST['fieldEmail'];
             $userName = $_POST['fieldUserName'];
-            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_user_name = \"$userName\"");
+            $sql =  array('sql' => "SELECT DISTINCT * FROM user_all WHERE field_email = \"$email\" OR field_user_name = \"$userName\"");
 
             $userAll = new HtUserAll($sql);
             $result = $userAll->getResultSet();
             if ($result->num_rows === 0) {
-                $input = ['fieldEmail' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
+                $input = ['fieldEmail' => $GLOBALS['user_specific_array']['user']['passwordRecovery'][2]];
                 array_push($err, $input);
-                $input = ['fieldUserName' => $GLOBALS['validate_specific_array'][2]['invalidEmailOrUserName']];
+                $input = ['fieldUserName' => $GLOBALS['user_specific_array']['user']['passwordRecovery'][2]];
                 array_push($err, $input);
                 header("Location: ../../includes/form_user.php?function=password-recovery" . $str_url);
             } else {

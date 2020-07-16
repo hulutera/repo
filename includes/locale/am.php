@@ -247,6 +247,8 @@ $lang = array(
     'to main page prompt msg' => '<a href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
     'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
+    'password change success' => 'የምስጢር ቃልዎ በጥሩ ሁኔታ ተቀይሯል።',
+    'contact-us succeed message' => 'እኛን ለማግኝት ጥረት ስላደረጉ እናመሰግናለን። መልክትዎ ምላሽ ካስፈለገው በተቻለን መጠን ከ 1 - 2 የስራ ቀናት ውስጥ መልስ እንሰጣለን።',
     //Search related
     'search-title' => 'መፈለግ', //title
     'search-button' => 'ይፈለግ',  //button
@@ -262,6 +264,15 @@ $lang = array(
     'Title' => 'ርዕስ',
     'Description' => 'ገለጻ',
     'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
+    //Prompt
+    'pass-recovery success' => 'አዲስ የምስጢር ቃል በኢሜይሎት ልከንልዎታል።እባክዎን ኢሜይሉ ላይ ያለውን መመሪያ ይከተሉ። አዲሱን የምስጢር ቃል አካውንቶ ውስጥ በመግባት መቀየር ይችላሉ።',
+    'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a href="../includes/login.php">መግባት</a> ይችላሉ።</br> የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
+    'registration succeded message' => 'ስለተመዘገቡ እናመሰግናለን። መመዝገብዎን የሚያመለክት ኢሜይል ልከንልዎታል። እባክዎን የላክንልዎት ኢሜይል ላይ ያለውን ሊንክ ተጭነው አካውንትዎን ገቢራዊ ያድርጉ።',
+    'email adress or username has already used' => 'የመጠቀምያው ስም ወይም ኢሜይሉ ተይዟል፣ ሌላ ይሞክሩ።',
+    'password change success' => 'የሚስጥር ቃሉ በተሳካ ሁኔታ ተቀይሯል።',
+    'contact-us succeed message' => 'እኛን ለማግኝት ጥረት ስላደረጉ እናመሰግናለን። መልክትዎ ምላሽ ካስፈለገው በተቻለን መጠን ከ 1 - 2 የስራ ቀናት ውስጥ መልስ እንሰጣለን።',
+    'activation key expired' => 'አካውንቶን ተግባራዊ ሳያደርጉ በመቆየትዎ ምዝገባው ጊዜ አልፎበታል። ስለዚህ በድጋሚ ይመዝገቡ።',
+    'account termination message' => 'የሁሉተራ አካውንት ስለመዝጋት በተመለከተ በኢሜይሎት መረጃ ልከንልዎታል። እባክዎን ኢሜይሉ ላይ ያለውን መመሪያ ይከተሉ።',
     //Miscellaneous
     'Invalid' => "የተከለከለ",
     'unknown' => 'አይታወቅም',
@@ -983,7 +994,8 @@ $user_specific_array = [
         'contactus' => 'አስተያየት መስጭያ ቅፅ',
         'passwordRecovery' => [
             0 => 'የምስጢር ቃል ማስታወሻ ቅፅ',
-            1 => 'ይላኩ'
+            1 => 'ይላኩ',
+            2 => 'ተጠቃሚው በድሕረ ገፃችን ላይ አልተመዘገበም።'
         ],
         'fieldName'       => [
             0 => 'ሙሉ ስም',

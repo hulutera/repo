@@ -11,7 +11,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 <html lang="en">
 
 <head>
-    <title>Password Recovery | የይለፍ ቃል </title>
+    <title><?php  echo $GLOBALS['user_specific_array']['user']['passwordRecovery'][0]; ?></title>
     <?php commonHeader(); ?>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/hulutera.unminified.css" rel="stylesheet">
