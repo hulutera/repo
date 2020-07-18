@@ -306,7 +306,8 @@ $lang = array(
     'All Cities' => 'All Cities',
     'select city from map' => 'Select a city on the map',
     'Choose' => 'Choose',
-    'help' => 'Help'
+    'help' => 'Help',
+    'or' => 'OR'
 
 );
 
@@ -1245,7 +1246,7 @@ $help = [
             ]
         ],
         "search"   => [
-            "head" => "How to search",
+            "head" => "How to search items",
             "body" => [
                 "" => 'The searchbox will help you find the item that you want based on the information you provided on the searchbox.
                         Our search functionality will provide you different kind of results based on your input. Here are some varieties:<br>
@@ -1259,7 +1260,7 @@ $help = [
                 "Hint for keyword:" => ' To search a red car, write only "red" for more matches. To search Toyota Cars, write only "toyota" for more matches. To search Samsung phones, write only "samsung" for more matches ...etc',
                 "*" => ' If the match does not found, it will show the corresponding message.'
             ]
-        ],
+        ]
     ]
 ];
 

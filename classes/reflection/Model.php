@@ -41,9 +41,7 @@ abstract class Model extends mysqli
         if (isset($_SESSION['uID'])) {
             if (isset($_SESSION["LAST_ACTIVITY"])) {
                 if (time() - $_SESSION["LAST_ACTIVITY"] > self::SESSION_EXPIRE_TIME) {
-                    session_unset();
-                    session_destroy();
-                    header('Location:../index.php' . $lang_url);
+                    header('Location:../includes/logout.php' . $lang_url);
                 }
                 else if (time() - $_SESSION["LAST_ACTIVITY"] > self:: SESSION_UPDATE_TIME) {
                     $_SESSION["LAST_ACTIVITY"] = time();

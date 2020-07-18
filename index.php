@@ -22,7 +22,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 </head>
 
 <body>
-	<?php
+<?php
 	headerAndSearchCode("index");
 	?>
 	<div id="whole" style="width:100%;margin-left:0px;margin-right:0px">

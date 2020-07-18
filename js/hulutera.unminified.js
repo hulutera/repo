@@ -257,13 +257,13 @@ function swap(item, itemNumber) {
         var i;
         var thumbnailWidth;
         thumbnailWidth = ($('#divCommon').width() / $('#divCommon').parent().width()) * 100;
-        
+
         $.each([ 'car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'], function( index, value ) {
-            
+
             // For bigger screens
             if (thumbnailWidth < 35) {
                 if (itemNumber % 3 == 0) {
-                    
+
                     for (i = itemNumber; i >= (itemNumber - 2); i--) {
                         $(".tn_" + value + "_" + i).css("border", "none");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
@@ -271,7 +271,7 @@ function swap(item, itemNumber) {
                     $(".tn_" + value + "_" + itemNumber).css("border", "1px solid #0080ff");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                 } else if (itemNumber % 3 == 2) {
-                    
+
                     for (i = (itemNumber - 1); i <= (itemNumber + 1); i++) {
                         $(".tn_" + value + "_" + i).css("border", "none");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
@@ -279,7 +279,7 @@ function swap(item, itemNumber) {
                     $(".tn_" + value + "_" + itemNumber).css("border", "1px solid #0080ff");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                 } else {
-                    
+
                     for (i = itemNumber; i <= (itemNumber + 2); i++) {
                         $(".tn_" + value + "_" + i).css("border", "none");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
@@ -290,7 +290,7 @@ function swap(item, itemNumber) {
             // For medium screens
             } else if ( thumbnailWidth < 60) {
                 if (itemNumber % 2 == 0) {
-                    
+
                     for (i = itemNumber; i >= (itemNumber - 1); i--) {
                         $(".tn_" + value + "_" + i).css("border", "none");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
@@ -298,20 +298,20 @@ function swap(item, itemNumber) {
                     $(".tn_" + value + "_" + itemNumber).css("border", "1px solid #0080ff");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                 } else {
-                    
+
                     for (i = itemNumber; i <= (itemNumber + 2); i++) {
                         $(".tn_" + value + "_" + i).css("border", "none");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".tn_" + value + "_" + itemNumber).css("border", "1px solid #0080ff");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
-                    
+
                 }
             // For small screens
             } else {
                 $(".tn_" + value + "_" + itemNumber).css("border", "1px solid #0080ff");
                 $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
-            }        
+            }
         });
     })
 }
@@ -1280,5 +1280,10 @@ function mobSidelist() {
 function mobMyItem() {
     $(document).ready(function () {
         $('#modnav ul').toggle();
+    })
+}
+function toggleDivs(divClass) {
+    $(document).ready(function () {
+        $('.' + divClass).toggle();
     })
 }

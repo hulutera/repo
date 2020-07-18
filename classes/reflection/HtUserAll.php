@@ -1211,7 +1211,7 @@ SQL;
         $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
         ___close_div_(2);
         ___close_div_(4);
-        ///
+        echo '<p>'.$GLOBALS['lang']['or'].'</p>';
         ___open_div_("row", "");
         ___open_div_("col-md-12", $style);
         ___open_div_("form-group ", "");

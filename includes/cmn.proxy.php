@@ -101,7 +101,7 @@ function privacyPolicy()
 
 function help()
 {
-	___open_div_('container-fluid', '');
+	___open_div_('container-fluid', '" style="text-align:start"');
 	___open_div_('col-md-8 col-xs-12 help-container', '');
 	___open_div_('col-md-12 col-xs-12', '');
 	//---------------------------
@@ -109,19 +109,12 @@ function help()
 	echo '<h1>' . $GLOBALS['help'][0]['HuluteraFAQ'] . '<small></small></h1>';
 	___close_div_(1);
 	///
-	$picture = [
-		'register' => '<span class="glyphicon glyphicon-plus" style="font-size:20px"></span>',
-		'logIn' => '<span class="glyphicon glyphicon-log-in" style="font-size:20px"></span>',
-		'upload' => '<span class="glyphicon glyphicon-upload" style="font-size:20px"></span>'
-	];
 	___open_div_('row', '');
 	foreach ($GLOBALS['help'][1] as $key => $value) {
-		//echo '<h3 style="color:#050598a6">' . $GLOBALS['help'][1][$key]['head'] . '</h3>';//' . $picture[$key] .'
 		___open_div_('col-md-12 col-xs-12', '');
-		echo '<button type="button" class="collapsible" style="font-size:25px">' . $GLOBALS['help'][1][$key]['head'] . '</button>';
-
-		___open_div_('col-md-12 col-xs-12 collapse', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;');
-
+		echo "<a href=\"javascript:void(0)\" onclick=\"toggleDivs('help-" . $key . "')\" style=\"color:black;text-decoration:none\">";
+		      echo '<div class="help-tabs" style="font-size:25px;padding:5px;margin-bottom:10px;">' . $GLOBALS['help'][1][$key]['head'] .'<span class="glyphicon glyphicon-plus" style="font-size:20px;float:right"></span></div></a>';
+		___open_div_('col-md-12 help-'.$key.'', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;display:none');
 
 		$body = $GLOBALS['help'][1][$key]['body'];
 		echo '<ul style="text-align:start">';
