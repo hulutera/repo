@@ -150,9 +150,6 @@ EOD;
         <!-- Page Content  -->
 
         <div id="mainColumn">
-
-
-
             <?php
             if ((isset($_GET['function']) && $_GET['function'] == 'edit-profile')) {
                 editProfile();
@@ -163,7 +160,7 @@ EOD;
             } else if ((isset($_GET['function']) && $_GET['function'] == 'activity-table') || isset($_GET['activityTableId'])) {
                 activityTable();
             } else {
-                echo '<p class="h1">Welcome! Please take action on the left, (under construction)</p>';
+                adminWelcomePage();
             }
             ?>
         </div>

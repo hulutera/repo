@@ -595,6 +595,20 @@ function listUsers(&$ACTIVITY_ARRAY)
 	}
 }
 
+function adminWelcomePage()
+{
+	$sId = getSessionId();
+	$currentUser = new HtUserAll($sId);
+	$result = $currentUser->getResultSet();
+	$result->data_seek(0);
+	if ($currentUser->isUser()){
+		header('Location: ../includes/mypage.php?lan=en');
+	}
+	else{
+		echo '<p class="h1">Welcome! Please take action on the left, (under construction)</p>';
+	}
+}
+
 function activityTable()
 {
 	global $lang_sw, $lang_url;
