@@ -31,7 +31,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 	?>
 	<div class="row">
 		<?php
-		if (!isset($_GET['function']) or $_GET['function'] !== 'contact-us' or $_SESSION['lan'] != $_GET['lan']) {
+		if (!isset($_GET['function']) or $_GET['function'] !== 'contact-us' or (isset($_GET['lan']) && $_SESSION['lan'] != $_GET['lan'])) {
 			unset($_SESSION['POST']);
 			unset($_SESSION['errorRaw']);
 		}
