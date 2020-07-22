@@ -2,7 +2,6 @@
 session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-//require_once $documnetRootPath . '/view/main.view.class.php';
 require_once $documnetRootPath . '/includes/common.inc.php';
 
 
@@ -16,7 +15,7 @@ $item = $_GET['type'];
 <html lang="en">
 
 <head>
-	<title><?php echo $item . " § " . $itemAmharic; ?></title>
+	<title><?php echo $GLOBALS['item_lang_arr'][$item]; ?></title>
 	<?php commonHeader(); ?>
 </head>
 

@@ -18,13 +18,11 @@ if (!$isValidUrl)
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title><?php echo $proxyType . " § " . $itemAmharic; ?></title>
+	<title><?php echo $GLOBALS['lang']['hulutera']; ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 	<?php commonHeader(); ?>
 </head>
-
 <body>
 	<?php headerAndSearchCode(""); ?>
 	<div class="row">
