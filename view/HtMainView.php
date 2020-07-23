@@ -18,6 +18,7 @@ class HtMainView
         'electronic' => 5,
         'household' => 6,
         'other' => 7,
+        'search' => 8
     ];
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)

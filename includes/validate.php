@@ -87,11 +87,10 @@ class ValidateUpload
                 if (in_array($key, $price)) {
                     continue;
                 }
-                if (strpos($postValue, $GLOBALS['lang']['Choose']) !== false) //Error if value start with Choose
+                if (strpos($postValue, $GLOBALS['lang']['Choose']) == true) //Error if value start with Choose
                 {
                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                 } else if (
-                    strpos($postValue, 'Write') !== false or  //Error if value start with Write
                     $postValue === '' //Error if field is empty or not provided
                 ) {
                     $input = array($key => $GLOBALS['validate_specific_array'][1]);
@@ -103,7 +102,7 @@ class ValidateUpload
         /**
          * check if rentOrSell radio is selected report if not
          */
-        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) !== false) {
+        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) == true) {
             $input = array("rentOrSell" => $GLOBALS['validate_specific_array'][0]);
             array_push($err, $input);
         }
@@ -119,7 +118,7 @@ class ValidateUpload
                 $this->validatePrice($err, "fieldPriceSell");
             }
             if ($_POST["rentOrSell"] == "fieldPriceRent" || $_POST["rentOrSell"] == "both") {
-                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) == true) {
                     $input = array("fieldPriceRate" => $GLOBALS['validate_specific_array'][0]);
                     array_push($err, $input);
                 }
@@ -201,11 +200,12 @@ class ValidateUser
 
         if (isset($_POST['submit'])) {
             foreach ($_POST as $key => $value) {
+
                 if (isset($_POST[$key])) {
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
-                    if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write
+                    if ($value === '')
                     {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
@@ -232,7 +232,7 @@ class ValidateUser
                                 }
                                 break;
                             case 'fieldEmail':
-                                if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
+                                if ($value === '') {
                                     $input = array($key => $GLOBALS['validate_specific_array'][1]);
                                 } else if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['email']);
@@ -278,7 +278,7 @@ class ValidateUser
                                 break;
                             case 'fieldContactMethod':
                             case 'fieldPurpose':
-                                if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
+                                if (strpos($value, $GLOBALS['lang']['Choose']) == true) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                                 }
                                 break;
@@ -302,7 +302,7 @@ class ValidateUser
                                 }
                                 break;
                             case 'fieldTermAndCondition':
-                                if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
+                                if (strpos($value, $GLOBALS['lang']['Choose']) == true) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                                 }
                                 break;
@@ -314,7 +314,6 @@ class ValidateUser
                     if (!empty($input)) {
                         array_push($err, $input);
                     }
-                    var_dump($err);
                 }
             }
         }
