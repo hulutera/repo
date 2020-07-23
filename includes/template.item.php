@@ -25,16 +25,18 @@ $item = $_GET['type'];
 		<div id="wrapper">
 			<div id="main_section">
 				<div id="mainColumn">
-					<div class="row items-board">
-					<?php
-					$function = isset($_GET['function']) ? $_GET['function'] : null;
-					if (isset($function)) {
-						$id = $_GET['id'];
-						$status = $_GET['status'];
-						(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
-					} else {
-						(new  HtMainView($item))->show("active");
-					} ?>
+					<div class="widget-content properties-grid">
+
+							<?php
+							$function = isset($_GET['function']) ? $_GET['function'] : null;
+							if (isset($function)) {
+								$id = $_GET['id'];
+								$status = $_GET['status'];
+								(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
+							} else {
+								(new  HtMainView($item))->show("active");
+							} ?>
+
 					</div>
 				</div>
 			</div>

@@ -208,6 +208,68 @@ class HtMainView
         $strReplArr = array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
         $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
+
+        //---------------------------------------------------------
+        /*START @ col-md-4 col-sm-6*/
+        echo '<div class="col-md-4 col-sm-6 thumblist_'.$uniqueId.'">';
+        /*START @ thumbnail thumbnail-property features*/
+        echo '<div class="thumbnail thumbnail-property features">';
+        /*START @ property-image object-fit-container compat-object-fit*/
+        echo '<div class="property-image object-fit-container compat-object-fit">';
+        echo "<a href=\"javascript:void(0)\" onclick=\"swap('$itemName', " . $itemNumber . ")\" >";
+        echo '<div class="object-fit-imagediv" style="background-image: url(&quot;'.$thmbnlImg.'&quot;);"></div>';
+        echo '</a>';
+
+        echo '<div class="image-count"><i class="icon-image"></i><span>2</span></div>';
+        echo '<div class="budget budget-used"><div class="budget-mask"><span>'.$commonViewObj->displayMarketTypeNoCss($this->_pItem).'</span></div></div>';
+    //     echo '<a href="listing.html" class="property-image-hover">
+    //     <span class="property-im-m property-im-m-lt"></span>
+    //     <span class="property-im-m property-im-m-lb"></span>
+    //     <span class="property-im-m property-im-m-rt"></span>
+    //     <span class="property-im-m property-im-m-rb"></span>
+    // </a>';
+        echo  '</div>';
+        /*END @property-image object-fit-container compat-object-fit*/
+
+        /*START @ Caption*/
+        echo '<div class="caption">';
+        echo '<div class="anchor">
+            <a href="#" class=""><i class="fa fa-bookmark"></i>
+            </a>
+        </div>';
+
+
+
+        echo'
+        <h3 class="property-title">';
+        echo "<a href=\"javascript:void(0)\"
+        onclick=\"swap('$itemName', " . $itemNumber . ")\">";
+        echo $commonViewObj->displayTitle($this->_pItem);
+        echo "</a>";
+        echo '</h3>';
+
+        echo '<p class="property-description"></p>';
+        $commonViewObj->displayLocation($this->_pItem);
+        $commonViewObj->displayUpldTime($this->_pItem);
+        echo '<span class="property-field">';
+        $commonViewObj->displayPrice($this->_pItem);
+        echo '</span>
+        <div class="property-ratings">
+            <i class="icon-star-ratings-1"></i>
+        </div>';
+        echo '</div>';
+        /*END @Caption*/
+        echo '</div>';
+        /*END @thumbnail thumbnail-property features*/
+        echo  '</div>';
+        //---------------------------------------------------------
+
+
+
+
+
+
+/*
         //---------------------------------------------------------
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
@@ -233,6 +295,7 @@ class HtMainView
         echo "</div>"; // .caption end
         echo "</div>"; // .thumbnail end
         echo "</div>"; // #divCommon end
+        */
         //---------------------------------------------------------
         echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
@@ -250,7 +313,6 @@ class HtMainView
         echo "</div>"; // left side div end
         $commonViewObj->displayGallery($imageDir, $imageArr, $numimage, $id, $itemName);
         echo "</div>"; // .featured_detailed2 end
-
 
     }
 

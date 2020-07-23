@@ -19,21 +19,6 @@ class HtCommonView extends MySqlRecord
     }
 
     /**/
-    public function show($itemElm)
-    {
-        //creating an object
-        $this->_pItem = ObjectPool::getInstance()->getClassObject($this->_itemName);
-        $dbQuery = DatabaseClass::getInstance()->getQuery($this->_pItem, $itemId);
-        $connect = DatabaseClass::getInstance()->getConnection();
-
-        $result = $connect->query($dbQuery);
-        while ($row = $result->fetch_assoc()) {
-
-            $this->showRowContent($row);
-        }
-        $result->close();
-    }
-
     public function showRowContent($item, $id)
     {
         $itemObj = ObjectPool::getInstance()->getObjectWithId($item, $id);
@@ -56,60 +41,108 @@ class HtCommonView extends MySqlRecord
         $imgString = str_replace($strReplArr, "", $jsImg);
 
         //---------------------------------------------------------
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
-        echo "<div class=\"col1\">";
+
+        /*START @ widget */
+        echo '<div class="widget-content properties-grid">';
+        /*START @ row*/
+        echo '<div class="row">';
+        /*START @ col-md-4 col-sm-6*/
+        echo '<div class="col-md-4 col-sm-6">';
+        /*START @ thumbnail thumbnail-property features*/
+        echo '<div class="thumbnail thumbnail-property features">';
+        /*START @ property-image object-fit-container compat-object-fit*/
+        echo '<div class="property-image object-fit-container compat-object-fit">';
+        echo '<img src="assets/img/pic/car/audio/audio-f.jpg" alt="car">';
+        echo '<div class="object-fit-imagediv" style="background-image: url(&quot;http://geniuscript.com/worlddealer/assets/img/pic/car/audio/audio-f.jpg&quot;);"></div>';
+        echo '<div class="image-count"><i class="icon-image"></i><span>2</span></div>';
+        echo '<div class="budget budget-used"><div class="budget-mask"><span>Used</span></div></div>';
+        echo '<a href="listing.html" class="property-image-hover">
+        <span class="property-im-m property-im-m-lt"></span>
+        <span class="property-im-m property-im-m-lb"></span>
+        <span class="property-im-m property-im-m-rt"></span>
+        <span class="property-im-m property-im-m-rb"></span>
+    </a>';
+        echo  '</div>';
+        /*END @property-image object-fit-container compat-object-fit*/
+
+        /*START @ Caption*/
+        echo '<div class="caption">';
+        echo '<div class="anchor">
+            <a href="#" class=""><i class="fa fa-bookmark"></i>
+            </a>
+        </div>
+        <h3 class="property-title"><a href="listing.html">Fast car 1,6 TDI DSG</a></h3>
+        <p class="property-description">2014. g. 39.138 km, 66kW/90KS</p>
+        <span class="property-field">114.630 km</span>
+        <div class="property-ratings">
+            <i class="icon-star-ratings-1"></i>
+        </div>';
+        echo '</div>';
+        /*END @Caption*/
+        echo '</div>';
+        /*END @thumbnail thumbnail-property features*/
+        echo  '</div>';
+        /*END @ col-md-4 col-sm-6*/
+        echo  '</div>';
+        /*END @ row */
+        echo '</div>';
+        /*END @ widget */
+
+
+
+        echo '<div id="divCommon" class="thumblist_' . $uniqueId . '">';
+        echo '<div class="thumbnail">';
+
         if ($numimage == 1) {
             echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
-            $thmbNlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
-            echo "<a href=\"javascript:void(0)\"
-			onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-            echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
+            $thumbNailImage  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
+            echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+            echo '<div class="image">	<img src="' . $thumbNailImage . '" ></div></a>';
         }
         //
-        echo "<div class=\"detail\">";  //start_detail
-        echo "<div class=\"leftcol\">"; //start_leftcol
-        echo "<a href=\"javascript:void(0)\"
-		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
-        $this->displayTitle($title, $itemName);
-        echo "</a>";
-        $this->displayLocation($location);
-        $this->displayUpldTime($datetime);
-        $this->displayPrice($itemObj);
-        $this->displayMarketType($mkTyp);
-        echo "</div>"; //end_leftcol
-        echo "</div>"; //end_detail
-        //---------------------------------------------------------
-        echo "<div class=\"showbutton_show\">
-		<input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"
-		onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
-		value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
-        echo "</div>"; //end_col1
-        echo "</div>"; //end_thumblist_*
-        echo "<div class=\"clear\"></div>";
-        //---------------------------------------------------------
-        echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
-        echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
-        $this->displayGallery($imageDir, $imageArr, $id, $itemName);
-        echo "<div class=\"showbutton_hide\">
-		<input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
-		value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
-        echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
-        $this->displayTitle($title, $itemName);
-        $this->displaySpecifics($itemObj, $itemName);
-        $this->displayPrice($itemObj);
-        $this->displayContactMethod($uniqueId, $itemObj, $itemName);
-        $this->displayMailCfrm($uniqueId, $id, $itemName);
-        $this->displayReportReq($uniqueId, $id, $itemName);
-        $this->displayMailForm($uniqueId, $id, $itemName, $pUser);
-        $this->displayReportCfrm($uniqueId, $id, $itemName);
-        echo "</div>"; //end_featured_right_side
-        echo "</div>"; //end_featured_detailed
-        echo "</div>"; //end_divDetail_*
-        unset($pUser);
-        unset($pCommon);
-        unset($pImage);
+        // echo '<div class="detail">';  //start_detail
+        // echo '<div class="leftcol">'; //start_leftcol
+        // echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+        // $this->displayTitle($title, $itemName);
+        // echo "</a>";
+        // $this->displayLocation($location);
+        // $this->displayUpldTime($datetime);
+        // $this->displayPrice($itemObj);
+        // $this->displayMarketType($mkTyp);
+        // echo "</div>"; //end_leftcol
+        // echo "</div>"; //end_detail
+        // //---------------------------------------------------------
+        // echo "<div class=\"showbutton_show\">
+		//         <input title=\"ተጨማሪ መረጃ\"  class=\"show\" type=\"button\"   onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\"
+		//         value=\"Show Detail ተጨማሪ አሳይ\"/></div>";
+        // echo "</div>"; //end_thumbnail
+        // echo "</div>"; //end_thumblist_*
+
+        // echo "<div class=\"clear\"></div>";
+        // //---------------------------------------------------------
+        // echo "<div style =\"display:none;\" id=\"divDetail_$uniqueId\">"; //start_divDetail_*
+        // echo "<div id=\"featured_detailed\">";                             //start_featured_detailed
+        // $this->displayGallery($imageDir, $imageArr, $id, $itemName);
+        // echo "<div class=\"showbutton_hide\">
+		// <input class=\"hide\" type=\"button\"  onclick=\"swapback($id,'$itemName')\"
+		// value=\"Hide Detail ዝርዝር ደብቅ\"/></div>";
+        // echo "<div id=\"featured_right_side\">";                         //start_featured_right_side
+        // $this->displayTitle($title, $itemName);
+        // $this->displaySpecifics($itemObj, $itemName);
+        // $this->displayPrice($itemObj);
+        // $this->displayContactMethod($uniqueId, $itemObj, $itemName);
+        // $this->displayMailCfrm($uniqueId, $id, $itemName);
+        // $this->displayReportReq($uniqueId, $id, $itemName);
+        // $this->displayMailForm($uniqueId, $id, $itemName, $pUser);
+        // $this->displayReportCfrm($uniqueId, $id, $itemName);
+        // echo "</div>"; //end_featured_right_side
+        // echo "</div>"; //end_featured_detailed
+        // echo "</div>"; //end_divDetail_*
+        // unset($pUser);
+        // unset($pCommon);
+        // unset($pImage);
         //backTrace($row);
     }
 
@@ -188,9 +221,7 @@ class HtCommonView extends MySqlRecord
     public function displayTitle($itemObj)
     {
         $title = $itemObj->getFieldTitle();
-        echo "<h5>";
-        echo $title != null ? $title : $this->_itemName;
-        echo "</h5>";
+        return $title != null ? $title : $this->_itemName;
     }
     /*@function to display location of item
 	 * input : location /loc
@@ -228,6 +259,20 @@ class HtCommonView extends MySqlRecord
             echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"][$mrkTyp] . "</p>";
         } else {
             echo '<p class="text-center alert-info">' . $GLOBALS["upload_specific_array"]["common"]["marketType"]["sell"] . "</p>";
+        }
+    }
+
+        /*@function to display market type /SELL/RENT
+	 * input: mkTyp
+	* */
+    public function displayMarketTypeNoCss($itemObj)
+    {
+        $mrkTyp = $itemObj->getFieldMarketCategory();
+
+        if ($mrkTyp != "No Action") {
+            return $GLOBALS["upload_specific_array"]["common"]["marketType"][$mrkTyp];
+        } else {
+            return $GLOBALS["upload_specific_array"]["common"]["marketType"]["sell"];
         }
     }
 

@@ -141,7 +141,11 @@ function userContent()
 			6 => 'household',
 			7 => 'other'
 		];
-		echo '<div class="row items-board">';
+		//echo '<div class="row items-board">';
+        /*START @ widget */
+        echo '<div class="widget-content properties-grid">';
+        /*START @ row*/
+        echo '<div class="row">';
 		foreach ($result as $key => $value) {
 			# code...
 			$id = (int)$value['id'];
@@ -150,6 +154,8 @@ function userContent()
 			$view->showOneItem();
 		}
 		echo '</div>';
+		echo '</div>';
+		//echo '</div>';
 
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
