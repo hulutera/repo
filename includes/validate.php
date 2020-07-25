@@ -76,7 +76,8 @@ class ValidateUpload
         $this->default_options = $this->_runnerName->getUploadOption();
 
         $price = ["fieldPriceSell", "fieldPriceRent", "fieldPriceRate"];
-        var_dump($_POST);
+        $input = [];
+
 
         /**
          * Get all information for the IUT (Item Under Test) for validation
@@ -87,7 +88,7 @@ class ValidateUpload
                 if (in_array($key, $price)) {
                     continue;
                 }
-                if (strpos($postValue, $GLOBALS['lang']['Choose']) == true) //Error if value start with Choose
+                if (strpos($postValue, $GLOBALS['lang']['Choose']) !== false) //Error if value start with Choose
                 {
                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                 } else if (
@@ -102,7 +103,7 @@ class ValidateUpload
         /**
          * check if rentOrSell radio is selected report if not
          */
-        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) == true) {
+        if (isset($_POST["rentOrSell"]) && strpos($_POST['rentOrSell'], $GLOBALS['lang']['Choose']) !== false) {
             $input = array("rentOrSell" => $GLOBALS['validate_specific_array'][0]);
             array_push($err, $input);
         }
@@ -118,7 +119,7 @@ class ValidateUpload
                 $this->validatePrice($err, "fieldPriceSell");
             }
             if ($_POST["rentOrSell"] == "fieldPriceRent" || $_POST["rentOrSell"] == "both") {
-                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) == true) {
+                if (isset($_POST["fieldPriceRate"]) && strpos($_POST["fieldPriceRate"], $GLOBALS['lang']['Choose']) !== false) {
                     $input = array("fieldPriceRate" => $GLOBALS['validate_specific_array'][0]);
                     array_push($err, $input);
                 }
@@ -166,6 +167,7 @@ class ValidateUpload
      */
     private function validatePrice(&$err, $key)
     {
+        $input = [];
         if (isset($_POST[$key]) && ($_POST[$key] == "")){
             $input = array($key => $GLOBALS['validate_specific_array'][1]);
         } else if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
@@ -278,7 +280,7 @@ class ValidateUser
                                 break;
                             case 'fieldContactMethod':
                             case 'fieldPurpose':
-                                if (strpos($value, $GLOBALS['lang']['Choose']) == true) {
+                                if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                                 }
                                 break;
@@ -302,7 +304,7 @@ class ValidateUser
                                 }
                                 break;
                             case 'fieldTermAndCondition':
-                                if (strpos($value, $GLOBALS['lang']['Choose']) == true) {
+                                if (strpos($value, $GLOBALS['lang']['Choose']) !== false) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                                 }
                                 break;

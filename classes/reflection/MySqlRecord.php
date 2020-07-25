@@ -679,9 +679,9 @@ EOD;
             ___open_div_("row", "");
             ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
             ___open_div_("form-group upload", "");
-            $this->insertFieldPriceNego();
             $this->insertFieldPriceCurrency();
             $this->insertPriceTypeSell();
+            $this->insertFieldPriceNego();
             ___close_div_(3);
         }
         ///

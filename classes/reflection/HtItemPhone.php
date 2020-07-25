@@ -1321,7 +1321,7 @@ class HtItemPhone extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,ffield_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1359,7 +1359,8 @@ SQL;
                 $this->id = $this->insert_id;
             }
         }
-        return $result;
+       return $result;
+
     }
 
     /**
@@ -1584,9 +1585,9 @@ SQL;
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
-        $this->insertFieldPriceNego();
         $this->insertFieldPriceCurrency();
         $this->insertPriceTypeSell();
+        $this->insertFieldPriceNego();
         ___close_div_(3);
         ////
         ___open_div_("row", "");

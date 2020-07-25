@@ -1686,6 +1686,7 @@ class HtItemHouse extends MySqlRecord
 			{$this->parseValue($this->fieldUploadDate, 'notNumber')},
 			{$this->parseValue($this->fieldTotalView)},
 			{$this->parseValue($this->fieldStatus, 'notNumber')},
+            {$this->parseValue($this->fieldReport, 'notNumber')},
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
@@ -1705,6 +1706,7 @@ SQL;
             }
         }
         return $result;
+
     }
 
     /**
@@ -1954,10 +1956,10 @@ SQL;
 
         ___open_div_("col-md-4 lotsize", '');
         $selectable = $this->lister(1, 10000, 50);
-        $this->insertFillable('fieldLotSize', 'upload_specific_array', $itemName); //, $selectable);
+        $this->insertFillable('fieldLotSize', 'upload_specific_array', $itemName);
         ___close_div_(1);
 
-        ___close_div_(3); //top-3
+        ___close_div_(3);
         ////
         $this->insertDetails($itemName);
         ////
@@ -2002,7 +2004,7 @@ SQL;
         ___open_div_("col-md-12", '" style="border:1px solid #c7c7c7;border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
         ___open_div_("col-md-6", '');
-        $this->insertSelectable('fieldBuildYear', $globalArrayName, $itemName);
+        $this->insertFieldBuildYear();
         ___close_div_(1);
         ___open_div_("col-md-6", '');
         $selectable = $this->lister(1, 100);
@@ -2015,6 +2017,22 @@ SQL;
         $this->insertSelectable('fieldNrBedroom', $globalArrayName, $itemName, $selectable);
         ___close_div_(1);
         ___close_div_(3);
+    }
+
+    public function insertFieldBuildYear() {
+        $selectable = [];
+        for ($start = date('Y'); $start >= 1980; --$start) {
+            $end = $start;
+            $input = [$start => $end];
+            array_push($selectable, $input);
+        }
+        $variable = $GLOBALS['upload_specific_array']['house']['fieldBuildYear'][2];
+        foreach ($variable as $key => $value) {
+            $input = [$key => $value];
+            array_push($selectable, $input);
+        }
+        $this->insertSelectable('fieldBuildYear', 'upload_specific_array', 'house', $selectable);
+
     }
 
     /**

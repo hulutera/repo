@@ -543,10 +543,10 @@ $upload_specific_array = [
             0 => 'Built Year (E.C)',
             1 => 'Choose Built Year',
             2 => [
-                '1940' => 'Before 1940',
-                '1950' => '1940-1950',
-                '1960' => '1950-1960',
                 '1970' => '1970-1980',
+                '1960' => '1950-1960',
+                '1950' => '1940-1950',
+                '1940' => 'Before 1940',
                 'unknown' => 'unknown'
             ],
             3 => [
@@ -1167,8 +1167,8 @@ $validate_specific_array = [
         ],
         'email' => 'Invalid email address. Please try again!<br>',
         'passwordRepeat' => 'Passwords do not match. Please try again!<br>',
-        'invalidEmailOrPassword' => 'Sorry, Invalid e-mail or password. Please try again!',
-        'invalidEmailOrUserName' => 'Sorry, Invalid e-mail or Username. Please try again!',
+        'invalidEmailOrPassword' => 'Sorry, wrong e-mail or password. Please try again!',
+        'invalidEmailOrUserName' => 'Sorry, wrong e-mail or Username. Please try again!',
         'mixedLanguage' => 'Invalid input, a mix of languge is not allowed. Please try again!',
     ],
 ];
