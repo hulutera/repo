@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2020 at 07:28 PM
+-- Generation Time: Jul 26, 2020 at 11:16 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -497,7 +497,8 @@ CREATE TABLE `item_other` (
 --
 
 INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_report`, `field_market_category`, `field_table_type`) VALUES
-(48, 1, 7, NULL, 'e-mail', '60000', 'Yes', 'ETB', '[\"hulutera (1).jpg\"]', 'Bahir Dar', NULL, 'o test', '2020-07-25 14:46:14', NULL, 'active', NULL, 'sell', 7);
+(48, 1, 7, 1, 'e-mail', '60000', 'Yes', 'ETB', '[\"hulutera (1).jpg\"]', 'Bahir Dar', NULL, 'o test', '2020-07-26 09:15:06', NULL, 'active', NULL, 'sell', 7),
+(49, 2, 7, 2, 'phone', '7800', 'Yes', 'ETB', '[\"hulutera_user_id_7_item_temp_id_2_peter.jpg\"]', 'Jimma', NULL, 'o test', '2020-07-26 09:02:57', NULL, 'active', NULL, 'sell', 7);
 
 -- --------------------------------------------------------
 
@@ -991,7 +992,7 @@ ALTER TABLE `item_latest_update`
 -- AUTO_INCREMENT for table `item_other`
 --
 ALTER TABLE `item_other`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `item_phone`
