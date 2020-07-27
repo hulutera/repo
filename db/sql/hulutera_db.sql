@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2020 at 11:16 AM
+-- Generation Time: Jul 28, 2020 at 12:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -462,8 +462,24 @@ CREATE TABLE `item_latest_update` (
   `id` int(40) NOT NULL,
   `id_item` int(40) NOT NULL,
   `field_item_name` varchar(50) NOT NULL,
-  `field_upload_time` int(40) DEFAULT NULL
+  `field_upload_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_latest_update`
+--
+
+INSERT INTO `item_latest_update` (`id`, `id_item`, `field_item_name`, `field_upload_time`) VALUES
+(53, 139, 'car', '2020-07-27 22:34:36'),
+(54, 28, 'house', '2020-07-27 22:35:00'),
+(55, 29, 'house', '2020-07-27 22:35:05'),
+(56, 64, 'computer', '2020-07-27 22:35:16'),
+(57, 19, 'electronic', '2020-07-27 22:35:27'),
+(58, 36, 'phone', '2020-07-27 22:35:43'),
+(59, 37, 'phone', '2020-07-27 22:35:45'),
+(60, 32, 'household', '2020-07-27 22:35:56'),
+(61, 48, 'other', '2020-07-27 22:36:10'),
+(62, 49, 'other', '2020-07-27 22:36:12');
 
 -- --------------------------------------------------------
 
@@ -986,7 +1002,7 @@ ALTER TABLE `item_household`
 -- AUTO_INCREMENT for table `item_latest_update`
 --
 ALTER TABLE `item_latest_update`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `item_other`

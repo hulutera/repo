@@ -790,13 +790,21 @@ function activityTable()
 		} else {
 			/// Update user status of item
 			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			$object2 = ObjectPool::getInstance()->getObjectWithId("latest");
+			$object2->setFieldValues($id, $item);
 			if ($action == 'distroy') {
 				///here permanent damage, data unrecoverable!!
 				$object->delete($id);
+				$object2->delete();
 			} else {
 				///set new status and update table
 				$object->setFieldStatus($action);
 				$object->updateCurrent();
+				if ($action == "active") {
+					$object2->insert();
+				} else if ($action == "pending" or $action == "deleted") {
+					$object2->delete();
+				}
 			}
 		}
 		/// To activity table
