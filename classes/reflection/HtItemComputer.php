@@ -1322,7 +1322,7 @@ class HtItemComputer extends MySqlRecord
             $hdFilter = ($this->keyWordValue != "") ? "field_hard_drive LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_hard_drive LIKE 'No search word given'";
             $colorFilter = ($this->keyWordValue != "") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_color LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and ( field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "OR ( field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
 
             $itemFilter = "( ($typeFilter OR  $makeFilter OR $titleFilter OR $osFilter OR $procFilter OR $hdFilter OR $colorFilter OR $locationFilter) $locationFilter2)";
         }

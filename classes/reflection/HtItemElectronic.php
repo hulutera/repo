@@ -1022,7 +1022,7 @@ class HtItemElectronic extends MySqlRecord
             $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
             $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
 
             $itemFilter = "( ($titleFilter OR  $typeFilter OR $locationFilter) $locationFilter2 )";
         }
