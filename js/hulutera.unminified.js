@@ -252,19 +252,6 @@ function func_moderatorShow(e, t, n) {
     })
 }
 
-
-// function swap(item, itemNumber){
-
-//     $(document).ready(function (){
-//         alert(item + itemNumber);
-
-//     })
-
-// }
-
-
-
-
 function swap(item, itemNumber) {
     $(document).ready(function () {
         var i;

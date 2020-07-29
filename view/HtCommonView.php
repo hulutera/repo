@@ -163,14 +163,14 @@ class HtCommonView extends MySqlRecord
     /*@ function to display action to take by admin/moderator/user/
 	 * input: objects $pItem,$pUser
 	* */
-    private function displayAction($pItem, $pUser)
+    public function displayAction($pItem, $user)
     {
         $itemId = $pItem->getId();
-        $name   = $pItem->getItemName();
-        $time   = $pItem->getUpldTime();
+        $name   = $pItem->getTableName();
+        $time   = $pItem->getFieldUploadDate();
         $time   = strtotime($time);
-        $userId    =  $pUser->userId;
-        $userRole  = $pUser->getUserRole();
+        $userId    =  $user->getId();
+        $userRole  = $user->getFieldPrivilege();
 
         echo "<div  class=\"delete_activate\">
 		<input class=\"modActionDelete\" type=\"button\" value=\"Delete\" id=\"delete_button\"  onclick=\"func_moderatorActions('delete','$name',$itemId,'1','$userId','pendingNumb') \" />

@@ -2,6 +2,8 @@
 session_start();
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/includes/common.inc.php';
 require_once $documnetRootPath . '/includes/cmn.content.php';
 global $lang;
 ?>
@@ -18,14 +20,19 @@ global $lang;
 	<?php
 	headerAndSearchCode("");
 	?>
-	<div class="box" >
-
-		<?php
-		userContent();
-		?>
+	<div id="whole">
+		<div id="wrapper">
+			<div id="main_section">
+				<div id="mainColumn">
+					<div class="widget-content properties-grid">
+						<?php
+						userContent();
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<?php footerCode(); ?>
 </body>
-</body>
-
 </html>

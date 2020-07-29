@@ -247,6 +247,20 @@ class HtUserAll extends MySqlRecord
     private $fieldAccountStatus;
 
     /**
+     * Class attribute for mapping table field field_account_status
+     *
+     * Comment for field field_account_status: Not specified.<br>
+     * Field information:
+     *  - Data type: longtext
+     *  - Null : YES
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
+     * @var string $fieldFeature
+     */
+    private $fieldFeature;
+
+    /**
      * Class attribute for storing the SQL DDL of table user_all
      * @var string base64 encoded string for DDL
      */
@@ -454,6 +468,18 @@ class HtUserAll extends MySqlRecord
         return $this->fieldAccountStatus == 'active' ? true : false;
     }
 
+    /**
+     * setFieldFeature Sets the class attribute fieldFeature with a given value
+     *
+     * The attribute fieldFeature maps the field field_acccount_status defined as varchar(125).<br>
+     * Comment for field field_feature: Not specified.<br>
+     * @param string $fieldFeature
+     * @category Modifier
+     */
+    public function setFieldFeature($fieldFeature)
+    {
+        $this->fieldFeature = (string) $fieldFeature;
+    }
 
     /**
      * getId gets the class attribute id value
@@ -714,6 +740,21 @@ class HtUserAll extends MySqlRecord
         return $this->fieldAccountStatus;
     }
 
+    /**
+     * getFieldFeature gets the class attribute fieldFeature value
+     *
+     * The attribute fieldFeature maps the field field_account_status defined as varchar(125).<br>
+     * Comment for field field_feature: Not specified.
+     * @return string $fieldFeature
+     * @category Accessor of $fieldFeature
+     */
+    public function getFieldFeature()
+    {
+        return $this->fieldFeature;
+    }
+
+
+
 
     /**
      * Gets DDL SQL code of the table user_all
@@ -813,6 +854,7 @@ class HtUserAll extends MySqlRecord
             @$this->fieldNewPassword = $this->replaceAposBackSlash($rowObject->field_new_password);
             @$this->fieldActivation = $this->replaceAposBackSlash($rowObject->field_activation);
             @$this->fieldAccountStatus = $this->replaceAposBackSlash($rowObject->field_account_status);
+            @$this->fieldFeature = $this->replaceAposBackSlash($rowObject->field_feature);
             $this->allowUpdate = true;
         } else {
             $this->lastSqlError = $this->sqlstate . " - " . $this->error;
@@ -870,7 +912,9 @@ class HtUserAll extends MySqlRecord
 			{$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 			{$this->parseValue($this->fieldNewPassword, 'notNumber')},
 			{$this->parseValue($this->fieldActivation, 'notNumber')},
-			{$this->parseValue($this->fieldAccountStatus, 'notNumber')})
+			{$this->parseValue($this->fieldAccountStatus, 'notNumber')},
+            {$this->parseValue($this->fieldFeature, 'notNumber')})
+
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
@@ -916,7 +960,9 @@ SQL;
 				field_register_date={$this->parseValue($this->fieldRegisterDate, 'notNumber')},
 				field_new_password={$this->parseValue($this->fieldNewPassword, 'notNumber')},
 				field_activation={$this->parseValue($this->fieldActivation, 'notNumber')},
-                field_account_status={$this->parseValue($this->fieldAccountStatus, 'notNumber')}
+                field_account_status={$this->parseValue($this->fieldAccountStatus, 'notNumber')},
+                field_feature={$this->parseValue($this->fieldFeature, 'notNumber')}
+
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
@@ -986,6 +1032,7 @@ SQL;
         $this->fieldNewPassword =  $object->getFieldNewPassword();
         $this->fieldActivation =  $object->getFieldActivation();
         $this->fieldAccountStatus =   $object->getFieldAccountStatus();
+        $this->fieldFeature =   $object->getFieldFeature();
     }
 
     /**

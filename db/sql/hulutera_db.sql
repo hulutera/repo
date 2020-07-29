@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 23, 2020 at 09:32 PM
+-- Generation Time: Jul 29, 2020 at 11:01 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `item_car` (
   PRIMARY KEY (`id`),
   KEY `uID_FK1` (`id_user`),
   KEY `ccategoryID_FK` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_car`
@@ -310,7 +310,9 @@ INSERT INTO `item_car` (`id`, `id_temp`, `id_user`, `id_category`, `field_contac
 (130, 12, 12, 2, 'both', '12345', '8854', 'yes', 'hourly', 'ETB', 'infiniti', 'ok45123', 2020, NULL, 'bensine', 'black', 'automatic', '0-499999', '[\"hulutera_user_id_12_item_temp_id_12_SAAB-9-5-00.jpg\"]', 'Addis Ababa', NULL, 'lovely car', '2020-05-31 22:08:57', NULL, 'active', NULL, 'rent and sell', 1),
 (131, 13, 12, 16, 'phone', '1232', NULL, 'yes', 'hourly', 'ETB', 'gmc-truck', 'asdsad', 2007, 55, 'diesel', 'green', 'automatic', '500000-999999', '[\"hulutera (1).jpg\"]', 'Asella', NULL, 'asd', '2020-05-31 22:08:59', NULL, 'active', NULL, 'rent', 1),
 (135, 16, 12, 2, 'both', '45150', NULL, 'yes', 'daily', 'ETB', 'audi', 'asdacaw', 2020, NULL, 'bensine', 'black', 'manual', '0-499999', '[\"hulutera_user_id_12_item_temp_id_16_SAAB-9-5-00.jpg\"]', 'Debre Birhan', NULL, 'xadk', '2020-05-31 22:09:04', NULL, 'active', NULL, 'rent', 1),
-(138, 18, 12, 14, 'phone', '4510', NULL, 'Yes', 'daily', 'ETB', 'tesla', 'asdasdsa', 2008, 8, 'Diesel', 'yellow', 'Manual', '100000-149999', '[\"hulutera_user_id_12_item_temp_id_18_login_welcome.jpg\",\"hulutera_user_id_12_item_temp_id_18_myList.jpg\"]', 'Adama', NULL, 'Good Isuzu ', '2020-06-07 09:58:44', NULL, 'active', NULL, 'rent', 1);
+(138, 18, 12, 14, 'phone', '4510', NULL, 'Yes', 'daily', 'ETB', 'tesla', 'asdasdsa', 2008, 8, 'Diesel', 'yellow', 'Manual', '100000-149999', '[\"hulutera_user_id_12_item_temp_id_18_login_welcome.jpg\",\"hulutera_user_id_12_item_temp_id_18_myList.jpg\"]', 'Adama', NULL, 'Good Isuzu ', '2020-06-07 09:58:44', NULL, 'active', NULL, 'rent', 1),
+(139, 19, 12, 2, 'both', '1250', '123456', 'No', 'daily', 'ETB', 'toyota', 'rav4', 2020, 5, 'Diesel', 'black', 'Semi-automatic', '200000-249999', '[\"hulutera (2).jpg\",\"hulutera (2).jpg\",\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'W40', '2020-07-01 16:33:02', NULL, 'active', NULL, 'rent and sell', 1),
+(140, 20, 12, 2, 'both', '1231232', '1234345', 'No', 'yearly', 'ETB', 'gmc', 'sad', 2010, 7, 'Diesel', NULL, 'Semi-automatic', '100000-149999', '[\"hulutera_user_id_12_item_temp_id_20_rav1.jpg\",\"hulutera_user_id_12_item_temp_id_20_rav2.jpg\",\"hulutera_user_id_12_item_temp_id_20_rav3.jpg\"]', 'Adama', NULL, 'test1', '2020-07-08 09:59:05', NULL, 'active', NULL, 'rent and sell', 1);
 
 -- --------------------------------------------------------
 
@@ -355,9 +357,9 @@ CREATE TABLE IF NOT EXISTS `item_computer` (
 --
 
 INSERT INTO `item_computer` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_make`, `field_os`, `field_model`, `field_processor`, `field_ram`, `field_hard_drive`, `field_color`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_report`, `field_market_category`, `field_table_type`) VALUES
-(20, 14425, 1, 1, '0', '3232321312', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'myc', '2020-06-03 18:17:49', NULL, 'active', '3,8', 'Sale', 3),
+(20, 14425, 1, 1, '0', '3232321312', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'myc', '2020-06-03 18:17:49', NULL, 'pending', '3,8', 'Sale', 3),
 (21, 47542, 2, 1, '0', '10,000', 'Negotiable', 'Birr', '', 'windows', NULL, '3', '', '', NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', '', 'Comp title', '2020-06-03 18:17:49', NULL, 'Deleted', NULL, 'Sale', 3),
-(23, 94313, 1, 1, '0', '0', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'sdsadasd', '2020-06-03 18:17:50', NULL, 'active', NULL, 'Sale', 3),
+(23, 94313, 1, 1, '0', '0', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'sdsadasd', '2020-06-03 18:17:50', NULL, 'pending', NULL, 'Sale', 3),
 (24, 97130, 2, 4, '0', '0', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Awassa', NULL, 'LCD', '2020-06-03 18:17:52', NULL, 'active', NULL, 'sell', 3),
 (25, 57836, 2, 2, '0', '0', 'Negotiable', 'Birr', 'apple', 'unix', 'macbookAir', NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'apple', '2020-06-03 18:17:53', NULL, 'active', NULL, 'sell', 3),
 (26, 98513, 2, 1, '0', '0', 'Negotiable', 'Birr', NULL, 'windows', NULL, NULL, NULL, NULL, NULL, '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'comp only with title', '2020-06-03 18:17:54', NULL, 'active', NULL, 'sell', 3),
@@ -626,8 +628,8 @@ CREATE TABLE IF NOT EXISTS `item_house` (
 INSERT INTO `item_house` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_rent`, `field_price_sell`, `field_price_nego`, `field_price_rate`, `field_price_currency`, `field_image`, `field_location`, `field_kebele`, `field_wereda`, `field_lot_size`, `field_nr_bedroom`, `field_toilet`, `field_bathroom`, `field_build_year`, `field_water`, `field_electricity`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_report`, `field_market_category`, `field_table_type`) VALUES
 (4, 33419, 2, 1, '0', NULL, NULL, NULL, NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, NULL, NULL, 1, 1, NULL, 0000, '1', '1', NULL, 'house check', '2020-06-03 18:14:37', NULL, 'active', NULL, 'sell', 2),
 (5, 41748, 2, 1, '0', '50000 birr', NULL, NULL, '6month', 'Birr', '[\"hulutera (2).jpg\"]', 'Adama', NULL, NULL, NULL, 1, 1, NULL, 0000, '1', '1', NULL, 'House', '2020-06-03 18:14:41', NULL, 'pending', NULL, 'Rent', 2),
-(17, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-04-02 05:39:00', NULL, 'active', NULL, 'rent and sell', 1),
-(18, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-04-02 05:39:00', NULL, 'active', NULL, 'rent and sell', 1),
+(17, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-07-22 11:33:47', NULL, 'active', NULL, 'rent and sell', 2),
+(18, 35119, 12, 4, 'phone', '1000', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'qawsdasdsads', '2020-07-22 11:34:06', NULL, 'active', NULL, 'rent and sell', 2),
 (19, 35120, 12, 3, 'phone', '4500', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera_user_id_12_item_temp_id_35120_SAAB-9-5-00.jpg\"]', 'Addis Ababa', 3, 3, NULL, 2, 2, 3, 2005, 'Yes', 'Yes', NULL, 'zzzzzzzzzzzzzz', '2020-04-02 05:40:04', NULL, 'active', NULL, 'rent and sell', 1),
 (20, 35121, 12, 4, 'phone', '12400', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (1).jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-04-02 17:53:19', NULL, 'active', NULL, 'rent and sell', 1),
 (21, 35121, 12, 4, 'phone', '12400', '0', 'Yes', 'monthly', 'ETB', '[\"hulutera (1).jpg\"]', 'Addis Ababa', 1, 3, NULL, 2, 5, 3, 2018, 'Yes', 'Yes', NULL, 'asdsadsadsads', '2020-04-02 17:53:19', NULL, 'active', NULL, 'rent and sell', 1),
@@ -675,11 +677,11 @@ CREATE TABLE IF NOT EXISTS `item_household` (
 --
 
 INSERT INTO `item_household` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_report`, `field_market_category`, `field_table_type`) VALUES
-(2, 27715, 1, 1, '0', '123456878', '', 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', '', 'my hh', '2020-06-03 18:15:58', 0, '', NULL, 'Sale', 6),
-(3, 50225, 1, 1, '0', '123124124123', '', 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', '', 'my hh', '2020-06-03 18:16:01', 0, '', NULL, 'Sale', 6),
+(2, 27715, 1, 1, '0', '123456878', NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'my hh', '2020-06-03 18:15:58', NULL, 'pending', NULL, 'Sale', 6),
+(3, 50225, 1, 1, '0', '123124124123', NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'my hh', '2020-06-03 18:16:01', NULL, 'pending', NULL, 'Sale', 6),
 (4, 72615, 2, 1, '0', '555', '', 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', '', 'household check', '2020-06-03 18:16:02', 0, '', NULL, 'Sale', 6),
 (5, 77237, 2, 1, '0', '', '', 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', 'a nice item for U.', 'FuBu', '2020-06-03 18:16:03', 0, '', NULL, 'No Action', 6),
-(6, 4014, 1, 1, '0', '', '', 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', '', 'test', '2020-06-03 18:16:04', 0, '', NULL, 'No Action', 6),
+(6, 4014, 1, 1, '0', NULL, NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'test', '2020-06-03 18:16:04', NULL, 'pending', NULL, 'No Action', 6),
 (7, 94746, 2, 1, '0', '0', 'Negotiable', 'Birr', '[\"hulutera (2).jpg\"]', 'Shashemene', NULL, 'Sofa', '2020-06-03 18:16:05', NULL, 'active', '3', 'sell', 6),
 (8, 458, 2, 1, '0', '0', NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'sxdasda', '2020-06-03 18:16:06', NULL, 'deleted', NULL, 'sell', 6),
 (9, 74815, 2, 1, '0', NULL, NULL, 'Birr', '[\"hulutera (2).jpg\"]', 'Addis Ababa', NULL, 'hh pr', '2020-06-03 18:16:07', NULL, 'pending', NULL, 'No Action', 6),
@@ -769,23 +771,23 @@ CREATE TABLE IF NOT EXISTS `item_other` (
   `field_table_type` int(10) NOT NULL DEFAULT '7',
   PRIMARY KEY (`id`),
   KEY `uID_FK1` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_other`
 --
 
 INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `field_contact_method`, `field_price_sell`, `field_price_nego`, `field_price_currency`, `field_image`, `field_location`, `field_extra_info`, `field_title`, `field_upload_date`, `field_total_view`, `field_status`, `field_report`, `field_market_category`, `field_table_type`) VALUES
-(8, 1011, 1, NULL, '0', '9000', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'my other 1', '2013-09-06 11:21:53', NULL, 'deleted', NULL, 'Sale', 7),
-(9, 810, 1, NULL, '0', '123232', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'tetet', '2013-09-06 11:21:53', NULL, 'deleted', NULL, 'Sale', 7),
-(10, 534, 1, 0, '0', '121323', '', 'Birr', '', 'Addis Ababa', '', 'my tt', '2013-09-06 11:21:53', 0, 'Deleted', NULL, 'Sale', 7),
+(8, 1011, 1, NULL, '0', '9000', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'my other 1', '2013-09-06 11:21:53', NULL, 'pending', NULL, 'Sale', 7),
+(9, 810, 1, NULL, '0', '123232', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'tetet', '2013-09-06 11:21:53', NULL, 'pending', NULL, 'Sale', 7),
+(10, 534, 1, NULL, '0', '121323', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'my tt', '2013-09-06 11:21:53', NULL, 'pending', NULL, 'Sale', 7),
 (11, 5330, 1, NULL, '0', '12323', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'dsdsdsda', '2020-06-08 07:09:33', NULL, 'pending', NULL, 'Sale', 7),
 (12, 28038, 2, 0, '0', '8000', '', 'Birr', '', 'Addis Ababa', '', 'others check', '2013-09-12 14:29:43', 0, '', NULL, 'Sale', 7),
 (13, 9600, 2, 0, '0', '5666', '', 'Birr', '', 'Addis Ababa', 'ggu', 'nice item', '2013-11-06 14:54:27', 0, 'Deleted', NULL, 'Sale', 7),
-(14, 13550, 1, 0, '0', '0', '', 'Birr', '', 'Addis Ababa', '', 'asdsddsa', '2013-11-17 19:52:15', 0, '', NULL, 'Sale', 7),
+(14, 13550, 1, NULL, '0', '0', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'asdsddsa', '2013-11-17 19:52:15', NULL, 'pending', NULL, 'Sale', 7),
 (15, 40139, 2, NULL, '0', '0', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'others price check', '2013-11-30 09:34:06', NULL, 'distroy', NULL, 'Sale', 7),
-(16, 1214, 1, NULL, '0', '0', 'Negotiable', 'Birr', NULL, 'Addis Ababa', NULL, 'newother', '2020-02-04 22:22:29', NULL, 'distroy', NULL, 'sell', 7),
-(21, 38846, 1, NULL, '0', '13123123', 'Negotiable', 'Birr', NULL, 'Addis Ababa', NULL, 'myother', '2020-02-04 22:22:24', NULL, 'distroy', NULL, 'sell', 7),
+(16, 1214, 1, NULL, '0', '0', 'Negotiable', 'Birr', NULL, 'Addis Ababa', NULL, 'newother', '2020-02-04 22:22:29', NULL, 'pending', NULL, 'sell', 7),
+(21, 38846, 1, NULL, '0', '13123123', 'Negotiable', 'Birr', NULL, 'Addis Ababa', NULL, 'myother', '2020-02-04 22:22:24', NULL, 'pending', NULL, 'sell', 7),
 (22, 25442, 2, NULL, '0', '1000', NULL, 'USD', NULL, 'Addis Ababa', NULL, 'biycle', '2020-02-04 22:22:22', NULL, 'distroy', NULL, 'sell', 7),
 (25, 6444, 2, NULL, '0', '5656', NULL, 'USD', NULL, 'Addis Ababa', NULL, 'sdfsdf', '2020-02-02 20:14:25', NULL, 'distroy', NULL, 'sell', 7),
 (26, 515, 2, NULL, '0', '4434', NULL, 'USD', NULL, 'Debre Zeit', NULL, 'asdasdas', '2020-02-02 20:14:24', NULL, 'active', NULL, 'sell', 7),
@@ -800,7 +802,7 @@ INSERT INTO `item_other` (`id`, `id_temp`, `id_user`, `id_category`, `field_cont
 (35, 77145, 2, NULL, '0', '6565', 'Negotiable', 'USD', NULL, 'Addis Ababa', NULL, 'fwerwe', '2013-12-24 20:34:15', NULL, 'pending', NULL, 'sell', 7),
 (36, 8939, 1, NULL, '0', '100000', 'Negotiable', 'USD', NULL, 'Addis Ababa', 'OtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTestOtherTest', 'OtherTest', '2013-12-21 13:47:54', NULL, 'pending', NULL, 'sell', 7),
 (37, 6025, 2, NULL, '0', '78', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'big img', '2020-01-24 16:15:30', NULL, 'pending', NULL, 'sell', 7),
-(38, 6959, 1, 0, '1', '12345', '', 'Birr', '', 'Addis Ababa', '', 'myother', '2014-01-07 17:15:07', 0, 'Deleted', NULL, 'sell', 7),
+(38, 6959, 1, NULL, '1', '12345', NULL, 'Birr', NULL, 'Addis Ababa', NULL, 'myother', '2014-01-07 17:15:07', NULL, 'pending', NULL, 'sell', 7),
 (41, 43429, 12, NULL, '3', '12345', '1', 'Birr', NULL, 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:34', NULL, 'active', NULL, 'sell', 7),
 (42, 1650, 12, NULL, '3', '12345', '1', 'Birr', NULL, 'Addis Ababa', 'ht logo', 'ht logo', '2020-02-02 20:05:31', NULL, 'active', NULL, 'sell', 7),
 (43, 1651, 12, NULL, 'email', '1200', 'Yes', 'ETB', '[\"hulutera_user_id_12_item_temp_id_1651_SAAB-9-5-00.jpg\"]', 'Addis Ababa', 'new other', 'new other', '2020-04-01 19:49:26', NULL, 'active', NULL, 'sell', 1),
@@ -938,24 +940,27 @@ CREATE TABLE IF NOT EXISTS `user_all` (
   `field_new_password` varchar(100) DEFAULT NULL,
   `field_activation` varchar(255) DEFAULT NULL,
   `field_account_status` varchar(125) NOT NULL DEFAULT 'inactive',
+  `field_feature` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_all`
 --
 
-INSERT INTO `user_all` (`id`, `field_user_name`, `field_first_name`, `field_last_name`, `field_email`, `field_phone_nr`, `field_address`, `field_password`, `field_privilege`, `field_contact_method`, `field_term_and_condition`, `field_register_date`, `field_new_password`, `field_activation`, `field_account_status`) VALUES
-(1, 'Abiy ', 'Terefe', 'Teshome', 'abiy.terefe@hotmail.com', '00727242210', 'Addis Ababa', '$1$HMyfjD80$zA.feICBx9eSMxF5hTmoF/', 'webmaster', 'Phone and Email', 1, '2020-06-22 07:26:43', '$1$Z3ePGkQZ$vxa/jfEHmvmKOz1E0nFj8.', '1def0fabca76ef6dcac4fb163de00ceb', 'active'),
-(2, 'www', 'www', 'www', 'wendeworku@gmail.com', '1', 'ADD', '$1$I05KWw3Y$JkO3l5NRdMmNuK7eRMy8q0', 'webmaster', '', 1, '2020-06-22 07:26:46', '$1$znTU3uwD$0giEwL8TrMDZT1pHsyaPF0', NULL, 'active'),
-(7, 'www', 'wende', 'wefewfew', 'wendeworku@yahoo.com', '0', '', '123', 'webmaster', 'both', 1, '2020-06-22 07:26:49', NULL, NULL, 'active'),
-(10, 'negadiew', 'daniel', 'assefa', 'dan_assefa@yahoo.com', '0', NULL, 'leseitye2+', 'user', 'both', 1, '2020-06-22 07:26:51', NULL, NULL, 'active'),
-(12, 'Abtershome', 'አብየ', 'ተረፈ ተሾመ', 'dochoex@gmail.com', '0727242210', 'aad', 'clRMSkgxOGtxcms9', 'webmaster', 'both', 1, '2020-06-22 07:26:52', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL, 'active'),
-(16, 'aasdasdsad', 'asdasdasd', 'asdasdasd', 'abter@hotmail.com', '0123456789', NULL, '3GKbQw93+uM=', 'user', 'both', 1, '2020-04-25 09:26:35', NULL, '264d0ba0f9e39b4044ea18bf48cc310424c8323b', 'inactive'),
-(17, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active'),
-(30, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active'),
-(37, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active'),
-(38, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active');
+INSERT INTO `user_all` (`id`, `field_user_name`, `field_first_name`, `field_last_name`, `field_email`, `field_phone_nr`, `field_address`, `field_password`, `field_privilege`, `field_contact_method`, `field_term_and_condition`, `field_register_date`, `field_new_password`, `field_activation`, `field_account_status`, `field_feature`) VALUES
+(1, 'Abiy ', 'Terefe', 'Teshome', 'abiy.terefe@hotmail.com', '00727242210', 'Addis Ababa', '$1$HMyfjD80$zA.feICBx9eSMxF5hTmoF/', 'webmaster', 'Phone and Email', 1, '2020-06-22 07:26:43', '$1$Z3ePGkQZ$vxa/jfEHmvmKOz1E0nFj8.', '1def0fabca76ef6dcac4fb163de00ceb', 'inactive', NULL),
+(2, 'www', 'www', 'www', 'wendeworku@gmail.com', '1', 'ADD', '$1$I05KWw3Y$JkO3l5NRdMmNuK7eRMy8q0', 'webmaster', '', 1, '2020-06-22 07:26:46', '$1$znTU3uwD$0giEwL8TrMDZT1pHsyaPF0', NULL, 'active', NULL),
+(7, 'www', 'wende', 'wefewfew', 'wendeworku@yahoo.com', '0', '', '123', 'webmaster', 'both', 1, '2020-06-22 07:26:49', NULL, NULL, 'active', NULL),
+(10, 'negadiew', 'daniel', 'assefa', 'dan_assefa@yahoo.com', '0', NULL, 'leseitye2+', 'user', 'both', 1, '2020-06-22 07:26:51', NULL, NULL, 'active', NULL),
+(12, 'Abtershome', 'አብየ', 'ተረፈ ተሾመ', 'dochoex@gmail.com', '0727242210', 'aad', 'clRMSkgxOGtxcms9', 'webmaster', 'both', 1, '2020-06-22 07:26:52', '$1$Q20dsDSJ$yjcLNniZuyjFf5tm0nogg/', NULL, 'active', NULL),
+(16, 'aasdasdsad', 'asdasdasd', 'asdasdasd', 'abter@hotmail.com', '0123456789', NULL, '3GKbQw93+uM=', 'user', 'both', 1, '2020-04-25 09:26:35', NULL, '264d0ba0f9e39b4044ea18bf48cc310424c8323b', 'inactive', NULL),
+(17, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active', NULL),
+(30, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active', NULL),
+(37, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active', NULL),
+(38, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active', NULL),
+(39, 'asdsad', 'asds', 'asd', 'dochoex@gmail.com', '0972422410', NULL, 'jTLJH18lq7E=', 'user', 'both', 1, '2020-04-25 08:47:14', NULL, '565fbc2bf39ca94ba43b40253e109d50cc8dfb0d', 'active', NULL),
+(40, 'gerd2020', 'gerd', 'gerd', 'gerd@gerd.com', '12345678978', NULL, 'alRMZUVGd21xQT09', 'user', 'both', 1, '2020-07-22 18:53:00', NULL, '293d205be07abd1ba1a0d431889284098b41f590', 'active', NULL);
 
 -- --------------------------------------------------------
 
@@ -981,7 +986,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   `field_activation` varchar(60) DEFAULT NULL,
   `field_account_status` varchar(125) NOT NULL DEFAULT 'inactive',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_temp`
@@ -999,7 +1004,8 @@ INSERT INTO `user_temp` (`id`, `field_user_name`, `field_first_name`, `field_las
 (68, 'VVVVVVVVV', 'VVVVVV', 'VVVVVVV', 'VVVVV@DDFDFDFD.COM', '123456789789', NULL, 'dkFINklqcz0=', 'user', 'both', 1, '2020-04-26 17:00:22', NULL, 'c3500865f0fdeb51aa807a26c840680a23ea8e9f', 'inactive'),
 (69, 'ABULE', 'ABABA', 'ABABA', 'ABABA@ABABA.com', '12345678901', NULL, 'clRMSkgxOGtxcms9', 'user', 'both', 1, '2020-05-01 07:27:15', NULL, 'ff4842b89248b48af62309ac1db07a7b37b8e725', 'inactive'),
 (70, 'XXXXX', 'YYYYY', 'ZZZZZ', 'XXXX.YYYY@ZZZZ.COM', '123456789123', NULL, 'clRMSkgxOGtxcms9', 'user', 'both', 1, '2020-05-01 09:06:45', NULL, '41e4e402ca8544c29305f30a6fc5ded5e30420b6', 'inactive'),
-(71, 'asdasd', 'asdsadsa', 'asdasds', 'asdasd@asdasd.vmo', '897987844563212', NULL, 'aXlUSUZSNXcrdlBN', 'user', 'both', 1, '2020-05-16 19:17:11', NULL, 'f3df8ab0f74390cbc0274a09dc88c3be7934f3f3', 'inactive');
+(71, 'asdasd', 'asdsadsa', 'asdasds', 'asdasd@asdasd.vmo', '897987844563212', NULL, 'aXlUSUZSNXcrdlBN', 'user', 'both', 1, '2020-05-16 19:17:11', NULL, 'f3df8ab0f74390cbc0274a09dc88c3be7934f3f3', 'inactive'),
+(72, 'gerd2020', 'gerd', 'gerd', 'gerd@gerd.com', '12345678978', NULL, 'alRMZUVGd21xQT09', 'user', 'both', 1, '2020-07-22 18:53:00', NULL, '293d205be07abd1ba1a0d431889284098b41f590', 'inactive');
 
 -- --------------------------------------------------------
 

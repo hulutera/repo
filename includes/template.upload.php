@@ -115,6 +115,8 @@ if (isset($_GET['lan'])) {
 				} else {
 					header('Location:../index.php' . $lang_url);
 				}
+				var_dump($_SESSION['POST']);
+
 				?>
 			</div>
 		</div>

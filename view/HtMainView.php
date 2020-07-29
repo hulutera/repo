@@ -3,6 +3,8 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/view/HtCommonView.php';
+require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+
 class HtMainView
 {
 
@@ -167,10 +169,10 @@ class HtMainView
             $this->showItemWithId($row);
             //echo '</div>';
         }
-
     }
 
-    private function dumpData(){
+    private function dumpData()
+    {
         var_dump($this->_runnerName);
         var_dump($this->_runnerId);
         var_dump($this->_runnerStatus);
@@ -184,25 +186,36 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
+        if (isset($_SESSION['uID'])) {
+            $user = new HtUserAll($_SESSION['uID']);
+        }
         global $documnetRootPath;
         $itemNumber = $this->_itemNumber;
         $this->_pItem->setFieldValues($row);
         $id =  $this->_pItem->getId();
         $itemName = $this->_runnerName;
-        $uniqueId = $itemName . $id;
+        $uniqueId = $itemName . '-' . $id;
         $commonViewObj = new HtCommonView($itemName);
         //image handler
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
-        if ($image != null) {
-            $imageArr = explode(',', $image);
-            $numimage = sizeof($imageArr);
-        } else {
+
+
+
+        // scan uploads directory
+        $uploadsFiles = array_diff(scandir($imageDir), array('.', '..'));
+        if (empty($uploadsFiles) || !isset($image)) {
             $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
             $imageDir = "../images/" . $language . "/";
             $numimage = 0;
-            $imageArr = ["itemnotfound.png"];
+            $imageArr = [$language . ".svg"];
+        } else {
+            $imageArr = explode(',', $image);
+            $numimage = sizeof($imageArr);
         }
+
+
+
 
         $jsImg = implode(',', $imageArr);
         $strReplArr = array('[', ']', '"');
@@ -211,37 +224,33 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ col-md-4 col-sm-6*/
-        echo '<div class="col-md-4 col-sm-6 thumblist_'.$uniqueId.'">';
+        echo '<div class="col-md-4 col-sm-6 thumblist_' . $uniqueId . '">';
+
+
+
         /*START @ thumbnail thumbnail-property features*/
         echo '<div class="thumbnail thumbnail-property features">';
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
-        echo "<a href=\"javascript:void(0)\" onclick=\"swap('$itemName', " . $itemNumber . ")\" >";
-        echo '<div class="object-fit-imagediv" style="background-image: url(&quot;'.$thmbnlImg.'&quot;);"></div>';
-        echo '</a>';
+        echo '<div class="image-count"><i class="icon-image"></i><span>' . $numimage . '</span></div>';
+        echo '<div class="budget budget-used"><div class="budget-mask"><span>' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</span></div></div>';
 
-        echo '<div class="image-count"><i class="icon-image"></i><span>2</span></div>';
-        echo '<div class="budget budget-used"><div class="budget-mask"><span>'.$commonViewObj->displayMarketTypeNoCss($this->_pItem).'</span></div></div>';
-    //     echo '<a href="listing.html" class="property-image-hover">
-    //     <span class="property-im-m property-im-m-lt"></span>
-    //     <span class="property-im-m property-im-m-lb"></span>
-    //     <span class="property-im-m property-im-m-rt"></span>
-    //     <span class="property-im-m property-im-m-rb"></span>
-    // </a>';
+        echo '<img src="' . $thmbnlImg . '" alt="" />';
+
+        echo "<a href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
+
+        echo '<span class="property-im-m property-im-m-lt"></span>
+             <span class="property-im-m property-im-m-lb"></span>
+             <span class="property-im-m property-im-m-rt"></span>
+             <span class="property-im-m property-im-m-rb"></span>
+         </a>';
         echo  '</div>';
         /*END @property-image object-fit-container compat-object-fit*/
 
         /*START @ Caption*/
         echo '<div class="caption">';
-        echo '<div class="anchor">
-            <a href="#" class=""><i class="fa fa-bookmark"></i>
-            </a>
-        </div>';
 
-
-
-        echo'
-        <h3 class="property-title">';
+        echo '<h3 class="property-title">';
         echo "<a href=\"javascript:void(0)\"
         onclick=\"swap('$itemName', " . $itemNumber . ")\">";
         echo $commonViewObj->displayTitle($this->_pItem);
@@ -253,51 +262,22 @@ class HtMainView
         $commonViewObj->displayUpldTime($this->_pItem);
         echo '<span class="property-field">';
         $commonViewObj->displayPrice($this->_pItem);
-        echo '</span>
-        <div class="property-ratings">
-            <i class="icon-star-ratings-1"></i>
-        </div>';
+        if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
+            if ($row['id_user'] == $user->getId()) {
+                echo '<a href="#"><button type="button" class="btn btn-success">Edit Item</button></a>';
+            }
+        }
+        echo '</span>';
+        if (isset($user) && ($user->isWebMaster() || $user->isAdmin())) {
+            echo '<p class="h4">' . $uniqueId . '</p>';
+        }
         echo '</div>';
         /*END @Caption*/
         echo '</div>';
         /*END @thumbnail thumbnail-property features*/
         echo  '</div>';
         //---------------------------------------------------------
-
-
-
-
-
-
-/*
-        //---------------------------------------------------------
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4\" >";    // #divCommon start
-        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
-        if ($numimage == 0) {
-            echo "<a href=\"javascript:void(0)\" onclick=\"swap('$itemName', " . $itemNumber . ")\" >";
-            echo "<div><img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
-        } else {
-            echo "<a href=\"javascript:void(0)\"
-			onclick=\"swap('$itemName', " . $itemNumber . ")\">";
-            echo "<div >	<img class=\"img-thumbnail thumb-image\" src=\"$thmbnlImg\"></div></a>";
-        }
-        //-------------------------------------------------------------------
-        echo "<div class=\"caption\">";  // .caption start
-        echo "<a href=\"javascript:void(0)\"
-        onclick=\"swap('$itemName', " . $itemNumber . ")\">";
-        $commonViewObj->displayTitle($this->_pItem);
-        echo "</a>";
-        $commonViewObj->displayLocation($this->_pItem);
-        $commonViewObj->displayUpldTime($this->_pItem);
-        $commonViewObj->displayPrice($this->_pItem);
-        $commonViewObj->displayMarketType($this->_pItem);
-        //---------------------------------------------------------
-        echo "</div>"; // .caption end
-        echo "</div>"; // .thumbnail end
-        echo "</div>"; // #divCommon end
-        */
-        //---------------------------------------------------------
-        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
+        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-ms-6 col-xs-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
         echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
 		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback('$itemName', " . $itemNumber . ")\"
