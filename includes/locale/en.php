@@ -128,7 +128,7 @@ $lang = array(
     <br /><br />
     h. We do not assume any liability for any content posted by you or any other 3rd party users of our website.  However, any content posted by you using any open communication tools on our website, provided that it doesn"t violate or infringe on any 3rd party copyrights or trademarks, becomes the property of hulutera, and as such, gives us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce, modify, adapt, translate, publish, publicly display and/or distribute as we see fit.  This only refers and applies to content posted via open communication tools as described, and does not refer to information that is provided as part of the registration  process, necessary in order to use our Resources.
     <br /><br />
-    You agree to indemnify and hold harmless hulutera and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfill any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defense of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
+    You agree to indemnify and hold harmless hulutera and its parent company and affiliates, and their directors, officers, managers, employees, donors, agents, and licensors, from and against all losses, expenses, damages and costs, including reasonable attorneys" fees, resulting from any violation of this User Agreement or the failure to fulfil any obligations relating to your account incurred by you or any other person using your account. We reserve the right to take over the exclusive defence of any claim for which we are entitled to indemnification under this User Agreement. In such event, you shall provide us with such cooperation as is reasonably requested by us.
     <br /><br /><span class="tosTitle" style="font-size:12pt;">Limitation of Warranties</span>
     <br /><br />
     By using our website, you understand and agree that all Resources we provide are "as is" and "as available".  This means that we do not represent or warrant to you that:<br />
@@ -167,6 +167,7 @@ $lang = array(
     'invalid email msg' => 'Your e-mail is invalid.',
     'Incorrect e-mail or password msg' => 'Invalid e-mail or password.',
     'non-existing email msg' => 'There is no user registered with this e-mail.',
+    'email already exists msg' => 'The email already exists so, try another.',
     'Forgot your password' => 'Forgot your password?',
     //Messages related
     'delete' => 'Delete',
@@ -232,7 +233,6 @@ $lang = array(
                               removed from our database.',
     'close acc msg part2' => 'Are you sure you want to close your account?',
     'email update succ' => 'your email has been updated.',
-    'email already exists msg' => 'The email already exists so, try another.',
     'correct answer msg' => 'Please correct your answer',
     'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com \n',
     'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n',

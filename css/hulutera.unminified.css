@@ -3014,6 +3014,7 @@ th {
 	font-size: 16px;
 	color: #000;
 	font-family: sans-serif, Arial, Helvetica;
+	text-decoration:none;
 }
 
 .leftNav-index li a.selected {
@@ -3034,8 +3035,11 @@ th {
 }
 
 .rightNav-index a li:hover {
-	color: whitesmoke;
-	background-color: gray;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+	background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+	background-color: #378de5;
+	color: #fff;
 }
 
 .rightNav-index li {
@@ -3050,6 +3054,7 @@ th {
 	font-size: 16px;
 	color: #000;
 	font-family: sans-serif, Arial, Helvetica;
+	text-decoration:none;
 }
 
 .rightNav-index li a.selected {

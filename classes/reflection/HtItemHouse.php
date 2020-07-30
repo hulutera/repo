@@ -1486,7 +1486,7 @@ class HtItemHouse extends MySqlRecord
             $titleFilter = ($this->keyWordValue != "") ? "field_title LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_title LIKE 'No search word given'";
             $typeFilter = ($this->keyWordValue != "") ? "field_name LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_name LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR (field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All" and $this->keyWordValue != "")  ? "AND (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')";
 
             $itemFilter = "( ($typeFilter OR $titleFilter OR $locationFilter) $locationFilter2 )";
         }

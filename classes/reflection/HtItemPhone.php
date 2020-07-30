@@ -1205,7 +1205,7 @@ class HtItemPhone extends MySqlRecord
             $makeFilter = ($this->keyWordValue != "") ? "field_make LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_make LIKE 'No search word given'";
             $osFilter = ($this->keyWordValue != "") ? "field_os LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_os LIKE 'No search word given'";
             $cameraFilter = ($this->keyWordValue != "") ? "field_camera LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_camera LIKE  'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All" and $this->keyWordValue != "")  ? "AND (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')";
 
             $itemFilter = "( ($locationFilter OR $titleFilter OR $typeFilter OR $makeFilter OR $osFilter OR $cameraFilter) $locationFilter2 )";
         }
