@@ -93,7 +93,7 @@ if (isset($_GET['lan'])) {
 				<?php
 
 				///reset/cleanup _SESSION variables
-				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or (!isset($_SESSION['lan']))) {
+				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_SESSION['lan'] != $_GET['lan']) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}

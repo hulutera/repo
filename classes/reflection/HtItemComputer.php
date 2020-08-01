@@ -1322,7 +1322,7 @@ class HtItemComputer extends MySqlRecord
             $hdFilter = ($this->keyWordValue != "") ? "field_hard_drive LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_hard_drive LIKE 'No search word given'";
             $colorFilter = ($this->keyWordValue != "") ? "field_color LIKE '%" .  $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_color LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and ( field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR ( field_location LIKE 'No search word given')";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All" and $this->keyWordValue != "")  ? "AND ( field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')";
 
             $itemFilter = "( ($typeFilter OR  $makeFilter OR $titleFilter OR $osFilter OR $procFilter OR $hdFilter OR $colorFilter OR $locationFilter) $locationFilter2)";
         }
@@ -1731,9 +1731,9 @@ SQL;
         ___open_div_("row", "");
         ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7; border-bottom: 1px solid white;');
         ___open_div_("form-group upload", "");
-        $this->insertFieldPriceNego();
         $this->insertFieldPriceCurrency();
         $this->insertPriceTypeSell();
+        $this->insertFieldPriceNego();
         ___close_div_(3);
         ////
         ___open_div_("row", "");

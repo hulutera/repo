@@ -137,6 +137,15 @@ class HtItemLatestUpdate extends MySqlRecord
     }
 
     /**
+     *
+     */
+
+    public function setFieldValues($itemId, $itemName) {
+        $this->idItem = (int) $itemId;
+        $this->fieldItemName =  (string) $itemName;
+    }
+
+    /**
      * getId gets the class attribute id value
      *
      * The attribute id maps the field id defined as int(40).<br>
@@ -292,11 +301,11 @@ class HtItemLatestUpdate extends MySqlRecord
      * @return int affected deleted row
      * @category DML
      */
-    public function delete($id)
+    public function delete()
     {
-        $sql = "DELETE FROM item_latest_update WHERE id={$this->parseValue($id, 'int')}";
+        $sql = "DELETE FROM item_latest_update WHERE id_item = {$this->parseValue($this->idItem, 'int')} AND field_item_name LIKE {$this->parseValue($this->fieldItemName, 'notNumber')}";
         $this->resetLastSqlError();
-
+        // {$this->parseValue($this->idItem, 'int')} AND field_item_name LIKE '{$this->parseValue($this->fieldItemName, 'notNumber')}'
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');
         $result = $this->query($sql);
@@ -322,11 +331,10 @@ class HtItemLatestUpdate extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_latest_update
-            (id_item,field_item_name,field_upload_time)
+            (id_item,field_item_name)
             VALUES(
 			{$this->parseValue($this->idItem)},
-			{$this->parseValue($this->fieldItemName, 'notNumber')},
-			{$this->parseValue($this->fieldUploadTime)})
+			{$this->parseValue($this->fieldItemName, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
 

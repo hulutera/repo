@@ -76,7 +76,8 @@ class ValidateUpload
         $this->default_options = $this->_runnerName->getUploadOption();
 
         $price = ["fieldPriceSell", "fieldPriceRent", "fieldPriceRate"];
-        var_dump($_POST);
+        $input = [];
+
 
         /**
          * Get all information for the IUT (Item Under Test) for validation
@@ -91,7 +92,6 @@ class ValidateUpload
                 {
                     $input = array($key => $GLOBALS['validate_specific_array'][0]);
                 } else if (
-                    strpos($postValue, 'Write') !== false or  //Error if value start with Write
                     $postValue === '' //Error if field is empty or not provided
                 ) {
                     $input = array($key => $GLOBALS['validate_specific_array'][1]);
@@ -167,6 +167,7 @@ class ValidateUpload
      */
     private function validatePrice(&$err, $key)
     {
+        $input = [];
         if (isset($_POST[$key]) && ($_POST[$key] == "")){
             $input = array($key => $GLOBALS['validate_specific_array'][1]);
         } else if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
@@ -201,11 +202,12 @@ class ValidateUser
 
         if (isset($_POST['submit'])) {
             foreach ($_POST as $key => $value) {
+
                 if (isset($_POST[$key])) {
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
-                    if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '')  //Error if value start with Write
+                    if ($value === '')
                     {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
@@ -232,7 +234,7 @@ class ValidateUser
                                 }
                                 break;
                             case 'fieldEmail':
-                                if (strpos($value, $GLOBALS['lang']['Write']) !== false or $value === '') {
+                                if ($value === '') {
                                     $input = array($key => $GLOBALS['validate_specific_array'][1]);
                                 } else if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                                     $input = array($key => $GLOBALS['validate_specific_array'][2]['email']);
@@ -314,7 +316,6 @@ class ValidateUser
                     if (!empty($input)) {
                         array_push($err, $input);
                     }
-                    var_dump($err);
                 }
             }
         }

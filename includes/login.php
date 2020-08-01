@@ -30,7 +30,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 
         <?php
         ///reset/cleanup session variables
-        if (!isset($_GET['function']) or $_GET['function'] !== 'login' or isset($_SESSION['lan'])) {
+        if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
             unset($_SESSION['POST']);
             unset($_SESSION['errorRaw']);
         }

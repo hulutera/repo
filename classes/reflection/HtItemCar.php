@@ -1464,7 +1464,7 @@ class HtItemCar extends MySqlRecord
             $gearFilter = ($this->keyWordValue != "") ? "field_gear_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_gear_type LIKE 'No search word given'";
             $fuelFilter = ($this->keyWordValue != "") ? "field_fuel_type LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_fuel_type LIKE 'No search word given'";
             $locationFilter = ($this->keyWordValue != "") ? "field_location LIKE '%" . $this->replaceAposBackSlash($this->keyWordValue) . "%'" : "field_location LIKE 'No search word given'";
-            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All")  ? "and (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "') " : "OR ( field_location LIKE 'No search word given' )";
+            $locationFilter2 = ($this->locationValue != "000" and $this->locationValue != "All" and $this->keyWordValue != "") ? "AND (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')" : "OR (field_location LIKE '" . $this->replaceAposBackSlash($this->locationValue) . "')";
 
             $itemFilter = "( ($titleFilter OR  $typeFilter OR $makeFilter OR $colorFilter OR $gearFilter OR $fuelFilter OR $locationFilter) $locationFilter2)";
         }
