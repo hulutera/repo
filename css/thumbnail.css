@@ -14,7 +14,7 @@
     -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
     overflow: hidden;
     padding: 0;
-    height: 400px;
+    /* height: 400px; */
     box-sizing: border-box; /* add this */
     -moz-box-sizing: border-box; /* Firefox */
     -webkit-box-sizing: border-box; /* Older Webkit browsers */
@@ -201,10 +201,10 @@
 
 .thumbnail-property .budget {
     color: white;
-    height: 56px;
+    height: 30px;
     /* left: -77px ; */
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     position: absolute;
     text-transform: uppercase;
     text-align: center;
@@ -214,7 +214,7 @@
     -ms-transform: rotate(-54deg);
     -moz-transform: rotate(-54deg);
     -o-transform: rotate(-54deg);*/
-    width: 90px;
+    width: 70px;
 }
 
 .thumbnail-property .budget .budget-mask {
@@ -251,7 +251,6 @@
 }
 
 .thumbnail-property .property-field {
-    color: #008ac3;
     font-weight: 600;
 }
 

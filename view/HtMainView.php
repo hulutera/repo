@@ -20,7 +20,6 @@ class HtMainView
         'electronic' => 5,
         'household' => 6,
         'other' => 7,
-        'search' => 8
     ];
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
@@ -75,7 +74,6 @@ class HtMainView
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId("latest");
         $rows = $this->_pItem->runQuery();
 
-        $number = 0;
         if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
             $globalVarObj = new HtGlobal();
@@ -84,7 +82,6 @@ class HtMainView
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
-                $number ++;
                 $this->_runnerName = $row['field_item_name'];
                 $this->_pItem = ObjectPool::getInstance()->getObjectWithId($row['field_item_name']);
                 $item_id = $row['id_item'];
@@ -92,7 +89,7 @@ class HtMainView
                 $this->_pItem->runQuery($condition);
                 $fetchItemRow = $this->_pItem->getResultSet();
                 while ($itemRow = $fetchItemRow->fetch_assoc()) {
-                    $this->_itemNumber = $number;
+                    $this->_itemNumber = 100 * $item_id + $this->_itemName2Id[$this->_runnerName];
                     $this->showItemWithId($itemRow);
                 }
             }
@@ -227,8 +224,8 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ col-md-4 col-sm-6*/
-        echo '<div class="col-md-4 col-sm-6 thumblist_' . $uniqueId . '">';
-
+        echo "<div id =\"divCommon\" class=\"col-md-4 col-sm-6 thumblist_ . $uniqueId . \">";
+        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
 
 
         /*START @ thumbnail thumbnail-property features*/
@@ -277,6 +274,7 @@ class HtMainView
         echo '</div>';
         /*END @Caption*/
         echo '</div>';
+	        echo '</div>';
         /*END @thumbnail thumbnail-property features*/
         echo  '</div>';
         //---------------------------------------------------------
@@ -339,7 +337,7 @@ class HtMainView
 
 
         if ($searchWordSanitized == "" and $city == "000" and $item == "000") {
-            $this->failedSearch();
+            $this->failedSearch($searchWordSanitized, $city, $item);
         } else if ($searchWordSanitized == "" and ($city == "All" or $city == "000") and ($item == "All" or $item == "000")) {
             $this->showLatest();
         } else if (($searchWordSanitized != "" or $searchWordSanitized == "") and ($item == "All" or $item == "000")) {
@@ -395,8 +393,8 @@ class HtMainView
                 $condition = "WHERE id = $item_id";
                 $obj = $main_obj->runQuery($condition);
                 $fetchItemRow = $this->_pItem->getResultSet();
-                while ($row = $fetchItemRow->fetch_assoc()) {
-                    $this->showItemWithId($row);
+                while ($ab = $fetchItemRow->fetch_assoc()) {
+                    $this->showItemWithId($ab);
                 }
             }
             echo '</div>';
@@ -457,18 +455,16 @@ class HtMainView
      * Shall be used when there is no item to show
      * This function shall expect to take more args for search
      */
-    public function itemNotFound()
+    public function itemNotFound($searchWordSanitized = null, $city = null, $item = null)
     {
-        $searchWordSanitized = isset($_GET['search_text']) ? $_GET['search_text'] : "";
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
         echo '<div id="spanMainColumnXRemove" style="color: red">';
-        echo  '<span style="color:black">*' . $searchWordSanitized . '*</span><br />';
         echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
     }
 
-    public function failedSearch()
+    public function failedSearch($searchWordSanitized = null, $city = null, $item = null)
     {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
