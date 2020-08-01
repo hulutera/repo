@@ -90,7 +90,6 @@
 }
 
 .thumbnail-property .property-image .property-image-hover {
-    background: rgba(38, 157, 206, 0.61);
     height: 100%;
     left: 0;
     opacity: 0;
@@ -226,10 +225,6 @@
     /* transform: rotate(4deg);
     -webkit-transform: rotate(4deg);
     -ms-transform: rotate(4deg); */
-}
-
-.thumbnail-property .budget.budget-damage .budget-mask {
-    background: #d52828;
 }
 
 .thumbnail-property .anchor {
