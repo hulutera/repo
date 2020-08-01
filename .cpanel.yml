@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/hah3lga4knls/public_html/
+    - /bin/cp -R removeme $DEPLOYPATH
