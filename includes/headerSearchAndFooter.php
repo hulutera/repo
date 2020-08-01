@@ -30,7 +30,8 @@ function commonHeader()
 	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
 		$add = "../..";
 	} else {
-		$add = "http://static.hulutera.com";
+		//$add = "http://static.hulutera.com";
+		$add = "../..";
 	}
 
 	fileRouter($add);
