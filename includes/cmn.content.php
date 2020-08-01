@@ -390,7 +390,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 						}
 					}
 					/// step 3: send notification to user
-					if (DBHOST !== 'localhost') {
+					if (DBHOST == 'localhost') {
 						///send mail to user
 						$subject = $GLOBALS['user_specific_array']['message']['account-deactivation']['subject'];
 						$body = $GLOBALS['user_specific_array']['message']['account-deactivation']['body'][0] . "<br><br>";
@@ -419,7 +419,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 					}
 
 					/// step 3: send a notification to user
-					if (DBHOST !== 'localhost') {
+					if (DBHOST == 'localhost') {
 						///send mail to user
 						$subject = $GLOBALS['user_specific_array']['message']['account-closed']['subject'];
 						$body = $GLOBALS['user_specific_array']['message']['account-closed']['body'][0] . "<br><br>";

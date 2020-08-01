@@ -933,10 +933,10 @@ SQL;
         $body .= "http://www.hulutera.com/includes/activate.php?key=" . $activation;
 
         /// temporary disable for message sending
-        if (DBHOST == 'localhost') {
-            header('Location: ../../includes/prompt.php?type=1');
-            return;
-        }
+        // if (DBHOST == 'localhost') {
+        //     header('Location: ../../includes/prompt.php?type=1');
+        //     return;
+        // }
         ///
         $isMailDelivered = mail($email, $subject, $body, 'From:noreply@hulutera.com');
         //Check if mail Delivered or die

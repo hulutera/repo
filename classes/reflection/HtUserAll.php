@@ -1305,10 +1305,10 @@ SQL;
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "<br><br>";
 
         /// temporary disable for message sending
-        if (DBHOST == 'localhost') {
-            header('Location: ../includes/prompt.php?type=4');
-            return;
-        }
+        // if (DBHOST == 'localhost') {
+        //     header('Location: ../includes/prompt.php?type=4');
+        //     return;
+        // }
         $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
         //Check if mail Delivered or die
         if (!$isMailDelivered) {
@@ -1368,11 +1368,11 @@ SQL;
 
 
             /// temporary disable for message sending
-            if (DBHOST == 'localhost') {
-                $_SESSION['editProfileSuccess'] = 1;
-                header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
-                return;
-            }
+            // if (DBHOST == 'localhost') {
+            //     $_SESSION['editProfileSuccess'] = 1;
+            //     header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
+            //     return;
+            // }
             $isMailDelivered = mail($this->field_email, $subject, $body, 'From:admin@hulutera.com');
             //Check if mail Delivered or die
             if (!$isMailDelivered) {

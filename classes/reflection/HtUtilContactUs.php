@@ -714,10 +714,10 @@ SQL;
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "<br><br>";
         /// temporary disable for message sending
-        if (DBHOST == 'localhost') {
-            header('Location: ../includes/prompt.php?type=7' . $lang_sw);
-            return;
-        }
+        // if (DBHOST == 'localhost') {
+        //     header('Location: ../includes/prompt.php?type=7' . $lang_sw);
+        //     return;
+        // }
         $isMailDelivered = mail($this->field_email, $subject, $body, 'From:noreply@hulutera.com');
         //Check if mail Delivered or die
         if (!$isMailDelivered) {
