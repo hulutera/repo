@@ -4,12 +4,22 @@
  * Defines the constants for MySQL database connection parameters used by a Bean.
  */
 
-define("DBHOST", "localhost");
-define("DBUSER", "root");
-define("DBPASSWORD", "");
-define("DBNAME", "hulutera_db");
-define('DBPORT', '3306');
-
+if ($_SERVER['SERVER_NAME'] == "hulutera") {
+    define("DBHOST", "localhost");
+    define("DBUSER", "root");
+    define("DBPASSWORD", "");
+    define("DBNAME", "hulutera_db");
+    define('DBPORT', '3306');
+} else {
+    if ($_SERVER['SERVER_NAME'] == "hulutera.com") {
+        $config = parse_ini_file('/home/hah3lga4knls/db.ini');
+        define("DBHOST", $config["DBHOST"]);
+        define("DBUSER", $config["DBUSER"]);
+        define("DBPASSWORD", $config["DBPASSWORD"]);
+        define("DBNAME", $config["DBNAME"]);
+        define('DBPORT', $config['DBPORT']);
+    }
+}
 /**
  * Date formats:
  * @note HTML5 date format is like 2016/01/20 - aaaa/mm/dd
