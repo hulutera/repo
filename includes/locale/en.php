@@ -307,7 +307,9 @@ $lang = array(
     'select city from map' => 'Select a city on the map',
     'Choose' => 'Choose',
     'help' => 'Help',
-    'or' => 'OR'
+    'or' => 'OR',
+    'latest items' => 'Latest Items',
+    'latest items message' => 'Click the link to see recently uploaded items.'
 
 );
 

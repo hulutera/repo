@@ -4,7 +4,7 @@
  * Defines the constants for MySQL database connection parameters used by a Bean.
  */
 
-if ($_SERVER['SERVER_NAME'] == "hulutera") {
+if ($_SERVER['SERVER_NAME'] == "hulutera" || $_SERVER['SERVER_NAME'] == "localhost") {
     define("DBHOST", "localhost");
     define("DBUSER", "root");
     define("DBPASSWORD", "");

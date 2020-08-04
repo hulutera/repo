@@ -154,7 +154,8 @@ class HtCommonView extends MySqlRecord
         $itemImageDir = "item_" . $this->_itemName;
         $userImageDir = "/user_id_" . $itemObj->getIdUser();
         $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
-        $path = "../upload/";
+        $realPath = (!strpos($_SERVER['PHP_SELF'], "index.php")) ? "../" : "";
+        $path = $realPath. "upload/";
         $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
         return $dir;
     }

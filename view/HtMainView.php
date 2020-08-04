@@ -203,8 +203,6 @@ class HtMainView
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
 
-
-
         // scan uploads directory
         $uploadsFiles = array_diff(scandir($imageDir), array('.', '..'));
         if (empty($uploadsFiles) || !isset($image)) {
@@ -216,9 +214,6 @@ class HtMainView
             $imageArr = explode(',', $image);
             $numimage = sizeof($imageArr);
         }
-
-
-
 
         $jsImg = implode(',', $imageArr);
         $strReplArr = array('[', ']', '"');
@@ -460,11 +455,11 @@ class HtMainView
      */
     public function itemNotFound()
     {
-        $searchWordSanitized = isset($_GET['search_text']) ? $_GET['search_text'] : "";
+        $searchWordSanitized = isset($_GET['search_text']) ? (!empty($_GET['search_text'])) ?  "*" . $_GET['search_text'] . "*" : "" : "";
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
         echo '<div id="spanMainColumnXRemove" style="color: red">';
-        echo  '<span style="color:black">*' . $searchWordSanitized . '*</span><br />';
+        echo  '<span style="color:black">' . $searchWordSanitized . '</span><br />';
         echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
     }

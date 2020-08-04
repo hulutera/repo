@@ -3083,6 +3083,55 @@ th {
 	margin-bottom: 20px;
 }
 
+.show-latest-container {
+	display: block;
+}
+
+.show-latest {
+	text-align:center;
+	background-color:#2e6b68;
+	border-radius: 0px  0px 50px 50px;
+	margin-bottom: 20px;
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.show-latest-mob-container {
+	display: none;
+	margin-top: 50px;
+}
+
+.show-latest-mob {
+	height: 100px;
+	text-align: center;
+	background-color: #378de5;
+	border-radius: 20px;
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.show-latest-mob a {
+	position: relative;
+	top:25%;
+	color:white;
+	text-decoration:none;
+	display:inline-block;
+}
+
+.show-latest  a:hover, .show-latest-mob  a:hover {
+	background-color: orange;
+	background-image: none;
+	color:black;
+}
+
+.show-latest a:active, .show-latest-mob a:active{
+	background-color: #0080ff;
+	color: #fff;
+	background-image: none;
+}
+
 /*
   ##Device = Laptops, Desktops
 */
@@ -3276,6 +3325,12 @@ th {
 		margin-left:15%;
 		margin-right:15%;
 	}
+	.show-latest-container {
+		display: block;
+	}
+	.show-latest-mob-container {
+		display: none;
+	}
 }
 
 /* */
@@ -3320,6 +3375,12 @@ th {
 		width: 80%
 		margin-left:10%;
 		margin-right:10%;
+	}
+	.show-latest-container {
+		display: block;
+	}
+	.show-latest-mob-container {
+		display: none;
 	}
 
 }
@@ -3538,6 +3599,12 @@ th {
 		margin-left:10%;
 		margin-right:10%;
 	}
+	.show-latest-container {
+		display: block;
+	}
+	.show-latest-mob-container {
+		display: none;
+	}
 
 }
 
@@ -3747,10 +3814,21 @@ th {
 	.leftNav-index {
 		display: none;
 	}
+	.rightNav-index {
+		display: none;
+	}
 	#mainColumn-index {
 		display: none
 	}
-
+	.show-latest-container {
+		display: none;
+	}
+	.show-latest-mob-container {
+		display: block;
+	}
+	.latest-button-mob {
+		width: 100%;
+	}
 	.rightNav-index {
 		width: 100%;
 		margin-left: auto;
@@ -4095,10 +4173,6 @@ th {
 #sidelist ul li:hover>ul {
 	display: block;
 }
-
-/*
-
-*/
 
 .image-container {
 	position: relative;

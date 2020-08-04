@@ -17,8 +17,9 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 	commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -46,26 +47,15 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 			</div>
 			<!!----#leftNav end-------!!>
 
-				<div id="mainColumn-index" class="col-xs-9 col-md-8">
+				<div class="col-xs-9 col-md-8 latest-button-mob">
+				<?php
+                    showLatestItem();
+				?>
+				<div id="mainColumn-index" class="col-xs-12 col-md-12" style="padding:0px">
 					<!!----#mainColumn start-------!!>
-						<p class="index-txt"> <?php echo $lang['select city from map']; ?></p>
+					<?php showMap(); ?>
 
-						<!!----SVG for bigger screens----!!>
-							<svg class="svg-big-sc" width="798.71997" height="620.46997" viewbox="0 0 900 800" fill="#378de5">
-								<?php svgMapElement(); ?>
-							</svg>
-
-							<!!----SVG for mid screens----!!>
-								<svg class="svg-mid-sc" width="798.71997" height="620.46997" viewbox="0 0 1000 900" fill="#378de5">
-									<?php svgMapElement(); ?>
-								</svg>
-
-								<!!----SVG for small screens----!!>
-									<svg class="svg-small-sc" width="798.71997" height="620.46997" viewbox="0 0 1600 1400" fill="#378de5">
-										<?php svgMapElement(); ?>
-									</svg>
-
-				</div>
+				</div></div>
 				<!!----#mainColumn end-------!!>
 
 					<div class="rightNav-index col-xs-3 col-md-2">
@@ -94,3 +84,44 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 </body>
 
 </html>
+
+<?php
+
+// show mapped page
+function showMap() {
+	global $str_url;
+	echo '<div class="col-xs-12 col-md-12 show-latest-container" style="text-align:center;">';
+	echo '<div class="col-xs-12 col-md-8 show-latest">';
+	echo '<a href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '" style="display:inline-block;color:white;text-decoration:none"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
+	echo '</div>';
+	echo '</div>';
+	echo '<p class="index-txt">' . $GLOBALS["lang"]["select city from map"] . '</p>';
+?>
+	<!!----SVG for bigger screens----!!>
+			<svg class="svg-big-sc" width="798.71997" height="620.46997" viewbox="0 0 900 800" fill="#378de5">
+				<?php svgMapElement(); ?>
+			</svg>
+
+	<!!----SVG for mid screens----!!>
+		<svg class="svg-mid-sc" width="798.71997" height="620.46997" viewbox="0 0 1000 900" fill="#378de5">
+			<?php svgMapElement(); ?>
+		</svg>
+
+	<!!----SVG for small screens----!!>
+		<svg class="svg-small-sc" width="798.71997" height="620.46997" viewbox="0 0 1600 1400" fill="#378de5">
+			<?php svgMapElement(); ?>
+		</svg>
+<?php
+}
+
+// show latest item
+function showLatestItem() {
+	global $str_url;
+	echo '<div class="col-xs-12 col-md-12 show-latest-mob-container" style="text-align:center;">';
+	echo '<p class="index-txt">' . $GLOBALS["lang"]["latest items message"] . '</p>';
+	echo '<div class="col-xs-12 col-md-12 show-latest-mob">';
+	echo '<a href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
+	echo '</div>';
+	echo '</div>';
+}
+?>

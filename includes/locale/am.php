@@ -294,7 +294,9 @@ $lang = array(
     'select city from map' => 'ካርታው ላይ ከተማ ይምረጡ',
     'Choose' => 'ይምረጡ',
     'help' => 'መረጃ',
-    'or' => 'ወይም'
+    'or' => 'ወይም',
+    'latest items' => 'በቅርብ ጊዜ የገቡ ንብረቶች',
+    'latest items message' => 'በቅርብ ጊዜ የገቡ ንብረቶችን ለማየት የሚከተለውን ተጭነው መመልከት ይችላሉ።'
 
 );
 
