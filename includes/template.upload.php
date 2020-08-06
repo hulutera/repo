@@ -16,7 +16,7 @@ if (isset($_GET['lan'])) {
 <html lang="en">
 
 <head>
-	<title>Upload | ንብረቱን ያስገቡ</title>
+	<title><?php echo $GLOBALS['lang']['upload'];?></title>
 	<?php commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 

@@ -25,7 +25,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 <body>
 <?php
 	headerAndSearchCode("index");
-	?>
+?>
 	<div id="whole" style="width:100%;margin-left:0px;margin-right:0px">
 		<div id="wrapper" style="width:100%">
 			<div class="leftNav-index col-xs-2 col-md-2">

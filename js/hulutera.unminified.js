@@ -5,7 +5,12 @@ function itemSelect() {
         item_class = item + "_search_cl";
         $(".se-el").hide();
         $("." + item_class).attr('style','display: block !important');
-    })
+        item_array = [ 'car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'];
+        $.each(item_array, function(i, value) {
+            $("." + value + '_select').attr('disabled', 'disabled');
+        });
+        $("." + item + "_select").removeAttr('disabled', 'disabled');
+        })
 }
 
 function showSection(e) {
