@@ -1443,7 +1443,7 @@ class HtItemCar extends MySqlRecord
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%' OR field_price_sell is null";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 6000000) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "(field_price_sell LIKE '%' OR field_price_sell is null)";
         $modelYearFilter = $this->modelYrFilter();
 
         if ($searchType == "single-item") {

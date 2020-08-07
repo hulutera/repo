@@ -1471,7 +1471,7 @@ class HtItemHouse extends MySqlRecord
         $catTableName =   $this->getCatTableName();
         $joinCatTable = "INNER JOIN " . $catTableName . " ON " . $itemTable . ".id_category = " . $catTableName . ".id ";
         $statusFilter = " WHERE field_status LIKE 'active'";
-        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "field_price_sell LIKE '%' OR field_price_sell is null";
+        $maxPriceFilter = ($this->maxPriceValue != "000")  ? ($this->maxPriceValue == 20000001) ? "field_price_sell LIKE '%'" : "field_price_sell <= " .  (int) ($this->maxPriceValue) : "(field_price_sell LIKE '%' OR field_price_sell is null)";
         $maxBedroomFilter = ($this->maxBedroomValue != 0)  ? ($this->maxBedroomValue == 101) ? "field_nr_bedroom >= " .  (int) ($this->maxBedroomValue) : "field_nr_bedroom >= " .  (int) ($this->maxBedroomValue) : "field_nr_bedroom LIKE '%'";
         $maxToiletFilter = ($this->maxToiletValue != 0)  ? ($this->maxToiletValue == 101) ? "field_toilet >= " .  (int) ($this->maxToiletValue) : "field_toilet >= " .  (int) ($this->maxToiletValue) : "field_toilet LIKE '%'";
         $builtYrFilter = $this->builtYear();
