@@ -9,7 +9,6 @@ deployment:
     - /bin/cp -R images $DEPLOYPATH
     - /bin/cp -R includes $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
-    - /bin/cp -R removeme $DEPLOYPATH
     - /bin/cp -R test $DEPLOYPATH
     - /bin/cp -R upload $DEPLOYPATH
     - /bin/cp -R view $DEPLOYPATH
