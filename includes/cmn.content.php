@@ -173,8 +173,8 @@ function allUsers()
 	}
 
 	___open_div_('container-fluid');
-	___open_div_('row', '" style="width:80%;');
-	___open_div_('col-md-12', '" ');
+	___open_div_('row col-xs-12 col-md-12', '');
+	___open_div_('col-xs-12 col-md-12', '" ');
 	echo '<p class="h2">User Management Table</p>';
 
 	echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
@@ -297,12 +297,13 @@ function allUsers()
 			$keyValue = explode("=", $allUserIdDecodeArr[$i]);
 			$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
 		}
+		/*
 		if (HtGlobal::get('DEBUG')) {
 			var_dump($allUserIdDecode);
 			var_dump($allUserIdDecodeArr);
 			var_dump($ACTIVITY_ARRAY);
 			var_dump($_POST);
-		}
+		} */
 
 		////
 		listUsers($ACTIVITY_ARRAY);
@@ -449,6 +450,7 @@ function listUsers(&$ACTIVITY_ARRAY)
                         <p class="h4" style="border-bottom:1px solid #c7c7c7;">User id :     <strong>' . $userId . '</strong></p>
                         <p class="h4" style="border-bottom:1px solid #c7c7c7;">Username :    <strong>' . $row->field_user_name . '</strong></p>
 ';
+		$changed = "";
 		if (isset($privilege))
 			$changed = '<span style="color:lightgreen;">(Updated)</span>';
 		echo '<p class="h4" style="border-bottom:1px solid #c7c7c7;">Privilege :     <strong>' . $row->field_privilege . '</strong>' . $changed . '</p>';
@@ -505,6 +507,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 			}
 			$totalNumber = 0;
 		}
+		$tableUserTemp = "";
 		if (isset($ACTIVITY_ARRAY['table']) && ($ACTIVITY_ARRAY['table'] == 'user_temp')) {
 			$tableUserTemp = '&table=user_temp';
 		}
@@ -622,25 +625,32 @@ function activityTable()
 	$cryto = new Cryptor();
 
 	/// decode Url
-	$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($_GET['activityTableId']);
-	/// extract content similar to $_GET action
-	$actionIdDecodeArr = explode("&", $actionIdDecode);
+	$actionId = isset($_GET['activityTableId']) ? $_GET['activityTableId'] : "";
+	if($actionId != "") {
+		$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($actionId);
+		/// extract content similar to $_GET action
+		$actionIdDecodeArr = explode("&", $actionIdDecode);
+	} else {
+		$actionIdDecodeArr = [];
+	}
 
 	///prepare finalArray simlar to $_GET
 	for ($i = 0; $i < count($actionIdDecodeArr); ++$i) {
 		$keyValue = explode("=", $actionIdDecodeArr[$i]);
 		$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
 	}
+
+	/*
 	if (HtGlobal::get('DEBUG')) {
 		var_dump($actionIdDecode);
 		var_dump($actionIdDecodeArr);
 		var_dump($ACTIVITY_ARRAY);
-	}
+	}*/
 
 	___open_div_('container-fluid');
 	if (!isset($ACTIVITY_ARRAY['allUserAdvancedUserId'])) {
-		___open_div_('row', '" style="width:50%;');
-		___open_div_('col-md-12', '" ');
+		___open_div_('row col-xs-12 col-md-12', '');
+		___open_div_('col-xs-12 col-md-12', '');
 
 		echo '<p class="h2">Item Management Table</p>';
 		echo '<p class="h3">Click on number links to take adminstrative actions</p>';
@@ -679,8 +689,8 @@ function activityTable()
 		];
 		___close_div_(1);
 		___close_div_(1);
-		___open_div_('row', '" style="width:50%;');
-		___open_div_('col-md-12');
+		___open_div_('row col-md-12', '');
+		___open_div_('col-xs-12 col-md-12');
 
 		echo '<table class="table">
           <thead>
@@ -757,8 +767,8 @@ function activityTable()
 		___close_div_(1);
 		___close_div_(1);
 	}
-	___open_div_('row', '" style="width:80%;');
-	___open_div_('col-md-12');
+	___open_div_('row', '');
+	___open_div_('col-xs-12 col-md-12');
 
 	/**
 	 * ACTION EXECUTIONS HERE

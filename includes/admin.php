@@ -22,7 +22,7 @@ require_once $documnetRootPath . '/includes/common.inc.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Hulutera | ሁሉተራ </title>
+    <title><?php echo $GLOBALS['lang']['admin-panel'];?></title>
 
 
     <link rel="stylesheet" href="../../css/style4.css">
@@ -103,6 +103,8 @@ EOD;
                 <li>
 
                     <?php
+                    $style1 = "";
+                    $style2 = "";
                     if ((isset($_GET['function']) && $_GET['function'] == 'all-users') ||
                         (isset($_GET['allUserId']) && $_GET['allUserId'] !== '')
                     ) {
