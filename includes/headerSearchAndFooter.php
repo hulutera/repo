@@ -249,7 +249,7 @@ function miniSearch()
 	householdSearch();
 	otherSearch();
 	lang_sw();
-	echo '<form></div>';
+	echo '</form></div>';
 }
 
 
