@@ -33,7 +33,7 @@ function commonHeader()
 		//$add = "http://static.hulutera.com";
 		$add = "../..";
 	}
-
+	echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
 	fileRouter($add);
 }
 
@@ -175,7 +175,7 @@ function logoImage()
 function logoText()
 {
 	global $lang_url;
-	echo '<a href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:40px;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO'] . '</div></a>';
+	echo '<a href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:50px;font-family: \'Roboto\', sans-serif;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO'] . '</div></a>';
 }
 
 /*Top Right Links*/
