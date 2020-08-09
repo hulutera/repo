@@ -804,10 +804,10 @@ function footerCode()
 	echo '<div id="followUs_fo" >
           <p class="h4">' . $lang['FOLLOW US'] . '</p>
                <ul>
-                <a class="fb" href="https://www.facebook.com/pages/huluteracom/1564644313772355" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' . $lang['facebook'] . '</li></a>
-                <a class="tw" href="https://twitter.com/huluteracom" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' . $lang['twitter'] . '</li></a>
-                <a class="pInt" href="http://www.pinterest.com/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' . $lang['pintrest'] . '</li></a>
-                <a class="youtube" href="http://youtu.be/xSI3C52mqdU" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' . $lang['youtube'] . '</li></a>
+                <a class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' . $lang['facebook'] . '</li></a>
+                <a class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' . $lang['twitter'] . '</li></a>
+                <a class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' . $lang['pintrest'] . '</li></a>
+                <a class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' . $lang['youtube'] . '</li></a>
                </ul>
            </div>';
 	echo '</div>';
