@@ -5,6 +5,8 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/includes/validate.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,10 @@ require_once $documnetRootPath . '/includes/validate.php';
 </style>
 
 <body>
-    <?php headerAndSearchCode("");
+    <?php
+    if (!isset($_GET['release'])) {
+        headerAndSearchCode("");
+    }
     ?>
     <div class="row">
 
@@ -48,7 +53,11 @@ require_once $documnetRootPath . '/includes/validate.php';
         }
         ?>
     </div>
-    <?php footerCode(); ?>
+    <?php
+    if (!isset($_GET['release'])) {
+        footerCode();
+    }
+    ?>
     <script>
         function myFunction() {
             var x1 = document.getElementById("fieldPassword");

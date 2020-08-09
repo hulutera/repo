@@ -1068,7 +1068,7 @@ SQL;
         } else {
             $lang_url = "";
         }
-        echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=login' . $lang_url . '" method="post" enctype="multipart/form-data">';
+        echo '<form class="form-horizontal" action="../../includes/form_user.php?function=login' . $lang_url . '" method="post" enctype="multipart/form-data">';
         $this->insertLoginField();
         echo '</form>';
     }
@@ -1182,6 +1182,10 @@ SQL;
         ////
         ___open_div_("row", "");
         ___open_div_('col-md-12 col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
+
+        if (isset($_GET['release'])) {
+            logoText();
+        }
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['login'] . '</strong></p>';
         ___close_div_(2);
         ////

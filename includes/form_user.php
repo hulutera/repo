@@ -37,6 +37,8 @@ if (!empty($errPre)) {
     $redirectLink = '';
     if ($function == 'edit-profile') {
         $redirectLink = $_SERVER['HTTP_REFERER'];
+    } else if ($function == 'login') {
+        $redirectLink = './' . $function . '.php?function=' . $function . '&release=beta' . $lang_sw;
     } else {
         $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
     }

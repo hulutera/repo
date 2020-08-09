@@ -60,6 +60,17 @@ function fileRouter($add)
 <?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
 	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
+
+	global $str_url;
+
+
+	if($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php')
+	{
+		if(!isset($_SESSION['uID']))
+		{
+			header('Location: ../includes/login.php?release=beta'.$str_url);
+		}
+	}
 }
 
 
