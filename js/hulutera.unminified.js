@@ -430,47 +430,47 @@ function swapmailclose(e, t) {
 
 function swapabuse(id, itemName) {
     $(document).ready(function () {
-        $(".reportbox_" + itemName + id).slideDown("fast");
-        $(".contact_" + itemName + id).slideUp("fast")
+        $(".reportbox_" + itemName + "-" + id).slideDown("fast");
+        $(".contact_" + itemName + "-" + id).slideUp("fast")
     })
 }
 
-function closeAbusebox(e, t) {
+function closeAbusebox(id, itemName) {
     $(document).ready(function () {
-        $(".reportbox_" + t + e).slideUp("fast");
-        $(".contact_" + t + e).slideDown("fast");
-        $(".errorabuse_" + t + e).slideUp("fast");
-        $("#selectabuse_" + t + "_" + e).removeAttr("style");
-        $("#selectabuse_" + t + "_" + e).val("")
+        $(".reportbox_" + itemName + "-" + id).slideUp("fast");
+        $(".contact_" + itemName + "-" + id).slideDown("fast");
+        $(".errorabuse_" + itemName + "-" + id).slideUp("fast");
+        $("#selectabuse_" +itemName + "-" + id).removeAttr("style");
+        $("#selectabuse_" + itemName + "-" + id).val("")
     })
 }
 
-function swapabuseback(e, t) {
+function swapabuseback(id, itemName) {
     $(document).ready(function () {
-        var n = $("#selectabuse_" + t + e).val();
+        var n = $("#selectabuse_" + itemName + "-" + id).val();
         if (n === "000") {
-            $(".errorabuse_" + t + e).slideDown("fast");
-            $("#selectabuse_" + t + e).css("border", "1px solid #D8000C");
+            $(".errorabuse_" + itemName + "-" + id).slideDown("fast");
+            $("#selectabuse_" + itemName + "-" + id).css("border", "1px solid #D8000C");
         } else {
-            $(".errorabuse_" + t + e).slideUp("fast");
+            $(".errorabuse_" + itemName + "-" + id).slideUp("fast");
             $.ajax({
-                url: "/includes/report.php?itemid=" + e + "&selected=" + n + "&itemtype=" + t,
+                url: "/includes/report.php?itemid=" + id + "&selected=" + n + "&itemtype=" + itemName,
                 method: "GET"
             });
-            $(".reportbox_" + t + e).slideUp("fast");
-            $(".reportcfrm_" + t + e).slideDown("fast");
+            $(".reportbox_" + itemName + "-" + id).slideUp("fast");
+            $(".reportcfrm_" + itemName + "-" + id).slideDown("fast");
         }
     })
 }
 
-function swapabuseclose(e, t) {
+function swapabuseclose(id, itemName) {
     $(document).ready(function () {
-        $(".reportbox_" + t + e).slideUp("fast");
-        $(".reportcfrm_" + t + e).slideUp("fast");
-        $(".contact_" + t + e).slideDown("fast");
-        $(".errorabuse_" + t + e).slideUp("fast");
-        $("#selectabuse_" + t + "_" + e).removeAttr("style");
-        $("#selectabuse_" + t + "_" + e).val("")
+        $(".reportbox_" + itemName + "-" + id).slideUp("fast");
+        $(".reportcfrm_" + itemName + "-" + id).slideUp("fast");
+        $(".contact_" + itemName + "-" + id).slideDown("fast");
+        $(".errorabuse_" + itemName + "-" + id).slideUp("fast");
+        $("#selectabuse_" + itemName + "-" + id).removeAttr("style");
+        $("#selectabuse_" + itemName + "-" + id).val("")
     })
 }
 

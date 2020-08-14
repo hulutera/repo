@@ -56,7 +56,7 @@ class HtCommonView extends MySqlRecord
         echo '<div class="object-fit-imagediv" style="background-image: url(&quot;http://geniuscript.com/worlddealer/assets/img/pic/car/audio/audio-f.jpg&quot;);"></div>';
         echo '<div class="image-count"><i class="icon-image"></i><span>2</span></div>';
         echo '<div class="budget budget-used"><div class="budget-mask"><span>Used</span></div></div>';
-        echo '<a href="listing.html" class="property-image-hover">
+        echo '<a rel="canonical"  href="listing.html" class="property-image-hover">
         <span class="property-im-m property-im-m-lt"></span>
         <span class="property-im-m property-im-m-lb"></span>
         <span class="property-im-m property-im-m-rt"></span>
@@ -68,10 +68,10 @@ class HtCommonView extends MySqlRecord
         /*START @ Caption*/
         echo '<div class="caption">';
         echo '<div class="anchor">
-            <a href="#" class=""><i class="fa fa-bookmark"></i>
+            <a rel="canonical"  href="#" class=""><i class="fa fa-bookmark"></i>
             </a>
         </div>
-        <h3 class="property-title"><a href="listing.html">Fast car 1,6 TDI DSG</a></h3>
+        <h3 class="property-title"><a rel="canonical"  href="listing.html">Fast car 1,6 TDI DSG</a></h3>
         <p class="property-description">2014. g. 39.138 km, 66kW/90KS</p>
         <span class="property-field">114.630 km</span>
         <div class="property-ratings">
@@ -94,17 +94,17 @@ class HtCommonView extends MySqlRecord
         echo '<div class="thumbnail">';
 
         if ($numimage == 1) {
-            echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
+            echo "<a rel=\"canonical\"  href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
             $thumbNailImage  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
-            echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+            echo "<a rel=\"canonical\"  href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
             echo '<div class="image">	<img src="' . $thumbNailImage . '" ></div></a>';
         }
         //
         // echo '<div class="detail">';  //start_detail
         // echo '<div class="leftcol">'; //start_leftcol
-        // echo "<a href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
+        // echo "<a rel="canonical"  href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName'), insertimg('$imageDir',$id,'$itemName',$imgString)\">";
         // $this->displayTitle($title, $itemName);
         // echo "</a>";
         // $this->displayLocation($location);
@@ -317,7 +317,7 @@ class HtCommonView extends MySqlRecord
     {
         echo "<div class=\"reportmsgcompleted\">";
         echo "<div style=\"width:100%; height:100px;display:none;\" class=\"reportcfrm_$uniqueId\">";
-        echo '<p>' . $GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"] . '</p>';
+        echo '<p style="background-color:#BDE0C8">' . $GLOBALS["abuse_type_lang_arr"][1]["You successfully reported the item!"] . '</p>';
         echo "<input  class=\"closeReportInnerRemove btn btn-danger btn-sm\" type=\"button\" onclick=\"swapabuseclose($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>"; //end_reportcfrm_*
         echo "</div>"; //end_reportmsgcompleted
@@ -378,11 +378,11 @@ class HtCommonView extends MySqlRecord
         echo '<div class="headerRemove"><p class="bg-success"><strong>' . $GLOBALS["lang"]["Contact method"] . '</strong></p></div>';
         if ($contactType == "email" or $contactType == "both")
             echo "<div class=\"email\">
-			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
+			<p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a rel=\"canonical\" href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
         if ($contactType == "phone" or $contactType == "both")
             echo "<div class=\"phone\">
 			<p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a rel=\"canonical\" href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
         echo "</div>";
     }
     /*@ function to display image gallery
@@ -408,7 +408,7 @@ class HtCommonView extends MySqlRecord
                 echo "<div id=\"featured_buttom1\" class=\"col-xs-3 col-md-2\" style=\"padding:0px\">";
                 echo "<div class=\"imagesGallery1 thumbnail\">";
                 echo "
-				<a href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
+				<a rel=\"canonical\"  href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
 				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$dir$fileName\" />
 				</a>
                 ";

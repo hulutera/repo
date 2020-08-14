@@ -149,7 +149,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',
@@ -193,7 +193,7 @@ $lang = array(
     'my page' => 'Your Page',
     'my profile' => 'Your Profile',
     'my page header' => 'Welcome to your page',
-    'my-page msg' => 'In this page, you can check the status of your uploaded items and edit your profile. Shall you require more information then contact us by clicking <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a> link.',
+    'my-page msg' => 'In this page, you can check the status of your uploaded items and edit your profile. Shall you require more information then contact us by clicking <a rel="canonical"  href="../../includes/template.proxy.php?type=contact' . $str_url . '">this</a> link.',
     'my-page msg2' => 'Here you can view your posted items. You will find status of your active, pending, reported or deleted items.',
     'my-page msg3' => 'Here you can edit you personal information. You can change password, username, email, ... etc.',
     'to my page' => 'Back to Your Page',
@@ -258,17 +258,17 @@ $lang = array(
     'no users found' => '<br>No user found with this information!</p>',
     'My Items' => 'Your Items',
     //Upload prompt related
-    'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a href="../includes/upload.php' . $lang_url . '"> click this... </a>',
-    'to main page prompt msg' => '<a href="../../index.php' . $lang_url . '">TO Main page ... </a>',
-    'prompt msg for a wrong access to upload' => ' You need to <a href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
+    'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a rel="canonical"  href="../includes/upload.php' . $lang_url . '"> click this... </a>',
+    'to main page prompt msg' => '<a rel="canonical"  href="../../index.php' . $lang_url . '">TO Main page ... </a>',
+    'prompt msg for a wrong access to upload' => ' You need to <a rel="canonical"  href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
     'Back to Post Item' => "Back to Post Item",
     //Search related
     'search-title' => 'Search',
     'search-button' => 'Search',
-    'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
+    'full no match msg' => 'Sorry, there is no item found with your request! Please try again. </br> You can find more information about how to search on <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'no match msg part1' => 'Sorry, there is no item found for',
     'no match msg part2' => '</br>',
-    'no match msg part3' => 'You can find more information about how to search on <a href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
+    'no match msg part3' => 'You can find more information about how to search on <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '"> this </a>page',
     'search res' => 'Search Result',
     'failed search' => 'Please enter the search word or any other search options',
     //Item related
@@ -279,12 +279,12 @@ $lang = array(
     'More Detailed Info' => 'More Detailed Info',
     //Prompt
     'pass-recovery success' => 'Password recovery information has now been sent to the e-mail associated with this user.\n Please follow instructions in the email.',
-    'account activated message' => 'Your account is now active. You may now <a href="../includes/login.php">Log In</a></br> In your account page, you can update your account informations, post Items and manage the items you posted.',
+    'account activated message' => 'Your account is now active. You may now <a rel="canonical"  href="../includes/login.php">Log In</a></br> In your account page, you can update your account informations, post Items and manage the items you posted.',
     'registration succeded message' => 'Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.',
     'email adress or username has already used' => 'The Email address or the Username has already been used, try another.',
     'password change success' => 'Your Password has been changed successfully.',
     'contact-us succeed message' => '<strong>We appreciate your taking the time to contact us.</strong><br><br>If your message require a response, we will get back to you as soon as we can. We do our best to answer e-mails within 1-2 business days (Monday-Friday).',
-    'activation key expired' => 'Your activation key has expired. You can no longer use this registration. You may <a href="../includes/register.php"> Register!</a> again!</br>',
+    'activation key expired' => 'Your activation key has expired. You can no longer use this registration. You may <a rel="canonical"  href="../includes/register.php"> Register!</a> again!</br>',
     'account termination message' => 'Information regarding Account Termination has now been sent to the e-mail associated with this user.\n Please follow instructions in the email.',
     //Miscellaneous
     'Invalid' => "Invalid",

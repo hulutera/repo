@@ -18,8 +18,8 @@ function pagination($item, $totpage, $page, $mailtype)
 	//PAGE_RANGE is the offset pages on the left and right side of the current page
 	//left-side
 	if ($page > 1) {
-		echo '<li><a href="?type=' . $item . '&page=1&mail_type=' . $mailtype . $str_url . '">' . $lang['first page'] . '</a></li>';
-		echo '<li><a href="?type=' . $item . '&page=' . $previouspage . ' & mail_type=' . $mailtype . $str_url . ' ">' . $lang['previous'] . '</a></li>';
+		echo '<li><a rel="canonical"  href="?type=' . $item . '&page=1&mail_type=' . $mailtype . $str_url . '">' . $lang['first page'] . '</a></li>';
+		echo '<li><a rel="canonical"  href="?type=' . $item . '&page=' . $previouspage . ' & mail_type=' . $mailtype . $str_url . ' ">' . $lang['previous'] . '</a></li>';
 	} else {
 		echo '<li class="previous-off"> <b>' . $lang['first page'] . ' </b></li>';
 		echo '<li class="previous-off"><b> ' . $lang['previous'] . '</b></li>';
@@ -32,14 +32,14 @@ function pagination($item, $totpage, $page, $mailtype)
 	for ($i = $START; $i <= $END; ++$i) {
 		if ($i > 0 && $i <= $totpage) {
 			echo ($i == $page) ?
-				'<li><strong><a href="?type=' . $item . '&page=' . $i . ' & mail_type=' . $mailtype . $str_url . ' ">' . $i . '</a></strong></li>' :
-				'<li><a href="?type=' . $item . '&page=' . $i . ' & mail_type=' . $mailtype . $str_url . '">' . $i . '</a></li>';
+				'<li><strong><a rel="canonical"  href="?type=' . $item . '&page=' . $i . ' & mail_type=' . $mailtype . $str_url . ' ">' . $i . '</a></strong></li>' :
+				'<li><a rel="canonical"  href="?type=' . $item . '&page=' . $i . ' & mail_type=' . $mailtype . $str_url . '">' . $i . '</a></li>';
 		}
 	}
 	//right-side
 	if ($page < $totpage) {
-		echo '<li><a href="?type=' . $item . '&page=' . $nextpage . ' & mail_type=' . $mailtype . $str_url . '"> ' . $lang['next'] . ' </a></li>';
-		echo '<li><a href="?type=' . $item . '&page=' . $totpage . ' & mail_type=' . $mailtype . $str_url . ' "> ' . $lang['last page'] . ' </a></li>';
+		echo '<li><a rel="canonical"  href="?type=' . $item . '&page=' . $nextpage . ' & mail_type=' . $mailtype . $str_url . '"> ' . $lang['next'] . ' </a></li>';
+		echo '<li><a rel="canonical"  href="?type=' . $item . '&page=' . $totpage . ' & mail_type=' . $mailtype . $str_url . ' "> ' . $lang['last page'] . ' </a></li>';
 	} else {
 		echo '<li class="previous-off"> <b> ' . $lang['next'] . ' </b></li>';
 		echo '<li class="previous-off"> <b> ' . $lang['last page'] . '</b></li>';
@@ -76,8 +76,8 @@ function search_pagination($page, $totpage, $searchWordSanitized, $item,  $locat
 	$previouspage = $page - 1;
 
 	if ($page > 1) {
-		echo '<li><a href="?page=1 & search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $lang['first page'] . '</a></li>';
-		echo '<li><a href="?page=' . $previouspage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $lang['previous'] . '</a></li>';
+		echo '<li><a rel="canonical"  href="?page=1 & search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $lang['first page'] . '</a></li>';
+		echo '<li><a rel="canonical"  href="?page=' . $previouspage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $lang['previous'] . '</a></li>';
 	} else {
 		echo '<li class = "previous-off"> <b>' . $lang['first page'] . '</b></li>';
 		echo '<li class = "previous-off"><b>' . $lang['previous'] . '</b></li>';
@@ -85,14 +85,14 @@ function search_pagination($page, $totpage, $searchWordSanitized, $item,  $locat
 
 	for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
 		if ($i > 0 && $i <= $totpage) {
-			echo ($i == $page) ? '<li><strong><a href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $i . '</a></strong></li>' :
-				'<li><a href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $i . '</a></li>';
+			echo ($i == $page) ? '<li><strong><a rel="canonical"  href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $i . '</a></strong></li>' :
+				'<li><a rel="canonical"  href="?page=' . $i . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '">' . $i . '</a></li>';
 		}
 	}
 
 	if ($page < $totpage) {
-		echo '<li><a href="?page=' . $nextpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '"> > </a></li>';
-		echo '<li><a href="?page=' . $totpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '"> >> </a></li>';
+		echo '<li><a rel="canonical"  href="?page=' . $nextpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '"> > </a></li>';
+		echo '<li><a rel="canonical"  href="?page=' . $totpage . '&search_text=' . $searchWordSanitized . '& cities=' . $location . '& item=' . $item . $str_url . '"> >> </a></li>';
 	} else {
 		echo '<li class = "previous-off"> <b>' . $lang['next'] . '</b></li>';
 		echo '<li class = "previous-off"> <b>' . $lang['last page'] . '</b></li>';
@@ -111,12 +111,12 @@ function search_item_pagination($page, $totpage, $get_array)
 
 
 	if ($page > 1) {
-		echo '<li><a href="?page=1';
+		echo '<li><a rel="canonical"  href="?page=1';
 		foreach ($get_array as $key => $value) {
 			echo '&' . $key . '=' . $value;
 		}
 		echo '">' . $lang["first page"] . '</a></li>';
-		echo '<li><a href="?page=' . $previouspage;
+		echo '<li><a rel="canonical"  href="?page=' . $previouspage;
 		foreach ($get_array as $key => $value) {
 			echo '&' . $key . '=' . $value;
 		}
@@ -129,13 +129,13 @@ function search_item_pagination($page, $totpage, $get_array)
 	for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
 		if ($i > 0 && $i <= $totpage) {
 			if ($i == $page) {
-				echo '<li><strong><a href="?page=' . $i;
+				echo '<li><strong><a rel="canonical"  href="?page=' . $i;
 				foreach ($get_array as $key => $value) {
 					echo '&' . $key . '=' . $value;
 				}
 				echo '">' . $i . '</a></strong></li>';
 			} else {
-				echo '<li><a href="?page=' . $i;
+				echo '<li><a rel="canonical"  href="?page=' . $i;
 				foreach ($get_array as $key => $value) {
 					echo '&' . $key . '=' . $value;
 				}
@@ -145,12 +145,12 @@ function search_item_pagination($page, $totpage, $get_array)
 	}
 
 	if ($page < $totpage) {
-		echo '<li><a href="?page=' . $nextpage;
+		echo '<li><a rel="canonical"  href="?page=' . $nextpage;
 		foreach ($get_array as $key => $value) {
 			echo '&' . $key . '=' . $value;
 		}
 		echo '"> > </a></li>';
-		echo '<li><a href="?page=' . $totpage;
+		echo '<li><a rel="canonical"  href="?page=' . $totpage;
 		foreach ($get_array as $key => $value) {
 			echo '&' . $key . '=' . $value;
 		}

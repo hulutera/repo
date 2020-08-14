@@ -235,7 +235,7 @@ class HtMainView
 
         echo '<img src="' . $thmbnlImg . '" alt="" />';
 
-        echo "<a href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
+        echo "<a rel=\"canonical\"  href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
 
         echo '<span class="property-im-m property-im-m-lt"></span>
              <span class="property-im-m property-im-m-lb"></span>
@@ -249,7 +249,7 @@ class HtMainView
         echo '<div class="caption">';
 
         echo '<h3 class="property-title">';
-        echo "<a href=\"javascript:void(0)\"
+        echo "<a rel=\"canonical\"  href=\"javascript:void(0)\"
         onclick=\"swap('$itemName', " . $itemNumber . ")\">";
         echo $commonViewObj->displayTitle($this->_pItem);
         echo "</a>";
@@ -262,7 +262,7 @@ class HtMainView
         $commonViewObj->displayPrice($this->_pItem);
         if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
             if ($row['id_user'] == $user->getId()) {
-                echo '<a href="#"><button type="button" class="btn btn-success">Edit Item</button></a>';
+                echo '<a rel="canonical"  href="#"><button type="button" class="btn btn-success">Edit Item</button></a>';
             }
         }
         echo '</span>';

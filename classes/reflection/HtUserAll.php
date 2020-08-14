@@ -1148,11 +1148,11 @@ SQL;
         //___open_div_("col-md-12", '');
         global $str_url;
         ___open_div_("col-md-6 col-xs-12", '');
-        echo '<p><a class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
+        echo '<p><a rel="canonical"  class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
         ___close_div_(1);
         ___open_div_("col-md-6 col-xs-12", '');
-        echo '<p ><a class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
+        echo '<p ><a rel="canonical"  class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldPrivacyPolicy'][0]['message'] . '</a></p>';
         ___close_div_(1);
         ___close_div_(5);
@@ -1218,10 +1218,10 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-6 col-xs-12", '');
-        echo '<a class="forgot" href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
+        echo '<a rel="canonical"  class="forgot" rel="canonical" href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
         ___open_div_("col-md-6 col-xs-12", '" style="text-align:right;');
-        echo '<a class="forgot" href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
+        echo '<a rel="canonical"  class="forgot" rel="canonical" href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);
 
@@ -1439,13 +1439,13 @@ SQL;
             global $lang_url;
 
             echo '
-            <a href="../../includes/edit-profile.php' . $lang_url . '&function=edit-profile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md"
+            <a rel="canonical"  href="../../includes/edit-profile.php' . $lang_url . '&function=edit-profile&update=' . $key . '&order=open" type="button" class="btn btn-warning btn-md"
                         style="float:right;color:black;font-size:16px;font-weight:bold;">' .  $GLOBALS['lang']['edit'] . '</a>';
             ___close_div_(3);
         }
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="padding:20px;');
-        echo '<a href="http://hulutera/includes/mypage.php' . $lang_url . '" type="button" class="btn btn-primary  btn-lg btn-block"
+        echo '<a rel="canonical"  href="http://hulutera/includes/mypage.php' . $lang_url . '" type="button" class="btn btn-primary  btn-lg btn-block"
                                 style="">' . $GLOBALS['lang']['to my page'] . '</a>';
         ___close_div_(2);
         ___close_div_(2);
@@ -1526,7 +1526,7 @@ SQL;
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['save changes'] . '</button>';
         ___close_div_(1);
         ___open_div_("col-md-6", '');
-        echo '<a href="../../includes/edit-profile.php?' . $lang_url . '&function=edit-profile&update=' . $field . '&order=cancel" type="button" class="btn btn-danger btn-lg btn-block"
+        echo '<a rel="canonical"  href="../../includes/edit-profile.php?' . $lang_url . '&function=edit-profile&update=' . $field . '&order=cancel" type="button" class="btn btn-danger btn-lg btn-block"
                                 style="float:right;">' . $GLOBALS['lang']['cancel changes'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);

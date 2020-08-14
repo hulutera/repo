@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	// enable fileuploader plugin
 	$('input[name="files"]').fileuploader({
         extensions: null,
@@ -31,7 +31,7 @@ $(document).ready(function() {
 				       '<div class="fileuploader-item-inner">' +
                            '<div class="type-holder">${extension}</div>' +
                            '<div class="actions-holder">' +
-						   	   '<a href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
+						   	   '<a rel="canonical"  href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
 						   	   '<button type="button" class="fileuploader-action fileuploader-action-remove" title="${captions.remove}"><i class="fileuploader-icon-remove"></i></button>' +
                            '</div>' +
                            '<div class="thumbnail-holder">' +
@@ -54,9 +54,9 @@ $(document).ready(function() {
 			onItemShow: function(item, listEl, parentEl, newInputEl, inputEl) {
 				var plusInput = listEl.find('.fileuploader-thumbnails-input'),
                     api = $.fileuploader.getInstance(inputEl.get(0));
-				
+
                 plusInput.insertAfter(item.html)[api.getOptions().limit && api.getChoosedFiles().length >= api.getOptions().limit ? 'hide' : 'show']();
-				
+
 				if(item.format == 'image') {
 					item.html.find('.fileuploader-item-icon').hide();
 				}
@@ -64,10 +64,10 @@ $(document).ready(function() {
             onItemRemove: function(html, listEl, parentEl, newInputEl, inputEl) {
                 var plusInput = listEl.find('.fileuploader-thumbnails-input'),
 				    api = $.fileuploader.getInstance(inputEl.get(0));
-            
+
                 html.children().animate({'opacity': 0}, 200, function() {
                     html.remove();
-                    
+
                     if (api.getOptions().limit && api.getChoosedFiles().length - 1 < api.getOptions().limit)
                         plusInput.show();
                 });
@@ -79,14 +79,14 @@ $(document).ready(function() {
 		afterRender: function(listEl, parentEl, newInputEl, inputEl) {
 			var plusInput = listEl.find('.fileuploader-thumbnails-input'),
 				api = $.fileuploader.getInstance(inputEl.get(0));
-		
+
 			plusInput.on('click', function() {
 				api.open();
 			});
-            
+
             api.getOptions().dragDrop.container = plusInput;
 		},
-		
+
         /*
 		// while using upload option, please set
 		// startImageRenderer: false
@@ -101,34 +101,34 @@ $(document).ready(function() {
             beforeSend: null,
             onSuccess: function(result, item) {
 				var data = {};
-				
+
 				if (result && result.files)
                     data = result;
                 else
 					data.hasWarnings = true;
-                
+
 				// if success
                 if (data.isSuccess && data.files.length) {
                     item.name = data.files[0].name;
 					item.html.find('.content-holder > h5').text(item.name).attr('title', item.name);
                 }
-				
+
 				// if warnings
 				if (data.hasWarnings) {
 					for (var warning in data.warnings) {
 						alert(data.warnings[warning]);
 					}
-					
+
 					item.html.removeClass('upload-successful').addClass('upload-failed');
 					return this.onError ? this.onError(item) : null;
 				}
-				
+
                 item.html.find('.fileuploader-action-remove').addClass('fileuploader-action-success');
-                
+
 				setTimeout(function() {
 					item.html.find('.progress-holder').hide();
 					item.renderThumbnail();
-                    
+
                     item.html.find('.fileuploader-action-popup, .fileuploader-item-image').show();
 				}, 400);
             },
@@ -137,12 +137,12 @@ $(document).ready(function() {
             },
             onProgress: function(data, item) {
                 var progressBar = item.html.find('.progress-holder');
-				
+
                 if(progressBar.length > 0) {
                     progressBar.show();
                     progressBar.find('.fileuploader-progressbar .bar').width(data.percentage + "%");
                 }
-                
+
                 item.html.find('.fileuploader-action-popup, .fileuploader-item-image').hide();
             }
         },

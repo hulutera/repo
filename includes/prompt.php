@@ -23,7 +23,7 @@ function createMessage($type)
 				break;
 
 			case 3:
-				$message = 'You have successfully recovered your password. You can <a href="../includes/login.php">Log In</a> now!';
+				$message = 'You have successfully recovered your password. You can <a rel="canonical"  href="../includes/login.php">Log In</a> now!';
 				break;
 
 			case 4:
@@ -35,7 +35,7 @@ function createMessage($type)
 				break;
 
 			case 6:
-				$message = 'Your password has now been changed. You may now <a href="../includes/login.php">Log In</a>';
+				$message = 'Your password has now been changed. You may now <a rel="canonical"  href="../includes/login.php">Log In</a>';
 				break;
 			case 7:
 				$message = $GLOBALS['lang']['contact-us succeed message'];
@@ -54,22 +54,22 @@ function createMessage($type)
 				break;
 			case 12:
 				$message = 'This e-mail has already been taken before you activate your account.
-						You may <a href="../includes/register.php"> Register!</a> again!  ';
+						You may <a rel="canonical"  href="../includes/register.php"> Register!</a> again!  ';
 				break;
 
 			case 13:
 				$message = ' You need to login to upload an item.
 						There is a user registered with this e-mail. If this is your account please
-						<a href="../includes/login.php">Log In!</a>
+						<a rel="canonical"  href="../includes/login.php">Log In!</a>
 						Once you are logged in you can proceed to upload your item!';
 				break;
 			case 14:
 				$message = 'Your password has already been activated. You can
-						<a href="../includes/login.php">Log In</a> now!';
+						<a rel="canonical"  href="../includes/login.php">Log In</a> now!';
 				break;
 			case 15:
 				$message = 'Your account has already been activated. You can
-						<a href="../includes/login.php">Log In</a> now!';
+						<a rel="canonical"  href="../includes/login.php">Log In</a> now!';
 				break;
 			case 16:
 				$message = $GLOBALS['lang']['account termination message'];

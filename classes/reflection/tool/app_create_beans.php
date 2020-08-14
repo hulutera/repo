@@ -40,7 +40,7 @@ include_once("mysqlreflection.config.php");
         <h3>This utility performs automatically a source code generation of PHP
             Classes from MySQL tables </h3>
         <h4>Current database :<?= DBNAME ?> (to change it edit mysqlreflection.config.php)</h4>
-        <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span class="glyphicon glyphicon-wrench"></span> Generate classes</a>
+        <a rel="canonical"  class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span class="glyphicon glyphicon-wrench"></span> Generate classes</a>
 
         <br /> <br />
         <div class="progress progress-striped">
