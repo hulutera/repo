@@ -9,7 +9,6 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<title><?php echo $GLOBALS['lang']['hulutera']; ?></title>
 	<?php
@@ -19,9 +18,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/font-awesome.min.css" rel="stylesheet">
 	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
-
-</head>
-
+	</head>
 <body>
 <?php
 	headerAndSearchCode("index");
@@ -39,7 +36,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 							$item_obj = ObjectPool::getInstance()->getObjectWithId($key);
 							$condition = "WHERE field_status LIKE 'active'";
 							$rows = $item_obj->runQuery($condition);
-							echo '<a rel="canonical"  href="../../includes/template.item.php?type=' . $key . $str_url . '" style="color:black"><li>' . $value . ' (' . $rows . ')</li></a>';
+							echo '<a   href="../../includes/template.item.php?type=' . $key . $str_url . '" style="color:black"><li>' . $value . ' (' . $rows . ')</li></a>';
 						}
 					}
 					echo "</ul>";
@@ -72,7 +69,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 										$rows = $value2->runQuery($condition);
 										$totalItems = $totalItems + $rows;
 									}
-									echo '<a rel="canonical"  href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
+									echo '<a   href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><li>(' . $totalItems . ') ' . $value . '</li></a>';
 								}
 							}
 							?>
@@ -92,7 +89,7 @@ function showMap() {
 	global $str_url;
 	echo '<div class="col-xs-12 col-md-12 show-latest-container" style="text-align:center;">';
 	echo '<div class="col-xs-12 col-md-8 show-latest">';
-	echo '<a rel="canonical"  href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '" style="display:inline-block;color:white;text-decoration:none"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
+	echo '<a   href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '" style="display:inline-block;color:white;text-decoration:none"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
 	echo '</div>';
 	echo '</div>';
 	echo '<p class="index-txt">' . $GLOBALS["lang"]["select city from map"] . '</p>';
@@ -120,7 +117,7 @@ function showLatestItem() {
 	echo '<div class="col-xs-12 col-md-12 show-latest-mob-container" style="text-align:center;">';
 	echo '<p class="index-txt">' . $GLOBALS["lang"]["latest items message"] . '</p>';
 	echo '<div class="col-xs-12 col-md-12 show-latest-mob">';
-	echo '<a rel="canonical"  href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
+	echo '<a   href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
 	echo '</div>';
 	echo '</div>';
 }

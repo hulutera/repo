@@ -79,7 +79,7 @@ require_once $documnetRootPath . '/includes/common.inc.php';
                 <li>
                     <?php
                     echo <<<EOD
-                    <a rel="canonical"  href="./admin.php{$lang_url}&order=open&function=edit-profile">
+                    <a   href="./admin.php{$lang_url}&order=open&function=edit-profile">
                     <i class="fas fa-user"></i>
                     Your Profile
                     </a>
@@ -89,13 +89,13 @@ EOD;
                 <li>
                     <?php
                     echo <<<EOD
-                    <a rel="canonical"  href="./admin.php{$lang_url}&order=open&function=message">
+                    <a   href="./admin.php{$lang_url}&order=open&function=message">
                     <i class="fas fa-envelope"></i>
                     Messages
                     </a>
 EOD;
                     ?>
-                    <!-- <a rel="canonical"  href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <!-- <a   href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                         <i class="fas fa-copy"></i>
                         Actions List
                     </a> -->
@@ -111,7 +111,7 @@ EOD;
                         $style1 = ' style="background-color:white;"';
                     }
                     echo <<<EOD
-                    <a rel="canonical"  href="./admin.php{$lang_url}&order=open&function=all-users" '.$style1.'">
+                    <a   href="./admin.php{$lang_url}&order=open&function=all-users" '.$style1.'">
                     <i class="fas fa-users"></i>
                     All Users
                     </a>
@@ -128,7 +128,7 @@ EOD;
                         $style2 = ' style="background-color:white;"';
                     }
                     echo <<<EOD
-                    <a rel="canonical"  href="./admin.php{$lang_url}&order=open&function=activity-table" '.$style2.'>
+                    <a   href="./admin.php{$lang_url}&order=open&function=activity-table" '.$style2.'>
                     <i class="fas fa-crosshairs"></i>
                     Activity Table
                     </a>
@@ -141,7 +141,7 @@ EOD;
                 <!-- </ul> -->
                 </li>
                 <li>
-                    <a rel="canonical"  href="../../index.php" class="text-uppercase font-weight-bold">
+                    <a   href="../../index.php" class="text-uppercase font-weight-bold">
                         <i class="fas fa-home"></i>
                         To Hulutera.com
                     </a>

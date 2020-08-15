@@ -31,7 +31,7 @@ $(document).ready(function() {
 				       '<div class="fileuploader-item-inner">' +
                            '<div class="type-holder">${extension}</div>' +
                            '<div class="actions-holder">' +
-						   	   '<a rel="canonical"  href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
+						   	   '<a   href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
 						   	   '<button type="button" class="fileuploader-action fileuploader-action-remove" title="${captions.remove}"><i class="fileuploader-icon-remove"></i></button>' +
                            '</div>' +
                            '<div class="thumbnail-holder">' +

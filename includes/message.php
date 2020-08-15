@@ -35,7 +35,7 @@ function boxes($msgid, $userEmail)
 	echo '<textarea  id="replyMsg' . $msgid . '" value ="bjhbj"></textarea><br/>';
 	echo '<div id="divmsgSendClose" class="divmsgSendClose">';
 	echo "<input type=\"button\"  class =\"sendReply\" onclick= \"sendReplyMsg('$userEmail','$youremail','$msgid')\" value =\"" . $lang['Send'] . "\">";
-	echo '<a rel="canonical"   href="javascript:void(0)" onclick="closeReplyBox(' . $msgid . ')" >';
+	echo '<a    href="javascript:void(0)" onclick="closeReplyBox(' . $msgid . ')" >';
 	echo '<img class="msgclose" style="padding-top:8px;" src="../images/cancel.png" /></a>';
 	echo '</div>';
 	echo '<div id="emptydiv_for_divAds"></div>';
@@ -65,7 +65,7 @@ function messageList($NumOfmsg, $mailtype)
 			case 'read':
 				echo '<div id="divListbox' . $msgid . '" class="listbox" >';
 				echo '<input id="ceckbox_msg' . $msgid . '" class="cbox_msg" type="checkbox" value="' . $msgid . '" />';
-				echo '<a rel="canonical"  style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' ,\'read\')">';
+				echo '<a   style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' ,\'read\')">';
 				echo '<div id="followSign' . $msgid . '" style="float:left; color:red;" class="followSign">!&nbsp;</div>';
 				echo '<div class="nameColumn">' . $dmessage['name'] . '</div>';
 				echo '<div class="subjectColumn">' . $dmessage['subject'] . '</div>';
@@ -76,7 +76,7 @@ function messageList($NumOfmsg, $mailtype)
 			case 'unread':
 				echo '<div id="divListbox' . $msgid . '" class="listbox" >';
 				echo '<input id="ceckbox_msg' . $msgid . '" class="cbox_msg" type="checkbox" value="' . $msgid . '" />';
-				echo '<a rel="canonical"    style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' , \'unread\')">';
+				echo '<a     style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' , \'unread\')">';
 				echo '<div id="followSign' . $msgid . '" style="float:left; color:red;" class="followSign" >!&nbsp;</div>';
 				echo '<div id="nameColumn' . $msgid . '" class="nameColumn" style="font-weight:bold">' . $dmessage['name'] . '</div>';
 				echo '<div id ="subjectColumn' . $msgid . '" class="subjectColumn" style="font-weight:bold">' . $dmessage['subject'] . '</div>';
@@ -87,7 +87,7 @@ function messageList($NumOfmsg, $mailtype)
 			case 'follow up':
 				echo '<div id="divListbox' . $msgid . '" class="listbox" >';
 				echo '<input id="ceckbox_msg' . $msgid . '" class="cbox_msg" type="checkbox" value="' . $msgid . '" />';
-				echo '<a rel="canonical"  style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' , \'followup\')">';
+				echo '<a   style="text-decoration:none; " class="readanchor" href="javascript:void(0)" onclick="showMsgBox(' . $msgid . ' , \'followup\')">';
 				echo '<div id="followSign' . $msgid . '" style="float:left; color:red; disply:show">!&nbsp;</div>';
 				echo '<div class="nameColumn">' . $dmessage['name'] . '</div>';
 				echo '<div class="subjectColumn">' . $dmessage['subject'] . '</div>';
@@ -109,8 +109,8 @@ function messageList($NumOfmsg, $mailtype)
 		echo $lang['date'] . ': ' . $dmessage['timeReceived'] . '</br>';
 		echo '<div id="txtMsgSent' . $msgid . '" class="txtMsgSent"> <span>' . $lang['msg sent'] . '</span></div>';
 		echo '<div id="msgReplyClose' . $msgid . '" class="msgReplyClose">';
-		echo '<a rel="canonical"  class="msgReply"  href="javascript:void(0)" onclick="showReplyBox(' . $msgid . ')">' . $lang['reply'] . '</a>';
-		echo '<a rel="canonical"   href="javascript:void(0)" onclick="closeMsgBox(' . $msgid . ')"><img class="msgClose" src="/images/cancel.png"/></a>';
+		echo '<a   class="msgReply"  href="javascript:void(0)" onclick="showReplyBox(' . $msgid . ')">' . $lang['reply'] . '</a>';
+		echo '<a    href="javascript:void(0)" onclick="closeMsgBox(' . $msgid . ')"><img class="msgClose" src="/images/cancel.png"/></a>';
 		echo '</div>';
 		echo '<div id="emptydiv_for_divAds"></div>';
 		echo '</div>';

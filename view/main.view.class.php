@@ -76,18 +76,18 @@ class MainView
         echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId\">";
         echo "<div class=\"col1\">";
         if ($numimage == 1) {
-            echo "<a rel="canonical"  href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
+            echo "<a   href=\"javascript:void(0)\" onclick=\"swap($id,'$itemName')\" >";
             echo "<div class=\"image\"><img src=\"$pImage->IMG_NOT_AVAIL_THMBNL\"></div></a>";
         } else {
             $thmbNlImg  = $dir . 'original/' . $image[1];
-            echo "<a rel="canonical"  href=\"javascript:void(0)\"
+            echo "<a   href=\"javascript:void(0)\"
 			onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\">";
             echo "<div class=\"image\">	<img src=\"$thmbNlImg\" ></div></a>";
         }
         //
         echo "<div class=\"detail\">";  //start_detail
         echo "<div class=\"leftcol\">"; //start_leftcol
-        echo "<a rel="canonical"  href=\"javascript:void(0)\"
+        echo "<a   href=\"javascript:void(0)\"
 		onclick=\"swap($id,'$itemName'), insertimg('$dir',$id,'$itemName','$jsImg')\">";
         $this->displayTitle($title, $itemName);
         echo "</a>";
@@ -311,11 +311,11 @@ class MainView
         echo '<div class=\"header\"><label>' . $printObj->contact() . '</label></div>';
         if ($contactType == "Email" or $contactType == "Both")
             echo "<div class=\"email\">
-            <img src =\"$objImg->PATH_MAIL_ICON\"><a rel="canonical"  onclick=\"swapmail($itemId,'$itemName')\">" . $printObj->sendMsg() . "</a></div>";
+            <img src =\"$objImg->PATH_MAIL_ICON\"><a   onclick=\"swapmail($itemId,'$itemName')\">" . $printObj->sendMsg() . "</a></div>";
         if ($contactType == "Phone" or $contactType == "Both")
             echo "<div class=\"phone\">
 			<img src =\"$objImg->PATH_PHN_ICON\"><label>" . $user->getUserName() . ":" . $user->getPhone() . "</label></div>";
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a rel="canonical"  onclick=\"swapabuse($itemId,'$itemName')\">";
+        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><img src =\"$objImg->PATH_RPT_ICON\"><a   onclick=\"swapabuse($itemId,'$itemName')\">";
         echo $printObj->reportAbuse() . "</a></div>";
         echo "</div>";
     }
@@ -342,7 +342,7 @@ class MainView
             for ($i = 1; $i < $numimage; $i++) {
                 $divName = 'bottomimg' . $itemName . $itemId . $i;
                 echo "
-				<a rel="canonical"  href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"\">
+				<a   href=\"javascript:void(0)\" onclick=\"imgnumber('$dir1','$image[$i]',$itemId, '$itemName')\"\">
 				<img class=\"featured_buttom_img\"  id=\"$divName\" src=\" \" />
 				</a>
 				";
@@ -693,8 +693,8 @@ class MainView
             $previouspage = $page - 1;
 
             if ($page > 1) {
-                echo '<li><a rel="canonical"  href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
-                echo '<li><a rel="canonical"  href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
+                echo '<li><a   href="?page=1 & search_text=' . $searchWordSanitized . '"> First page</a></li>';
+                echo '<li><a   href="?page=' . $previouspage . '& search_text=' . $searchWordSanitized . '"> Previous</a></li>';
             } else {
                 echo '<li class = "previous-off"> <b>First Page </b></li>';
                 echo '<li class = "previous-off"><b> previous</b></li>';
@@ -702,14 +702,14 @@ class MainView
 
             for ($i = ($page - $pagerange); $i <= ($page + $pagerange); $i++) {
                 if ($i > 0 && $i <= $totpage) {
-                    echo ($i == $page) ? '<li><strong><a rel="canonical"  href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
-                        '<li><a rel="canonical"  href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
+                    echo ($i == $page) ? '<li><strong><a   href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></strong></li>' :
+                        '<li><a   href="?page=' . $i . '& search_text=' . $searchWordSanitized . '">' . $i . '</a></li>';
                 }
             }
 
             if ($page < $totpage) {
-                echo '<li><a rel="canonical"  href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
-                echo '<li><a rel="canonical"  href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
+                echo '<li><a   href="?page=' . $nextpage . '& search_text=' . $searchWordSanitized . '"> > </a></li>';
+                echo '<li><a   href="?page=' . $totpage . '& search_text=' . $searchWordSanitized . '"> >> </a></li>';
             } else {
                 echo '<li class = "previous-off"> <b> Next </b></li>';
                 echo '<li class = "previous-off"> <b> Last Page</b></li>';
@@ -720,7 +720,7 @@ class MainView
                             <div id="spanMainColumnX">
                             Sorry!There is no match found,try again.</br>
                             <div style="font-size:14px">
-                            ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a rel="canonical"   style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
+                            ይቅርታ እንዲፈለግልዎት የፈለጉት አልተገኘም።</br> ስለ አፈላለግ መረጃ ከፈለጉ <a    style="text-decoration:none; font-size:15px;" href="../proxy_help.php#displaySearch">Help</a>ውስጥ ያገኛሉ።
                             </div>
                             </div>
                             </div>';

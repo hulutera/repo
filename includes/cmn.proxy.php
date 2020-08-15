@@ -24,13 +24,13 @@ function aboutUs()
 			<p>
 			<p class="aboutus">
 			' . $lang['about us page paragraph1 text'] . '
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=car' . $str_url . '">' . $lang['car'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=house' . $str_url . '">' . $lang['house'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=phone' . $str_url . '">' . $lang['phone'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=computer' . $str_url . '">' . $lang['computer'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=electronics' . $str_url . '">' . $lang['electronics'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=household' . $str_url . '">' . $lang['household'] . '</a></li>
-			<li class="aboutUsli"><a rel="canonical"  href="../includes/template.item.php?type=others' . $str_url . '">' . $lang['others'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=car' . $str_url . '">' . $lang['car'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=house' . $str_url . '">' . $lang['house'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=phone' . $str_url . '">' . $lang['phone'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=computer' . $str_url . '">' . $lang['computer'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=electronics' . $str_url . '">' . $lang['electronics'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=household' . $str_url . '">' . $lang['household'] . '</a></li>
+			<li class="aboutUsli"><a   href="../includes/template.item.php?type=others' . $str_url . '">' . $lang['others'] . '</a></li>
 			</p>
 			<br>
 			<p class="aboutus">
@@ -42,9 +42,9 @@ function aboutUs()
 			</p>
 			<br>
 			<p class="aboutus">' . $lang['We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'] . '
-			<li class="aboutUsli">•' . $lang['For any compliant , improvements or other issues you can use'] . ' <a rel="canonical"  href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></li>
+			<li class="aboutUsli">•' . $lang['For any compliant , improvements or other issues you can use'] . ' <a   href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></li>
 			<li class="aboutUsli">•' . $lang['For inappropriate items you can “Report” button'] . '</li>
-			<li class="aboutUsli">•' . $lang['If you need help, click'] . ' <a rel="canonical"  href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a> </li>
+			<li class="aboutUsli">•' . $lang['If you need help, click'] . ' <a   href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a> </li>
 			</p>
 
 			<br>
@@ -112,7 +112,7 @@ function help()
 	___open_div_('row', '');
 	foreach ($GLOBALS['help'][1] as $key => $value) {
 		___open_div_('col-md-12 col-xs-12', '');
-		echo "<a rel=\"canonical\" href=\"javascript:void(0)\" onclick=\"toggleDivs('help-" . $key . "')\" style=\"color:black;text-decoration:none\">";
+		echo "<a  href=\"javascript:void(0)\" onclick=\"toggleDivs('help-" . $key . "')\" style=\"color:black;text-decoration:none\">";
 		      echo '<div class="help-tabs" style="font-size:25px;padding:5px;margin-bottom:10px;">' . $GLOBALS['help'][1][$key]['head'] .'<span class="glyphicon glyphicon-plus" style="font-size:20px;float:right"></span></div></a>';
 		___open_div_('col-md-12 help-'.$key.'', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;display:none');
 
@@ -126,7 +126,7 @@ function help()
 			echo '</p>';
 		}
 		echo '</ul>';
-		echo '<p style="text-align:start"><a rel="canonical"  class="btn" href="#">Watch Clip »</a></p>';
+		echo '<p style="text-align:start"><a   class="btn" href="#">Watch Clip »</a></p>';
 		___close_div_(2);
 	}
 	// help2();
@@ -168,7 +168,7 @@ function help()
 	// 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 	// 							</p>
 	// 							<p>
-	// 								<a rel="canonical"  class="btn" href="#">Watch Video »</a>
+	// 								<a   class="btn" href="#">Watch Video »</a>
 	// 							</p>
 	// 						</div>
 	// 					</div>
@@ -183,7 +183,7 @@ function help()
 	// 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 	// 							</p>
 	// 							<p>
-	// 								<a rel="canonical"  class="btn" href="#">View details »</a>
+	// 								<a   class="btn" href="#">View details »</a>
 	// 							</p>
 	// 						</div>
 	// 					</div>
@@ -878,7 +878,7 @@ function register()
 	echo '<tr>';
 	echo '<p class="termandCond"><input type="checkbox" class="termandCondbox" style="float:left;" name="termandCond">';
 	echo $lang['I have read and agree to the terms and conditions'];
-	echo '<a rel="canonical"  href="../includes/terms.php">' . $lang['click to see'] . '</a></p>';
+	echo '<a   href="../includes/terms.php">' . $lang['click to see'] . '</a></p>';
 	echo '</tr>';
 	echo '</table>';
 	echo '</div>';

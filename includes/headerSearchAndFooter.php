@@ -83,7 +83,7 @@ function headerAndSearchCode($item)
 	___open_div_('container', '');
 	___open_div_('ht-left', '');
 	___open_div_('mail-service', '');
-	echo '<a rel="canonical"  href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
+	echo '<a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
 	___close_div_(1);
 	___open_div_('phone-service', '');
 	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
@@ -140,7 +140,7 @@ function uploadListMain($lang_sw)
 		$itemName = $GLOBALS['item_lang_arr'][$value];
 		echo <<< EOD
         <li class="list-group-item image-container" style="border-radius:4px; width:160px;height:160px;text-align:center"><div class="md-v-line ">
-        <a rel="canonical"  href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
+        <a   href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
         <img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
 EOD;
@@ -169,7 +169,7 @@ function uploadListNav($lang_sw)
 		$itemName = $GLOBALS['item_lang_arr'][$value];
 		echo <<< EOD
         <li class="list-group-item image-container" style="{$style}" ><div class="md-v-line ">
-        <a rel="canonical"  href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 16px;color: #000000;">
+        <a   href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 16px;color: #000000;">
         <img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
 EOD;
@@ -181,12 +181,12 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a rel="canonical"  href="../../index.php' . $lang_url . '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
+	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
 }
 function logoText()
 {
 	global $lang_url;
-	echo '<a rel="canonical"  href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:50px;font-family: \'Roboto\', sans-serif;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO'] . '</div></a>';
+	echo '<a   href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:50px;font-family: \'Roboto\', sans-serif;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO'] . '</div></a>';
 }
 
 /*Top Right Links*/
@@ -196,37 +196,37 @@ function topRightLinks($style = null)
 	___open_div_('top-links', $style);
 	if (!isset($_SESSION['uID'])) {
 
-		echo '<a rel="canonical"  href="../../includes/register.php' . $lang_url . '">';
+		echo '<a   href="../../includes/register.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px"></span><br/>' . $lang['Register'] . '</div>';
 		echo '</a>';
 
-		echo '<a rel="canonical"  href="../../includes/login.php' . $lang_url . '" >';
+		echo '<a   href="../../includes/login.php' . $lang_url . '" >';
 		echo '<div id=""><span class="glyphicon glyphicon-log-in" style="font-size:20px"></span><br/>' . $lang['Login'] . '</div>';
 		echo '</a>';
 
-		echo '<a rel="canonical"  href="../../includes/upload.php' . $lang_url . '">';
+		echo '<a   href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</a>';
 		topRightHelpLink();
 	} else {
 		$userId = $_SESSION['uID'];
 		$user = new HtUserAll($userId);
-		echo '<a rel="canonical"  href="../../includes/upload.php' . $lang_url . '">';
+		echo '<a   href="../../includes/upload.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-upload" style="font-size:20px"></span><br/>' . $lang['Post Items'] . '</div>';
 		echo '</a>';
 		if ($user->canUpdate()) {
-			echo '<a rel="canonical"  href="../../includes/admin.php' . $lang_url . '">';
+			echo '<a   href="../../includes/admin.php' . $lang_url . '">';
 			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['admin panel'] . '</div>';
 			echo '</a>';
 		} else {
-			echo '<a rel="canonical"  href="../../includes/mypage.php' . $lang_url . '">';
+			echo '<a   href="../../includes/mypage.php' . $lang_url . '">';
 			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['my page'] . '</div>';
 			echo '</a>';
 		}
-		echo '<a rel="canonical"  href="../../includes/logout.php' . $lang_url . '">';
+		echo '<a   href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
 		echo '</a>';
-		echo '<a rel="canonical"  href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></div></a>';
+		echo '<a   href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></div></a>';
 	}
 	___close_div_(1);
 }
@@ -234,7 +234,7 @@ function topRightLinks($style = null)
 function topRightHelpLink()
 {
 	global $str_url, $lang_url;
-	echo '<a rel="canonical"  href="../../includes/help.php' . $lang_url . '" target="_blank">';
+	echo '<a   href="../../includes/help.php' . $lang_url . '" target="_blank">';
 	echo '<div id="toplinktexts">';
 	echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
 	echo '</div>';
@@ -654,7 +654,7 @@ function otherSearch()
 function svgMapElement()
 {
 	global $str_url;
-	$base_link = '<a rel="canonical"  href="../includes/adverts.php?item=All&search_text=&';
+	$base_link = '<a   href="../includes/adverts.php?item=All&search_text=&';
 
 ?>
 	<?php echo $base_link . 'cities=Harar' . $str_url . '"><title>' . $GLOBALS['city_lang_arr']['Harar'] . '</title><path class="ET-HA" title="Harari" stroke="black" d="M494.01,310.19L494.92,309.65L495.36,308.61L495.05,307.64L494.49,306.68L494.16,305.68L494.29,305L494.92,303.85L495.03,303.22L495.05,302.64L495.25,301.25L495.24,300.78L494.43,299.6L493.29,299.71L492.04,300.33L490.86,300.73L489.46,300.36L488.5,299.73L487.61,299.66L486.43,300.97L484.82,303.72L484.29,305.17L484.01,306.79L484.15,307.97L484.96,308.14L486.06,307.91L487.09,307.86L487.56,308.12L488.36,308.89L488.79,309.12L489.52,309.03L490.26,308.69L490.98,308.43L491.69,308.6L493.19,309.93L494.01,310.19z"/></a>'; ?>
@@ -760,11 +760,11 @@ function sidelist($item)
 	];
 	echo '<div id="sidelist" class="col-xs-12 col-md-12">
     <div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
-		'</span><span class="mob-menu-img"><a rel="canonical"  href="javascript:void(0)" onClick="mobSidelist()">
+		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
         <i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
     </div><ul>';
 	foreach ($itemList as $key => $value) {
-		echo '<li><a rel="canonical"  ';
+		echo '<li><a   ';
 		if ($value == $item) {
 			echo "class=\"active\"";
 		}
@@ -788,7 +788,7 @@ function footerCode()
 	___open_div_('row', '');
 	___open_div_('col-md-3', '');
 	global $lang_url;
-	echo '<a rel="canonical"  href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:30px;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO2'] . '</div></a>';
+	echo '<a   href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:30px;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO2'] . '</div></a>';
 	___close_div_(2);
 
 	echo '
@@ -796,18 +796,18 @@ function footerCode()
         </div>';
 	echo '<div id="information_fo">
         <p class="h4">' . $lang['INFORMATION'] . '</p>
-        <p style="margin-bottom:5px"><a rel="canonical"  href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
-        <p style="margin-bottom:5px"><a rel="canonical"  href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
-        <p style="margin-bottom:5px"><a rel="canonical"  href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
-        <p style="margin-bottom:5px"><a rel="canonical"  href="../../includes/help.php' . $lang_url . '" target="_blank">' . $lang['Help'] . '</a></p>
+        <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
+        <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
+        <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
+        <p style="margin-bottom:5px"><a   href="../../includes/help.php' . $lang_url . '" target="_blank">' . $lang['Help'] . '</a></p>
         </div>';
 	echo '<div id="followUs_fo" >
           <p class="h4">' . $lang['FOLLOW US'] . '</p>
                <ul>
-                <a rel="canonical"  class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' . $lang['facebook'] . '</li></a>
-                <a rel="canonical"  class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' . $lang['twitter'] . '</li></a>
-                <a rel="canonical"  class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' . $lang['pintrest'] . '</li></a>
-                <a rel="canonical"  class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' . $lang['youtube'] . '</li></a>
+                <a   class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' . $lang['facebook'] . '</li></a>
+                <a   class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' . $lang['twitter'] . '</li></a>
+                <a   class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' . $lang['pintrest'] . '</li></a>
+                <a   class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' . $lang['youtube'] . '</li></a>
                </ul>
            </div>';
 	echo '</div>';
@@ -872,11 +872,11 @@ function yourPage()
             </div>
 			<div class="row">
 			    <div class="col-xs-12 mobile-profile-btn">
-                            <a rel="canonical"  href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
+                            <a   href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
                                         >{$toMyProfileButton}</a>
 				</div>
 				<div class="col-xs-12 mobile-item-btn">
-                                    <a rel="canonical"  href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
+                                    <a   href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
 									>{$toMyItemsButton}</a>
                 </div>
 				<div class="col-md-12 your-page-inner">
@@ -900,7 +900,7 @@ function yourPage()
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                            <a rel="canonical"  href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
+                            <a   href="../../includes/edit-profile.php{$lang_url}&order=open" type="button" class="btn btn-primary btn-lg active"
                                         style="float:right;">{$toMyProfileButton}</a>
                                     </div>
                                 </div>
@@ -930,7 +930,7 @@ function yourPage()
                                         <div class="row">
 
 											<div class="col-md-12 btn2">
-                                    <a rel="canonical"  href="../../includes/template.content.php?status=active&id={$id}{$str_url}" type="button" class="btn btn-primary btn-lg active"
+                                    <a   href="../../includes/template.content.php?status=active&id={$id}{$str_url}" type="button" class="btn btn-primary btn-lg active"
                                                 style="float:right;">{$toMyItemsButton}</a>
                                             </div>
                                         </div>

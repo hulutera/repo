@@ -61,16 +61,16 @@ function accountLinks()
 	if (isset($_SESSION['uID'])) {
 		$id = $_SESSION['uID'];
 		echo "<div id=\"modnav\" ><div class=\"item-list-by-status\">";
-		echo "<a rel=\"canonical\"  ";
+		echo "<a   ";
 		echo 'href="' . $url . '=active&id='.$id.'"> ';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['active'] . "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
 
-		echo "<a rel=\"canonical\"  ";
+		echo "<a   ";
 		echo 'href="' . $url . '=pending&id='.$id.'"> ';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['pending'] . "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
-		echo "<a rel=\"canonical\"  ";
+		echo "<a   ";
 		echo 'href="../includes/upload.php" >';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['Post Items'] . "</span></div></a>";
@@ -78,28 +78,28 @@ function accountLinks()
 	}
 	// if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
 	// 	echo "<div class=\"item-list-by-status-admin\">";
-	// 	echo "<a rel="canonical"  ";
+	// 	echo "<a   ";
 	// 	echo 'href="' . $url . '=pending&action=admin"> ';
 	// 	echo "<div class='item-list'>";
 	// 	echo "<span>" . $lang['all pending'] . "(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
-	// 	echo "<a rel="canonical"  ";
+	// 	echo "<a   ";
 
 	// 	echo 'href="' . $url . '=reported&action=admin"> ';
 	// 	echo "<div class='item-list'>";
 	// 	echo "<span>" . $lang['reported'] . "(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
 	// 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
 	// 		if ($adminTotal == 1 || $webmasterTotal == 1) {
-	// 			echo "<a rel="canonical"  ";
+	// 			echo "<a   ";
 	// 			echo 'href="' . $url . '=deleted&action=admin"> ';
 	// 			echo "<div class='item-list'>";
 	// 			echo "<span>" . $lang['deleted'] . "(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
 	// 		}
-	// 		echo "<a rel="canonical"  ";
+	// 		echo "<a   ";
 	// 		echo 'href="../includes/userMessages.php' . $lang_url . '">';
 	// 		echo "<div class='item-list'>";
 	// 		echo "<span>" . $lang['messages'] . "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
 
-	// 		echo '<a rel="canonical"  class="item-list-cp" href="../includes/controlPanel.php">';
+	// 		echo '<a   class="item-list-cp" href="../includes/controlPanel.php">';
 	// 		echo "<div class='item-list-cp'>";
 	// 		echo "<span>" . $lang['admin-panel'] . "</span></div></a>";
 	// 		echo "</div>";
@@ -252,7 +252,7 @@ function allUsers()
 		echo '<tr style="background-color: #5be61c36;">';
 		$url = 'function=all-users&action=view&userId=' . $row['id'];
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-		echo '<td><a rel="canonical"  href="./admin.php?allUserId=' . $urlEn . '">';
+		echo '<td><a   href="./admin.php?allUserId=' . $urlEn . '">';
 		echo '<button style="font-style: italic;" class="btn btn-rounded btn-sm btn-primary btn-block">View User#' . $row['id'] . '</button></a></td>';
 
 		foreach ($row as $key => $value) {
@@ -271,7 +271,7 @@ function allUsers()
 		echo '<tr style="background-color: #ffa50075;">';
 		$url = 'function=all-users&action=view&table=user_temp&userId=' . $row['id'];
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-		echo '<td><a rel="canonical"  href="./admin.php?allUserId=' . $urlEn . '">';
+		echo '<td><a   href="./admin.php?allUserId=' . $urlEn . '">';
 		echo '<button style="font-style: italic;" class="btn btn-rounded btn-sm btn-primary btn-block">View User#' . $row['id'] . '</button></a></td>';
 
 		foreach ($row as $key => $value) {
@@ -484,7 +484,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 			if ($value[0] == 'X') {
 				echo '<div style="padding:2px;text-align:center;"></div>';
 			} else {
-				echo '<div style="padding:2px;text-align:center;" data-toggle="tooltip" title="' . $key . '"><a rel="canonical"  href="../includes/template.item.php?type=' . $key . '"><img style="width:40px;" src="' . $value[0] . '"></a></div>';
+				echo '<div style="padding:2px;text-align:center;" data-toggle="tooltip" title="' . $key . '"><a   href="../includes/template.item.php?type=' . $key . '"><img style="width:40px;" src="' . $value[0] . '"></a></div>';
 			}
 		}
 
@@ -502,7 +502,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 					$cryto = new Cryptor();
 					$url = 'function=activity-table&type=' . $itemName . '&status=' . $statusName . '&allUserAdvancedUserId=' . $userId;
 					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-					echo '<a rel="canonical"  href="../includes/admin.php?activityTableId=' . $urlEn . '"><div style="' . $statusArray[1] . ' padding:5px;border-radius:100px;text-align:center;data-toggle="tooltip" title="Total Number of item:' . $itemName . ' with status ' . $statusName . ' for user=' . $userId . '"><strong>' . $totalNumber . '</strong></div></a>';
+					echo '<a   href="../includes/admin.php?activityTableId=' . $urlEn . '"><div style="' . $statusArray[1] . ' padding:5px;border-radius:100px;text-align:center;data-toggle="tooltip" title="Total Number of item:' . $itemName . ' with status ' . $statusName . ' for user=' . $userId . '"><strong>' . $totalNumber . '</strong></div></a>';
 				}
 			}
 			$totalNumber = 0;
@@ -754,7 +754,7 @@ function activityTable()
 					if ($totalStatusSum == 0) {
 						echo '<td style="font-size:18px;">0</td>';
 					} else {
-						echo '<td style="font-size:18px;" ><a rel="canonical"  href="./admin.php?activityTableId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
+						echo '<td style="font-size:18px;" ><a   href="./admin.php?activityTableId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
 					}
 				}
 				$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
@@ -967,7 +967,7 @@ function activityTable()
 					/// To display Item on Id
 					$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&status=' . $status;
 					$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-					echo '<td><a rel="canonical"  href="./admin.php?activityTableId=' . $urlEn . '">';
+					echo '<td><a   href="./admin.php?activityTableId=' . $urlEn . '">';
 					echo '<button style="font-style: italic;" class="btn btn-rounded btn-md btn-primary">View ' . ucwords($item)  . '#' . $v2 . '</button></a></td>';
 					$j++;
 				} else {
@@ -980,7 +980,7 @@ function activityTable()
 								$allAbuse = new HtCategoryAbuse((int) $value);
 								$url = 'function=activity-table&type=' . $item . '&id=' . $itemId . '&action=reported&unreport=' . $value . '&status=' . $status;
 								$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
-								echo '<a rel="canonical"  href="./admin.php?activityTableId=' . $urlEn . '">Clear <strong>' . $allAbuse->getFieldName() . '</strong> Report</a><br>';
+								echo '<a   href="./admin.php?activityTableId=' . $urlEn . '">Clear <strong>' . $allAbuse->getFieldName() . '</strong> Report</a><br>';
 							}
 							echo '</td>';
 						} else {

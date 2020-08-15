@@ -2,7 +2,7 @@
 
 function logoImage()
 {
-	echo '<div class ="logo"><a rel="canonical"  href="../includes/pagemaintenance.php"><img src="http://static.hulutera.com/images/hulutera_logo.png"></a></div>';
+	echo '<div class ="logo"><a   href="../includes/pagemaintenance.php"><img src="http://static.hulutera.com/images/hulutera_logo.png"></a></div>';
 }
 
 function maintenancePage()

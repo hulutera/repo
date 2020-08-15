@@ -135,7 +135,7 @@ $lang = array(
     በእዚህ የመተዳደርያ ደንብ ላየ ማንኛውም አይነት ጥያቄ  ወይም አስተያየት ካለዎት በ info@hulutera.com ይፃፉልን ወይም ሊጠይቁን ይፈልጋሉ የሚለውን በመጠቀም ያግኙን።',
     //Footer related
     'about us on footer text'
-    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች። <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">ይሄንን</a> ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
+    => 'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድህረገጹ ላይ የተላያዩ ንብረቶችን መግዛት፣መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በምስራቅ አፍሪካ ከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። በድህረ ገጻችን ላይ ከአነስተኛ የግል መገልገያ እስከ ከፍተኛ ንብረቶች መገበያየት ይችላሉ። በሁሉተራ ላይ በአሁኑ ሰአት የሚከተሉትን መገበያየት ይችላሉ፥ መኪና ፣ ቤት ፣ ኮምፕዩተር ፣ ስልክ ፣ የቤት መገልገያ ፣ ኤሌክትሮኒክስ እና ሌሎች። <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">ይሄንን</a> ተጭነው የበለጠ መረጃ ማግኘት ይችላሉ።',
     'ABOUT US' => 'ስለ እኛ',
     'INFORMATION' => 'መረጃ',
     'Privacy Policy' => 'ግላዊ መርህ',
@@ -180,7 +180,7 @@ $lang = array(
     'my profile' => 'የግል ማህደሬ',
     'my page header' => 'እንኳን ወደ እኔ ገጽ መጡ',
     'my-page msg' => 'በእዚህ ገጽ ላይ ያስገቡትን ንብረት ሁኔታ ማረጋገጥ እና የእርስዎን መረጃ መቀየር ይችላሉ። የበለጠ መረጃ ለማግኘት ከፈለጉ
-    <a rel="canonical"  class="alert-link" href="../../includes/template.proxy.php?type=contact' . $str_url . '">ይሄንን</a> ተጭነው ማግኘት ይችላሉ። ',
+    <a   class="alert-link" href="../../includes/template.proxy.php?type=contact' . $str_url . '">ይሄንን</a> ተጭነው ማግኘት ይችላሉ። ',
     'my-page msg2' => 'እዚህ ያስገቧቸውን ንብረቶች ያሉበትን ሁናቴ ማረጋገጥ ይችላሉ። ማለትም የሚታዩ (ገቢሮች) ፣ በመጠባበቅ ላይ ያሉ ፣ ሪፖርት የተደረጉ ወይም የጠፉ ንብረቶችን ያካትታል። ከስር ተጭነው ይቀጥሉ።',
     'my-page msg3' => 'እዚህ ስለእርስዎ የግል መረጃ መቀየር፤ማስተካከል ይችላሉ። ማለትም የይለፍ ምስጢር ቃል፣ የመጠቀምያ ስም፣ የመገኛ መንገድ፣ ወዘተ የመሳሰሉትን ያካትታል። ከስር ተጭነው ይቀጥሉ።',
     'to my page' => 'ወደ የእኔ ገጽ',
@@ -243,19 +243,19 @@ $lang = array(
     'no users found' => '<br>በገባው መረጃ  ደንበኛው አልተገኘም።<br>',
     'My Items' => 'የኔ ንብረቶች',
     //Upload prompt related
-    'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a rel="canonical"  href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
-    'to main page prompt msg' => '<a rel="canonical"  href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
-    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a rel="canonical"  href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
+    'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a   href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
+    'to main page prompt msg' => '<a   href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
+    'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a   href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     'password change success' => 'የምስጢር ቃልዎ በጥሩ ሁኔታ ተቀይሯል።',
     'contact-us succeed message' => 'እኛን ለማግኝት ጥረት ስላደረጉ እናመሰግናለን። መልክትዎ ምላሽ ካስፈለገው በተቻለን መጠን ከ 1 - 2 የስራ ቀናት ውስጥ መልስ እንሰጣለን።',
     //Search related
     'search-title' => 'መፈለግ',
     'search-button' => 'ይፈለግ',
-    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a   href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
-    'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a rel="canonical"  href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a   href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
     'search res' => 'የፍለጋ ውጤት',
     'failed search' => 'እባክዎን የሚፈለግልዎትን ያስገቡ ወይም ሌሎች የመፈለጊያ አማራጮች ይምረጡ።',
     //Item related
@@ -266,7 +266,7 @@ $lang = array(
     'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
     //Prompt
     'pass-recovery success' => 'አዲስ የምስጢር ቃል በኢሜይሎት ልከንልዎታል።እባክዎን ኢሜይሉ ላይ ያለውን መመሪያ ይከተሉ። አዲሱን የምስጢር ቃል አካውንቶ ውስጥ በመግባት መቀየር ይችላሉ።',
-    'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a rel="canonical"  href="../includes/login.php">መግባት</a> ይችላሉ።</br> የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
+    'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a   href="../includes/login.php">መግባት</a> ይችላሉ።</br> የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
     'registration succeded message' => 'ስለተመዘገቡ እናመሰግናለን። መመዝገብዎን የሚያመለክት ኢሜይል ልከንልዎታል። እባክዎን የላክንልዎት ኢሜይል ላይ ያለውን ሊንክ ተጭነው አካውንትዎን ገቢራዊ ያድርጉ።',
     'email adress or username has already used' => 'የመጠቀምያው ስም ወይም ኢሜይሉ ተይዟል፣ ሌላ ይሞክሩ።',
     'password change success' => 'የሚስጥር ቃሉ በተሳካ ሁኔታ ተቀይሯል።',
