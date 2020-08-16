@@ -1353,11 +1353,11 @@ SQL;
         $this->allowUpdate = true;
         $this->updateCurrent();
         global $str_url;
-        $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $urlEn;
+        $recoveryLink = "https://hulutera.com/includes/activate.php?key=" . $urlEn;
         $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
         $body =  $GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . "\n";
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] . $recoveryLink  . "\n";
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] ."\n". $recoveryLink  . "\n";
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "\n";
 
         if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
@@ -1497,7 +1497,7 @@ SQL;
         }
         ___open_div_("row", "");
         ___open_div_("col-md-12", '" style="padding:20px;');
-        echo '<a   href="http://hulutera/includes/mypage.php' . $lang_url . '" type="button" class="btn btn-primary  btn-lg btn-block"
+        echo '<a   href="https://hulutera/includes/mypage.php' . $lang_url . '" type="button" class="btn btn-primary  btn-lg btn-block"
                                 style="">' . $GLOBALS['lang']['to my page'] . '</a>';
         ___close_div_(2);
         ___close_div_(2);

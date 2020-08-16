@@ -930,7 +930,7 @@ SQL;
         //Now send mail for Confirmation of registration
         $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['activation']['body'] . '<br>';
-        $body .= "http://www.hulutera.com/includes/activate.php?key=" . $activation;
+        $body .= "https://www.hulutera.com/includes/activate.php?key=" . $activation;
 
         /// temporary disable for message sending
         // if (DBHOST == 'localhost') {
