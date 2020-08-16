@@ -64,7 +64,7 @@ function fileRouter($add)
 	global $str_url;
 
 	if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
-		if(!((isset($_GET['release']) && $_GET['release'] !== 'alpha')))
+		if(isset($_GET['release']) && ($_GET['release'] !== 'alpha'))
 		{
 			if (!isset($_SESSION['uID'])) {
 				header('Location: ../includes/login.php?release=beta' . $str_url);

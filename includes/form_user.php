@@ -38,8 +38,10 @@ if (!empty($errPre)) {
         $redirectLink = $_SERVER['HTTP_REFERER'];
     } else {
         if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && ($function == 'login')) {
-            if (!isset($_SESSION['uID'])) {
-                $redirectLink = './' . $function . '.php?function=' . $function . '&release=beta' . $lang_sw;
+            if (isset($_GET['release']) && ($_GET['release'] !== 'alpha')) {
+                if (!isset($_SESSION['uID'])) {
+                    header('Location: ../includes/login.php?release=beta' . $str_url);
+                }
             }
         } else {
             $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
