@@ -1129,17 +1129,17 @@ $user_specific_array = [
                        Please click on the activation link to activate your account.',
         ],
         'password-recovery' => [
-            'subject' => '"Your New Password',
+            'subject' => "Your New Password",
             'body' => [
-                0 => 'Dear Customer,<br>
-                      A password recovery was requested for your account. Please click on the following link below to recover your password.<br>
-                      Please remember that after you have logged in with this new password you can always change it using Change Password link.<br><br>
-                      This email was automatically generated. If you did not request a password recovery please contact the administrator <br>
-                      using email <strong>admin@hulutera.com</strong><br>',
+                0 => "Dear Customer,\n
+                      A password recovery was requested for your account. Please click on the following link below to recover your password.\n
+                      Please remember that after you have logged in with this new password you can always change it using Change Password link.\n
+                      This email was automatically generated. If you did not request a password recovery please contact the administrator\n
+                      using email admin@hulutera.com \n",
                 1 => [
-                    '<br>Recovery Link:',
-                    '<br>New-password:',
-                    '<br>Sincerely,<br>The hulutera Team<br>'
+                    "\nRecovery Link:",
+                    "\nNew-password:",
+                    "\nSincerely,\nThe hulutera Team\n"
                 ],
             ]
         ],
