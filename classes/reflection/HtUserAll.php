@@ -1353,7 +1353,7 @@ SQL;
         $this->allowUpdate = true;
         $this->updateCurrent();
         global $str_url;
-        $recoveryLink = "https://hulutera.com/includes/activate.php?key=" . $urlEn;
+        $recoveryLink = "https://www.hulutera.com/includes/activate.php?key=" . $urlEn;
         $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
         $body =  $GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . "\n";

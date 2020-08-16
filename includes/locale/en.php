@@ -1131,8 +1131,7 @@ $user_specific_array = [
         'password-recovery' => [
             'subject' => "Your New Password",
             'body' => [
-                0 => "Dear Customer,\nA password recovery was requested for your account. Please click on the following link below to recover your password.\nPlease remember that after you have logged in with this new password you can always change it using Change Password link.\n
-                      This email was automatically generated. If you did not request a password recovery please contact the administrator\nusing email admin@hulutera.com \n",
+                0 => "Dear Customer,\nA password recovery was requested for your account. Please click on the following link below to recover your password.\nPlease remember that after you have logged in with this new password you can always change it using Change Password link.\nThis email was automatically generated. If you did not request a password recovery please contact the administrator\nusing email admin@hulutera.com \n",
                 1 => [
                     "\nRecovery Link:",
                     "\nNew-password:",
