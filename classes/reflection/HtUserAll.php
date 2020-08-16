@@ -1362,7 +1362,7 @@ SQL;
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . '<br><br>';
 
         if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
-            $isMailDelivered = mail($email, $subject, $body, 'From:adminstrator@hulutera.com');
+            $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
             //Check if mail Delivered or die
             if (!$isMailDelivered) {
                 die("Sending Email Failed. Please Contact Site Admin!");
