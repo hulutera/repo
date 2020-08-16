@@ -1355,11 +1355,10 @@ SQL;
         global $str_url;
         $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $urlEn;
         $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
-        $body = '<br>'.$GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
+        $body = '<html><body><br>'.$GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . '<br>';
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0].'<p ><a href="' . $recoveryLink  . '"><h3 style="font-weight:bold">'.strtoupper("Complete password recovery") .'</h3></p></a>';
-
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . '<br><br>';
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . '<br><br></body></html>';
 
         if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
             $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
