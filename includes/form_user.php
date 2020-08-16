@@ -28,7 +28,6 @@ $validate = null;
 $errPre = [];
 $validate = new ValidateUser($errPre);
 
-//exit;
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
     $_SESSION['POST'] = $_POST;
@@ -37,10 +36,14 @@ if (!empty($errPre)) {
     $redirectLink = '';
     if ($function == 'edit-profile') {
         $redirectLink = $_SERVER['HTTP_REFERER'];
-    } else if ($function == 'login') {
-        $redirectLink = './' . $function . '.php?function=' . $function . '&release=beta' . $lang_sw;
     } else {
-        $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
+        if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && ($function == 'login')) {
+            if (!isset($_SESSION['uID'])) {
+                $redirectLink = './' . $function . '.php?function=' . $function . '&release=beta' . $lang_sw;
+            }
+        } else {
+            $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
+        }
     }
     //exit;
     header('Location: ' . $redirectLink);

@@ -278,7 +278,7 @@ $lang = array(
     'Description' => 'Description',
     'More Detailed Info' => 'More Detailed Info',
     //Prompt
-    'pass-recovery success' => 'Password recovery information has now been sent to the e-mail associated with this user.\n Please follow instructions in the email.',
+    'pass-recovery success' => 'Password recovery information has now been sent to the e-mail associated with this user.<br> Please follow instructions in the email.',
     'account activated message' => 'Your account is now active. You may now <a   href="../includes/login.php">Log In</a></br> In your account page, you can update your account informations, post Items and manage the items you posted.',
     'registration succeded message' => 'Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.',
     'email adress or username has already used' => 'The Email address or the Username has already been used, try another.',
@@ -1014,12 +1014,14 @@ $abuse_type_lang_arr = [
 $user_specific_array = [
     'user' =>    [
         'registeration' => 'User Registration',
-        'login' => 'Login',
+        'login' => 'User login',
         'contactus' => 'Contact Us',
+        'activate' => 'Activate',
         'passwordRecovery' => [
             0 => 'Password Recovery',
             1 => 'Recovery',
-            2 => 'The user is not registered on our website.'
+            2 => 'The user is not registered on our website.',
+            3 => 'Click here to login and continue to use your temporary password'
         ],
         'fieldName'       => [
             0 => 'Full Name',

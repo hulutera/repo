@@ -168,7 +168,7 @@ class ValidateUpload
     private function validatePrice(&$err, $key)
     {
         $input = [];
-        if (isset($_POST[$key]) && ($_POST[$key] == "")){
+        if (isset($_POST[$key]) && ($_POST[$key] == "")) {
             $input = array($key => $GLOBALS['validate_specific_array'][1]);
         } else if (isset($_POST[$key]) && (!is_numeric($_POST[$key]) or !filter_var($_POST[$key], FILTER_VALIDATE_INT))) {
             $input = array($key => 'Invalid input, Should be number greater than zero (0)!Please try again!');
@@ -193,22 +193,28 @@ class ValidateUpload
  */
 class ValidateUser
 {
+    private $_useTempPassword = false;
     public function __construct(&$err)
     {
         /**
          * Get all information for the IUT (Item Under Test) for validation
          */
         $input = [];
-
         if (isset($_POST['submit'])) {
+
+            ///if user want to use temporay Password skip validation
+            if (isset($_POST['auto-login'])) {
+                $this->_useTempPassword = true;
+                return;
+            }
+
             foreach ($_POST as $key => $value) {
 
                 if (isset($_POST[$key])) {
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
-                    if ($value === '')
-                    {
+                    if ($value === '') {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
                         switch ($key) {
@@ -325,11 +331,40 @@ class ValidateUser
     {
         global $lang_url, $str_url;
         if ($function == 'login') {
-            $email = $_POST['fieldEmail'];
-            $password = $_POST['fieldPassword'];
+            $email = "";
+            $password = "";
+            if (isset($_POST['auto-login'])) {
+                $autoLogin = $_POST['auto-login'];
+                var_dump($autoLogin);
+                $crypto = new Cryptor();
+                $result = base64_decode($crypto->decryptor($autoLogin));
+                var_dump($result);
+                $resultFinal = explode("&", $result);
+                var_dump($resultFinal);
+                /// extract information
+                foreach ($resultFinal as $key => $value) {
+                    list($k, $v) = explode("=", $value);
+                    switch ($k) {
+                        case 'fieldEmail':
+                            $email = $v;
+                           break;
+                        case 'fieldPassword':
+                            $password = $v;
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+                }
+            }
+            else {
+                $email = $_POST['fieldEmail'];
+                $password = $_POST['fieldPassword'];
+            }
+
             $crypto = new Cryptor();
             $cryptoPassword = base64_encode($crypto->encryptor($password));
-            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND field_password = \"$cryptoPassword\"");
+            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" AND (field_password = \"$cryptoPassword\" OR field_new_password = \"$cryptoPassword\")");
 
             $userAll = new HtUserAll($sql);
             $result = $userAll->getResultSet();
@@ -354,15 +389,12 @@ class ValidateUser
             }
         } elseif ($function == 'password-recovery') {
             $email = $_POST['fieldEmail'];
-            $userName = $_POST['fieldUserName'];
-            $sql =  array('sql' => "SELECT DISTINCT * FROM user_all WHERE field_email = \"$email\" OR field_user_name = \"$userName\"");
+            $sql =  array('sql' => "SELECT DISTINCT * FROM user_all WHERE field_email = \"$email\"");
 
             $userAll = new HtUserAll($sql);
             $result = $userAll->getResultSet();
             if ($result->num_rows === 0) {
                 $input = ['fieldEmail' => $GLOBALS['user_specific_array']['user']['passwordRecovery'][2]];
-                array_push($err, $input);
-                $input = ['fieldUserName' => $GLOBALS['user_specific_array']['user']['passwordRecovery'][2]];
                 array_push($err, $input);
                 header("Location: ../../includes/form_user.php?function=password-recovery" . $str_url);
             } else {

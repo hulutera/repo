@@ -837,7 +837,7 @@ class HtUserAll extends MySqlRecord
         $result = $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result) {
+        if ($result && $input != "*") {
             $rowObject = $result->fetch_object();
             @$this->id = (int) $rowObject->id;
             @$this->fieldUserName = $this->replaceAposBackSlash($rowObject->field_user_name);
@@ -1035,6 +1035,29 @@ SQL;
         $this->fieldFeature =   $object->getFieldFeature();
     }
 
+    public function debugUser()
+    {
+        $userData = [
+            "id" => $this->id,
+            "fieldUserName" => $this->fieldUserName,
+            "fieldFirstName" => $this->fieldFirstName,
+            "fieldLastName" => $this->fieldLastName,
+            "fieldEmail" => $this->fieldEmail,
+            "fieldPhoneNr" => $this->fieldPhoneNr,
+            "fieldAddress" => $this->fieldAddress,
+            "fieldPassword" => $this->fieldPassword,
+            "fieldPrivilege" => $this->fieldPrivilege,
+            "fieldContactMethod" => $this->fieldContactMethod,
+            "fieldTermAndCondition" => $this->fieldTermAndCondition,
+            "fieldRegisterDate" => $this->fieldRegisterDate,
+            "fieldNewPassword" => $this->fieldNewPassword,
+            "fieldActivation" => $this->fieldActivation,
+            "fieldAccountStatus" => $this->fieldAccountStatus,
+            "fieldFeature" => $this->fieldFeature
+        ];
+        var_dump($userData);
+    }
+
     /**
      * Facility for register a new user row into user_all.
      *
@@ -1084,6 +1107,7 @@ SQL;
         $this->insertPassRecoveryField();
         echo '</form>';
     }
+
     /**
      *
      */
@@ -1147,12 +1171,12 @@ SQL;
         ___close_div_(1);
         //___open_div_("col-md-12", '');
         global $str_url;
-        ___open_div_("col-md-6 col-xs-12", '');
-        echo '<p><a   class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<p class="h5"><a   class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldTermAndCondition'][3]['message'] . '</a></p>';
         ___close_div_(1);
-        ___open_div_("col-md-6 col-xs-12", '');
-        echo '<p ><a   class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<p class="h5"><a   class="text-info" href="../../includes/template.proxy.php?type=privacy' . $str_url . '" target="_blank">' .
             $GLOBALS['user_specific_array']['user']['fieldPrivacyPolicy'][0]['message'] . '</a></p>';
         ___close_div_(1);
         ___close_div_(5);
@@ -1163,8 +1187,24 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-12 col-xs-12", '');
 
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Register'] . '</button>';
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Register'] . '</button>';
         ___close_div_(5);
+        ////
+        global $lang_url;
+        ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<a   class="forgot"  href="../includes/login.php' . $lang_url . '">' . $GLOBALS['lang']['Login'] . ' </a> ';
+        ___close_div_(1);
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<a   class="forgot"  href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . '</a>';
+        ___close_div_(1);
+        ___close_div_(5);
+
+
         ___close_div_(2);
     }
 
@@ -1202,14 +1242,6 @@ SQL;
         $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password');
         ___close_div_(1);
         ___close_div_(5);
-        ////
-        ___open_div_("row", "");
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("form-group ", "");
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Login'] . '</button>';
-        ___close_div_(5);
 
         ////
         ___open_div_("row", "");
@@ -1217,10 +1249,19 @@ SQL;
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-6 col-xs-12", '');
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Login'] . '</button>';
+        ___close_div_(5);
+
+        ////
+        ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
         echo '<a   class="forgot"  href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:right;');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
         echo '<a   class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);
@@ -1234,13 +1275,14 @@ SQL;
         foreach ($fillableFields as $value) {
             ___open_div_("col-md-6", '');
             ___open_div_("col-md-12", '');
-            $this->insertFillable($value,  'user_specific_array', 'user', 'password');
+            $this->insertFillable($value,  'user_specific_array', 'user', 'password'); //password
             ___close_div_(2);
         }
     }
 
     public function insertPassRecoveryField()
     {
+        global $lang_url;
         //uploadResetErrors();
         ___open_div_("container-fluid", '');
         ___open_div_("col-md-4 col-xs-12 pass-recovery-container", '');
@@ -1250,20 +1292,12 @@ SQL;
         ___open_div_("row", '');
         ___open_div_('col-md-12  col-xs-12', '" style="text-align:center;color:#31708f; border-bottom:1px solid #c7c7c7;');
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][0] . '</strong></p>';
+
         ___close_div_(2);
         ///
         $style = '" style="text-align: left;font-size:18px;';
-        ___open_div_("row", "");
-        ___open_div_("col-md-12 col-xs-12", $style . 'padding-top: 10px;');
-        ___open_div_("form-group ", "");
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-        $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
-        ___close_div_(2);
-        ___close_div_(4);
-        echo '<p>'.$GLOBALS['lang']['or'].'</p>';
-        ___open_div_("row", "");
+
+        ___open_div_("row", '" style="padding:20px;');
         ___open_div_("col-md-12", $style);
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12", '');
@@ -1278,8 +1312,22 @@ SQL;
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12", '');
         ___open_div_("col-md-12", '');
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button>';
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-lg btn-primary">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button>';
         ___close_div_(5);
+
+        ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("form-group ", "");
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<a   class="forgot"  href="../includes/login.php' . $lang_url . '">' . $GLOBALS['lang']['Login'] . ' </a> ';
+        ___close_div_(1);
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        echo '<a   class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
+        ___close_div_(1);
+        ___close_div_(5);
+
         ___close_div_(2);
     }
 
@@ -1296,29 +1344,34 @@ SQL;
         $crypto = new Cryptor();
         $cryptoPassword = base64_encode($crypto->encryptor($randomPassword08));
         $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
+        $url = 'activation=' . $activation . '&id=' . $this->getId() . '&newPass=yes&tempPassword=' . $randomPassword08;
+        $crypto = new Cryptor();
+        $urlEn  = $crypto->urlencode_base64_encode_encryptor($url);
 
         $this->fieldNewPassword = $cryptoPassword;
         $this->fieldActivation = $activation;
-        $this->update($this->getId());
-
-        $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $activation . "&newPass=yes";
+        $this->allowUpdate = true;
+        $this->updateCurrent();
+        global $str_url;
+        $recoveryLink = "http://hulutera.com/includes/activate.php?key=" . $urlEn;
         $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] . $recoveryLink . "<br><br><br>";
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . "<br>";
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "<br><br>";
+        $body = '<br>'.$GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . '<br>';
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0].'<p ><a href="' . $recoveryLink  . '"><h3 style="font-weight:bold">'.strtoupper("Complete password recovery") .'</h3></p></a>';
 
-        /// temporary disable for message sending
-        // if (DBHOST == 'localhost') {
-        //     header('Location: ../includes/prompt.php?type=4');
-        //     return;
-        // }
-        $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
-        //Check if mail Delivered or die
-        if (!$isMailDelivered) {
-            die("Sending Email Failed. Please Contact Site Admin!");
-        } else {
-            header('Location: ../includes/prompt.php?type=4');
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . '<br><br>';
+
+        if ($_SERVER['SERVER_NAME'] == 'hulutera') {
+            $isMailDelivered = mail($email, $subject, $body, 'From:adminstrator@hulutera.com');
+            //Check if mail Delivered or die
+            if (!$isMailDelivered) {
+                die("Sending Email Failed. Please Contact Site Admin!");
+            } else {
+                header('Location: ../includes/prompt.php?type=4');
+            }
+        }else{
+            echo $body;
+            echo '<a target="blank" href="' . $recoveryLink . '">' . $recoveryLink . '</a><br>';
         }
     }
 

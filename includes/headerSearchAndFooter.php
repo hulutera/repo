@@ -63,7 +63,6 @@ function fileRouter($add)
 
 	global $str_url;
 
-
 	if($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php')
 	{
 		if(!isset($_SESSION['uID']))

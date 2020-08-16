@@ -3386,6 +3386,7 @@ th {
 
 }
 
+
 /*
 	##Device = Low Resolution Tablets, Mobiles (Landscape)
 */
@@ -4261,5 +4262,18 @@ FOOTER
     font-size: 16px;
     color: #b2b2b2;
 }
-
 /***/
+
+* {
+	-webkit-border-radius: 0 !important;
+	   -moz-border-radius: 0 !important;
+			border-radius: 0 !important;
+  }
+
+  input.btn {
+	-webkit-user-select: initial;
+	-khtml-user-select: initial;
+	-moz-user-select: initial;
+	-ms-user-select: initial;
+	user-select: initial;
+  }
