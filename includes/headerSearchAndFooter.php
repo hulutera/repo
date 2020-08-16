@@ -57,17 +57,15 @@ function fileRouter($add)
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
-<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
+	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
 	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
 
 	global $str_url;
 
-	if($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php')
-	{
-		if(!isset($_SESSION['uID']))
-		{
-			header('Location: ../includes/login.php?release=beta'.$str_url);
+	if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
+		if (!isset($_SESSION['uID']) && (isset($_GET['release']) && $_GET['release'] !== 'alpa')) {
+			header('Location: ../includes/login.php?release=beta' . $str_url);
 		}
 	}
 }
@@ -655,7 +653,7 @@ function svgMapElement()
 	global $str_url;
 	$base_link = '<a   href="../includes/adverts.php?item=All&search_text=&';
 
-?>
+	?>
 	<?php echo $base_link . 'cities=Harar' . $str_url . '"><title>' . $GLOBALS['city_lang_arr']['Harar'] . '</title><path class="ET-HA" title="Harari" stroke="black" d="M494.01,310.19L494.92,309.65L495.36,308.61L495.05,307.64L494.49,306.68L494.16,305.68L494.29,305L494.92,303.85L495.03,303.22L495.05,302.64L495.25,301.25L495.24,300.78L494.43,299.6L493.29,299.71L492.04,300.33L490.86,300.73L489.46,300.36L488.5,299.73L487.61,299.66L486.43,300.97L484.82,303.72L484.29,305.17L484.01,306.79L484.15,307.97L484.96,308.14L486.06,307.91L487.09,307.86L487.56,308.12L488.36,308.89L488.79,309.12L489.52,309.03L490.26,308.69L490.98,308.43L491.69,308.6L493.19,309.93L494.01,310.19z"/></a>'; ?>
 
 	<?php echo $base_link . 'cities=Dire Dawa' . $str_url . '"><title>' . $GLOBALS['city_lang_arr']['Dire Dawa'] . '</title><path class="ET-DD" title="Dire Dawa" stroke="black" d="M498.93,281.47L496.88,279.19L494.31,278.22L491.58,278.55L489.08,280.19L482.91,286.41L481.92,286.61L480.52,286.08L476.43,283.84L475,283.44L473.64,283.76L471.08,285.41L470.01,285.38L468.12,285.81L466.93,288.79L466.46,292.42L466.74,294.8L468.4,294.04L469.92,294.14L471.45,294.38L473.11,294.04L473.79,293.97L475.28,294.51L475.99,294.67L476.62,294.61L477.2,294.45L480.23,293.1L481.67,293.14L484.84,294.74L485.76,293.55L487.29,292.35L488.61,291.11L488.84,289.83L487.83,288.18L487.61,287.51L487.88,287.04L488.62,286.53L490.2,285.65L491.5,285.17L494.21,284.94L495.11,284.51L495.92,283.68L497.92,282.04L498.93,281.47z"/></a>'; ?>
@@ -702,7 +700,7 @@ function svgMapElement()
 	<?php echo $base_link . 'cities=Hosaena' . $str_url . '"><title>' . $GLOBALS['city_lang_arr']['Hosaena'] . '</title><circle class="sn-hos" cx="242" cy="415" r="7" fill="greenyellow"></circle></a>'; ?>
 	<text x="245" y="429" class="sn mid-city" text-anchor="middle" stroke="white" stroke-width="1px"><?php echo $GLOBALS['city_lang_arr']['Hosaena']; ?></text>
 
-    <path class="ET-SN" title="SID" stroke="black" d="M262.41,449.99L263.59,450.96L263.91,451.15L265.61,451.23L266.29,451.13L267.6,450.68L268.76,450.83L269.6,451.57L270.38,452.47L271.37,453.06L271.94,453.27L274.16,454.61L275.19,455.55L276.54,457.11L277.18,457.23L278.29,456.91L279.38,458.11L300.57,458.49L304.63,459.69L304.97,459.75L306.45,459.79L308.37,459.55L308.5,459.91L309.06,460.9L309.52,461.39L313.54,463.26L313.82,463.78L315.06,465.29L316.62,468.06L317.62,469.67L317.98,470.91L317.98,471.26L320.55,473.49L322.86,473.69L328.09,472.97L327.33,472.04L326.82,471L325.94,468.68L325.83,467.46L326.4,466.43L327.2,465.41L327.75,464.22L327.76,461.8L326.47,456.98L326.17,454.58L325.85,453.57L324.99,452.61L321.04,448.97L318.96,447.6L318.38,446.86L317.56,446.19L316.19,445.83L313.63,445.63L312.74,445.45L305.77,441.88L303.98,441.3L302.97,440.7L302.14,440L301.72,439.4L301.56,437.52L303.08,429.43L301.87,426.3L300.24,423.79L298.56,422.41L297.16,422.66L295.4,423.43L293.58,422.74L291.85,421.65L290.35,421.23L288.31,420.84L286.62,419.75L285.26,419.33L284.16,420.94L283.7,421.78L281.56,424.3L280.69,424.96L275.81,426.04L273.95,425.57L272.5,424.81L271.59,423.87L271.32,422.84L271.5,420.83L262.41,449.99z" />
+	<path class="ET-SN" title="SID" stroke="black" d="M262.41,449.99L263.59,450.96L263.91,451.15L265.61,451.23L266.29,451.13L267.6,450.68L268.76,450.83L269.6,451.57L270.38,452.47L271.37,453.06L271.94,453.27L274.16,454.61L275.19,455.55L276.54,457.11L277.18,457.23L278.29,456.91L279.38,458.11L300.57,458.49L304.63,459.69L304.97,459.75L306.45,459.79L308.37,459.55L308.5,459.91L309.06,460.9L309.52,461.39L313.54,463.26L313.82,463.78L315.06,465.29L316.62,468.06L317.62,469.67L317.98,470.91L317.98,471.26L320.55,473.49L322.86,473.69L328.09,472.97L327.33,472.04L326.82,471L325.94,468.68L325.83,467.46L326.4,466.43L327.2,465.41L327.75,464.22L327.76,461.8L326.47,456.98L326.17,454.58L325.85,453.57L324.99,452.61L321.04,448.97L318.96,447.6L318.38,446.86L317.56,446.19L316.19,445.83L313.63,445.63L312.74,445.45L305.77,441.88L303.98,441.3L302.97,440.7L302.14,440L301.72,439.4L301.56,437.52L303.08,429.43L301.87,426.3L300.24,423.79L298.56,422.41L297.16,422.66L295.4,423.43L293.58,422.74L291.85,421.65L290.35,421.23L288.31,420.84L286.62,419.75L285.26,419.33L284.16,420.94L283.7,421.78L281.56,424.3L280.69,424.96L275.81,426.04L273.95,425.57L272.5,424.81L271.59,423.87L271.32,422.84L271.5,420.83L262.41,449.99z" />
 	<?php echo $base_link . 'cities=Hawassa' . $str_url . '"><title>' . $GLOBALS['city_lang_arr']['Hawassa'] . '</title><circle class="sn-awa" cx="288" cy="440" r="7" fill="greenyellow"></circle></a>'; ?>
 	<text x="288" y="455" class="sn big-city" text-anchor="middle" stroke="white" stroke-width="1px"><?php echo $GLOBALS['city_lang_arr']['Hawassa']; ?></text>
 
@@ -845,7 +843,7 @@ function ___close_div_($number)
 function yourPage()
 {
 	global $str_url, $lang_url;
-	$id=$_SESSION['uID'];
+	$id = $_SESSION['uID'];
 	$myPageHeaderTitle = $GLOBALS['lang']['my page header'];
 	$myPageHeaderMessage = $GLOBALS['lang']['my-page msg'];
 	$myItemsTitle = $GLOBALS['lang']['My Items'];
