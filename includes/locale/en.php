@@ -309,7 +309,8 @@ $lang = array(
     'help' => 'Help',
     'or' => 'OR',
     'latest items' => 'Latest Items',
-    'latest items message' => 'Click the link to see recently uploaded items.'
+    'latest items message' => 'Click the link to see recently uploaded items.',
+    'prompt' => 'Prompt',
 
 );
 
@@ -1216,6 +1217,9 @@ $help = [
                               the registration, proceed to the next step.',
                 "Step 4: " => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
                              acount is now active.You may now login </strong>.At this step your Regsitration is completed.',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">For more info, Watch the Clip</p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/VwXTlbyxJL8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              </div>',
             ]
         ],
         "logIn"    => [
@@ -1242,6 +1246,11 @@ $help = [
                               your password in your account page</strong>. After
                               providing new password, your password recovery is completed
                               and now you can proceed to login.',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                                  <video width="50%" id="vid-recovery" style="border: 2px black solid">
+                                      <source src="../videos/en/pass_rec_en.mp4" type="video/mp4">
+                                  </video>
+                               </div>',
             ]
         ],
         "upload"   => [
@@ -1252,7 +1261,10 @@ $help = [
                 "Step 3: " => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item inroder to catch the eyes of others and show a clear condition of the item.
                               You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
                               advert. You will see the message <strong>Your item was successfuly uploaded.
-                              Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.'
+                              Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">For more info, Watch the Clip</p>
+                               <iframe width="560" height="315" src="https://www.youtube.com/embed/KzGQTtlaBYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              </div>',
                         ]
         ],
         "contactus"   => [
@@ -1265,7 +1277,10 @@ $help = [
                               want to contact us on the <strong>Message</strong>field.',
                 "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
                         button to send your inquiry. Then, you will see a message <strong>We appreciate your taking the time to
-                        contact us"</strong>.'
+                        contact us"</strong>.',
+                 "" => '<div class="help-video" style="width:100%"><p style="text-align:start">For more info, Watch the Clip</p>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/nDSknjUIlwM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>',
             ]
         ],
         "search"   => [

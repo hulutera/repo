@@ -3861,6 +3861,10 @@ th {
 		margin-right: 1%;
 	}
 
+	.help-video {
+		display: none;
+	}
+
 }
 
 .alert-custom {

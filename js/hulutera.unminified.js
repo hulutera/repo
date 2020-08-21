@@ -1288,8 +1288,38 @@ function mobMyItem() {
         $('#modnav ul').toggle();
     })
 }
-function toggleDivs(divClass) {
+function toggleDivs(key) {
     $(document).ready(function () {
-        $('.' + divClass).toggle();
-    })
+        innerDiv = $('.help-' + key).css('display');
+        if(innerDiv == 'none') {
+            $('.help-' + key).hide();
+        } else {
+            $('.help-' + key).show();
+        }
+        $('.help-' + key).toggle();
+        $('.help-minus-' + key).toggle();
+        $('.help-plus-' + key).toggle();
+        if ( $('.help-tabs-' + key).css('background-color') == 'white' || $('.help-tabs-' + key).css('background-color') == 'rgb(255, 255, 255)') {
+            $('.help-tabs-' + key).css('background-color', '#0080ff');
+            $('.help-tabs-' + key).css('color', 'white');
+        } else {
+            $('.help-tabs-' + key).css('background-color', 'white');
+            $('.help-tabs-' + key).css('color', 'black');
+        }
+
+    });
+
+    var reg = document.getElementById("help-" + key).style.display;
+    if (reg == 'none') {
+        var div = document.getElementById("vid-" + key);
+        div.pause();
+    }
+}
+function playVideo(key){
+    var div = document.getElementById("vid-" + key);
+    if (div.paused) {
+        div.play();
+    } else if (!(div.paused) ) {
+       div.pause();
+   }
 }

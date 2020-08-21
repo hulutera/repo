@@ -55,6 +55,13 @@ if (!empty($err2)) {
 		$_SESSION['upload_' . $itemName] = null;
 	}
 
+	if (isset($_GET['lan'])) {
+		$lang_url = "&lan=" . $_GET['lan'];
+	} else {
+		$lang_url = "";
+	}
+
 	//successfull
-	header('Location: ../../prompt.php?type=10');
+	$link = '../../prompt.php?type=10' . $lang_url;
+	header('Location: ' . $link);
 }

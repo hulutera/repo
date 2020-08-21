@@ -938,12 +938,18 @@ SQL;
         //     return;
         // }
         ///
-        $isMailDelivered = mail($email, $subject, $body, 'From:noreply@hulutera.com');
+        $isMailDelivered =  mail($email, $subject, $body, 'From:noreply@hulutera.com');
         //Check if mail Delivered or die
         if (!$isMailDelivered) {
             die("Sending Email Failed. Please Contact Site Admin!");
         } else {
-            header('Location: ../includes/prompt.php?type=1');
+            if (isset($_GET['lan'])) {
+                $lang_url = "&lan=" . $_GET['lan'];
+            } else {
+                $lang_url = "";
+            }
+            $link = "../includes/prompt.php?type=1" . $lang_url;
+            header('Location:' . $link);
         }
     }
 }

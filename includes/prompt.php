@@ -109,7 +109,7 @@ function createMessage($type)
 <html lang="en">
 
 <head>
-	<title>Prompt | መልዕክት</title>
+	<title> <?php echo $GLOBALS['lang']['prompt']; ?> </title>
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<?php commonHeader(); ?>
 </head>

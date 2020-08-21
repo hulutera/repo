@@ -112,9 +112,9 @@ function help()
 	___open_div_('row', '');
 	foreach ($GLOBALS['help'][1] as $key => $value) {
 		___open_div_('col-md-12 col-xs-12', '');
-		echo "<a  href=\"javascript:void(0)\" onclick=\"toggleDivs('help-" . $key . "')\" style=\"color:black;text-decoration:none\">";
-		      echo '<div class="help-tabs" style="font-size:25px;padding:5px;margin-bottom:10px;">' . $GLOBALS['help'][1][$key]['head'] .'<span class="glyphicon glyphicon-plus" style="font-size:20px;float:right"></span></div></a>';
-		___open_div_('col-md-12 help-'.$key.'', '" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;display:none');
+		echo "<a  href=\"javascript:void(0)\" onclick=\"toggleDivs('$key')\" style=\"color:black;text-decoration:none\">";
+		      echo "<div class=\"help-tabs-" . $key ."\" style=\"font-size:25px;padding:5px;margin-bottom:10px;background-color:white\">" . $GLOBALS['help'][1][$key]['head'] ."<span class=\"glyphicon glyphicon-plus help-plus-".$key."\" style=\"font-size:20px;float:right\"></span><span class=\"glyphicon glyphicon-minus help-minus-".$key."\" style=\"font-size:20px;float:right;display:none\"></span></div></a>";
+		___open_div_('col-md-12  col-xs-12 help-'.$key.'', '" id="help-'.$key.'" style="border-radius:4px; border:1px solid #c7c7c7; background-color:#f0f9ff; padding:20px;margin:5px;display:none');
 
 		$body = $GLOBALS['help'][1][$key]['body'];
 		echo '<ul style="text-align:start">';
@@ -126,7 +126,6 @@ function help()
 			echo '</p>';
 		}
 		echo '</ul>';
-		echo '<p style="text-align:start"><a   class="btn" href="#">Watch Clip »</a></p>';
 		___close_div_(2);
 	}
 	// help2();
