@@ -298,7 +298,10 @@ $lang = array(
     'latest items' => 'በቅርብ ጊዜ የገቡ ንብረቶች',
     'latest items message' => 'በቅርብ ጊዜ የገቡ ንብረቶችን ለማየት የሚከተለውን ተጭነው መመልከት ይችላሉ።',
     'prompt' => 'መልዕክት',
-    'watch clip' => 'ለበለጠ ቪዲዮዉን ይመልከቱ'
+    //new ones
+    'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
+    'watch clip' => 'ለበለጠ ቪዲዮዉን ይመልከቱ',
+
 );
 
 $city_lang_arr = array(
@@ -1160,8 +1163,8 @@ $user_specific_array = [
         'account-deactivation' => [
             'subject' => 'You account have been deactivate',
             'body' => [
-                0 => 'We have found problem with you account not complying to our Term& conditions
-                      hence you account have been deactivated and your uploaded items will not be
+                0 => 'We have found problem with your account not complying to our Term& conditions
+                      hence your account have been deactivated and your uploaded items will not be
                       advertised. Please reach out to us for addtional through contact us.
                       <br>Sincerely,<br>The hulutera Admin<br>'
             ]

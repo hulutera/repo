@@ -311,6 +311,9 @@ $lang = array(
     'latest items' => 'Latest Items',
     'latest items message' => 'Click the link to see recently uploaded items.',
     'prompt' => 'Prompt',
+    //new ones
+    'no items to show' => '<div id="spanColumnXamharic">Sorry! There is no item to display.</div>',
+    'watch clip' => 'Watch Clip for more info'
 
 );
 
@@ -986,7 +989,7 @@ $upload_specific_array = [
         ],
         'Choose Images here' => 'Choose Images here',
         'upload successful msg' => 'Thank you for using our service!
-                                    Your item was successfuly uploaded.
+                                    Your item was successfully uploaded.
                                     Please follow instructions in the email we sent you to follow the status of your item!'
     ]
 ];
@@ -1256,11 +1259,11 @@ $help = [
         "upload"   => [
             "head" => "How to upload",
             "body" => [
-                "Step 1: " => "Be reminded that you first need to login inorder to upload.",
+                "Step 1: " => "Be reminded that you first need to login in order to upload.",
                 "Step 2: " => "Click on the <button> Post Items </button> which is located on the top-right corner of the logged-in page. Choose the Item you want to advertise",
-                "Step 3: " => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item inroder to catch the eyes of others and show a clear condition of the item.
+                "Step 3: " => 'The item upload form will open and fill all the information regarding your item. We recommend you to upload a good quality picture of your item in order to catch the eyes of others and show a clear condition of the item.
                               You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
-                              advert. You will see the message <strong>Your item was successfuly uploaded.
+                              advert. You will see the message <strong>Your item was successfully uploaded.
                               Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.',
                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">For more info, Watch the Clip</p>
                                <iframe width="560" height="315" src="https://www.youtube.com/embed/KzGQTtlaBYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

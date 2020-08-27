@@ -860,6 +860,10 @@ li .col2 {
 	display:block;
 }
 
+#divCommon .caption:before{
+	background:#19D9FD;
+}
+
 .featured_detailed2 {
 	background-color:#ebf0f1;
 }
@@ -4145,7 +4149,7 @@ th {
 
 #sidelist ul li {
 	float: left;
-	width: 125px;
+	width: 14%;
 	position: relative;
 	line-height: 10px;
 	margin-top: 3px;

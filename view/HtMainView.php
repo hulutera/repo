@@ -159,8 +159,9 @@ class HtMainView
     /**
      *
      */
-    public function showOneItem()
+    public function showOneItem($item_order = null)
     {
+        $this->_itemNumber = $item_order;
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $this->_runnerStatus);
         $result = $this->_pItem->getResultSet();
         $sql =  $this->_pItem->lastSql();
@@ -235,8 +236,6 @@ class HtMainView
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
         echo '<div class="image-count"><i class="icon-image"></i><span>' . $numimage . '</span></div>';
-        echo '<div class="budget budget-used"><div class="budget-mask"><span>' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</span></div></div>';
-
         echo '<img src="' . $thmbnlImg . '" alt="" />';
 
         echo "<a   href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
@@ -246,7 +245,8 @@ class HtMainView
              <span class="property-im-m property-im-m-rt"></span>
              <span class="property-im-m property-im-m-rb"></span>
          </a>';
-        echo  '</div>';
+         echo  '</div>';
+         echo '<p style="background-color:#19D9FD;margin-top:1px;color:black;text-align:center">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
         /*END @property-image object-fit-container compat-object-fit*/
 
         /*START @ Caption*/

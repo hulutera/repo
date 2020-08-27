@@ -93,7 +93,7 @@ class HtGlobal
             "imagePerItem"
             => 5,
             "noItemToShow"
-            => "Sorry! There is no item to display.<div id=\"spanColumnXamharic\">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>",
+            => $GLOBALS["lang"]["no items to show"],
 
         ];
 

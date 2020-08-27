@@ -116,13 +116,13 @@ function userContent()
 	}
 
 	accountLinks();
-
+	$globalVarObj = new HtGlobal();
 	$status = $_GET['status'];
 	$id = $_GET['id'];
 	$id  = (isset($id)) ? $id : '';
 	$sum = countRow($status, $id);
 	if ($sum >= 1) {
-		$itemPerPage = HtGlobal::get("itemPerPage")>0?HtGlobal::get("itemPerPage"):1;
+		$itemPerPage = $globalVarObj::get("itemPerPage");
 		$totpage = ceil($sum / $itemPerPage);
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
@@ -130,10 +130,10 @@ function userContent()
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = HtGlobal::get('itemPerPage') * ($page - 1);
+		$itemstart = $globalVarObj::get('itemPerPage') * ($page - 1);
 
 		$result = maxQuery($status, $id, $itemstart);
-		//var_dump($result);
+
 		$tableType2item = [
 			1 => 'car',
 			2 => 'house',
@@ -147,13 +147,15 @@ function userContent()
         /*START @ widget */
         echo '<div class="widget-content properties-grid">';
         /*START @ row*/
-        echo '<div class="row">';
+		echo '<div class="row">';
+		$item_order = 0;
 		foreach ($result as $key => $value) {
 			# code...
+			$item_order ++;
 			$id = (int)$value['id'];
 			$itemName = $tableType2item[(int)$value['field_table_type']];
 			$view = (new HtMainView($itemName, $id, $status));
-			$view->showOneItem();
+			$view->showOneItem($item_order);
 		}
 		echo '</div>';
 		echo '</div>';
@@ -161,8 +163,11 @@ function userContent()
 
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
+		echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
+        echo '<div id="spanMainColumnXRemove" style="color: red">';
+        echo $globalVarObj::get('noItemToShow');
+        echo '</div></div>';
 
-		echo "<div id=\"mainColumnX\">" . HtGlobal::get('noItemToShow') . "</div>";
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userActiveButton").show();});</script>';
 }

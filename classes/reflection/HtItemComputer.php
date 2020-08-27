@@ -1574,7 +1574,7 @@ SQL;
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a   href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\"></i></a><a   href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo "<p class=\"bg-success\"><a   href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\" style=\"background-color:#337ab7;color:white\"></i></a><a   href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none;background-color:#337ab7;color:white\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
         echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
 
         if ($this->getidCategory() != null) {
