@@ -89,7 +89,7 @@ class HtGlobal
             "emptymsg"
             => 'Sorry! There is no item to display.<div id=spanColumnXamharic>ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
             "itemPerPage"
-            => 30,
+            => (int)30,
             "imagePerItem"
             => 5,
             "noItemToShow"

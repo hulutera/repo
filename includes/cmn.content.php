@@ -11,6 +11,7 @@ require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
 require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
+require_once $documnetRootPath . '/classes/global.variable.class.php';
 
 function countRow($status, $id)
 {
@@ -121,7 +122,8 @@ function userContent()
 	$id  = (isset($id)) ? $id : '';
 	$sum = countRow($status, $id);
 	if ($sum >= 1) {
-		$totpage = ceil($sum / HtGlobal::get('itemPerPage'));
+		$itemPerPage = HtGlobal::get("itemPerPage")>0?HtGlobal::get("itemPerPage"):1;
+		$totpage = ceil($sum / $itemPerPage);
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
 			$page = $totpage;

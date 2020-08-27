@@ -203,8 +203,12 @@ class HtMainView
         $imageDir = $commonViewObj->getImageDir($this->_pItem);
         $image = $this->_pItem->getFieldImage();
 
-        // scan uploads directory
-        $uploadsFiles = array_diff(scandir($imageDir), array('.', '..'));
+        $uploadsFiles = null;
+        if (is_dir($imageDir)) { //check if directory exist
+            // scan uploads directory
+            $uploadsFiles = array_diff(scandir($imageDir), array('.', '..'));
+        }
+
         if (empty($uploadsFiles) || !isset($image)) {
             $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
             $imageDir = "../images/" . $language . "/";
