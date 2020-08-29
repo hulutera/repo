@@ -246,15 +246,13 @@ function func_moderatorActions(e, t, n, r, i, s) {
     })
 }
 
-function func_moderatorShow(e, t, n) {
+function item_action(action_type, item, id) {
     $(document).ready(function () {
         $.ajax({
-            url: "/includes/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n,
-            method: "GET",
-            success: function (e) {
-                alert(e)
-            }
-        })
+            url: "/includes/action.on.item.php?actionType=" + action_type + "&itemtype=" + item + "&itemid=" + id,
+            method: "GET"
+        });
+        return false
     })
 }
 
@@ -1322,4 +1320,11 @@ function playVideo(key){
     } else if (!(div.paused) ) {
        div.pause();
    }
+}
+
+function hideShowSingleDivs(hideDiv, showDiv) {
+    $(document).ready(function () {
+        $("." + hideDiv).hide();
+        $("." + showDiv).show();
+    })
 }

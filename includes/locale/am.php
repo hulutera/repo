@@ -301,6 +301,10 @@ $lang = array(
     //new ones
     'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
     'watch clip' => 'ለበለጠ ቪዲዮዉን ይመልከቱ',
+    'remove' => 'ለማጥፋት',
+    'item remove confirmation msg' => 'ይህንን ንብረትዎን ለማስተዋወቅ ያስገቡትን ማስታወቂያ ለማጥፋት ወስነዋል?',
+    'yes' => 'ወስኛለሁ',
+    'no' => 'አልወሰንኩም'
 
 );
 

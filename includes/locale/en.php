@@ -313,7 +313,11 @@ $lang = array(
     'prompt' => 'Prompt',
     //new ones
     'no items to show' => '<div id="spanColumnXamharic">Sorry! There is no item to display.</div>',
-    'watch clip' => 'Watch Clip for more info'
+    'watch clip' => 'Watch Clip for more info',
+    'remove' => 'Remove',
+    'item remove confirmation msg' => 'Have you decided to remove this Ad?',
+    'yes' => 'Yes',
+    'no' => 'No'
 
 );
 

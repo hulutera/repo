@@ -522,6 +522,10 @@ form.signin input.button {
 	display: none;
 }
 
+.rem-action-div {
+	display: none;
+}
+
 #text_sellRent {
 	font-family: sans-serif, Arial, Helvetica;
 	;
