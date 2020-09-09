@@ -647,7 +647,7 @@ $upload_specific_array = [
             1 => 'Modeelii asitti barreessaa'
         ],
         'fieldHardDrive'   => [
-            0 => 'Hard disk',
+            0 => 'Hard disc',
             1 => 'Hard disc filadhaa',
             2 => [
                 "Under 100GB" => ' 99GB gadi    ',
@@ -1137,7 +1137,7 @@ $user_specific_array = [
             ]
         ],
         'account-deactivation' => [
-            'subject' => 'You account have been deactivate',
+            'subject' => 'Your account have been deactivate',
             'body' => [
                 0 => 'We have found problem with your account not complying to our Term& conditions
                       hence your account have been deactivated and your uploaded items will not be
@@ -1146,7 +1146,7 @@ $user_specific_array = [
             ]
         ],
         'account-closed' => [
-            'subject' => 'You account have been closed',
+            'subject' => 'Your account have been closed',
             'body' => [
                 0 => 'We have closed your account! Have a good one!
                       <br>Sincerely,<br>The hulutera Admin<br>'
@@ -1247,9 +1247,9 @@ $help = [
             "head" => "Qabeenya akkamitti barbaachuu akka dandeessan",
             "body" => [
                 "" => "Website keenya irra qabeenya barbaaddan haala salphaan argachu ni dandeessu. Kanas unkaa ittiin barbaadan irratti odeefannoowwan galchuun milkaa’un ni dandeessu. Application keenya  ittiin hojiirra oolcha bu’uuraodeefannoo galchitaniin bu’a adda addaa ni kenna. Kunis akka armana gadi ta’a<br /> 1) <strong>gujecha ittiin barbaadan</strong>yoo galubaate<strong>qabeenyawwan hunda</strong>fi<strong>magaaloota hunda</strong>yoo filatame. Iti aansuun <button class='btn btn-warning'>Haa barbaadamu</button>isa jedhu tuqa.Qaneenyawwan hunda Website keenya irra jirankanneen hojiirra oolan ni agarsiisa.<br /> 2) <strong>Jecha ittiin barbaadan</strong>yoo gale, <strong>qabeenyawwan hunda </strong>fi<strong>magaaloota hunda</strong>yoo filatame. Itti aansuun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qbeenyawwan website keenya irra jiran odeefannoo isin galchitan kanneen guutan ni agarsiisa. Kunis magaaloota hundaa fi akaakuu qabeenyawwan hunda ni hammata. <br /> 3) <strong> jecha ittiin barbaadan</strong>Yoo galubaate,<strong>konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaalee manaa/bilbila/kanneen biroo</strong>qabeenya dabalatan filattan ilaalchisee odeefannon dabalataan ittiin barbaadan ilaalchisee yoo filatamee fi<strong>magaaloota hunda</strong>hun yoo filatame. Itti aansuun isa <button class=\"btn btn-warning\">haa barbaadamu</button> jedhu tuqa. Qabeenyawwan website keenya irra jiran odefannoo isin galchitan kaneen guutan ni agarsiisa. Kunis qabeenya barbaaddan hunda magaaloota hunda keessa barbaachu ni hammata.<br /> 4) <strong>jecha ittiin barbaadan</strong> Yoo gale <strong> konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaaleemanaa/bilbila/kanneen biroo</strong> Kana malees qabeenya filattan ilaalchisee odeefannoon ittiin barbaadamu yoo filatameefi<strong>magaalaan tokko yoo filatame</strong>yoo filatame, itti aansun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qabeenyawwan website keenya irra jiran keessee kanneen  odeefannoo isin galchitan kan guutan ni agarsiisa. Kunis qabeenya isin filattan magalaaf latame keessaa filachu ni hammata.<br />",
-                "1) " => "Saanduqa ittiin barbaadan website keenya irra gubbaa gama mirgaatiin argama.",
-                "2) " => "Odeefannoowwan ittiin barbaadan hunda galcha.",
-                "3) " => "Itti aansuun haa barbaadamu isa jedhu tuqa",
+                "i) " => "Saanduqa ittiin barbaadan website keenya irra gubbaa gama mirgaatiin argama.",
+                "ii) " => "Odeefannoowwan ittiin barbaadan hunda galcha.",
+                "iii) " => "Itti aansuun haa barbaadamu isa jedhu tuqa",
                 "*" => "Yammuu jecha ittiin barbaadamu galchitan jecha gabaabaatti yoo fayyadamtan ni filatama. Qabeeenya achi jiru argachuuf carraan bal’dhaa dha. Fakeenyaaf konkoolaataa diimaa barbaaduuf, diimaa jettanii yoo barreesitan  filatama dha.Afaan adda addaatiin barbaadunis qabeenya dabalata agarsiisu ni danda’a. Afaan adda addaaatiin barbaachuunis qabeenyawwan dabalata agarsiisu ni danda’a.",
                 "**" => "Qabeenyi barbaadame yoo argamubaate<strong> qabeenyichi hin argamne</strong> dhaamsa kan jedhu ni mul’ata.",
             ]

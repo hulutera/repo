@@ -1165,16 +1165,16 @@ $user_specific_array = [
             ]
         ],
         'account-deactivation' => [
-            'subject' => 'You account have been deactivate',
+            'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => 'We have found problem with your account not complying to our Term& conditions
+                0 => 'We have found problem with your account not complying to our Term & conditions
                       hence your account have been deactivated and your uploaded items will not be
                       advertised. Please reach out to us for addtional through contact us.
                       <br>Sincerely,<br>The hulutera Admin<br>'
             ]
         ],
         'account-closed' => [
-            'subject' => 'You account have been closed',
+            'subject' => 'Your account have been closed',
             'body' => [
                 0 => 'We have closed your account! Have a good one!
                       <br>Sincerely,<br>The hulutera Admin<br>'
