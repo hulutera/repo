@@ -23,6 +23,7 @@ if (isset($_SESSION['uID'])) {
     $user->updateCurrent();
 }
 
+
 /*
 function func_activate($item, $itmeId, $itemIdName, $uid, $itemStatus, $link, $time)
 {

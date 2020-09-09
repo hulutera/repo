@@ -72,7 +72,7 @@ function accountLinks()
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['pending'] . "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
 		echo "<a   ";
-		echo 'href="../includes/upload.php" >';
+		echo 'href="../includes/upload.php' . $lang_url . '" >';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['Post Items'] . "</span></div></a>";
 		echo "</div>";

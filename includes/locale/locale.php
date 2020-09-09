@@ -51,7 +51,7 @@ function locale($current_link)
         $ln => $lang['LANGUAGE'],
         $en => "ENGLISH",
         $am => "አማርኛ",
-        $ao => "AFAN OROMO",
+        $ao => "AFAAN OROMO",
         $tg => "ትግርኛ",
         $so => "SOMALI",
         $si => "SIDAAMU AFOO",
