@@ -38,14 +38,24 @@ if (!empty($err2)) {
 } else {
 	// reset Error
 	$err = [];
+
+
+	$id = isset($_SESSION['POST']['id']) ? $_SESSION['POST']['id'] : null;
+
+	//get item instance
+	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], (int)$id);
+	if (isset($_GET['action']) && ($_GET['action'] == 'upload-edit')) {
+		//update item with new data
+		$_pItem->uploadEdit();
+		exit;
+	} else {
+		//insert item
+		$_pItem->insertPost();
+	}
+
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;
-
-	//get item instance
-	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], null);
-	//insert item
-	$_pItem->insertPost();
 
 	//reset uploaded sessions per item
 	$items = new HtItemAll("*");

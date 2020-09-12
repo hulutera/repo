@@ -222,7 +222,7 @@ class MySqlRecord extends Model
             } else {
                 $union = " ";
             }
-            $sql .= 'SELECT '. $value.'.id,'. $value.'.field_table_type, '. $value.'.field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
+            $sql .= 'SELECT ' . $value . '.id,' . $value . '.field_table_type, ' . $value . '.field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
             //var_dump($sql);
         }
         $sql .= ' ORDER BY field_upload_date DESC LIMIT ' . $start . ',' . $itemPerPage;
@@ -343,14 +343,14 @@ EOD;
         }
 
         $image = $GLOBALS['upload_specific_array']['common']['Choose Images here'];
-
+        $preloadedFiles = isset($_SESSION['POST']['preloadedFiles']) ? " data-fileuploader-files=".$_SESSION['POST']['preloadedFiles'] : "";
         echo <<< EOD
         <div class="row upload {$errorClass}">
         <div class="form-group">
             <label for="fieldImage"> {$image} </label>{$errorMsg}
             <div>
                     <!-- file input -->
-                    <input type="file" name="files">
+                    <input type="file" name="files" {$preloadedFiles}>
             </div>
         </div>
         </div>
@@ -469,27 +469,26 @@ EOD;
         ];
         $selectable = [];
         foreach ($colors as $key => $value) {
-            $input = ['value="'.$key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key]];
+            $input = ['value="' . $key . '" style="background-color:' . $value[0] . ';color:' . $value[1] . '"' => $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$key]];
             array_push($selectable, $input);
         }
 
         ___open_div_("row", "");
         ___open_div_("col-md-12", '');
         ___open_div_("form-group", "");
-        echo '<label for="fieldColor">'.$GLOBALS['upload_specific_array']['common']['fieldColor'][0].'</label>';
+        echo '<label for="fieldColor">' . $GLOBALS['upload_specific_array']['common']['fieldColor'][0] . '</label>';
         if (isset($errorMsg)) {
             ___open_div_("col-md-12", $errorClass);
             echo $errorMsg;
             ___close_div_(1);
-
         }
         echo '<select id="fieldColor" name="fieldColor" class="select form-control">
-            <option value="">'.$GLOBALS['upload_specific_array']['common']['fieldColor'][1].'</option>';
-            foreach ( $selectable as $key => $value) {
-                foreach ( $value as $key1 => $value1) {
-                    echo '<option '.$key1.'>' . $value1 . '</option>';
-                }
+            <option value="">' . $GLOBALS['upload_specific_array']['common']['fieldColor'][1] . '</option>';
+        foreach ($selectable as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+                echo '<option ' . $key1 . '>' . $value1 . '</option>';
             }
+        }
         echo '</select>';
         ___close_div_(3);
     }
@@ -552,6 +551,11 @@ EOD;
         $label = ($newLabel !== null) ? $newLabel : $GLOBALS[$globalArrayName][$source][$fieldName][0];
         $choose = $GLOBALS[$globalArrayName][$source][$fieldName][1];
         $types = [];
+
+        // var_dump($fieldName);
+        // var_dump($source);
+        // var_dump($globalArrayName);
+
         if (empty($selectable)) {
             $types = $GLOBALS[$globalArrayName][$source][$fieldName][2];
         } else {
@@ -561,12 +565,18 @@ EOD;
                 }
             }
         }
+        //var_dump($_SESSION['POST']);
+        //var_dump($fieldName);
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST'][$fieldName])) {
+
             if (strpos($_SESSION['POST'][$fieldName], $GLOBALS['lang']['Choose']) !== false) {
                 $choose1 = $choose2 = $choose;
             } else {
                 $temp = $_SESSION['POST'][$fieldName];
+                // var_dump($fieldName);
+                // var_dump($temp);
+                // var_dump($globalArrayName);
                 $choose1 = $temp;
                 $choose2 = $types[$temp];
                 $selected = 1;

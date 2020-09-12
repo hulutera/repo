@@ -428,7 +428,7 @@ SQL;
      * @category DML Helper
      * @return mixed MySQLi update result
      */
-    public function upload()
+    public function upload($data = null)
     {
         global $documnetRootPath;
         echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";

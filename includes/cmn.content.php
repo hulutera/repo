@@ -963,7 +963,7 @@ function activityTable()
 
 						echo '<form style="display:inline-block;" id="myForm" action="./admin.php?activityTableId=' . $urlEn . '" method="post">';
 						echo '<button name="submit" type="submit" value="submit" ' . $value[2] . ' class="btn btn-rounded btn-sm ' . $value[1]
-							. '"' . $disabled .    ' id="' . $v2 . '_' . $key . '">' . $value[0] . '</button>';
+							. '"' . $disabled .    ' id="' . $v2 . '_' . $k1 . '">' . $value[0] . '</button>';
 						echo '</form>';
 					}
 					echo '</span></td>';

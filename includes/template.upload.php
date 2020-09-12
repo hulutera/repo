@@ -16,7 +16,7 @@ if (isset($_GET['lan'])) {
 <html lang="en">
 
 <head>
-	<title><?php echo $GLOBALS['lang']['upload'];?></title>
+	<title><?php echo $GLOBALS['lang']['upload']; ?></title>
 	<?php commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 
@@ -98,23 +98,28 @@ if (isset($_GET['lan'])) {
 					unset($_SESSION['errorRaw']);
 				}
 
+				if (!isset($_SESSION['uID'])) {
+					header('Location:../index.php' . $lang_url);
+				}
 				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
 
+				$data = isset($_GET['action']) &&
+					($_GET['action'] == "edit") &&
+					isset($_GET['data']) ? $_GET['data'] : "";
+
 				//define unique session
 				$sessionName = 'upload_' . $_GET['type'];
-				if(isset($_SESSION['uID'])) {
-					if (!isset($_SESSION[$sessionName])) {
-						$object = new HtMainView($_GET['type'], null);
-						$object->upload();
-						$_SESSION[$sessionName] = base64_encode(serialize($object));
-					} else {
-						$object = unserialize(base64_decode($_SESSION[$sessionName]));
-						$object->upload();
-					}
+
+				if (!isset($_SESSION[$sessionName])) {
+					$object = new HtMainView($_GET['type'], null);
+					$object->upload($data);
+					$_SESSION[$sessionName] = base64_encode(serialize($object));
 				} else {
-					header('Location:../index.php' . $lang_url);
+					$object = unserialize(base64_decode($_SESSION[$sessionName]));
+					$object->upload($data);
 				}
+
 
 				?>
 			</div>

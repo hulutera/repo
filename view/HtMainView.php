@@ -4,6 +4,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/view/HtCommonView.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
+require_once $documnetRootPath . '/includes/validate.php';
 
 class HtMainView
 {
@@ -263,6 +264,7 @@ class HtMainView
         $commonViewObj->displayUpldTime($this->_pItem);
         echo '<span class="property-field">';
         $commonViewObj->displayPrice($this->_pItem);
+        global $str_url;
         if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
             if ($row['id_user'] == $user->getId()) {
                 echo '<div class="' . $uniqueId .'-rem-msg col-xs-12 col-md-12 rem-action-div" style="border:1px solid black;color:color">';
@@ -271,7 +273,15 @@ class HtMainView
                     echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-rem-msg', '". $uniqueId."-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button></a>";
                 echo '</div>';
                 echo '<div class="' . $uniqueId .'-myItem-action">';
-                echo '<a   href=""><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
+                $editLink = "";
+                foreach ($row as $key => $value) {
+                    $temp = "&" .$key ."=" .$value;
+                    $editLink .= $temp;
+                }
+                $editLink = ltrim($editLink,'&');
+                $crypto = new Cryptor();
+                $editLinkCrypted = $crypto->urlencode_base64_encode_encryptor($editLink);
+                echo '<a href="../includes/template.upload.php?function=upload&type='.$itemName.'&action=edit&data='.$editLinkCrypted.$str_url.'"><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
                 echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-myItem-action', '". $uniqueId."-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
                 echo '</div>';
             }
@@ -316,10 +326,10 @@ class HtMainView
      *
      * @param resolved by construtor
      */
-    public function upload()
+    public function upload($data = null)
     {
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, null);
-        $this->_pItem->upload();
+        $this->_pItem->upload($data);
     }
 
     /**

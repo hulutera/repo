@@ -1540,7 +1540,7 @@ SQL;
      * @return mixed MySQLi update result
      */
 
-    public function upload()
+    public function upload($data = null)
     {
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
