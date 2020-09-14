@@ -1627,11 +1627,15 @@ div.clear {
 	overflow: hidden;
 }
 
+#inner a {
+	text-decoration: none;
+}
+
 #prompt {
 	padding: 20px;
 }
 
-#prompt a {
+#prompt a{
 	text-decoration: none;
 	color: brown;
 }
@@ -4274,17 +4278,3 @@ FOOTER
     color: #b2b2b2;
 }
 /***/
-
-* {
-	-webkit-border-radius: 0 !important;
-	   -moz-border-radius: 0 !important;
-			border-radius: 0 !important;
-  }
-
-  input.btn {
-	-webkit-user-select: initial;
-	-khtml-user-select: initial;
-	-moz-user-select: initial;
-	-ms-user-select: initial;
-	user-select: initial;
-  }

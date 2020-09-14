@@ -125,6 +125,7 @@ function createMessage($type)
 			<strong><?php createMessage(23); ?></strong>
 		</div>
 	</div>
+	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>
 	<?php footerCode();
 	?>
 </body>

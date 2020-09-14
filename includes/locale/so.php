@@ -76,48 +76,42 @@ $lang = array(
     "About Us" => ' Anaga nagu-saabsan ',
     "Terms and Conditions" => 'Xeerka maamulka ',
     "terms and conditions text" => 'bagaad nabad ku-timaaddeen hulutera.com. hulutera.com waa mulkiyadda Hulutera. Markaad shabakaddayada booqanaysid iyo markaad isticmaalaysid xog-kasta oo shabakaddayada ku-jirta, waa in aad fahantid oo aad oggolaatid xeerkayaga maamuleed ee hoos ku-qoran (Waxaanu heshiiskana ku-magacaabaynaa heshiiska isticmaalaha).
-
-    Heshiiskani wuxuu dhaqangel noqday marka laga-bilaabo Ginbood 8, 2012.
-
-    Waxaanu xaq u leenahay in aynu markasta heshiiskan isticmaala baddalno, xilliga aynu baddalayno shabakaddayada ayaanu ku-shaacin doonnaa. Akhrinta iyo eegidda waa mas’uuliyad isticmaalaha saaran.
-
-    Isticmaalka xilkaska ah iyo anshax
-
+    <br/><br/>
+    Heshiiskani wuxuu dhaqangel noqday marka laga-bilaabo Ginbood 8, 2012. <br/><br/>
+    <br/><br/>Waxaanu xaq u leenahay in aynu markasta heshiiskan isticmaala baddalno, xilliga aynu baddalayno shabakaddayada ayaanu ku-shaacin doonnaa. Akhrinta iyo eegidda waa mas’uuliyad isticmaalaha saaran.<br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">Isticmaalka xilkaska ah iyo anshax</span><br/><br/>
     Markaad shabakaddayada booqanaysid iyo markaad isticmaalaysid xog-kasta oo shabakaddayada saaran, waa inaad si toos ah ama si dadaban u oggolaatid xeerka heshiiska isticmaalaha ee aad shabakadda ka-dhex-helaysid, iyo in aanad ku-xadgubayn shuruucda dhaqangelka ah iyo guud-ahaan cadooyinka oggolaanshaha leh ama tilmaamaha “online”-ka la-xidhiidha.
-
-    Sidaas awgeed ogow arrinta hoos ku-qoran,
-
-    A) Markaad shabakadda isticmaalaysid, waxaa lagaaga-baahan karaa inaad galisid xogta kugu-saabsan, waana inaad oggolaatid saxnimada iyo runimada xogta aad galinaysid.
-    B) Haddii aad isku-diiwaangelisay isticmaalenimada Hulutera, in xogta aad ku-galaysid aad si qarsoodi ah u ilaashatid waa mas’uuliyad adiga ku-saaran. Ficil-kasta oo xogtaada galintaanka lagu-sameeyo adiga ayaa mas’uul ka ah.
-    C) Waxaa si adag loo-mamnuucay in shabakadda loo-isticmaalo nooc ka-baxsan habka isticmaalkeeda ee aynu soo bandhignay. Waad oggolaatay inaad sidan samaysid.
-    D) Waxaa si adag loo-mamnuucay in la-sameeyo ficil sababaya inay shabakaddu shaqan-waydo ama joojinaya.
-    E) Waxaa la-mamnuucay in wax-kasta oo shabakadda saaran la-koobbiyeeyo, la-badiyo, la-iibiyo ama la-baddalo.
-    F) Wax-kasta oo si toos ama si aan toos ahayn ugaga-yimaadda booqasho aan lagu-oggolaan oo aad shabakadda ku-samaysid adiga ayaa dhammaan mas’uuliyaddeeda yeelanaya.
-    G) Ma-jirayo wax baadhitaan hore ah oo aynu ku-samaynayno xog-kasta oo aad leedahay, adiga ayaa yeelanaya mas’uuliyadda la-xisaabtanka dhinacyada kale ka-iman kara. Markaad xog-kasta iyo kuwa kaleba galinaysid, waa adiga oo oggol in aanad ku-xad-gudbayn arrimaha hoos ku-qoran.
-    i) Waxyaalaha sharci-darrada ah, cabsi-gelinta, daawacaya damiirka kuwa kale, dadka khaldi kara, ceeb ah iyo isir-takoor ah
-    ii) Waxa ku-xadgudbaya shatiga ganacsiga ee uu dhinac-kasta leeyahay, xuquuqda hal-abuurka iyo lahaanshaha
-    iii) Xayaysiis aan la-oggolaan
-    iv) In la-sheegto qof ama dhinac kale oo aan la-ahayn
-
-
+    <br/><br/>Sidaas awgeed ogow arrinta hoos ku-qoran,<br/><br/>
+    A) Markaad shabakadda isticmaalaysid, waxaa lagaaga-baahan karaa inaad galisid xogta kugu-saabsan, waana inaad oggolaatid saxnimada iyo runimada xogta aad galinaysid.<br/>
+    B) Haddii aad isku-diiwaangelisay isticmaalenimada Hulutera, in xogta aad ku-galaysid aad si qarsoodi ah u ilaashatid waa mas’uuliyad adiga ku-saaran. Ficil-kasta oo xogtaada galintaanka lagu-sameeyo adiga ayaa mas’uul ka ah.<br/>
+    C) Waxaa si adag loo-mamnuucay in shabakadda loo-isticmaalo nooc ka-baxsan habka isticmaalkeeda ee aynu soo bandhignay. Waad oggolaatay inaad sidan samaysid.<br/>
+    D) Waxaa si adag loo-mamnuucay in la-sameeyo ficil sababaya inay shabakaddu shaqan-waydo ama joojinaya.<br/>
+    E) Waxaa la-mamnuucay in wax-kasta oo shabakadda saaran la-koobbiyeeyo, la-badiyo, la-iibiyo ama la-baddalo.<br/>
+    F) Wax-kasta oo si toos ama si aan toos ahayn ugaga-yimaadda booqasho aan lagu-oggolaan oo aad shabakadda ku-samaysid adiga ayaa dhammaan mas’uuliyaddeeda yeelanaya.<br/>
+    G) Ma-jirayo wax baadhitaan hore ah oo aynu ku-samaynayno xog-kasta oo aad leedahay, adiga ayaa yeelanaya mas’uuliyadda la-xisaabtanka dhinacyada kale ka-iman kara. Markaad xog-kasta iyo kuwa kaleba galinaysid, waa adiga oo oggol in aanad ku-xad-gudbayn arrimaha hoos ku-qoran.<br/>
+    i) Waxyaalaha sharci-darrada ah, cabsi-gelinta, daawacaya damiirka kuwa kale, dadka khaldi kara, ceeb ah iyo isir-takoor ah. <br/>
+    ii) Waxa ku-xadgudbaya shatiga ganacsiga ee uu dhinac-kasta leeyahay, xuquuqda hal-abuurka iyo lahaanshaha. <br/>
+    iii) Xayaysiis aan la-oggolaan. <br/>
+    iv) In la-sheegto qof ama dhinac kale oo aan la-ahayn. <br/>
+    <br/><br/>
     Waxaanu xaq u leenahay in qormo-kasta ama muuqaal-kasta oo aynu u aragno inuu heshiiskan isticmaalaha ku-xadgudbayo aanu shabakadda ka-saarno. Dib-u-dhaca ama khaladka ka-saaridda shabakadda ee noocan oo kale ah ka-imanaya waxaa mas’uul ka ah kaliya qofka qormada ama muuqaalkan galiyey.
-
-    Xadka dammaanadda
-
+    <br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">Xadka dammaanadda</span>
+    <br/><br/>
     Sida la-soo-sheegay, xogta ka-muuqata shabakadda Hulutera waa mid uu isticmaaluhu galiyey.
     Sidaas-awgeed
     i) Dammaanad kama-bixinayno in istimaale-kasta oo uu heli karo wax-kasta oo uu doonayo
     ii) Dammaanad kama-bixinayno in hanti-kasta oo muuqata ay khalad xor-ka-tahay, ay aad waqtiga ula-socoto iyo in ayna isdaba-joog tahay
     iii) Dammaanad kama-bixinayno in dhammaan xogta shabakadda saaran ay boqolkiiba-boqol runtahay
-
-    xuquuqda lahaanshaha hal-abuurka iyo calaamadda ganacsiga
-
+    <br/><br />
+    <span class="tosTitle" style="font-size:12pt;">xuquuqda lahaanshaha hal-abuurka iyo calaamadda ganacsiga</span>
+    <br/><br />
     Wax-kasta oo shabakadda ka-muuqda, sida qormooyinka, muuqaalada, magaca shabakadda, astaanta iyo wixii la mid ah waxaa mulkiile ka ah Hulutera. Waxaa si adag loo-mamnuucay in walaxyadan in falal aan munaasib ahayn loo-isticmaalo si ka-baxsan oggolaanashaha Hulutera.
-
-    Joojinta heshiiska isticmaalka
-
+    <br/><br />
+    <span class="tosTitle" style="font-size:12pt;">Joojinta heshiiska isticmaalka</span>
+    <br/><br />
     Waxaad oggolaatay haddii aad samaysid ficil-kasta oo ku-xadgudbaya heshiiskan isticmaalaha in iyada oo la-eegayo kolba xaaladdu sida ay tahay in aynu isticmaalka shabakadda qayb-ahaan ama gabi-ahaan kaa-joojin karno. Waxaad oggolaatay in aynu xayiraaddan dhaqangelin karno anaga oo kula-socodsiinayna ama aan kula-socodsiinayn. Ficil-kasta oo fal-dambiyeed lagu-tuhumayo ama khayaamo ama xad-gudub kuwa kale lagu-samaynayo wuxuu sababi karaa xayiraad degdeg ah oo isticmaalenimada lagu-soo-rogayo, sido kale iyada oo la-eegayo kolba sida ay arrintu tahay intaanu qaybaha amniga la-socodsiino ayaanu ka-soo-baxaynaa mas’uuliyadda naga-saaran. Marka aynu xuquuqdaada isticmaalenimada si ku-meelgaadha ah ama si joogto ah u joojino, waxaanu xaq-u-yeelanaynaa in aynu tirtirno dhammaan xogta aad galisay. Hulutera oo laga-isticmaali karo waddamada adduunka intooda badan, anaga ayaa xukunaa.
-
+    <br/><br />
     Haddii aad qabtid nooc-kasta oo su’aal ah ama talo ah ee xeerkan maamulka ku-saabsan waxaad noogu soo-qori kartaa info@hulutera.com ama waxaad isticmaali kartaa “ma-su’aalbaad qataa”. ',
     "about us on footer text" => ' Hulutera oo ah shabakad-sayladeed oo aad bilaa lacag isticmaalaysid, waxaad karaysaa in aad shabakadda ku-iibsatid, ku-iibisid kuna kiraysid hanti kala-duwan. Waxaad shabakadda ka-heli kartaa hanti cusub iyo mid la-isticmaalayba. Inkasta oo waqti-xaadirkan Hulutera laga-hirgeliyey Itoobiya kaliya, waxaa noo-qorshaysan oo aynu dadaal ugu-jirnaa in aynu mustaqbalka ku-sii-fidino waddamada Bariga Afrika. Waxaad shabakaddayada sayladaynta hantida yar-yar ee isticmaalka shakhsiyeed illaa kuwa waa-weyn. Waqti-xaadirkan waxaad Hulutera ku-iibin kartaa ama ku-iibsan kartaa hantida ay ka midka yihiin gaadhi, guri, koombiyuutar, telefoon, saamaanta isticmaalka guriga dhexdiisa, elektirooniigsiga iyo kuwa kaleba. Intaad <a href="../includes/template.proxy.php?type=help&lan=so" style="color:#97caf0;font-weight:bold"> kan </a> riixidid ayaad xog-dheeraad ah heli kartaa. ',
     "ABOUT US" => ' Anaga nagu-saabsan ',
@@ -130,7 +124,7 @@ $lang = array(
     "youtube" => '
 
     Youtube ',
-    "2020 hulutera. All Rights Reserved." => '2012 Xuquuqda Hulutera sharcigay ku-ilaashantahay. ',
+    "2020 hulutera. All Rights Reserved." => '2013 Xuquuqda Hulutera sharcigay ku-ilaashantahay. ',
     "hulutera" => ' Hulutera ',
     "missing email msg" => ' Fadlan gali ciwaanka email-ka. ',
     "missing password msg" => 'Fadlan gali ereyga qarsoodiga ah. ',
@@ -233,7 +227,7 @@ $lang = array(
     "contact-us succeed message" => ' Waad ku-mahadsantahay dadaalka aad ugashay helitaankayaga. Haddii ay farrintaadu jawaab ubaahantahay illaa xadka aynu awoodi karayno waxaanu kaga-jawaabaynaa 1-2 maalood oo shaqo. ',
     "search-title" => ' Raadin ',
     "search-button" => 'Ha la-raadiyo ',
-    "full no match msg" => ' Raalli ahow, lama-helin hantidii aad doonaysay. Markale isku-day
+    "full no match msg" => ' Raalli ahow, lama-helin hantidii aad doonaysay. </br>Markale isku-day
                              Haddii aad xog kale doonaysid intaad <a href="../includes/template.proxy.php?type=help&lan=so"> kan </a> riixdid ayaad heli. ',
     "no match msg part1" => ' Raalli ahow ',
     "no match msg part2" => ' kan ah wax hanti ah looma-helin.
