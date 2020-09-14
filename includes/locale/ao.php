@@ -76,50 +76,49 @@ $lang = array(
     "About Us" => ' Waa’ee keenya ',
     "Terms and Conditions" => ' Dmabii ittiin bulmaataa ',
     "terms and conditions text" => ' Baga nagaan gara hulutera.com dhuftan. hulutera.com qabeenyummaan isaa kan Hulluutaraa dha. Yammuu website keenya daawwatanii fi odeeffannoowwanis ta’ean wantootaa websit keenya irra jiran kamiyuutti yammuu itti fayyadamtan dambii ittiin bulmaataa armaan gadi sirriitti hunattanii fi irratti waliigaltanitu, (Waliigaltichas waliigaltee itti fayyadama jenne ibsina).
-
+    <br/><br/>
     Waliigalteen kun Caamsa guyyaa 8 bara 2012 irraa eegalee hojiirra oole jira.
-
+    <br/><br/>
     Waliigaltee itti fayyadama kana yeroo kamiyyuutti jijjiiruf mirga qabna. Wayiti jijjiiramutti website keenya irratti ni ibsina. Waliigaltee itti fayyadama dubbisuunis ta’e jijjiricha ilaaluf itti gaafatamumaan kan itti fayyadama dha.
-
-    Akkaataa itti fayyadamaa fi naamusa itti gaafatamummaa qabu
-
+    <br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">Akkaataa itti fayyadamaa fi naamusa itti gaafatamummaa qabu</span>
+    <br/><br/>
     Website keenya yammuu daawwatanii fi odeefannoowwan website keenya irra jiranis ta’e wantoota kamiyyuutti yammuu fayyadamtan, websiticha irra kan argattan kalattiidhaanis ta’e al kallattiin bifa dambii waliigaltee itti fayyadama, seeroota hojiirra jiran, akkasumsa muxannoowwan ykn qajeelfamoota online hin cabsiinen akka ta’e irratti waliiglatanitu.
-
-    Kanaafuu waan armaan gadi hubadha. ?
-
-    A) wayiti websitichatti fayyadamtan odeefannoo waa’ee mataa keessanii galchuun isin irraa eegamu ni danda’a. Odeefannon galchitan sirrii fi dhugaa ta’usaaf irratti waliigaltanitu.
-    B) Hulluutaraa irratti fayyadamaa taatanii galmooftanii yoo ta’e odeefannoowwan keesan ittiin galtan icciitiidhan qabachuun itti gaafatamummaan kan keesan dha. Hojiiwwan kamiyyuu odeefannoowwan keessan ittiin galaniin taasifaman kamiyyuuf itti gaafatamummaan kan keessan dha.
-    C) Daandiiwwan itti fayyadamaa nuti dhiyeessine alatti websitichaatti fayyadamun gonkuma dhorka dha. Kana raawwachufis waliigalani jirtu.
-    D) Gochi websitichi akka hin hojjanne ykn akka addaan citu godhu raawwachuun gonkuma dhorka dha.
-    E) Wantoota websiticha irra jiran kamiyyuu koopii gochoon, heeddumeessuun, gurguruun ykn jijjiiruun gonkuma dhorka dha.
-    F) Isin daawwannaa hin hayyamamnen kan ka’en rakkoo gosa kamiyyuu kalattiiodhaanis ta’e al kalattiidhaan yoo uumame itti gaafatamummaan guutuumman guutuutti kan keessani dha.
-    G) Nuti odeefannoowan kamiyyuu dursine hin qulqulleesinu. Kanaafuu odeefannoowanis ta;e kanneen biro isin galchitaniif kan itti gaafatamtan isin dha. Odeefannoowwanis ta’e kanneen biroo galchitan kamiyyuu fallaa kanneen armaan gadi akka hin taane irratti waligaltanitu. ?
-    i) Seera ala kan taane, kan sodaachisu, waan hamiilee nama biraa turu, waan nama dogongorsiisu, waan fokkataa ta’e, waan sanyii ta’e
-    ii) hayyama daldalaa, mirga paanteentii fi koopiiraayitii qaama biraa kan hin tuqne
-    iii) beeksisa hin hayyamamne
-    iv) Nama ykn wqaama biraa dha jedhamanii argamu
-
-
+    <br/><br/>
+    Kanaafuu waan armaan gadi hubadha.
+    <br/><br/>
+    A) wayiti websitichatti fayyadamtan odeefannoo waa’ee mataa keessanii galchuun isin irraa eegamu ni danda’a. Odeefannon galchitan sirrii fi dhugaa ta’usaaf irratti waliigaltanitu.<br/>
+    B) Hulluutaraa irratti fayyadamaa taatanii galmooftanii yoo ta’e odeefannoowwan keesan ittiin galtan icciitiidhan qabachuun itti gaafatamummaan kan keesan dha. Hojiiwwan kamiyyuu odeefannoowwan keessan ittiin galaniin taasifaman kamiyyuuf itti gaafatamummaan kan keessan dha.<br/>
+    C) Daandiiwwan itti fayyadamaa nuti dhiyeessine alatti websitichaatti fayyadamun gonkuma dhorka dha. Kana raawwachufis waliigalani jirtu.<br/>
+    D) Gochi websitichi akka hin hojjanne ykn akka addaan citu godhu raawwachuun gonkuma dhorka dha.<br/>
+    E) Wantoota websiticha irra jiran kamiyyuu koopii gochoon, heeddumeessuun, gurguruun ykn jijjiiruun gonkuma dhorka dha.<br/>
+    F) Isin daawwannaa hin hayyamamnen kan ka’en rakkoo gosa kamiyyuu kalattiiodhaanis ta’e al kalattiidhaan yoo uumame itti gaafatamummaan guutuumman guutuutti kan keessani dha.<br/>
+    G) Nuti odeefannoowan kamiyyuu dursine hin qulqulleesinu. Kanaafuu odeefannoowanis ta;e kanneen biro isin galchitaniif kan itti gaafatamtan isin dha. Odeefannoowwanis ta’e kanneen biroo galchitan kamiyyuu fallaa kanneen armaan gadi akka hin taane irratti waligaltanitu.<br/>
+    i) Seera ala kan taane, kan sodaachisu, waan hamiilee nama biraa turu, waan nama dogongorsiisu, waan fokkataa ta’e, waan sanyii ta’e. <br/>
+    ii) hayyama daldalaa, mirga paanteentii fi koopiiraayitii qaama biraa kan hin tuqne. <br/>
+    iii) beeksisa hin hayyamamne. <br/>
+    iv) Nama ykn wqaama biraa dha jedhamanii argamu.
+    <br/><br/>
     Fallaa Waliigaltee itti fayyadama jenne kan yaadne barreefama ykn fakkii kamiyyuu itti fayyadamaa dhaan gale kana baasuuf mirga qabna. Dhimma baasuu kana raawwachuf lafarra harkiifachuu ykn dogongoora uumamuuf kan itti gaafatamu barreefama ykn fakkii kan kan galche itti fayyadama qofaa dha.
-
-    Daangaa wabjummaa
-
+    <br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">Daangaa wabjummaa</span>
+    <br/><br/>
     Akkuma ibsame odeefannoowan Hulluutaraa irratti mul’atan kan dhiyaatan itti fayyadamaa matu ma isaatiin kan gale dha.
-    Kanaafuu
-    i) ykn Itti fayyadaman hundi waan barbaade hunda ni argata jennee wabummaa hin kenninu.
-    ii) Qabeenyawwan mul’atan dogongoora irraa bilisa dha, Haala baayyee wiyitawaa fi kan addaan hin ciccitne dha jenne wabummaa hin kenninu..
+    Kanaafuu <br/>
+    i) ykn Itti fayyadaman hundi waan barbaade hunda ni argata jennee wabummaa hin kenninu. <br/>
+    ii) Qabeenyawwan mul’atan dogongoora irraa bilisa dha, Haala baayyee wiyitawaa fi kan addaan hin ciccitne dha jenne wabummaa hin kenninu.. <br/>
     iii) Odefannoowwan websiticha irratti argaman guutummaa gjuutuutti sirrii dha jenne wabummaa hin kenninu.
-
-    Kooppii raayitii (Copyright) fi mallattoo daldalaa
-
+    <br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">Kooppii raayitii (Copyright) fi mallattoo daldalaa</span>
+    <br/><br/>
     Wantoonni kamiyyuu jechunis barreeffamoota, fakkiiwwan, maqaa websiyitichaa, loogoo NHjulluutaraa irratti mul’atan akkasumas qabeenyaawwan kkf qabeenyummaan isaanii kan Hulllutaraa dha. Qabkiyyeewan kanatti gochaawan malummaa hin qabne kamifuu beekmati Hulluutaraa alatti itti fayyadamun gonkuma dhorka dha.
-
-    ykn waliigaltee ittiin fayyadamu addaan k,utuu
-
+    <br/><br/>
+    <span class="tosTitle" style="font-size:12pt;">ykn waliigaltee ittiin fayyadamu addaan k,utuu</span>
+    <br/><br/>
     Gocha kamiyyuu wal.iigaltee itti fayyadama cabsu yoo raawwattan akkuma haala isaatti akk,a itti hin tajaajilamnef gar tokkee ykn guutummaa gjuutuutti kisin dhorku ak,ka dandeenyu irratti waliigaltani jirtu. Dhorkaa kanas isin beekskisun ykn osoo isin hin beeksiisni hojiirra oolchu akka dandeenyu irratti waligaltani jirtu. Gocha yakkan shakkamu ykn waliindhahu ykn nama biraa dubbiif battalumagtti dhorka mirga itti fayyadamuma hordoofsiisa. Akkasumas zkkuma haala isaatti qaamoolee nageenyafa beeeksiisuf itti gaafatamummaa qabnu ni baana. Yammuu mirga itti fayyadamummaa keessan yeroo murtaa’ef yjn hanga dhummagtti addaan kutnuodeefannoo isin galchitan hunda dhabamsiisuuf mirga qabna. Hulluutaraa biyyootii adduunyaa heedduuttu fahyyadamun kan dhoggaa ta’u kan to’atu anda’amu nu dha.
-
+    <br/><br/>
     Dambii ittiin bulmaata kana irratti gaaffkii ykn yaada gosa kamiyyuu yoo qabattan info@hulutera.com irratti nuuf barreessa. Yookaan nu gaafachu barbaaddu isa jedhutti fayyadamun nu argadha. ',
-    "about us on footer text" => ' Hulluutaraan website bitaa fi gurguurtaa kafaltii malee kan itti fayyadamtan hoggaa ta’u websiticha irra qabeenyawwan adda addaa bitachuu, gurguuruu fi kireesssuu ni dandeessu. Qaabeenyawwaan faayidaaa irra oolanis ta’e hin oole websiticha irra argacnhu ni dandeessu. Hulluutaraan yeroo ammatti Itiyoophiyaa qofaaf ta’u illee gara fuulduratti baha Afriikaatti babbal’dhiisuuf kaaayyoo qabatee sochoo’u irratti argama. Website keenya irratti mi’a xiqqaa dhuunfaan itti fayyadama irraa hanga mi’a guddaatti bituu fi gurguuruu ni dandeessju. Yeroo ammatti Hulluutaraa irraa kanneen armaan gadi bituu fi gurguuruu ni dandeessu. Konkolaataa, mana, kompiyuutarii, bilbila, kannen nama keessagtti itti tajaajilaman eeleektirooniksii fi kkf dha. <a href="../includes/template.proxy.php?type=help&lan=ao" style="color:#97caf0;font-weight:bold"> Kana </a>tuqatii odeefannoo dabalataa argachuu ni dandeessu. ',
+    "about us on footer text" => ' Hulluutaraan website bitaa fi gurguurtaa kafaltii malee kan itti fayyadamtan hoggaa ta’u websiticha irra qabeenyawwan adda addaa bitachuu, gurguruu fi kireessuu ni dandeessu. Qaabeenyawwaan faayidaaa irra oolanis ta’e hin oole websiticha irra argacnhu ni dandeessu. Hulluutaraan yeroo ammatti Itiyoophiyaa qofaaf ta’u illee gara fuulduratti baha Afriikaatti babbal’dhiisuuf kaayyoo qabatee sochoo’u irratti argama. Website keenya irratti mi’a xiqqaa dhuunfaan itti fayyadama irraa hanga mi’a guddaatti bituu fi gurguuruu ni dandeessju. Yeroo ammatti Hulluutaraa irraa kanneen armaan gadi bituu fi gurguuruu ni dandeessu. Konkolaataa, mana, kompiyuutarii, bilbila, kannen nama keessagtti itti tajaajilaman eeleektirooniksii fi kkf dha. <a href="../includes/template.proxy.php?type=help&lan=ao" style="color:#97caf0;font-weight:bold"> Kana </a>tuqatii odeefannoo dabalataa argachuu ni dandeessu. ',
     "ABOUT US" => ' Odeefannoo waa’ee keenyaa ',
     "INFORMATION" => ' Odeefannoo ',
     "Privacy Policy" => ' Qajeelfama dhuunfaa ',
@@ -128,7 +127,7 @@ $lang = array(
     "twitter" => 'witter ',
     "pintrest" => 'Interest ',
     "youtube" => 'YouTube ',
-    "2020 hulutera. All Rights Reserved." => ' Hulluutaraan mirgi isaa bara 2012 tti seeran kan eegame dha. ',
+    "2020 hulutera. All Rights Reserved." => ' Hulluutaraan mirgi isaa bara 2013 tti seeran kan eegame dha. ',
     "hulutera" => ' Hulluutaraa ',
     "missing email msg" => ' Maaloo teesssoo imeeli galchaa. ',
     "missing password msg" => ' Maaloo jecha kicciitii galchaa ',
@@ -151,10 +150,10 @@ $lang = array(
     "purpose" => ' Sababii ',
     "msg sent" => ' Dhaamsichi haala milkii qabun ergame jira. ',
     "reply" => ' Deebisa ',
-    "first page" => ' Fula isa jalqabaa ',
-    "previous" => ' Fuula isa durii ',
-    "next" => ' Fuula itti aanu ',
-    "last page" => ' ykn Fuula isa dhumaa ',
+    "first page" => ' Fuula tokkoffaa ',
+    "previous" => ' dura ',
+    "next" => ' ittaanaa ',
+    "last page" => ' Fuula dhuma ',
     "my activities" => ' Waan ani gochuu danda’u ',
     "my page" => ' Fuula koo ',
     "my profile" => ' Galmee dhunfaa koo ',
@@ -336,10 +335,10 @@ $item_lang_arr = array(
     "All" => ' Qabeenyawwan hunda    ',
     "car" => ' Konkolaataa     ',
     "house" => ' Mana     ',
-    "computer" => ' Kompiyutara    ',
+    "computer" => ' Kompiitara    ',
     "phone" => ' Bilbila     ',
-    "electronic" => ' Eeeleektironiksii     ',
-    "household" => ' Meeshaalee mana keessaa   ',
+    "electronic" => ' Elektirooniksii     ',
+    "household" => ' Mi\'a-manaa  ',
     "other" => ' Kan biroo'
 );
 
