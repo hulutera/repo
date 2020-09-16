@@ -406,7 +406,7 @@ class HtCommonView extends MySqlRecord
             echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
         }
         if ($numimage >= 1) {
-            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1\"><img class=\"largeImg\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1;height:500px\"><img class=\"largeImg\" style=\"max-height:100%;max-width:100%;object-fit: contain\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $dir . $fileNmaeLarge . "\"></div>";
             echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {
                 $imageFileName = $imageNameArray[$i];
