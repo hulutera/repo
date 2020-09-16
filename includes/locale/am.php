@@ -212,7 +212,7 @@ $lang = array(
     'current password' => 'ያሁኑ የምስጢር ቃል',
     'new password' => 'አዲሱ የምስጢር ቃል',
     'enter the new password' => 'አዲሱን የምጢር ቃል ያስገቡ',
-    'repeat new password' => 'አዲሱ የምጢር ቃል በድጋሚ',
+    'repeat new password' => 'አዲሱ የምስጢር ቃል በድጋሚ',
     'enter repeated new password' => 'አዲሱ የምጢር ቃል በድጋሚ ያስገቡ',
     'close acc msg part1' => 'ከእኛ ጋር ባለመቆየትዎ እናዝናለን። ሆኖም ግን ይህንን ሲያደርጉ ወደ ሁሉተራ ፣ በአዲስ አካውንት
                               በስተቀር መግባት አይችሉም።በተጨማሪም በስምዎ ያስገቧቸው ንብረቶችም ከመረጃ ቋታችን ላይ ይደመሰሳሉ።',
@@ -626,11 +626,11 @@ $upload_specific_array = [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረጡ',
             2 => [
-                'Laptop' => 'ላፕቶፕ',
-                'Notebook' => 'ኖት ቡክ',
-                'Stationary' => 'ዴስክቶፕ',
-                'Tablets' => 'ታብሌት',
-                'Workstations' => 'ዎርክስቴሽን',
+                'Laptop' => 'Laptop',
+                'Notebook' => 'Notebook',
+                'Stationary' => 'Stationary',
+                'Tablets' => 'Tablets',
+                'Workstations' => 'Workstations',
                 'Other' => '-- አልተዘረዘረም --'
             ]
         ],
@@ -691,10 +691,10 @@ $upload_specific_array = [
             0 => 'የኮምፒውተር ኡደት ስርዓት (OS) ',
             1 => 'ኡደት ስርዓት ይምረጡ',
             2 => [
-                "Windows" => "ዊንዶውስ",
-                "Linux" => "ሊኑክስ",
-                "Unix" => "ዩኒክስ",
-                "Mac" => "ማክ",
+                "Windows" => "Windows",
+                "Linux" => "Linux",
+                "Unix" => "Unix",
+                "Mac" => "Mac",
                 'unlisted' => '-- አልተዘረዘረም --',
             ]
         ],
@@ -714,11 +714,11 @@ $upload_specific_array = [
             0 => 'የRAM ሜሞሪ መጠን',
             1 => 'RAM ሜሞሪ ይምረጡ',
             2 => [
-                "Under 1GB" => "ከ1 GB በታች",
+                "Under 1GB" => "ከ 1GB በታች",
                 "1.0 - 1.9GB" => "1.0 - 1.9GB",
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
-                "Over 4.0GB" => "ከ4.0GB GHz በላይ",
+                "Over 4.0GB" => "ከ 4.0GB በላይ",
                 'unknown' => 'አይታወቅም'
             ]
         ]
@@ -785,10 +785,10 @@ $upload_specific_array = [
             0 => 'የስልክ ኡደት ስርዓት (OS) ',
             1 => 'ኡደት ስርዓት ይምረጡ',
             2 => [
-                "Windows" => "ዊንዶውስ",
-                "Android" => "አንድሮይድ",
-                "iOS" => "አይ ኦ ኤስ",
-                "Symbian" => "ሲምቢያን",
+                "Windows" => "Windows",
+                "Android" => "Android",
+                "iOS" => "iOS",
+                "Symbian" => "Symbian",
                 'unlisted' => '-- አልተዘረዘረም --',
             ]
         ],

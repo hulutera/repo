@@ -691,7 +691,7 @@ $upload_specific_array = [
                 "1.0 - 1.9GB" => "1.0 - 1.9GB",
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
-                "Over 4.0GB" => "In ka-badan 4.0GB GHz",
+                "Over 4.0GB" => "In ka-badan 4.0GB",
                 'unknown' => 'Lama-garanayo'
             ]
         ]

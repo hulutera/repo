@@ -51,12 +51,14 @@ function locale($current_link)
         $ln => $lang['LANGUAGE'],
         $en => "ENGLISH",
         $am => "አማርኛ",
-        $ao => "AFAAN OROMO",
+        $ao => "AFAAN OROMOO",
         $tg => "ትግርኛ",
         $so => "SOMALI",
-        $si => "SIDAAMU AFOO",
-        $gu => "ጉራግኛ",
-        $wo => "ወላይትኛ"
+        /**
+        *$si => "SIDAAMU AFOO",
+        *$gu => "ጉራግኛ",
+        *$wo => "ወላይትኛ"
+        */
     ];
     ___open_div_('lan-selector', '" style="float:right;');
     echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale select-css">';

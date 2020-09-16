@@ -4,7 +4,7 @@ $lang = array(
     "HULUTERA_TEXT_LOGO" => '<span style="color:orange">Hulluu</span><span style="color:#050598a6">taraa</span>',
     "HULUTERA_TEXT_LOGO2" => '<span style="color:orange">Hulluutaraa</span>',
     "Post Items" => 'Qabeenya galchaa ',
-    "Help" => ' Odeefannoo ',
+    "Help" => ' Odeeffannoo ',
     "Show Detail" => 'Tarreefamicha ilaaluf ',
     "Hide Detail" => ' Tarreefamicha aguguuf ',
     "Contact" => 'Qunamu ',
@@ -65,17 +65,17 @@ $lang = array(
     "Message" => ' Dhaamsa ',
     "Send" => ' Dhaamsa ergaa ',
     "Contact Us" => ' Nu gaafachuu barbaadduu ',
-    "about us page paragraph1 text" => ' Dh Hulluutaraan website bitaa fi gurgurtaa kafaltii malee kan itti fayuyadamtani hoggaa ta’u websiyiticha irratti qabeenyawwan adda addaa bitachuf, gurguruufi kireessjuu ni dandeessu. Akkasumas websiyiticha irrati qabeenyawan faayidaa irraa oolanois ta’e ka faayidaarraa hin oole ni argattu. Yero ammati Hulluutaraan Itiyoophiyaa qofaaf baayyee salphaa dha. gara fuulduratti sochii isa haala guddaan babbalisiif kaayyoo qabatee sochoo’ irratti argama. Hulluuutaraa irratti filannoowwan bal’aatu argamu. Isaani kan keessas kanneen armaan gadi warra gurguddoo dha. ',
+    "about us page paragraph1 text" => ' Dh Hulluutaraan website bitaa fi gurgurtaa kafaltii malee kan itti fayuyadamtani hoggaa ta’u websiyiticha irratti qabeenyawwan adda addaa bitachuf, gurguruufi kireessjuu ni dandeessu. Akkasumas websiyiticha irrati qabeenyawan faayidaa irraa oolanois ta’e ka faayidaarraa hin oole ni argattu. Yero ammati Hulluutaraan Itiyoophiyaa qofaaf baayyee salphaa dha. gara fuulduratti sochii isa haala guddaan babbalisiif kaayyoo qabatee sochoo’ irratti argama. Hulluuutaraa irratti filannoowwan bal’aatu argamu. Isaani kan keessas kanneen armaan gadii warra gurguddoo dha. ',
     "hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia." => ' Hulluutaraan fedhii ummata akka guutuu yaadun website hojjatame dha, Itti fayyadamuf salphaa hoggaa ta’u haala barbaaddanin itti fayyadamu ni dandeessu. Qabeenya galchuf yoo yaaddana dursa galmaa’u qabdu. Galmeessicha haala salphaan raawwachu ni dandeessu. Qabeenya galchuufis ta’e qabeenya galchitan to’achuuf baayyee salphaa dha. Akkaataa itti fayyadamaa tarreeffaman yoo isin barbaachise odeefannoo isaa jedhu keessa bal’dhiinan ni argattu. ',
     "You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party." => ' Yeroo ammati websiticha aafaan Ingiliffaan, Amaafriffaan, Oromiffaan, Tigiriffaan, Somaaliffaan, Sidaamiffaan, Guraagiffaanii fi Wallaayitiffaan ilaalu kan dandeessaan gta’u illdee gara fulduratti afaan saboota adda addaa itti daballa. Namootni naannoo hunda keessa jiraatan weebsitichaatti fayyadamu ni danda’u. Abbaa qabeenyichaaf dhaamsa ergun ykn bilbila bilbiluun waa’ee qabeenyicha osoo eenyuu iyyuu gidduu hin galin marii’achu ni dandeessu. ',
     "We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips," => ' Hulluutaraan nageenya odeefannoo qabeenyawan beeksiistaniif waan isaaf danda’ame hunda ni godha. Websiticha ilaalchisee gaaffiilee gosa kamiyyuu nu gaafachu ni dandeessu. Gaaffiilee keessaniif ariitiidhaan deebii ni kennina. Kanaaafuu akka nu gargaaruuf ',
     "For any compliant , improvements or other issues you can use" => ' Komiif, yaada foyyeessuuf yaada, akkasumas eeruwwan biroof kan gad qaba ',
     "For inappropriate items you can “Report” button" => ' Fakkiiwwanii fi ibsa gar malee galaniif “gabaasa” isa jedhu tuqatii ibsa. ',
-    "If you need help, click" => ' Odeefannoo dabalataa yoo isin barbaachise kan armaan gadi tuqa ',
+    "If you need help, click" => ' Odeefannoo dabalataa yoo isin barbaachise kan armaan gadii tuqa ',
     "Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!" => ' Dhuma irratti Hulluutaraa lammiiwwan Itiyoophiyaatiif yammuu ifaa goonu fedhii guutuu fi gammachuu onnee irraa madden hoggaa ta’u websitichatati akka itti fayyadamtan kabajan isin gaafanna. ',
     "About Us" => ' Waa’ee keenya ',
     "Terms and Conditions" => ' Dmabii ittiin bulmaataa ',
-    "terms and conditions text" => ' Baga nagaan gara hulutera.com dhuftan. hulutera.com qabeenyummaan isaa kan Hulluutaraa dha. Yammuu website keenya daawwatanii fi odeeffannoowwanis ta’ean wantootaa websit keenya irra jiran kamiyuutti yammuu itti fayyadamtan dambii ittiin bulmaataa armaan gadi sirriitti hunattanii fi irratti waliigaltanitu, (Waliigaltichas waliigaltee itti fayyadama jenne ibsina).
+    "terms and conditions text" => ' Baga nagaan gara hulutera.com dhuftan. hulutera.com qabeenyummaan isaa kan Hulluutaraa dha. Yammuu website keenya daawwatanii fi odeeffannoowwanis ta’ean wantootaa websit keenya irra jiran kamiyuutti yammuu itti fayyadamtan dambii ittiin bulmaataa armaan gadii sirriitti hunattanii fi irratti waliigaltanitu, (Waliigaltichas waliigaltee itti fayyadama jenne ibsina).
     <br/><br/>
     Waliigalteen kun Caamsa guyyaa 8 bara 2012 irraa eegalee hojiirra oole jira.
     <br/><br/>
@@ -85,7 +85,7 @@ $lang = array(
     <br/><br/>
     Website keenya yammuu daawwatanii fi odeefannoowwan website keenya irra jiranis ta’e wantoota kamiyyuutti yammuu fayyadamtan, websiticha irra kan argattan kalattiidhaanis ta’e al kallattiin bifa dambii waliigaltee itti fayyadama, seeroota hojiirra jiran, akkasumsa muxannoowwan ykn qajeelfamoota online hin cabsiinen akka ta’e irratti waliiglatanitu.
     <br/><br/>
-    Kanaafuu waan armaan gadi hubadha.
+    Kanaafuu waan armaan gadii hubadha.
     <br/><br/>
     A) wayiti websitichatti fayyadamtan odeefannoo waa’ee mataa keessanii galchuun isin irraa eegamu ni danda’a. Odeefannon galchitan sirrii fi dhugaa ta’usaaf irratti waliigaltanitu.<br/>
     B) Hulluutaraa irratti fayyadamaa taatanii galmooftanii yoo ta’e odeefannoowwan keesan ittiin galtan icciitiidhan qabachuun itti gaafatamummaan kan keesan dha. Hojiiwwan kamiyyuu odeefannoowwan keessan ittiin galaniin taasifaman kamiyyuuf itti gaafatamummaan kan keessan dha.<br/>
@@ -93,7 +93,7 @@ $lang = array(
     D) Gochi websitichi akka hin hojjanne ykn akka addaan citu godhu raawwachuun gonkuma dhorka dha.<br/>
     E) Wantoota websiticha irra jiran kamiyyuu koopii gochoon, heeddumeessuun, gurguruun ykn jijjiiruun gonkuma dhorka dha.<br/>
     F) Isin daawwannaa hin hayyamamnen kan ka’en rakkoo gosa kamiyyuu kalattiiodhaanis ta’e al kalattiidhaan yoo uumame itti gaafatamummaan guutuumman guutuutti kan keessani dha.<br/>
-    G) Nuti odeefannoowan kamiyyuu dursine hin qulqulleesinu. Kanaafuu odeefannoowanis ta;e kanneen biro isin galchitaniif kan itti gaafatamtan isin dha. Odeefannoowwanis ta’e kanneen biroo galchitan kamiyyuu fallaa kanneen armaan gadi akka hin taane irratti waligaltanitu.<br/>
+    G) Nuti odeefannoowan kamiyyuu dursine hin qulqulleesinu. Kanaafuu odeefannoowanis ta;e kanneen biro isin galchitaniif kan itti gaafatamtan isin dha. Odeefannoowwanis ta’e kanneen biroo galchitan kamiyyuu fallaa kanneen armaan gadii akka hin taane irratti waligaltanitu.<br/>
     i) Seera ala kan taane, kan sodaachisu, waan hamiilee nama biraa turu, waan nama dogongorsiisu, waan fokkataa ta’e, waan sanyii ta’e. <br/>
     ii) hayyama daldalaa, mirga paanteentii fi koopiiraayitii qaama biraa kan hin tuqne. <br/>
     iii) beeksisa hin hayyamamne. <br/>
@@ -118,9 +118,9 @@ $lang = array(
     Gocha kamiyyuu wal.iigaltee itti fayyadama cabsu yoo raawwattan akkuma haala isaatti akk,a itti hin tajaajilamnef gar tokkee ykn guutummaa gjuutuutti kisin dhorku ak,ka dandeenyu irratti waliigaltani jirtu. Dhorkaa kanas isin beekskisun ykn osoo isin hin beeksiisni hojiirra oolchu akka dandeenyu irratti waligaltani jirtu. Gocha yakkan shakkamu ykn waliindhahu ykn nama biraa dubbiif battalumagtti dhorka mirga itti fayyadamuma hordoofsiisa. Akkasumas zkkuma haala isaatti qaamoolee nageenyafa beeeksiisuf itti gaafatamummaa qabnu ni baana. Yammuu mirga itti fayyadamummaa keessan yeroo murtaa’ef yjn hanga dhummagtti addaan kutnuodeefannoo isin galchitan hunda dhabamsiisuuf mirga qabna. Hulluutaraa biyyootii adduunyaa heedduuttu fahyyadamun kan dhoggaa ta’u kan to’atu anda’amu nu dha.
     <br/><br/>
     Dambii ittiin bulmaata kana irratti gaaffkii ykn yaada gosa kamiyyuu yoo qabattan info@hulutera.com irratti nuuf barreessa. Yookaan nu gaafachu barbaaddu isa jedhutti fayyadamun nu argadha. ',
-    "about us on footer text" => ' Hulluutaraan website bitaa fi gurguurtaa kafaltii malee kan itti fayyadamtan hoggaa ta’u websiticha irra qabeenyawwan adda addaa bitachuu, gurguruu fi kireessuu ni dandeessu. Qaabeenyawwaan faayidaaa irra oolanis ta’e hin oole websiticha irra argacnhu ni dandeessu. Hulluutaraan yeroo ammatti Itiyoophiyaa qofaaf ta’u illee gara fuulduratti baha Afriikaatti babbal’dhiisuuf kaayyoo qabatee sochoo’u irratti argama. Website keenya irratti mi’a xiqqaa dhuunfaan itti fayyadama irraa hanga mi’a guddaatti bituu fi gurguuruu ni dandeessju. Yeroo ammatti Hulluutaraa irraa kanneen armaan gadi bituu fi gurguuruu ni dandeessu. Konkolaataa, mana, kompiyuutarii, bilbila, kannen nama keessagtti itti tajaajilaman eeleektirooniksii fi kkf dha. <a href="../includes/template.proxy.php?type=help&lan=ao" style="color:#97caf0;font-weight:bold"> Kana </a>tuqatii odeefannoo dabalataa argachuu ni dandeessu. ',
-    "ABOUT US" => ' Odeefannoo waa’ee keenyaa ',
-    "INFORMATION" => ' Odeefannoo ',
+    "about us on footer text" => ' Hulluutaraan website bitaa fi gurguurtaa kafaltii malee kan itti fayyadamtan hoggaa ta’u websiticha irra qabeenyawwan adda addaa bitachuu, gurguruu fi kireessuu ni dandeessu. Qaabeenyawwaan faayidaaa irra oolanis ta’e hin oole websiticha irra argacnhu ni dandeessu. Hulluutaraan yeroo ammatti Itiyoophiyaa qofaaf ta’u illee gara fuulduratti baha Afriikaatti babbal’dhiisuuf kaayyoo qabatee sochoo’u irratti argama. Website keenya irratti mi’a xiqqaa dhuunfaan itti fayyadama irraa hanga mi’a guddaatti bituu fi gurguuruu ni dandeessju. Yeroo ammatti Hulluutaraa irraa kanneen armaan gadii bituu fi gurguuruu ni dandeessu. Konkolaataa, mana, kompiyuutarii, bilbila, kannen nama keessagtti itti tajaajilaman eeleektirooniksii fi kkf dha. <a href="../includes/template.proxy.php?type=help&lan=ao" style="color:#97caf0;font-weight:bold"> Kana </a>tuqatii odeefannoo dabalataa argachuu ni dandeessu. ',
+    "ABOUT US" => ' Odeeffannoo waa’ee keenyaa ',
+    "INFORMATION" => ' Odeeffannoo ',
     "Privacy Policy" => ' Qajeelfama dhuunfaa ',
     "FOLLOW US" => ' Nu hodoofaa ',
     "facebook" => 'acebook ',
@@ -141,7 +141,7 @@ $lang = array(
     "follow" => ' Hordoofuu ',
     "unfollow" => ' Hordoofuudhabuu ',
     "all msg" => ' Hunda ',
-    "read" => ' Kan dubbiifame ',
+    "read" => ' Dubbisuu ',
     "unread" => ' Kan hin galmoofne ',
     "following" => ' Kan ani hordoofu ',
     "from" => ' Irraa ',
@@ -228,7 +228,7 @@ $lang = array(
     "Back to Post Item" => ' Gara fuula qabeenya galchitaniitti ',
     "password change success" => ' Jechi icciitiichaa haala milka’en jijjirame jira. ',
     "contact-us succeed message" => ' Nu argachuuf yaalii waan gootaniif ni galateffanna. Dhaamsa keessaniif deebii yoo barbachise hanga danda’ametti guyyootii hojii 1-2 keessatti deebii ni kennina. ',
-    "search-title" => ' Brbaaduu ',
+    "search-title" => ' Barbaaduu ',
     "search-button" => ' Haa barbaadamu ',
     "full no match msg" => ' Dhiifama. Qabeenya barbaaddan hin argamne. Irra deebi’a yaala </br>
                               akkaataa ittiin barbaadamuf odeefannoo yoo barbaaddan <a href="../includes/template.proxy.php?type=help&lan=ao"> kana </a>tuqxani ni argattu. ',
@@ -264,17 +264,17 @@ $lang = array(
     "Logout" => ' Bahu ',
     "e.g" => ' Fakeenyaf ',
     "MENU" => ' Baafata ',
-    "Choose Item" => ' Qabeenya filadha ',
+    "Choose Item" => ' Qabeenya filadhaa ',
     "Choose City" => ' Magaalaa filadhaa ',
     "All Cities" => ' Magaaloota hundatti ',
     "select city from map" => ' Kaartaa irraa magaalaa filadhaa ',
     "Choose" => 'filadhaa',
-    "help" => ' Odeefannoo ',
+    "help" => ' Odeeffannoo ',
     "or" => ' Yookaan ',
     "latest items" => ' Qabeenyawwan yeroo dhiyoo galan ',
-    "latest items message" => ' Qabeenyawwan yeroo dhiyoo galan ilaaluf kan armaan gadi tuqun ilaalu ni dandeessu. ',
+    "latest items message" => ' Qabeenyawwan yeroo dhiyoo galan ilaaluf kan armaan gadii tuqun ilaalu ni dandeessu. ',
     "prompt" => ' Dhaamsa ',
-    "watch clip" => ' Odeefannoo dabalataaf vidiiyoo ilaala.',
+    "watch clip" => ' Odeeffannoo dabalataaf viidiyoo ilaala.',
     //new ones
     'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
     'remove' => 'ለማጥፋት',
@@ -291,7 +291,7 @@ $city_lang_arr = array(
     "Bahir Dar" => ' Baahirdaar    ',
     "Mekele" => ' Maqalee  ',
     "Hawassa" => ' Hawaasaa  ',
-    "Dire Dawa" => ' Dirreedawaa     ',
+    "Dire Dawa" => ' Dirre Dhawaa     ',
     "Gonder" => ' Gondor   ',
     "Dessie" => ' Dassee ',
     "Jimma" => ' Jimmaa   ',
@@ -338,8 +338,8 @@ $item_lang_arr = array(
     "computer" => ' Kompiitara    ',
     "phone" => ' Bilbila     ',
     "electronic" => ' Elektirooniksii     ',
-    "household" => ' Mi\'a-manaa  ',
-    "other" => ' Kan biroo'
+    "household" => ' Mi’a-manaa  ',
+    "other" => ' Kan-biraa'
 );
 
 $upload_specific_array = [
@@ -489,7 +489,7 @@ $upload_specific_array = [
             0 => 'Baay’ina barbcumaa',
             1 => 'Baay’ina barcuma filadhaa',
             2 => [
-                '101' => '100 ol',
+                '101' => 'Gubbaa 100',
                 '000' => '--Hin tarreeffamne--'
             ]
         ],
@@ -497,16 +497,16 @@ $upload_specific_array = [
             0 => 'Haalluu',
             1 => 'Haalluu filadhaa',
             2 => [
-                "red" => ' Diimaa    ',
-                "green" => ' Magarisa     ',
-                "blue" => ' culuqqisa ',
+                "red" => ' Diimaa     ',
+                "green" => ' Magariisa ',
+                "blue" => ' Cuquliisa  ',
                 "yellow" => ' Keelloo ',
-                "black" => ' Gurraaacha    ',
-                "white" => ' Adii     ',
-                "gray" => ' daalacha    ',
-                "silver" => ' Silvarii    ',
-                "liver" => ' Waan akka tulluu     ',
-                "brown" => ' Bunnii    ',
+                "black" => ' Gurraachaa  ',
+                "white" => ' Adii   ',
+                "gray" => ' Marfata     ',
+                "silver" => ' Silvarii ',
+                "liver" => ' Tirru     ',
+                "brown" => ' Boorale   ',
                 "unlisted" => '—Hin tarreefamne--     ',
             ]
         ]
@@ -567,13 +567,13 @@ $upload_specific_array = [
         'fieldToilet'   => [
             "0" => 'Baay’ina mana finii',
             "1" => 'Baay’ina filadhaa',
-            "2" => '100 ol',
+            "2" => 'Gubbaa 100',
             "3" => 'Baay’ina mana fincaanii guddaa',
         ],
         'fieldNrBedroom' => [
             "0" => ' Baay’ina mana cisiichaa ',
             "1" => ' Baay’ina filadhaa   ',
-            "2" => ' 100 ol    ',
+            "2" => ' Gubbaa 100    ',
             "3" => ' Baay’ina mana cisiichaa guddaa   '
         ],
         'fieldWater' => [
@@ -596,7 +596,7 @@ $upload_specific_array = [
         ]
     ],
     'computer' => [
-        'Uploading' => 'Unkaa kompiyutara irra ittiin galchan',
+        'Uploading' => 'Unkaa Kompiitara irra ittiin galchan',
         'idCategory'        => [
             0 => 'Akaakuu',
             1 => 'Akaakuu filadhaa',
@@ -649,7 +649,7 @@ $upload_specific_array = [
             0 => 'Hard disc',
             1 => 'Hard disc filadhaa',
             2 => [
-                "Under 100GB" => ' 99GB gadi    ',
+                "Under 100GB" => ' 99GB gadii    ',
                 "100 - 199GB" => ' 100 - 199GGB  ',
                 "200 - 299GB" => ' 200 - 299GB',
                 "300 - 499GB" => ' 300 - 499GB',
@@ -658,7 +658,7 @@ $upload_specific_array = [
                 "2 - 3TB" => '2 - 3TB     ',
                 "3 - 4TB" => '3 - 4TB     ',
                 "4 - 5TB" => '4 - 5TB     ',
-                "Over 5TB" => '5TB ol ',
+                "Over 5TB" => 'Gubbaa 5TB ',
                 "unknown" => ' Hin beekamu     '
             ]
         ],
@@ -677,11 +677,11 @@ $upload_specific_array = [
             0 => 'Safiisa proccesor ',
             1 => 'Safiisa processor filadhaa',
             2 => [
-                "Under 1 GHz" => ' 1 GHz gadi     ',
+                "Under 1 GHz" => ' 1 GHz gadii     ',
                 "1.0 - 1.49GHz" => '1.0 - 1.49GHz     ',
                 "1.5 - 1.99GHz" => '1.5 - 1.99GHz     ',
                 "2.0 - 2.49GHz" => '2.0 - 2.49GHz     ',
-                "Over 3.0GHz" => '3.0 GHz ol  ',
+                "Over 3.0GHz" => 'Gubbaa 3.0 GHz  ',
                 "unknown" => ' Hin beekamu   '
             ]
         ],
@@ -689,11 +689,11 @@ $upload_specific_array = [
             0 => 'Hanga RAM Memory',
             1 => 'RAM Memory filadhaa',
             2 => [
-                "Under 1GB" => ' GB1 gadi     ',
+                "Under 1GB" => ' GB1 gadii     ',
                 "1.0 - 1.9GB" => '1.0 - 1.9GB     ',
                 "2.0 - 2.9GB" => '2.0 - 2.9GB     ',
                 "3.0 - 3.9GB" => '3.0 - 3.9GB     ',
-                "Over 4.0GB" => '4.0GB GHz ol     ',
+                "Over 4.0GB" => 'Gubbaa 4.0GB     ',
                 "unknown" => ' Hin beekamu '
             ]
         ]
@@ -747,12 +747,12 @@ $upload_specific_array = [
             0 => 'Hanga kaameeraa bilbilaa (M.P.)',
             1 => 'Hanga kaameera filadhaa',
             2 => [
-                "more than 16 MP" => ' 16 ol     ',
+                "more than 16 MP" => ' Gubbaa 16     ',
                 "11.0 - 15.9 MP" => '11.0 - 15.9     ',
                 "8.0 - 10.9 MP" => '8.0 - 10.9     ',
                 "4.0 - 7.9 MP" => '4.0 - 7.9     ',
                 "1.0 - 3.9 MP" => '1.0 - 3.9     ',
-                "Under 1 MP" => ' 1.0 gadi     ',
+                "Under 1 MP" => ' 1.0 gadii     ',
                 "unknown" => ' Hin beekamu   '
             ]
         ],
@@ -770,13 +770,13 @@ $upload_specific_array = [
 
     ],
     'electronic' => [
-        'Uploading' => 'Unkaa eeleektirooniiksii ittiin galchaa',
+        'Uploading' => 'Unkaa Elektirooniksii ittiin galchaa',
         'idCategory' => [
             0 => 'Akaakuu',
             1 => 'Akaakuu filadhaa',
             2 => [
                 "Camera" => ' Kaameeraa    ',
-                "Refrigerator" => ' Cabbeessaa (Refrgeretor)   ',
+                "Refrigerator" => ' Cabbeessaa (Refrigerator)   ',
                 "Games" => ' Eeleektironiiksii ittiin taphatan ',
                 "Headphone" => ' Gurraan kan itti dhageefatan  ',
                 "Watch" => ' Sa’aatii harkaa, sa’aatii goorroo, kkf     ',
@@ -787,7 +787,7 @@ $upload_specific_array = [
         ]
     ],
     'household' => [
-        'Uploading' => 'Unkaa meeshaalee manakeessaa ittiin galchan',
+        'Uploading' => 'Unkaa Mi’a-manaa ittiin galchan',
         'idCategory' => [
             0 => 'Akaakuu',
             1 => 'Akaakuu filadhaa',
@@ -803,7 +803,7 @@ $upload_specific_array = [
         ]
     ],
     'other' => [
-        'Uploading' => 'Unkaa meeshaalee adda addaaittiin galchan',
+        'Uploading' => 'Unkaa Kan-biraa addaaittiin galchan',
         'idCategory' => [
             0 => 'Akaakuu',
             1 => 'Akaakuu filadhaa',
@@ -857,7 +857,7 @@ $upload_specific_array = [
 
             // max price list for car
             5 => [
-                "6000000" => ' 5 000 000 ol    ',
+                "6000000" => 'Gubbaa 5 000 000',
                 "5000000" => '5 000 000     ',
                 "3000000" => '3 000 000     ',
                 "1000000" => '1 000 000     ',
@@ -865,12 +865,12 @@ $upload_specific_array = [
                 "700000" => '700 000     ',
                 "600000" => '600 000     ',
                 "500000" => '500 000     ',
-                "300000" => ' 300 000 gadi    '
+                "300000" => ' 300 000 gadii    '
             ],
 
             // max price list for house
             6 => [
-                "20000001" => ' 20 000 000 ol     ',
+                "20000001" => ' Gubbaa 20 000 000 ',
                 "20000000" => '20 000 000     ',
                 "10000000" => '10 000 000     ',
                 "8000000" => '8 000 000     ',
@@ -880,12 +880,12 @@ $upload_specific_array = [
                 "900000" => '900 000     ',
                 "700000" => '700 000     ',
                 "500000" => '500 000     ',
-                "300000" => ' 300 000 gadi    '
+                "300000" => ' 300 000 gadii    '
             ],
 
             // max price list for computer
             7 => [
-                "100001" => ' 100 000 ol     ',
+                "100001" => ' Gubbaa 100 000     ',
                 "100000" => '100 000     ',
                 "75000" => '75 000     ',
                 "50000" => '50 000     ',
@@ -896,12 +896,12 @@ $upload_specific_array = [
                 "20000" => '20 000     ',
                 "15000" => '15 000     ',
                 "10000" => '10 000     ',
-                "5000" => ' 5 000 gadi  '
+                "5000" => ' 5 000 gadii  '
             ],
 
             // max price list for phone
             8 => [
-                "50001" => ' 50 000 ol     ',
+                "50001" => ' Gubbaa 50 000     ',
                 "50000" => '50 000     ',
                 "40000" => '40 000     ',
                 "35000" => '35 000     ',
@@ -913,7 +913,7 @@ $upload_specific_array = [
                 "7500" => '7 500     ',
                 "5000" => '5 000     ',
                 "2500" => '2 500     ',
-                "1500" => ' 1 500 gadi'
+                "1500" => ' 1 500 gadii'
             ]
 
         ],
@@ -942,14 +942,14 @@ $upload_specific_array = [
             'sell' => 'Kan gurguuramu',
             'rent and sell' => ' Kan kireefamuu ykn kan gurguuramu'
         ],
-        'Extra Info' => 'Odeefannoo dabalataa',
+        'Extra Info' => 'Odeeffannoo dabalataa',
         'fieldContactMethod' => [
             0 => 'Karaa itti argamu',
             1 => 'Karaa itti argamu filadhaa',
             2 => [
                 'phone'  => 'Bilbilan',
                 'e-mail' => 'Imeeliin',
-                'both'   => 'Bilbilaa fi imeelii dhaan'
+                'both'   => 'Bilbilaa fi Imeelii dhaan'
             ]
         ],
         'fieldColor'       => [
@@ -957,15 +957,15 @@ $upload_specific_array = [
             1 => 'Haalluu filadhaa',
             2 => [
                 "red" => ' Diimaa     ',
-                "green" => ' Magariisaa ',
-                "blue" => ' Cuquulisa  ',
+                "green" => ' Magariisa ',
+                "blue" => ' Cuquliisa  ',
                 "yellow" => ' Keelloo ',
                 "black" => ' Gurraachaa  ',
                 "white" => ' Adii   ',
-                "gray" => ' Daalcha     ',
+                "gray" => ' Marfata     ',
                 "silver" => ' Silvarii ',
-                "liver" => ' Waan akka tullu     ',
-                "brown" => ' Bunnii   ',
+                "liver" => ' Tirru     ',
+                "brown" => ' Boorale   ',
                 "unknown" => '--Hin tarreeffamne--'
             ]
         ],
@@ -1061,7 +1061,7 @@ $user_specific_array = [
             2 => [
                 'phone'  => 'Bilbilan',
                 'e-mail' => 'Imeeliin',
-                'both'   => 'Bilbilaa fi imeeliin'
+                'both'   => 'Bilbilaa fi Imeeliin'
             ],
             3 => 'Unkaa karaa ittiin argan kan ittiin jijjiiran'
         ],
@@ -1126,7 +1126,7 @@ $user_specific_array = [
         'edit-profile' => [
             'subject' => 'Mirkaneessaa galmee dhuunfaa Hulluutaraa jijjiiruu',
             'body' => [
-                0 => 'Kabajamoo maamila keenyaa, <br> Odeefannoo dhuunfaa keessanii Hulluutaraa irra qabdan geeddaruf nu gaafattani ture. Bu’uura odeefannoo kanaan sirraa’usaaf mirkaneessa akka ta’u dhaamsi kun isiniif ergame jira. <br> Nagaa wajjin <br> Bulchiinsa Hulluutaraa<br>'
+                0 => 'Kabajamoo maamila keenyaa, <br> Odeeffannoo dhuunfaa keessanii Hulluutaraa irra qabdan geeddaruf nu gaafattani ture. Bu’uura odeefannoo kanaan sirraa’usaaf mirkaneessa akka ta’u dhaamsi kun isiniif ergame jira. <br> Nagaa wajjin <br> Bulchiinsa Hulluutaraa<br>'
             ]
         ],
         'contact-us' => [
@@ -1179,7 +1179,7 @@ $validate_specific_array = [
 
 $message = [
     'change' =>  [
-        'name' => 'Odeefanno dhuunfaa keesan Hullluutaraa wajjin walitti dhufeenya qabu unkaa arman gadi jirutti fayyadamun geeddara. Yammuu xumurtan <strong> jijjiirawwan taasiisi </strong> isa jedhu tuqa mirkanefadha. Jijjiiruf yoo barbaachuubaattan <strong> jijjiirawwan haquu </strong> Tuqun gara galmee dhuunfaa keessanitti deebi’u ni dandeessu.'
+        'name' => 'Odeefanno dhuunfaa keesan Hullluutaraa wajjin walitti dhufeenya qabu unkaa arman gadii jirutti fayyadamun geeddara. Yammuu xumurtan <strong> jijjiirawwan taasiisi </strong> isa jedhu tuqa mirkanefadha. Jijjiiruf yoo barbaachuubaattan <strong> jijjiirawwan haquu </strong> Tuqun gara galmee dhuunfaa keessanitti deebi’u ni dandeessu.'
     ],
     'success' => 'Glmeen dhuunfaa keeessanii kan Huluutaraa haala milka’e jijjiirame jira!',
 ];
@@ -1194,7 +1194,7 @@ $help = [
                 "2) " => "Unkaa ittiin galmaa’an irratti odeeffannnoowwan guutaa achi <button class=\"btn btn-primary\">galmaa’a</button> isaa jedhu tuqa.",
                 "3) " => "Unkaa ittiin galmaa’an haala milka’e yammuu ergitan, dhaamsa kana ni argattu.<strong> Waan galmooftaniif  galatooma. Imeeli mirkanessa isiniif ergine jirra. Akaawuntii keessa hojiirra olchuuf galmee hojiira ittiin oolchan tuqa.</strong> Galmeesicha xumuruuf garaisa itti aanutti deema.",
                 "4) " => "Imeelicha banaatii galmee hojiira ittiin oolchan imeeelii keenya irra tuqa Akaawuntiin keessan amma <strong>o ole jira </strong> Dhaamsa jedhu agartu. Kunis akaawuntii keessan hojjiiraoolcha kanaafuu galu ni dandeessu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalataaf vidiiyoobanaa ilaala</p>
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalataaf viidiyoobanaa ilaala</p>
                                <iframe width="560" height="315" src="https://www.youtube.com/embed/RU4kKKXyADo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                </div>',
 
@@ -1212,7 +1212,7 @@ $help = [
             "body" => [
                 "1) " => "Unkaa ittiin seenan gaditti<strong> Password keessanii ni iraanfattanii?</strong> isa jedhu tuqa. Fuulli password ittiin yaadatan yammuu banamu maqaa ittiin fayyadamtan ykn imeelii keessa erga isa jedhu tuqa. Achis itti fufuun dhaamsa kana ni argitu<strong>Odeefannoo password ittiin jijjiiratan imeelii dhana isiniif ergine jirra.</strong>.qajeelfama imeelicha irra jiru sirriitti hordoofa. Adeemsa password jijjiiruu haal milk’aina qabun xumuruuf gara isa itti aanutii deema.",
                 "2) " => "Imeelii keessan banatii imeelii keenya isiniif ergame irratti password kan ittiin jijjiiran galmee tuqa password keessan kana isin ni beeksisa. Kana <strong>password fuulaakaawuntii keessan keessa seenatanii jijjiiru ni dandeessu</strong>።password keessan isa haara galchun haala milkaa’ina qabun ni xumurtu. Kanaafuu password isaa haaraa dhaan seenu ni dandeessu. ",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dabalataaf vidiiyoo ilaala</a></p>
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
                                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                 <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
                                 </video>
@@ -1225,7 +1225,7 @@ $help = [
                 "1) " => "Qabeenya galchuuf jalqaba galu qabdu.",
                 "2) " => "Eega galtan booda gubbarra gama mirgaatiin kan jiru<strong>qabeenya galcha </strong>isa jedhu tuqa. Achii itti aansun qabeenya galchu barbaaddan filadhaa. ",
                 "3) " => 'Achi itti aansuun qabeenya galchu barbaaddan filadhaa. Unkaan qabeenya irratti galchan ni banama. Unkicha irratti waa’ee qabeenyaa odeefannoo hunda galchaa. Hanga isiniif danda’ametti suuraa bareeda galchuuf yoo dandeessan ija nama heedduu harkisuuf isn gargaara. Kana bira darbee haalaqabeenyichi irratti argamu ifatti agarsiisuuf ni gargaara. Hanga suura shan galchu ni dandeesssu. Egaa xumurtan booda <button class="btn btn-primary">erga, galchaa, tuqa </button> isa jedhu jedhu tuquun haalamilkaa’ina qabun xumura. Itti aansees<strong> qabeenyawwan keessan bifa milkaa’ina qabun gale jira. Tajaajila keenyatti waan itti fayyadamtaniif ni galatefanna.</strong>dhaamsa jedhu argitu.  Bu’uura kanaanis qabeenya isin galchitan qabeenya kiyya kan jedhu keessatti argattu. Qabeenyichi sa’aatii 24 keessatti hojiirra oolee nama hundaf kan mul’atu ta’a.',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalatan vidiiyoo ilaala</p>
+                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalatan viidiyoo ilaala</p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/Rn0cHQny4nU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>',
 
@@ -1237,7 +1237,7 @@ $help = [
                 "1) " => "Website keenya gubbaa gama mirgaatiin ykn jala kan jiru<strong>gaafachu ni barbaadduu?</strong>isa jedhu tuqa.",
                 "2) " => "<strong>Dhaan sababii ittiin nu haasofsiisu barbaaddan</strong> tarreeffama irra sababii keessan yoo argachubattan, <strong>yaada waliigalaa</strong>isa jedhu filadhaa.Seentanii yoo ta’e odeefannon keessan matuma isatiin ni guuta. Yoo ta’ubaate odeefannicha gutaa.",
                 "3) " => "Unkaa eega guuttan booda  <button class=\"btn btn-primary\">erga </button> isa jedhu tuqa. Itti aansuun<strong> argachu waan barbaaddani  galtooma</strong> dhaamsa jedhu argattu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataan vidiyoo</a></p>
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataan viidiyoo</a></p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/oXuDJPOqdSg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                </div>',
             ]
@@ -1245,7 +1245,7 @@ $help = [
         "search"   => [
             "head" => "Qabeenya akkamitti barbaachuu akka dandeessan",
             "body" => [
-                "" => "Website keenya irra qabeenya barbaaddan haala salphaan argachu ni dandeessu. Kanas unkaa ittiin barbaadan irratti odeefannoowwan galchuun milkaa’un ni dandeessu. Application keenya  ittiin hojiirra oolcha bu’uuraodeefannoo galchitaniin bu’a adda addaa ni kenna. Kunis akka armana gadi ta’a<br /> 1) <strong>gujecha ittiin barbaadan</strong>yoo galubaate<strong>qabeenyawwan hunda</strong>fi<strong>magaaloota hunda</strong>yoo filatame. Iti aansuun <button class='btn btn-warning'>Haa barbaadamu</button>isa jedhu tuqa.Qaneenyawwan hunda Website keenya irra jirankanneen hojiirra oolan ni agarsiisa.<br /> 2) <strong>Jecha ittiin barbaadan</strong>yoo gale, <strong>qabeenyawwan hunda </strong>fi<strong>magaaloota hunda</strong>yoo filatame. Itti aansuun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qbeenyawwan website keenya irra jiran odeefannoo isin galchitan kanneen guutan ni agarsiisa. Kunis magaaloota hundaa fi akaakuu qabeenyawwan hunda ni hammata. <br /> 3) <strong> jecha ittiin barbaadan</strong>Yoo galubaate,<strong>konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaalee manaa/bilbila/kanneen biroo</strong>qabeenya dabalatan filattan ilaalchisee odeefannon dabalataan ittiin barbaadan ilaalchisee yoo filatamee fi<strong>magaaloota hunda</strong>hun yoo filatame. Itti aansuun isa <button class=\"btn btn-warning\">haa barbaadamu</button> jedhu tuqa. Qabeenyawwan website keenya irra jiran odefannoo isin galchitan kaneen guutan ni agarsiisa. Kunis qabeenya barbaaddan hunda magaaloota hunda keessa barbaachu ni hammata.<br /> 4) <strong>jecha ittiin barbaadan</strong> Yoo gale <strong> konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaaleemanaa/bilbila/kanneen biroo</strong> Kana malees qabeenya filattan ilaalchisee odeefannoon ittiin barbaadamu yoo filatameefi<strong>magaalaan tokko yoo filatame</strong>yoo filatame, itti aansun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qabeenyawwan website keenya irra jiran keessee kanneen  odeefannoo isin galchitan kan guutan ni agarsiisa. Kunis qabeenya isin filattan magalaaf latame keessaa filachu ni hammata.<br />",
+                "" => "Website keenya irra qabeenya barbaaddan haala salphaan argachu ni dandeessu. Kanas unkaa ittiin barbaadan irratti odeefannoowwan galchuun milkaa’un ni dandeessu. Application keenya  ittiin hojiirra oolcha bu’uuraodeefannoo galchitaniin bu’a adda addaa ni kenna. Kunis akka armana gadii ta’a<br /> 1) <strong>gujecha ittiin barbaadan</strong>yoo galubaate<strong>qabeenyawwan hunda</strong>fi<strong>magaaloota hunda</strong>yoo filatame. Iti aansuun <button class='btn btn-warning'>Haa barbaadamu</button>isa jedhu tuqa.Qaneenyawwan hunda Website keenya irra jirankanneen hojiirra oolan ni agarsiisa.<br /> 2) <strong>Jecha ittiin barbaadan</strong>yoo gale, <strong>qabeenyawwan hunda </strong>fi<strong>magaaloota hunda</strong>yoo filatame. Itti aansuun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qbeenyawwan website keenya irra jiran odeefannoo isin galchitan kanneen guutan ni agarsiisa. Kunis magaaloota hundaa fi akaakuu qabeenyawwan hunda ni hammata. <br /> 3) <strong> jecha ittiin barbaadan</strong>Yoo galubaate,<strong>konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaalee manaa/bilbila/kanneen biroo</strong>qabeenya dabalatan filattan ilaalchisee odeefannon dabalataan ittiin barbaadan ilaalchisee yoo filatamee fi<strong>magaaloota hunda</strong>hun yoo filatame. Itti aansuun isa <button class=\"btn btn-warning\">haa barbaadamu</button> jedhu tuqa. Qabeenyawwan website keenya irra jiran odefannoo isin galchitan kaneen guutan ni agarsiisa. Kunis qabeenya barbaaddan hunda magaaloota hunda keessa barbaachu ni hammata.<br /> 4) <strong>jecha ittiin barbaadan</strong> Yoo gale <strong> konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaaleemanaa/bilbila/kanneen biroo</strong> Kana malees qabeenya filattan ilaalchisee odeefannoon ittiin barbaadamu yoo filatameefi<strong>magaalaan tokko yoo filatame</strong>yoo filatame, itti aansun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qabeenyawwan website keenya irra jiran keessee kanneen  odeefannoo isin galchitan kan guutan ni agarsiisa. Kunis qabeenya isin filattan magalaaf latame keessaa filachu ni hammata.<br />",
                 "i) " => "Saanduqa ittiin barbaadan website keenya irra gubbaa gama mirgaatiin argama.",
                 "ii) " => "Odeefannoowwan ittiin barbaadan hunda galcha.",
                 "iii) " => "Itti aansuun haa barbaadamu isa jedhu tuqa",
