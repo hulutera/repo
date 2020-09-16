@@ -211,10 +211,9 @@ class HtMainView
         }
 
         if (empty($uploadsFiles) || !isset($image)) {
-            $language = isset($_GET['lan']) ? $_GET['lan'] : "en";
-            $imageDir = "../images/" . $language . "/";
+            $imageDir = "../images/en/";
             $numimage = 0;
-            $imageArr = [$language . ".svg"];
+            $imageArr = ["en.svg"];
         } else {
             $imageArr = explode(',', $image);
             $numimage = sizeof($imageArr);
