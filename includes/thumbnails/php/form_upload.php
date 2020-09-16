@@ -47,7 +47,7 @@ if (!empty($err2)) {
 	if (isset($_GET['action']) && ($_GET['action'] == 'upload-edit')) {
 		//update item with new data
 		$_pItem->uploadEdit();
-		exit;
+		//exit;
 	} else {
 		//insert item
 		$_pItem->insertPost();

@@ -623,6 +623,9 @@ class HtItemOther extends MySqlRecord
 
     private function setFieldPostEdit()
     {
+        var_dump($_SESSION['POST']['preloadedFiles']);
+        var_dump(json_decode($_SESSION['POST']['preloadedFiles']));
+        exit;
         $_item = $_GET['table'];
         $_userId = $_SESSION['uID'];
         $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
@@ -1255,8 +1258,8 @@ class HtItemOther extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-// echo $sql;
-// exit;
+        // echo $sql;
+        // exit;
         $this->resetLastSqlError();
 
         $this->set_charset('utf8');
@@ -1311,8 +1314,8 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
-// echo $sql;
-// exit;
+            // echo $sql;
+            // exit;
             $this->resetLastSqlError();
 
             $this->set_charset('utf8');
@@ -1440,16 +1443,17 @@ SQL;
      */
     public function upload($data = null)
     {
-        $action="";
+        $action = "";
         if ($data != null) {
-            $this->edit($data);
+            $this->upload2($data);
             $action = "&action=upload-edit";
+        } else {
+            $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+            echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $action . $lang_sw . '" method="post" enctype="multipart/form-data">';
+            $itemName = $this->getTableNameShort();
+            $this->insertAllField($itemName);
+            echo '</form>';
         }
-        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . $action . $lang_sw . '" method="post" enctype="multipart/form-data">';
-        $itemName = $this->getTableNameShort();
-        $this->insertAllField($itemName);
-        echo '</form>';
     }
 
     public function otherCategory($categoryId)
@@ -1460,17 +1464,97 @@ SQL;
     }
 
 
+    public function upload2($data = null)
+    {
+        var_dump($data);
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
+        $crypto = new Cryptor();
+        $dataStr = $crypto->urldecode_base64_decode_decryptor($data);
+        var_dump($dataStr);
+        unset($_SESSION['POST']);
+        $dataArray = explode("&", $dataStr);
+        var_dump($dataArray);
+
+        foreach ($dataArray as $key => $value) {
+            $temp = explode("=", $value);
+            $postKey = lcfirst(implode('', array_map('ucfirst', explode('_', $temp[0])))); //$this->camelize($temp[0]);
+            $postValue = $temp[1];
+            if ($postKey == "idCategory") {
+                $postValue = $this->otherCategory((int)$postValue);
+            }
+            //$_POST['fileuploader-list-files']
+            if ($postKey == "fieldImage") {
+                $postKey = "fileuploader-list-files";
+                $postValue = json_decode(str_replace("hulutera_", "item_other_", $postValue));
+                //item_other_
+                //user_id_7_
+                //item_temp_id_2_
+                //peter.jpg  filename
+                foreach ($postValue as $key => $value) {
+                    $directory = explode('_', $value);
+                }
+            }
+            $_SESSION['POST'][$postKey] = $postValue;
+        }
+
+        var_dump($directory);
+        var_dump($_SESSION['POST']);
+        $imageDir = implode("_", array_slice($directory, 0, 2)) . "/" .
+            implode("_", array_slice($directory, 2, 3)) . "/" .
+            implode("_", array_slice($directory, 5, 4));
+        var_dump($imageDir);
+        var_dump($directory);
+
+        echo '<form action="php/form_upload.php" method="post" enctype="multipart/form-data">';
+
+        // define uploads path
+        $uploadDir = dirname(__DIR__,2). '/upload/' . $imageDir . '/';
+
+        // create an empty array
+        // we will add to this array the files from directory below
+        // here you can also add files from MySQL database
+        $preloadedFiles = array();
+
+        // scan uploads directory
+        $uploadsFiles = array_diff(scandir($uploadDir), array('.', '..'));
+
+        // add files to our array with
+        // made to use the correct structure of a file
+        foreach ($uploadsFiles as $file) {
+            // skip if directory
+            if (is_dir($uploadDir . $file))
+                continue;
+
+            // add file to our array
+            // !important please follow the structure below
+            $preloadedFiles[] = array(
+                "name" => $file,
+                "type" => FileUploader::mime_content_type($uploadDir . $file),
+                "size" => filesize($uploadDir . $file),
+                "file" => $uploadDir . $file,
+                "local" => '../' . $uploadDir . $file, // same as in form_upload.php
+                "data" => array(
+                    "url" => '/fileuploader/examples/preloaded-files/uploads/' . $file, // (optional)
+                    "thumbnail" => file_exists($uploadDir . 'thumbs/' . $file) ? $uploadDir . 'thumbs/' . $file : null, // (optional)
+                    "readerForce" => true // (optional) prevent browser cache
+                ),
+            );
+        }
+
+        // convert our array into json string
+        $preloadedFiles = json_encode($preloadedFiles);
+        var_dump($preloadedFiles);
+
+        echo '
+        <input type="file" name="files" data-fileuploader-files=' . $preloadedFiles . '>
+
+        <input type="submit">
+    </form>';
+    }
     public function edit($data = null)
     {
-
         if ($data != null) {
-            var_dump($data);
-            include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
-            $crypto = new Cryptor();
-            $dataStr = $crypto->urldecode_base64_decode_decryptor($data);
-            var_dump($dataStr);
-            unset($_SESSION['POST']);
-            $dataArray = explode("&", $dataStr);
+
             $dataArray2 = [];
             $directory = "";
             foreach ($dataArray as $key => $value) {
@@ -1483,8 +1567,6 @@ SQL;
                 //$_POST['fileuploader-list-files']
                 if ($postKey == "fieldImage") {
                     $postKey = "fileuploader-list-files";
-
-
                     $postValue = json_decode(str_replace("hulutera_", "item_other_", $postValue));
                     //item_other_
                     //user_id_7_
@@ -1494,13 +1576,10 @@ SQL;
                         $directory = explode('_', $value);
                     }
                 }
-
-
-
                 $_SESSION['POST'][$postKey] = $postValue;
             }
-
-            // var_dump($directory);
+            var_dump($directory);
+            var_dump($_SESSION['POST']);
             $imageDir = implode("_", array_slice($directory, 0, 2)) . "/" .
                 implode("_", array_slice($directory, 2, 3)) . "/" .
                 implode("_", array_slice($directory, 5, 4));
@@ -1511,7 +1590,7 @@ SQL;
 
 
             // define uploads path
-            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $imageDir .'/';
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $imageDir . '/';
 
             // create an empty array
             // we will add to this array the files from directory below
@@ -1521,6 +1600,8 @@ SQL;
             // scan uploads directory
             $uploadsFiles = array_diff(scandir($uploadDir), array('.', '..'));
 
+            var_dump($uploadDir);
+            var_dump($uploadsFiles);
             // add files to our array with
             // made to use the correct structure of a file
             foreach ($uploadsFiles as $file) {
@@ -1535,17 +1616,21 @@ SQL;
                     "type" => FileUploader::mime_content_type($uploadDir . $file),
                     "size" => filesize($uploadDir . $file),
                     "file" => $uploadDir . $file,
-                    "local" => '../' . $uploadDir . $file, // same as in form_upload.php
+                    "local" => $uploadDir . $file, // same as in form_upload.php
                     "data" => array(
-                        "url" => '/fileuploader/examples/preloaded-files/uploads/' . $file, // (optional)
+                        "url" => $uploadDir . $file, // (optional)
                         "thumbnail" => file_exists($uploadDir . 'thumbs/' . $file) ? $uploadDir . 'thumbs/' . $file : null, // (optional)
                         "readerForce" => true // (optional) prevent browser cache
                     ),
                 );
             }
-
+            echo '<prev>';
+            var_dump($preloadedFiles);
+            echo '</prev>';
             // convert our array into json string
             $preloadedFiles = json_encode($preloadedFiles);
+
+
             $_SESSION['POST']['preloadedFiles'] = $preloadedFiles;
         }
     }

@@ -37,6 +37,18 @@ if (isset($_GET['lan'])) {
 	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 	<script src="../../includes/thumbnails/js/custom.js" type="text/javascript"></script>
 	<script src="../../includes/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
+	<script>
+$(document).ready(function() {
+
+	// enable fileuploader plugin
+	$('input[name="files"]').fileuploader({
+		addMore: true
+	});
+
+});
+
+	</script>
+
 
 	<script>
 		$(document).ready(function() {
