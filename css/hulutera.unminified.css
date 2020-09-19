@@ -378,10 +378,11 @@ form.signin input.button {
 .miniSearch {
 	text-align: center;
 	padding: 22px;
-	background:#ccc;
+	/* background:#ccc; */
 	padding-bottom: 5px;;
-	box-shadow: 0 30px 40px rgba(0,0,0,.1);
+	/* box-shadow: 0 30px 40px rgba(0,0,0,.1); */
 	border-radius: 5px 5px 0 0px;;
+	/* border: 1px solid #ccc; */
 }
 .logox {
 	min-width: 252px;
@@ -3945,7 +3946,7 @@ th {
 .header-top {
 	display: flex;
 	border-bottom: 1px solid #e5e5e5;
-	padding: 1% 5% 0% 5%;
+	 padding: 0% 2% 0% 2%;
 	background:rgb(240, 240, 240);
 	/* box-shadow: 0 30px 40px rgba(0,0,0,.1); */
 	flex: 0 0 auto;
@@ -4032,7 +4033,7 @@ th {
 }
 
 .inner-header {
-	padding: 20px 0;
+	/* padding: 20px 0; */
 }
 
 .inner-header .logox {

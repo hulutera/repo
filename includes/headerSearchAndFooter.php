@@ -102,8 +102,8 @@ function headerAndSearchCode2($item)
 
 function headerAndSearchCode($item)
 {
-	headerAndSearchCode2($item);
-	return;
+	//headerAndSearchCode2($item);
+	//return;
 	global $lang_url, $str_url, $lang;
 
 	echo '<header class="header-section">';
