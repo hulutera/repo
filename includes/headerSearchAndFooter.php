@@ -46,18 +46,18 @@ function fileRouter($add)
 	//js
 	if ($add != "../..") {
 		//use google apis for production
-		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 	} else {
 		//use local minfied jquery lib
-		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
 	echo '
 
-        <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
+        <script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
-	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
+	<?php //echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
 	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
 
