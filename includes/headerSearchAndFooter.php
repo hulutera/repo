@@ -24,7 +24,7 @@ if (isset($_GET['lan'])) {
 
 function commonHeader()
 {
-	echo '<meta name="viewport" content="width=device-width">';
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
 	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
@@ -46,18 +46,18 @@ function fileRouter($add)
 	//js
 	if ($add != "../..") {
 		//use google apis for production
-		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 	} else {
 		//use local minfied jquery lib
-		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '
+	echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
+	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 
-        <script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
-	<?php echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
+	<?php //echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
 	//img
 	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
 
@@ -76,16 +76,16 @@ function headerAndSearchCode2($item)
 	global $lang_url, $str_url, $lang;
 
 	echo '<header class="header-section">';
-	___open_div_('header-top row', '');
+	___open_div_('header-top', '');
 
-	___open_div_('ht-left col-md-2', '');
+	___open_div_('ht-left col-md-2 nopadding', '');
 	___open_div_('logox', ' style="padding:20px');
 	logoText();
 	___close_div_(2);
-	___open_div_('ht-center col-md-5', '');
+	___open_div_('ht-center col-md-5 nopadding', '');
 	miniSearch();
 	___close_div_(1);
-	___open_div_('ht-right col-md-4', '');
+	___open_div_('ht-right col-md-4 nopadding', '');
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	locale($current_link);
 	topRightLinks();
@@ -98,6 +98,7 @@ function headerAndSearchCode2($item)
 
 
 	echo '</header>';
+
 }
 
 function headerAndSearchCode($item)
@@ -224,6 +225,7 @@ function logoText()
 function topRightLinks($style = null)
 {
 	global $lang_url, $str_url, $lang;
+
 	___open_div_('top-links', $style);
 	if (!isset($_SESSION['uID'])) {
 
@@ -797,8 +799,17 @@ function sidelist($item)
 	global $lang, $lang_url, $str_url;
 
 
+	// $itemList = [
+	// 	['car', "https://img.icons8.com/color/48/000000/suv.png"],
+	// 	['computer', "https://img.icons8.com/fluent/48/000000/computer.png"],
+	// 	['electronic', "https://img.icons8.com/fluent/48/000000/radio.png"],
+	// 	['house',"https://img.icons8.com/color/48/000000/home.png"],
+	// 	['household',"https://img.icons8.com/color/48/000000/armchair.png"],
+	// 	['phone',"https://img.icons8.com/color/48/000000/android.png"],
+	// 	['other',"https://img.icons8.com/color/48/000000/categorize.png"]
+	// ];
 	$itemList = [
-		['car', "https://img.icons8.com/color/48/000000/suv.png"],
+		['car', "../images/icons/item_car.png"],
 		['computer', "https://img.icons8.com/fluent/48/000000/computer.png"],
 		['electronic', "https://img.icons8.com/fluent/48/000000/radio.png"],
 		['house',"https://img.icons8.com/color/48/000000/home.png"],
@@ -813,7 +824,8 @@ function sidelist($item)
 	</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '">';
-	echo '<img src="https://img.icons8.com/color/48/000000/synchronize--v1.png"/>';
+	//echo '<img src="https://img.icons8.com/color/48/000000/synchronize--v1.png"/>';
+	echo '<img src="../images/icons/item_latest.png"/>';
 	echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p>';
 	echo '</a></li>';
 
@@ -824,7 +836,7 @@ function sidelist($item)
 		}
 		echo 'href="../../includes/template.item.php?type=' . $value[0] . $str_url . '" style="text-align:center">';
 		//echo '<img src="../images/uploads/icons/' . $value . '.svg" style="width:50%;"/><br/>' . $GLOBALS['item_lang_arr'][$value];
-		echo '<img src="'.$value[1].'"/>';
+		echo '<img src="../images/icons/item_'.$value[0].'.png"/>';
 		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value[0]] . '</p>';
 		echo '</a></li>';
 	}

@@ -25,6 +25,7 @@ body {
 	min-width: 100%;
 	font-family: 'Open Sans', sans-serif;
 	-webkit-font-smoothing: subpixel-antialiased;
+	overflow-x: hidden;
 }
 
 h2, h3 {
@@ -3937,13 +3938,17 @@ th {
  |_|  |_||______|/_/    \_\|_____/ |______||_|  \_\    \_____||_____/|_____/
 
 */
-
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
+ }
 .header-top {
 	display: flex;
 	border-bottom: 1px solid #e5e5e5;
 	padding: 1% 5% 0% 5%;
 	background:rgb(240, 240, 240);
 	/* box-shadow: 0 30px 40px rgba(0,0,0,.1); */
+	flex: 0 0 auto;
 
 }
 
