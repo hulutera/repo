@@ -51,8 +51,8 @@ function fileRouter($add)
 		//use local minfied jquery lib
 		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
-	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>'; ?>
+	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+	echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>'; ?>
 
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -98,7 +98,6 @@ function headerAndSearchCode2($item)
 
 
 	echo '</header>';
-
 }
 
 function headerAndSearchCode($item)
@@ -812,10 +811,10 @@ function sidelist($item)
 		['car', "../images/icons/item_car.png"],
 		['computer', "https://img.icons8.com/fluent/48/000000/computer.png"],
 		['electronic', "https://img.icons8.com/fluent/48/000000/radio.png"],
-		['house',"https://img.icons8.com/color/48/000000/home.png"],
-		['household',"https://img.icons8.com/color/48/000000/armchair.png"],
-		['phone',"https://img.icons8.com/color/48/000000/android.png"],
-		['other',"https://img.icons8.com/color/48/000000/categorize.png"]
+		['house', "https://img.icons8.com/color/48/000000/home.png"],
+		['household', "https://img.icons8.com/color/48/000000/armchair.png"],
+		['phone', "https://img.icons8.com/color/48/000000/android.png"],
+		['other', "https://img.icons8.com/color/48/000000/categorize.png"]
 	];
 	echo '<div id="sidelist" class="col-xs-12 col-md-12">
     <div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
@@ -823,7 +822,7 @@ function sidelist($item)
         <i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
 	</div><ul>';
 	echo '<li>';
-	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '">';
+	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
 	//echo '<img src="https://img.icons8.com/color/48/000000/synchronize--v1.png"/>';
 	echo '<img src="../images/icons/item_latest.png"/>';
 	echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p>';
@@ -836,7 +835,7 @@ function sidelist($item)
 		}
 		echo 'href="../../includes/template.item.php?type=' . $value[0] . $str_url . '" style="text-align:center">';
 		//echo '<img src="../images/uploads/icons/' . $value . '.svg" style="width:50%;"/><br/>' . $GLOBALS['item_lang_arr'][$value];
-		echo '<img src="../images/icons/item_'.$value[0].'.png"/>';
+		echo '<img src="../images/icons/item_' . $value[0] . '.png"/>';
 		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value[0]] . '</p>';
 		echo '</a></li>';
 	}
