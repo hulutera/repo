@@ -1189,9 +1189,11 @@ $help = [
                 "2) " => "Xogta gali foomka diiwaangelinta oo <button class=\"btn btn-primary\"> riix is-diiwaangeli </button>.",
                 "3) " => "Markaad ku-gulaysatid diridda foomka la isku-diiwaangeliyo, farriintan ayaad helaysaa <strong> waad ku-mahadsantahay is-diiwaangelintaada.  Waxaanu kuu soo dirnay email-ka xaqiijinta, si aad akoonkaaga u hawlgelisid riix furaha ka-shaqaysiinaya. </strong> si aad diiwaangelinta u dhammaystirtid kan xiga ugudub.",
                 "4) " => "Fur email-ka aynu kuu soo dirnay oo riix furaha ka-shaqaynsiinta ee ku-jir email-ka aynu soo dirnay, riix furaha ka-shaqaysiinta.  Markaad furaha riixdid <strong> waxaad arkaysaa farriinta</strong> akoonkaaga imika waa la-fuliyey.  Kani akoonkaaga ayuu ka-shaqaysiinayaa waanad gali kartaa.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dheeraadka fiidhiyowga ka-eeg</p>
-                               <iframe width="560" height="315" src="https://www.youtube.com/embed/RU4kKKXyADo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                                <video width="50%" id="vid-register" style="border: 2px black solid">
+                                <source src="../videos/am/reg_am.mp4" type="video/mp4">
+                                </video>
+                                </div>',
 
             ]
         ],
@@ -1211,17 +1213,19 @@ $help = [
                                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                 <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
                                 </video>
-                              </div>',
+                                </div>',
             ]
         ],
         "upload"   => [
             "head" => "Sida aad hanti ugalin kartid",
             "body" => [
-                "ተ.ቁ. 1) " => "Si aad hanti ugalasid waa inaad marka hore gashid.",
-                "ተ.ቁ. 2) " => "Markaad gashid ka-dib kan dhinaca midigta ka-jira ee ah <strong>hantida gali</strong> riix. Ka-dibna dooro hantida aad doonaysid inaad galisid.",
-                "ተ.ቁ. 3) " => 'Ka-dibna dooro hantida aad doonaysid inaad galisid. Waxaa furmaya foomka hantida la-galinayo, foomka gali dhammaan xogta hantida ku-saabsan. Illaa xadka aad awoodi karaysid haddii aad sawir wanaagsan galisid waxay kaa caawinaysaa inaad dad badan indhahooda soo-jiidatid, wuxuuna kaa-caawinayaa inaad muujisid xaaladda ay hantidu ku-sugantahay. Waxaad galin kartaa illaa shan sawir. Markaad dhammaysid ka-dib riix <button class=\"btn btn-primary\"> dir, gali, riix </button> oo si guul leh ku soo gabagabee.  Ka-dibna <strong> waa lagu-guulaystay galinta hantidaada. Waad ku-mahadsantahay isticmaaliddada adeeggayaga. </strong> Farrintaas ayaad arkaysaa. Hantida inta laga-shaqeeyo ayey dhammaan dadku ku-arki karaan 24 saacadood gudahood.',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dheeraadka fiidhiyowga ka-eeg</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rn0cHQny4nU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                "1) " => "Si aad hanti ugalasid waa inaad marka hore gashid.",
+                "2) " => "Markaad gashid ka-dib kan dhinaca midigta ka-jira ee ah <strong>hantida gali</strong> riix. Ka-dibna dooro hantida aad doonaysid inaad galisid.",
+                "3) " => 'Ka-dibna dooro hantida aad doonaysid inaad galisid. Waxaa furmaya foomka hantida la-galinayo, foomka gali dhammaan xogta hantida ku-saabsan. Illaa xadka aad awoodi karaysid haddii aad sawir wanaagsan galisid waxay kaa caawinaysaa inaad dad badan indhahooda soo-jiidatid, wuxuuna kaa-caawinayaa inaad muujisid xaaladda ay hantidu ku-sugantahay. Waxaad galin kartaa illaa shan sawir. Markaad dhammaysid ka-dib riix <button class=\"btn btn-primary\"> dir, gali, riix </button> oo si guul leh ku soo gabagabee.  Ka-dibna <strong> waa lagu-guulaystay galinta hantidaada. Waad ku-mahadsantahay isticmaaliddada adeeggayaga. </strong> Farrintaas ayaad arkaysaa. Hantida inta laga-shaqeeyo ayey dhammaan dadku ku-arki karaan 24 saacadood gudahood.',
+                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                                <video width="50%" id="vid-upload" style="border: 2px black solid">
+                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
+                                </video>
                                 </div>',
 
             ]
@@ -1232,9 +1236,11 @@ $help = [
                 "1) " => "riix kan ay ku-qorantahay miyaad doonaysaa inaad na-waydiisid ee shabakaddayada ee leh <strong> ee ku-yaalla dhinaca kore ee bidixda ama dhinaca hoose </strong> ee shabakaddayada.",
                 "2) " => "Iyada oo <strong> sababta aad noola hadlaysid</strong> haddii sababtaadu liiska ka-dhex-waydid, <strong> dooro kan leh </strong> fikir guud. Haddii aad gashay xogtaadu iskeed ayey foomka u soo galaysaa, haddii ay noqon-waydo xogta gali.",
                 "3) " => "Ka-dib markaad xogta galisid riix <button class=\"btn btn-primary\"> dir </button>.  Ka-dib <strong> waxaad helaysaa farrin leh </strong> waad ku-mahadsantahay inaad doontid helitaankayaga.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dheeraadka fiidhiyowga</a></p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/oXuDJPOqdSg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
+                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
+                                </video>
+                                </div>',
             ]
         ],
         "search"   => [

@@ -1194,9 +1194,11 @@ $help = [
                 "2) " => "Unkaa ittiin galmaa’an irratti odeeffannnoowwan guutaa achi <button class=\"btn btn-primary\">galmaa’a</button> isaa jedhu tuqa.",
                 "3) " => "Unkaa ittiin galmaa’an haala milka’e yammuu ergitan, dhaamsa kana ni argattu.<strong> Waan galmooftaniif  galatooma. Imeeli mirkanessa isiniif ergine jirra. Akaawuntii keessa hojiirra olchuuf galmee hojiira ittiin oolchan tuqa.</strong> Galmeesicha xumuruuf garaisa itti aanutti deema.",
                 "4) " => "Imeelicha banaatii galmee hojiira ittiin oolchan imeeelii keenya irra tuqa Akaawuntiin keessan amma <strong>o ole jira </strong> Dhaamsa jedhu agartu. Kunis akaawuntii keessan hojjiiraoolcha kanaafuu galu ni dandeessu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalataaf viidiyoobanaa ilaala</p>
-                               <iframe width="560" height="315" src="https://www.youtube.com/embed/RU4kKKXyADo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                         <video width="50%" id="vid-register" style="border: 2px black solid">
+                         <source src="../videos/am/reg_am.mp4" type="video/mp4">
+                         </video>
+                         </div>',
 
             ]
         ],
@@ -1225,8 +1227,10 @@ $help = [
                 "1) " => "Qabeenya galchuuf jalqaba galu qabdu.",
                 "2) " => "Eega galtan booda gubbarra gama mirgaatiin kan jiru<strong>qabeenya galcha </strong>isa jedhu tuqa. Achii itti aansun qabeenya galchu barbaaddan filadhaa. ",
                 "3) " => 'Achi itti aansuun qabeenya galchu barbaaddan filadhaa. Unkaan qabeenya irratti galchan ni banama. Unkicha irratti waa’ee qabeenyaa odeefannoo hunda galchaa. Hanga isiniif danda’ametti suuraa bareeda galchuuf yoo dandeessan ija nama heedduu harkisuuf isn gargaara. Kana bira darbee haalaqabeenyichi irratti argamu ifatti agarsiisuuf ni gargaara. Hanga suura shan galchu ni dandeesssu. Egaa xumurtan booda <button class="btn btn-primary">erga, galchaa, tuqa </button> isa jedhu jedhu tuquun haalamilkaa’ina qabun xumura. Itti aansees<strong> qabeenyawwan keessan bifa milkaa’ina qabun gale jira. Tajaajila keenyatti waan itti fayyadamtaniif ni galatefanna.</strong>dhaamsa jedhu argitu.  Bu’uura kanaanis qabeenya isin galchitan qabeenya kiyya kan jedhu keessatti argattu. Qabeenyichi sa’aatii 24 keessatti hojiirra oolee nama hundaf kan mul’atu ta’a.',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">Dabalatan viidiyoo ilaala</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rn0cHQny4nU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                                <video width="50%" id="vid-upload" style="border: 2px black solid">
+                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
+                                </video>
                                 </div>',
 
             ]
@@ -1237,9 +1241,11 @@ $help = [
                 "1) " => "Website keenya gubbaa gama mirgaatiin ykn jala kan jiru<strong>gaafachu ni barbaadduu?</strong>isa jedhu tuqa.",
                 "2) " => "<strong>Dhaan sababii ittiin nu haasofsiisu barbaaddan</strong> tarreeffama irra sababii keessan yoo argachubattan, <strong>yaada waliigalaa</strong>isa jedhu filadhaa.Seentanii yoo ta’e odeefannon keessan matuma isatiin ni guuta. Yoo ta’ubaate odeefannicha gutaa.",
                 "3) " => "Unkaa eega guuttan booda  <button class=\"btn btn-primary\">erga </button> isa jedhu tuqa. Itti aansuun<strong> argachu waan barbaaddani  galtooma</strong> dhaamsa jedhu argattu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataan viidiyoo</a></p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/oXuDJPOqdSg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
+                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
+                                </video>
+                                </div>',
             ]
         ],
         "search"   => [

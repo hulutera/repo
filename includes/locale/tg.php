@@ -1187,8 +1187,10 @@ $help = [
                       "2) " => "እቲ ዝተውሃበ ቅጥዒ ውልቃዊ ሓበሬታ ብምምላእ  ቀዳማይን <button class=\"btn btn-primary\">ይመዝገቡን</button> ዝብሉ ቁልፊታት ይጠውቁ፡፡",
                       "3) " => "ተመዝጊቦም ምስ ወድኡ ዕዉት ምዝገባ መረጋገፂ  መልእክቲ ክበፅሖም ዩ፡፡ ስለዝተመዝገቡ የቀንየልና፡፡ ምምዝጋቦም መረጋገፂ መልእክቲ ናብ ኢሜይሎም ተላኢኩ ኣሎ፡፡ በጅኦም እቲ መልዓሊ ጥብቆ ብምጥዋቅ ኣካውንቶም ስራሕ ንክጅምር ይግበሩ፡፡ ምዝገበኦም ንምጥንቃቅ ናብቲ ዝቅፅል ከይዲ ይሰጋገሩ፡፡",
                       "4) " => "ኣብቲ ቅጥዒ ዝመልእዎ ኢሜይሎም ብምክፋት ኣብቲ  ካብ ገፅና ዝተልኣከ ጥብቆ ይጠውቁ እዚ ከይዲ ኣካውንቶም ስርሑ ንክጅምር ይገብር፡፡ ሐዚ <strong> ኣካውንቶም ስርሑ ጀሚሩ ኣሎ</strong>  ዝብል  መልእክቲ ክበፅሖም ዩ፡፡ ሐዚ ና ኣካውንቶም ክኣትዉ ይክእሉ ዮም፡፡ ተመዝጊቦም ኣለዉ፡፡",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">ንተወሳኪ ሓበሬታ ነቲ ሓፂር ተንቀሳቃሲ ምስሊ ይተዓዘቡ</p>
-                               <iframe width="560" height="315" src="https://www.youtube.com/embed/RU4kKKXyADo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
+                               <video width="50%" id="vid-register" style="border: 2px black solid">
+                               <source src="../videos/am/reg_am.mp4" type="video/mp4">
+                               </video>
                                </div>',
 
             ]
@@ -1218,8 +1220,10 @@ $help = [
                      "1) " => "ንብረት ንምልጣፍ ፈለማ ናብ ውልቀ ኣካውንት ገፆም ይእተዉ፡፡",
                      "2) " => "ኣብ ላዕላይ የማናይ ኩርናዕ ናይ ገፆም <strong> ንብረት ይለጥፉ </strong> ዝብል ብምምራፅ ይጠውቁ፡፡ ከወዓውዕዎ ዝደልዩ ንብረት ይምረፁ፡፡",
                      "3) " => 'ንብረት ምልጣፍ ዘክእል ቅጥዒ ምስከፈተሎም ነቲ ቅጥዒ ብዝድለ ነቲ ንብረት ዝምልከት ሓበሬታ ይምልኡ፡፡ ናይቲ ዝልጥፍዎ ንብረት ስእሊ ፅሬቱ ዝሓለወ ብምግባር ንዓይኒ ማራኪ ኢሉ ውን ናይቲ ንብረት ህልዊ ኩነታት ብግልፂ ዘርኢ ክከውን ከምዘለዎ ማዕዳና ነቅርብ፡፡ ክሳብ ሓሙሽተ ዝኣክሉ ስእልታት ምልጣፍ ይከኣል ዩ፡፡ እዚ ምስገበሩ <button class="btn btn-primary"> ይልአኩ፣የእትኩ፤ይጽአኑ </button> ዝብል ቁልፊ ብምጥዋቅ ምውዕዋዖም ይዛዝሙ፡፡ንብረቶም ብዕዉት ኩነታት ተለጢፉ ኣሎ ዝብል መልእክቲ ክለኣከሎም ዩ፡፡ <strong> ናይ ኣገልግሎትና ተጠቃሚ ስለዝኮኑ ኣዚና ነመስግን፡፡ </strong> ኣብዚ ብርኪ ናይ ምልጣፍ ከይዶም ይክንበት፡፡ ዝለጠፍዎ ንብረት ንብረተይ ኣብ ዝብል ኣብ ከይዲ ዝርከብ ብዝብል ብርኪ ንብረት ይረኣዮምሞ እዚ ድሕሪ 24 ሰዓታት ብዕሊ ስርሑ ዝጅምር ይከውን፡፡',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rn0cHQny4nU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
+                                <video width="50%" id="vid-upload" style="border: 2px black solid">
+                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
+                                </video>
                                 </div>',
 
             ]
@@ -1230,9 +1234,11 @@ $help = [
                      "1) " => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
                      "2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
                      "3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/oXuDJPOqdSg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
+                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
+                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
+                                </video>
+                                </div>',
             ]
         ],
         "search"   => [

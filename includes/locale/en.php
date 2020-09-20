@@ -1224,11 +1224,11 @@ $help = [
                               the registration, proceed to the next step.',
                 "Step 4: " => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
                              acount is now active.You may now login </strong>.At this step your Regsitration is completed.',
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
-                        <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                            <source src="../videos/en/pass_rec_en.mp4" type="video/mp4">
-                        </video>
-                     </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                                <video width="50%" id="vid-register" style="border: 2px black solid">
+                                <source src="../videos/en/reg_en.mp4" type="video/mp4">
+                                </video>
+                               </div>',
             ]
         ],
         "logIn"    => [
@@ -1271,11 +1271,11 @@ $help = [
                               You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
                               advert. You will see the message <strong>Your item was successfully uploaded.
                               Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.',
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
-                        <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                            <source src="../videos/en/pass_rec_en.mp4" type="video/mp4">
-                        </video>
-                     </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                                <video width="50%" id="vid-upload" style="border: 2px black solid">
+                                <source src="../videos/en/upload_en.mp4" type="video/mp4">
+                                </video>
+                               </div>',
                         ]
         ],
         "contactus"   => [
@@ -1285,15 +1285,15 @@ $help = [
                 "Step 2: " => 'If you have already logged-in your personal details will be automatically
                               filled. Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
                               If you don\'t find anything to choose on the contact purpose then select <strong>General Comment</strong> reason. Write detail information why you
-                              want to contact us on the <strong>Message</strong>field.',
+                              want to contact us on the message field.',
                 "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
                         button to send your inquiry. Then, you will see a message <strong>We appreciate your taking the time to
                         contact us"</strong>.',
-                 "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
-                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                     <source src="../videos/en/pass_rec_en.mp4" type="video/mp4">
-                 </video>
-              </div>',
+                 "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                            <video width="50%" id="vid-contactus" style="border: 2px black solid">
+                            <source src="../videos/en/contact_en.mp4" type="video/mp4">
+                            </video>
+                          </div>',
             ]
         ],
         "search"   => [

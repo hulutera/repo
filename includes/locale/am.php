@@ -1223,9 +1223,11 @@ $help = [
                 "ተ.ቁ. 2) " => "የመመዝገብያው ፎርሙ ላይ መረጃዎችን ይሙሉና <button class=\"btn btn-primary\">ይመዝገቡ</button> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 3) " => "የመመዝገብያ ቅጹን በተሳካ ሁኔታ ሲልኩ ፣ ይህንን መልዕክት ያገኛሉ <strong>ስለተመዘገቡ እናመሰግናለን። የማረጋገጫ ኢሜይል ልከንልዎታል ፣ አካውቶን ለማስተግበር እባክዎን የማስተግበሪያ መስቡን ይጫኑ።</strong> ምዝገባውን ለመጨረስ ወደሚቀጥ ይሂዱ።",
                 "ተ.ቁ. 4) " => "ኢሜይሎን ይክፈቱና ከእኛ የተላከው ኢሜይል ላይ ፣ የማስተግበሪያ መስቡን ይጫኑ። መስቡን ሲጫኑ <strong>አካውንቶ አሁን ተተግብሯል</strong> የሚለውን መልዕክት ይመለከታሉ። ይህም አካውንቶን ያስተገብራል እናም መግባት ይችላሉ።",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start">ለበለጠ ቪዲዮዉን ይመልከቱ</p>
-                               <iframe width="560" height="315" src="https://www.youtube.com/embed/RU4kKKXyADo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                               <video width="50%" id="vid-register" style="border: 2px black solid">
+                                <source src="../videos/am/reg_am.mp4" type="video/mp4">
+                                </video>
+                              </div>',
 
             ]
         ],
@@ -1257,8 +1259,10 @@ $help = [
                 "ተ.ቁ. 2) " => "ከገቡ በኃላ ከላይ በስተቀኝ በኩል ያለውን <strong>ንብረት ያስገቡ</strong> የሚለውን ይጫኑ። ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ።",
                 "ተ.ቁ. 3) " => 'ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ። የንብረት ማስገቢያ ቅፅ ይከፈታል ፣ ቅፁ ላይ ስለንብረቱ ሁሉንም መራጃ ያስገቡ። በተቻሎት አቅም ጥሩ ፎቶ ለማስገባት ቢችሉ የብዙ ሰው ዓይን ለመሳብ ይረዳዎታል ከዛም ባሻገር ንብረቱ ያለበትን ሁኔታ በግልጽ ለማሳየት ይረዳል። እስከ አምስት ፎቶዎች ማስገባት ይችላሉ።
                              ከጨረሱ በኃላ <button class="btn btn-primary">ይላኩ ፣ ያስገቡ ፣ ይጫኑ</button> የሚለውን ተጭነው በተሳካ መልኩ ያጠናቁ። ቀጥሎም <strong>ንብረቶ በተሳካ መልኩ ገብቷል። አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን።</strong> የሚል መልዕክት ያያሉ። በዚህም መሰረት ያስገቡትን ንብረት የኔ ንብረት የሚለው ውስጥ ያገኛሉ። ንብረቱ በ24 ሰዓት ውስጥ ተተግብሮ ለሁሉም ሰው የሚታይ ይሆናል።',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start">ለበለጠ ቪዲዮዉን ይመልከቱ</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rn0cHQny4nU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                                <video width="50%" id="vid-upload" style="border: 2px black solid">
+                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
+                                </video>
                                 </div>',
 
             ]
@@ -1270,8 +1274,10 @@ $help = [
                 "ተ.ቁ. 2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
                 "ተ.ቁ. 3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/oXuDJPOqdSg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               </div>',
+                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
+                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
+                                </video>
+                                </div>',
             ]
         ],
         "search"   => [
