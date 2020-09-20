@@ -149,7 +149,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold">here</a> to know more about hulutera.com.',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',
@@ -1286,7 +1286,7 @@ $help = [
                               filled. Otherwise, fill your personal details and Choose the reason you want to contact us using dropdown list.
                               If you don\'t find anything to choose on the contact purpose then select <strong>General Comment</strong> reason. Write detail information why you
                               want to contact us on the message field.',
-                "-" => 'After filling the form click the <button class="btn btn-primary">Send</button>
+                "-" => ' After filling the form click the <button class="btn btn-primary">Send</button>
                         button to send your inquiry. Then, you will see a message <strong>We appreciate your taking the time to
                         contact us"</strong>.',
                  "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>

@@ -39,21 +39,24 @@ function commonHeader()
 
 function fileRouter($add)
 {
-	//css
-	echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
-	echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
-	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
-	//js
+
 	if ($add != "../..") {
 		//use google apis for production
+		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
+		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
 		echo '<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
 		echo '<script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
-		//use local minfied jquery lib
+		//use local
+		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
+		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
 	}
-	echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
+
 	?>
 
 	<!--[if lt IE 9]>
@@ -871,7 +874,7 @@ function footerCode()
         <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
         <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
         <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
-        <p style="margin-bottom:5px"><a   href="../../includes/help.php' . $lang_url . '" target="_blank">' . $lang['Help'] . '</a></p>
+        <p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
         </div>';
 	echo '<div id="followUs_fo" >
           <p class="h4">' . $lang['FOLLOW US'] . '</p>
