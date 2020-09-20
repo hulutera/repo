@@ -51,8 +51,8 @@ function fileRouter($add)
 		//use local minfied jquery lib
 		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 	}
-	echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
-	echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>'; ?>
+	echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+	echo '<script defer type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>'; ?>
 
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

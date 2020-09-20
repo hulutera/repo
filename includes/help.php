@@ -14,8 +14,6 @@ global $lang, $lang_url, $str_url;
 	<title><?php echo $lang['help']; ?></title>
 	<?php commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
 	<link href="../../css/font-awesome.min.css" rel="stylesheet">
 	<style>
 		.collapsible {
