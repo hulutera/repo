@@ -65,7 +65,10 @@ function fileRouter($add)
 
 	if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
 		if (!isset($_SESSION['uID'])) {
-			header('Location: ../includes/login.php?release=beta' . $str_url);
+			// temporary workaround for page load test with google page load tester
+			if($_GET['release'] != "ht_test") {
+				header('Location: ../includes/login.php?release=beta' . $str_url);
+			}
 		}
 	}
 }
