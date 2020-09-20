@@ -848,18 +848,10 @@ class HtItemCar extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-
-        if (isset($_POST['rentOrSell'])) {
-            if ($_POST['rentOrSell'] == "fieldPriceRent") {
-                $this->setFieldMarketCategory('rent');
-            } else if ($_POST['rentOrSell'] == "fieldPriceSell") {
-                $this->setFieldMarketCategory('sell');
-            } else if ($_POST['rentOrSell'] == "both") {
-                $this->setFieldMarketCategory('rent and sell');
-            }
-        }
-
+        $this->priceTypeSetter();
         $this->setFieldTableType(1);
+        var_dump($_itemTempId);
+        var_dump($_POST);
 
         //create a folder for image upload
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
@@ -869,7 +861,7 @@ class HtItemCar extends MySqlRecord
         }
 
         //create a prefic for all images, with userId and item tempId
-        $imgPrefix = 'hulutera_user_id_' . $_userId . '_item_temp_id_' . $_itemTempId . '_';
+        //$imgPrefix = 'hulutera_user_id_' . $_userId . '_item_temp_id_' . $_itemTempId . '_';
 
         // initialize FileUploader
         $FileUploader = new FileUploader('files', array(
@@ -887,8 +879,7 @@ class HtItemCar extends MySqlRecord
                 'quality' => 90
             ),
             'listInput' => true,
-            'files' => null,
-            'id' => $imgPrefix
+            'files' => null
         ));
 
         // unlink the files
@@ -898,23 +889,11 @@ class HtItemCar extends MySqlRecord
             unlink('../uploads/' . $value['name']);
         }
 
-
         // call to upload the files
         $data = $FileUploader->upload();
 
-        // if uploaded and success
-        if ($data['isSuccess'] && count($data['files']) > 0) {
-            // get uploaded files
-            $uploadedFiles = $data['files'];
-        }
-        // if warnings
-        if ($data['hasWarnings']) {
-            $warnings = $data['warnings'];
-            header('Location: ../../template.upload.php?type=' . $this->getTableName() . '&=' . $warnings);
-        }
-
         // get the fileList and encode in json
-        $fileList = json_encode($FileUploader->getFileList('name'));
+        $fileList = json_encode(array_values(array_diff(scandir($directory), array('.', '..'))));
         $this->setFieldImage($fileList);
     }
 
@@ -1903,7 +1882,7 @@ SQL;
         echo '</form>';
     }
 
-    protected function insertAllField($itemName,  $skipRow = null)
+    protected function insertAllField($itemName,  $skipRow = null, $color = null)
     {
         $itemName = $this->getTableNameShort();
         ___open_div_("col-md-8 col-xs-12 upload-container", '');
@@ -1951,7 +1930,7 @@ SQL;
         $this->insertFieldNoOfSeat();
         ___close_div_(1);
         ___open_div_("col-md-4", '');
-        $this->insertFieldColor();
+        $this->insertFieldColor((string)$color);
         ___close_div_(1);
         ___close_div_(3);
         ////
@@ -1973,11 +1952,22 @@ SQL;
         $this->insertItemImages();
         ___close_div_(3);
 
-        ___open_div_("row", "");
-        ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
-        ___open_div_("form-group upload", "");
-        echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
-        ___close_div_(3);
+
+        if ($skipRow == 6) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
+            ___open_div_("form-group upload", "");
+            echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
+            $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+            echo '<a href="../../includes/mypage.php?' . $lang_sw . '" class="btn btn-danger btn-lg btn-block">' . $GLOBALS['lang']['cancel changes'] . '</a>';
+            ___close_div_(3);
+        } else {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
+            ___open_div_("form-group upload", "");
+            echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
+            ___close_div_(3);
+        }
         ___close_div_(1);
     }
 
@@ -2029,5 +2019,252 @@ SQL;
         $row = $this->categoryNameArray;
         $cat = $row[$categoryId - 1]['field_name'];
         return $cat;
+    }
+
+    /**
+     * Edit the current object into a new table row of item_other
+     * @return mixed MySQL insert result
+     * @category DML
+     */
+    public function uploadEdit()
+    {
+        $this->setFieldPostEdit();
+        $this->allowUpdate = true;
+        $this->updateCurrent();
+        ///final session
+        //unset($_SESSION['POST']);
+    }
+
+    /**
+     * Save data from Post or Session_Post to memeber fields
+     * @return mixed MySQL insert result
+     * @category DML
+     */
+    private function setFieldPostEdit()
+    {
+        // var_dump($_SESSION['POST']);
+        // var_dump($_POST);
+
+        /// here get file from post fileuploader-list-files and creat
+        /// a new element ['POST']['files']
+        /// update session['POST'] new values from the validations
+        $_SESSION['POST']['files'] = $_POST['fileuploader-list-files'];
+        foreach ($_POST as $key => $value) {
+            if (array_key_exists($key, $_SESSION['POST'])) {
+                $_SESSION['POST'][$key] = $value;
+            }
+        }
+        /// make equal session POST and POST
+        $_POST = $_SESSION['POST'];
+
+        // var_dump($_POST);
+        // define uploads path
+        $uploadDir = '..' . $_SESSION['POST']['uploadDirRel'];
+        $FileUploader = new FileUploader('files', array(
+            'limit' => null,
+            'maxSize' => null,
+            'fileMaxSize' => null,
+            'extensions' => null,
+            'required' => false,
+            'uploadDir' => $uploadDir,
+            'title' => 'name',
+            'replace' => false,
+            'editor' => array(
+                'maxWidth' => 640,
+                'maxHeight' => 480,
+                'quality' => 90
+            ),
+            'listInput' => true,
+            'files' => null
+        ));
+
+        //// find file in session from perloaded files
+        $sessionPostFiles = array_column(json_decode($_SESSION['POST']['preloadedFiles']), 'name');
+
+        /// find files in post file
+        $postFiles  = array_column(json_decode($_POST['files']), 'file');
+
+        /// remove the directory name from the postFiles
+        foreach ($postFiles as &$value) {
+            //$value = str_replace("../" . $_POST['uploadDir'], "", $value);
+        }
+        /// get the difference betrween array, to get the removed files
+        $postRemovedFiles = array_diff($sessionPostFiles, $postFiles);
+
+        var_dump($_SESSION['POST']);
+        var_dump($_POST);
+        var_dump(json_encode($postFiles));
+        var_dump($this->id);
+        foreach ($postFiles as $key => $value) {
+            echo '<img src="../../..'.$_POST['uploadDir']. $value.'">';
+        }
+        exit;
+        // remove the filed from the directory
+        foreach ($postRemovedFiles as $key => $value) {
+            unlink("../../.." . $_POST['uploadDir'] . $value);
+        }
+        // call to upload the files
+        $data = $FileUploader->upload();
+
+        //----------------------------------
+        $this->setFieldLocation($_POST['fieldLocation']);
+        $this->setIdCategory($_POST['idCategory']);
+        $this->setIdUser((int)$_POST['idUser']);
+        $this->setIdTemp((int) $_POST['idTemp']);
+        $this->setFieldMake($_POST['fieldMake']);
+        $this->setFieldModel($_POST['fieldModel']);
+        $this->setFieldModelYear($_POST['fieldModelYear']);
+        $this->setFieldGearType($_POST['fieldGearType']);
+        $this->setFieldFuelType($_POST['fieldFuelType']);
+        $this->setFieldMilage($_POST['fieldMilage']);
+        $this->setFieldNoOfSeat($_POST['fieldNoOfSeat']);
+        $this->setFieldColor($_POST['fieldColor']);
+        $this->setFieldPriceRent($_POST['fieldPriceRent']);
+        $this->setFieldPriceRate(isset($_POST['fieldPriceRate']) ? $_POST['fieldPriceRate'] : null);
+        $this->setFieldPriceSell($_POST['fieldPriceSell']);
+        $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
+        $this->setFieldPriceNego($_POST['fieldPriceNego']);
+        $this->setFieldTitle($_POST['fieldTitle']);
+        $this->setFieldContactMethod($_POST['fieldContactMethod']);
+        $this->setFieldImage($_POST['fileuploader-list-files']);
+        $this->setFieldUploadDate(date("Y-m-d H:i:s"));
+        $this->setFieldStatus("pending");
+        $this->priceTypeSetter();
+        $this->setFieldTableType(1);
+    }
+
+    private function priceTypeGetter()
+    {
+        $variable = $_SESSION['POST']['fieldMarketCategory'];
+        switch ($variable) {
+            case 'rent':
+                return 'fieldPriceRent';
+                break;
+            case 'sell':
+                return 'fieldPriceSell';
+            case 'rent and sell':
+                # code...
+                return 'both';
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function priceTypeSetter()
+    {
+        if (isset($_POST['rentOrSell'])) {
+            if ($_POST['rentOrSell'] == "fieldPriceRent") {
+                $this->setFieldMarketCategory('rent');
+            } else if ($_POST['rentOrSell'] == "fieldPriceSell") {
+                $this->setFieldMarketCategory('sell');
+            } else if ($_POST['rentOrSell'] == "both") {
+                $this->setFieldMarketCategory('rent and sell');
+            }
+        }
+    }
+
+    /**
+     * Prepare session post variable
+     * @return mixed MySQL insert result
+     * @category DML
+     */
+    private function preEdit($data = null)
+    {
+        ////------------------------------------------------------------------
+        // var_dump($data);
+        /// add for decoding
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
+        $crypto = new Cryptor();
+        $dataStr = $crypto->urldecode_base64_decode_decryptor($data);
+        // var_dump($dataStr);
+
+        /// start fresh
+        unset($_SESSION['POST']);
+        $dataArray = explode("&", $dataStr);
+        // var_dump($dataArray);
+
+        /// prepare data and create a session variable
+        foreach ($dataArray as $key => $value) {
+            //$value => field_contact_method=both hence $temp will hold array
+            //'field_contact_method'=>'both'
+            // $temp[0] = 'field_contact_method'
+            // $temp[1] = 'both'
+            $temp = explode("=", $value);
+            // changes field_contact_method to fieldContactMethod
+            $postKey = lcfirst(implode('', array_map('ucfirst', explode('_', $temp[0])))); //$this->camelize($temp[0]);
+            $postValue = $temp[1];
+
+            if ($postKey == "idCategory") {
+                $postValue = $this->carCategory((int)$postValue);
+            }
+
+            $_SESSION['POST'][$postKey] = $postValue;
+        }
+
+        //var_dump($_SESSION['POST']);
+
+        // define uploads path
+        $uploadDirRelative = '/upload/'.$this->getTableName().'/user_id_' . $_SESSION['POST']['idUser'] . '/item_temp_id_' . $_SESSION['POST']['idTemp'] . '/';
+        $uploadDir = dirname(__FILE__, 3) . $uploadDirRelative;
+        $_SESSION['POST']['uploadDir'] = $uploadDirRelative;
+        $_SESSION['POST']['uploadDirX'] = $uploadDir; ///for removing files
+        $_SESSION['POST']['uploadDirRel'] = $uploadDirRelative;
+        // var_dump($uploadDir);
+
+        // create an empty array
+        // we will add to this array the files from directory below
+        // here you can also add files from MySQL database
+        $preloadedFiles = array();
+
+        // scan uploads directory
+        $uploadsFiles = array_diff(scandir($uploadDir), array('.', '..'));
+
+        // add files to our array with
+        // made to use the correct structure of a file
+        foreach ($uploadsFiles as $file) {
+            // skip if directory
+            if (is_dir($uploadDirRelative . $file))
+                continue;
+
+            // add file to our array
+            // !important please follow the structure below
+            $preloadedFiles[] = array(
+                "name" => $file,
+                "type" => FileUploader::mime_content_type($uploadDir . $file),
+                "size" => filesize($uploadDir . $file),
+                "file" => $uploadDirRelative . $file,
+                "local" => '../' . $uploadDirRelative . $file, // same as in form_upload.php
+                "data" => array(
+                    "url" => null, //'/fileuploader/examples/preloaded-files/uploads/' . $file, // (optional)
+                    "thumbnail" => null, //file_exists($uploadDir . 'thumbs/' . $file) ? $uploadDir . 'thumbs/' . $file : null, // (optional)
+                    "readerForce" => true // (optional) prevent browser cache
+                ),
+            );
+        }
+
+        // convert our array into json string
+        $preloadedFiles = json_encode($preloadedFiles);
+        // var_dump($preloadedFiles);
+        $_SESSION['POST']['preloadedFiles'] = $preloadedFiles;
+    }
+
+    /**
+     * Display form for Edit with Session Data
+     * @return mixed MySQL insert result
+     * @category DML
+     */
+    public function edit($data = null)
+    {
+        $this->preEdit($data);
+        ////------------------------------------------------------------------
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+        echo '<form class="form-horizontal" action="../../includes/thumbnails/php/form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
+        echo '<!-- file input -->';
+        $itemName = $this->getTableNameShort();
+        // var_dump($_SESSION['POST']);
+        $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
+        $this->insertAllField($itemName, 6, $_SESSION['POST']['fieldColor']);
+        echo '</form>';
     }
 }

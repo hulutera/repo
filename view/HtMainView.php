@@ -317,7 +317,7 @@ class HtMainView
     }
 
     /**
-     * Main interface to display item
+     * Main interface to display item for upload
      * e.g.
      *  (new HtMainView("all",null))->show();    // select * from all  (car, computer, ...)
      *  (new HtMainView("car",null))->show();     // select * car
@@ -331,6 +331,24 @@ class HtMainView
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, null);
         $this->_pItem->upload($data);
     }
+
+
+    /**
+     * Main interface to display item for editing item
+     * e.g.
+     *  (new HtMainView("all",null))->show();    // select * from all  (car, computer, ...)
+     *  (new HtMainView("car",null))->show();     // select * car
+     *  (new HtMainView("car",13))->show();       // select * car where id=13
+     *  (new HtMainView("latest",null))->show();  //select * latestupdate
+     *
+     * @param resolved by construtor
+     */
+    public function edit($data = null)
+    {
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, null);
+        $this->_pItem->edit($data);
+    }
+
 
     /**
      *  This function shows a search result

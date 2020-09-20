@@ -37,16 +37,81 @@ if (isset($_GET['lan'])) {
 	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 	<script src="../../includes/thumbnails/js/custom.js" type="text/javascript"></script>
 	<script src="../../includes/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
+
+	<style>
+		.fileuploader {
+			max-width: 560px;
+		}
+	</style>
+</head>
+</head>
+
+<body>
+	<?php headerAndSearchCode("upload");
+	uploadListNav($lang_sw); ?>
+	<div id="whole">
+		<div id="wrapper">
+			<div id="main_section">
+
+				<?php
+				///reset/cleanup _SESSION variables
+				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_GET['function'] !== 'edit' or $_SESSION['lan'] != $_GET['lan']) {
+					unset($_SESSION['POST']);
+					unset($_SESSION['errorRaw']);
+				}
+
+				if (!isset($_SESSION['uID'])) {
+					header('Location:../index.php' . $lang_url);
+				}
+				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
+				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+
+
+
+				//define unique session
+				$sessionName = 'upload_' . $_GET['type'];
+
+				if (!isset($_SESSION[$sessionName])) {
+					$object = new HtMainView($_GET['type'], null);
+					$_SESSION[$sessionName] = base64_encode(serialize($object));
+				} else {
+					$object = unserialize(base64_decode($_SESSION[$sessionName]));
+				}
+
+				///route to edit or upload
+				$data = isset($_GET['action']) &&
+					($_GET['action'] == "edit") &&
+					isset($_GET['data']) ? $_GET['data'] : "";
+				if ($data == "") {
+					$object->upload($data);
+				} else {
+					$object->edit($data);
+				}
+
+				?>
+			</div>
+		</div>
+	</div>
 	<script>
-$(document).ready(function() {
+		$(document).ready(function() {
 
-	// enable fileuploader plugin
-	$('input[name="files"]').fileuploader({
-		addMore: true
-	});
+			// enable fileuploader plugin
+			$('input[name="files"]').fileuploader({
+				addMore: true
+			});
 
-});
+		});
 
+	</script>
+		<script>
+		$(document).ready(function() {
+
+			// enable fileuploader plugin
+			$('input[name="files"]').fileuploader({
+				addMore: true
+			});
+
+		});
 	</script>
 
 
@@ -75,6 +140,8 @@ $(document).ready(function() {
 				$(this).css('color', color);
 			});
 
+			$('#fieldColor').trigger('change');
+
 			$('#idCategory').on('change', function() {
 				var test = $(this).val();
 				if (test == "Land") {
@@ -84,59 +151,8 @@ $(document).ready(function() {
 					$(".land").show();
 				}
 			});
-
 		});
 	</script>
-	<style>
-		.fileuploader {
-			max-width: 560px;
-		}
-	</style>
-</head>
-</head>
-
-<body>
-	<?php headerAndSearchCode("upload");
-	uploadListNav($lang_sw); ?>
-	<div id="whole">
-		<div id="wrapper">
-			<div id="main_section">
-
-				<?php
-
-				///reset/cleanup _SESSION variables
-				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_SESSION['lan'] != $_GET['lan']) {
-					unset($_SESSION['POST']);
-					unset($_SESSION['errorRaw']);
-				}
-
-				if (!isset($_SESSION['uID'])) {
-					header('Location:../index.php' . $lang_url);
-				}
-				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
-				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
-
-				$data = isset($_GET['action']) &&
-					($_GET['action'] == "edit") &&
-					isset($_GET['data']) ? $_GET['data'] : "";
-
-				//define unique session
-				$sessionName = 'upload_' . $_GET['type'];
-
-				if (!isset($_SESSION[$sessionName])) {
-					$object = new HtMainView($_GET['type'], null);
-					$object->upload($data);
-					$_SESSION[$sessionName] = base64_encode(serialize($object));
-				} else {
-					$object = unserialize(base64_decode($_SESSION[$sessionName]));
-					$object->upload($data);
-				}
-
-
-				?>
-			</div>
-		</div>
-	</div>
 	<?php footerCode(); ?>
 </body>
 

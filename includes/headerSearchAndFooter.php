@@ -51,9 +51,10 @@ function fileRouter($add)
 		//use local
 		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
 		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
-		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
+		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+
 	}
 	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 
@@ -152,7 +153,7 @@ function headerAndSearchCode($item)
 	echo '</header>';
 }
 
-function uploadResetErrors()
+function unsetSessionData()
 {
 	unset($err);
 	unset($_SESSION['register']);
@@ -163,7 +164,7 @@ function uploadResetErrors()
 
 function uploadListMain($lang_sw)
 {
-	uploadResetErrors();
+	unsetSessionData();
 	___open_div_('container-fluid', '');
 	___open_div_('row vertical-align', '" style="margin-top:79px');
 	___open_div_('col-md-12 mb-4', '');
@@ -920,6 +921,7 @@ function ___close_div_($number)
 
 function yourPage()
 {
+	unsetSessionData();
 	global $str_url, $lang_url;
 	$id = $_SESSION['uID'];
 	$myPageHeaderTitle = $GLOBALS['lang']['my page header'];

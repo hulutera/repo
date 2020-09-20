@@ -18,7 +18,18 @@ foreach ($err as $x) {
 }
 
 if (!empty($err2)) {
-	$_SESSION['POST'] = $_POST;
+
+	var_dump($err2);
+	var_dump($_SESSION['POST']);
+
+	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
+		$redirectLink = $_SERVER['HTTP_REFERER'];
+	} else {
+		$_SESSION['POST'] = $_POST;
+		$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+		$redirectLink = '../../template.upload.php?function=upload&type=' . $itemName . $lang_sw;
+	}
+
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
 	$input = implode('', array_map(
 		function ($v) {
@@ -32,19 +43,17 @@ if (!empty($err2)) {
 	$crypto = new Cryptor();
 	$_SESSION['error']  = $crypto->encryptor($input);
 	$_SESSION['errorRaw']  = $err2;
-	$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
 
-	header('Location: ../../template.upload.php?function=upload&type=' . $itemName . $lang_sw);
+    header('Location: ' . $redirectLink);
 } else {
 	// reset Error
 	$err = [];
-
-
-	$id = isset($_SESSION['POST']['id']) ? $_SESSION['POST']['id'] : null;
+	/// get id if edit is running
+	$id = isset($_SESSION['POST']['id']) ? (int)$_SESSION['POST']['id'] : null;
 
 	//get item instance
-	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], (int)$id);
-	if (isset($_GET['action']) && ($_GET['action'] == 'upload-edit')) {
+	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], $id);
+	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
 		//update item with new data
 		$_pItem->uploadEdit();
 		//exit;
@@ -53,6 +62,7 @@ if (!empty($err2)) {
 		$_pItem->insertPost();
 	}
 
+	//exit;
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;

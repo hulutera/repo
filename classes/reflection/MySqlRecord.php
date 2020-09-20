@@ -441,7 +441,7 @@ EOD;
         $this->insertPriceType('fieldPriceSell');
         ___close_div_(3);
     }
-    protected function insertFieldColor()
+    protected function insertFieldColor($color = null)
     {
         $errorMsg = "";
         $errorClass = '';
@@ -482,8 +482,16 @@ EOD;
             echo $errorMsg;
             ___close_div_(1);
         }
-        echo '<select id="fieldColor" name="fieldColor" class="select form-control">
-            <option value="">' . $GLOBALS['upload_specific_array']['common']['fieldColor'][1] . '</option>';
+        echo '<select id="fieldColor" name="fieldColor" class="select form-control">';
+
+        if(isset($color))
+        {
+            $theColor = $colors[$color];
+            $v = 'value="' . $color . '" style="background-color:' . $theColor[0] . ';color:' . $theColor[1] . '"';
+            $l = $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$color];
+            echo '<option ' . $v . '>' . $l . '</option>';
+        }
+        echo '<option value="">' . $GLOBALS['upload_specific_array']['common']['fieldColor'][1] . '</option>';
         foreach ($selectable as $key => $value) {
             foreach ($value as $key1 => $value1) {
                 echo '<option ' . $key1 . '>' . $value1 . '</option>';
@@ -711,7 +719,15 @@ EOD;
             ___close_div_(3);
         }
         ///
-        if ($skipRow != 6) {
+        if ($skipRow == 6) {
+            ___open_div_("row", "");
+            ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
+            ___open_div_("form-group upload", "");
+            echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
+            $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
+            echo '<a href="../../includes/mypage.php?'.$lang_sw.'" class="btn btn-danger btn-lg btn-block">' . $GLOBALS['lang']['cancel changes'] . '</a>';
+            ___close_div_(3);
+        }else{
             ___open_div_("row", "");
             ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
             ___open_div_("form-group upload", "");

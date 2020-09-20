@@ -1215,7 +1215,7 @@ SQL;
         } else {
             $lang_url = "";
         }
-        //uploadResetErrors();
+        //unsetSessionData();
         ___open_div_("container-fluid", '');
         ___open_div_("col-md-4 col-xs-12 login-container", '');
 
@@ -1283,7 +1283,7 @@ SQL;
     public function insertPassRecoveryField()
     {
         global $lang_url;
-        //uploadResetErrors();
+        //unsetSessionData();
         ___open_div_("container-fluid", '');
         ___open_div_("col-md-4 col-xs-12 pass-recovery-container", '');
         ////
