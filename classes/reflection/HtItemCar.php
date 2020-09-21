@@ -2098,7 +2098,7 @@ SQL;
         foreach ($postFiles as $key => $value) {
             echo '<img src="../../..'.$_POST['uploadDir']. $value.'">';
         }
-        exit;
+        //exit;
         // remove the filed from the directory
         foreach ($postRemovedFiles as $key => $value) {
             unlink("../../.." . $_POST['uploadDir'] . $value);
