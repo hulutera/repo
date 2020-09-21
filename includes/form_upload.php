@@ -82,6 +82,6 @@ if (!empty($err2)) {
 	}
 
 	//successfull
-	$link = './prompt.php?type=10' . $lang_url;
+	$link = "../prompt.php?type=10" . $lang_url;
 	header('Location: ' . $link);
 }

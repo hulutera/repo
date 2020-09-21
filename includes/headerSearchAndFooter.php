@@ -22,10 +22,40 @@ if (isset($_GET['lan'])) {
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
 
-function commonHeader()
+function commonHeaderCssMeta($add)
 {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
+	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
+	if ($add != "../..") {
+		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
+		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
+		//use google apis for production
+		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
+		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
+	} else {
+		//use local
+		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
+		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
+	}
+
+}
+function commonHeaderJs($add)
+{
+	if ($add != "../..") {
+		//use google apis for production
+		echo '<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+		echo '<script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+	} else {
+		//use local
+		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
+		echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
+		echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+	}
+}
+function commonHeader()
+{
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
 	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
 		$add = "../..";
@@ -33,40 +63,20 @@ function commonHeader()
 		//$add = "http://static.hulutera.com";
 		$add = "../..";
 	}
-	echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
-	fileRouter($add);
+	commonHeaderCssMeta($add);
+	commonHeaderJs($add);
+	blockLogin();
 }
 
-function fileRouter($add)
+function blockLogin()
 {
-	if ($add != "../..") {
-		//use google apis for production
-		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
-		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
-		echo '<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
-		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
-		echo '<script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
-	} else {
-		//use local
-		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
-		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
-		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
-		echo '<script defer type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
-		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
-	}
-	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
-
 	?>
-
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
-	<?php //echo '<script type="text/javascript" src="' . $add . '/js/respond.js"> </script>';
-	//img
-	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
+	<?php
 
 	global $str_url;
-
 	if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
 		if (!isset($_SESSION['uID'])) {
 			// temporary workaround for page load test with google page load tester

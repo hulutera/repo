@@ -19,18 +19,21 @@ if (isset($_GET['lan'])) {
 	<title><?php echo $GLOBALS['lang']['upload']; ?></title>
 	<?php commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-	<link href="../../css/font/font-fileuploader.css" rel="stylesheet">
+	<link href="../css/font/font-fileuploader.css" rel="stylesheet">
 	<!-- styles -->
-	<link href="../../css/jquery.fileuploader.min.css" media="all" rel="stylesheet">
-	<link href="../../css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-	<link href="../../css/custom.css" rel="stylesheet">
+	<link href="../css/jquery.fileuploader.min.css" media="all" rel="stylesheet">
+	<link href="../css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
+	<link href="../css/custom.css" rel="stylesheet">
+
+	<script defer src="../js/fileuploader.custom.js" type="text/javascript"></script>
+	<script defer src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
+
 
 	<style>
 		.fileuploader {
 			max-width: 560px;
 		}
 	</style>
-</head>
 </head>
 
 <body>
@@ -79,33 +82,8 @@ if (isset($_GET['lan'])) {
 			</div>
 		</div>
 	</div>
-
-	<script defer src="../../js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-	<script defer src="../../js/fileuploader.custom.js" type="text/javascript"></script>
-	<script defer src="../../js/jquery.fileuploader.min.js" type="text/javascript"></script>
-	<script>
-		$(document).ready(function() {
-
-			// enable fileuploader plugin
-			$('input[name="files"]').fileuploader({
-				addMore: true
-			});
-
-		});
-
-	</script>
-		<script>
-		$(document).ready(function() {
-
-			// enable fileuploader plugin
-			$('input[name="files"]').fileuploader({
-				addMore: true
-			});
-
-		});
-	</script>
-
-
+	<?php footerCode(); ?>
+	<?php commonHeaderJs('../..');?>
 	<script>
 		$(document).ready(function() {
 			$('#rentOrSell').on('change', function() {
@@ -124,14 +102,13 @@ if (isset($_GET['lan'])) {
 					$(".fieldPriceRent").hide();
 				}
 			});
+
 			$('#fieldColor').on('change', function() {
 				var backgroundColor = $('option:selected', this).css('background-color');
 				var color = $('option:selected', this).css('color');
 				$(this).css('background-color', backgroundColor);
 				$(this).css('color', color);
 			});
-
-			$('#fieldColor').trigger('change');
 
 			$('#idCategory').on('change', function() {
 				var test = $(this).val();
@@ -142,9 +119,16 @@ if (isset($_GET['lan'])) {
 					$(".land").show();
 				}
 			});
+
+			$('#fieldColor').trigger('change');
+			$('#rentOrSell').trigger('change');
+
+			// // enable fileuploader plugin
+			// $('input[name="files"]').fileuploader({
+			// 	addMore: true
+			// });
 		});
 	</script>
-	<?php footerCode(); ?>
 </body>
 
 </html>
