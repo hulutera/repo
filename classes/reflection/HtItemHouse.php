@@ -2154,7 +2154,7 @@ SQL;
         $this->setFieldPriceNego($_POST['fieldPriceNego']);
         $this->setFieldTitle($_POST['fieldTitle']);
         $this->setFieldContactMethod($_POST['fieldContactMethod']);
-        $this->setFieldImage($_POST['fileuploader-list-files']);
+        $this->setFieldImage(json_encode($postFiles));
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
         $this->priceTypeSetter();
