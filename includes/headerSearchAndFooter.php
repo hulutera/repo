@@ -39,7 +39,6 @@ function commonHeader()
 
 function fileRouter($add)
 {
-
 	if ($add != "../..") {
 		//use google apis for production
 		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
@@ -51,10 +50,9 @@ function fileRouter($add)
 		//use local
 		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
 		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
-		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
+		echo '<script defer type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
 		echo '<script defer type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
-
 	}
 	echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 

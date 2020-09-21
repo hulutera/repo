@@ -19,24 +19,11 @@ if (isset($_GET['lan'])) {
 	<title><?php echo $GLOBALS['lang']['upload']; ?></title>
 	<?php commonHeader(); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
-
-	<!-- fonts -->
-
-	<link href="../../includes/dist/font/font-fileuploader.css" rel="stylesheet">
-
+	<link href="../../css/font/font-fileuploader.css" rel="stylesheet">
 	<!-- styles -->
-	<link href="../../includes/dist/jquery.fileuploader.min.css" media="all" rel="stylesheet">
-	<link href="../../includes/thumbnails/css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/hulutera.unminified.css" rel="stylesheet">
-
+	<link href="../../css/jquery.fileuploader.min.css" media="all" rel="stylesheet">
+	<link href="../../css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
 	<link href="../../css/custom.css" rel="stylesheet">
-
-	<!-- js -->
-	<script src="../../includes/thumbnails/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-	<script src="../../includes/thumbnails/js/custom.js" type="text/javascript"></script>
-	<script src="../../includes/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
 
 	<style>
 		.fileuploader {
@@ -92,6 +79,10 @@ if (isset($_GET['lan'])) {
 			</div>
 		</div>
 	</div>
+
+	<script defer src="../../js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+	<script defer src="../../js/fileuploader.custom.js" type="text/javascript"></script>
+	<script defer src="../../js/jquery.fileuploader.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 
