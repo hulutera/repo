@@ -703,12 +703,18 @@ SQL;
         $this->fieldEmail   = isset($_POST['fieldEmail']) ? $_POST['fieldEmail'] : $this->fieldEmail;
         $this->fieldCompany = isset($_POST['fieldCompany']) ? $_POST['fieldCompany'] : $this->fieldCompany;
         $this->fieldSubject = isset($_POST['fieldSubject']) ? $_POST['fieldSubject'] : $this->fieldSubject;
-        $this->fieldMessage = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
         $this->fieldPurpose = isset($_POST['fieldPurpose']) ? $_POST['fieldPurpose'] : $this->fieldPurpose;
-        $this->fieldDescription = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
-        $this->fieldMessageStatus = 'unread';
-        $this->fieldReceivedDate = date("Y-m-d H:i:s");
-        $this->insert();
+        $this->fieldMessage = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
+        //$this->fieldMessageStatus = 'unread';
+        //$this->fieldReceivedDate = date("Y-m-d H:i:s");
+        //$this->insert();
+        $msg1 = 'Name: ' . $this->fieldName . '\n';
+        $msg2 = 'Company: ' . $this->fieldCompany . '\n';
+        $msg3 = 'Purpose: ' . $this->fieldPurpose . '\n';
+        $msg4 = 'Description: ' . $this->fieldDescription . '\n';
+        $message = $msg1 . $msg2 . $msg3 .$msg4;
+
+        $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:.'. $this->fieldEmail .'');
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
@@ -718,9 +724,9 @@ SQL;
         //     header('Location: ../includes/prompt.php?type=7' . $lang_sw);
         //     return;
         // }
-        $isMailDelivered = mail($this->field_email, $subject, $body, 'From:noreply@hulutera.com');
+        $isMailDelivered = mail($this->field_email, $subject, $body, 'From:info@hulutera.com');
         //Check if mail Delivered or die
-        if (!$isMailDelivered) {
+        if (!$isMessageDeliverdToHT or !$isMailDelivered) {
             die("Sending Email Failed. Please Contact Site Admin!");
         } else {
             header('Location: ../includes/prompt.php?type=7' . $lang_sw);
