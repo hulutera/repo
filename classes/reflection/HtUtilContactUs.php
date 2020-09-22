@@ -708,17 +708,17 @@ SQL;
         //$this->fieldMessageStatus = 'unread';
         //$this->fieldReceivedDate = date("Y-m-d H:i:s");
         //$this->insert();
-        $msg1 = 'Name: ' . $this->fieldName . '\n';
-        $msg2 = 'Company: ' . $this->fieldCompany . '\n';
-        $msg3 = 'Purpose: ' . $this->fieldPurpose . '\n';
-        $msg4 = 'Description: ' . $this->fieldDescription . '\n';
+        $msg1 = 'Name: ' . $this->fieldName . "\r\n";
+        $msg2 = 'Company: ' . $this->fieldCompany . "\r\n";
+        $msg3 = 'Purpose: ' . $this->fieldPurpose . "\r\n";
+        $msg4 = 'Message: ' . $this->fieldMessage . "\r\n";
         $message = $msg1 . $msg2 . $msg3 .$msg4;
 
-        $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:.'. $this->fieldEmail .'');
+        $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'');
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "<br><br>";
+        $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
         /// temporary disable for message sending
         // if (DBHOST == 'localhost') {
         //     header('Location: ../includes/prompt.php?type=7' . $lang_sw);
