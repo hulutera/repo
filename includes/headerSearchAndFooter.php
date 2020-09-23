@@ -22,49 +22,50 @@ if (isset($_GET['lan'])) {
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
 
-function commonHeaderCssMeta($add)
+function commonHeaderCssMeta()
 {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
-	echo '<link rel="shortcut icon" href="' . $add . '/images/icons/ht.ico" />';
-	if ($add != "../..") {
+	echo '<link rel="shortcut icon" href="../../images/icons/ht.ico" />';
+	if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
 		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
 		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 		//use google apis for production
 		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
-		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
+		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
 	} else {
 		//use local
-		echo '<link href="../css/bootstrap.min.css" rel="stylesheet">';
-		echo '<link rel="stylesheet" href="' . $add . '/css/hulutera.unminified.css">';
+		echo '<link href="../../css/bootstrap.min.css" rel="stylesheet">';
+		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
 	}
 
 }
-function commonHeaderJs($add)
+function commonHeaderJs()
 {
-	if ($add != "../..") {
+	if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
 		//use google apis for production
 		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
-		echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
-		echo '<script type="text/javascript" src="' . $add . '/js/jquery1.11.1.min.js"></script>';
-		echo '<script type="text/javascript" src="' . $add . '/js/bootstrap.min.js"></script>';
-		echo '<script type="text/javascript" src="' . $add . '/js/hulutera.unminified.js"></script>';
+		echo '<script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
+		echo '<script type="text/javascript" src="../../js/bootstrap.min.js"></script>';
+		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
 }
 function commonHeader()
 {
+	/*
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
 	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
 		$add = "../..";
 	} else {
 		$add = "http://static.hulutera.com";
 		//$add = "../..";
-	}
-	commonHeaderCssMeta($add);
-	commonHeaderJs($add);
+	}*/
+	commonHeaderCssMeta();
+	commonHeaderJs();
 	blockLogin();
 }
 
