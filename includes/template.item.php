@@ -37,7 +37,10 @@ $item = $_GET['type'];
 							$status = $_GET['status'];
 							(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
 						} else {
-							(new  HtMainView($item))->show("active");
+							echo $item;
+							$testObj = (new  HtMainView($item));
+							echo gettype($testObj);
+							$testObj->show("active");
 						} ?>
 
 					</div>
