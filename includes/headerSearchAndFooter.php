@@ -27,7 +27,7 @@ function commonHeaderCssMeta()
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	echo '<link rel="shortcut icon" href="../../images/icons/ht.ico" />';
-	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com') {
+	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera') {
 		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
 		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 		//use google apis for production
@@ -42,7 +42,7 @@ function commonHeaderCssMeta()
 }
 function commonHeaderJs()
 {
-	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com') {
+	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera') {
 		//use google apis for production
 		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
@@ -54,8 +54,7 @@ function commonHeaderJs()
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
 }
-function commonHeader()
-{
+function commonHeader() {
 	/*
 	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
 	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
@@ -113,8 +112,6 @@ function headerAndSearchCode2($item)
 	___open_div_('container', '');
 	sidelist($item);
 	___close_div_(2);
-
-
 	echo '</header>';
 }
 
