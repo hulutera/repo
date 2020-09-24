@@ -189,7 +189,6 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
-        echo "func showItemWithId";
         if (isset($_SESSION['uID'])) {
             $user = new HtUserAll($_SESSION['uID']);
         }
