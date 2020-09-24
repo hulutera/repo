@@ -9,7 +9,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 class HtMainView
 {
 
-    public $_runnerName; //track current running item name (car, ..., all, latest)
+    private $_runnerName; //track current running item name (car, ..., all, latest)
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
     private $_itemNumber;

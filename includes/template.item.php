@@ -1,8 +1,7 @@
 <?php
 session_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/includes/common.inc.php';
+//$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once 'common.inc.php';
 error_reporting(0);
 ini_set('display_errors', 0);
 
@@ -37,9 +36,7 @@ $item = $_GET['type'];
 							$status = $_GET['status'];
 							(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
 						} else {
-							$ab = new  HtMainView($item);
-							$cd = $ab->_runnerName;
-							echo $cd;
+							(new  HtMainView($item))->show("active");
 						} ?>
 
 					</div>
