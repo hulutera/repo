@@ -4,14 +4,14 @@
  * Defines the constants for MySQL database connection parameters used by a Bean.
  */
 
-if ($_SERVER['SERVER_NAME'] == "hulutera" || $_SERVER['SERVER_NAME'] == "localhost") {
+if ($_SERVER['SERVER_NAME'] == "localhost") {
     define("DBHOST", "localhost");
     define("DBUSER", "root");
     define("DBPASSWORD", "");
     define("DBNAME", "hulutera_db");
     define('DBPORT', '3306');
 } else {
-    if ($_SERVER['SERVER_NAME'] == "hulutera.com") {
+    if ($_SERVER['SERVER_NAME'] == "hulutera" || $_SERVER['SERVER_NAME'] == "www.hulutera.com") {
         $config = parse_ini_file('/home/hah3lga4knls/db.ini');
         define("DBHOST", $config["DBHOST"]);
         define("DBUSER", $config["DBUSER"]);
