@@ -1,7 +1,8 @@
 <?php
 session_start();
-//$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once 'common.inc.php';
+$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $documnetRootPath . '/includes/common.inc.php';
 error_reporting(0);
 ini_set('display_errors', 0);
 
