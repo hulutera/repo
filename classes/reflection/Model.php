@@ -24,7 +24,6 @@ abstract class Model extends mysqli
 
     public function __construct()
     {
-        echo DBHOST;
         @parent::__construct(DBHOST, DBUSER, DBPASSWORD, DBNAME);
         $this->throwIfDBError();
         $this->autorun();

@@ -77,7 +77,7 @@ function blockLogin()
 	<?php
 
 	global $str_url;
-	if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
+	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera.com') {
 		if (!isset($_SESSION['uID'])) {
 			// temporary workaround for page load test with google page load tester
 			if($_GET['release'] != "ht_test") {
