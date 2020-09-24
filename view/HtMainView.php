@@ -125,7 +125,6 @@ class HtMainView
     public function showItem($filter)
     {
         $ab = ObjectPool::getInstance();
-        echo gettype($ab);
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
         $condition = "WHERE field_status = '$filter'";
