@@ -37,7 +37,9 @@ $item = $_GET['type'];
 							$status = $_GET['status'];
 							(new  HtMainView($item, $id, $status))->showOneItem(); //   show($status);
 						} else {
-							(new  HtMainView($item))->show("active");
+							$ab = new  HtMainView($item);
+							$cd = $ab->_runnerName;
+							echo $cd;
 						} ?>
 
 					</div>

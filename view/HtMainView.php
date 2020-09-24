@@ -9,7 +9,7 @@ require_once $documnetRootPath . '/includes/validate.php';
 class HtMainView
 {
 
-    private $_runnerName; //track current running item name (car, ..., all, latest)
+    public $_runnerName; //track current running item name (car, ..., all, latest)
     private $_runnerId;   //track current running item id, optional for all, latest
     private $_pItem;      //track object to classes
     private $_itemNumber;
@@ -189,7 +189,6 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
-        echo "func showItemWithId";
         if (isset($_SESSION['uID'])) {
             $user = new HtUserAll($_SESSION['uID']);
         }
