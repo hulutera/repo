@@ -1095,14 +1095,14 @@ $user_specific_array = [
             0 => 'Sababta aad la-hadalkayaga ugu-baahatay',
             1 => 'dooro sababta aad la-hadalkayaga ugu-baahatay',
             2 => [
-                "1" => ' Fikir guud ',
-                "2" => ' Waan heli kari-waayey hantidii aan galiyey ',
-                "3" => ' Lama ansixin hantidii aan galiyey ',
-                "4" => ' Hantidii aan galiyey active ma-noqon ',
-                "5" => ' Markaan isku-dayey in aan xayaysiiyo waxaan la-kulmay dhibaato farsamo ',
-                "6" => ' Muuqaalku si wanaagsan uma muuqdo ',
-                "7" => ' Waxaan doonayaa in aan ka-warbixiyo fal xatooyo ',
-                "8" => ' Waxaan doonayaa in aan Hulutera fikrad u soo jeediyo '
+                'General comment' => ' Fikir guud ',
+                'I can not find my Ad' => ' Waan heli kari-waayey hantidii aan galiyey ',
+                'My Ad is not approved' => ' Lama ansixin hantidii aan galiyey ',
+                'My Ad is still pending' => ' Hantidii aan galiyey active ma-noqon ',
+                'Technical problems in Ad' => ' Markaan isku-dayey in aan xayaysiiyo waxaan la-kulmay dhibaato farsamo ',
+                'Problems with picture' => ' Muuqaalku si wanaagsan uma muuqdo ',
+                'I want to report suspected fraud' => ' Waxaan doonayaa in aan ka-warbixiyo fal xatooyo ',
+                'Feedback and suggestions for hulutera' => ' Waxaan doonayaa in aan Hulutera fikrad u soo jeediyo '
             ]
         ],
     ],

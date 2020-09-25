@@ -705,9 +705,6 @@ SQL;
         $this->fieldSubject = isset($_POST['fieldSubject']) ? $_POST['fieldSubject'] : $this->fieldSubject;
         $this->fieldPurpose = isset($_POST['fieldPurpose']) ? $_POST['fieldPurpose'] : $this->fieldPurpose;
         $this->fieldMessage = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
-        //$this->fieldMessageStatus = 'unread';
-        //$this->fieldReceivedDate = date("Y-m-d H:i:s");
-        //$this->insert();
         $msg1 = 'Name: ' . $this->fieldName . "\r\n";
         $msg2 = 'Company: ' . $this->fieldCompany . "\r\n";
         $msg3 = 'Purpose: ' . $this->fieldPurpose . "\r\n";
@@ -719,12 +716,7 @@ SQL;
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
-        /// temporary disable for message sending
-        // if (DBHOST == 'localhost') {
-        //     header('Location: ../includes/prompt.php?type=7' . $lang_sw);
-        //     return;
-        // }
-        $isMailDelivered = mail($this->field_email, $subject, $body, 'From:info@hulutera.com');
+        $isMailDelivered = mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com');
         //Check if mail Delivered or die
         if (!$isMessageDeliverdToHT or !$isMailDelivered) {
             die("Sending Email Failed. Please Contact Site Admin!");
