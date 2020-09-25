@@ -271,16 +271,17 @@ $lang = array(
     "Choose" => 'filadhaa',
     "help" => ' Odeeffannoo ',
     "or" => ' Yookaan ',
-    "latest items" => ' Qabeenyawwan yeroo dhiyoo galan ',
+    "latest items" => 'Qabeenyawwan seenan ',
     "latest items message" => ' Qabeenyawwan yeroo dhiyoo galan ilaaluf kan armaan gadii tuqun ilaalu ni dandeessu. ',
     "prompt" => ' Dhaamsa ',
     "watch clip" => ' Odeeffannoo dabalataaf viidiyoo ilaala.',
     //new ones
-    'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
-    'remove' => 'ለማጥፋት',
-    'item remove confirmation msg' => 'ይህንን ንብረትዎን ለማስተዋወቅ ያስገቡትን ማስታወቂያ ለማጥፋት ወስነዋል?',
-    'yes' => 'ወስኛለሁ',
-    'no' => 'አልወሰንኩም'
+    'no items to show' => '<div id="spanColumnXamharic">Dhifatama! Qabeenyi mul’atu homtuu hin jiru</div>',
+    'remove' => 'Balleessuuf',
+    'item remove confirmation msg' => 'Qaqbeenya keessan beeksisuuf galchitan balleessuuf murteesitani jirtu?',
+    'yes' => 'Murteesen jira',
+    'no' => 'Hin murteesine',
+    'N.B' => 'yaadachiisa'
 );
 
 $city_lang_arr = array(

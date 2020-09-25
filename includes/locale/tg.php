@@ -263,17 +263,17 @@ $lang = array(
     "Choose" => 'ይምረፁ',
     "help" => ' ሓገዝ ',
     "or" => ' ወይ ',
-    "latest items" => ' ናይ ቀረባ ግዜ ንብረታት ',
+    "latest items" => 'ሓደሽቲ ዝአተዉ ንብረታት',
     "latest items message" => ' ናይ ቀረባ ግዜ ንብረታት እዚ ጥብቆ ብምጥዋቅ ኣብ ቀረባ ግዜ ዝተለጠፉ ንብረታት ይርኣዩ ',
     "prompt" => ' ንኣብነት ',
     "watch clip" => ' ንተወሳኺ ቪድዮ ይርኣዩ',
     //new ones
-    'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
-    'remove' => 'ለማጥፋት',
-    'item remove confirmation msg' => 'ይህንን ንብረትዎን ለማስተዋወቅ ያስገቡትን ማስታወቂያ ለማጥፋት ወስነዋል?',
-    'yes' => 'ወስኛለሁ',
-    'no' => 'አልወሰንኩም',
-    'N.B' => 'ማሳሰቢያ'
+    'no items to show' => '<div id="spanColumnXamharic">ይቅርታ! ዝረአ ዝኮነ ዓይነት ንብረት  የለን</div>',
+    'remove' => 'ንምጥፋእ',
+    'item remove confirmation msg' => 'ንብረቶም ንምፍላጥ ዘእተዉዎ መዋዕውዒ  ንምጥፋእ ወሲኖም ድዮም?',
+    'yes' => 'ወሲነ ኣለኩ ',
+    'no' => 'አይወሰንኩን',
+    'N.B' => 'ምልክታ'
 
 );
 

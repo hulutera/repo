@@ -44,9 +44,9 @@ function commonHeaderJs()
 {
 	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera') {
 		//use google apis for production
-		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
-		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
-		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+		echo '<script defer type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script defer type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
 		echo '<script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
@@ -55,14 +55,6 @@ function commonHeaderJs()
 	}
 }
 function commonHeader() {
-	/*
-	$host = substr($_SERVER['HTTP_HOST'], 0, 5);
-	if (in_array($host, array('local', '127.0', '192.1')) || ($_SERVER['HTTP_HOST'] == 'hulutera')) {
-		$add = "../..";
-	} else {
-		$add = "http://static.hulutera.com";
-		//$add = "../..";
-	}*/
 	commonHeaderCssMeta();
 	commonHeaderJs();
 	blockLogin();
@@ -812,24 +804,14 @@ function sidelist($item)
 	}
 	global $lang, $lang_url, $str_url;
 
-
-	// $itemList = [
-	// 	['car', "https://img.icons8.com/color/48/000000/suv.png"],
-	// 	['computer', "https://img.icons8.com/fluent/48/000000/computer.png"],
-	// 	['electronic', "https://img.icons8.com/fluent/48/000000/radio.png"],
-	// 	['house',"https://img.icons8.com/color/48/000000/home.png"],
-	// 	['household',"https://img.icons8.com/color/48/000000/armchair.png"],
-	// 	['phone',"https://img.icons8.com/color/48/000000/android.png"],
-	// 	['other',"https://img.icons8.com/color/48/000000/categorize.png"]
-	// ];
 	$itemList = [
-		['car', "../images/icons/item_car.png"],
-		['computer', "https://img.icons8.com/fluent/48/000000/computer.png"],
-		['electronic', "https://img.icons8.com/fluent/48/000000/radio.png"],
-		['house', "https://img.icons8.com/color/48/000000/home.png"],
-		['household', "https://img.icons8.com/color/48/000000/armchair.png"],
-		['phone', "https://img.icons8.com/color/48/000000/android.png"],
-		['other', "https://img.icons8.com/color/48/000000/categorize.png"]
+		'car',
+		'computer',
+		'electronic',
+		'house',
+		'household',
+		'phone',
+		'other'
 	];
 	echo '<div id="sidelist" class="col-xs-12 col-md-12">
     <div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
@@ -838,20 +820,19 @@ function sidelist($item)
 	</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
-	//echo '<img src="https://img.icons8.com/color/48/000000/synchronize--v1.png"/>';
 	echo '<img src="../images/icons/item_latest.png"/>';
 	echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p>';
 	echo '</a></li>';
 
 	foreach ($itemList as $key => $value) {
 		echo '<li><a   ';
-		if ($value[0] == $item) {
+		if ($value == $item) {
 			echo "class=\"active\"";
 		}
-		echo 'href="../../includes/template.item.php?type=' . $value[0] . $str_url . '" style="text-align:center">';
+		echo 'href="../../includes/template.item.php?type=' . $value . $str_url . '" style="text-align:center">';
 		//echo '<img src="../images/uploads/icons/' . $value . '.svg" style="width:50%;"/><br/>' . $GLOBALS['item_lang_arr'][$value];
-		echo '<img src="../images/icons/item_' . $value[0] . '.png"/>';
-		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value[0]] . '</p>';
+		echo '<img src="../images/icons/item_' . $value . '.png"/>';
+		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value] . '</p>';
 		echo '</a></li>';
 	}
 	echo '</ul>    </div>';

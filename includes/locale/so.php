@@ -268,16 +268,17 @@ $lang = array(
     "Choose" => 'dooro',
     "help" => ' Xog ',
     "or" => ' ama ',
-    "latest items" => ' Hanti dhawaan soo-gashay ',
+    "latest items" => 'Hanti cusub oo soo-gashay',
     "latest items message" => ' Si aad eegtid hantida dhawaan soo-gashay intaad ka hoose riixdid ayaa eegi kartaa. ',
     "prompt" => ' Farriin ',
     "watch clip" => ' Si xog dheeraad ah u heshid fidhiyoowga eeg',
     //new ones
-    'no items to show' => '<div id="spanColumnXamharic">ይቅርታ!የሚታይ ምንም ንብረት የለም</div>',
-    'remove' => 'ለማጥፋት',
-    'item remove confirmation msg' => 'ይህንን ንብረትዎን ለማስተዋወቅ ያስገቡትን ማስታወቂያ ለማጥፋት ወስነዋል?',
-    'yes' => 'ወስኛለሁ',
-    'no' => 'አልወሰንኩም'
+    'no items to show' => '<div id="spanColumnXamharic">Raalli ahow! Ma-jirto hanti cusub oo muuqata</div>',
+    'remove' => 'Si loo-tirtiro',
+    'item remove confirmation msg' => 'Miyaad go’aansatay inaad tirtirtid ogaysiiska aad soo-galisay si aad hantidan u xayaysiisid?',
+    'yes' => 'Waan go’aansaday',
+    'no' => 'Ma-go’aansan',
+    'N.B' => 'ogeysiis'
 
 );
 
