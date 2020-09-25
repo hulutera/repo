@@ -44,14 +44,14 @@ function commonHeaderJs()
 {
 	if ($_SERVER['SERVER_NAME'] == 'www.hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera.com' || $_SERVER['SERVER_NAME'] == 'hulutera') {
 		//use google apis for production
-		echo '<script defer type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
-		echo '<script defer type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
-		echo '<script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+		echo '<script async type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
-		echo '<script type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
-		echo '<script type="text/javascript" src="../../js/bootstrap.min.js"></script>';
-		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script async type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
+		echo '<script async type="text/javascript" src="../../js/bootstrap.min.js"></script>';
+		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
 }
 function commonHeader() {
