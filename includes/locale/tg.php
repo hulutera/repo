@@ -253,7 +253,7 @@ $lang = array(
     "contact owner" => ' በዓል ዋና ይርከቡ ',
     "You forgort to enter your name, email address and Message" => ' ስሞም፣ ኤሜይሎምን መልእክቶምን ከእትዉ ይግባእ ',
     "Login" => ' እቶ ',
-    "Logout" => ' ውፃእ ',
+    "Logout" => ' መውፅኢ ',
     "e.g" => ' ንኣብነት ',
     "MENU" => ' ዝርዝር ትሕዝቶ ',
     "Choose Item" => ' ንብረት ምረፅ ',
@@ -283,7 +283,7 @@ $city_lang_arr = array(
     "Addis Ababa" => ' ኣዲስ ኣበባ ',
     "Adama" => ' ኣዳማ ',
     "Bahir Dar" => ' ባህር ዳር ',
-    "Mekele" => ' መቀለ ',
+    "Mekele" => ' መቐለ ',
     "Hawassa" => ' ሃዋሳ ',
     "Dire Dawa" => ' ድሬዳዋ ',
     "Gonder" => ' ጎንደር ',
@@ -306,7 +306,7 @@ $city_lang_arr = array(
     "Asaita" => ' ኣሳይታ ',
     "Asossa" => ' ኣሶሳ ',
     "Debre Markos" => ' ደብረማርቆስ ',
-    "Adigrat" => ' አዲግራት ',
+    "Adigrat" => ' ኣዲግራት ',
     "Other" => ' ካልኦት'
 );
 
@@ -331,7 +331,7 @@ $item_lang_arr = array(
     "house" => ' ቤት ',
     "computer" => ' ኮምፕዩተር ',
     "phone" => 'ተሌፎን ',
-    "electronic" => 'ኤለክትሮኒካ ',
+    "electronic" => 'ኤሌክትሮኒክ',
     "household" => ' ሓዳር ',
     "other" => ' ዝተሓዋወሰ'
 );
@@ -343,19 +343,19 @@ $upload_specific_array = [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረፁ',
             2 => [
-                "Bus" => ' አውቶቡስ ',
-                "Compact Car" => ' ቅጥቅጥ መኪና ',
-                "Converitble" => ' መለዋወጢ ',
-                "Full Size Van" => ' ሙሉእ መጠን ቫን ',
+                "Bus" => ' ኣውቶቡስ ',
+                "Compact Car" => ' መኪና ስድራቤት',
+                "Converitble" => ' ክፍትቲ መኪና',
+                "Full Size Van" => ' ቫን ',
                 "Hatchback" => ' ሃችባክ ',
                 "Heavy Machinery" => ' ከበድቲ ማሽናት ',
                 "Luxury Car" => ' ዘመናዊ መኪና ',
                 "Minibus" => ' ሚኒባስ ',
                 "Pickup" => ' ፒክኣፕ ',
-                "Small Car" => ' ኣናእሽቱ መኪና ',
+                "Small Car" => ' ንእሽተይ መኪና ',
                 "Sport Car" => ' ናይ ስፖርት መኪና ',
                 "Station Wagon" => ' ሰረገላ ',
-                "SUV" => ' ኤስዩቪ ',
+                "SUV" => ' ኤስ ዩ ቪ ',
                 "Taxi" => ' ታክሲ ',
                 "Truck" => ' ናይ ፅዕነት መኪና ',
                 "Other" => '--ዘይተገልፀ--'
@@ -459,7 +459,7 @@ $upload_specific_array = [
             1 => 'ዓይነት ማርሺ ይምረፁ',
             2 => [
                 'Manual' => 'ማንዋል',
-                'Automatic' => 'ኣውቶማቲ',
+                'Automatic' => 'ኣውቶማቲክ',
                 'Semi-automatic'  => 'ከፊል ኣውቶማቲክ'
             ]
         ],
@@ -468,8 +468,8 @@ $upload_specific_array = [
             1 => 'ዓይነት ነዳዲ ይምረፁ',
             2 => [
                 'Bensine' => 'ቤንዚን',
-                'Diesel'  => 'ዴዝል',
-                'Electric' => 'ኤለክትሪክ',
+                'Diesel'  => 'ናፍታ',
+                'Electric' => 'ኤሌክትሪክ',
                 'Bio-gas' => 'ባዮጋዝ',
                 'Hybrid' => 'ሕውስዋስ'
             ]
@@ -480,8 +480,8 @@ $upload_specific_array = [
             2 => ['unlisted' => '-- ዘይተገልፀ --']
         ],
         'fieldNoOfSeat' => [
-            0 => 'በዝሒ ወንበር',
-            1 => 'በዝሒ ወንበር ይምረፁ',
+            0 => 'ብዝሒ ወንበር',
+            1 => 'ብዝሒ ወንበር ይምረፁ',
             2 => [
                 '101' => 'ልዕሊ 100',
                 '000' => '--ዘይተገልፀ--'
@@ -515,7 +515,7 @@ $upload_specific_array = [
                 "Land" => ' ባዶ መሬት ',
                 "Condominium" => ' ኮንዶሚንየም ',
                 "Residential" => ' መንበሪ ',
-                "Other" => ' ኣልእ '
+                "Other" => ' ካልእ '
             ]
         ],
         'fieldLotSize' => [
@@ -565,8 +565,8 @@ $upload_specific_array = [
             3 => 'ዝለዓለ ሽቓቕ ኣሃዝ'
         ],
         'fieldNrBedroom' => [
-            0 => 'መደቀሲ ከፍሊ',
-            1 => 'መደቀሲ ከፍሊ ይምረፁ',
+            0 => 'መደቀሲ ክፍሊ',
+            1 => 'መደቀሲ ክፍሊ ይምረፁ',
             2 => 'ልዕሊ 100',
             3 => 'ዝለዓለ መደቀሲ ከፍሊ'
         ],
@@ -574,18 +574,16 @@ $upload_specific_array = [
             0 => 'ማይ ኣለዎ ዶ?',
             1 => 'ማይ ይምረፁ',
             2 => [
-                'Yes' => 'እወ',
-                'No' => 'የለን',
-                'ongoing' => 'የብሉን'
+                'Yes' => 'ኣላዎ',
+                'No' => 'የብሉን',
             ]
         ],
         'fieldElectricity' => [
             0 => 'መብራህቲ ኣለዎ ዶ?',
             1 => 'መብራህቲ ይምረፁ',
             2 => [
-                'Yes' => 'እወ',
-                'No' => 'የለን',
-                'ongoing' => 'የብሉን'
+                'Yes' => 'ኣላዎ ',
+                'No' => 'የብሉን'
             ]
         ]
     ],
@@ -687,7 +685,7 @@ $upload_specific_array = [
                 "1.0 - 1.9GB" => "1.0 - 1.9GB",
                 "2.0 - 2.9GB" => "2.0 - 2.9GB",
                 "3.0 - 3.9GB" => "3.0 - 3.9GB",
-                "Over 4.0GB" => "ልዕሊ 4.0GB በላይ",
+                "Over 4.0GB" => "ልዕሊ 4.0GB",
                 'unknown' => 'ዘይተገልፀ'
             ]
         ]
@@ -696,20 +694,20 @@ $upload_specific_array = [
         'Uploading' => 'ተሌፎን ምልጣፍ',
         'idCategory'        => [
             0 => 'ዓይነት',
-            1 => 'ዓይነት ይግለፁ',
+            1 => 'ዓይነት ይምረፁ',
             2 => [
                 "Cell Phone" => ' ተንቀሳቃሲ ስልኪ ',
                 "Smart Phone" => ' ስማርት ፎን ',
                 "Fixed Phone" => ' ናይ ገዛ ስልኪ ',
                 "PDA" => ' ፒዲኤ ',
                 "Smart Watch" => ' ስማርት ሰዓት ',
-                "Phone Accessories" => ' መለዋወጢ ኣቁት ስልኪ ',
+                "Phone Accessories" => ' መለዋወጢ ኣቑሑት ስልኪ ',
                 "Other" => ' ዘይተገልፀ '
             ]
         ],
         'fieldMake'        => [
-            0 => 'ኣፍራይ ትካል',
-            1 => 'ኣፍራይ ትካል ይምረፁ',
+            0 => 'ኣፍራዪ ትካል',
+            1 => 'ኣፍራዪ ትካል ይምረፁ',
             2 => [
                 "Alcatel" => "Alcatel",
                 "asus" => "Asus",
@@ -739,7 +737,7 @@ $upload_specific_array = [
         ],
         'fieldCamera'   => [
             0 => 'መጠነ ምጉላህ',
-            1 => 'መጠነ ምጉላህ ይምረፁ (MP)',
+            1 => 'መጠነ ጉልሒ ካሜራ ይምረፁ (MP)',
             2 => [
                 "more than 16 MP" => "ልዕሊ 16",
                 "11.0 - 15.9 MP" => "11.0 - 15.9",
@@ -786,11 +784,11 @@ $upload_specific_array = [
             0 => 'ዓይነት',
             1 => 'ዓይነት ይምረፁ',
             2 => [
-                "Furniture" => ' ኣቁሑት ገዛ ',
-                "Kitchen Appliances" => ' ኣቁሑ ክሽኔ ',
-                "Bathroom Appliances" => ' ኣቁሑ ባኞ ',
+                "Furniture" => ' ኣቑሑት ገዛ ',
+                "Kitchen Appliances" => 'ኣቑሑት ክሽነ',
+                "Bathroom Appliances" => 'ኣቑሑት ባኞ',
                 "Home Decor" => ' መፀበቂ ገዛ ',
-                "Bedroom Appliances" => ' ኣቁሑት መደቀሲ ገዛ ',
+                "Bedroom Appliances" => ' ኣቑሑት መደቀሲ ክፍሊ',
                 "Baby Gears" => ' መጫወቲ ቆልዑ ',
                 "Other" => ' ካልእ '
             ]
@@ -805,9 +803,9 @@ $upload_specific_array = [
                 "Clothes" => ' ክዳውንቲ ',
                 "Shoes" => ' ጫማ ',
                 "Jewellery" => ' መጋየፂ ',
-                "Tools" => ' ዝተፈላለዩ መገልገልቲ መሳርሒ ',
-                "Sport" => ' ኣቁሑ ስፖርት ',
-                "Entertainment" => ' መዘናግዒ ኣቁሑ ',
+                "Tools" => ' ኣገልገልቲ መሳርሒ ',
+                "Sport" => ' ኣቑሑት ስፖርት ',
+                "Entertainment" => ' መዘናግዒ ኣቑሑት ',
                 "Other" => ' ዘይተገልፀ ',
             ]
         ]
@@ -895,7 +893,7 @@ $upload_specific_array = [
 
             // max price list for phone
             8 => [
-                '50001' => 'ልዕሊ 50 000 በላይ',
+                '50001' => 'ልዕሊ 50 000',
                 '50000' => '50 000',
                 '40000' => '40 000',
                 '35000' => '35 000',
@@ -928,8 +926,8 @@ $upload_specific_array = [
             ]
         ],
         'fieldTitle' => [
-            0 => 'ርእሲ',
-            1 => 'ኣብዚ ርእሲ ይፅሓፉ'
+            0 => 'ኣርእስቲ',
+            1 => 'ኣብዚ ኣርእስቲ ይፅሓፉ'
         ],
         'marketType' => [
             'rent' => 'ዝካረ',
@@ -938,12 +936,12 @@ $upload_specific_array = [
         ],
         'Extra Info' => 'ተወሳኪ ሓበሬታ',
         'fieldContactMethod' => [
-            0 => 'ኣገባብ መራከቢ',
-            1 => 'ኣገባብ መራከቢ ይምረፁ',
+            0 => 'ኣገባብ መራኸቢ',
+            1 => 'ኣገባብ መራኸቢ ይምረፁ',
             2 => [
                 'phone'  => 'ስልኪ',
                 'e-mail' => 'ኢሜይል',
-                'both'   => 'ስልኪን ኢሜይል'
+                'both'   => 'ስልኪን ኢሜይልን'
             ]
         ],
         'fieldColor'       => [
@@ -963,7 +961,7 @@ $upload_specific_array = [
                 "unknown" => ' ኣይተገልፀን '
             ]
         ],
-        'Choose Images here' => 'ካብዚ ምስሊ ይምረፁ',
+        'Choose Images here' => 'ኣብዚ ምስሊ ይምረፁ',
         'upload successful msg' => 'ኣገልግሎትና ስለዝተጠቀሙ ካብ ልቢ ነመስግን፡፡ ንብረቶም ብዕዉት ኩነታት ተለጢፉ ኣሎ፡፡ በጅኦም  ብኢሜይል ዝለኣክናሎም መምርሒ ብምስዓብ ናይ ዝለጠፍዎ ንብረት ዝርከበሉ ብርኪ ኩሉ ግዜ ይከታተሉ፡፡'
     ]
 ];
@@ -1050,8 +1048,8 @@ $user_specific_array = [
             "3" => ' ናይ ይሕለፍ ቃል ንምቅያር '
         ],
         'fieldContactMethod' => [
-            0 => 'ኣገባብ መራከቢ',
-            1 => 'ኣገባብ መራከቢ ይምረፁ',
+            0 => 'ኣገባብ መራኸቢ',
+            1 => 'ኣገባብ መራኸቢ ይምረፁ',
             2 => [
                 'phone'  => 'ስልኪ',
                 'e-mail' => 'ኢሜይል',
