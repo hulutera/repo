@@ -1133,7 +1133,10 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Nu argachuuf yaalii gootaniif ni galatefanna.',
             'body' => [
-                0 => 'Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. Kanachii immoo ariitii danda’amen imeeliidhaan deebii ni kennina. <br> Nagaa wajjin <br> Bulchiinsa Yekaatoomar <br>'
+                0 => 'Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. \r\n
+                     Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. \r\n
+                      Kanachii immoo ariitii danda’amen imeeliidhaan deebii ni kennina.
+                      \r\n Nagaa wajjin \r\n Bulchiinsa Yekaatoomar'
             ]
         ],
         'account-deactivation' => [

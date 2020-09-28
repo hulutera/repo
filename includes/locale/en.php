@@ -1118,14 +1118,14 @@ $user_specific_array = [
             0 => 'Contact Purpose',
             1 => 'Choose your purpose',
             2 => [
-                1 => 'General comment',
-                2 => 'I can not find my Ad',
-                3 => 'My Ad is not approved',
-                4 => 'My Ad is still pending',
-                5 => 'Technical problems in Ad',
-                6 => 'Problems with picture',
-                7 => 'I want to report suspected fraud',
-                8 => 'Feedback and suggestions for hulutera',
+                'General comment' => 'General comment',
+                'I can not find my Ad' => 'I can not find my Ad',
+                'My Ad is not approved' => 'My Ad is not approved',
+                'My Ad is still pending' => 'My Ad is still pending',
+                'Technical problems in Ad' => 'Technical problems in Ad',
+                'Problems with picture' => 'Problems with picture',
+                'I want to report suspected fraud' => 'I want to report suspected fraud',
+                'Feedback and suggestions for hulutera' => 'Feedback and suggestions for hulutera',
             ]
         ]
     ],
@@ -1158,9 +1158,9 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Thank you for contacting us',
             'body' => [
-                0 => 'We have received your message and would like to thank you for writing to us.
-                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website.
-                      Otherwise, we will reply by email as fast as we can. <br>Sincerely,<br>The hulutera Team<br>'
+                0 => 'We have received your message and would like to thank you for writing to us.\r\n
+                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website.\r\n
+                      Otherwise, we will reply by email as fast as we can. \r\n Sincerely,\r\n The hulutera Team'
             ]
         ],
         'account-deactivation' => [

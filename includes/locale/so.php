@@ -1130,7 +1130,10 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Waad ku-mahadsantahay dadaalka aad u gashay helitaankayaga',
             'body' => [
-                0 => 'Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa. <br> Sidaas iyo salaan<br> Maamulka Hulutera <br>'
+                0 => 'Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. \r\n
+                      Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. \r\n
+                      Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa.
+                      \r\n Sidaas iyo salaan \r\n Maamulka Hulutera <br>'
             ]
         ],
         'account-deactivation' => [
