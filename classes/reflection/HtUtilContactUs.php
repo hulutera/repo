@@ -713,11 +713,13 @@ SQL;
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
+        $body1 = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
+        $body = "test 12345";
         $isMailDelivered = mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com');
         //Check if mail Delivered or die
 
         $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'');
+
         if (!$isMessageDeliverdToHT or !$isMailDelivered) {
             die("Sending Email Failed. Please Contact Site Admin!");
         } else {
