@@ -713,7 +713,7 @@ SQL;
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
-        $body1 = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
+        $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0] . "\r\n";
 
         $isMailDelivered = mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com');
         //Check if mail Delivered or die
