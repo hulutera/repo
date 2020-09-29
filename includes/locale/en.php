@@ -1158,18 +1158,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Thank you for contacting us',
             'body' => [
-                0 => 'We have received your message and would like to thank you for writing to us.\r\n
-                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website.\r\n
-                      Otherwise, we will reply by email as fast as we can. \r\n Sincerely,\r\n The hulutera Team'
+                0 => "We have received your message and would like to thank you for writing to us. \n
+                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website. \n
+                      Otherwise, we will reply by email as fast as we can. \n Sincerely, \n The hulutera Team \n"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account has been deactivated',
             'body' => [
-                0 => 'We have found a problem with your account not complying to our Term & conditions
-                       hence, your account have been deactivated and your uploaded items will not be
-                       advertised on our website. Please reach out to us for more information through contact us.
-                      <br>Sincerely,<br>The hulutera Admin<br>'
+                0 => "We have found a problem with your account not complying to our Term & conditions\n
+                       hence, your account have been deactivated and your uploaded items will not be\n
+                       advertised on our website. Please reach out to us for more information through contact us.\n
+                      Sincerely,\n The hulutera Admin\n"
             ]
         ],
         'account-closed' => [

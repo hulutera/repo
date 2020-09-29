@@ -710,6 +710,7 @@ SQL;
         $msg3 = 'Purpose: ' . $this->fieldPurpose . "\r\n";
         $msg4 = 'Message: ' . $this->fieldMessage . "\r\n";
         $message = $msg1 . $msg2 . $msg3 .$msg4;
+        $message = wordwrap($message, 70, "\n");
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
