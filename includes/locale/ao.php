@@ -1133,19 +1133,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Nu argachuuf yaalii gootaniif ni galatefanna.',
             'body' => [
-                0 => "Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. \r\n
-                     Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. \r\n
+                0 => "Haloo! \n Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. \n
                       Kanachii immoo ariitii danda’amen imeeliidhaan deebii ni kennina.
-                      \r\n Nagaa wajjin \r\n Bulchiinsa Yekaatoomar"
+                      \n Nagaa wajjin \n Bulchiinsa Yekaatoomar"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => 'We have found problem with your account not complying to our Term& conditions
-                      hence your account have been deactivated and your uploaded items will not be
-                      advertised. Please reach out to us for addtional through contact us.
-                      <br>Sincerely,<br>The hulutera Admin<br>'
+                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
+                      hence, your account have been deactivated and your uploaded items will not be \r\n
+                      advertised on our website. Please reach out to us for more information through contact us. \r\n
+                      Sincerely, \r\n The hulutera Admin \r\n"
             ]
         ],
         'account-closed' => [

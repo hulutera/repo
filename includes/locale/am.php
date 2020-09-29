@@ -1159,18 +1159,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'እኛን ለማግኝት ላደረጉት ጥረት እናመሰግናለን',
             'body' => [
-                0 => "መልእክትዎ ደርሶናል። ስለፃፉልንም እናመሰግናለን፡፡ ጥያቄዎ አስቸኳይ ከሆነ እባክዎን ከዚህ በላይ የተዘረዘሩትን የስልክ ቁጥሮች ተጠቅመው በመደወል ከሠራተኞቻችን ውስጥ አንዱን ያነጋግሩ። \r\n
-                      ያለበለዚያ በተቻለን ፍጥነት በኢሜይል ምላሽ እንሰጣለን ፡፡ \r\n
-                      ከሰላምታ ጋር \r\n የሁሉተራ አስተዳደር"
+                0 => "ሠላም! \n መልእክትዎ ደርሶናል። ስለፃፉልንም እናመሰግናለን፡፡ ጥያቄዎ አስቸኳይ ከሆነ እባክዎን ከዚህ በላይ የተዘረዘሩትን የስልክ ቁጥሮች ተጠቅመው በመደወል ከሠራተኞቻችን ውስጥ አንዱን ያነጋግሩ። \n
+                      ያለበለዚያ በተቻለን ፍጥነት በኢሜይል ምላሽ እንሰጣለን ፡፡ \n
+                      ከሰላምታ ጋር \n የሁሉተራ አስተዳደር \n"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => 'We have found problem with your account not complying to our Term & conditions
-                      hence your account have been deactivated and your uploaded items will not be
-                      advertised. Please reach out to us for addtional through contact us.
-                      <br>Sincerely,<br>The hulutera Admin<br>'
+                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
+                      hence, your account have been deactivated and your uploaded items will not be \r\n
+                      advertised on our website. Please reach out to us for more information through contact us. \r\n
+                      Sincerely, \r\n The hulutera Admin \r\n"
             ]
         ],
         'account-closed' => [

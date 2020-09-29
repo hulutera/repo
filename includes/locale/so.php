@@ -1130,19 +1130,17 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Waad ku-mahadsantahay dadaalka aad u gashay helitaankayaga',
             'body' => [
-                0 => "Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. \r\n
-                      Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. \r\n
-                      Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa.
-                      \r\n Sidaas iyo salaan \r\n Maamulka Hulutera"
+                0 => "Hello! \n Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. \n
+                      Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa.\n Sidaas iyo salaan \r\n Maamulka Hulutera"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => 'We have found problem with your account not complying to our Term& conditions
-                      hence your account have been deactivated and your uploaded items will not be
-                      advertised. Please reach out to us for addtional through contact us.
-                      <br>Sincerely,<br>The hulutera Admin<br>'
+                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
+                      hence, your account have been deactivated and your uploaded items will not be \r\n
+                      advertised on our website. Please reach out to us for more information through contact us. \r\n
+                      Sincerely, \r\n The hulutera Admin \r\n"
             ]
         ],
         'account-closed' => [

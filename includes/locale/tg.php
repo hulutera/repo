@@ -1125,18 +1125,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'ስለዝረከቡና ነመስግን',
             'body' => [
-                0 => "መልእክቶም ተቀቢልና ኣለና ፡፡ ስለዝፀሓፉልና ነመስግን፡፡ ሕቶኦም ግዜ ዘይህብ እንተኮይኑ ኣብ ፀጋማይ ላዕለዋይ ገፅ ናይ ድሕረ ገፅና ዘሎ ስልኪ ቁፅሪ ተጠቂሞም ይደውሉልና፡፡ \r\n
-                      እንተዘይኮይኑ ብኢሜይል አቢልና ምላሽ ብቅልጡፍ ክንልእከሎም ኢና፡፡ \r\n
-                      ምስ ሰላምታ \r\n ጉጅለ ሁሉተራ"
+                0 => "ሠላም! \n መልእክቶም ተቀቢልና ኣለና ፡፡ ስለዝፀሓፉልና ነመስግን፡፡ ሕቶኦም ግዜ ዘይህብ እንተኮይኑ ኣብ ፀጋማይ ላዕለዋይ ገፅ ናይ ድሕረ ገፅና ዘሎ ስልኪ ቁፅሪ ተጠቂሞም ይደውሉልና፡፡ \n
+                      እንተዘይኮይኑ ብኢሜይል አቢልና ምላሽ ብቅልጡፍ ክንልእከሎም ኢና፡፡ \n
+                      ምስ ሰላምታ \n ጉጅለ ሁሉተራ"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => 'We have found problem with your account not complying to our Term & conditions
-                      hence your account have been deactivated and your uploaded items will not be
-                      advertised. Please reach out to us for addtional through contact us.
-                      <br>Sincerely,<br>The hulutera Admin<br>'
+                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
+                      hence, your account have been deactivated and your uploaded items will not be \r\n
+                      advertised on our website. Please reach out to us for more information through contact us. \r\n
+                      Sincerely, \r\n The hulutera Admin \r\n"
             ]
         ],
         'account-closed' => [

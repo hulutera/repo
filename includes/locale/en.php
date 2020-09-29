@@ -1158,8 +1158,7 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Thank you for contacting us',
             'body' => [
-                0 => "We have received your message and would like to thank you for writing to us. \n
-                      If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website. \n
+                0 => "Hi! \n We have received your message and would like to thank you for writing to us. If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website. \n
                       Otherwise, we will reply by email as fast as we can. \n Sincerely, \n The hulutera Team \n"
             ]
         ],
