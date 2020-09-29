@@ -3,7 +3,6 @@ ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/db/database.class.php';
 require_once $documnetRootPath . '/view/main.view.class.php';
 require_once $documnetRootPath . '/classes/reflection/HtItemAll.php';
