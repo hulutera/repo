@@ -1135,7 +1135,7 @@ $user_specific_array = [
             'body' => [
                 0 => "Haloo! \n Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. \n
                       Kanachii immoo ariitii danda’amen imeeliidhaan deebii ni kennina.
-                      \n Nagaa wajjin \n Bulchiinsa Yekaatoomar"
+                      \n Nagaa wajjin \n Bulchiinsa Hulluutaraa"
             ]
         ],
         'account-deactivation' => [

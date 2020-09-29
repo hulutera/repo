@@ -3,7 +3,6 @@ session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/includes/message.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/includes/validate.php';
 require_once $documnetRootPath . '/includes/cmn.content.php';
@@ -87,20 +86,6 @@ EOD;
                     ?>
                 </li>
                 <li>
-                    <?php
-                    echo <<<EOD
-                    <a   href="./admin.php{$lang_url}&order=open&function=message">
-                    <i class="fas fa-envelope"></i>
-                    Messages
-                    </a>
-EOD;
-                    ?>
-                    <!-- <a   href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Actions List
-                    </a> -->
-                    <!-- <ul class="collapse list-unstyled" id="pageSubmenu"> -->
-                <li>
 
                     <?php
                     $style1 = "";
@@ -155,8 +140,6 @@ EOD;
             <?php
             if ((isset($_GET['function']) && $_GET['function'] == 'edit-profile')) {
                 editProfile();
-            } else if ((isset($_GET['function']) && $_GET['function'] == 'message')) {
-                message();
             } else if ((isset($_GET['function']) && $_GET['function'] == 'all-users') || isset($_GET['allUserId'])) {
                 allUsers();
             } else if ((isset($_GET['function']) && $_GET['function'] == 'activity-table') || isset($_GET['activityTableId'])) {

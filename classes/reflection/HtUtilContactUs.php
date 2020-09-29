@@ -487,17 +487,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function delete($id)
     {
-        $sql = "DELETE FROM util_contact_us WHERE id={$this->parseValue($id, 'int')}";
-        $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
-        $this->lastSql = $sql;
-        if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
-        }
-        return $this->affected_rows;
+        // Not used
     }
 
     /**
@@ -509,39 +499,7 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function insert()
     {
-        if ($this->isPkAutoIncrement) {
-            $this->id = "";
-        }
-        // $constants = get_defined_constants();
-        $sql = <<< SQL
-            INSERT INTO util_contact_us
-            (field_name,field_company,field_email,field_subject,field_purpose,field_description,field_message_status,field_received_date)
-            VALUES(
-			{$this->parseValue($this->fieldName, 'notNumber')},
-			{$this->parseValue($this->fieldCompany, 'notNumber')},
-			{$this->parseValue($this->fieldEmail, 'notNumber')},
-			{$this->parseValue($this->fieldSubject, 'notNumber')},
-			{$this->parseValue($this->fieldPurpose, 'notNumber')},
-			{$this->parseValue($this->fieldDescription, 'notNumber')},
-			{$this->parseValue($this->fieldMessageStatus, 'notNumber')},
-			{$this->parseValue($this->fieldReceivedDate, 'notNumber')})
-SQL;
-        echo $sql;
-        $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
-        $result = $this->query($sql);
-        $this->lastSql = $sql;
-        if (!$result) {
-            $this->lastSqlError = $this->sqlstate . " - " . $this->error;
-        } else {
-            $this->allowUpdate = true;
-            if ($this->isPkAutoIncrement) {
-                $this->id = $this->insert_id;
-            }
-        }
-        return $result;
+        // Not used
     }
 
     /**
@@ -555,38 +513,7 @@ SQL;
      */
     public function update($id)
     {
-        // $constants = get_defined_constants();
-        if ($this->allowUpdate) {
-            $sql = <<< SQL
-            UPDATE
-                util_contact_us
-            SET
-				field_name={$this->parseValue($this->fieldName, 'notNumber')},
-				field_company={$this->parseValue($this->fieldCompany, 'notNumber')},
-				field_email={$this->parseValue($this->fieldEmail, 'notNumber')},
-				field_subject={$this->parseValue($this->fieldSubject, 'notNumber')},
-				field_purpose={$this->parseValue($this->fieldPurpose, 'notNumber')},
-				field_description={$this->parseValue($this->fieldDescription, 'notNumber')},
-				field_message_status={$this->parseValue($this->fieldMessageStatus, 'notNumber')},
-				field_received_date={$this->parseValue($this->fieldReceivedDate, 'notNumber')}
-            WHERE
-                id={$this->parseValue($id, 'int')}
-SQL;
-            $this->resetLastSqlError();
-
-            $this->set_charset('utf8');
-            $this->query('SET NAMES utf8');
-            $result = $this->query($sql);
-            if (!$result) {
-                $this->lastSqlError = $this->sqlstate . " - " . $this->error;
-            } else {
-                $this->select($id);
-                $this->lastSql = $sql;
-                return $result;
-            }
-        } else {
-            return false;
-        }
+        // Not used
     }
 
     /**
@@ -598,11 +525,7 @@ SQL;
      */
     public function updateCurrent()
     {
-        if ($this->id != "") {
-            return $this->update($this->id);
-        } else {
-            return false;
-        }
+        // Not used
     }
 
     /**
@@ -614,7 +537,7 @@ SQL;
      */
     public function display()
     {
-        echo "!!!! SELAM NEW! DISPLAY CONTENT EMPTY, JUMP ON IT :) !!!";
+         // Not used
     }
 
     /**
@@ -626,8 +549,7 @@ SQL;
      */
     public function upload($data = null)
     {
-        global $documnetRootPath;
-        echo "!!!! SELAM NEW! UPLOAD CONTENT EMPTY, JUMP ON IT :) !!!";
+         // Not used
     }
 
     /**
@@ -717,6 +639,7 @@ SQL;
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0];
 
         $isMailDelivered = mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com');
+
         //Check if mail Delivered or die
 
         $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'');
