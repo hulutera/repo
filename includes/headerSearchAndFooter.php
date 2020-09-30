@@ -69,7 +69,7 @@ function blockLogin()
 	<?php
 
 	global $str_url;
-	if ((isset($GLOBAL['status']) && $GLOBAL['status'] == 'deploy-release') && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
+	if ((isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
 		if (!isset($_SESSION['uID'])) {
 			// temporary workaround for page load test with google page load tester
 			if($_GET['release'] != "ht_test") {
