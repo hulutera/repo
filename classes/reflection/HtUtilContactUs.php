@@ -2,6 +2,8 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
+
 
 /**
  * Class HtUtilContactUs
@@ -632,22 +634,16 @@ class HtUtilContactUs extends MySqlRecord
         $msg3 = 'Purpose: ' . $this->fieldPurpose . "\r\n";
         $msg4 = 'Message: ' . $this->fieldMessage . "\r\n";
         $message = $msg1 . $msg2 . $msg3 .$msg4;
-        $message = wordwrap($message, 70, "\n");
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0];
 
-        $isMailDelivered = mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com');
+        // send mail to customer
+        send_mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com', 7);
 
-        //Check if mail Delivered or die
+        // send mail to HT webmail
+        send_mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'', 7);
 
-        $isMessageDeliverdToHT = mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'');
-
-        if (!$isMessageDeliverdToHT or !$isMailDelivered) {
-            die("Sending Email Failed. Please Contact Site Admin!");
-        } else {
-            header('Location: ../includes/prompt.php?type=7' . $lang_sw);
-        }
     }
 }
