@@ -9,7 +9,7 @@ if (file_exists('/home/hah3lga4knls/db.ini')) {
     define("DBPASSWORD", $config["DBPASSWORD"]);
     define("DBNAME", $config["DBNAME"]);
     define('DBPORT', $config['DBPORT']);
-    $GLOBALS['release'] = "deploy-release";
+    $GLOBALS['status'] = "deploy-release";
 } else {
     define("DBHOST", "localhost");
     define("DBUSER", "root");
