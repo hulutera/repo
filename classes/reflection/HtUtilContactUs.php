@@ -563,8 +563,11 @@ class HtUtilContactUs extends MySqlRecord
      */
     public function contactUs()
     {
-        global $lang_url ;
-
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
         echo '<form class="form-horizontal" action="../../includes/form_user.php?&function=contact-us' . $lang_url . '" method="post" enctype="multipart/form-data">';
         $this->insertContactUsField();
         echo '</form>';
@@ -620,7 +623,6 @@ class HtUtilContactUs extends MySqlRecord
 
     public function finalizeContactUs()
     {
-        global $str_url;
         $this->fieldName    = isset($_POST['fieldName']) ? $_POST['fieldName'] : $this->fieldName;
         $this->fieldEmail   = isset($_POST['fieldEmail']) ? $_POST['fieldEmail'] : $this->fieldEmail;
         $this->fieldCompany = isset($_POST['fieldCompany']) ? $_POST['fieldCompany'] : $this->fieldCompany;
@@ -633,14 +635,15 @@ class HtUtilContactUs extends MySqlRecord
         $msg4 = 'Message: ' . $this->fieldMessage . "\r\n";
         $message = $msg1 . $msg2 . $msg3 .$msg4;
 
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $subject = $GLOBALS['user_specific_array']['message']['contact-us']['subject'];
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0];
 
         // send mail to customer
-        send_mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com', '../../includes/prompt.php?type=7'.$str_url);
+        send_mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com', 7);
 
         // send mail to HT webmail
-        send_mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail, '../../includes/prompt.php?type=7'.$str_url);
+        send_mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'', 7);
 
     }
 }
