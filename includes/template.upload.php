@@ -24,11 +24,6 @@ if (isset($_GET['lan'])) {
 	<link href="../css/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 	<link href="../css/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
 	<link href="../css/custom.css" rel="stylesheet">
-
-	<script defer src="../js/fileuploader.custom.js" type="text/javascript"></script>
-	<script defer src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
-
-
 	<style>
 		.fileuploader {
 			max-width: 560px;
@@ -83,7 +78,9 @@ if (isset($_GET['lan'])) {
 		</div>
 	</div>
 	<?php footerCode(); ?>
-	<?php commonHeaderJs('../..');?>
+	<?php //commonHeaderJs('../..');?>
+	<script async src="../js/custom.js" type="text/javascript"></script>
+	<script async src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			$('#rentOrSell').on('change', function() {

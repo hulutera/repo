@@ -674,15 +674,7 @@ class HtItemPhone extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-
-        if (isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
-            $market = "rent and sell";
-        } else if (!isset($_POST['fieldPriceRent']) && isset($_POST['fieldPriceSell'])) {
-            $market = "sell";
-        } else if (isset($_POST['fieldPriceRent']) && !isset($_POST['fieldPriceSell'])) {
-            $market = "rent";
-        }
-        $this->setFieldMarketCategory($market);
+        $this->setFieldMarketCategory('sell');
         $this->setFieldTableType(4);
 
         //create a folder for image upload

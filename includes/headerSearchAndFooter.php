@@ -27,7 +27,7 @@ function commonHeaderCssMeta()
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	echo '<link rel="shortcut icon" href="../../images/icons/ht.ico" />';
-	if (isset($GLOBAL['status']) && $GLOBAL['status'] == 'deploy-release') {
+	if (isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') {
 		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
 		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 		//use google apis for production
@@ -42,14 +42,15 @@ function commonHeaderCssMeta()
 }
 function commonHeaderJs()
 {
-	if (isset($GLOBAL['status']) && $GLOBAL['status'] == 'deploy-release') {
+	if (isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') {
 		//use google apis for production
 		echo '<script async type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 		echo '<script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
-		echo '<script async type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
+		// echo '<script async type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
+		echo '<script async type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/bootstrap.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
@@ -1050,4 +1051,14 @@ function editProfile()
 	}
 }
 
+
+function Redirect($url, $permanent = false)
+{
+    if (headers_sent() === false)
+    {
+        header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
+    }
+
+    exit();
+}
 ?>

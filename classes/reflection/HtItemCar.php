@@ -846,6 +846,16 @@ class HtItemCar extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
+
+        if (isset($_POST['rentOrSell'])) {
+            if ($_POST['rentOrSell'] == "fieldPriceRent") {
+                $this->setFieldMarketCategory('rent');
+            } else if ($_POST['rentOrSell'] == "fieldPriceSell") {
+                $this->setFieldMarketCategory('sell');
+            } else if ($_POST['rentOrSell'] == "both") {
+                $this->setFieldMarketCategory('rent and sell');
+            }
+        }
         $this->priceTypeSetter();
         $this->setFieldTableType(1);
         var_dump($_itemTempId);
@@ -859,7 +869,7 @@ class HtItemCar extends MySqlRecord
         }
 
         //create a prefic for all images, with userId and item tempId
-        //$imgPrefix = 'hulutera_user_id_' . $_userId . '_item_temp_id_' . $_itemTempId . '_';
+        $imgPrefix = 'hulutera_user_image_';
 
         // initialize FileUploader
         $FileUploader = new FileUploader('files', array(
@@ -877,7 +887,8 @@ class HtItemCar extends MySqlRecord
                 'quality' => 90
             ),
             'listInput' => true,
-            'files' => null
+            'files' => null,
+            'id' => $imgPrefix
         ));
 
         // unlink the files
@@ -1645,6 +1656,9 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
+        echo $sql;
+        //exit;
+
         $this->resetLastSqlError();
         $this->set_charset('utf8');
         $this->query('SET NAMES utf8');

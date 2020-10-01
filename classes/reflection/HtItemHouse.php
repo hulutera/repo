@@ -865,6 +865,17 @@ class HtItemHouse extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
+
+        if (isset($_POST['rentOrSell'])) {
+            if ($_POST['rentOrSell'] == "fieldPriceRent") {
+                $this->setFieldMarketCategory('rent');
+            } else if ($_POST['rentOrSell'] == "fieldPriceSell") {
+                $this->setFieldMarketCategory('sell');
+            } else if ($_POST['rentOrSell'] == "both") {
+                $this->setFieldMarketCategory('rent and sell');
+            }
+        }
+
         $this->priceTypeSetter();
         $this->setFieldTableType(2);
 

@@ -557,11 +557,7 @@ class HtItemHousehold extends MySqlRecord
         $this->setFieldImage($_POST['fileuploader-list-files']);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-
-        if (isset($_POST['fieldPriceSell'])) {
-            $market = "sell";
-        }
-        $this->setFieldMarketCategory($market);
+        $this->setFieldMarketCategory('sell');
         $this->setFieldTableType(6);
 
         //create a folder for image upload
@@ -1387,7 +1383,7 @@ SQL;
         $this->setFieldImage(json_encode($postFiles));
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-        $this->setFieldMarketCategory(isset($_POST['fieldPriceSell']) ? "sell" : "");
+        $this->setFieldMarketCategory('sell');
         $this->setFieldTableType(6);
     }
 

@@ -656,7 +656,7 @@ class CarPrintout extends CommonItemPrintout
                 case "Compact Car":
                     return "አነስተኛ የቤተሰብ መኪና";
                     break;
-                case "Converitble":
+                case "Convertible":
                     return "ጣርያው ተከፋች";
                     break;
                 case "Full Size Van":

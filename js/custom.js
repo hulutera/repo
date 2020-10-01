@@ -31,7 +31,7 @@ $(document).ready(function() {
 				       '<div class="fileuploader-item-inner">' +
                            '<div class="type-holder">${extension}</div>' +
                            '<div class="actions-holder">' +
-						   	   '<a   href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
+						   	   '<a href="${file}" class="fileuploader-action fileuploader-action-download" title="${captions.download}" download><i class="fileuploader-icon-download"></i></a>' +
 						   	   '<button type="button" class="fileuploader-action fileuploader-action-remove" title="${captions.remove}"><i class="fileuploader-icon-remove"></i></button>' +
                            '</div>' +
                            '<div class="thumbnail-holder">' +
@@ -54,9 +54,9 @@ $(document).ready(function() {
 			onItemShow: function(item, listEl, parentEl, newInputEl, inputEl) {
 				var plusInput = listEl.find('.fileuploader-thumbnails-input'),
                     api = $.fileuploader.getInstance(inputEl.get(0));
-
+				
                 plusInput.insertAfter(item.html)[api.getOptions().limit && api.getChoosedFiles().length >= api.getOptions().limit ? 'hide' : 'show']();
-
+				
 				if(item.format == 'image') {
 					item.html.find('.fileuploader-item-icon').hide();
 				}
@@ -64,10 +64,10 @@ $(document).ready(function() {
             onItemRemove: function(html, listEl, parentEl, newInputEl, inputEl) {
                 var plusInput = listEl.find('.fileuploader-thumbnails-input'),
 				    api = $.fileuploader.getInstance(inputEl.get(0));
-
+            
                 html.children().animate({'opacity': 0}, 200, function() {
                     html.remove();
-
+                    
                     if (api.getOptions().limit && api.getChoosedFiles().length - 1 < api.getOptions().limit)
                         plusInput.show();
                 });
@@ -79,11 +79,11 @@ $(document).ready(function() {
 		afterRender: function(listEl, parentEl, newInputEl, inputEl) {
 			var plusInput = listEl.find('.fileuploader-thumbnails-input'),
 				api = $.fileuploader.getInstance(inputEl.get(0));
-
+		
 			plusInput.on('click', function() {
 				api.open();
 			});
-
+            
             api.getOptions().dragDrop.container = plusInput;
 		},
 
