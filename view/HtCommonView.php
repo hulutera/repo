@@ -401,7 +401,7 @@ class HtCommonView extends MySqlRecord
         $filterArr = array('"', '[', ']');
         $fileNameLarge = str_replace($filterArr, '', $imageFileNameLarge);
         echo "<div class=\"featured_left_sideRemove col-xs-12 col-md-8\"  style=\"padding:0px;\">";
-        if ($numimage == 0) {
+        if ($numimage == 0 || !file_exists($fileNameLarge)) {
             $imageNotFound = $dir . $fileNameLarge;
             echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
         } else {

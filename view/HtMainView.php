@@ -223,6 +223,10 @@ class HtMainView
         $strReplArr = array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
         $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
+        if(!file_exists($thmbnlImg))
+        {
+            $thmbnlImg = "../images/en/en.svg";
+        }
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
