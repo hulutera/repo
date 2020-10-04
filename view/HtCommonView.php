@@ -382,36 +382,6 @@ class HtCommonView extends MySqlRecord
         echo "</div>";
     }
 
-
-    public function searchFieldInTables($id, $table, $value)
-    {
-        global $locationPerTable;
-        $result = DatabaseClass::getInstance()->findTotalItemNumb("*", $table, "WHERE $id = $value");
-        $res = $result->fetch_assoc();
-        $locField = $locationPerTable[$table];
-        $itemPostedLocation = $res[$locField];
-        return $itemPostedLocation;
-    }
-
-    public function itemQuery($id, $status = NULL)
-    {
-        if ($id == "*" and $status == NULL) {
-            $sql = "SELECT * FROM item_car";
-        } elseif ($id == "*" and $status != NULL) {
-            $sql =  "SELECT * FROM item_car WHERE field_status='$status'";
-        } elseif ($id != "*" and $status == NULL) {
-            $sql =  "SELECT * FROM item_car WHERE id='$id'";
-        } else { //id
-            $sql =  "SELECT * FROM item_car WHERE id=$id AND field_status='$status'";
-        }
-
-        $this->resetLastSqlError();
-        $result =  $this->query($sql);
-        $this->resultSet = $result;
-        $this->lastSql = $sql;
-        return $result;
-    }
-
     public function itemNotFound($searchWordSanitized, $city, $item)
     {
         global $lang;
