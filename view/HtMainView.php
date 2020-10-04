@@ -218,7 +218,7 @@ class HtMainView
             $imageArr = explode(',', $image);
             $numimage = sizeof($imageArr);
         }
-var_dump($image);
+
         $jsImg = implode(',', $imageArr);
         $strReplArr = array('[', ']', '"');
         $imgString = str_replace($strReplArr, "", $jsImg);
