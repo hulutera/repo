@@ -3,7 +3,7 @@ $lang = array(
     //Header related
     'LANGUAGE' => 'ቋንቋ',
     'HULUTERA_TEXT_LOGO' => '<span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>',
-    'HULUTERA_TEXT_LOGO2' => '<span style="color:orange">ሁሉተራ</span>',
+    'HULUTERA_TEXT_LOGO2' => '<span style="color:white">ሁሉተራ</span>',
     'Post Items' => 'ንብረት ያስገቡ',
     'Help' => 'መረጃ',
     //Detailed item related
@@ -1223,7 +1223,7 @@ $help = [
                 "ተ.ቁ. 2) " => "የመመዝገብያው ፎርሙ ላይ መረጃዎችን ይሙሉና <button class=\"btn btn-primary\">ይመዝገቡ</button> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 3) " => "የመመዝገብያ ቅጹን በተሳካ ሁኔታ ሲልኩ ፣ ይህንን መልዕክት ያገኛሉ <strong>ስለተመዘገቡ እናመሰግናለን። የማረጋገጫ ኢሜይል ልከንልዎታል ፣ አካውቶን ለማስተግበር እባክዎን የማስተግበሪያ መስቡን ይጫኑ።</strong> ምዝገባውን ለመጨረስ ወደሚቀጥ ይሂዱ።",
                 "ተ.ቁ. 4) " => "ኢሜይሎን ይክፈቱና ከእኛ የተላከው ኢሜይል ላይ ፣ የማስተግበሪያ መስቡን ይጫኑ። መስቡን ሲጫኑ <strong>አካውንቶ አሁን ተተግብሯል</strong> የሚለውን መልዕክት ይመለከታሉ። ይህም አካውንቶን ያስተገብራል እናም መግባት ይችላሉ።",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
                                <video width="50%" id="vid-register" style="border: 2px black solid">
                                 <source src="../videos/am/reg_am.mp4" type="video/mp4">
                                 </video>
@@ -1245,7 +1245,7 @@ $help = [
                              ከዛም በመቀጠል ይህንን መልዕክት ይመለከታሉ <strong>የምስጢር ቃል መቀየርያ መረጃ ኢሜይል ልከንልዎታል</strong>። ኢሜይሉ ላይ ያለውን መመሪያ በሚገባ ይከተሉ። የምስጢር መቀየር ሂደቱን በተሳካ መልኩ ለመጨረስ ወደሚቀጥለው ይሂዱ።",
                 "ተ.ቁ. 2) " => "ኢሜይሎን ይክፈቱና ከእኛ የተላከው ኢሜይል ላይ ፣ የምስጢር ቃል መቀየርያ መስቡን ይጫኑ። ይህም የምስጢር ቃልዎን ያስውቆታል። ይህንን <strong>ምስጢር ቃል የኣካውንት ገጽዎ ውስጥ ገብተው መቀየር ይችላሉ</strong>።
                              አዲሱን የምስጢር ቃልዎን በማስገባት በተሳካ መልኩ ይጨርሳሉ። ስለዚህም በአዲሱ ምስጢር ቃል መግባት ይችላሉ።",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
                                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                 <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
                                 </video>
@@ -1259,7 +1259,7 @@ $help = [
                 "ተ.ቁ. 2) " => "ከገቡ በኃላ ከላይ በስተቀኝ በኩል ያለውን <strong>ንብረት ያስገቡ</strong> የሚለውን ይጫኑ። ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ።",
                 "ተ.ቁ. 3) " => 'ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ። የንብረት ማስገቢያ ቅፅ ይከፈታል ፣ ቅፁ ላይ ስለንብረቱ ሁሉንም መራጃ ያስገቡ። በተቻሎት አቅም ጥሩ ፎቶ ለማስገባት ቢችሉ የብዙ ሰው ዓይን ለመሳብ ይረዳዎታል ከዛም ባሻገር ንብረቱ ያለበትን ሁኔታ በግልጽ ለማሳየት ይረዳል። እስከ አምስት ፎቶዎች ማስገባት ይችላሉ።
                              ከጨረሱ በኃላ <button class="btn btn-primary">ይላኩ ፣ ያስገቡ ፣ ይጫኑ</button> የሚለውን ተጭነው በተሳካ መልኩ ያጠናቁ። ቀጥሎም <strong>ንብረቶ በተሳካ መልኩ ገብቷል። አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን።</strong> የሚል መልዕክት ያያሉ። በዚህም መሰረት ያስገቡትን ንብረት የኔ ንብረት የሚለው ውስጥ ያገኛሉ። ንብረቱ በ24 ሰዓት ውስጥ ተተግብሮ ለሁሉም ሰው የሚታይ ይሆናል።',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
                                 <video width="50%" id="vid-upload" style="border: 2px black solid">
                                 <source src="../videos/am/upload_am.mp4" type="video/mp4">
                                 </video>
@@ -1273,7 +1273,7 @@ $help = [
                 "ተ.ቁ. 1) " => "በድሕረገጻችን ከላይ በስተግራ ወይም በግርጌ ላይ ያለውን <strong>ሊጠይቁን ይፈልጋሉ?</strong> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
                 "ተ.ቁ. 3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
                                 <video width="50%" id="vid-contactus" style="border: 2px black solid">
                                 <source src="../videos/am/contact_am.mp4" type="video/mp4">
                                 </video>
@@ -1309,8 +1309,3 @@ $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['message'] = $message;
 $GLOBALS['help'] = $help;
-
-
-
-
-

@@ -2,7 +2,7 @@
 $lang = array(
     "LANGUAGE" => ' Luuqadda ',
     "HULUTERA_TEXT_LOGO" => ' <span style="color:orange">Hulu</span><span style="color:#050598a6">tera</span>',
-    "HULUTERA_TEXT_LOGO2" => '<span style="color:orange">Hulutera</span>',
+    "HULUTERA_TEXT_LOGO2" => '<span style="color:white">Hulutera</span>',
     "Post Items" => 'Hanti xeree ',
     "Help" => 'Xog ',
     "Show Detail" => 'Si aad faah-faahinta u aragtid ',
@@ -1191,7 +1191,7 @@ $help = [
                 "2) " => "Xogta gali foomka diiwaangelinta oo <button class=\"btn btn-primary\"> riix is-diiwaangeli </button>.",
                 "3) " => "Markaad ku-gulaysatid diridda foomka la isku-diiwaangeliyo, farriintan ayaad helaysaa <strong> waad ku-mahadsantahay is-diiwaangelintaada.  Waxaanu kuu soo dirnay email-ka xaqiijinta, si aad akoonkaaga u hawlgelisid riix furaha ka-shaqaysiinaya. </strong> si aad diiwaangelinta u dhammaystirtid kan xiga ugudub.",
                 "4) " => "Fur email-ka aynu kuu soo dirnay oo riix furaha ka-shaqaynsiinta ee ku-jir email-ka aynu soo dirnay, riix furaha ka-shaqaysiinta.  Markaad furaha riixdid <strong> waxaad arkaysaa farriinta</strong> akoonkaaga imika waa la-fuliyey.  Kani akoonkaaga ayuu ka-shaqaysiinayaa waanad gali kartaa.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
                                 <video width="50%" id="vid-register" style="border: 2px black solid">
                                 <source src="../videos/am/reg_am.mp4" type="video/mp4">
                                 </video>
@@ -1211,7 +1211,7 @@ $help = [
             "body" => [
                 "1) " => "Meesha ka-hoosaysa foomka galitaanka <strong> Riix qarsoodiga</strong> Miyaad ilawday ereygaaga. Marka la-furo bogga xusuusashada ereyga qarsoodiga, riix kan leh <button class=\"btn btn-primary\"> dir </button> magaca isticmaalaha ama email-kaaga. Ka-dibna waxaad arkaysaa farriinta ah <strong>waxaad arkaysaa waxaanu kuu soo dirnay xogta baddalidda ereyga qarsoodiga</strong>? Sida habboon ula-socoda tilmaanta email-ka ku-dhex-jirta. Si aad ugu-guulaysatid dhammaystiridda geeddi-socodka baddalidda ereyga qarsoodiga ugudub kan xiga.",
                 "2) " => "Email-ka fur oo riix furaha baddalidda ereyga qarsoodiga ah ee ku-dhex-jira emailka aynu kuu soo dirnay.  Kanina wuxuu kula-socodsiinayaa ereygaaga qarsoodiga. Ereygan qarsoodiga ah <strong> intaad boggaaga akoonka gashid ayaad baddali kartaa</strong>.  Intaad ereygaaga qarsoodiga ee cusub galisid ayaa si guul leh ku-dhammaynaysaa. Sidaas-awgeed waxaad ku-gali kartaa ereyga qarsoodiga ee cusub.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
                                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                 <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
                                 </video>
@@ -1224,7 +1224,7 @@ $help = [
                 "1) " => "Si aad hanti ugalasid waa inaad marka hore gashid.",
                 "2) " => "Markaad gashid ka-dib kan dhinaca midigta ka-jira ee ah <strong>hantida gali</strong> riix. Ka-dibna dooro hantida aad doonaysid inaad galisid.",
                 "3) " => 'Ka-dibna dooro hantida aad doonaysid inaad galisid. Waxaa furmaya foomka hantida la-galinayo, foomka gali dhammaan xogta hantida ku-saabsan. Illaa xadka aad awoodi karaysid haddii aad sawir wanaagsan galisid waxay kaa caawinaysaa inaad dad badan indhahooda soo-jiidatid, wuxuuna kaa-caawinayaa inaad muujisid xaaladda ay hantidu ku-sugantahay. Waxaad galin kartaa illaa shan sawir. Markaad dhammaysid ka-dib riix <button class=\"btn btn-primary\"> dir, gali, riix </button> oo si guul leh ku soo gabagabee.  Ka-dibna <strong> waa lagu-guulaystay galinta hantidaada. Waad ku-mahadsantahay isticmaaliddada adeeggayaga. </strong> Farrintaas ayaad arkaysaa. Hantida inta laga-shaqeeyo ayey dhammaan dadku ku-arki karaan 24 saacadood gudahood.',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
                                 <video width="50%" id="vid-upload" style="border: 2px black solid">
                                 <source src="../videos/am/upload_am.mp4" type="video/mp4">
                                 </video>
@@ -1238,7 +1238,7 @@ $help = [
                 "1) " => "riix kan ay ku-qorantahay miyaad doonaysaa inaad na-waydiisid ee shabakaddayada ee leh <strong> ee ku-yaalla dhinaca kore ee bidixda ama dhinaca hoose </strong> ee shabakaddayada.",
                 "2) " => "Iyada oo <strong> sababta aad noola hadlaysid</strong> haddii sababtaadu liiska ka-dhex-waydid, <strong> dooro kan leh </strong> fikir guud. Haddii aad gashay xogtaadu iskeed ayey foomka u soo galaysaa, haddii ay noqon-waydo xogta gali.",
                 "3) " => "Ka-dib markaad xogta galisid riix <button class=\"btn btn-primary\"> dir </button>.  Ka-dib <strong> waxaad helaysaa farrin leh </strong> waad ku-mahadsantahay inaad doontid helitaankayaga.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
                                 <video width="50%" id="vid-contactus" style="border: 2px black solid">
                                 <source src="../videos/am/contact_am.mp4" type="video/mp4">
                                 </video>
@@ -1272,8 +1272,3 @@ $GLOBALS['user_specific_array'] = $user_specific_array;
 $GLOBALS['validate_specific_array'] = $validate_specific_array;
 $GLOBALS['message'] = $message;
 $GLOBALS['help'] = $help;
-
-
-
-
-

@@ -3,7 +3,7 @@ $lang = array(
     //Header related
     'LANGUAGE' => 'LANGUAGE',
     'HULUTERA_TEXT_LOGO' => '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>',
-    'HULUTERA_TEXT_LOGO2' => '<span style="color:orange">HULUTERA</span>',
+    'HULUTERA_TEXT_LOGO2' => '<span style="color:white">HULUTERA</span>',
     'Post Items' => 'Post Items',
     'Help' => 'Help',
     //Detailed item related
@@ -1223,7 +1223,7 @@ $help = [
                               the registration, proceed to the next step.',
                 "Step 4: " => 'Open your email (provided on the form) and click on the link sent from us. This will activate your account. You will see a message saying <strong>Your
                              acount is now active.You may now login </strong>.At this step your Regsitration is completed.',
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
                                 <video width="50%" id="vid-register" style="border: 2px black solid">
                                 <source src="../videos/en/reg_en.mp4" type="video/mp4">
                                 </video>
@@ -1254,7 +1254,7 @@ $help = [
                               your password in your account page</strong>. After
                               providing new password, your password recovery is completed
                               and now you can proceed to login.',
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
                                   <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                       <source src="../videos/en/pass_rec_en.mp4" type="video/mp4">
                                   </video>
@@ -1270,12 +1270,12 @@ $help = [
                               You can add upto five images. After compeletion click on the <button class="btn btn-primary">Submit</button> button to compelete your
                               advert. You will see the message <strong>Your item was successfully uploaded.
                               Thank you for using our service!</strong> at this steg your upload is completed. You will see your uploaded item in my-items with a pending status, the item will be activated within 24 hours.',
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
                                 <video width="50%" id="vid-upload" style="border: 2px black solid">
                                 <source src="../videos/en/upload_en.mp4" type="video/mp4">
                                 </video>
                                </div>',
-                        ]
+            ]
         ],
         "contactus"   => [
             "head" => "How to contact us",
@@ -1288,7 +1288,7 @@ $help = [
                 "-" => ' After filling the form click the <button class="btn btn-primary">Send</button>
                         button to send your inquiry. Then, you will see a message <strong>We appreciate your taking the time to
                         contact us"</strong>.',
-                 "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">For more info, Watch the Clip</a></p>
                             <video width="50%" id="vid-contactus" style="border: 2px black solid">
                             <source src="../videos/en/contact_en.mp4" type="video/mp4">
                             </video>

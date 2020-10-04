@@ -2,7 +2,7 @@
 $lang = array(
     "LANGUAGE" => ' Afaan ',
     "HULUTERA_TEXT_LOGO" => '<span style="color:orange">Hulluu</span><span style="color:#050598a6">taraa</span>',
-    "HULUTERA_TEXT_LOGO2" => '<span style="color:orange">Hulluutaraa</span>',
+    "HULUTERA_TEXT_LOGO2" => '<span style="color:white">Hulluutaraa</span>',
     "Post Items" => 'Qabeenya galchaa ',
     "Help" => ' Odeeffannoo ',
     "Show Detail" => 'Tarreefamicha ilaaluf ',
@@ -1277,9 +1277,3 @@ $GLOABLS['user_specific_array'] = $user_specific_array;
 $GLOABLS['validate_specific_array'] = $validate_specific_array;
 $GLOABLS['message'] = $message;
 $GLOABLS['help'] = $help;
-
-
-
-
-
-?>

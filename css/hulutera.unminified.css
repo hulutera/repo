@@ -288,10 +288,10 @@ form.signin input.button {
 .miniSearch {
 	text-align: center;
 	padding: 22px;
-	background:#ccc;
+	background:#333;
 	padding-bottom: 5px;;
 	box-shadow: 0 30px 40px rgba(0,0,0,.1);
-	border-radius: 5px 5px 0 0px;
+	border-radius: 0 0 5px 5px;
 }
 .logox {
 	min-width: 252px;
@@ -2608,9 +2608,11 @@ th {
 
 .header-top {
 	display: flex;
-	border-bottom: 1px solid #e5e5e5;
 	padding: 0% 2%;
-	background:rgb(240, 240, 240);
+	/* border-bottom: 1px solid #e5e5e5; */
+	background:#BF360C;
+	color:white;
+	/* rgb(240, 240, 240); */
 
 }
 
@@ -2626,13 +2628,14 @@ th {
 	display: inline-block;
 	margin: 0 auto;
 	width: 50%;
+	color: white;/*#252525;*/
 }
 
 .header-top .ht-left .mail-service {
 	font-size: 16px;
-	color: #252525;
+	color: white;/*#252525;*/
 	float: left;
-	border-right: 1px solid #e5e5e5;
+	/* border-right: 1px solid #e5e5e5; */
 	padding-top: 15px;
 	padding-bottom: 15px;
 	padding-right: 20px;
@@ -2640,11 +2643,14 @@ th {
 
 .header-top .ht-left .mail-service i {
 	margin-right: 5px;
+	color: white;/*#252525;*/
 }
-
+.header-top .ht-left .mail-service a {
+	color: white;/*#252525;*/
+}
 .header-top .ht-left .phone-service {
 	font-size: 16px;
-	color: #252525;
+	color: white;/*#252525;*/
 	float: right;
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -2653,12 +2659,14 @@ th {
 
 .header-top .ht-left .phone-service i {
 	margin-right: 5px;
+	color: white;/*#252525;*/
 }
 
 .header-top .ht-right .lan-selector {
 	float: right;
 	margin-top: 15px;
 	margin-bottom: 13px;
+	color: white;/*#252525;*/
 }
 
 .ht-right .lan-selector {
@@ -2666,6 +2674,7 @@ th {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
+	color: white;/*#252525;*/
 }
 
 .header-top .ht-right .top-links, .top-links {
@@ -2673,11 +2682,11 @@ th {
 	padding-right: 20px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	border-right: 1px solid #e5e5e5;
+	color: white;/*#252525;*/
 }
 
 .header-top .ht-right .top-links a, .top-links a {
-	color: #252525;
+	color: white;/*#252525;*/
 	font-size: 14px;
 	display: inline-block;
 	margin-left: 15px;

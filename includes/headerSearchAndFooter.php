@@ -114,12 +114,12 @@ function headerAndSearchCode($item)
 	//return;
 	global $lang_url, $str_url, $lang;
 
-	echo '<header class="header-section">';
+	echo '<header class="header-section"  style="background:#fcea50;">';
 	___open_div_('header-top', '');
 	___open_div_('container', '');
 	___open_div_('ht-left', '');
 	___open_div_('mail-service', '');
-	echo '<a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '" style="color:black"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
+	echo '<a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
 	___close_div_(1);
 	___open_div_('phone-service', '');
 	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
@@ -224,7 +224,8 @@ function logoText()
 	global $lang_url;
 	echo '<a   href="../../index.php' . $lang_url . '">';
 	echo '<div class ="logo" style="font-size:50px;font-family: \'Roboto\', sans-serif;">';
-	echo '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>';
+	// echo '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>';
+	echo '<span style="color:#333;font-weight:bold">HULUTERA</span>';
 	echo '</div></a>';
 }
 
@@ -236,8 +237,8 @@ function topRightLinks($style = null)
 	___open_div_('top-links', $style);
 	if (!isset($_SESSION['uID'])) {
 
-		echo '<a   href="../../includes/register.php' . $lang_url . '">';
-		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px"></span><br/>' . $lang['Register'] . '</div>';
+		echo '<a href="../../includes/register.php' . $lang_url . '">';
+		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px;color:white;"></span><br/>' . $lang['Register'] . '</div>';
 		echo '</a>';
 
 		echo '<a   href="../../includes/login.php' . $lang_url . '" >';
@@ -274,9 +275,9 @@ function topRightLinks($style = null)
 function topRightHelpLink()
 {
 	global $str_url, $lang_url;
-	echo '<a   href="../../includes/help.php' . $lang_url . '" target="_blank">';
+	echo '<a href="../../includes/help.php' . $lang_url . '" target="_blank">';
 	echo '<div id="toplinktexts">';
-	echo '<div id="topRightEnglish"><span class="glyphicon glyphicon-info-sign" style="font-size:20px"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
+	echo '<div id="topRightEnglishx" style="color:white"><span class="glyphicon glyphicon-info-sign" style="font-size:20px;color:white"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
 	echo '</div>';
 	echo '</a>';
 }
