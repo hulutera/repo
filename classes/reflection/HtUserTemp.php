@@ -2,6 +2,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
 
 /**
  * Class HtUserTemp
@@ -889,6 +890,7 @@ SQL;
     public function register()
     {
         $email = $_POST['fieldEmail'];
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\"");
         $userAll = new HtUserAll($sql);
         $result = $userAll->getResultSet();
@@ -932,24 +934,7 @@ SQL;
         $body = $GLOBALS['user_specific_array']['message']['activation']['body'] . '<br>';
         $body .= "https://www.hulutera.com/includes/activate.php?key=" . $activation;
 
-        /// temporary disable for message sending
-        // if (DBHOST == 'localhost') {
-        //     header('Location: ../../includes/prompt.php?type=1');
-        //     return;
-        // }
-        ///
-        $isMailDelivered =  mail($email, $subject, $body, 'From:noreply@hulutera.com');
         //Check if mail Delivered or die
-        if (!$isMailDelivered) {
-            die("Sending Email Failed. Please Contact Site Admin!");
-        } else {
-            if (isset($_GET['lan'])) {
-                $lang_url = "&lan=" . $_GET['lan'];
-            } else {
-                $lang_url = "";
-            }
-            $link = "../includes/prompt.php?type=1" . $lang_url;
-            header('Location:' . $link);
-        }
+        send_mail($email, $subject, $body, 'From:noreply@hulutera.com', '../includes/prompt.php?type=1'.$lang_sw);
     }
 }

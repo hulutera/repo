@@ -2,6 +2,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
 header('Content-Type: text/html; charset=utf-8');
 
 /**
@@ -1360,15 +1361,11 @@ SQL;
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] ."\n". $recoveryLink  . "\n";
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "\n";
 
-        if ($_SERVER['SERVER_NAME'] == 'hulutera.com') {
-            $isMailDelivered = mail($email, $subject, $body, 'From:admin@hulutera.com');
-            //Check if mail Delivered or die
-            if (!$isMailDelivered) {
-                die("Sending Email Failed. Please Contact Site Admin!");
-            } else {
-                header('Location: ../includes/prompt.php?type=4');
+        if (isset($GLOBALS['status'])) {
+            if ($GLOBALS['status'] = "deploy-release") {
+                send_mail($email, $subject, $body, 'From:admin@hulutera.com', '../includes/prompt.php?type=4'.$lang_sw);
             }
-        }else{
+        } else {
             echo $body;
             echo '<a target="blank" href="' . $recoveryLink . '">' . $recoveryLink . '</a><br>';
         }
@@ -1411,8 +1408,6 @@ SQL;
             $this->fieldNewPassword,
             $this->fieldTermAndCondition
         ];
-        var_dump($fieldBefore);
-        var_dump($fieldAfter);
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         if ($fieldBefore !== $fieldAfter) {
@@ -1422,21 +1417,7 @@ SQL;
             $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
             $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
 
-
-            /// temporary disable for message sending
-            // if (DBHOST == 'localhost') {
-            //     $_SESSION['editProfileSuccess'] = 1;
-            //     header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
-            //     return;
-            // }
-            $isMailDelivered = mail($this->field_email, $subject, $body, 'From:admin@hulutera.com');
-            //Check if mail Delivered or die
-            if (!$isMailDelivered) {
-                die("Sending Email Failed. Please Contact Site Admin!");
-            } else {
-                $_SESSION['editProfileSuccess'] = 1;
-                header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
-            }
+            send_mail($this->field_email, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile'.$lang_sw);
         } else {
             header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         }

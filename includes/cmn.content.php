@@ -11,6 +11,7 @@ require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
 require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
 require_once $documnetRootPath . '/classes/global.variable.class.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
 
 function countRow($status, $id)
 {
@@ -402,11 +403,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 						$subject = $GLOBALS['user_specific_array']['message']['account-deactivation']['subject'];
 						$body = $GLOBALS['user_specific_array']['message']['account-deactivation']['body'][0] . "<br><br>";
 
-						$isMailDelivered = mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
-						//Check if mail Delivered or die
-						if (!$isMailDelivered) {
-							die("Sending Email Failed. Please Contact Site Admin!");
-						}
+						send_mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
 					}
 					header("Refresh:0");
 				} else if ($accountStatus == 'erase') { //close account
@@ -432,11 +429,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 						$body = $GLOBALS['user_specific_array']['message']['account-closed']['body'][0] . "<br><br>";
 
 						/// temporary disable for message sending
-						$isMailDelivered = mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
-						//Check if mail Delivered or die
-						if (!$isMailDelivered) {
-							die("Sending Email Failed. Please Contact Site Admin!");
-						}
+						send_mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
 					}
 					header("Refresh:0");
 				}

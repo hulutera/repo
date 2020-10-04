@@ -4,6 +4,8 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/cmn.proxy.php';
 require_once $documnetRootPath . '/classes/reflection/HtUtilContactUs.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
+
 if (isset($_GET['lan'])) {
 	$lang_url = "?&lan=" . $_GET['lan'];
 } else {
@@ -794,7 +796,7 @@ function register()
 				} else {
 					$message = "To activate your account, please click on the link:\n\n";
 					$message .= "https://www.hulutera.com/includes/activate.php?key=" . $activation;
-					mail($email, 'Confirmation of registration of your account', $message, 'From:noreply@hulutera.com');
+					send_mail($email, 'Confirmation of registration of your account', $message, 'From:nonreply@hulutera.com');
 					redirect("../includes/prompt.php?type=1");
 				}
 			} else {
