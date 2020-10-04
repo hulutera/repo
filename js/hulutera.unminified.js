@@ -869,11 +869,7 @@ function usernumber_of_pending_items(e, t) {
         })
     })
 }
-$(".LeftNav li a").live("click", function () {
-    $(".LeftNav li a").removeClass("selected");
-    $(this).addClass("selected");
-    return false
-});
+
 $(document).ready(function () {
     $("#help > li > a").click(function () {
         $(this).next("#help li ul").slideToggle("fast").siblings("#help li ul:visible").slideUp("fast");
