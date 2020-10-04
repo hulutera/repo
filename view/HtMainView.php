@@ -226,6 +226,7 @@ class HtMainView
         if(!file_exists($thmbnlImg))
         {
             $thmbnlImg = "../images/en/en.svg";
+            $numimage = 0;
         }
 
         //---------------------------------------------------------
