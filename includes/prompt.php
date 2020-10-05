@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+	ob_start();
+}
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/classes/cmn.class.php';
-$type = $_GET['type'];
+$type = isset($_GET['type']) ? $_GET['type'] : 100;
 
 function createMessage($type)
 {

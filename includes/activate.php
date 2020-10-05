@@ -92,26 +92,21 @@ require_once $documnetRootPath . '/includes/validate.php';
                 echo '<p class="h1 text-success">Your account is activated.</p>';
                 $string = str_replace(' ', '', $_GET['key']);
                 $email = $user->getFieldEmail();
-                $data = "fieldPassword=".$tempPassword."&fieldEmail=".$email;
+                $data = "fieldPassword=" . $tempPassword . "&fieldEmail=" . $email;
                 $result = $crypto->encryptor(base64_encode($data));
-
+                $user->setFieldNewPassword($crypto->encryptor(base64_encode($tempPassword)));
+                $user->setFieldPassword($crypto->encryptor(base64_encode($tempPassword)));
+                $user->setFieldActivation(null);
                 echo '<form class="form-horizontal" action="../../includes/form_user.php?function=login' . $lang_url . '" method="post" enctype="multipart/form-data">
-                      <input type="hidden" name="auto-login" value="'.$result.'">
+                      <input type="hidden" name="auto-login" value="' . $result . '">
                       <button type="submit" class="btn btn-lg btn-primary btn-link text-primary" name="submit_param" value="submit_value" class="link-button">
                       Click here to login and continue to use your temporary password
                       </button>
                 </form>';
-
-                //$user->setFieldActivation(null);
-                //header('Location: ../includes/prompt.php?type=14' . $lang_url);
+            }else {
+                header('Location: ./prompt.php?type=404');
             }
-
-            // $user->setFieldNewPassword();
-
-
-            // $user->debugUser();
         }
-
         ?>
     </div>
     <?php

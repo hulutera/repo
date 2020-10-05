@@ -1338,6 +1338,7 @@ SQL;
     public function recoverPassword()
     {
         //Generate a RANDOM MD5 Hash for a password
+        global $lang_sw;
         $randomPassword = md5(uniqid(rand()));
         $randomPassword08 = substr($randomPassword, 0, 8);
 
@@ -1353,20 +1354,21 @@ SQL;
         $this->fieldActivation = $activation;
         $this->allowUpdate = true;
         $this->updateCurrent();
-        global $str_url;
+
         $recoveryLink = "https://www.hulutera.com/includes/activate.php?key=" . $urlEn;
         $subject = $GLOBALS['user_specific_array']['message']['password-recovery']['subject'];
         $body =  $GLOBALS['user_specific_array']['message']['password-recovery']['body'][0];
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][1] . $randomPassword08 . "\n";
-        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] ."\n". $recoveryLink  . "\n";
+        $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][0] . "\n" . $recoveryLink  . "\n";
         $body .= $GLOBALS['user_specific_array']['message']['password-recovery']['body'][1][2] . "\n";
 
         if (isset($GLOBALS['status'])) {
             if ($GLOBALS['status'] = "deploy-release") {
-                send_mail($email, $subject, $body, 'From:admin@hulutera.com', '../includes/prompt.php?type=4'.$lang_sw);
+                send_mail($email, $subject, $body, 'From:admin@hulutera.com', '../includes/prompt.php?type=4' . $lang_sw);
             }
         } else {
             echo $body;
+            $recoveryLink = "../../includes/activate.php?key=" . $urlEn;
             echo '<a target="blank" href="' . $recoveryLink . '">' . $recoveryLink . '</a><br>';
         }
     }
@@ -1417,7 +1419,7 @@ SQL;
             $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
             $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
 
-            send_mail($this->field_email, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile'.$lang_sw);
+            send_mail($this->field_email, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         } else {
             header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         }

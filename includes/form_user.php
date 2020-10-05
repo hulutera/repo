@@ -5,10 +5,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 header("Content-Type: text/html;charset=UTF-8");
 
+
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/validate.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+
 
 $function = isset($_GET['function']) ? $_GET['function'] : '';
 $validFunctions = ['register', 'login', 'password-recovery', 'edit-profile', 'contact-us'];
@@ -27,17 +29,17 @@ if (!in_array($function, $validFunctions)) {
 $validate = null;
 $errPre = [];
 $validate = new ValidateUser($errPre);
+$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
 
 if (!empty($errPre)) {
     $_SESSION['errorRaw'] = getInnerArray($errPre);
     $_SESSION['POST'] = $_POST;
 
-    $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
     $redirectLink = '';
     if ($function == 'edit-profile') {
         $redirectLink = $_SERVER['HTTP_REFERER'];
     } else {
-        if ($_SERVER['SERVER_NAME'] == 'hulutera.com' && ($function == 'login')) {
+        if ((isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') && $function == 'login') {
             if (!isset($_SESSION['uID'])) {
                 header('Location: ../includes/login.php?release=beta' . $str_url);
             }
