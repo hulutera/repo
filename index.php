@@ -4,7 +4,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/common.inc.php';
-require_once $documnetRootPath . '/classes/objectPool.class.php';
 
 ?>
 <!DOCTYPE html>

@@ -15,9 +15,5 @@ if ($action == "delete" and $item != "" and $id != "") {
     ///here permanent damage, data unrecoverable!!
     $item_tb->delete($id);
     $latest_tb->delete();
-
 }
-
-
-
 ?>

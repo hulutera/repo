@@ -67,6 +67,14 @@ define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
 /**
  *  Includes
  */
-global $documnetRootPath;
-require_once $documnetRootPath . "/classes/reflection/Model.php";
-require_once $documnetRootPath . "/classes/reflection/MySqlRecord.php";
+global $documnetRootPath;// = $_SERVER['DOCUMENT_ROOT'];
+
+spl_autoload_register(function ($className) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+});
+spl_autoload_register(function ($className) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
+});
+spl_autoload_register(function ($className) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.php';
+});

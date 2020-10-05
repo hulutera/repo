@@ -1,9 +1,4 @@
 <?php
-
-spl_autoload_register(function ($className) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
-});
-
 class ObjectPool
 {
     private static $_instance;
@@ -33,14 +28,6 @@ class ObjectPool
     {
     }
 
-    public function getViewObject($item)
-    {
-        global $documnetRootPath;
-        require_once $documnetRootPath . '/view/main.view.class.php';
-        return DatabaseClass::getInstance()->checkIfItemExitByName($item) ?
-            (new MainView($item)) : (new EmptyView());
-    }
-
     public function getObjectWithId($item, $id = null, $status = null)
     {
         $itemName = str_replace("item_", "", $item);
@@ -66,13 +53,6 @@ class ObjectPool
                 backTrace($item);
                 return null;
         }
-    }
-
-    public function getObjectWithTableType($result)
-    {
-        $tableType = $result['field_table_type'];
-        $itemName = $this->tableType2item[$tableType];
-        return $this::getInstance()->getObjectWithId($itemName, $result['id']);
     }
 
     public function getObjectSpecial($item, $id = null)
