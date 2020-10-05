@@ -11,7 +11,7 @@ require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
 require_once $documnetRootPath . '/view/HtMainView.php';
 require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
 require_once $documnetRootPath . '/classes/global.variable.class.php';
-require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
+require_once $documnetRootPath . '/includes/sendMessage.php';
 
 function countRow($status, $id)
 {
@@ -77,35 +77,6 @@ function accountLinks()
 		echo "<span>" . $lang['Post Items'] . "</span></div></a>";
 		echo "</div>";
 	}
-	// if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
-	// 	echo "<div class=\"item-list-by-status-admin\">";
-	// 	echo "<a   ";
-	// 	echo 'href="' . $url . '=pending&action=admin"> ';
-	// 	echo "<div class='item-list'>";
-	// 	echo "<span>" . $lang['all pending'] . "(<span id=\"pendingNumb\">$pendingItems</span>)</span></div></a>";
-	// 	echo "<a   ";
-
-	// 	echo 'href="' . $url . '=reported&action=admin"> ';
-	// 	echo "<div class='item-list'>";
-	// 	echo "<span>" . $lang['reported'] . "(<span id=\"reportedNumb\">$reportedItems</span>)</span></div></a>";
-	// 	if ($modTotal == 1 || $adminTotal == 1 || $webmasterTotal == 1) {
-	// 		if ($adminTotal == 1 || $webmasterTotal == 1) {
-	// 			echo "<a   ";
-	// 			echo 'href="' . $url . '=deleted&action=admin"> ';
-	// 			echo "<div class='item-list'>";
-	// 			echo "<span>" . $lang['deleted'] . "(<span id=\"deletedNumb\">$deletedItems</span>)</span></div></a>";
-	// 		}
-	// 		echo "<a   ";
-	// 		echo 'href="../includes/userMessages.php' . $lang_url . '">';
-	// 		echo "<div class='item-list'>";
-	// 		echo "<span>" . $lang['messages'] . "(<span id=\"msgNumb\">$contactusMessage</span>)</span></div></a>";
-
-	// 		echo '<a   class="item-list-cp" href="../includes/controlPanel.php">';
-	// 		echo "<div class='item-list-cp'>";
-	// 		echo "<span>" . $lang['admin-panel'] . "</span></div></a>";
-	// 		echo "</div>";
-	// 	}
-	// }
 	echo "</div>";
 }
 
@@ -196,24 +167,6 @@ function allUsers()
 			array_push($userColumnArray, $row['Field']);
 		}
 	}
-	/*
-    userColumnArray:
-    0 => string 'field_user_name' (length=15)
-    1 => string 'field_first_name' (length=16)
-    2 => string 'field_last_name' (length=15)
-    3 => string 'field_email' (length=11)
-    4 => string 'field_phone_nr' (length=14)
-    5 => string 'field_address' (length=13)
-    6 => string 'field_password' (length=14)
-    7 => string 'field_privilege' (length=15)
-    8 => string 'field_contact_method' (length=20)
-    9 => string 'field_term_and_condition' (length=24)
-    10 => string 'field_register_date' (length=19)
-    11 => string 'field_new_password' (length=18)
-    12 => string 'field_activation' (length=16)
-    */
-
-	///Array to hold hidden fields to from user_all userColumnArray
 	$hiddenFieldsArray = [];
 	/// based on current login user privilege
 	/// populate hiddenFieldsArray with id of fields
@@ -304,20 +257,11 @@ function allUsers()
 			$keyValue = explode("=", $allUserIdDecodeArr[$i]);
 			$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
 		}
-		/*
-		if (HtGlobal::get('DEBUG')) {
-			var_dump($allUserIdDecode);
-			var_dump($allUserIdDecodeArr);
-			var_dump($ACTIVITY_ARRAY);
-			var_dump($_POST);
-		} */
 
-		////
 		listUsers($ACTIVITY_ARRAY);
 	}
 	___close_div_(3);
 
-	//if()
 }
 function listUsers(&$ACTIVITY_ARRAY)
 {
@@ -536,43 +480,6 @@ function listUsers(&$ACTIVITY_ARRAY)
 		];
 		///Array to hold hidden fields to from user_all userColumnArray
 		$hiddenFieldsArray = [];
-		///Get current logged in User
-		//$loggedInUser = new HtUserAll($_SESSION['uID']);
-
-		/*
-        if ((int) $loggedInUser->getFieldRank() > (int) $user->getFieldRank()) {
-            if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
-                $hiddenFieldsArray = [];
-            } else if ($loggedInUser->isModerator()) {
-                $hiddenFieldsArray = [1, 2, 3];
-            } else if ($loggedInUser->isUser()) {
-                $hiddenFieldsArray = $task;
-            }
-        } else if ((int) $loggedInUser->getFieldRank() == (int) $user->getFieldRank()) {
-            $found = false;
-
-            foreach ($task as $task_key => $task_value) {
-                foreach ($task_value as $key => $value) {
-                    if (strpos($key, $user->getFieldPrivilege()) === false) {
-                        $found = true;
-                        $indexToRemove = $task_key + 1;
-                        break;
-                    }
-                }
-                if ($found) {
-                    break;
-                }
-            }
-            $hiddenFieldsArray = [$indexToRemove];
-        } else if ((int) $loggedInUser->getFieldRank() < (int) $user->getFieldRank()) {
-            if ($loggedInUser->isWebMaster() || $loggedInUser->isAdmin()) {
-                $hiddenFieldsArray = [];
-            } else if ($loggedInUser->isModerator()) {
-                $hiddenFieldsArray = [1, 2, 3];
-            } else if ($loggedInUser->isUser()) {
-                $hiddenFieldsArray = $task;
-            }
-        }*/
 
 		///now remove those in hiddenFieldsArray from the userColumnArray
 		foreach ($hiddenFieldsArray as $key => $value) {
@@ -599,7 +506,7 @@ function listUsers(&$ACTIVITY_ARRAY)
         </div>
         </div>
         </div>';
-		//var_dump($loggedInUser->getFieldRank() . ' vs ' . $user->getFieldRank());
+
 	}
 }
 
@@ -638,13 +545,6 @@ function activityTable()
 		$keyValue = explode("=", $actionIdDecodeArr[$i]);
 		$ACTIVITY_ARRAY[$keyValue[0]] = $keyValue[1];
 	}
-
-	/*
-	if (HtGlobal::get('DEBUG')) {
-		var_dump($actionIdDecode);
-		var_dump($actionIdDecodeArr);
-		var_dump($ACTIVITY_ARRAY);
-	}*/
 
 	___open_div_('container-fluid');
 	if (!isset($ACTIVITY_ARRAY['allUserAdvancedUserId'])) {

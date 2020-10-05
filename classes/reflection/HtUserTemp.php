@@ -2,7 +2,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/HtUserAll.php';
-require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
+require_once $documnetRootPath . '/includes/sendMessage.php';
 
 /**
  * Class HtUserTemp

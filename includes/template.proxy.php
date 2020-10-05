@@ -4,17 +4,14 @@ session_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/cmn.proxy.php';
+
 //get item name from URL
 $proxyType = $_GET['type'];
-//get array containing itemAmharic and if type variable is valid
-$status = title($proxyType);
-//save Amharic name
-$itemAmharic = $status[0];
-//save URL validity
-$isValidUrl  = $status[1];
-//redirect if url is invalid
-if (!$isValidUrl)
+$type_array = array('about', 'terms', 'contact-us', 'help', 'privacy');
+
+if (!in_array($proxyType, $type_array)) {
 	header('Location: ../../index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
