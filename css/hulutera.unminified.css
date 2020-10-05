@@ -82,16 +82,24 @@ th {
 
 .logo a {
 	text-decoration: none;
-	color: orange;
-	font-size: 30px;
-	font-family: sans-serif, Arial, Helvetica;
-	font-weight: bold;
-	font-style: italic;
+	font-weight: 900;
+	font-size: 50px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	text-shadow: 4px -2px 2px #000, 2px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .logo img {
 	max-width: 35%;
 	height: auto;
+}
+
+.logo span {
+	font-weight: 900;
+	font-size: 50px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	text-shadow: 4px -2px 2px #000, 2px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .toprightlink {
@@ -288,24 +296,28 @@ form.signin input.button {
 .miniSearch {
 	text-align: center;
 	padding: 22px;
-	background:#333;
-	padding-bottom: 5px;;
-	box-shadow: 0 30px 40px rgba(0,0,0,.1);
+	background: #333;
+	padding-bottom: 5px;
+	;
+	box-shadow: 0 30px 40px rgba(0, 0, 0, .1);
 	border-radius: 0 0 5px 5px;
 }
+
 .logox {
 	min-width: 252px;
 }
+
 .miniSearch p {
 	margin: 10px 0 5px 0;
 }
 
-.miniSearch .se-el{
+.miniSearch .se-el {
 	background: skyblue;
 	padding: 10px;
 	text-align: left;
 	border-radius: 5px;
 }
+
 .searchfield {
 	width: 40%;
 	padding: 6px 2px;
@@ -331,9 +343,9 @@ form.signin input.button {
 
 .search-btn {
 	width: calc(20% - 15px);
-	color:black;
-	font-weight:bold;
-	text-transform:none;
+	color: black;
+	font-weight: bold;
+	text-transform: none;
 	text-align: center;
 	font-style: normal;
 }
@@ -531,7 +543,6 @@ body, html {
 	color: #b2b2b2;
 	font-size: 16px;
 	font-family: sans-serif, Arial, Helvetica;
-
 	word-spacing: 1px;
 	position: relative;
 	overflow: hidden;
@@ -2188,7 +2199,7 @@ th {
 	.edit-profile-container, .update-profile-container {
 		border: 1px solid #c7c7c7;
 		width: 80%;
-		margin-left:10%;
+		margin-left: 10%;
 		margin-right: 10%;
 	}
 	.show-latest-container {
@@ -2610,10 +2621,9 @@ th {
 	display: flex;
 	padding: 0% 2%;
 	/* border-bottom: 1px solid #e5e5e5; */
-	background:#BF360C;
-	color:white;
+	background: #BF360C;
+	color: white;
 	/* rgb(240, 240, 240); */
-
 }
 
 .header-top .ht-left {
@@ -2628,12 +2638,14 @@ th {
 	display: inline-block;
 	margin: 0 auto;
 	width: 50%;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
 
 .header-top .ht-left .mail-service {
 	font-size: 16px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 	float: left;
 	/* border-right: 1px solid #e5e5e5; */
 	padding-top: 15px;
@@ -2643,14 +2655,19 @@ th {
 
 .header-top .ht-left .mail-service i {
 	margin-right: 5px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
+
 .header-top .ht-left .mail-service a {
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
+
 .header-top .ht-left .phone-service {
 	font-size: 16px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 	float: right;
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -2659,14 +2676,16 @@ th {
 
 .header-top .ht-left .phone-service i {
 	margin-right: 5px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
 
 .header-top .ht-right .lan-selector {
 	float: right;
 	margin-top: 15px;
 	margin-bottom: 13px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
 
 .ht-right .lan-selector {
@@ -2674,7 +2693,8 @@ th {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
 
 .header-top .ht-right .top-links, .top-links {
@@ -2682,11 +2702,13 @@ th {
 	padding-right: 20px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 }
 
 .header-top .ht-right .top-links a, .top-links a {
-	color: white;/*#252525;*/
+	color: white;
+	/*#252525;*/
 	font-size: 14px;
 	display: inline-block;
 	margin-left: 15px;

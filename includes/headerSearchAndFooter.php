@@ -223,9 +223,9 @@ function logoText()
 {
 	global $lang_url;
 	echo '<a   href="../../index.php' . $lang_url . '">';
-	echo '<div class ="logo" style="font-size:50px;font-family: \'Roboto\', sans-serif;">';
+	echo '<div class ="logo">';
 	// echo '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>';
-	echo '<span style="color:#333;font-weight:bold">HULUTERA</span>';
+	echo '<span>HULUTERA</span>';
 	echo '</div></a>';
 }
 
