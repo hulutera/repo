@@ -51,7 +51,7 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 
 				<div class="col-xs-9 col-md-8 latest-button-mob">
 					<?php
-					//showLatestItem();
+
 					?>
 					<div id="mainColumn-index" class="col-xs-12 col-md-12" style="padding:0px">
 						<!!----#mainColumn start-------!!>
@@ -99,11 +99,6 @@ require_once $documnetRootPath . '/classes/objectPool.class.php';
 function showMap()
 {
 	global $str_url;
-	// echo '<div class="col-xs-12 col-md-12 show-latest-container" style="text-align:center;">';
-	// echo '<div class="col-xs-12 col-md-8 show-latest">';
-	// echo '<a   href="includes/adverts.php?item=All&search_text=&cities=All'. $str_url. '" style="display:inline-block;color:white;text-decoration:none"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
-	// echo '</div>';
-	// echo '</div>';
 	echo '<p class="index-txt">' . $GLOBALS["lang"]["select city from map"] . '</p>';
 ?>
 	<!!----SVG for bigger screens----!!>

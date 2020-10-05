@@ -34,7 +34,6 @@ if (!isset($_SESSION['uID'])) {
 	<div class="row">
 		<?php
 		editProfile();
-		// var_dump($_SESSION);
 		?>
 	</div>
 	<?php footerCode(); ?>

@@ -41,29 +41,6 @@ class ObjectPool
             (new MainView($item)) : (new EmptyView());
     }
 
-    public function getClassObject($item)
-    {
-        /*
-        global $documnetRootPath;
-        require_once $documnetRootPath . '/items/' . $item . '/' . $item . '.class.php';
-
-        if ($item == "car") {
-            return (new CarClass());
-        } else if ($item == "house") {
-            return (new HouseClass());
-        } else if ($item == "computer") {
-            return (new CompClass());
-        } else if ($item == "electronics") {
-            return (new ElecClass());
-        } else if ($item == "phone") {
-            return (new PhoneClass());
-        } else if ($item == "household") {
-            return (new HouseholdClass());
-        } else if ($item == "others") {
-            return (new OtherClass());
-        }*/
-    }
-
     public function getObjectWithId($item, $id = null, $status = null)
     {
         $itemName = str_replace("item_", "", $item);

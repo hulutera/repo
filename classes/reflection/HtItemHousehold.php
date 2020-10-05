@@ -1129,7 +1129,6 @@ class HtItemHousehold extends MySqlRecord
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
-        // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_household
             (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
@@ -1357,8 +1356,6 @@ SQL;
         $this->setFieldPostEdit();
         $this->allowUpdate = true;
         $this->updateCurrent();
-        ///final session
-        //unset($_SESSION['POST']);
     }
 
     /**
@@ -1395,14 +1392,12 @@ SQL;
     public function edit($data = null)
     {
         $this->preEdit($this, $data);
-        // var_dump($_POST);
-        // var_dump($_SESSION['POST']);
         ////------------------------------------------------------------------
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
-        // var_dump($_SESSION['POST']);
+
         $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
         $this->insertAllField($itemName, 6);
         echo '</form>';

@@ -1658,7 +1658,6 @@ class HtItemHouse extends MySqlRecord
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
-        // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_house
             (id_temp,id_user,id_category,field_contact_method,field_price_rent,field_price_sell,field_price_nego,field_price_rate,field_price_currency,field_image,field_location,field_kebele,field_wereda,field_lot_size,field_nr_bedroom,field_toilet,field_bathroom,field_build_year,field_water,field_electricity,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
@@ -1721,7 +1720,6 @@ SQL;
      */
     public function update($id)
     {
-        // $constants = get_defined_constants();
         if ($this->allowUpdate) {
             $sql = <<< SQL
             UPDATE
@@ -2124,7 +2122,7 @@ SQL;
         echo '<form class="form-horizontal" action="../../includes//form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
-        // var_dump($_SESSION['POST']);
+
         $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
         $this->insertAllField($itemName, 6);
         echo '</form>';

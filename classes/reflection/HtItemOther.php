@@ -1155,7 +1155,6 @@ class HtItemOther extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        // echo $sql;
         // exit;
         $this->resetLastSqlError();
 
@@ -1211,8 +1210,7 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
-            //  echo $sql;
-            //  exit;
+            //  exit
             $this->resetLastSqlError();
 
             $this->set_charset('utf8');
@@ -1367,7 +1365,6 @@ SQL;
         $this->allowUpdate = true;
         $this->updateCurrent();
         ///final session
-        //unset($_SESSION['POST']);
     }
 
     /**
@@ -1404,8 +1401,6 @@ SQL;
     public function edit($data = null)
     {
         $this->preEdit($this, $data);
-        // var_dump($_POST);
-        // var_dump($_SESSION['POST']);
         ////------------------------------------------------------------------
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes/form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';

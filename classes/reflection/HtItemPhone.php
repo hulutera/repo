@@ -663,9 +663,6 @@ class HtItemPhone extends MySqlRecord
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldCamera($_POST['fieldCamera']);
-        // $this->setFieldRam($_POST['fieldRam']);
-        // $this->setFieldHardDrive($_POST['fieldHardDrive']);
-        // $this->setFieldColor($_POST['fieldColor']);
         $this->setFieldPriceSell($_POST['fieldPriceSell']);
         $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
         $this->setFieldPriceNego($_POST['fieldPriceNego']);
@@ -1629,7 +1626,6 @@ SQL;
         $this->allowUpdate = true;
         $this->updateCurrent();
         ///final session
-        //unset($_SESSION['POST']);
     }
 
     /**
@@ -1681,7 +1677,6 @@ SQL;
         echo '<form class="form-horizontal" action="../../includes//form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
-        // var_dump($_SESSION['POST']);
         $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
         $this->insertAllField($itemName, 6);
         echo '</form>';

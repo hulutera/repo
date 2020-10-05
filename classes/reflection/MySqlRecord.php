@@ -177,34 +177,6 @@ class MySqlRecord extends Model
         return [$this->affected_rows, $result];
     }
 
-    /****
-     *function maxQuery($status,$Id,$start,$MAX)
-{
-	global $connect;
-	if($Id !='')
-		$specific = "'$status' AND uID = '$Id'";
-	else
-		$specific = "'$status'";
-
-	$result = $connect->query(
-			"SELECT cID,tableType, UploadedDate FROM car         WHERE cStatus LIKE  $specific
-			UNION ALL
-			SELECT hID, tableType, UploadedDate FROM house       WHERE hStatus LIKE  $specific
-			UNION ALL
-			SELECT dID, tableType, UploadedDate FROM computer    WHERE dStatus LIKE  $specific
-			UNION ALL
-			SELECT eID, tableType, UploadedDate FROM electronics WHERE eStatus LIKE  $specific
-			UNION ALL
-			SELECT pID, tableType, UploadedDate FROM phone       WHERE pStatus LIKE  $specific
-			UNION ALL
-			SELECT hhID,tableType, UploadedDate FROM household   WHERE hhStatus LIKE $specific
-			UNION ALL
-			SELECT oID, tableType, UploadedDate FROM others      WHERE oStatus LIKE  $specific
-			ORDER BY UploadedDate DESC LIMIT $start,$MAX ");
-
-	return $result;
-}
-     */
     public function maxQuery($status, $id, $start, $end = null)
     {
         if (!empty($id) && $id !== "*") {
@@ -223,13 +195,9 @@ class MySqlRecord extends Model
                 $union = " ";
             }
             $sql .= 'SELECT ' . $value . '.id,' . $value . '.field_table_type, ' . $value . '.field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
-            //var_dump($sql);
+
         }
         $sql .= ' ORDER BY field_upload_date DESC LIMIT ' . $start . ',' . $itemPerPage;
-        // echo '<prev>';
-        // $arrayWords = explode('SELECT', $sql);
-        // var_dump($arrayWords);
-        // echo '</prev>';
         return $this->fetch_all($sql);
     }
     /***
@@ -560,10 +528,6 @@ EOD;
         $choose = $GLOBALS[$globalArrayName][$source][$fieldName][1];
         $types = [];
 
-        // var_dump($fieldName);
-        // var_dump($source);
-        // var_dump($globalArrayName);
-
         if (empty($selectable)) {
             $types = $GLOBALS[$globalArrayName][$source][$fieldName][2];
         } else {
@@ -573,8 +537,6 @@ EOD;
                 }
             }
         }
-        //var_dump($_SESSION['POST']);
-        //var_dump($fieldName);
         $choose1 = $choose2 = $choose;
         if (isset($_SESSION['POST'][$fieldName])) {
 
@@ -582,9 +544,6 @@ EOD;
                 $choose1 = $choose2 = $choose;
             } else {
                 $temp = $_SESSION['POST'][$fieldName];
-                // var_dump($fieldName);
-                // var_dump($temp);
-                // var_dump($globalArrayName);
                 $choose1 = $temp;
                 $choose2 = $types[$temp];
                 $selected = 1;
@@ -638,7 +597,7 @@ EOD;
         $hiddenValue = 0;
         $showValue = 1;
         if (isset($_SESSION['POST'][$fieldName])) {
-            //$showValue = $hiddenValue;
+
             $showValue = $_SESSION['POST'][$fieldName];
         }
 
@@ -807,9 +766,6 @@ EOD;
 
     protected function prePostEdit()
     {
-        // var_dump($_SESSION['POST']);
-        // var_dump($_POST);
-
         /// here get file from post fileuploader-list-files and creat
         /// a new element ['POST']['files']
         /// update session['POST'] new values from the validations
@@ -823,7 +779,6 @@ EOD;
         /// make equal session POST and POST
         $_POST = $_SESSION['POST'];
 
-        // var_dump($_POST);
         // define uploads path
         $uploadDir = '..' . $_SESSION['POST']['uploadDirRel'];
         $FileUploader = new FileUploader('files', array(
@@ -857,13 +812,6 @@ EOD;
         /// get the difference betrween array, to get the removed files
         $postRemovedFiles = array_diff($sessionPostFiles, $postFiles);
 
-        // var_dump($_SESSION['POST']);
-        // var_dump($_POST);
-        // var_dump(json_encode($postFiles));
-        // var_dump($this->id);
-        // foreach ($postFiles as $key => $value) {
-        //     echo '<img src="../../..'.$_POST['uploadDir']. $value.'">';
-        // }
         //exit;
         // remove the filed from the directory
         foreach ($postRemovedFiles as $key => $value) {
@@ -883,24 +831,16 @@ EOD;
     protected function preEdit($itemObject = null, $data = null)
     {
         ////------------------------------------------------------------------
-        // var_dump($data);
         /// add for decoding
         include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
         $crypto = new Cryptor();
         $dataStr = $crypto->urldecode_base64_decode_decryptor($data);
-        // var_dump($dataStr);
-
         /// start fresh
         unset($_SESSION['POST']);
         $dataArray = explode("&", $dataStr);
-        // var_dump($dataArray);
 
         /// prepare data and create a session variable
         foreach ($dataArray as $key => $value) {
-            //$value => field_contact_method=both hence $temp will hold array
-            //'field_contact_method'=>'both'
-            // $temp[0] = 'field_contact_method'
-            // $temp[1] = 'both'
             $temp = explode("=", $value);
             // changes field_contact_method to fieldContactMethod
             $postKey = lcfirst(implode('', array_map('ucfirst', explode('_', $temp[0])))); //$this->camelize($temp[0]);
@@ -913,15 +853,12 @@ EOD;
             $_SESSION['POST'][$postKey] = $postValue;
         }
 
-        //var_dump($_SESSION['POST']);
-
         // define uploads path
         $uploadDirRelative = '/upload/'.$itemObject->getTableName().'/user_id_' . $_SESSION['POST']['idUser'] . '/item_temp_id_' . $_SESSION['POST']['idTemp'] . '/';
         $uploadDir = dirname(__FILE__, 3) . $uploadDirRelative;
         $_SESSION['POST']['uploadDir'] = $uploadDirRelative;
         $_SESSION['POST']['uploadDirX'] = $uploadDir; ///for removing files
         $_SESSION['POST']['uploadDirRel'] = $uploadDirRelative;
-        // var_dump($uploadDir);
 
         // create an empty array
         // we will add to this array the files from directory below
@@ -956,7 +893,6 @@ EOD;
 
         // convert our array into json string
         $preloadedFiles = json_encode($preloadedFiles);
-        // var_dump($preloadedFiles);
         $_SESSION['POST']['preloadedFiles'] = $preloadedFiles;
     }
 }

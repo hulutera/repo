@@ -26,7 +26,6 @@ function commonHeaderCssMeta()
 {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
-	// echo '<link rel="shortcut icon" href="../../images/icons/ht.ico" />';
 	if (isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') {
 		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
 		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
@@ -49,7 +48,6 @@ function commonHeaderJs()
 		echo '<script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
-		// echo '<script async type="text/javascript" src="../../js/jquery1.11.1.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/bootstrap.min.js"></script>';
 		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
@@ -224,7 +222,6 @@ function logoText()
 	global $lang_url;
 	echo '<a   href="../../index.php' . $lang_url . '">';
 	echo '<div class ="logo">';
-	// echo '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>';
 	echo '<span>HULUTERA</span>';
 	echo '</div></a>';
 }
@@ -800,9 +797,6 @@ function sidelist($item)
 		}
 		___close_div_(1);
 		return;
-	} elseif ($item == "index") {
-		//echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['select city from map']. '</p>';
-		//return;
 	}
 	global $lang, $lang_url, $str_url;
 
@@ -832,7 +826,6 @@ function sidelist($item)
 			echo "class=\"active\"";
 		}
 		echo 'href="../../includes/template.item.php?type=' . $value . $str_url . '" style="text-align:center">';
-		//echo '<img src="../images/uploads/icons/' . $value . '.svg" style="width:50%;"/><br/>' . $GLOBALS['item_lang_arr'][$value];
 		echo '<img src="../images/icons/item_' . $value . '.png"/>';
 		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value] . '</p>';
 		echo '</a></li>';

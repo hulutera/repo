@@ -1398,14 +1398,11 @@ SQL;
     public function edit($data = null)
     {
         $this->preEdit($this, $data);
-        // var_dump($_POST);
-        // var_dump($_SESSION['POST']);
         ////------------------------------------------------------------------
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         echo '<form class="form-horizontal" action="../../includes//form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
-        // var_dump($_SESSION['POST']);
         $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
         $this->insertAllField($itemName, 6);
         echo '</form>';

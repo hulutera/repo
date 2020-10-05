@@ -167,11 +167,9 @@ class HtMainView
         $sql =  $this->_pItem->lastSql();
         $result = $this->_pItem->query($sql);
         $result->data_seek(0);
-        //$this->dumpData();
+
         while ($row = $result->fetch_assoc()) {
-            //echo '<div class="row items-board">';
             $this->showItemWithId($row);
-            //echo '</div>';
         }
     }
 

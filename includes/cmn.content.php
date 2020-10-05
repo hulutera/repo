@@ -764,7 +764,6 @@ function activityTable()
 			} else {
 				$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
 			}
-			//$itemObject = ObjectPool::getInstance()->getObjectWithId($item, "*", $status);
 			$result = $itemObject->getResultSet();
 			$result->data_seek(0);
 			while ($row = $result->fetch_assoc()) {
@@ -772,14 +771,12 @@ function activityTable()
 			}
 		}
 
-		//var_dump($itemRawDataToTable);
 		/// use the first row for the table header
 		$header = $itemRawDataToTable[0];
 		/// start : table header
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
 		echo '<thead><tr><th class="th-sm">    Action (Update user status)</th>';
-		// echo '<th class="th-sm">    Reported For</th>';
 
 		foreach ($header as $k1 => $v1) {
 			$k11 = explode("_", $k1);

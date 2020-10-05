@@ -24,23 +24,6 @@ if (isset($_SESSION['uID'])) {
 }
 
 
-/*
-function func_activate($item, $itmeId, $itemIdName, $uid, $itemStatus, $link, $time)
-{
-    global $connect;
-    $connect->query("UPDATE $item SET $itemStatus = 'active' WHERE $itemIdName = $itmeId");
-    $latest       = 'LatestTime';
-    $latestStatus = 'active';
-    $connect->query("INSERT INTO latestupdate (`$itemIdName`, `$latest`,status) VALUES('$itmeId', '$time','$latestStatus')");
-    $result = groupQueryfunction($link, $uid);
-    return $result;
-}
-
-
-
-
-
-
 $actiontype = isset($_GET['actionType']) ? $_GET['actionType'] : '';
 $itemid     = isset($_GET['itemid'])    ? $_GET['itemid']    : '';
 $itemtype   = isset($_GET['itemtype'])  ? $_GET['itemtype']  : '';
@@ -344,4 +327,3 @@ function groupItemCount($queryCondition, $uid)
     $numb = mysqli_num_rows($resultDeleted);
     return $numb;
 }
-*/

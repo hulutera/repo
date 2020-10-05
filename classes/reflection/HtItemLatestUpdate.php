@@ -328,7 +328,7 @@ class HtItemLatestUpdate extends MySqlRecord
         if ($this->isPkAutoIncrement) {
             $this->id = "";
         }
-        // $constants = get_defined_constants();
+
         $sql = <<< SQL
             INSERT INTO item_latest_update
             (id_item,field_item_name)

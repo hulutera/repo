@@ -78,7 +78,6 @@ if (isset($_GET['lan'])) {
 		</div>
 	</div>
 	<?php footerCode(); ?>
-	<?php //commonHeaderJs('../..');?>
 	<script async src="../js/custom.js" type="text/javascript"></script>
 	<script async src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
 	<script>
