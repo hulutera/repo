@@ -67,8 +67,6 @@ define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
 /**
  *  Includes
  */
-global $documnetRootPath;// = $_SERVER['DOCUMENT_ROOT'];
-
 spl_autoload_register(function ($className) {
     include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
 });
