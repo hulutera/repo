@@ -155,7 +155,7 @@ function swapmailback(id, email, item) {
             $(".sent_" + item + "-" + id).slideDown("fast");
             $.ajax({
                 url: "/includes/sendMessage.php?itemid=" + id + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + email + "&itemtype=" + item,
-                method: "GET",
+                method: "GET"
             });
             $("#name_" + item + "-" + id).val("");
             $("#email_" + item + "-" + id).val("");

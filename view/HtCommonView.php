@@ -199,8 +199,8 @@ class HtCommonView extends MySqlRecord
 	* */
     public function displayMailForm($uniqueId, $itemId, $itemName, $userId)
     {
-        $userObj = new HtUserAll(settype($userId, "Integer"));
-        $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
+        $userObj = new HtUserAll($userId);
+        $email = $userObj->getFieldEmail();
         echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\">";
         echo "<form class=\"msgcontainerRemove thumbnail\" method=\"post\">";
         echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
