@@ -237,24 +237,23 @@ class HtCommonView extends MySqlRecord
 	* */
     public function displayContactMethod($uniqueId, $itemObj, $itemName)
     {
-        $pImage = new ImgHandler;
         $contactType = $itemObj->getFieldContactMethod();
         $itemId = $itemObj->getId();
         $userId = $itemObj->getIdUser();
-        $userObj = new HtUserAll(settype($UserId, "Integer"));
-        $userName = $userObj->getFieldFirstName() ? $userObj->getFieldFirstName() : NULL;
-        $phone = $userObj->getFieldPhoneNr() ? $userObj->getFieldPhoneNr() : NULL;
-        $email = $userObj->getFieldEmail() ? $userObj->getFieldEmail() : NULL;
+        $userObj = new HtUserAll($userId);
+        $phone = $userObj->getFieldPhoneNr();
+        $email = $userObj->getFieldEmail();
+        $userName = $userObj->getFieldFirstName();
 
         echo "<div id=\"mail_reportRemove\" style=\"margin-top:20px\" class=\"contact_$uniqueId \">";
         echo '<div class="headerRemove"><p class="bg-success"><strong>' . $GLOBALS["lang"]["Contact method"] . '</strong></p></div>';
-        if ($contactType == "email" or $contactType == "both"){
+        if ($contactType == "email" or $contactType == "both") {
             if($email != "" or $email != NULL) {
                 echo "<div class=\"email\">
                 <p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
             }
         }
-        if ($contactType == "phone" or $contactType == "both"){
+        if ($contactType == "phone" or $contactType == "both") {
             if($phone != "" or $phone != NULL) {
                 echo "<div class=\"phone\">
                 <p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";

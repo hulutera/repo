@@ -30,6 +30,9 @@ $item = $_GET['type'];
 					<div class="widget-content properties-grid">
 
 						<?php
+						// A link to a single item
+						// ../includes/template.item.php?type=<item>&lan=en&status=active&id=<item-id>&function=single-item
+
 						$function = isset($_GET['function']) ? $_GET['function'] : null;
 						if (isset($function)) {
 							$id = $_GET['id'];

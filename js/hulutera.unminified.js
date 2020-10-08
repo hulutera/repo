@@ -13,44 +13,10 @@ function itemSelect() {
     })
 }
 
-function imgnumber(e, t, n, r) {
-    var i = "largeImg" + r + n;
-    var des = e + t;
+function imgnumber(dir, file_name, id, item) {
+    var i = "largeImg" + item + id;
+    var des = dir + file_name;
     document.getElementById(i).src = des;
-}
-
-function mouseOver(e, t, n, r, s) {
-    var i = "largeImg" + r + n;
-    var des = e + t;
-    $("#" + s)
-        .mouseover(function () {
-            document.getElementById(i).src = des;
-        });
-}
-
-function insertimg(e, t, n, r) {
-    var i = r.split(",");
-    var bottom = "bottomimg" + n + t;
-    var z = 0;
-    for (var s = 0; s < i.length; s++) {
-        j = s + 1;
-        z = i[s];
-        var q = 'thumbnail/thumbnail';
-        document.getElementById(bottom + j).src = e + q + z;
-    }
-}
-
-function func_moderatorActions(e, t, n, r, i, s) {
-    $(document).ready(function () {
-        $(".thumblist_" + t + n).hide();
-        $.ajax({
-            url: "/includes/moderatorActions.php?actionType=" + e + "&itemtype=" + t + "&itemid=" + n + "&time=" + r + "&user=" + i + "&link=" + s,
-            method: "GET",
-            success: function (e) {
-                $("#" + s).html(e)
-            }
-        })
-    })
 }
 
 function item_action(action_type, item, id) {
@@ -65,8 +31,7 @@ function item_action(action_type, item, id) {
 
 function swap(item, itemNumber) {
     $(document).ready(function () {
-        var i;
-        var thumbnailWidth;
+        var i, thumbnailWidth;
         thumbnailWidth = ($('#divCommon').width() / $('#divCommon').parent().width()) * 100;
 
         $.each(['car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'], function (index, value) {
@@ -153,82 +118,71 @@ function hidespec(item, id) {
     })
 }
 
-function swapmail(e, t) {
+function swapmail(id, item) {
     $(document).ready(function () {
-        $(".message_" + t + e).slideDown("fast");
-        $(".contact_" + t + e).slideUp("fast");
+        $(".message_" + item + "-" + id).slideDown("fast");
+        $(".contact_" + item +  "-" + id).slideUp("fast");
         $(".showbutton_hide").slideUp("fast")
     })
 }
 
-function closeMsgbox(e, t) {
+function closeMsgbox(id, item) {
     $(document).ready(function () {
-        $(".message_" + t + e).slideUp("fast");
-        $(".contact_" + t + e).slideDown("fast");
+        $(".message_" + item + "-" + id).slideUp("fast");
+        $(".contact_" + item + "-" + id).slideDown("fast");
         $(".showbutton_hide").slideDown("fast");
-        $(".error_1" + t + e).slideUp("fast");
-        $(".error_2" + t + e).slideUp("fast");
-        $("#name_" + t + e).removeAttr("style");
-        $("#email_" + t + e).removeAttr("style");
-        $("#description_" + t + e).removeAttr("style")
+        $(".error_1" + item + "-" + id).slideUp("fast");
+        $(".error_2" + item + "-" + id).slideUp("fast");
+        $("#name_" + item + "-" + id).removeAttr("style");
+        $("#email_" + item + "-" + id).removeAttr("style");
+        $("#description_" + item + "-" + id).removeAttr("style")
     })
 }
 
-function validateEmail(e) {
-    var t = e.indexOf("@");
-    var n = e.lastIndexOf(".");
-    if (t < 1 || n < t + 2 || n + 2 >= e.length) {
-        return false
-    }
-    return true
-}
-
-function swapmailback(e, t, n) {
+function swapmailback(id, email, item) {
     $(document).ready(function () {
-        var r = $("#msgcontainer1");
-        var i = $("#name_" + n + e).val();
-        var s = $("#email_" + n + e).val();
-        var o = $("#description_" + n + e).val();
+        var i = $("#name_" + item + "-" + id).val();
+        var s = $("#email_" + item + "-" + id).val();
+        var o = $("#description_" + item + "-" + id).val();
         if (i === "" || s === "" || o === "") {
-            $(".error_1" + n + e).slideDown("fast");
-            $("#name_" + n + e).css("border", "1px solid #D8000C");
-            $("#email_" + n + e).css("border", "1px solid #D8000C");
-            $("#description_" + n + e).css("border", "1px solid #D8000C");
+            $(".error_1" + item + "-" + id).slideDown("fast");
+            $("#name_" + item + "-" + id).css("border", "1px solid #D8000C");
+            $("#email_" + item + "-" + id).css("border", "1px solid #D8000C");
+            $("#description_" + item + "-" + id).css("border", "1px solid #D8000C");
         } else if (validateEmail(s)) {
-            $(".error_1" + n + e).slideUp("fast");
-            $(".message_" + n + e).slideUp("fast");
-            $(".sent_" + n + e).slideDown("fast");
+            $(".error_1" + item + "-" + id).slideUp("fast");
+            $(".message_" + item + "-" + id).slideUp("fast");
+            $(".sent_" + item + "-" + id).slideDown("fast");
             $.ajax({
-                url: "/includes/sendMessage.php?itemid=" + e + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + t + "&itemtype=" + n,
+                url: "/includes/sendMessage.php?itemid=" + id + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + email + "&itemtype=" + item,
                 method: "GET",
-                success: function (e) { }
             });
-            $("#name_" + n + e).val("");
-            $("#email_" + n + e).val("");
-            $("#description_" + n + e).val("");
-            $(".error_2" + n + e).slideUp("fast")
+            $("#name_" + item + "-" + id).val("");
+            $("#email_" + item + "-" + id).val("");
+            $("#description_" + item + "-" + id).val("");
+            $(".error_2" + item + "-" + id).slideUp("fast")
         } else {
-            $(".error_1" + n + e).slideUp("fast");
-            $(".error_2" + n + e).slideDown("fast");
-            $("#name_" + n + e).css("border", "1px solid #4F8A10");
-            $("#email_" + n + e).css({
+            $(".error_1" + item + "-" + id).slideUp("fast");
+            $(".error_2" + item + "-" + id).slideDown("fast");
+            $("#name_" + item + "-" + id).css("border", "1px solid #4F8A10");
+            $("#email_" + item + "-" + id).css({
                 "background-color": "#FFBABA",
                 border: "1px solid #D8000C"
             });
-            $("#description_" + n + e).css("border", "1px solid #4F8A10")
+            $("#description_" + item + "-" + id).css("border", "1px solid #4F8A10")
         }
     })
 }
 
-function swapmailclose(e, t) {
+function swapmailclose(id, item) {
     $(document).ready(function () {
-        $(".message_" + t + e).slideUp("fast");
-        $(".sent_" + t + e).slideUp("fast");
-        $(".contact_" + t + e).slideDown("fast");
+        $(".message_" + item + "-" + id).slideUp("fast");
+        $(".sent_" + item + "-" + id).slideUp("fast");
+        $(".contact_" + item + "-" + id).slideDown("fast");
         $(".showbutton_hide").slideDown("fast");
-        $("#name_" + t + e).removeAttr("style");
-        $("#email_" + t + e).removeAttr("style");
-        $("#description_" + t + e).removeAttr("style")
+        $("#name_" + item + "-" + id).removeAttr("style");
+        $("#email_" + item + "-" + id).removeAttr("style");
+        $("#description_" + item + "-" + id).removeAttr("style")
     })
 }
 
