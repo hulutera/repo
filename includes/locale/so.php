@@ -278,7 +278,9 @@ $lang = array(
     'item remove confirmation msg' => 'Miyaad go’aansatay inaad tirtirtid ogaysiiska aad soo-galisay si aad hantidan u xayaysiisid?',
     'yes' => 'Waan go’aansaday',
     'no' => 'Ma-go’aansan',
-    'N.B' => 'ogeysiis'
+    'N.B' => 'ogeysiis',
+    'msg from' => 'Fariin ka',
+    'item link' => 'Item link'
 
 );
 

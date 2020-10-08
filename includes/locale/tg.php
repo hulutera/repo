@@ -273,7 +273,9 @@ $lang = array(
     'item remove confirmation msg' => 'ንብረቶም ንምፍላጥ ዘእተዉዎ መዋዕውዒ  ንምጥፋእ ወሲኖም ድዮም?',
     'yes' => 'ወሲነ ኣለኩ ',
     'no' => 'አይወሰንኩን',
-    'N.B' => 'ምልክታ'
+    'N.B' => 'ምልክታ',
+    'msg from' => ' መልእኽቲ  ካብ',
+    'item link' => 'item link'
 
 );
 

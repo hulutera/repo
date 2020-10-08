@@ -317,7 +317,10 @@ $lang = array(
     'remove' => 'Remove',
     'item remove confirmation msg' => 'Have you decided to remove this Ad?',
     'yes' => 'Yes',
-    'no' => 'No'
+    'no' => 'No',
+    'N.B' => 'Notice',
+    'msg from' => 'Message from',
+    'item link' => 'Item Link'
 
 );
 

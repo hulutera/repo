@@ -281,7 +281,10 @@ $lang = array(
     'item remove confirmation msg' => 'Qaqbeenya keessan beeksisuuf galchitan balleessuuf murteesitani jirtu?',
     'yes' => 'Murteesen jira',
     'no' => 'Hin murteesine',
-    'N.B' => 'yaadachiisa'
+    'N.B' => 'yaadachiisa',
+    'msg from' => 'Ergaa irraa',
+    'item link' => 'Mi´a liinkii'
+
 );
 
 $city_lang_arr = array(
