@@ -1,15 +1,14 @@
 <?php
 global $str_url;
 
-
 if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype'])) {
-	$subject = "Message from " . $_GET['name'];
-	$header = "From :" . $_GET['uemail'];
+	$subject = "Message from " . $_GET['uemail'];
+	$header = "From: info@hulutera";
 	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item";
 	$msg = $_GET['msg'] . "\n";
 	$msg .= $item_link;
 
-	send_mail($_GET['email'], $subject, $msg, $header);
+	send_mail(isset($_GET['uemail']), $subject, $msg, $header);
 }
 
 function send_mail($to, $subject, $message, $header, $redirect_link = null) {

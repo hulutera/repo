@@ -145,13 +145,11 @@ function swapmailback(id, email, item) {
         var s = $("#email_" + item + "-" + id).val();
         var o = $("#description_" + item + "-" + id).val();
         if (i === "" || s === "" || o === "") {
-            alert("ha1");
             $(".error_1" + item + "-" + id).slideDown("fast");
             $("#name_" + item + "-" + id).css("border", "1px solid #D8000C");
             $("#email_" + item + "-" + id).css("border", "1px solid #D8000C");
             $("#description_" + item + "-" + id).css("border", "1px solid #D8000C");
         } else if (validateEmail(s)) {
-            alert("ha2");
             $(".error_1" + item + "-" + id).slideUp("fast");
             $(".message_" + item + "-" + id).slideUp("fast");
             $(".sent_" + item + "-" + id).slideDown("fast");
@@ -164,7 +162,6 @@ function swapmailback(id, email, item) {
             $("#description_" + item + "-" + id).val("");
             $(".error_2" + item + "-" + id).slideUp("fast")
         } else {
-            alert("ha3");
             $(".error_1" + item + "-" + id).slideUp("fast");
             $(".error_2" + item + "-" + id).slideDown("fast");
             $("#name_" + item + "-" + id).css("border", "1px solid #4F8A10");
