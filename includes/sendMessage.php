@@ -8,7 +8,7 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 	$msg = $_GET['msg'] . "\n";
 	$msg .= $item_link;
 
-	send_mail(isset($_GET['uemail']), $subject, $msg, $header);
+	send_mail($_GET['uemail'], $subject, $msg, $header);
 }
 
 function send_mail($to, $subject, $message, $header, $redirect_link = null) {
