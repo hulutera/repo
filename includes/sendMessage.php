@@ -1,6 +1,8 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/locale/locale.php';
+require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+
 
 $str_url = isset($_GET['lan']) ? $_GET['lan'] : 'en';
 
