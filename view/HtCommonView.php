@@ -201,6 +201,7 @@ class HtCommonView extends MySqlRecord
     {
         $userObj = new HtUserAll($userId);
         $email = $userObj->getFieldEmail();
+        $language = isset($_GET['lan']) ? $_GET['lan'] : 'en';
         echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\">";
         echo "<form class=\"msgcontainerRemove thumbnail\" method=\"post\">";
         echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
@@ -224,7 +225,7 @@ class HtCommonView extends MySqlRecord
         echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="' . $GLOBALS['lang']['Enter your message'] . '"></textarea>';
         echo "</div>"; //end_field
         echo "<div class=\"messageRouter1 form-group\">";
-        echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$email','$itemName')\" value=\"" . $GLOBALS['lang']['Send'] . "\" />";
+        echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$email','$itemName', '$language')\" value=\"" . $GLOBALS['lang']['Send'] . "\" />";
         echo "<input class=\"closeRemove btn btn-danger btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"closeMsgbox($itemId,'$itemName')\" value=\"" . $GLOBALS['lang']['close'] . "\" />";
         echo "</div>";
         echo "</div>"; //end_msgform

@@ -139,7 +139,7 @@ function closeMsgbox(id, item) {
     })
 }
 
-function swapmailback(id, email, item) {
+function swapmailback(id, email, item, language) {
     $(document).ready(function () {
         var i = $("#name_" + item + "-" + id).val();
         var s = $("#email_" + item + "-" + id).val();
@@ -154,7 +154,7 @@ function swapmailback(id, email, item) {
             $(".message_" + item + "-" + id).slideUp("fast");
             $(".sent_" + item + "-" + id).slideDown("fast");
             $.ajax({
-                url: "/includes/sendMessage.php?itemid=" + id + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + email + "&itemtype=" + item,
+                url: "/includes/sendMessage.php?itemid=" + id + "&name=" + i + "&email=" + s + "&msg=" + o + "&uemail=" + email + "&itemtype=" + item + "&lan=" + language,
                 method: "GET"
             });
             $("#name_" + item + "-" + id).val("");

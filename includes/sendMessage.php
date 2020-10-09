@@ -4,12 +4,10 @@ require_once $documnetRootPath . '/includes/locale/locale.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 
 
-$str_url = isset($_GET['lan']) ? $_GET['lan'] : 'en';
-
-if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype'])) {
+if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype']) && isset($_GET['lan'])) {
 	$subject = $GLOBALS['lang']['msg from'] . " " . $_GET['name'];
 	$header = "From: nonreply@hulutera.com";
-	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item&lan=" . $str_url;
+	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item&lan=" . $_GET['lan'];
 	$msg = $_GET['msg'] . "\n";
 	$msg .= $GLOBALS['lang']['Full Name'] . ": " . $_GET['name'] . "\n";
 	$msg .= $GLOBALS['lang']['Email'] . ": " . $_GET['email'] . "\n";
@@ -21,7 +19,6 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 function send_mail($to, $subject, $message, $header, $redirect_link = null) {
 
 	// send email to the customer
-	$msg = $message;
 	$msg = wordwrap($message, 70, "\n");
 
 	// mail("To:email", "Subject", "Message", "Header:From")
