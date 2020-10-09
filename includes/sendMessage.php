@@ -1,10 +1,13 @@
 <?php
-global $str_url;
+$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
+require_once $documnetRootPath . '/includes/locale/locale.php';
+
+$str_url = isset($_GET['lan']) ? $_GET['lan'] : 'en';
 
 if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype'])) {
 	$subject = $GLOBALS['lang']['msg from'] . " " . $_GET['name'];
 	$header = "From: nonreply@hulutera.com";
-	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item" . $str_url;
+	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item&lan=" . $str_url;
 	$msg = $_GET['msg'] . "\n";
 	$msg .= $GLOBALS['lang']['Full Name'] . ": " . $_GET['name'] . "\n";
 	$msg .= $GLOBALS['lang']['Email'] . ": " . $_GET['email'] . "\n";
