@@ -270,7 +270,6 @@ class HtMainView
             if ($row['id_user'] == $user->getId()) {
                 echo '<div class="' . $uniqueId .'-rem-msg col-xs-12 col-md-12 rem-action-div" style="border:1px solid black;color:color">';
                     echo '<p style="color:red">'. $GLOBALS['lang']['item remove confirmation msg'] . '<p>';
-                    echo "<a href=\"../includes/mypage.php". $lang_url ."\"><button type=\"button\" class=\"btn btn-primary\" onclick=\"item_action('delete', '$itemName', '$id')\">" . $GLOBALS['lang']['yes'] . "</button></a>";
                     echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-rem-msg', '". $uniqueId."-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button></a>";
                 echo '</div>';
                 echo '<div class="' . $uniqueId .'-myItem-action">';

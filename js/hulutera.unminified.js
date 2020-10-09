@@ -19,16 +19,6 @@ function imgnumber(dir, file_name, id, item) {
     document.getElementById(i).src = des;
 }
 
-function item_action(action_type, item, id) {
-    $(document).ready(function () {
-        $.ajax({
-            url: "/includes/action.on.item.php?actionType=" + action_type + "&itemtype=" + item + "&itemid=" + id,
-            method: "GET"
-        });
-        return false
-    })
-}
-
 function swap(item, itemNumber) {
     $(document).ready(function () {
         var i, thumbnailWidth;
