@@ -280,7 +280,8 @@ $lang = array(
     'no' => 'Ma-go’aansan',
     'N.B' => 'ogeysiis',
     'msg from' => 'Fariin ka',
-    'item link' => 'Item link'
+    'item link' => 'Item link',
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።' //needs update
 
 );
 

@@ -320,7 +320,8 @@ $lang = array(
     'no' => 'No',
     'N.B' => 'Notice',
     'msg from' => 'Message from',
-    'item link' => 'Item Link'
+    'item link' => 'Item Link',
+    'mail introduction' => 'Hi! We at Hulutera.com appreciate your engagement with our website. One user showed an interest in your item and sent you a message. You can find the user information below.'
 
 );
 

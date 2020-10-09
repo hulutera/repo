@@ -8,9 +8,11 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 	$subject = $GLOBALS['lang']['msg from'] . " " . $_GET['name'];
 	$header = "From: nonreply@hulutera.com";
 	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item&lan=" . $_GET['lan'];
-	$msg = $_GET['msg'] . "\n";
+	$msg = $GLOBALS['lang']['mail introduction'] . "\n\n";
+	$msg .= "Hulutera.com" . "\n\n";
 	$msg .= $GLOBALS['lang']['Full Name'] . ": " . $_GET['name'] . "\n";
 	$msg .= $GLOBALS['lang']['Email'] . ": " . $_GET['email'] . "\n";
+	$msg .= $_GET['msg'] . "\n";
 	$msg .= $GLOBALS['lang']['item link'] . ": " . $item_link;
 
 	send_mail($_GET['uemail'], $subject, $msg, $header);
@@ -19,10 +21,10 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 function send_mail($to, $subject, $message, $header, $redirect_link = null) {
 
 	// send email to the customer
-	$msg = wordwrap($message, 70, "\n");
+	$message = wordwrap($message, 70, "\n");
 
 	// mail("To:email", "Subject", "Message", "Header:From")
-	$send = mail($to, $subject, $msg, $header);
+	$send = mail($to, $subject, $message, $header);
 
 	if(!$send) {
 		die("Sending Email Failed. Please Contact Site Admin!");

@@ -275,7 +275,8 @@ $lang = array(
     'no' => 'አይወሰንኩን',
     'N.B' => 'ምልክታ',
     'msg from' => ' መልእኽቲ  ካብ',
-    'item link' => 'item link'
+    'item link' => 'item link',
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።' //needs update
 
 );
 
