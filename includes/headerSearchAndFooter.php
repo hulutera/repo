@@ -1,10 +1,11 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+	ob_start();
+}
+
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/db/database.class.php';
-require_once $documnetRootPath . '/includes/locale/locale.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
-
-
+require_once $documnetRootPath . '/classes/reflection/class.config.php';
 if (isset($_GET['lan'])) {
 	global $language;
 	$language = $_GET['lan'];
@@ -21,6 +22,10 @@ if (isset($_GET['lan'])) {
 	$str_url = "&lan=en";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/locale/locale.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/global.variable.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/sendMessage.php';
+
 
 function commonHeaderCssMeta()
 {
@@ -857,7 +862,8 @@ function footerCode()
         <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=terms' . $str_url . '">' . $lang['Terms and Conditions'] . '</a></p>
         <p style="margin-bottom:5px"><a   href="../../includes/template.proxy.php?type=privacy' . $str_url . '">' . $lang['Privacy Policy'] . '</a></p>
         <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
-        <p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
+		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
+		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=about' . $str_url . '" target="_blank">' . $lang['About Us'] . '</a></p>
         </div>';
 	echo '<div id="followUs_fo" >
           <p class="h4">' . $lang['FOLLOW US'] . '</p>

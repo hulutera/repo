@@ -1,10 +1,5 @@
 <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-	session_start();
-}
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/common.inc.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

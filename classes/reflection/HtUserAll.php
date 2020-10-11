@@ -2,7 +2,6 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 require_once  $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
-header('Content-Type: text/html; charset=utf-8');
 
 /**
  * Class HtUserAll

@@ -77,9 +77,8 @@ class HtMainView
         $number = 0;
         if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
-            $globalVarObj = new HtGlobal();
-            $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
-            $this->_pItem->runQuery($start, $globalVarObj::get('itemPerPage'));
+            $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
+            $this->_pItem->runQuery($start, $GLOBALS['general']['itemPerPage']);
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
@@ -131,8 +130,8 @@ class HtMainView
         $rows = $this->_pItem->runQuery($condition);
         if ($rows > 0) {
             $calculatePageArray = calculatePage($rows);
-            $start = ($calculatePageArray[0] - 1) * HtGlobal::get('itemPerPage');
-            $res = $this->_pItem->runQuery($condition, $start, HtGlobal::get('itemPerPage'));
+            $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
+            $res = $this->_pItem->runQuery($condition, $start, $GLOBALS['general']['itemPerPage']);
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
             $number = 0;
@@ -361,9 +360,8 @@ class HtMainView
         $searchWordSanitized = $_GET['search_text'];
         $city = $_GET['cities'];
         $item = $_GET['item'];
-        $globalVarObj = new HtGlobal();
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-        $itemstart = ($page - 1) * $globalVarObj::get('itemPerPage');
+        $itemstart = ($page - 1) * $GLOBALS['general']['itemPerPage'];
 
         // To set value for item
         if ($item == "All" or $item == "000") {
@@ -409,11 +407,10 @@ class HtMainView
             array_reverse($elements_array);
 
             $calculatePageArray = calculatePage($rows);
-            $globalVarObj = new HtGlobal();
-            $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
+            $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
 
             // fetched elements per page
-            $elm_rows = array_slice($elements_array,  $start,  $globalVarObj::get('itemPerPage'));
+            $elm_rows = array_slice($elements_array,  $start,  $GLOBALS['general']['itemPerPage']);
 
             echo '<div class="row items-board">';
             $number = 0;
@@ -460,9 +457,8 @@ class HtMainView
                 $this->_pItem = $value;
                 $this->_runnerName = $key;
                 $calculatePageArray = calculatePage($rows);
-                $globalVarObj = new HtGlobal();
-                $start = ($calculatePageArray[0] - 1) * $globalVarObj::get('itemPerPage');
-                $res = $value->searchQuery($start, $globalVarObj::get('itemPerPage'), "single-item");
+                $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
+                $res = $value->searchQuery($start, $GLOBALS['general']['itemPerPage'], "single-item");
                 $result = $value->getResultSet();
                 echo '<div class="row items-board">';
                 while ($row = $result->fetch_assoc()) {

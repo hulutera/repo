@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Defines the constants for MySQL database connection parameters used by a Hulutera.
  */
@@ -68,11 +69,18 @@ define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
  *  Includes
  */
 spl_autoload_register(function ($className) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
-});
-spl_autoload_register(function ($className) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
-});
-spl_autoload_register(function ($className) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.php';
+    $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+    if (!file_exists($fileName)) {
+        $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.' . $className . '.php';
+        if (!file_exists($fileName)) {
+            $fileName = $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
+            if (!file_exists($fileName)) {
+                $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.class.php';
+                if (!file_exists($fileName)) {
+                    return;
+                }
+            }
+        }
+    }
+    include_once ($fileName);
 });

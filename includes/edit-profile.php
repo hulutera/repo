@@ -1,12 +1,8 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
-session_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
-require_once $documnetRootPath . '/includes/validate.php';
 global $lang, $lang_url, $str_url;
-
 if (!isset($_SESSION['uID'])) {
 	ob_start();
 	header('Location:../index.php' . $lang_url);

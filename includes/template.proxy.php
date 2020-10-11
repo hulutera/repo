@@ -1,9 +1,6 @@
 <?php
-/*Unset the session value*/
-session_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/includes/cmn.proxy.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/cmn.proxy.php';
 
 //get item name from URL
 $proxyType = $_GET['type'];

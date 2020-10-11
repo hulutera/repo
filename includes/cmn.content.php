@@ -1,16 +1,7 @@
 <?php
 ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/objectPool.class.php';
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/db/database.class.php';
-
-require_once $documnetRootPath . '/classes/reflection/HtItemAll.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
-require_once $documnetRootPath . '/classes/reflection/HtCategoryAbuse.php';
-require_once $documnetRootPath . '/view/HtMainView.php';
-require_once $documnetRootPath . '/classes/reflection/MySqlRecord.php';
-require_once $documnetRootPath . '/classes/global.variable.class.php';
 require_once $documnetRootPath . '/includes/sendMessage.php';
 
 function countRow($status, $id)
@@ -87,13 +78,12 @@ function userContent()
 	}
 
 	accountLinks();
-	$globalVarObj = new HtGlobal();
 	$status = $_GET['status'];
 	$id = $_GET['id'];
 	$id  = (isset($id)) ? $id : '';
 	$sum = countRow($status, $id);
 	if ($sum >= 1) {
-		$itemPerPage = $globalVarObj::get("itemPerPage");
+		$itemPerPage = $GLOBALS['general']['itemPerPage'];
 		$totpage = ceil($sum / $itemPerPage);
 		$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 		if ($page > $totpage)
@@ -101,7 +91,7 @@ function userContent()
 		elseif ($page < 1)
 			$page = 1;
 
-		$itemstart = $globalVarObj::get('itemPerPage') * ($page - 1);
+		$itemstart = $GLOBALS['general']['itemPerPage'] * ($page - 1);
 
 		$result = maxQuery($status, $id, $itemstart);
 
@@ -136,7 +126,7 @@ function userContent()
 	} elseif ($sum <= 0) {
 		echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<div id="spanMainColumnXRemove" style="color: red">';
-        echo $globalVarObj::get('noItemToShow');
+        echo $GLOBALS['general']['noItemToShow'];
         echo '</div></div>';
 
 	}

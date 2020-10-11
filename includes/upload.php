@@ -1,7 +1,5 @@
 <?php
-session_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 global $lang;
 
 if (isset($_GET['lan'])) {

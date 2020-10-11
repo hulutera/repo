@@ -1,12 +1,5 @@
 <?php
-session_start();
-//$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once 'common.inc.php';
-error_reporting(0);
-ini_set('display_errors', 0);
-
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 
 //get item name from URL
 if (!isset($_GET['type'])) {

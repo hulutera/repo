@@ -1,13 +1,8 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/cmn.class.php';
-require_once $documnetRootPath . '/db/database.class.php';
-require_once $documnetRootPath . '/classes/objectPool.class.php';
-require_once $documnetRootPath . '/classes/global.variable.class.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
 require_once $documnetRootPath . '/includes/pagination.php';
-
 require_once $documnetRootPath . '/test/backtracer.php';
+
 class HtCommonView extends MySqlRecord
 {
 

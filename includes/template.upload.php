@@ -1,9 +1,6 @@
 <?php
-session_start();
-ob_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/common.inc.php';
-require_once $documnetRootPath . '/includes/validate.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 if (isset($_GET['lan'])) {
 	$lang_sw = "&lan=" . $_GET['lan'];
 	$lang_url =  "?&lan=" . $_GET['lan'];

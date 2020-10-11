@@ -1,10 +1,5 @@
 <?php
-$documnetRootPath = $_SERVER["DOCUMENT_ROOT"];
-require_once $documnetRootPath . "/db/database.class.php";
-require_once $documnetRootPath . '/classes/objectPool.class.php';
-require_once $documnetRootPath . "/classes/reflection/HtUtilAbuse.php";
-require_once $documnetRootPath . "/classes/reflection/HtCategoryAbuse.php";
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 
 if (!isset($_SESSION["uID"]) || !(isset($_GET["itemid"]) && isset($_GET["itemtype"]) && isset($_GET["selected"]))) {
 	header("Location: ../index.php");

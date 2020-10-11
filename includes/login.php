@@ -1,11 +1,6 @@
 <?php
-session_start();
-ob_flush();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';
-require_once $documnetRootPath . '/includes/validate.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
 ?>
 <!DOCTYPE html>

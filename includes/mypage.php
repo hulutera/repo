@@ -1,9 +1,5 @@
 <?php
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/classes/cmn.class.php';
-require_once $documnetRootPath . '/db/database.class.php';
-
+require_once $_SERVER['DOCUMENT_ROOT']. '/includes/headerSearchAndFooter.php';
 
 global $connect, $lang, $str_url, $lang_url;
 if (!isset($_SESSION['uID'])) {

@@ -1,15 +1,6 @@
 <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-    ob_start();
-}
-header("Content-Type: text/html;charset=UTF-8");
-
-
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/objectPool.class.php';
-require_once $documnetRootPath . '/includes/validate.php';
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
 
 $function = isset($_GET['function']) ? $_GET['function'] : '';

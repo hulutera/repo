@@ -1,10 +1,5 @@
 <?php
-
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-require_once $documnetRootPath . '/includes/cmn.proxy.php';
-require_once $documnetRootPath . '/classes/reflection/HtUtilContactUs.php';
-require_once $documnetRootPath . '/includes/sendMessage.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 
 if (isset($_GET['lan'])) {
 	$lang_url = "?&lan=" . $_GET['lan'];
@@ -20,43 +15,33 @@ function aboutUs()
 	} else {
 		$str_url = "";
 	}
-	echo '
-			<div id="aboutUs">
-			<p class="aboutus" style="font-weight:bold">' . $lang['About Us'] . '</p>
-			<p>
-			<p class="aboutus">
-			' . $lang['about us page paragraph1 text'] . '
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=car' . $str_url . '">' . $lang['car'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=house' . $str_url . '">' . $lang['house'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=phone' . $str_url . '">' . $lang['phone'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=computer' . $str_url . '">' . $lang['computer'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=electronics' . $str_url . '">' . $lang['electronics'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=household' . $str_url . '">' . $lang['household'] . '</a></li>
-			<li class="aboutUsli"><a   href="../includes/template.item.php?type=others' . $str_url . '">' . $lang['others'] . '</a></li>
-			</p>
-			<br>
-			<p class="aboutus">
-			' . $lang['hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'] . '
-			</p>
-			<br>
-			<p class="aboutus">
-			' . $lang['You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.'] . '
-			</p>
-			<br>
-			<p class="aboutus">' . $lang['We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'] . '
-			<li class="aboutUsli">•' . $lang['For any compliant , improvements or other issues you can use'] . ' <a   href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></li>
-			<li class="aboutUsli">•' . $lang['For inappropriate items you can “Report” button'] . '</li>
-			<li class="aboutUsli">•' . $lang['If you need help, click'] . ' <a   href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a> </li>
-			</p>
-
-			<br>
-			<p class="aboutus">
-			' . $lang['Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'] . '
-			</p>
-			<p class="aboutus">' . $lang['hulutera Admin'] . '</p>
-			</p>
-			</div>
-			';
+	echo '<div class="row bg-info">';
+	echo '<div class="col-md-12 col-sm-12 col-xs-12" style="width:80%;margin:2% 10% 0 10%;text-align:left">';
+	$longKey0 = 'about us page paragraph1 text';
+	$longKey1 = 'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.';
+	$longKey2 = 'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.';
+	$longKey3 = 'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,';
+	$longKey4 = 'For any compliant , improvements or other issues you can use';
+	$longKey5 = 'For inappropriate items you can “Report” button';
+	$longKey6 = 'If you need help, click';
+	$longKey7 = 'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!';
+	echo '<p class="h3 text-info" style="text-align:center">' . $lang['About Us'] . '</p>';
+	echo '<p class="h4">' . $lang[$longKey0] .'</p>' ;
+	echo '	<a   href="../includes/template.item.php?type=car' . $str_url . '">' . $GLOBALS['item_lang_arr']['car'] . '</a>,
+	<a   href="../includes/template.item.php?type=house' . $str_url . '">' . $GLOBALS['item_lang_arr']['house'] . '</a>,
+	<a   href="../includes/template.item.php?type=phone' . $str_url . '">' . $GLOBALS['item_lang_arr']['phone'] . '</a>,
+	<a   href="../includes/template.item.php?type=computer' . $str_url . '">' . $GLOBALS['item_lang_arr']['computer'] . '</a>,
+	<a   href="../includes/template.item.php?type=electronics' . $str_url . '">' . $GLOBALS['item_lang_arr']['electronic'] . '</a>,
+	<a   href="../includes/template.item.php?type=household' . $str_url . '">' . $GLOBALS['item_lang_arr']['household'] . '</a>,
+	<a   href="../includes/template.item.php?type=others' . $str_url . '">' . $GLOBALS['item_lang_arr']['other'] . '</a>';
+	echo '<p class="h4">'. $lang[$longKey1] .'</p>';
+	echo '<p class="h4">'. $lang[$longKey2] .'</p>';
+	echo '<p class="h4">'. $lang[$longKey3] .'</p>';
+	echo '<p class="h4">'. $lang[$longKey4] .' <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></p>';
+	echo '<p class="h4">'. $lang[$longKey5] .'</p>';
+	echo '<p class="h4">'. $lang[$longKey6] .' <a   href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a></p>';
+	echo '<p class="h4">'. $lang[$longKey7] .'</p>';
+	echo '</div></div>';
 }
 
 function termAndConditions()

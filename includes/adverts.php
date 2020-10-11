@@ -1,9 +1,5 @@
 <?php
-session_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/common.inc.php';
-
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 //get item name from URL
 if (!isset($_GET['search_text']) or !isset($_GET['lan']) or !isset($_GET['cities']) or !isset($_GET['item']) or !array_key_exists($_GET['item'], $GLOBALS['item_lang_arr'])) {
 	header('Location: ../../index.php');

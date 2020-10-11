@@ -1,11 +1,6 @@
 <?php
-session_start();
-ob_start();
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/class.fileuploader.php';
-require_once $documnetRootPath . '/classes/objectPool.class.php';
-require_once $documnetRootPath . '/includes/validate.php';
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
 $err = [];
 $itemName = str_replace("item_", "", $_GET['table']);

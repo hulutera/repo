@@ -1,8 +1,5 @@
 <?php
-$documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/includes/locale/locale.php';
-require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 
 if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype']) && isset($_GET['lan'])) {
 	$subject = $GLOBALS['lang']['msg from'] . " " . $_GET['name'];
