@@ -46,8 +46,8 @@ $lang = array(
     'Join to hulutera' => 'huluteraን ይቀላቀሉ',
     'submit' => 'ይላኩ ፣ ያስገቡ ፣ ይጫኑ ',
     //Private Policy related
-    'privacy policy paragraph1 text' => 'የግልዎን መረጃ አንሸጥም ፣ አንበትንም እንዲሁም ከእርስዎ ፍቃድ ውጪ ለሌላ አካል አናጋራም ሆኖም ግን በህግ ከተጠየቅን የማሳየ ግዴት ይኖርብናል።',
-    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'በዚህ ግላዊ መርህ ላይ ተጠቃሚው በሁሉተራ ገፅ ላይ ያስገባውን ማንኛውንም ኢንፎርሜሽን እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
+    'privacy policy paragraph1 text' => 'በዚህ ግላዊ መርህ ላይ ተጠቃሚው በሁሉተራ ገፅ ላይ ያስገባውን ማንኛውንም ኢንፎርሜሽን እንዴት እንደምንጠቀምበት እና እንደምንጠብቀው እንገልጻለን። ሁሉተራ የተጠቃሚውን ግላዊ መብት ለመጠበቅ በርትቶ ይሰራል። ድሕረ ገጻችንን ሲጠቀሙ ማን እንደሆኑ ለመለየት ስለ ማንነቶ መረጃ ማስገባት ሲኖርቦ ፤ መረጃዎትም በዚህ ግላዊ መርህ መሰረት የተጠበቀ ይሆናል። ሁሉተራ ይህንን መርህ ከጊዜ ወደ ጊዜ ለተጠቃሚዎቹ በማሳወቅ ሊቀይር ይችላል።',
+    'privacy policy paragraph2 text' => 'የግልዎን መረጃ አንሸጥም ፣ አንበትንም እንዲሁም ከእርስዎ ፍቃድ ውጪ ለሌላ አካል አናጋራም ሆኖም ግን በህግ ከተጠየቅን የማሳየ ግዴት ይኖርብናል።',
     'What we collect' => 'እንዲያስገቡ የምንጠይቆት',
     'Your name' => 'ስም',
     'Contact Information including email address' => 'የሚገኙበት መረጃ ማለትም ስልክ ፣ ኢሜይል ወዘተ...',
@@ -75,17 +75,17 @@ $lang = array(
     'about us page paragraph1 text'
     =>
     'ሁሉተራ ያለክፍያ የሚጠቀሙት የመገበያያ ድሕረገፅ ሲሆን በድሕረገፁ ላይ የተላያዩ ንብረቶችን መግዛት ፣ መሸጥ እና ማከራየት ይችላሉ። በድሕረገፁ ላይ ጥቅም ላይ የዋሉም እንዲሁም ያልዋሉም ንብረቶችን ያገኛሉ። ሁሉተራ በዓሁኑ ሰዓት ለኢትዮጵያ ብቻ ቢሆንም ለወደፊቱ በከፍተኛው የመስፋፋት አላማ አነግቦ እየተንቀሳቀሰ ይገኛል። ሁሉተራ ላይ ሰፊ የሆነ የግብይይት አማራጮች ይገኛሉ ከእነሱም መካከል የሚከተሉት ዋነኞቹ ናቸው።',
-    'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
+    'aboutus page paragraph2 text'
     =>
     'ሁሉተራ የህብረተሰባችንን ፍላጎት እንዲያሟላ በማሰብ የተሰራ ድሕረገፅ ነው። ለመጠቀም ቀለል ያለ ሲሆን በፈለጉት መልኩ ሊጠቀሙበት ይችላሉ። ንብረት ለማስገባት ካሰቡ በቅድሚያ መመዝገብ ሲኖሩቦት ፤ ምዝገባውንም በቀላሉ ማከናወን ይችላሉ። ንብረት ለማስገባትም ሆነ ያስገቡትን ንብረት ለመቆጣጠር በጣም ቀላል ነው። ሰፋ ያለ የአጠቃቀም ዝርዝር ካስፈለግዎ መረጃ የሚለው ውስጥ ያገኛሉ።',
-    'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.'
+    'aboutus page paragraph3 text'
     =>
     'በአሁን ጊዜ ድሕረገፁን በእግሊዝኛ ፣ በአማርኛ ፣ በኦሮምኛ ፣ በትግርኛ ፣ በሶማልኛ ፣ በሲዳምኛ ፣ በጉራግኛ እና በወላይትኛ ሊያዩት የሚችሉ ቢሆንም ለወደፊቱ የተለያዩ ብሔረሰቦች ቋንቋዎችን እናካትታለን። ድሕረገፁን በሁሉም ክልልሎች ውስጥ የሚኖሩ ሰዎች ሊጠቀሙበት ይችላሉ። ለባለንብረቱ መልእክት በመላክ ወይም ስልክ በመደወል ስለንብረቱ ያለማንም ጣልቃ ገብነት መወያየት ይችላሉ።',
-    'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'
+    'aboutus page paragraph4 text'
     =>
     'ሁሉተራን ላስተዋወቁት ንብቶች መረጃ ደህንነት የተቻለውን ሁሉ ያደርጋል።ድሕረ ገፁን በተመለከተ ማናቸውንም አይነቶች ጥያቄዎች ሊጠይቁን ይችላሉ፤ ጥያቄዎቹንም  በፍጥነት እንመልሳለን፣ ለዚህ እንዲረዳን',
     'For any compliant , improvements or other issues you can use' => 'ለቅሬታ ፣ ለማሻሻያ ሃሳቦች እንዲሁም ሌሎች ጥቆማዎች ይህንን ይጫኑ',
-    'For inappropriate items you can “Report” button' => 'ለአላግባብ ለገቡ ምስሎች እና ገለፃዎች "ሪፖርት" የሚለውን ተጭነው ይግለፁ',
+    'For inappropriate items you can Report' => 'ለአላግባብ ለገቡ ምስሎች እና ገለፃዎች "ሪፖርት" የሚለውን ተጭነው ይግለፁ',
     'If you need help, click' => 'ተጨማሪ መረጃ ካስፈለግዎ የሚከተለውን ይጫኑ',
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'
     =>
@@ -244,7 +244,7 @@ $lang = array(
     'My Items' => 'የኔ ንብረቶች',
     //Upload prompt related
     'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a   href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
-    'to main page prompt msg' => '<a   href="../index.php' . $lang_url . '">ወደ ዋና ገጽ ... </a>',
+    'to main page prompt msg' => '<a   href="../index.php' . $lang_url . '">ወደ ፊት ገጽ ... </a>',
     'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a   href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     'password change success' => 'የምስጢር ቃልዎ በጥሩ ሁኔታ ተቀይሯል።',
@@ -268,7 +268,7 @@ $lang = array(
     'pass-recovery success' => 'አዲስ የምስጢር ቃል በኢሜይሎት ልከንልዎታል።እባክዎን ኢሜይሉ ላይ ያለውን መመሪያ ይከተሉ። አዲሱን የምስጢር ቃል አካውንቶ ውስጥ በመግባት መቀየር ይችላሉ።',
     'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a   href="../includes/login.php">መግባት</a> ይችላሉ።</br> የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
     'registration succeded message' => 'ስለተመዘገቡ እናመሰግናለን። መመዝገብዎን የሚያመለክት ኢሜይል ልከንልዎታል። እባክዎን የላክንልዎት ኢሜይል ላይ ያለውን ሊንክ ተጭነው አካውንትዎን ገቢራዊ ያድርጉ።',
-    'email adress or username has already used' => 'የመጠቀምያው ስም ወይም ኢሜይሉ ተይዟል፣ ሌላ ይሞክሩ።',
+    'email adress or username has already used' => 'የመጠቀምያው ስሙ ወይም ኢሜይሉ ተይዟል፣ ሌላ ይሞክሩ።',
     'password change success' => 'የሚስጥር ቃሉ በተሳካ ሁኔታ ተቀይሯል።',
     'contact-us succeed message' => 'እኛን ለማግኝት ጥረት ስላደረጉ እናመሰግናለን። መልክትዎ ምላሽ ካስፈለገው በተቻለን መጠን ከ 1 - 2 የስራ ቀናት ውስጥ መልስ እንሰጣለን።',
     'activation key expired' => 'አካውንቶን ተግባራዊ ሳያደርጉ በመቆየትዎ ምዝገባው ጊዜ አልፎበታል። ስለዚህ በድጋሚ ይመዝገቡ።',
@@ -308,7 +308,7 @@ $lang = array(
     'N.B' => 'ማሳሰቢያ',
     'msg from' => 'መልዕክት ከ',
     'item link' => 'የንብረቱ መሲብ',
-    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።'
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል፣ መልዕክቱን ከታች ያገኛሉ።'
 
 );
 

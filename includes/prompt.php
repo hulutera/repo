@@ -49,25 +49,6 @@ function createMessage($type)
 			case 11:
 				$message = $GLOBALS['lang']['activation key expired'];
 				break;
-			case 12:
-				$message = 'This e-mail has already been taken before you activate your account.
-						You may <a   href="../includes/register.php"> Register!</a> again!  ';
-				break;
-
-			case 13:
-				$message = ' You need to login to upload an item.
-						There is a user registered with this e-mail. If this is your account please
-						<a   href="../includes/login.php">Log In!</a>
-						Once you are logged in you can proceed to upload your item!';
-				break;
-			case 14:
-				$message = 'Your password has already been activated. You can
-						<a   href="../includes/login.php">Log In</a> now!';
-				break;
-			case 15:
-				$message = 'Your account has already been activated. You can
-						<a   href="../includes/login.php">Log In</a> now!';
-				break;
 			case 16:
 				$message = $GLOBALS['lang']['account termination message'];
 				break;
@@ -115,11 +96,11 @@ function createMessage($type)
 	<?php
 	headerAndSearchCode(""); ?>
 	<div id="outer">
-		<div class="alert alert-success" id="inner">
-			<strong><?php createMessage($type); ?></strong>
-		</div>
-		<div class="alert alert-info" id="inner">
-			<strong><?php createMessage(23); ?></strong>
+		<div class="alert alert-success" id="inner" style="font-size:17px;width:35%">
+			<?php createMessage($type); ?>
+		</div> </br>
+		<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
+			<?php createMessage(23); ?>
 		</div>
 	</div>
 	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>

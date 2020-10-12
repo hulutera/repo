@@ -46,8 +46,8 @@ $lang = array(
     'Join to hulutera' => 'Join to hulutera',
     'submit' => 'Submit',
     //Private Policy related
-    'privacy policy paragraph1 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.',
-    'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website.hulutera are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.' => 'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website. We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any of our changes.',
+    'privacy policy paragraph1 text' => 'This privacy policy sets out how hulutera uses and protects any information that you give hulutera when you use this website. We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement. hulutera may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any of our changes.',
+    'privacy policy paragraph2 text' => 'We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.',
     'What we collect' => 'What we collect',
     'Your name' => 'Your name',
     'Contact Information including email address' => 'Contact Information including email address',
@@ -74,18 +74,18 @@ $lang = array(
     //About Us related
     'about us page paragraph1 text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. One can Sell, Buy and Rent a used and non-used items. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
-    'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.'
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT properties. The properties can be used or new. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
+    'aboutus page paragraph2 text'
     =>
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.',
-    'You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.'
+    'aboutus page paragraph3 text'
     =>
-    'This page is available in English, Amharic, Afaan Oromoo, Tigrigna, Somali, Sidama Afoo, Guragigna and Wolaytigna languages. You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.',
-    'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,'
+    'This page is available in English, Amharic, Afaan Oromoo, Tigrigna and Somali languages. You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.',
+    'aboutus page paragraph4 text'
     =>
     'We take our users very seriously and attend their concern with the highest priority, therefore on hulutera, we have created a communication channel between us and our users in order to handle any concerns in using the website. Here are some tips,',
     'For any compliant , improvements or other issues you can use' => 'For any compliant, improvements or other issues you can use',
-    'For inappropriate items you can “Report” button' => 'For inappropriate items you can “Report” button',
+    'For inappropriate items you can Report' => 'For inappropriate items, you can “Report”',
     'If you need help, click' => 'If you need help, click',
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!'
     =>
@@ -149,7 +149,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT personal and non-personal properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT used and new properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items: cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',
@@ -259,7 +259,7 @@ $lang = array(
     'My Items' => 'Your Items',
     //Upload prompt related
     'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a   href="../includes/upload.php' . $lang_url . '"> click this... </a>',
-    'to main page prompt msg' => '<a   href="../../index.php' . $lang_url . '">TO Main page ... </a>',
+    'to main page prompt msg' => '<a   href="../../index.php' . $lang_url . '">To Home Page ... </a>',
     'prompt msg for a wrong access to upload' => ' You need to <a   href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
     'Back to Post Item' => "Back to Post Item",
     //Search related
@@ -281,7 +281,7 @@ $lang = array(
     'pass-recovery success' => 'Password recovery information has now been sent to the e-mail associated with this user.<br> Please follow instructions in the email.',
     'account activated message' => 'Your account is now active. You may now <a   href="../includes/login.php">Log In</a></br> In your account page, you can update your account informations, post Items and manage the items you posted.',
     'registration succeded message' => 'Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.',
-    'email adress or username has already used' => 'The Email address or the Username has already been used, try another.',
+    'email adress or username has already used' => 'The Email or Username has already been used, try another.',
     'password change success' => 'Your Password has been changed successfully.',
     'contact-us succeed message' => '<strong>We appreciate your taking the time to contact us.</strong><br><br>If your message require a response, we will get back to you as soon as we can. We do our best to answer e-mails within 1-2 business days (Monday-Friday).',
     'activation key expired' => 'Your activation key has expired. You can no longer use this registration. You may <a   href="../includes/register.php"> Register!</a> again!</br>',
