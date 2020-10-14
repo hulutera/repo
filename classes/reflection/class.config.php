@@ -69,17 +69,18 @@ define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
  *  Includes
  */
 spl_autoload_register(function ($className) {
-    $classDirectories = [
-        $_SERVER['DOCUMENT_ROOT'] . '/classes/',
-        $_SERVER['DOCUMENT_ROOT'] . '/classes/class.',
-        $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/',
-        $_SERVER['DOCUMENT_ROOT'] . '/view/',
-    ];
-    foreach ($classDirectories as $value) {
-        $fullName = $value . $className . '.php';
-        if (file_exists($fullName)) {
-            require_once $fullName;
-            return;
+    $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/class.' . $className . '.php';
+    if (!file_exists($fileName)) {
+        $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+        if (!file_exists($fileName)) {
+            $fileName = $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
+            if (!file_exists($fileName)) {
+                $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.class.php';
+                if (!file_exists($fileName)) {
+                    return;
+                }
+            }
         }
     }
+    include_once ($fileName);
 });
