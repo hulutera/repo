@@ -69,9 +69,9 @@ define("STORED_DATETIME_FORMAT", "%d/%m/%Y %H:%i:%s");
  *  Includes
  */
 spl_autoload_register(function ($className) {
-    $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/class.' . $className . '.php';
+    $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
     if (!file_exists($fileName)) {
-        $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/' . $className . '.php';
+        $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.' . $className . '.php';
         if (!file_exists($fileName)) {
             $fileName = $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
             if (!file_exists($fileName)) {
