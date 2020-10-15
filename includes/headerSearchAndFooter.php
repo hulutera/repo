@@ -93,7 +93,7 @@ function headerAndSearchCode($item)
     ___open_div_('col-xs-12 col-md-12', '');
 	___open_div_('ht-left col-md-2', '');
 	___open_div_('logox', '');
-	logoText();
+	logoImage();
 	___close_div_(2);
 	___open_div_('ht-center col-md-6', '');
 	miniSearch();
@@ -208,7 +208,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img src="../../images/icons/ht_logo_2.png"></a></div>';
+	echo '<div class ="logo" "><a   href="../../index.php' . $lang_url . '"><img style="width:100%;padding:7px;" src="../../images/icons/log-test-1.png"></a></div>';
 }
 function logoText()
 {
@@ -843,7 +843,7 @@ function footerCode()
 	___close_div_(2);
 
 	echo '
-        <p style="font-size:16px;text-align:start">' . $lang['about us on footer text'] . '</p>
+        <p style="text-align:start">' . $lang['about us on footer text'] . '</p>
         </div>';
 	echo '<div id="information_fo">
         <p class="h4">' . $lang['INFORMATION'] . '</p>

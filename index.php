@@ -26,12 +26,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 			<div class="leftNav-index col-xs-2 col-md-2">
 				<!!----#leftNav start-------!!>
 					<?php
+					echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
+					echo '<div class="col-md-12" style=" background-color:#333; color: white;padding:5px;text-align:center;border:2px solid #333">';
+					echo $GLOBALS['item_lang_arr']['All'];
+					echo '</div>';
+					echo '<div class="col-md-12" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
 					echo "<ul>";
+
 					foreach ($item_lang_arr as $key => $value) {
 
-						if ($key == "All") {
-							echo '<li style="background-color:#333; color: #fff"> ' . $value . '</li>';
-						} else if ($key != "000") {
+						if ($key != "000" && $key != "All") {
 							$item_obj = ObjectPool::getInstance()->getObjectWithId($key);
 							$condition = "WHERE field_status LIKE 'active'";
 							$rows = $item_obj->runQuery($condition);
@@ -40,7 +44,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 							echo '</li></a>';
 						}
 					}
-					echo "</ul>";
+					echo "</ul></div></div>";
 					?>
 			</div>
 			<!!----#leftNav end-------!!>
@@ -69,24 +73,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 					<div class="rightNav-index col-xs-3 col-md-2">
 						<!!----#rightNav starts-------!!>
 							<?php
-							echo '<div class="row" style="background:rgb(240, 240, 240)">';
+							echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
+							echo '<div class="col-md-12" style=" background-color:#333; color: white;padding:5px;text-align:center;">';
+							echo $GLOBALS['city_lang_arr']['All'];
+							echo '</div>';
+							echo '<div class="col-md-12" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
 							$item_obj = ObjectPool::getInstance()->getObjectSpecial("all");
 							foreach ($city_lang_arr as $key => $value) {
 								$totalItems = 0;
-								if ($key == "All") {
-									echo '<li style="background-color:#333; color: #fff;text-align:center"> ' . $value . '</li>';
-								} else if ($key != "000") {
+								if ($key != "000" && $key != "All") {
 									foreach ($item_obj as $key2 => $value2) {
 										$condition = "WHERE field_status LIKE 'active' AND field_location LIKE '$key'";
 										$rows = $value2->runQuery($condition);
 										$totalItems = $totalItems + $rows;
 									}
-									echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black"><div class="col-md-6" style="padding:0px"><li>';
+									echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black;"><div class="col-md-" style="padding:0px;;"><li>';
 
 									echo '(<span style="color:#F012BE;"><strong>' . $totalItems . '</strong></span>) ';
+
 									echo $value . '</li></div></a>';
 								}
 							}
+							echo '</div>';
 							echo '</div>';
 							?>
 					</div>
