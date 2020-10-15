@@ -76,30 +76,26 @@ th {
 .logo {
 	float: left;
 	margin-top: 2%;
-	max-width: 25%;
 	height: auto;
 }
 
 .logo a {
 	text-decoration: none;
-	font-weight: 900;
-	font-size: 50px;
-	font-family: 'Roboto', sans-serif;
-	color: white;
-	text-shadow: 4px -2px 2px #000, 2px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+/*
 .logo img {
 	max-width: 35%;
 	height: auto;
-}
+} */
 
 .logo span {
+	/*font-family: 'Roboto', sans-serif;*/
 	font-weight: 900;
 	font-size: 50px;
-	font-family: 'Roboto', sans-serif;
-	color: white;
-	text-shadow: 4px -2px 2px #000, 2px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-family: Palatino;
+	color: #f3df39;;
+	/*text-shadow: 4px -2px 2px #fff, 2px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
 }
 
 .toprightlink {
@@ -298,13 +294,13 @@ form.signin input.button {
 	padding: 22px;
 	background: #333;
 	padding-bottom: 5px;
-	;
 	box-shadow: 0 30px 40px rgba(0, 0, 0, .1);
 	border-radius: 0 0 5px 5px;
 }
 
 .logox {
-	min-width: 252px;
+	width: 100%;
+
 }
 
 .miniSearch p {
@@ -325,6 +321,9 @@ form.signin input.button {
 	border-radius: 1px;
 }
 
+#sidelist ul li {
+	width:12%;
+}
 #sidelist #menu_mobile {
 	display: none;
 }
@@ -352,6 +351,10 @@ form.signin input.button {
 
 #emptydiv_for_divAds {
 	clear: both;
+}
+
+.mobile-main-view {
+	display: none;
 }
 
 #pagination {
@@ -2024,6 +2027,22 @@ th {
 */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+	.ht-left {
+		width:40%;
+	}
+	.ht-center {
+		width:60%;
+	}
+	.ht-right {
+		width:100%;
+	}
+/*
+	.logo span {
+		font-weight: 400;
+		font-size: 30px;
+	}
+*/
 	#sidelist #menu_mobile {
 		display: none;
 		padding: 0px 5px;
@@ -2036,6 +2055,12 @@ th {
 	}
 	#sidelist ul li {
 		width: 25%;
+	}
+
+	.sidelist-container {
+		width: 100%;
+		margin-left: 20px;
+		margin-right: 20px;
 	}
 	#footer {
 		width: 100%;
@@ -2163,6 +2188,15 @@ th {
 /* */
 
 @media (min-width: 768px) and (max-width: 992px) {
+	.ht-left {
+		width:40%;
+	}
+	.ht-center {
+		width:60%;
+	}
+	.ht-right {
+		width:100%;
+	}
 	.leftNav-index {
 		display: none;
 	}
@@ -2215,6 +2249,15 @@ th {
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
+	.ht-left {
+		width:100%;
+	}
+	.ht-center {
+		width:100%;
+	}
+	.ht-right {
+		width:100%;
+	}
 	#whole {
 		width: 100%;
 		margin: 0px;
@@ -2233,11 +2276,11 @@ th {
 		margin: auto;
 	}
 	#sidelist #menu_mobile {
-		display: none;
+		display: block;
 		padding: 0px 5px;
 	}
 	#sidelist ul {
-		display: block;
+		display: none;
 	}
 	#sidelist {
 		padding: 0px;
@@ -2386,6 +2429,15 @@ th {
 */
 
 @media screen and (max-width:480px) {
+	.ht-left {
+		width:100%;
+	}
+	.ht-center {
+		width:100%;
+	}
+	.ht-right {
+		width:100%;
+	}
 	#whole {
 		width: 100%;
 		margin: 0px;
@@ -2401,6 +2453,18 @@ th {
 	.searchfield {
 		width: 100%;
 	}
+	.mobile-main-view {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		text-align: center;
+	}
+
+	.mobile-main-view a {
+		text-decoration: none;
+	}
+
 	#item {
 		width: calc(30% - 5px);
 	}
@@ -2579,12 +2643,19 @@ th {
 	color: #a94442;
 }
 
+/*
 .select-css {
 	font-weight: 700;
 	line-height: 1.3;
 	font-size: 14px;
 	border: none;
 	padding: .6em 0.4em .5em .8em;
+} */
+
+.select-css {
+	width: 30px;
+	margin-top: 2px;
+
 }
 
 .select-css::-ms-expand {
@@ -2617,13 +2688,20 @@ th {
 
 */
 
+.header-section {
+ background-color: #f3df39;
+}
+
 .header-top {
 	display: flex;
-	padding: 0% 2%;
+	padding: 0%;
 	/* border-bottom: 1px solid #e5e5e5; */
-	background: #BF360C;
-	color: white;
+	background: black;
 	/* rgb(240, 240, 240); */
+}
+
+.header-top .container {
+	width:100%;
 }
 
 .header-top .ht-left {
@@ -2637,14 +2715,11 @@ th {
 .header-top .ht-center {
 	display: inline-block;
 	margin: 0 auto;
-	width: 50%;
-	color: white;
-	/*#252525;*/
+
 }
 
 .header-top .ht-left .mail-service {
 	font-size: 16px;
-	color: white;
 	/*#252525;*/
 	float: left;
 	/* border-right: 1px solid #e5e5e5; */
@@ -2655,18 +2730,11 @@ th {
 
 .header-top .ht-left .mail-service i {
 	margin-right: 5px;
-	color: white;
-	/*#252525;*/
-}
-
-.header-top .ht-left .mail-service a {
-	color: white;
 	/*#252525;*/
 }
 
 .header-top .ht-left .phone-service {
 	font-size: 16px;
-	color: white;
 	/*#252525;*/
 	float: right;
 	padding-top: 15px;
@@ -2676,7 +2744,6 @@ th {
 
 .header-top .ht-left .phone-service i {
 	margin-right: 5px;
-	color: white;
 	/*#252525;*/
 }
 
@@ -2684,16 +2751,13 @@ th {
 	float: right;
 	margin-top: 15px;
 	margin-bottom: 13px;
-	color: white;
 	/*#252525;*/
 }
 
 .ht-right .lan-selector {
-	max-width: 142px;
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	color: white;
 	/*#252525;*/
 }
 
@@ -2702,16 +2766,15 @@ th {
 	padding-right: 20px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	color: white;
 	/*#252525;*/
 }
 
 .header-top .ht-right .top-links a, .top-links a {
-	color: white;
-	/*#252525;*/
+		/*#252525;*/
 	font-size: 14px;
 	display: inline-block;
 	margin-left: 15px;
+	color:white;
 }
 
 .ht-right .lan-selector .ddcommon {
@@ -2791,7 +2854,6 @@ th {
 	display: -ms-flexbox;
 	display: flex;
 	color: black;
-	border-bottom: 1px solid #c7c7c7;
 }
 
 .nav-item .nav-depart .depart-btn {
@@ -2813,7 +2875,6 @@ th {
 
 #sidelist ul li {
 	float: left;
-	width: 12%;
 	position: relative;
 	line-height: 10px;
 	margin-top: 3px;

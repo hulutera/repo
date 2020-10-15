@@ -3,7 +3,6 @@ $GLOBALS['GEEZ'] = ['am', 'gu', 'wo', 'tg'];
 function locale($current_link)
 {
     global $lang;
-    $ln = 0;
     $en = null;
     $am = null;
     $ao = null;
@@ -25,9 +24,10 @@ function locale($current_link)
         $ao = $current_link . '&lan=ao';
         $tg = $current_link . '&lan=tg';
         $so = $current_link . '&lan=so';
+        /*
         $gu = $current_link . '&lan=gu';
         $si = $current_link . '&lan=si';
-        $wo = $current_link . '&lan=wo';
+        $wo = $current_link . '&lan=wo'; */
     } else {
 
         if (strpos($current_link, "?")) {
@@ -36,19 +36,18 @@ function locale($current_link)
             $lang_link = "?&lan";
         }
 
-
         $en = $current_link . $lang_link . '=en';
         $am = $current_link . $lang_link . '=am';
         $ao = $current_link . $lang_link . '=ao';
         $tg = $current_link . $lang_link . '=tg';
         $so = $current_link . $lang_link . '=so';
+        /*
         $gu = $current_link . $lang_link . '=gu';
         $si = $current_link . $lang_link . '=si';
-        $wo = $current_link . $lang_link . '=wo';
+        $wo = $current_link . $lang_link . '=wo'; */
     }
 
     $language = [
-        $ln => $lang['LANGUAGE'],
         $en => "ENGLISH",
         $am => "አማርኛ",
         $ao => "AFAAN OROMOO",
@@ -61,12 +60,14 @@ function locale($current_link)
         */
     ];
     ___open_div_('lan-selector', '" style="float:right;');
+    echo '<image src="../images/icons/ethiopia.png" width=30px height=15px></br>';
     echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale select-css">';
-    foreach ($language as $key => $value) {
-        //use mb_substr($value,0,2) to get the first two characters
-        echo $key;
-        echo '<option value = "' . $key . '" data-image="../images/icons/ethiopia.png" ><strong>' . $value . '</strong></option>';
-    }
+        echo '<option value = ""></option>';
+        foreach ($language as $key => $value) {
+            //use mb_substr($value,0,2) to get the first two characters
+            echo $key;
+            echo '<option value = "' . $key . '"><strong>' . $value . '</strong></option>';
+        }
     echo '</select>';
     ___close_div_(1);
 }

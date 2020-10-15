@@ -84,75 +84,63 @@ function blockLogin()
 }
 
 
-function headerAndSearchCode2($item)
+function headerAndSearchCode($item)
 {
 	global $lang_url, $str_url, $lang;
 
 	echo '<header class="header-section">';
 	___open_div_('header-top', '');
-
-	___open_div_('ht-left col-md-2 nopadding', '');
-	___open_div_('logox', ' style="padding:20px');
+    ___open_div_('col-xs-12 col-md-12', '');
+	___open_div_('ht-left col-md-2', '');
+	___open_div_('logox', '');
 	logoText();
 	___close_div_(2);
-	___open_div_('ht-center col-md-5 nopadding', '');
+	___open_div_('ht-center col-md-6', '');
 	miniSearch();
 	___close_div_(1);
-	___open_div_('ht-right col-md-4 nopadding', '');
+	___open_div_('ht-right col-md-4', '');
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	locale($current_link);
 	topRightLinks();
 	___close_div_(3);
 
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');
-	___open_div_('container', '');
+	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto');
 	sidelist($item);
 	___close_div_(2);
 	echo '</header>';
 }
 
-function headerAndSearchCode($item)
+function headerAndSearchCode2($item)
 {
 	//headerAndSearchCode2($item);
 	//return;
 	global $lang_url, $str_url, $lang;
 
-	echo '<header class="header-section"  style="background:#fcea50;">';
+	echo '<header class="header-section">';
 	___open_div_('header-top', '');
 	___open_div_('container', '');
-	___open_div_('ht-left', '');
-	___open_div_('mail-service', '');
-	echo '<a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '"><i class="glyphicon glyphicon-envelope"></i>' . $GLOBALS['lang']['Contact Us'] . '<br>info@hulutera.com</a>';
+	___open_div_('ht-left col-xs-12 col-md-8', '');
+	___open_div_('mail-service col-xs-4 col-md-4', '');
+	logoText();
 	___close_div_(1);
-	___open_div_('phone-service', '');
-	echo '<i class="glyphicon glyphicon-phone"></i>+251 123 456 7890';
-	___close_div_(1);
-	___close_div_(1);
-	___open_div_('ht-right', '');
+	___open_div_('col-xs-8 col-md-8', '');
+	miniSearch();
+	___close_div_(2);
+	___open_div_('ht-right col-xs-12 col-md-4', '');
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	locale($current_link);
 	topRightLinks();
 	___close_div_(3);
 	___open_div_('container', '');
 	___open_div_('inner-header', '');
-	___open_div_('row', '');
-
-	___open_div_('col-xs-6 col-md-4', '');
-	___open_div_('logox', '');
-	logoText();
-	___close_div_(2);
-	___open_div_('col-xs-12 col-md-8', '');
-	miniSearch();
-	___close_div_(1);
-	___close_div_(3);
 
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');
 	___open_div_('container', '');
 	sidelist($item);
-	___close_div_(2);
-
-	___close_div_(1);
+	___close_div_(3);
 	echo '</header>';
+
 }
 
 function unsetSessionData()
@@ -227,7 +215,7 @@ function logoText()
 	global $lang_url;
 	echo '<a   href="../../index.php' . $lang_url . '">';
 	echo '<div class ="logo">';
-	echo '<span>HULUTERA</span>';
+	echo '<span>Hulutera</span>';
 	echo '</div></a>';
 }
 
@@ -240,7 +228,7 @@ function topRightLinks($style = null)
 	if (!isset($_SESSION['uID'])) {
 
 		echo '<a href="../../includes/register.php' . $lang_url . '">';
-		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px;color:white;"></span><br/>' . $lang['Register'] . '</div>';
+		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px;"></span><br/>' . $lang['Register'] . '</div>';
 		echo '</a>';
 
 		echo '<a   href="../../includes/login.php' . $lang_url . '" >';
@@ -269,7 +257,7 @@ function topRightLinks($style = null)
 		echo '<a   href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
 		echo '</a>';
-		echo '<a   href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></div></a>';
+		echo '<a   href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></a>';
 	}
 	___close_div_(1);
 }
@@ -279,7 +267,7 @@ function topRightHelpLink()
 	global $str_url, $lang_url;
 	echo '<a href="../../includes/help.php' . $lang_url . '" target="_blank">';
 	echo '<div id="toplinktexts">';
-	echo '<div id="topRightEnglishx" style="color:white"><span class="glyphicon glyphicon-info-sign" style="font-size:20px;color:white"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
+	echo '<div id="topRightEnglishx"><span class="glyphicon glyphicon-info-sign" style="font-size:20px;"></span><br/>' . $GLOBALS['lang']['Help'] . '</div>';
 	echo '</div>';
 	echo '</a>';
 }
@@ -815,10 +803,10 @@ function sidelist($item)
 		'other'
 	];
 	echo '<div id="sidelist" class="col-xs-12 col-md-12">
-    <div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
-		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
-        <i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
-	</div><ul>';
+			<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
+				'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
+				<i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
+			</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
 	echo '<img src="../images/icons/item_latest.png"/>';
