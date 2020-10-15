@@ -809,7 +809,7 @@ function sidelist($item)
 			</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
-	echo '<img src="../images/icons/item_latest.png"/>';
+	echo '<img class="latest-img" src="../images/icons/item_latest.png"/>';
 	echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p>';
 	echo '</a></li>';
 

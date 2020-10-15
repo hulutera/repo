@@ -93,8 +93,9 @@ th {
 	/*font-family: 'Roboto', sans-serif;*/
 	font-weight: 900;
 	font-size: 50px;
-    font-family: Palatino;
-	color: #f3df39;;
+	font-family: Palatino;
+	color: #f3df39;
+	;
 	/*text-shadow: 4px -2px 2px #fff, 2px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
 }
 
@@ -300,7 +301,6 @@ form.signin input.button {
 
 .logox {
 	width: 100%;
-
 }
 
 .miniSearch p {
@@ -322,8 +322,9 @@ form.signin input.button {
 }
 
 #sidelist ul li {
-	width:12%;
+	width: 12%;
 }
+
 #sidelist #menu_mobile {
 	display: none;
 }
@@ -2027,17 +2028,16 @@ th {
 */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-
 	.ht-left {
-		width:40%;
+		width: 40%;
 	}
 	.ht-center {
-		width:60%;
+		width: 60%;
 	}
 	.ht-right {
-		width:100%;
+		width: 100%;
 	}
-/*
+	/*
 	.logo span {
 		font-weight: 400;
 		font-size: 30px;
@@ -2056,7 +2056,6 @@ th {
 	#sidelist ul li {
 		width: 25%;
 	}
-
 	.sidelist-container {
 		width: 100%;
 		margin-left: 20px;
@@ -2189,13 +2188,13 @@ th {
 
 @media (min-width: 768px) and (max-width: 992px) {
 	.ht-left {
-		width:40%;
+		width: 40%;
 	}
 	.ht-center {
-		width:60%;
+		width: 60%;
 	}
 	.ht-right {
-		width:100%;
+		width: 100%;
 	}
 	.leftNav-index {
 		display: none;
@@ -2250,13 +2249,13 @@ th {
 
 @media (min-width: 481px) and (max-width: 767px) {
 	.ht-left {
-		width:100%;
+		width: 100%;
 	}
 	.ht-center {
-		width:100%;
+		width: 100%;
 	}
 	.ht-right {
-		width:100%;
+		width: 100%;
 	}
 	#whole {
 		width: 100%;
@@ -2430,13 +2429,13 @@ th {
 
 @media screen and (max-width:480px) {
 	.ht-left {
-		width:100%;
+		width: 100%;
 	}
 	.ht-center {
-		width:100%;
+		width: 100%;
 	}
 	.ht-right {
-		width:100%;
+		width: 100%;
 	}
 	#whole {
 		width: 100%;
@@ -2460,11 +2459,9 @@ th {
 		margin-top: 10px;
 		text-align: center;
 	}
-
 	.mobile-main-view a {
 		text-decoration: none;
 	}
-
 	#item {
 		width: calc(30% - 5px);
 	}
@@ -2655,7 +2652,6 @@ th {
 .select-css {
 	width: 30px;
 	margin-top: 2px;
-
 }
 
 .select-css::-ms-expand {
@@ -2689,7 +2685,7 @@ th {
 */
 
 .header-section {
- background-color: #f3df39;
+	background-color: #f3df39;
 }
 
 .header-top {
@@ -2701,7 +2697,7 @@ th {
 }
 
 .header-top .container {
-	width:100%;
+	width: 100%;
 }
 
 .header-top .ht-left {
@@ -2715,7 +2711,6 @@ th {
 .header-top .ht-center {
 	display: inline-block;
 	margin: 0 auto;
-
 }
 
 .header-top .ht-left .mail-service {
@@ -2770,11 +2765,11 @@ th {
 }
 
 .header-top .ht-right .top-links a, .top-links a {
-		/*#252525;*/
+	/*#252525;*/
 	font-size: 14px;
 	display: inline-block;
 	margin-left: 15px;
-	color:white;
+	color: white;
 }
 
 .ht-right .lan-selector .ddcommon {
@@ -2947,6 +2942,17 @@ a:hover {
 
 .image-container:hover {
 	background-color: lightskyblue;
+}
+
+.latest-img {
+	border-radius: 50%;
+	-webkit-transition: -webkit-transform .8s ease-in-out;
+	transition: transform .8s ease-in-out;
+}
+
+.latest-img:hover {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
 }
 
 /*
