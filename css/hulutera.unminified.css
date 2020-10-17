@@ -349,13 +349,12 @@ form.signin input.button {
 	text-align: center;
 	font-style: normal;
 	vertical-align: top;
-
 }
-.search-btn i{
+
+.search-btn i {
 	font-style: normal;
 	font-size: 14px;
 }
-
 
 #emptydiv_for_divAds {
 	clear: both;
@@ -2713,6 +2712,7 @@ th {
 
 .header-top .ht-right {
 	float: right;
+	padding: 0px;
 }
 
 .header-top .ht-center {
@@ -2751,22 +2751,31 @@ th {
 
 .header-top .ht-right .lan-selector {
 	float: right;
-	margin-top: 15px;
-	margin-bottom: 13px;
-	/*#252525;*/
+	margin-top: 5px;
 }
 
 .ht-right .lan-selector {
 	cursor: pointer;
 	display: inline-block;
-	position: relative;
+	/* position: relative; */
 	/*#252525;*/
 }
+ .lan-tip {
+    background-color: #f3df39;;
+	color: black;
+	float: right;
+	text-align: left;
+	font-size: 18px;;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: sans-serif, Arial, Helvetica;
+}
+
 
 .header-top .ht-right .top-links, .top-links {
 	float: right;
-	padding-right: 20px;
-	padding-top: 15px;
+	/* padding-right: 20px; */
+	/* padding-top: 15px; */
 	padding-bottom: 15px;
 	/*#252525;*/
 }
@@ -2786,10 +2795,6 @@ th {
 	outline: none;
 	cursor: pointer;
 	padding: 0 20px;
-}
-
-.inner-header {
-	/*padding: 20px 0;*/
 }
 
 .inner-header .logox {
@@ -2913,9 +2918,9 @@ th {
 	display: inline-block;
 }
 
-a:hover {
+/* a:hover {
 	color: black;
-}
+} */
 
 .image-container .hover-text {
 	position: absolute;

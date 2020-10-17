@@ -111,7 +111,7 @@ function hidespec(item, id) {
 function swapmail(id, item) {
     $(document).ready(function () {
         $(".message_" + item + "-" + id).slideDown("fast");
-        $(".contact_" + item +  "-" + id).slideUp("fast");
+        $(".contact_" + item + "-" + id).slideUp("fast");
         $(".showbutton_hide").slideUp("fast")
     })
 }
@@ -286,3 +286,39 @@ function hideShowSingleDivs(hideDiv, showDiv) {
         $("." + showDiv).show();
     })
 }
+
+$("li#en").mouseenter(function () {
+    $(".lan-tip").text("ENGLISH");
+})
+    .mouseleave(function () {
+        $(".lan-tip").text("");
+    });
+$("li#am")
+    .mouseenter(function () {
+        $(".lan-tip").text("አማርኛ");
+    })
+    .mouseleave(function () {
+        $(".lan-tip").text("");
+    });
+$("li#ao")
+    .mouseenter(function () {
+        $(".lan-tip").text("AFAAN OROMOO");
+    })
+    .mouseleave(function () {
+        $(".lan-tip").text("");
+    });
+$("li#tg")
+    .mouseenter(function () {
+        $(".lan-tip").text("ትግርኛ");
+    })
+    .mouseleave(function () {
+        $(".lan-tip").text("");
+    });
+
+$("li#so")
+    .mouseenter(function () {
+        $(".lan-tip").text("SOMALI");
+    })
+    .mouseleave(function () {
+        $(".lan-tip").text("");
+    });

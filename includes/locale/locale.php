@@ -8,11 +8,8 @@ function locale($current_link)
     $ao = null;
     $tg = null;
     $so = null;
-    $gu = null;
-    $si = null;
-    $wo = null;
     if (isset($_GET['lan'])) {
-        $arr = array("&lan=am", "&lan=en", "&lan=ao", "&lan=tg", "&lan=so", "&lan=gu", "&lan=si", "&lan=wo");
+        $arr = array("&lan=am", "&lan=en", "&lan=ao", "&lan=tg", "&lan=so");
         foreach ($arr as $key => $value) {
             if (strpos($current_link, $value) !== false) {
                 $current_link = str_replace($value, '', $current_link);
@@ -24,10 +21,6 @@ function locale($current_link)
         $ao = $current_link . '&lan=ao';
         $tg = $current_link . '&lan=tg';
         $so = $current_link . '&lan=so';
-        /*
-        $gu = $current_link . '&lan=gu';
-        $si = $current_link . '&lan=si';
-        $wo = $current_link . '&lan=wo'; */
     } else {
 
         if (strpos($current_link, "?")) {
@@ -41,33 +34,40 @@ function locale($current_link)
         $ao = $current_link . $lang_link . '=ao';
         $tg = $current_link . $lang_link . '=tg';
         $so = $current_link . $lang_link . '=so';
-        /*
-        $gu = $current_link . $lang_link . '=gu';
-        $si = $current_link . $lang_link . '=si';
-        $wo = $current_link . $lang_link . '=wo'; */
     }
 
     $language = [
-        $en => "ENGLISH",
-        $am => "አማርኛ",
-        $ao => "AFAAN OROMOO",
-        $tg => "ትግርኛ",
-        $so => "SOMALI",
-        /**
-        *$si => "SIDAAMU AFOO",
-        *$gu => "ጉራግኛ",
-        *$wo => "ወላይትኛ"
-        */
+        $en => ["ENGLISH", "EN"],
+        $am => ["አማርኛ", "አማ"],
+        $ao => ["AFAAN OROMOO", "AO"],
+        $tg => ["ትግርኛ", "ትግ"],
+        $so => ["SOMALI", "SO"]
     ];
-    ___open_div_('lan-selector', '" style="float:right;');
-    echo '<image src="../images/icons/ethiopia.png" width=30px height=15px></br>';
-    echo '<select onchange="location =this.options[this.selectedIndex].value;" name="language" class="locale select-css">';
-        echo '<option value = ""></option>';
-        foreach ($language as $key => $value) {
-            //use mb_substr($value,0,2) to get the first two characters
-            echo $key;
-            echo '<option value = "' . $key . '"><strong>' . $value . '</strong></option>';
+    ___open_div_('col-md-4', '');
+    ___open_div_('lan-tip', '');
+    ___close_div_(2);
+    ___open_div_('col-md-8', '" style="padding:0px;');
+    echo '<ul class="lan-selector">';
+
+    echo '<li style="display:inline;padding:5px;border:5px;"><img src="../../images/icons/flag.ico" width="30px;"></li>';
+    foreach ($language as $key => $value) {
+        $id = substr($key, -2);
+        if(isset($_GET['lan']) && $_GET['lan'] == $id)
+        {
+            $style = "
+            display:inline;
+            background-color:yellow;
+            font-size:14px;
+            color:black;
+            font-weight:bold;
+            border-radius:5%;
+            ";
+        } else{
+            $style = "display:inline;font-size:14px;color:white;font-weight:bold: border-radius:5%;";
         }
-    echo '</select>';
+        echo '<a href="'.$key.'" class="'.$id.'" style="'.$style.'"><li  style="display:inline;padding:5px;border:5px;" id="'.$id.'">' . $value[1];
+        echo '</li></a>';
+    }
+    echo '</ul>';
     ___close_div_(1);
 }

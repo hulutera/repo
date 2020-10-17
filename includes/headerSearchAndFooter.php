@@ -99,9 +99,13 @@ function headerAndSearchCode($item)
 	miniSearch();
 	___close_div_(1);
 	___open_div_('ht-right col-md-4', '');
+	___open_div_('row', '" style="text-align:right;margin:0px');
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	locale($current_link);
+	___close_div_(1);
+	___open_div_('row', '" style="margin:0px');
 	topRightLinks();
+	___close_div_(1);
 	___close_div_(3);
 
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');
@@ -109,38 +113,6 @@ function headerAndSearchCode($item)
 	sidelist($item);
 	___close_div_(2);
 	echo '</header>';
-}
-
-function headerAndSearchCode2($item)
-{
-	//headerAndSearchCode2($item);
-	//return;
-	global $lang_url, $str_url, $lang;
-
-	echo '<header class="header-section">';
-	___open_div_('header-top', '');
-	___open_div_('container', '');
-	___open_div_('ht-left col-xs-12 col-md-8', '');
-	___open_div_('mail-service col-xs-4 col-md-4', '');
-	logoText();
-	___close_div_(1);
-	___open_div_('col-xs-8 col-md-8', '');
-	miniSearch();
-	___close_div_(2);
-	___open_div_('ht-right col-xs-12 col-md-4', '');
-	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	locale($current_link);
-	topRightLinks();
-	___close_div_(3);
-	___open_div_('container', '');
-	___open_div_('inner-header', '');
-
-	___open_div_('nav-item', '" style="margin-bottom: 5px;');
-	___open_div_('container', '');
-	sidelist($item);
-	___close_div_(3);
-	echo '</header>';
-
 }
 
 function unsetSessionData()
@@ -257,7 +229,9 @@ function topRightLinks($style = null)
 		echo '<a   href="../../includes/logout.php' . $lang_url . '">';
 		echo '<div id=""><span class="glyphicon glyphicon-log-out" style="font-size:20px"></span><br/>' . $lang['Logout'] . '</div>';
 		echo '</a>';
-		echo '<a   href="../../includes/mypage.php' . $lang_url . '"><div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span></br>' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</div></a>';
+
+		echo '<a href="../../includes/mypage.php' . $lang_url . '">
+		<div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span><span> ' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</span></div></a>';
 	}
 	___close_div_(1);
 }

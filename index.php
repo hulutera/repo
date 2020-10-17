@@ -104,6 +104,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 	<?php footerCode(); ?>
 </body>
 
+
+
 </html>
 
 <?php

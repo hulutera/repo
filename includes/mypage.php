@@ -13,9 +13,6 @@ if (!isset($_SESSION['uID'])) {
 <head>
     <title><?php echo $lang['my page']; ?></title>
     <?php commonHeader(); ?>
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/hulutera.unminified.css" rel="stylesheet">
-    <link href="../../css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
