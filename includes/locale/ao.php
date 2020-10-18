@@ -73,7 +73,8 @@ $lang = array(
     "For inappropriate items you can Report" => ' Fakkiiwwanii fi ibsa gar malee galaniif “gabaasa” isa jedhu tuqatii ibsa. ',
     "If you need help, click" => ' Odeefannoo dabalataa yoo isin barbaachise kan armaan gadii tuqa ',
     "Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!" => ' Dhuma irratti Hulluutaraa lammiiwwan Itiyoophiyaatiif yammuu ifaa goonu fedhii guutuu fi gammachuu onnee irraa madden hoggaa ta’u websitichatati akka itti fayyadamtan kabajan isin gaafanna. ',
-    "About Us" => ' Waa’ee keenya ',
+    "About Us" => 'Waa’ee keenya',
+    'about hulutera' => 'Waa’ee Hulluutaraa',
     "Terms and Conditions" => ' Dmabii ittiin bulmaataa ',
     "terms and conditions text" => ' Baga nagaan gara hulutera.com dhuftan. hulutera.com qabeenyummaan isaa kan Hulluutaraa dha. Yammuu website keenya daawwatanii fi odeeffannoowwanis ta’ean wantootaa websit keenya irra jiran kamiyuutti yammuu itti fayyadamtan dambii ittiin bulmaataa armaan gadii sirriitti hunattanii fi irratti waliigaltanitu, (Waliigaltichas waliigaltee itti fayyadama jenne ibsina).
     <br/><br/>
@@ -231,7 +232,7 @@ $lang = array(
     "search-title" => ' Barbaaduu ',
     "search-button" => ' Haa barbaadamu ',
     "full no match msg" => ' Dhiifama. Qabeenya barbaaddan hin argamne. Irra deebi’a yaala </br>
-                              akkaataa ittiin barbaadamuf odeefannoo yoo barbaaddan <a href="../includes/template.proxy.php?type=help&lan=ao"> kana </a>tuqxani ni argattu. ',
+                              akkaataa ittiin barbaadamuf odeefannoo yoo barbaaddan <a href="../includes/template.proxy.php?type=help&lan=ao" target="_blank"> kana </a>tuqxani ni argattu. ',
     "no match msg part1" => ' Dhiifatama. ',
     "no match msg part2" => ' isa jedhuuf qabeenyi gosa kamiyyuu hin argamne.
     ',

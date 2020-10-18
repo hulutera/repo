@@ -74,6 +74,7 @@ $lang = array(
     "If you need help, click" => ' ሓገዝ ንምሕታት ---- ይጠውቁ ',
     "Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!" => ' ኣብ መወዳእታ እዚ ሁሉተራ ዝተብሃለ ገፅ ካብ ክፍሊት ነፃ ንኩሉ ኢትዮጵያዊ ምቅራብና ኩርዓትን ሓጎስን ይስመዐና፡፡ ',
     "About Us" => ' ብዛዕባና ',
+    'about hulutera' => 'ብዛዕባ ሁሉተራ',
     "Terms and Conditions" => ' ናይ ውዕሊ ኩነታት ',
     "terms and conditions text" => ' ናብ hulutera.com እንቋዕ ብደሓን መፅኡ፡፡ እዚ ድሕረ ገፅ ብሁሉተራ ይውነንን ይንቀሳቀስን፡፡ እዚ ድሕረ ገፅ ተጠቂሞም ዝተፈላለዩ ሓበሬታታት፣ ኣገልግሎታት፣ ምህርትን ካልኦት መሳርሒታትን ብዝምከት ሓበሬታ ንምርካብ ኣብ ዝገብርዎ ምንቅስቃስ ነዞም ዝስዕቡ ናይ ውዕሊ ኩነታት ተረዲኦም፣ ተስማዕሚኦምን ተቀቢሎምን ከም ሓደ ፖሊሲ ናይዚ ገፅ ተግባራዊ ክገብሩ ይግባእ፡፡ ( ካብዚ ንደሓር ‘’ውዕሊ ተጠቃሚ’’ ብዝብል ይግለፅ)፡፡
     </br></br>

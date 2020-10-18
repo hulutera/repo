@@ -91,6 +91,7 @@ $lang = array(
     =>
     'በመጨረሻም ሁሉተራን ለኢትዮጵያውያን ይፋ ስናደርግ በሙሉ ኩራት እና ልባዊ ደስታ ሲሆን ድሕረገፁን እንዲጠቀሙበት በትህትና እንጠይቆታለን',
     'About Us' => 'ስለ እኛ',
+    'about hulutera' => 'ስለ ሁሉተራ',
     //Terms and Condition related
     'Terms and Conditions' => 'የመተዳደርያ ደንብ',
     'terms and conditions text'
@@ -252,7 +253,7 @@ $lang = array(
     //Search related
     'search-title' => 'መፈለግ',
     'search-button' => 'ይፈለግ',
-    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a   href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',
+    'full no match msg' => 'ይቅርታ የፈለጉት ንብረት አልተገኘም። በድጋሚ ይሞክሩ </br> ስለ አፈላለግ መረጃ ከፈለጉ <a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank"> ይሄን </a> ተጭነው ያገኛሉ።',
     'no match msg part1' => 'ይቅርታ',
     'no match msg part2' => 'ለሚለው ምንም አይነት ንብረት አልተገኘም።</br>',
     'no match msg part3' => 'ስለ አፈላለግ መረጃ ከፈለጉ <a   href="../includes/template.proxy.php?type=help' . $str_url . '"> ይሄን </a> ተጭነው ያገኛሉ።',

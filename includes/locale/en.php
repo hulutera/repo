@@ -91,6 +91,7 @@ $lang = array(
     =>
     'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!',
     'About Us' => 'About Us',
+    'about hulutera' => 'About Hulutera',
     //Terms and Condition related
     'Terms and Conditions' => 'Terms and Conditions',
     'terms and conditions text'

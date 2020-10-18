@@ -42,6 +42,7 @@ function commonHeaderCssMeta()
 		echo '<link href="../../css/bootstrap.min.css" rel="stylesheet">';
 		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
 	}
+	echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
 
 }
 function commonHeaderJs()
@@ -811,9 +812,8 @@ function footerCode()
 	echo '<div id="aboutUs_fo" >';
 
 	___open_div_('row', '');
-	___open_div_('col-md-3', '');
-	global $lang_url;
-	echo '<a   href="../../index.php' . $lang_url . '"><div class ="logo" style="font-size:30px;">' . $GLOBALS['lang']['HULUTERA_TEXT_LOGO2'] . '</div></a>';
+	___open_div_('col-md-12', '');
+	echo '<div class ="logo"><p class="h4">' . $GLOBALS['lang']['about hulutera'] . '</p></div>';
 	___close_div_(2);
 
 	echo '
@@ -828,18 +828,17 @@ function footerCode()
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=about' . $str_url . '" target="_blank">' . $lang['About Us'] . '</a></p>
         </div>';
 	echo '<div id="followUs_fo" >
-          <p class="h4">' . $lang['FOLLOW US'] . '</p>
-               <ul>
-                <a   class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><img src="../../images/fb.png" width="20px" height="20px" />' . $lang['facebook'] . '</li></a>
-                <a   class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><img src="../../images/tw.png" width="17px" height="17px" />' . $lang['twitter'] . '</li></a>
-                <a   class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><img src="../../images/pin.png" width="20px" height="20px" />' . $lang['pintrest'] . '</li></a>
-                <a   class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><img src="../../images/yt.png" width="20px" height="20px" />' . $lang['youtube'] . '</li></a>
-               </ul>
+		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>
+		        <ul>
+					<a   class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><span class="fa fa-facebook-square" style="font-size:25px"></span></li></a>
+					<a   class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><span class="fa fa-twitter-square" style="font-size:25px"></span></li></a>
+					<a   class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><span class="fa fa-pinterest-square" style="font-size:25px"></span></li></a>
+					<a   class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><span class="fa fa-youtube-square" style="font-size:25px"></span></li></a>
+				</ul>
            </div>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-
 
 	echo '<div class="copyright-reserved">
     <div class="container">

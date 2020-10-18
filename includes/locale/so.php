@@ -74,6 +74,7 @@ $lang = array(
     "If you need help, click" => ' Haddii aad xog dheeraad ah u baahatid kan hoose riix ',
     "Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!" => ' Ugu-dambayntiina, anaga oo si xarago saraysa iyo farxad kal-iyo-laabta ah Hulutera muwaadiniinta Itoobiya ugu-shaacinayna, waxay si xurmayn leh ayaanu kaaga codsanaynaa in aad shabakaddan isticmaashid. ',
     "About Us" => ' Anaga nagu-saabsan ',
+    'about hulutera' => 'Hulutera',
     "Terms and Conditions" => 'Xeerka maamulka ',
     "terms and conditions text" => 'bagaad nabad ku-timaaddeen hulutera.com. hulutera.com waa mulkiyadda Hulutera. Markaad shabakaddayada booqanaysid iyo markaad isticmaalaysid xog-kasta oo shabakaddayada ku-jirta, waa in aad fahantid oo aad oggolaatid xeerkayaga maamuleed ee hoos ku-qoran (Waxaanu heshiiskana ku-magacaabaynaa heshiiska isticmaalaha).
     <br/><br/>
@@ -121,9 +122,7 @@ $lang = array(
     "facebook" => 'Facebook ',
     "twitter" => 'Twitter ',
     "pintrest" => 'Pinterest ',
-    "youtube" => '
-
-    Youtube ',
+    "youtube" => 'Youtube ',
     "2020 hulutera. All Rights Reserved." => '2013 Xuquuqda Hulutera sharcigay ku-ilaashantahay. ',
     "hulutera" => ' Hulutera ',
     "missing email msg" => ' Fadlan gali ciwaanka email-ka. ',
@@ -228,11 +227,11 @@ $lang = array(
     "search-title" => ' Raadin ',
     "search-button" => 'Ha la-raadiyo ',
     "full no match msg" => ' Raalli ahow, lama-helin hantidii aad doonaysay. </br>Markale isku-day
-                             Haddii aad xog kale doonaysid intaad <a href="../includes/template.proxy.php?type=help&lan=so"> kan </a> riixdid ayaad heli. ',
+                             Haddii aad xog kale doonaysid intaad <a href="../includes/template.proxy.php?type=help&lan=so" target="_blank"> kan </a> riixdid ayaad heli. ',
     "no match msg part1" => ' Raalli ahow ',
     "no match msg part2" => ' kan ah wax hanti ah looma-helin.
     ',
-    "no match msg part3" => 'Haddii aad doonaysid xog raadinta ku-saabsan intaad <a href="../includes/template.proxy.php?type=help&lan=so"> kan </a> riixdid ayaad helaysaa. ',
+    "no match msg part3" => 'Haddii aad doonaysid xog raadinta ku-saabsan intaad <a href="../includes/template.proxy.php?type=help&lan=so" target="_blank"> kan </a> riixdid ayaad helaysaa. ',
     "search res" => ' Natiijada raadinta ',
     "failed search" => ' Fadlan waxaad raadinaysid gali ama dooro habab kale oo raadin. ',
     "Send a message" => ' Mulkiilaha farriin u dir ',
