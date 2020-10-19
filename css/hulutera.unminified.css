@@ -291,11 +291,11 @@ form.signin input.button {
 
 .miniSearch {
 	text-align: center;
-	padding: 22px;
+	padding: 22px 22px 5px 22px;
 	background: #333;
-	padding-bottom: 5px;
 	box-shadow: 0 30px 40px rgba(0, 0, 0, .1);
-	border-radius: 0 0 5px 5px;
+	border-radius: 5px;
+    margin-top: 5px;
 }
 
 .logox {
@@ -2023,6 +2023,11 @@ th {
 /*
   ##Device = Laptops, Desktops
 */
+@media (min-width: 1025px) and (max-width: 1440px) {
+	.sidelist-container,.ht-search,.top-links {
+		width: 100%;
+	}
+}
 
 @media (min-width: 1025px) and (max-width: 1200px) {
 	/* Shall be saved and used when necessary*/
@@ -2036,7 +2041,7 @@ th {
 	.ht-left {
 		width: 40%;
 	}
-	.ht-center {
+	.ht-search {
 		width: 60%;
 	}
 	.ht-right {
@@ -2195,7 +2200,7 @@ th {
 	.ht-left {
 		width: 40%;
 	}
-	.ht-center {
+	.ht-search {
 		width: 60%;
 	}
 	.ht-right {
@@ -2256,7 +2261,7 @@ th {
 	.ht-left {
 		width: 100%;
 	}
-	.ht-center {
+	.ht-search {
 		width: 100%;
 	}
 	.ht-right {
@@ -2436,7 +2441,7 @@ th {
 	.ht-left {
 		width: 100%;
 	}
-	.ht-center {
+	.ht-search {
 		width: 100%;
 	}
 	.ht-right {
@@ -2468,7 +2473,7 @@ th {
 		text-decoration: none;
 	}
 	#item {
-		width: calc(30% - 5px);
+		width: calc(30% + 31px);
 	}
 	#city {
 		width: calc(30% - 5px);
@@ -2714,7 +2719,7 @@ th {
 	padding: 0px;
 }
 
-.header-top .ht-center {
+.header-top .ht-search {
 	display: inline-block;
 	margin: 0 auto;
 }

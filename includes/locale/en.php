@@ -309,7 +309,7 @@ $lang = array(
     'Choose' => 'Choose',
     'help' => 'Help',
     'or' => 'OR',
-    'latest items' => 'Latest Items',
+    'latest items' => 'New',
     'latest items message' => 'Click the link to see recently uploaded items.',
     'prompt' => 'Prompt',
     //new ones

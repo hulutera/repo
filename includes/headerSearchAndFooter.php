@@ -22,9 +22,9 @@ if (isset($_GET['lan'])) {
 	$str_url = "&lan=en";
 	require_once $documnetRootPath . '/includes/locale/en.php';
 }
-require_once $_SERVER['DOCUMENT_ROOT']. '/includes/locale/locale.php';
-require_once $_SERVER['DOCUMENT_ROOT']. '/includes/global.variable.php';
-require_once $_SERVER['DOCUMENT_ROOT']. '/includes/sendMessage.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/locale/locale.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/global.variable.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
 
 
 function commonHeaderCssMeta()
@@ -43,7 +43,6 @@ function commonHeaderCssMeta()
 		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
 	}
 	echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
-
 }
 function commonHeaderJs()
 {
@@ -59,7 +58,8 @@ function commonHeaderJs()
 		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
 }
-function commonHeader() {
+function commonHeader()
+{
 	commonHeaderCssMeta();
 	commonHeaderJs();
 	blockLogin();
@@ -67,7 +67,7 @@ function commonHeader() {
 
 function blockLogin()
 {
-	?>
+?>
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -77,7 +77,7 @@ function blockLogin()
 	if ((isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') && (basename($_SERVER['PHP_SELF'])) !== 'login.php') {
 		if (!isset($_SESSION['uID'])) {
 			// temporary workaround for page load test with google page load tester
-			if($_GET['release'] != "ht_test") {
+			if ($_GET['release'] != "ht_test") {
 				header('Location: ../includes/login.php?release=beta' . $str_url);
 			}
 		}
@@ -91,28 +91,37 @@ function headerAndSearchCode($item)
 
 	echo '<header class="header-section">';
 	___open_div_('header-top', '');
-    ___open_div_('col-xs-12 col-md-12', '');
+	___open_div_('col-xs-12 col-md-12', '');
+
 	___open_div_('ht-left col-md-2', '');
 	___open_div_('logox', '');
 	logoImage();
 	___close_div_(2);
-	___open_div_('ht-center col-md-6', '');
-	miniSearch();
-	___close_div_(1);
-	___open_div_('ht-right col-md-4', '');
+
+
+
+	___open_div_('ht-right col-md-10', '');
 	___open_div_('row', '" style="text-align:right;margin:0px');
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	locale($current_link);
-	___close_div_(1);
+	___close_div_(2); //ht-right, row
+
 	___open_div_('row', '" style="margin:0px');
 	topRightLinks();
 	___close_div_(1);
-	___close_div_(3);
 
+	___open_div_('ht-search col-md-12', '');
+	miniSearch();
+	___close_div_(1);
+
+	___close_div_(2); //ht-search = 1 , header-top =1 , col-xs-12 col-md-12 = 1
+
+	////
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');
 	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto');
 	sidelist($item);
 	___close_div_(2);
+
 	echo '</header>';
 }
 
@@ -777,9 +786,10 @@ function sidelist($item)
 		'phone',
 		'other'
 	];
-	echo '<div id="sidelist" class="col-xs-12 col-md-12">
+	//// TODO:use language to add new classes and use media-query
+	echo '<div id="sidelist" class="col-xs-12 col-md-12 ">
 			<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
-				'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
+		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
 				<i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
 			</div><ul>';
 	echo '<li>';
@@ -1015,11 +1025,10 @@ function editProfile()
 
 function Redirect($url, $permanent = false)
 {
-    if (headers_sent() === false)
-    {
-        header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
-    }
+	if (headers_sent() === false) {
+		header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
+	}
 
-    exit();
+	exit();
 }
 ?>

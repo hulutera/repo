@@ -49,7 +49,6 @@ function locale($current_link)
     ___open_div_('col-md-8', '" style="padding:0px;');
     echo '<ul class="lan-selector">';
 
-    echo '<li style="display:inline;padding:5px;border:5px;"><img src="../../images/icons/flag.ico" width="30px;"></li>';
     foreach ($language as $key => $value) {
         $id = substr($key, -2);
         if(isset($_GET['lan']) && $_GET['lan'] == $id)
