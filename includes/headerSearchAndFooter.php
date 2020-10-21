@@ -190,7 +190,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo" "><a   href="../../index.php' . $lang_url . '"><img style="width:100%;padding:7px;" src="../../images/icons/log-test-1.png"></a></div>';
+	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/log-test-1.png"></a></div>';
 }
 function logoText()
 {
@@ -229,7 +229,7 @@ function topRightLinks($style = null)
 		echo '</a>';
 		if ($user->canUpdate()) {
 			echo '<a   href="../../includes/admin.php' . $lang_url . '">';
-			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px"></span><br/>' . $lang['admin panel'] . '</div>';
+			echo '<div id=""><span class="glyphicon glyphicon-home" style="font-size:20px;"></span><br/>' . $lang['admin panel'] . '</div>';
 			echo '</a>';
 		} else {
 			echo '<a   href="../../includes/mypage.php' . $lang_url . '">';
