@@ -1,4 +1,8 @@
 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 function itemSelect() {
     $(document).ready(function () {
         item = $("#item").val();
@@ -286,39 +290,3 @@ function hideShowSingleDivs(hideDiv, showDiv) {
         $("." + showDiv).show();
     })
 }
-
-$("li#en").mouseenter(function () {
-    $(".lan-tip").text("ENGLISH");
-})
-    .mouseleave(function () {
-        $(".lan-tip").text("");
-    });
-$("li#am")
-    .mouseenter(function () {
-        $(".lan-tip").text("አማርኛ");
-    })
-    .mouseleave(function () {
-        $(".lan-tip").text("");
-    });
-$("li#ao")
-    .mouseenter(function () {
-        $(".lan-tip").text("AFAAN OROMOO");
-    })
-    .mouseleave(function () {
-        $(".lan-tip").text("");
-    });
-$("li#tg")
-    .mouseenter(function () {
-        $(".lan-tip").text("ትግርኛ");
-    })
-    .mouseleave(function () {
-        $(".lan-tip").text("");
-    });
-
-$("li#so")
-    .mouseenter(function () {
-        $(".lan-tip").text("SOMALI");
-    })
-    .mouseleave(function () {
-        $(".lan-tip").text("");
-    });

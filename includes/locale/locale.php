@@ -43,10 +43,7 @@ function locale($current_link)
         $tg => ["ትግርኛ", "ትግ"],
         $so => ["SOMALI", "SO"]
     ];
-    ___open_div_('col-md-4', '');
-    ___open_div_('lan-tip', '');
-    ___close_div_(2);
-    ___open_div_('col-md-8', '" style="padding:0px;');
+    ___open_div_('col-md-12', '" style="padding:0px;');
     echo '<ul class="lan-selector">';
 
     foreach ($language as $key => $value) {
@@ -64,7 +61,7 @@ function locale($current_link)
         } else{
             $style = "display:inline;font-size:14px;color:white;font-weight:bold: border-radius:5%;";
         }
-        echo '<a href="'.$key.'" class="'.$id.'" style="'.$style.'"><li  style="display:inline;padding:5px;border:5px;" id="'.$id.'">' . $value[1];
+        echo '<a href="'.$key.'" class="'.$id.'" style="'.$style.'"><li  style="display:inline;padding:5px;border:5px;" id="'.$id.'" data-toggle="tooltip" data-placement="bottom" title="'.$value[0].'">' . $value[1];
         echo '</li></a>';
     }
     echo '</ul>';
