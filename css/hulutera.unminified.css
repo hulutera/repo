@@ -157,16 +157,14 @@ th {
 	margin: auto;
 }
 
+/*
 path:hover {
 	fill: burlywood;
 }
+*/
 
-.mid-city {
-	font-size: 12px;
-}
-
-.big-city {
-	font-size: 14px;
+.big-city, .mid-city  {
+	font-size: 15px;
 }
 
 #mask {
@@ -3103,6 +3101,11 @@ th {
 .tooltip-inner {
 	background-color: #f3df39;
 	color: black;
+	font-weight: bold;
+}
+
+.ET-HA, .ET-DD, .ET-SO, .ET-BE, .ET-AA, .ET-GA, .ET-SN, .ET-SN, .ET-AF, .ET-TI, .ET-AM {
+	stroke: #378de5;
 }
 
 /*

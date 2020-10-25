@@ -9,24 +9,24 @@ function locale($current_link)
     $tg = null;
     $so = null;
     if (isset($_GET['lan'])) {
-        $arr = array("&lan=am", "&lan=en", "&lan=ao", "&lan=tg", "&lan=so");
+        $arr = array("lan=am", "lan=en", "lan=ao", "lan=tg", "lan=so");
         foreach ($arr as $key => $value) {
             if (strpos($current_link, $value) !== false) {
                 $current_link = str_replace($value, '', $current_link);
                 break;
             }
         }
-        $en = $current_link . '&lan=en';
-        $am = $current_link . '&lan=am';
-        $ao = $current_link . '&lan=ao';
-        $tg = $current_link . '&lan=tg';
-        $so = $current_link . '&lan=so';
+        $en = $current_link . 'lan=en';
+        $am = $current_link . 'lan=am';
+        $ao = $current_link . 'lan=ao';
+        $tg = $current_link . 'lan=tg';
+        $so = $current_link . 'lan=so';
     } else {
 
         if (strpos($current_link, "?")) {
             $lang_link = "&lan";
         } else {
-            $lang_link = "?&lan";
+            $lang_link = "?lan";
         }
 
         $en = $current_link . $lang_link . '=en';
@@ -63,6 +63,7 @@ function locale($current_link)
         }
         echo '<a href="'.$key.'" class="'.$id.'" style="'.$style.'"><li  style="display:inline;padding:5px;border:5px;" id="'.$id.'" data-toggle="tooltip" data-placement="bottom" title="'.$value[0].'">' . $value[1];
         echo '</li></a>';
+
     }
     echo '</ul>';
     ___close_div_(1);

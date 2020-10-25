@@ -160,6 +160,7 @@ class HtMainView
      */
     public function showOneItem($item_order = null)
     {
+        $this->_itemNumber = $item_order;
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $this->_runnerStatus);
         $result = $this->_pItem->getResultSet();
         $sql =  $this->_pItem->lastSql();
