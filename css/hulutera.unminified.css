@@ -3049,6 +3049,11 @@ th {
 	display: inline-block;
 }
 
+.items-board {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
 /* a:hover {
 	color: black;
 } */

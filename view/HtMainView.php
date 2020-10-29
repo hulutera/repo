@@ -228,7 +228,7 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
-        echo "<div id =\"divCommon\" class=\"thumblist_$uniqueId col-xs-12 col-md-4 col-sm-6\" >";    // #divCommon start
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\" >";    // #divCommon start
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
 
 
@@ -297,6 +297,7 @@ class HtMainView
         /*END @thumbnail thumbnail-property features*/
         echo  "</div>"; // #divCommon end
         //---------------------------------------------------------
+
         echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-sm-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
         echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
