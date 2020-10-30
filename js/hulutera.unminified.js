@@ -36,8 +36,6 @@ function swap(item, itemNumber) {
 
                     for (i = itemNumber; i >= (itemNumber - 2); i--) {
                         $(".thumblist_" + value + "_" + i).css("border", "none");
-                        $(".thumblist_" + value + "_" + i).css("border-bottom", "2px solid #0080ff");
-                        $(".thumblist_" + value + "_" + i).css("border-radius", "5px 5px 0px 0px");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
@@ -45,14 +43,11 @@ function swap(item, itemNumber) {
                     $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                     $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
+                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "5px 0px 5px 5px");
                 } else if (itemNumber % 3 == 2) {
 
                     for (i = (itemNumber - 1); i <= (itemNumber + 1); i++) {
                         $(".thumblist_" + value + "_" + i).css("border", "none");
-                        $(".thumblist_" + value + "_" + i).css("border-bottom", "2px solid #0080ff");
-                        $(".thumblist_" + value + "_" + i).css("border-radius", "5px 5px 0px 0px");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
@@ -60,14 +55,11 @@ function swap(item, itemNumber) {
                     $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                     $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
+                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "5px");
                 } else {
 
                     for (i = itemNumber; i <= (itemNumber + 2); i++) {
                         $(".thumblist_" + value + "_" + i).css("border", "none");
-                        $(".thumblist_" + value + "_" + i).css("border-bottom", "2px solid #0080ff");
-                        $(".thumblist_" + value + "_" + i).css("border-radius", "5px 5px 0px 0px");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
@@ -75,17 +67,14 @@ function swap(item, itemNumber) {
                     $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                     $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
+                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 5px 5px 5px");
                 }
-                // For medium screens
+            // For medium screens
             } else if (thumbnailWidth < 60) {
                 if (itemNumber % 2 == 0) {
 
                     for (i = itemNumber; i >= (itemNumber - 1); i--) {
                         $(".thumblist_" + value + "_" + i).css("border", "none");
-                        $(".thumblist_" + value + "_" + i).css("border-bottom", "2px solid #0080ff");
-                        $(".thumblist_" + value + "_" + i).css("border-radius", "5px 5px 0px 0px");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
@@ -93,14 +82,11 @@ function swap(item, itemNumber) {
                     $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                     $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
+                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "5px 0px 5px 5px");
                 } else {
 
                     for (i = itemNumber; i <= (itemNumber + 2); i++) {
                         $(".thumblist_" + value + "_" + i).css("border", "none");
-                        $(".thumblist_" + value + "_" + i).css("border-bottom", "2px solid #0080ff");
-                        $(".thumblist_" + value + "_" + i).css("border-radius", "5px 5px 0px 0px");
                         $("#divDetail_" + value + "_" + i).slideUp("fast");
                     }
                     $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
@@ -108,18 +94,16 @@ function swap(item, itemNumber) {
                     $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                     $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                     $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
-                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
+                    $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 5px 5px 5px");
 
                 }
-                // For small screens
+            // For small screens
             } else {
                 $(".thumblist_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
                 $(".thumblist_" + value + "_" + itemNumber).css("border-bottom", "none");
                 $(".thumblist_" + value + "_" + itemNumber).css("border-radius", "5px 5px 0px 0px");
                 $("#divDetail_" + value + "_" + itemNumber).slideDown("fast");
                 $("#divDetail_" + value + "_" + itemNumber).css("border", "2px solid #0080ff");
-                $("#divDetail_" + value + "_" + itemNumber).css("border-top", "none");
                 $("#divDetail_" + value + "_" + itemNumber).css("border-radius", "0px 0px 5px 5px");
             }
         });
@@ -128,54 +112,9 @@ function swap(item, itemNumber) {
 
 function swapback(item, itemNumber) {
     $(document).ready(function () {
-        var i, thumbnailWidth;
-        thumbnailWidth = ($('#divCommon').width() / $('#divCommon').parent().width()) * 100;
-
         $("#divDetail_" + item + "_" + itemNumber).slideUp("fast");
         $("#divDetail_" + item + "_" + itemNumber).css("border", "none");
-        $.each(['car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'], function (index, value) {
-
-            // For bigger screens
-            if (thumbnailWidth < 35) {
-                if (itemNumber % 3 == 0) {
-
-                    for (i = itemNumber; i >= (itemNumber - 2); i--) {
-                        $(".thumblist_" + value + "_" + i).css("border", "none");
-                    }
-
-                } else if (itemNumber % 3 == 2) {
-
-                    for (i = (itemNumber - 1); i <= (itemNumber + 1); i++) {
-                        $(".thumblist_" + value + "_" + i).css("border", "none");
-                    }
-
-                } else {
-
-                    for (i = itemNumber; i <= (itemNumber + 2); i++) {
-                        $(".thumblist_" + value + "_" + i).css("border", "none");
-                    }
-
-                }
-                // For medium screens
-            } else if (thumbnailWidth < 60) {
-                if (itemNumber % 2 == 0) {
-
-                    for (i = itemNumber; i >= (itemNumber - 1); i--) {
-                        $(".thumblist_" + value + "_" + i).css("border", "none");
-                    }
-
-                } else {
-                    for (i = itemNumber; i <= (itemNumber + 2); i++) {
-                        $(".thumblist_" + value + "_" + i).css("border", "none");
-                    }
-
-                }
-                // For small screens
-            } else {
-                $(".thumblist_" + value + "_" + itemNumber).css("border", "none");
-
-            }
-        });
+        $(".thumblist_" + item + "_" + itemNumber).css("border", "none");
     })
 }
 
