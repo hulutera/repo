@@ -3110,7 +3110,11 @@ th {
 }
 
 .ET-HA, .ET-DD, .ET-SO, .ET-BE, .ET-AA, .ET-GA, .ET-SN, .ET-SN, .ET-AF, .ET-TI, .ET-AM {
-	stroke: #378de5;
+	/* stroke: #378de5; */
+	stroke: #fff;
+}
+g #addis-ababa:hover{
+	background-color: brown;
 }
 
 /*

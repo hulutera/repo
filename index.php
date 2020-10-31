@@ -18,6 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 </head>
 
 <body>
+
 	<?php
 	headerAndSearchCode("index");
 	?>
@@ -103,45 +104,4 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 	</div>
 	<?php footerCode(); ?>
 </body>
-
-
-
 </html>
-
-<?php
-
-// show mapped page
-function showMap()
-{
-	global $str_url;
-	echo '<p class="index-txt">' . $GLOBALS["lang"]["select city from map"] . '</p>';
-?>
-	<!!----SVG for bigger screens----!!>
-		<svg class="svg-big-sc" width="798.71997" height="620.46997" viewbox="0 0 900 800" fill="#378de5">
-			<?php svgMapElement(); ?>
-		</svg>
-
-		<!!----SVG for mid screens----!!>
-			<svg class="svg-mid-sc" width="798.71997" height="620.46997" viewbox="0 0 1000 900" fill="#378de5">
-				<?php svgMapElement(); ?>
-			</svg>
-
-			<!!----SVG for small screens----!!>
-				<svg class="svg-small-sc" width="798.71997" height="620.46997" viewbox="0 0 1600 1400" fill="#378de5">
-					<?php svgMapElement(); ?>
-				</svg>
-			<?php
-		}
-
-		// show latest item
-		function showLatestItem()
-		{
-			global $str_url;
-			echo '<div class="col-xs-12 col-md-12 show-latest-mob-container" style="text-align:center;">';
-			echo '<p class="index-txt">' . $GLOBALS["lang"]["latest items message"] . '</p>';
-			echo '<div class="col-xs-12 col-md-12 show-latest-mob">';
-			echo '<a   href="includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '"><span class="glyphicon glyphicon-refresh" style="color:white;font-size:30px;"></span></br><span style="font-family:sans-serif, Arial, Helvetica;font-size:18px">' . $GLOBALS['lang']['latest items'] . '</span></a>';
-			echo '</div>';
-			echo '</div>';
-		}
-			?>
