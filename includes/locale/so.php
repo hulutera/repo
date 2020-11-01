@@ -1168,6 +1168,7 @@ $validate_specific_array = [
         'length' => [
             5 => 'Ugu-yaraan waa in uu dhararku 5 ka-bato. Markale isku-day!',
             14 => 'Ugu-yaraan waa in uu dhararku 14 ka-bato. Markale isku-day!',
+            125 => 'ርዝመት ከ125 ፊደል በላይ መሆን የለበትም። በድጋሚ ይሞክሩ!'
         ],
         'email' => 'Gashi la-mamnuucay! Ciwaanka email-ka eed galisay shuruudda ma-buuxinayo. Markale isku-day!',
         'passwordRepeat' => 'Ereyada qarsoodigu waa inay isku-ekaadaan. Markale isku-day!',

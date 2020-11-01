@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
-
+var_dump(strlen("Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim fuga soluta cumque magnam repellendus beatae, eaque neque iusto ab sint vero ipsam, eius ipsum officiis quia alias. Harum, tenetur!"));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,16 +69,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 
 					</div>
 				</div>
+
 				<!!----#mainColumn end-------!!>
 
-					<div class="rightNav-index col-xs-3 col-md-2">
+					<div class="rightNav-index col-xs-12 col-md-2">
 						<!!----#rightNav starts-------!!>
 							<?php
 							echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
 							echo '<div class="col-md-12" style=" background-color:#333; color: white;padding:5px;text-align:center;">';
 							echo $GLOBALS['city_lang_arr']['All'];
 							echo '</div>';
-							echo '<div class="col-md-12" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
+							echo '<div class="col-md-12 col-xs-12" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
 							$item_obj = ObjectPool::getInstance()->getObjectSpecial("all");
 							foreach ($city_lang_arr as $key => $value) {
 								$totalItems = 0;
@@ -88,9 +89,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 										$rows = $value2->runQuery($condition);
 										$totalItems = $totalItems + $rows;
 									}
-									echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black;"><div class="col-md-" style="padding:0px;;"><li>';
-
-									echo '(<span style="color:#F012BE;"><strong>' . $totalItems . '</strong></span>) ';
+									echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black;"><div class="col-md-" style="padding:0px;;">';
+									echo '<li class="city-list col-md-12 col-xs-4">(<span style="color:#F012BE;"><strong>' . $totalItems . '</strong></span>) ';
 
 									echo $value . '</li></div></a>';
 								}

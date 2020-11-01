@@ -22,7 +22,7 @@ if (!empty($err2)) {
 	} else {
 		$_SESSION['POST'] = $_POST;
 		$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-		$redirectLink = '../../template.upload.php?function=upload&type=' . $itemName . $lang_sw;
+		$redirectLink = './template.upload.php?function=upload&type=' . $itemName . $lang_sw;
 	}
 
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();

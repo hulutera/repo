@@ -36,8 +36,11 @@ if (isset($_GET['lan'])) {
 			<div id="main_section">
 
 				<?php
-				///reset/cleanup _SESSION variables
-				if (!isset($_GET['type']) or $_GET['function'] !== 'upload' or $_GET['function'] !== 'edit' or $_SESSION['lan'] != $_GET['lan']) {
+				if (
+					!isset($_GET['type']) or         // if type is not set clear error
+					($_GET['function'] !== 'upload' && $_GET['function'] !== 'edit') or   //if upload & edit clear error
+					$_SESSION['lan'] != $_GET['lan']  // if language change clear error
+				) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}

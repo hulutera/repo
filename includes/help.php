@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/cmn.proxy.php';
 
 global $lang, $lang_url, $str_url;
 ?>

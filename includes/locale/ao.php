@@ -1175,6 +1175,7 @@ $validate_specific_array = [
         'length' => [
             5 => 'Duwwaa dhiisun dhorkaa dha.  Irraa deebia yaala!',
             14 => 'Dheerni yoo xinnaate 14 ol tau qaba.',
+            125 => 'ርዝመት ከ125 ፊደል በላይ መሆን የለበትም። በድጋሚ ይሞክሩ!'
         ],
         "email" => ' Sabsii dhorkame. Teessoon imeelii isin galchitan ulaagaa hin guutu. Irraa deebia yaala! ',
         "passwordRepeat" => ' Password walfakkaachu qabu. Irraa deebia yaala! ',

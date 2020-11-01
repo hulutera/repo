@@ -1199,6 +1199,7 @@ $validate_specific_array = [
         'length' => [
             5 => 'Invalid input, should be at least 5 letters long. Please try again!<br>',
             14 => 'Invalid input, should be at least 14 letters long. Please try again!<br>',
+            125 => 'Invalid input, should be at maximum 125 letters long. Please try again!<br>',
         ],
         'email' => 'Invalid email address. Please try again!<br>',
         'passwordRepeat' => 'Passwords do not match. Please try again!<br>',

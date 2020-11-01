@@ -2505,9 +2505,12 @@ th {
 		width: 80%;
 	}
 	.rightNav-index {
-		width: 20%;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+	}
+	.city-list{
+		width:50%;
 	}
 	#divCommon {
 		width: 50%;
@@ -3113,10 +3116,11 @@ th {
 	/* stroke: #378de5; */
 	stroke: #fff;
 }
-g #addis-ababa:hover{
-	background-color: brown;
-}
 
+g#Layer_2 g#cities a.cities-aa:hover{
+	background-color: brown;
+	font-size: 100px;
+}
 /*
 FOOTER
 
@@ -3140,3 +3144,6 @@ FOOTER
 }
 
 /***/
+#Layer_2 #cities a{
+	font-size: 100px;
+}

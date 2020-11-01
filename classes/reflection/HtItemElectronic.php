@@ -1335,7 +1335,7 @@ SQL;
     public function upload($data = null)
     {
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-        echo '<form class="form-horizontal" action="../../includes//form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
+        echo '<form class="form-horizontal" action="../../includes/form_upload.php?table=' . $this->getTableName() . $lang_sw . '" method="post" enctype="multipart/form-data">';
         $itemName = $this->getTableNameShort();
         $this->insertAllField($itemName);
         echo '</form>';
@@ -1400,7 +1400,7 @@ SQL;
         $this->preEdit($this, $data);
         ////------------------------------------------------------------------
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-        echo '<form class="form-horizontal" action="../../includes//form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
+        echo '<form class="form-horizontal" action="../../includes/form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
         $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();

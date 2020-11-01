@@ -160,6 +160,11 @@ class ValidateUpload
                 $_POST[$value] = 0;
             }
         }
+
+        if(isset($_POST["fieldTitle"]) && strlen($_POST["fieldTitle"]) > 125){
+            $input = array("fieldTitle"=> $GLOBALS['validate_specific_array'][2]['length'][125]);
+            array_push($err, $input);
+        }
     }
 
     /**
