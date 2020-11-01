@@ -1,7 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
-var_dump(strlen("Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim fuga soluta cumque magnam repellendus beatae, eaque neque iusto ab sint vero ipsam, eius ipsum officiis quia alias. Harum, tenetur!"));
 ?>
 <!DOCTYPE html>
 <html lang="en">

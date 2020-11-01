@@ -34,10 +34,8 @@ if (isset($_GET['lan'])) {
 	<div id="whole">
 		<div id="wrapper">
 			<div id="main_section">
-
 				<?php
-				if (
-					!isset($_GET['type']) or         // if type is not set clear error
+				if (!isset($_GET['type']) or         // if type is not set clear error
 					($_GET['function'] !== 'upload' && $_GET['function'] !== 'edit') or   //if upload & edit clear error
 					$_SESSION['lan'] != $_GET['lan']  // if language change clear error
 				) {
