@@ -2297,7 +2297,9 @@ th {
 	}
 	.rightNav-index {
 		display: block;
-		width: 20%;
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
 	}
 	.register-container, .contactus-container {
 		border: 1px solid #c7c7c7;
@@ -2505,9 +2507,9 @@ th {
 		width: 80%;
 	}
 	.rightNav-index {
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
 	}
 	.city-list{
 		width:50%;
