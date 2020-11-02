@@ -108,7 +108,7 @@ function userContent()
         /*START @ widget */
         echo '<div class="widget-content properties-grid">';
         /*START @ row*/
-		echo '<div class="row">';
+		echo '<div class="row items-board" >';
 		$item_order = 0;
 		foreach ($result as $key => $value) {
 			# code...
