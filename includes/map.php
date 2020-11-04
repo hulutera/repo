@@ -108,7 +108,7 @@ function svgMapElement()
 			</g></a>
 			<a href="' . $base_link . 'Jigjiga' . $str_url . '">
             <g id="city-jigjiga">
-                <circle class="cls-2" cx="963.19" cy="586.55" r="15"/>
+                <circle class="cls-2" cx="963.19" cy="586.55" r="18.5"/>
                 <text class="cls-3" transform="translate(920.83 630.22) scale(0.9 1)">' . $GLOBALS['city_lang_arr']['Jigjiga'] . '</text>
 			</g></a>
 			<a href="' . $base_link . 'Harar' . $str_url . '">
@@ -166,7 +166,7 @@ function svgMapElement()
                 <text class="cls-3" transform="translate(391.06 355.8) scale(0.9 1)">' . $GLOBALS['city_lang_arr']['Gondar'] . '</text>
                 <rect class="cls-4" x="429.46" y="308.58" width="17.94" height="17.94" transform="translate(-96.13 403.02) rotate(-45)"/>
             </g></a>
-            <text class="cls-6" transform="translate(300.62 31.65) scale(0.98 1)">'.$GLOBALS["lang"]["select city from map"].'</text>
+            <text class="cls-6" transform="translate(390.62 31.65) scale(0.98 1)">'.$GLOBALS["lang"]["select city from map"].'</text>
         </g>
     </g>
 ';

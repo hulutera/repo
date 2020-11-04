@@ -262,7 +262,7 @@ function miniSearch()
 	global $str_url;
 	echo '<div class="miniSearch">';
 	echo '<form class="" action="../../includes/adverts.php" method="get">';
-	echo '<div  class="form-group row" style="margin-bottom:0px"><input name="search_text" class="searchfield form-control" style="display:inline" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa">';
+	echo '<div  class="form-group row" style="margin-bottom:0px"><input name="search_text" class="searchfield" style="display:inline" type="text" placeholder="' . $GLOBALS['lang']['e.g'] . ' RAV4, Toyota, Villa">';
 	item();
 	city();
 	echo '<button type="submit button" class="search-btn btn btn-warning"  onclick="itemSelect()"><i class="search">' . $GLOBALS['lang']['search-button'] . '</i></button>';

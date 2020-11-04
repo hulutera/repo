@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.class.php';
 
 				<!!----#mainColumn end-------!!>
 
-					<div class="rightNav-index col-xs-12 col-md-2">
+					<div class="rightNav-index col-md-2 col-xs-12">
 						<!!----#rightNav starts-------!!>
 							<?php
 							echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';

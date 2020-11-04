@@ -228,10 +228,19 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
-        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\" >";    // #divCommon start
+        if(isset($_GET['status']) and isset($_GET['id'])) {
+            if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
+                $style = "style=\"height:500px\"";
+            } else {
+                $style = "style=\"height:410px\"";
+            }
+        } else {
+            $style = "style=\"height:410px\"";
+        }
+
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\" ". $style .">";
+
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
-
-
         /*START @ thumbnail thumbnail-property features*/
         echo '<div class="thumbnail thumbnail-property features">';
         /*START @ property-image object-fit-container compat-object-fit*/
@@ -298,9 +307,9 @@ class HtMainView
         echo  "</div>"; // #divCommon end
         //---------------------------------------------------------
 
-        echo "<div style =\"display:none;\" class=\"featured_detailed2 col-xs-12 col-sm-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
+        echo "<div style =\"display:none;\" class=\"featured_detailed col-xs-12 col-sm-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
         echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
-        echo "<div class=\"showbutton_hideRemove  col-xs-12 col-md-12\" style=\"margin-bottom:5px\" >
+        echo "<div class=\"showbutton_hideRemove  bg-success col-xs-12 col-md-12\" style=\"margin-bottom:5px;margin-top:5px\" >
 		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback('$itemName', " . $itemNumber . ")\"
 		value=\"" . $GLOBALS['lang']['Hide Detail'] . "\"/></div>";
         $commonViewObj->displayTitle($this->_pItem);
@@ -313,7 +322,7 @@ class HtMainView
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; // left side div end
         $commonViewObj->displayGallery($imageDir, $imageArr, $numimage, $id, $itemName);
-        echo "</div>"; // .featured_detailed2 end
+        echo "</div>"; // .featured_detailed end
 
     }
 

@@ -307,6 +307,7 @@ form.signin input.button {
 	margin-right: 10px;*/
 	border-radius: 0px;
 	padding: 0px;
+	height:34px;
 }
 
 .form-group {
@@ -724,6 +725,8 @@ li .col2 {
 	display: inline-block;
 	float: none;
 	text-align: center;
+	height:410px;
+	float: none;
 }
 
 #divCommon .thumbnail p {
@@ -737,11 +740,12 @@ li .col2 {
 	background: #19D9FD;
 }
 
-.featured_detailed2 {
+.featured_detailed {
 	background-color: #ebf0f1;
+	margin-top: -2px;
 }
 
-.featured_detailed2 p {
+.featured_detailed p {
 	margin: 0px 0px 5px;
 	font-size: 15px;
 }
@@ -2126,11 +2130,7 @@ th {
 	#footer #information_fo, #aboutUs_fo, #followUs_fo {
 		width: 100%;
 	}
-	#divCommon {
-		height: 100%;
-		width: 50%;
-		float: none;
-	}
+
 	div .featured_left_side {
 		width: 100%;
 	}
@@ -2413,9 +2413,7 @@ th {
 	#footer #information_fo, #aboutUs_fo, #followUs_fo {
 		width: 100%;
 	}
-	#divCommon {
-		height: 100%;
-	}
+
 	div .featured_left_side {
 		width: 100%;
 	}
@@ -2514,10 +2512,7 @@ th {
 	.city-list{
 		width:50%;
 	}
-	#divCommon {
-		width: 50%;
-		float: none;
-	}
+
 	.img-thumbnail {
 		width: auto;
 		height: 130px;
@@ -2643,9 +2638,7 @@ th {
 	#footer #information_fo, #aboutUs_fo, #followUs_fo {
 		width: 100%;
 	}
-	#divCommon {
-		height: 100%;
-	}
+
 	div .featured_left_side {
 		width: 100%;
 	}
