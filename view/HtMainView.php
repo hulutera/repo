@@ -230,19 +230,19 @@ class HtMainView
         /*START @ divCommon col-md-4 col-sm-6*/
         if(isset($_GET['status']) and isset($_GET['id'])) {
             if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
-                $style = "style=\"height:500px\"";
+                $style = "style=\"height:480px\"";
             } else {
-                $style = "style=\"height:410px\"";
+                $style = "style=\"height:380px\"";
             }
         } else {
-            $style = "style=\"height:410px\"";
+            $style = "style=\"height:380px\"";
         }
 
-        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\" ". $style .">";
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\">";
 
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         /*START @ thumbnail thumbnail-property features*/
-        echo '<div class="thumbnail thumbnail-property features">';
+        echo '<div class="thumbnail thumbnail-property features" '. $style .'>';
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
         echo '<div class="image-count"><i class="icon-image"></i><span>' . $numimage . '</span></div>';
