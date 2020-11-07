@@ -50,14 +50,14 @@ function commonHeaderJs()
 {
 	if (isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') {
 		//use google apis for production
-		echo '<script async type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
-		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
-		echo '<script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+		echo '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 	} else {
 		//use local
-		echo '<script async type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>';
-		echo '<script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
-		echo '<script async type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>';
+		echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 	}
 }
 function commonHeader()
@@ -94,7 +94,6 @@ function headerAndSearchCode($item)
 	echo '<header class="header-section">';
 	___open_div_('header-top', '');
 	___open_div_('col-xs-12 col-md-12', ' "style="padding:0px');
-
 	___open_div_('ht-left col-md-2', '');
 	___open_div_('logox', '');
 	logoImage();
@@ -382,6 +381,7 @@ function footerCode()
         <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=about' . $str_url . '" target="_blank">' . $lang['About Us'] . '</a></p>
+		<p style="margin-bottom:5px"><a   href="../../test/htTestSpec.php" target="_blank">HT Test Spec</a></p>
         </div>';
 	echo '<div id="followUs_fo" >
 		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>

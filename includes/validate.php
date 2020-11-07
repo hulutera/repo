@@ -161,8 +161,8 @@ class ValidateUpload
             }
         }
 
-        if(isset($_POST["fieldTitle"]) && strlen($_POST["fieldTitle"]) > 125){
-            $input = array("fieldTitle"=> $GLOBALS['validate_specific_array'][2]['length'][125]);
+        if (isset($_POST["fieldTitle"]) && strlen($_POST["fieldTitle"]) > 125) {
+            $input = array("fieldTitle" => $GLOBALS['validate_specific_array'][2]['length'][125]);
             array_push($err, $input);
         }
     }
@@ -352,7 +352,7 @@ class ValidateUser
                     switch ($k) {
                         case 'fieldEmail':
                             $email = $v;
-                           break;
+                            break;
                         case 'fieldPassword':
                             $password = $v;
                             break;
@@ -361,8 +361,7 @@ class ValidateUser
                             break;
                     }
                 }
-            }
-            else {
+            } else {
                 $email = $_POST['fieldEmail'];
                 $password = $_POST['fieldPassword'];
             }
@@ -450,12 +449,14 @@ function validateUtf8($keyIn, $valueIn, &$err)
     $input = [];
     $errMsg1 = '';
     $errMsg = '';
-    foreach ($utf8ToArray as $key => $value) {
-        if ((preg_match('/[\W]+$/ui', $value) && ($value != ' ')) || preg_match('/^[0-9]+$/', $value)) {
-            $errMsg1 = $GLOBALS['validate_specific_array'][2]['isalpha'] . '<br>';
-        }
-        if (preg_match('/^[a-zA-Z]+$/', $value)) {
-            $count++;
+    if (is_array($utf8ToArray)) {
+        foreach ($utf8ToArray as $key => $value) {
+            if ((preg_match('/[\W]+$/ui', $value) && ($value != ' ')) || preg_match('/^[0-9]+$/', $value)) {
+                $errMsg1 = $GLOBALS['validate_specific_array'][2]['isalpha'] . '<br>';
+            }
+            if (preg_match('/^[a-zA-Z]+$/', $value)) {
+                $count++;
+            }
         }
     }
     if ($count > 0) {

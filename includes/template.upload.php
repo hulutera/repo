@@ -37,7 +37,8 @@ if (isset($_GET['lan'])) {
 				<?php
 				if (!isset($_GET['type']) or         // if type is not set clear error
 					($_GET['function'] !== 'upload' && $_GET['function'] !== 'edit') or   //if upload & edit clear error
-					$_SESSION['lan'] != $_GET['lan']  // if language change clear error
+					$_SESSION['lan'] != $_GET['lan']  or // if language change clear error
+					$_SESSION['type'] != $_GET['type']  // if language change clear error
 				) {
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
@@ -47,6 +48,7 @@ if (isset($_GET['lan'])) {
 					header('Location:../index.php' . $lang_url);
 				}
 				$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
+				$_SESSION['type'] = isset($_GET['type']) ? $_GET['type'] : "type";
 				$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
 
 
@@ -76,8 +78,8 @@ if (isset($_GET['lan'])) {
 		</div>
 	</div>
 	<?php footerCode(); ?>
-	<script async src="../js/custom.js" type="text/javascript"></script>
-	<script async src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
+	<script src="../js/custom.js" type="text/javascript"></script>
+	<script src="../js/jquery.fileuploader.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			$('#rentOrSell').on('change', function() {
