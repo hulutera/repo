@@ -594,17 +594,17 @@ class HtUtilContactUs extends MySqlRecord
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-12 col-xs-12", '');
+            ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
             ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
 
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldPurpose',  'user_specific_array', 'user');
         ___close_div_(2);
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldMessage',  'user_specific_array', 'user', 'textarea');
         ___close_div_(2);
@@ -614,9 +614,9 @@ class HtUtilContactUs extends MySqlRecord
         ___open_div_("row", "");
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-bottom:10px;');
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['Send'] . '</button>';
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Send'] . '</button>';
         ___close_div_(5);
         ___close_div_(2);
     }

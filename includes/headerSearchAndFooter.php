@@ -381,8 +381,7 @@ function footerCode()
         <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=about' . $str_url . '" target="_blank">' . $lang['About Us'] . '</a></p>
-		<p style="margin-bottom:5px"><a   href="../../test/htTestSpec.php" target="_blank">HT Test Spec</a></p>
-        </div>';
+		</div>';
 	echo '<div id="followUs_fo" >
 		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>
 		        <ul>

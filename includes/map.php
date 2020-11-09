@@ -23,7 +23,7 @@ function svgMapElement()
 	$base_link = '../includes/adverts.php?item=All&search_text=&cities=';
 	echo '
     <defs>
-        <style>.cls-1{fill:#f2e4df;stroke:#c49a6c;stroke-linecap:round;stroke-linejoin:round;}.cls-2{fill:#1c75bc;}.cls-3{font-size:31px;}.cls-3,.cls-6{font-family:sans-serif, Arial, Helvetica;}.cls-4{fill:#be4652;}.cls-5{letter-spacing:-0.02em;}.cls-6{font-size:38px;}</style>
+        <style>.cls-1{fill:#f2e4df;stroke:#c49a6c;stroke-linecap:round;stroke-linejoin:round;}.cls-2{fill:#1c75bc;}.cls-3{font-size:31px;}.cls-3,.cls-6{font-family:ProximaNova-Extrabld, Proxima Nova;}.cls-4{fill:#be4652;}.cls-5{letter-spacing:-0.02em;}.cls-6{font-size:38px;}</style>
     </defs>
     <g id="Layer_2" data-name="Layer 2">
         <g id="ethiopia-border-final">

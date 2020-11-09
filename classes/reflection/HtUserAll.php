@@ -1122,15 +1122,15 @@ SQL;
         $style = '" style="text-align: left;font-size:18px;';
         ___open_div_("row", "");
         ___open_div_("col-md-12 col-xs-12", $style . 'padding-top: 10px;');
-        ___open_div_("form-group ", "");
+        ___open_div_("form-group", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-8 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
         ___close_div_(2);
         $fillableFields = ['fieldFirstName', 'fieldLastName'];
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-6 col-xs-12", '');
+            ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
             ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
@@ -1143,11 +1143,12 @@ SQL;
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-6 col-xs-12", '');
+            ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
             ___open_div_("col-md-12 col-xs-12", '');
-            $this->insertFillable($value,  'user_specific_array', 'user');
+               $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
+
         $this->insertPassword();
         ___close_div_(4);
         ///
@@ -1155,7 +1156,7 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldContactMethod',  'upload_specific_array', 'common');
         ___close_div_(6);
@@ -1164,11 +1165,11 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         $this->insertSelectable('fieldTermAndCondition',  'user_specific_array', 'user');
         ___close_div_(1);
-        //___open_div_("col-md-12", '');
+
         global $str_url;
         ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
         echo '<p class="h5"><a   class="text-info" href="../../includes/template.proxy.php?type=terms' . $str_url . '" target="_blank">' .
@@ -1183,7 +1184,7 @@ SQL;
         ___open_div_("row", "");
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
 
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Register'] . '</button>';
@@ -1193,7 +1194,7 @@ SQL;
         ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-bottom:10px');
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
         echo '<a   class="forgot"  href="../includes/login.php' . $lang_url . '">' . $GLOBALS['lang']['Login'] . ' </a> ';
@@ -1232,14 +1233,12 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", '" style="text-align: left;font-size:18px;');
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-
         ___open_div_("col-md-12 col-xs-12", '" style="margin-top:10px;');
         $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
-        ___close_div_(1);
-        ___open_div_("col-md-12", '');
+        ___close_div_(2);
+        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-top:10px;');
         $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password');
-        ___close_div_(1);
         ___close_div_(5);
 
         ////
@@ -1247,7 +1246,7 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
+        ___open_div_("col-md-12 col-xs-12", '" style="margin-top:10px;');
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Login'] . '</button>';
         ___close_div_(5);
 
@@ -1257,10 +1256,10 @@ SQL;
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-top:10px');
         echo '<a   class="forgot"  href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-top:10px');
         echo '<a   class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);
@@ -1272,8 +1271,8 @@ SQL;
     {
         $fillableFields = ['fieldPassword', 'fieldPasswordRepeat'];
         foreach ($fillableFields as $value) {
-            ___open_div_("col-md-6", '');
-            ___open_div_("col-md-12", '');
+            ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
+            ___open_div_("col-md-12 col-xs-12", '');
             $this->insertFillable($value,  'user_specific_array', 'user', 'password'); //password
             ___close_div_(2);
         }

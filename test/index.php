@@ -3382,10 +3382,7 @@ display:none;text-decoration:none">. </span><span style="color:windowtext;displa
 
 		<h2><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a name="_Toc44021837">15) Upload</a></span></h2>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.1) View </span><span lang=EN-GB>(<b><span style="color:red">error: upload
-						element shows while loggedout&nbsp;&nbsp;.check session-timeout syncs with clearing the session-ID.
-						When I checked the logged-in page after long hours, I was logged-out but the
-						upload process is still visible</span></b> )&nbsp; (<span style="color:#00B050">DONE</span>)</span>
+		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.1) View </span>
 		</p>
 
 		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;The upload
