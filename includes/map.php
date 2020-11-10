@@ -8,7 +8,7 @@ function showMap()
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for mid screens----!!>
-		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-mid-sc" width="918" height="800" viewbox="0 0 1800 1400">';
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-mid-sc" width="800" height="700" viewbox="0 0 1500 1400">';
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for small screens----!!>
