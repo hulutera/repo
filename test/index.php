@@ -4260,9 +4260,8 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 
 		<p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;</span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				15.3) Style (CSS) </span><span lang=EN-GB>(<span style="color:red">error, all
-					screen size</span>) (<span style="color:#00B050">DONE</span>)</span></p>
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				15.3) Style (CSS) </span></p>
 
 		<p class=MsoListParagraph style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</span><span lang=EN-GB>All screen sizes can
@@ -4274,17 +4273,17 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 				item upload elements should be seen on all screen sizes. Check the text font
 				style and positioning of all the elements.</span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.4) Language
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.4) Language
 				Amharic</span></p>
 
-		<p class="MsoListParagraphCxSpFirst f" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;
+		<p class="MsoListParagraphCxSpFirst" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;
 				- Select the language </span><span lang=EN-GB>&#4768;&#4635;&#4653;&#4763;</span><span lang=EN-GB> &nbsp;from language
 				drop-down</span></p>
 
 		<p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;
 				- Perform step 15.1 to 15.3 with its corresponding Amharic translation</span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.5) Language Afan
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.5) Language Afan
 				Oromo</span></p>
 
 		<p class="MsoListParagraphCxSpFirst" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -4294,7 +4293,7 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 				- Perform step 15.1 to 15.3 with its corresponding Afan Oromo
 				translation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.6) Language
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.6) Language
 				Tigrigna</span></p>
 
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Select
@@ -4303,13 +4302,13 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 		<p class=MsoListParagraph style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp; -
 				Perform step 15.1 to 15.3 with its corresponding Tigrigna translation</span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.7) Language
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.7) Language
 				Somali</span></p>
 
 		<p class="MsoListParagraphCxSpFirst" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				- Select the language Somali from language drop-down</span></p>
 
-		<p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<!-- <p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				- Perform step 15.1 to 15.3 with its corresponding Somali translation</span></p>
 
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.8) Language
@@ -4341,7 +4340,7 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 		<p class="MsoListParagraphCxSpMiddle" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				- Perform step 15.1 to 15.3 with its corresponding Welaytigna translation</span></p>
 
-		<p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;</span></p>
+		<p class="MsoListParagraphCxSpLast" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;</span></p> -->
 
 		<h2><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a name="_Toc44021838">16) Logout</a></span></h2>
 
@@ -5143,6 +5142,15 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;</span></p>
 
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;</span></p>
+
+
+
+
+		<p class="h2 f">
+		NOT WORKING:
+		<li> Click on pending item with lan=english <a href="http://hulutera/includes/template.content.php?lan=en&status=pending&id=18">http://hulutera/includes/template.content.php?lan=en&status=pending&id=18</a></li>
+		<li> Switch language to Amharic, http://hulutera/includes/template.content.php?&status=pending&id=18lan=am</li>
+		</p>
 
 	</div>
 

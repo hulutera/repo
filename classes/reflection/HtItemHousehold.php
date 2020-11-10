@@ -563,7 +563,7 @@ class HtItemHousehold extends MySqlRecord
         //create a folder for image upload
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
         mkdir($directory, 0777, true);
-        while (!file_exists($directory)) {
+        if (!file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
 
@@ -770,7 +770,7 @@ class HtItemHousehold extends MySqlRecord
      */
     public function getFieldTitle()
     {
-        return $this->fieldTitle;
+        return $this->fieldTitle != null ? $this->fieldTitle : $this->getTableNameShort();
     }
 
     /**
@@ -1100,9 +1100,6 @@ class HtItemHousehold extends MySqlRecord
     {
         $sql = "DELETE FROM item_household WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1152,9 +1149,6 @@ class HtItemHousehold extends MySqlRecord
 			{$this->parseValue($this->fieldTableType)})
 SQL;
         $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1206,9 +1200,6 @@ SQL;
                 id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-
-            $this->set_charset('utf8');
-            $this->query('SET NAMES utf8');
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;

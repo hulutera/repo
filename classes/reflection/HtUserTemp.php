@@ -741,9 +741,6 @@ class HtUserTemp extends MySqlRecord
     {
         $sql = "DELETE FROM user_temp WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -785,8 +782,6 @@ class HtUserTemp extends MySqlRecord
             {$this->parseValue($this->fieldAccountStatus, 'notNumber')})
 SQL;
         $this->resetLastSqlError();
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -835,9 +830,6 @@ SQL;
                 id={$this->parseValue($id, 'int')}
 SQL;
             $this->resetLastSqlError();
-
-            $this->set_charset('utf8');
-            $this->query('SET NAMES utf8');
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;
@@ -901,8 +893,6 @@ SQL;
         //check user exists in user_temp, if so delete it
         $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
 
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         while ($row = $result->fetch_array()) {
             var_dump($row['id']);
@@ -934,6 +924,6 @@ SQL;
         $body .= "https://www.hulutera.com/includes/activate.php?key=" . $activation;
 
         //Check if mail Delivered or die
-        send_mail($email, $subject, $body, 'From:noreply@hulutera.com', '../includes/prompt.php?type=1'.$lang_sw);
+        send_mail($email, $subject, $body, 'From:noreply@hulutera.com', '../includes/prompt.php?type=1' . $lang_sw);
     }
 }

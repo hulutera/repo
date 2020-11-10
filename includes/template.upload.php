@@ -15,7 +15,6 @@ if (isset($_GET['lan'])) {
 <head>
 	<title><?php echo $GLOBALS['lang']['upload']; ?></title>
 	<?php commonHeader(); ?>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 	<link href="../css/font/font-fileuploader.css" rel="stylesheet">
 	<!-- styles -->
 	<link href="../css/jquery.fileuploader.min.css" media="all" rel="stylesheet">
@@ -35,11 +34,13 @@ if (isset($_GET['lan'])) {
 		<div id="wrapper">
 			<div id="main_section">
 				<?php
-				if (!isset($_GET['type']) or         // if type is not set clear error
+				if (
+					!isset($_GET['type']) or         // if type is not set clear error
 					($_GET['function'] !== 'upload' && $_GET['function'] !== 'edit') or   //if upload & edit clear error
-					$_SESSION['lan'] != $_GET['lan']  or // if language change clear error
-					$_SESSION['type'] != $_GET['type']  // if language change clear error
-				) {
+					isset($_SESSION['lan']) && ($_SESSION['lan'] != $_GET['lan']) or  // if language change clear error
+					(isset($_GET['type']) && isset($_SESSION['type']) && ($_SESSION['type'] != $_GET['type']))
+				)  // if language change clear error
+				{
 					unset($_SESSION['POST']);
 					unset($_SESSION['errorRaw']);
 				}

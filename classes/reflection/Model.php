@@ -16,15 +16,12 @@
 abstract class Model extends mysqli
 {
     public $sql;
-    // protected $resultArray;
     protected $resultSet;
-    // protected $resultRecord;
-    const SESSION_EXPIRE_TIME = 1800; //30min inactive time
-    const SESSION_UPDATE_TIME = 60;
 
     public function __construct()
     {
         @parent::__construct(DBHOST, DBUSER, DBPASSWORD, DBNAME);
+        $this->setUtf8();
         $this->throwIfDBError();
         $this->autorun();
     }
@@ -40,10 +37,9 @@ abstract class Model extends mysqli
         //Redirect to index page when session expired
         if (isset($_SESSION['uID'])) {
             if (isset($_SESSION["LAST_ACTIVITY"])) {
-                if (time() - $_SESSION["LAST_ACTIVITY"] > self::SESSION_EXPIRE_TIME) {
+                if (time() - $_SESSION["LAST_ACTIVITY"] > SESSION_EXPIRE_TIME) {
                     header('Location:../includes/logout.php' . $lang_url);
-                }
-                else if (time() - $_SESSION["LAST_ACTIVITY"] > self:: SESSION_UPDATE_TIME) {
+                } else if (time() - $_SESSION["LAST_ACTIVITY"] > SESSION_UPDATE_TIME) {
                     $_SESSION["LAST_ACTIVITY"] = time();
                 }
             } else {
@@ -52,6 +48,17 @@ abstract class Model extends mysqli
         }
     }
 
+    private function setUtf8()
+    {
+        $this->set_charset('utf8');
+        /// TODO: kept for reference
+        // $this->query('set character_set_client=utf8');
+        // $this->query('set character_set_connection=utf8');
+        // $this->query('set character_set_results=utf8');
+        // $this->query('set character_set_server=utf8');
+        // $this->set_charset('utf8');
+        // $this->query('SET NAMES utf8');
+    }
     public function setResultSet($mysqliResult)
     {
         $this->resultSet = $mysqliResult;
@@ -95,7 +102,7 @@ abstract class Model extends mysqli
                 }
             }
         } else {
-            return self::get_error();
+            return $this->get_error();
         }
     }
 
@@ -107,7 +114,7 @@ abstract class Model extends mysqli
             return $result->fetch_assoc();
         } else {
             # call the get_error function
-            return self::get_error();
+            return $this->get_error();
             # or:
             # return $this->get_error();
         }

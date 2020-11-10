@@ -22,7 +22,7 @@ class HtCommonView extends MySqlRecord
         $userImageDir = "/user_id_" . $itemObj->getIdUser();
         $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
         $realPath = (!strpos($_SERVER['PHP_SELF'], "index.php")) ? "../" : "";
-        $path = $realPath. "upload/";
+        $path = $realPath . "upload/";
         $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
         return $dir;
     }
@@ -88,8 +88,7 @@ class HtCommonView extends MySqlRecord
 	* */
     public function displayTitle($itemObj)
     {
-        $title = $itemObj->getFieldTitle();
-        return $title != null ? $title : $this->_itemName;
+        return $itemObj->getFieldTitle();
     }
     /*@function to display location of item
 	 * input : location /loc
@@ -101,8 +100,8 @@ class HtCommonView extends MySqlRecord
 	* */
     public function displayMake($itemObj)
     {
-        $itemName = $this->_itemName;
-        if ($itemName == "car" or $itemName == "phone" or $itemName == "computer") {
+        $array = ["car", "phone", "computer"];
+        if (in_array($this->_itemName, $array)) {
             echo "<div class=\"location\">";
             echo $itemObj->getFieldMake();
             echo "</div>";
@@ -130,7 +129,7 @@ class HtCommonView extends MySqlRecord
         }
     }
 
-        /*@function to display market type /SELL/RENT
+    /*@function to display market type /SELL/RENT
 	 * input: mkTyp
 	* */
     public function displayMarketTypeNoCss($itemObj)
@@ -244,13 +243,13 @@ class HtCommonView extends MySqlRecord
         echo "<div id=\"mail_reportRemove\" style=\"margin-top:20px\" class=\"contact_$uniqueId \">";
         echo '<div class="headerRemove"><p class="bg-success"><strong>' . $GLOBALS["lang"]["Contact method"] . '</strong></p></div>';
         if ($contactType == "email" or $contactType == "both") {
-            if($email != "" or $email != NULL) {
+            if ($email != "" or $email != NULL) {
                 echo "<div class=\"email\">
                 <p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
             }
         }
         if ($contactType == "phone" or $contactType == "both") {
-            if($phone != "" or $phone != NULL) {
+            if ($phone != "" or $phone != NULL) {
                 echo "<div class=\"phone\">
                 <p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
             }

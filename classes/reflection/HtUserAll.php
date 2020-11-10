@@ -829,10 +829,7 @@ class HtUserAll extends MySqlRecord
                 $sql =  "SELECT * FROM user_all WHERE id={$this->parseValue($input, 'int')}";
             }
         }
-
         $this->resetLastSqlError();
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
@@ -965,8 +962,6 @@ SQL;
             WHERE
                 id={$this->parseValue($id, 'int')}
 SQL;
-            $this->set_charset('utf8');
-            $this->query('SET NAMES utf8');
 
             $this->resetLastSqlError();
             $result = $this->query($sql);

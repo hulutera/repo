@@ -39,12 +39,13 @@ if (!empty($err2)) {
 	$_SESSION['error']  = $crypto->encryptor($input);
 	$_SESSION['errorRaw']  = $err2;
 
-    header('Location: ' . $redirectLink);
+	header('Location: ' . $redirectLink);
 } else {
 	// reset Error
 	$err = [];
 	/// get id if edit is running
 	$id = isset($_SESSION['POST']['id']) ? (int)$_SESSION['POST']['id'] : null;
+
 
 	//get item instance
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], $id);
@@ -57,7 +58,7 @@ if (!empty($err2)) {
 		$_pItem->insertPost();
 	}
 
-	//exit;
+	// exit;
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;

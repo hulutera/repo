@@ -19,6 +19,13 @@ if (file_exists('/home/hah3lga4knls/db.ini')) {
     define('DBPORT', '3306');
     unset($GLOBALS['status']);
 }
+
+/**
+ * SESSION ACTIVITY SETTING
+ */
+define("SESSION_EXPIRE_TIME", 1800); //30min inactive time
+define("SESSION_UPDATE_TIME", 60);
+
 /**
  * Date formats:
  * @note HTML5 date format is like 2016/01/20 - aaaa/mm/dd
@@ -82,5 +89,5 @@ spl_autoload_register(function ($className) {
             }
         }
     }
-    include_once ($fileName);
+    include_once($fileName);
 });

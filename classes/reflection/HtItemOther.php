@@ -548,7 +548,7 @@ class HtItemOther extends MySqlRecord
         $this->setIdCategory($_POST['idCategory']);
         $this->setIdUser($_userId);
         $this->setIdTemp($_itemTempId);
-        $this->setFieldExtraInfo($_POST['fieldExtraInfo']);
+        // $this->setFieldExtraInfo($_POST['fieldExtraInfo']);
         $this->setFieldPriceSell($_POST['fieldPriceSell']);
         $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
         $this->setFieldPriceNego($_POST['fieldPriceNego']);
@@ -562,8 +562,7 @@ class HtItemOther extends MySqlRecord
 
         //create a folder for image upload
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
-        mkdir($directory, 0777, true);
-        while (!file_exists($directory)) {
+        if (!file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
 
@@ -771,7 +770,7 @@ class HtItemOther extends MySqlRecord
      */
     public function getFieldTitle()
     {
-        return $this->fieldTitle;
+        return $this->fieldTitle != null ? $this->fieldTitle : $this->getTableNameShort();
     }
 
     /**
@@ -1102,9 +1101,6 @@ class HtItemOther extends MySqlRecord
     {
         $sql = "DELETE FROM item_other WHERE id={$this->parseValue($id, 'int')}";
         $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1155,11 +1151,9 @@ class HtItemOther extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        // exit;
+        //echo $sql;
+        //exit;
         $this->resetLastSqlError();
-
-        $this->set_charset('utf8');
-        $this->query('SET NAMES utf8');
         $result = $this->query($sql);
         $this->lastSql = $sql;
         if (!$result) {
@@ -1212,9 +1206,6 @@ SQL;
 SQL;
             //  exit
             $this->resetLastSqlError();
-
-            $this->set_charset('utf8');
-            $this->query('SET NAMES utf8');
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - " . $this->error;

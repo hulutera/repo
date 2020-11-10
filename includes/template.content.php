@@ -7,9 +7,8 @@ global $lang;
 <html lang="en">
 
 <head>
-	<title><?php echo $lang['My Items']; ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">
 	<?php commonHeader(); ?>
+	<title><?php echo $lang['My Items']; ?></title>
 </head>
 
 <body>
@@ -31,4 +30,5 @@ global $lang;
 	</div>
 	<?php footerCode(); ?>
 </body>
+
 </html>
