@@ -3612,8 +3612,7 @@ display:none;text-decoration:none">. </span><span style="color:windowtext;displa
 		<p class="MsoListParagraphCxSpMiddle" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
 				Submit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.Button</span></p>
 
-		<p class="MsoListParagraphCxSpMiddle done" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Negative Scenario1: (<b><span style="color:red">one error found, on
-						price filed</span></b>)&nbsp; (<span style="color:#00B050">DONE</span>)</span></p>
+		<p class="MsoListParagraphCxSpMiddle done" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Negative Scenario1: </span></p>
 
 		<p class="MsoListParagraphCxSpMiddle" style="margin-left:1.0in"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action: Click &nbsp;Submit&nbsp; button
 				without selecting/entering any information</span></p>
@@ -4344,12 +4343,12 @@ color:red">error</span></b><span lang=EN-GB>) (<span style="color:#00B050">DONE)
 
 		<h2><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a name="_Toc44021838">16) Logout</a></span></h2>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.1) View</span></p>
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.1) View</span></p>
 
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Logout text
 				with icon&nbsp;&nbsp;..clickable text on to top-right side</span></p>
 
-		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.2) Function</span></p>
+		<p class="MsoNormal p"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.2) Function</span></p>
 
 		<p class="MsoNormal"><span lang=EN-GB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action: Click
 				the logout link</span></p>

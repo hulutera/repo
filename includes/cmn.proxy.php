@@ -15,8 +15,8 @@ function aboutUs()
 	} else {
 		$str_url = "";
 	}
-	echo '<div class="row bg-info">';
-	echo '<div class="col-md-12 col-sm-12 col-xs-12" style="width:80%;margin:2% 10% 0 10%;text-align:left">';
+	echo '<div class="row">';
+	echo '<div class="col-md-6 col-xs-12 termsandcond-container" style="text-align:justify;line-height: 1.6;background-color:#f6f4df;border-radius:5px;">';
 	$longKey0 = 'about us page paragraph1 text';
 	$longKey1 = 'aboutus page paragraph2 text';
 	$longKey2 = 'aboutus page paragraph3 text';
@@ -25,22 +25,23 @@ function aboutUs()
 	$longKey5 = 'For inappropriate items you can Report';
 	$longKey6 = 'If you need help, click';
 	$longKey7 = 'Finally, we are happy and proud to present hulutera to all Ethiopians and it is up to you to use it as much as you want. hulutera is FREE!';
-	echo '<p class="h3 text-info" style="text-align:center">' . $lang['About Us'] . '</p>';
-	echo '<p class="h4">' . $lang[$longKey0] .'</p>' ;
-	echo '	<a   href="../includes/template.item.php?type=car' . $str_url . '">' . $GLOBALS['item_lang_arr']['car'] . '</a>,
-	<a   href="../includes/template.item.php?type=house' . $str_url . '">' . $GLOBALS['item_lang_arr']['house'] . '</a>,
-	<a   href="../includes/template.item.php?type=phone' . $str_url . '">' . $GLOBALS['item_lang_arr']['phone'] . '</a>,
-	<a   href="../includes/template.item.php?type=computer' . $str_url . '">' . $GLOBALS['item_lang_arr']['computer'] . '</a>,
-	<a   href="../includes/template.item.php?type=electronics' . $str_url . '">' . $GLOBALS['item_lang_arr']['electronic'] . '</a>,
-	<a   href="../includes/template.item.php?type=household' . $str_url . '">' . $GLOBALS['item_lang_arr']['household'] . '</a>,
-	<a   href="../includes/template.item.php?type=others' . $str_url . '">' . $GLOBALS['item_lang_arr']['other'] . '</a>';
-	echo '<p class="h4">'. $lang[$longKey1] .'</p>';
-	echo '<p class="h4">'. $lang[$longKey2] .'</p>';
-	echo '<p class="h4">'. $lang[$longKey3] .'</p>';
-	echo '<p class="h4">'. $lang[$longKey4] .' <a href="../../includes/template.proxy.php?type=contact' . $str_url . '">' . $lang['Contact Us'] . '</a></p>';
-	echo '<p class="h4">'. $lang[$longKey5] .'</p>';
-	echo '<p class="h4">'. $lang[$longKey6] .' <a   href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a></p>';
-	echo '<p class="h4">'. $lang[$longKey7] .'</p>';
+	echo '<p class="headline-start"><strong>' . $lang['About Us'] . '</strong></p>';
+	echo '<p class="content">' . $lang[$longKey0] .'</p>' ;
+	echo '
+	<a class="links" href="../includes/template.item.php?type=car' . $str_url . '">' . $GLOBALS['item_lang_arr']['car'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=house' . $str_url . '">' . $GLOBALS['item_lang_arr']['house'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=phone' . $str_url . '">' . $GLOBALS['item_lang_arr']['phone'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=computer' . $str_url . '">' . $GLOBALS['item_lang_arr']['computer'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=electronics' . $str_url . '">' . $GLOBALS['item_lang_arr']['electronic'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=household' . $str_url . '">' . $GLOBALS['item_lang_arr']['household'] . '</a>,
+	<a class="links" href="../includes/template.item.php?type=others' . $str_url . '">' . $GLOBALS['item_lang_arr']['other'] . '</a>';
+	echo '<p class="content">'. $lang[$longKey1] .'</p>';
+	echo '<p class="content">'. $lang[$longKey2] .'</p>';
+	echo '<p class="content">'. $lang[$longKey3] .'</p>';
+	echo '<p class="content">'. $lang[$longKey4] .' <a href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>';
+	echo '<p class="content">'. $lang[$longKey5] .'</p>';
+	echo '<p class="content">'. $lang[$longKey6] .' <a   href="../../includes/template.proxy.php?type=help' . $str_url . '"> ' . $lang['Help'] . '</a></p>';
+	echo '<p class="content">'. $lang[$longKey7] .'</p>';
 	echo '</div></div>';
 }
 
@@ -49,9 +50,9 @@ function termAndConditions()
 	global $lang_url, $lang;
 	echo '
 			<div id="row">
-			<div class="col-md-8 col-xs-12 termsandcond-container" style="background-color:#dfefff;text-align:left;padding:15px">
-			<span style="text-align:center;padding-bottom:50px;font-weight:bold;font-size:18px">' . $lang['Terms and Conditions'] . ' </span></br></br>
-    ' . $lang['terms and conditions text'] . '
+			<div class="col-md-6 col-xs-12 termsandcond-container" style="text-align:justify;line-height: 1.6;background-color:#f6f4df;border-radius:5px;">
+			<p class="headline-start"><strong>'. $lang['Terms and Conditions'].'</strong></p>
+			<p class="content">' . $lang['terms and conditions text'] . '	</p>
 	</div>
 	</div>
 ';
@@ -62,26 +63,25 @@ function privacyPolicy()
 	global $lang;
 	echo '
 			<div class="row">
-			<div class="col-md-8 col-xs-12 privacypolicy-container" style="background-color: #dfefff;font-family: sans-serif, Arial, Helvetica; padding:15px; text-align:left">
-			<p style="font-size:18px"><strong>'. $lang['Privacy Policy'].'</strong></p>
-			<p>' . $lang['privacy policy paragraph1 text'] . '	</p>
-			<p>' . $lang['privacy policy paragraph2 text'] . '	</p>
-			<p style="font-size:16px"><strong>' . $lang['What we collect'] . '</strong>
-			<li style="padding-left:20px">• ' . $lang['Your name'] . '</li>
-			<li style="padding-left:20px">• ' . $lang['Contact Information including email address'] . '</li>
+			<div class="col-md-6 col-xs-12 privacypolicy-container" style="text-align:justify;line-height: 1.6;background-color:#f6f4df;border-radius:5px;">
+			<p class="headline-start"><strong>'. $lang['Privacy Policy'].'</strong></p>
+			<p class="content">' . $lang['privacy policy paragraph1 text'] . '	</p>
+			<p class="content">' . $lang['privacy policy paragraph2 text'] . '	</p>
+			<p class="headline"><strong>' . $lang['What we collect'] . '</strong></p>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['Your name'] . '</li>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['Contact Information including email address'] . '</li>
+			<p class="headline"><strong>' . $lang['What we do with the information we gather'] . '</strong>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['privacy policy paragraph1 text'] . '</li>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['We may use the information to improve our services.'] . '</li>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['We may periodically send promotional emails msg'] . '</li>
+			<li class="content" ><i class="fa fa-caret-right"></i> ' . $lang['From time to time send info msg'] . '</li>
 			</p>
-			<p style="font-size:16px"><strong>' . $lang['What we do with the information we gather'] . '</strong>
-			<li style="padding-left:20px">• ' . $lang['privacy policy paragraph1 text'] . '</li>
-			<li style="padding-left:20px">• ' . $lang['We may use the information to improve our services.'] . '</li>
-			<li style="padding-left:20px">• ' . $lang['We may periodically send promotional emails msg'] . '</li>
-			<li style="padding-left:20px">• ' . $lang['From time to time send info msg'] . '</li>
-			</p>
-			<p style="font-size:16px"><strong>' . $lang['Links to other websites'] . '</p></strong>
+			<p class="headline"><strong>' . $lang['Links to other websites'] . '</p></strong>
 			<p>
 			' . $lang['Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.'] . '
 			</p>
-			<p>
-			' . $lang['hulutera Admin'] . '
+			<p class="headline">
+			' . $lang['Hulutera Admin'] . '
 			</p>
 			</div></div>
 			';
