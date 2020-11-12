@@ -1,4 +1,5 @@
 <?php
+echo $_SERVER['DOCUMENT_ROOT'];
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
