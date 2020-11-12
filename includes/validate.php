@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']. '/classes/objectPool.class.php';
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption
@@ -72,16 +73,11 @@ class ValidateUpload
     public function __construct(&$err)
     {
         $item = $_GET['table'];
-        var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
-        require_once $_SERVER['DOCUMENT_ROOT']. '/classes/objectPool.class.php';
         $this->_runnerName = ObjectPool::getInstance()->getObjectWithId($item, null);
-        var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
         $this->default_options = $this->_runnerName->getUploadOption();
-        var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 
         $price = ["fieldPriceSell", "fieldPriceRent", "fieldPriceRate"];
         $input = [];
-        var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 
 
         /**
