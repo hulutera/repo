@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/ObjectPool.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
