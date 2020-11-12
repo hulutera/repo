@@ -1,6 +1,6 @@
 <?php
-//spl_autoload_register not loading objectPool
-// require_once $_SERVER['DOCUMENT_ROOT']. '/classes/objectPool.php';
+//spl_autoload_register not loading objectPool singleton classes.
+require_once $_SERVER['DOCUMENT_ROOT']. '/classes/objectPool.php';
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption
