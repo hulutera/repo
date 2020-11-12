@@ -586,7 +586,7 @@ class HtUtilContactUs extends MySqlRecord
         echo '<strong><p class="h2">' . $GLOBALS['user_specific_array']['user']['contactus'] . '</strong></p>';
         ___close_div_(2);
         ///
-        $style = '" style="text-align: left;font-size:18px;';
+        $style = '" style="text-align:left;font-size:18px;';
         ///
         $fillableFields = ['fieldName', 'fieldEmail', 'fieldCompany', 'fieldSubject'];
         ___open_div_("row", '" style="margin-top:15px;');

@@ -64,7 +64,9 @@ function commonHeader()
 {
 	commonHeaderCssMeta();
 	commonHeaderJs();
-	blockLogin();
+
+	//blockLogin();
+
 }
 
 function blockLogin()

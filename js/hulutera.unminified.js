@@ -8,7 +8,8 @@ function itemSelect() {
         item = $("#item").val();
         item_class = item + "_search_cl";
         $(".se-el").hide();
-        $("." + item_class).attr('style', 'display: block !important');
+        $("." + item_class).attr('style', 'display: block !important;margin-top:5px;margin-left:0px;margin-right:0px');
+
         item_array = ['car', 'house', 'computer', 'phone', 'electronic', 'household', 'other'];
         $.each(item_array, function (i, value) {
             $("." + value + '_select').attr('disabled', 'disabled');
