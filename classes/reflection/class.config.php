@@ -82,7 +82,7 @@ spl_autoload_register(function ($className) {
         if (!file_exists($fileName)) {
             $fileName = $_SERVER['DOCUMENT_ROOT'] . '/view/' . $className . '.php';
             if (!file_exists($fileName)) {
-                $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.class.php';
+                $fileName = $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.php';
                 if (!file_exists($fileName)) {
                     return;
                 }

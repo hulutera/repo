@@ -1,6 +1,6 @@
 <?php
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
-require_once $documnetRootPath . '/classes/objectPool.class.php';
+require_once $documnetRootPath . '/classes/ObjectPool.php';
 require_once $documnetRootPath . '/includes/pagination.php';
 require_once $documnetRootPath . '/view/HtCommonView.php';
 require_once $documnetRootPath . '/classes/reflection/HtUserAll.php';

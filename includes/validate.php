@@ -1,5 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+//spl_autoload_register not loading objectPool
+// require_once $_SERVER['DOCUMENT_ROOT']. '/classes/ObjectPool.php';
 class Cryptor
 {
     // Non-NULL Initialization Vector for decryption
