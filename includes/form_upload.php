@@ -58,7 +58,7 @@ if (!empty($err2)) {
 		$_pItem->insertPost();
 	}
 
-	// exit;
+	exit;
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;
