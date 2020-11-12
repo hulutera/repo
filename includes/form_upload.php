@@ -1,11 +1,11 @@
 <?php
-var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
-var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
-var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 
-var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 $err = [];
 $itemName = str_replace("item_", "", $_GET['table']);
 $validate = new ValidateUpload($err);
@@ -15,9 +15,9 @@ foreach ($err as $x) {
 		$err2[$rowNumber] = $pair;
 	}
 }
-var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 if (!empty($err2)) {
-	var_dump($_SERVER['DOCUMENT_ROOT']);
+	var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 	var_dump($err2);
 	var_dump($_SESSION['POST']);
 
@@ -45,7 +45,7 @@ if (!empty($err2)) {
 
 	header('Location: ' . $redirectLink);
 } else {
-	var_dump($_SERVER['DOCUMENT_ROOT']);
+	var_dump($_SERVER['DOCUMENT_ROOT'].__FILE__."@".__LINE__).'<br>';
 	// reset Error
 	$err = [];
 	/// get id if edit is running
