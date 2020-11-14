@@ -61,7 +61,7 @@ $lang = array(
     "Your e-mail address is invalid" => ' Email-ku sax ma’aha. ',
     "Please enter a subject" => ' Fadlan gali ujeeddada farrinta. ',
     "Please state choose your purpose" => ' Fadlan maxay tahay arrinta aad noola soo-xidhiidhay. ',
-    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n" => ' Farrintan xaqiijinta waxaa lagaaga soo-diray www.hulutera.com. Waad ku-mahadsantahay dadaalka aad u gashay helitaankayaga.\n\n Ka-socota maamulka Hulutera ',
+    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br><br> Sincerely,Hulutera Admin<br><br>" => ' Farrintan xaqiijinta waxaa lagaaga soo-diray www.hulutera.com. Waad ku-mahadsantahay dadaalka aad u gashay helitaankayaga.<br><br> Ka-socota maamulka Hulutera ',
     "Message" => 'Farriin ',
     "Send" => 'Dir ',
     "Contact Us" => 'Miyaad doonaysaa inaad na-waydiisid ',
@@ -185,7 +185,7 @@ $lang = array(
     "email update succ" => ' Waa lagu-guulaystay baddalidda email-kaaga. ',
     "correct answer msg" => ' Fadlan jawaabtaada sax. ',
     "close acc email msg part2" => ' Iyada oo lagu-salaynayo codsigaaga xidhitaanka xubnimidaada Hulutera, adiga oo xidhiidhka joojinta riixaya geeddi-socodka ka-bixintaanka dhammaystir. Hase-yeeshe, haddii aanad codsan xidhiitaanka akoonka, waxaad farriin noogu soo dirtaan admin@hulutera.com. ',
-    "close acc email msg part3" => '\n Sidaas iyo salaan \n Maamulka Hulutera \n ',
+    "close acc email msg part3" => '<br> Sidaas iyo salaan <br> Maamulka Hulutera <br> ',
     "id" => ' Lambarka astaanta ',
     "your role" => ' Mas’uuliyaddada ',
     "role" => ' Mas’uuliyad ',
@@ -1103,15 +1103,16 @@ $user_specific_array = [
     'message' => [
         'activation' => [
             'subject' => 'Xaqiijinta diiwaangelinta iyo bilowsiinta',
-            'body' => 'Waad ku-mahadsanahay is-diiwaangelintaada iyo doorashadayada.Si aad diiwaangelinta u dhammaystirtid una bilowdid isticmaalidda adeegga Hulutera, meeshan riix',
+            'body' => [0=>'Waad ku-mahadsanahay is-diiwaangelintaada iyo doorashadayada.Si aad diiwaangelinta u dhammaystirtid una bilowdid isticmaalidda adeegga Hulutera, meeshan riix',
+            1=>        "<br>Sincerely,<br> The Hulutera Admin"]
         ],
         'password-recovery' => [
             'subject' => 'Ereyga qarsoodiga ee cusub',
             'body' => [
-                0 => "Macmiilkayga qaaliga ah, \n waxaad naga-codsatay ahayd erey cusub oo qarsoodi ah. \n Sidaas-awgeed, furahan hoose riix, waxaanad ku-gashaa ereyga cusub ee qarsoodiga, ka-dibna waxaad ku-baddali kartaa “baddalidda”. Maadaama farrintan lagu soo diray habka otoomaatiigga, haddii aanad ahayn qofka baddalidda codsaday, waxaad noogu soo dirtaan ciwaanka email-ka ee ah: admin@hulutera.com\n",
+                0 => "Macmiilkayga qaaliga ah, <br> waxaad naga-codsatay ahayd erey cusub oo qarsoodi ah. <br> Sidaas-awgeed, furahan hoose riix, waxaanad ku-gashaa ereyga cusub ee qarsoodiga, ka-dibna waxaad ku-baddali kartaa “baddalidda”. Maadaama farrintan lagu soo diray habka otoomaatiigga, haddii aanad ahayn qofka baddalidda codsaday, waxaad noogu soo dirtaan ciwaanka email-ka ee ah: admin@hulutera.com<br>",
                 1 => [
-                    "\nqarsoodi:",
-                    "\nSincerely,\n The Hulutera Admin"
+                    "<br>qarsoodi:",
+                    "<br>Sincerely,<br> The Hulutera Admin"
                 ],
             ]
         ],
@@ -1124,17 +1125,17 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Waad ku-mahadsantahay dadaalka aad u gashay helitaankayaga',
             'body' => [
-                0 => "Hello! \n Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. \n
-                      Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa.\n Sidaas iyo salaan \r\n Maamulka Hulutera"
+                0 => "Hello! <br> Farrintaadu way na-soo-gaadhay. Noo-soo-qoriddayada waad ku-mahadsantahay. Haddii uu codsigaagu degdeg yahay, soo-garaac mid ka mid ah lambarada telefoonka ee hoos ku-qoran oo la-hadal mid ka mid ah shaqaalahayaga. <br>
+                      Haddii kale, sida ugu-dhakhsaha badan ee aynu awoodi karno email-ka ayaanu kaga soo jawaabaynaa.<br> Sidaas iyo salaan \r<br> Maamulka Hulutera"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
-                      hence, your account have been deactivated and your uploaded items will not be \r\n
-                      advertised on our website. Please reach out to us for more information through contact us. \r\n
-                      Sincerely, \r\n The Hulutera Admin \r\n"
+                0 => "We have found a problem with your account not complying to our Term & conditions \r<br>
+                      hence, your account have been deactivated and your uploaded items will not be \r<br>
+                      advertised on our website. Please reach out to us for more information through contact us. \r<br>
+                      Sincerely, \r<br> The Hulutera Admin \r<br>"
             ]
         ],
         'account-closed' => [

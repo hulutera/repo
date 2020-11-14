@@ -635,6 +635,19 @@ class HtUserTemp extends MySqlRecord
 
 
     /**
+     * getFieldFeature gets the class attribute fieldFeature value
+     *
+     * The attribute fieldFeature maps the field field_account_status defined as varchar(125).<br>
+     * Comment for field field_feature: Not specified.
+     * @return string $fieldFeature
+     * @category Accessor of $fieldFeature
+     */
+    public function getFieldFeature()
+    {
+        return "";
+    }
+
+    /**
      * Gets DDL SQL code of the table user_temp
      * @return string
      * @category Accessor
@@ -781,6 +794,7 @@ class HtUserTemp extends MySqlRecord
 			{$this->parseValue($this->fieldActivation, 'notNumber')},
             {$this->parseValue($this->fieldAccountStatus, 'notNumber')})
 SQL;
+// echo $sql;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -895,7 +909,6 @@ SQL;
 
         $result = $this->query($sql);
         while ($row = $result->fetch_array()) {
-            var_dump($row['id']);
             $this->delete($row['id']);
         }
 
@@ -916,14 +929,30 @@ SQL;
         $this->setFieldPrivilege('user');
         date_default_timezone_set('UTC');
         $this->setFieldRegisterDate(date("Y-m-d H:i:s"));
+        $this->setFieldAccountStatus("inactive");
         $this->insert();
 
+        $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
+        $result = $this->query($sql);
+        $id = 0;
+        while ($row = $result->fetch_array()) {
+            $id = $row['id'];
+        }
         //Now send mail for Confirmation of registration
         $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['activation']['body'] . '<br>';
-        $body .= "https://www.hulutera.com/includes/activate.php?key=" . $activation;
+        $body = $GLOBALS['user_specific_array']['message']['activation']['body'][0] . '<br>';
+        $link = "https://www.hulutera.com/includes/activate.php?function=register&id=" . $id . "&key=" . $activation;
+        $body .= "<strong><a href=".$link.">".$link."</a></strong>";
+        $body .= "<p>".$GLOBALS['user_specific_array']['message']['activation']['body'][1] . '</p>';
 
         //Check if mail Delivered or die
-        send_mail($email, $subject, $body, 'From:noreply@hulutera.com', '../includes/prompt.php?type=1' . $lang_sw);
+        send_mail(
+            $email,
+            $subject,
+            $body,
+            'From:noreply@hulutera.com',
+            '../includes/prompt.php?type=1' . $lang_sw,
+            "../includes/activate.php?function=register&id=" . $id . "&key=" . $activation
+        );
     }
 }

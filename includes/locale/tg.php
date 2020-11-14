@@ -61,7 +61,7 @@ $lang = array(
     "Your e-mail address is invalid" => ' ዘእተውዎ ኢሜይል ኣድራሻ ስሕተት ዩ ',
     "Please enter a subject" => ' በጀኦም ርእሰ ጉዳይ የእትዉ ',
     "Please state choose your purpose" => ' በጅኦም ዓላማኦም ይግለፁ ',
-    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n" => ' እዚ ካብ www.hulutera.com ዝተልኣኸ መረጋገፂ መልእኽቲ ዩ፡፡ ዝግባእ ግዜ ሂቦም ስለዝረኸቡና ነመስግን፡፡ ምስ ሰላምታ፣ ኣማሓደርቲ ድሕረ ገፅ ሁሉተራ ',
+    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br><br> Sincerely,Hulutera Admin<br><br>" => ' እዚ ካብ www.hulutera.com ዝተልኣኸ መረጋገፂ መልእኽቲ ዩ፡፡ ዝግባእ ግዜ ሂቦም ስለዝረኸቡና ነመስግን፡፡ ምስ ሰላምታ፣ ኣማሓደርቲ ድሕረ ገፅ ሁሉተራ ',
     "Message" => ' መልእኽቲ ',
     "Send" => ' ለኣኽ ',
     "Contact Us" => ' ይርከቡና ',
@@ -1096,16 +1096,19 @@ $user_specific_array = [
     'message' => [
         'activation' => [
             'subject' => 'ምዝገባ መረጋገፂ',
-            'body' => 'ስለዝተመዝገቡ ነመስግን፡፡ ምዝገባ መረጋገፂ መልእክቲ ተላኢክሎም ኣሎ፡፡ በጅኦም ንምጅማር እዚ ጥብቆ ይጠይቁ፡፡',
+            'body' => [
+                0 => 'ስለዝተመዝገቡ ነመስግን፡፡ ምዝገባ መረጋገፂ መልእክቲ ተላኢክሎም ኣሎ፡፡ በጅኦም ንምጅማር እዚ ጥብቆ ይጠይቁ፡፡',
+                1 => "<br>ምስ ሰላምታ <br>ጉጅለ ሁሉተራ<br>"
+            ]
         ],
         'password-recovery' => [
             'subject' => 'ሓዱሽ ናይ ይሕለፍ ቃል',
             'body' => [
-                0 => "ዝተከበሩ ዓሚል፣\n መመለሲ ናይ ኣካውንቶም ናይ ይሕለፍ ቃል ተሓቲቶም ኣለዉ፡፡ ናይ ይሕለፍ ቃል  ንምምላስ በጅኦም እዚ ዝስዕብ ኣብ ታሕቲ ዘሎ ጥብቆ ይጠውቁ፡፡ \n ሓዱሽ ናይ ይሕለፍ ቃል ተጠቂሞም ናብ ኣካውንቶም ምስ ኣተዉ ኩሉ ግዜ ምልዋጥ እንትሓስቡ ናይ ይሕለፍ ቃል ይለውጡ ዝብል ጥብቆ ይዘክሩ፡፡ እዚ ኢሜይል ሽዑ ንሽዑ ይፍጠር፡፡ \nምምላስ እዚ ናይ ይሕለፍ ቃል እንተዘይሓቲቶም በጅኦም ኣመሓደርቲ ብ admin@hulutera.com ይርከቡና፡፡\n",
+                0 => "ዝተከበሩ ዓሚል፣<br> መመለሲ ናይ ኣካውንቶም ናይ ይሕለፍ ቃል ተሓቲቶም ኣለዉ፡፡ ናይ ይሕለፍ ቃል  ንምምላስ በጅኦም እዚ ዝስዕብ ኣብ ታሕቲ ዘሎ ጥብቆ ይጠውቁ፡፡ <br> ሓዱሽ ናይ ይሕለፍ ቃል ተጠቂሞም ናብ ኣካውንቶም ምስ ኣተዉ ኩሉ ግዜ ምልዋጥ እንትሓስቡ ናይ ይሕለፍ ቃል ይለውጡ ዝብል ጥብቆ ይዘክሩ፡፡ እዚ ኢሜይል ሽዑ ንሽዑ ይፍጠር፡፡ <br>ምምላስ እዚ ናይ ይሕለፍ ቃል እንተዘይሓቲቶም በጅኦም ኣመሓደርቲ ብ admin@hulutera.com ይርከቡና፡፡<br>",
                 1 => [
-                    "\nመራኸቢ:",
-                    "\nሓዱሽ ናይ ይሕለፍ ቃል:",
-                    "\nምስ ሰላምታ \nጉጅለ ሁሉተራ\n"
+                    "<br>መራኸቢ:",
+                    "<br>ሓዱሽ ናይ ይሕለፍ ቃል:",
+                    "<br>ምስ ሰላምታ <br>ጉጅለ ሁሉተራ<br>"
                 ],
             ]
         ],
@@ -1119,18 +1122,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'ስለዝረከቡና ነመስግን',
             'body' => [
-                0 => "ሠላም! \n መልእክቶም ተቀቢልና ኣለና ፡፡ ስለዝፀሓፉልና ነመስግን፡፡ ሕቶኦም ግዜ ዘይህብ እንተኮይኑ ኣብ ፀጋማይ ላዕለዋይ ገፅ ናይ ድሕረ ገፅና ዘሎ ስልኪ ቁፅሪ ተጠቂሞም ይደውሉልና፡፡ \n
-                      እንተዘይኮይኑ ብኢሜይል አቢልና ምላሽ ብቅልጡፍ ክንልእከሎም ኢና፡፡ \n
-                      ምስ ሰላምታ \n ጉጅለ ሁሉተራ"
+                0 => "ሠላም! <br> መልእክቶም ተቀቢልና ኣለና ፡፡ ስለዝፀሓፉልና ነመስግን፡፡ ሕቶኦም ግዜ ዘይህብ እንተኮይኑ ኣብ ፀጋማይ ላዕለዋይ ገፅ ናይ ድሕረ ገፅና ዘሎ ስልኪ ቁፅሪ ተጠቂሞም ይደውሉልና፡፡ <br>
+                      እንተዘይኮይኑ ብኢሜይል አቢልና ምላሽ ብቅልጡፍ ክንልእከሎም ኢና፡፡ <br>
+                      ምስ ሰላምታ <br> ጉጅለ ሁሉተራ"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
-                      hence, your account have been deactivated and your uploaded items will not be \r\n
-                      advertised on our website. Please reach out to us for more information through contact us. \r\n
-                      Sincerely, \r\n The Hulutera Admin \r\n"
+                0 => "We have found a problem with your account not complying to our Term & conditions \r<br>
+                      hence, your account have been deactivated and your uploaded items will not be \r<br>
+                      advertised on our website. Please reach out to us for more information through contact us. \r<br>
+                      Sincerely, \r<br> The Hulutera Admin \r<br>"
             ]
         ],
         'account-closed' => [

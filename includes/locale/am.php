@@ -67,7 +67,7 @@ $lang = array(
     'Your e-mail address is invalid' => 'ኢሜይሉ ልክ አይደለም።',
     'Please enter a subject' => 'እባክዎን የመልእክቱን ዓላማ ያስገቡ።',
     'Please state choose your purpose' => 'እባክዎን ስለምን ሊያገኙን ፈለጉ።',
-    'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n' => 'ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.hulutera.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።\n\n ከሁሉተራ አስተዳደር',
+    'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br> Sincerely,Hulutera Admin<br>' => 'ይህ የማረጋገጫ መልዕክት የተላከልዎ ከ www.hulutera.com ነው። እኛን ለማግኝት ጥረት በማድረግዎ እናመሰግናለን።<br> ከሁሉተራ አስተዳደር',
     'Message' => 'መልዕክት',
     'Send' => 'ይላኩ',
     'Contact Us' => 'ሊጠይቁን ይፈልጋሉ',
@@ -214,7 +214,7 @@ $lang = array(
     'email update succ' => 'ኢሜይልዎ በተሳካ መልኩ ተቀይርሯል።',
     'correct answer msg' => 'እባክዎ መልስዎን ያስተካክሉ።',
     'close acc email msg part2' => 'የሁሉተራ አባልነትዎን ለመዝጋት በጠየቁን መሰረት ይህንን የማቆምያ መሲብ በመጫን ሂደቱን ይጨርሱ። ይሁንና አካውንቱን መዝጋት እርስዎ ካልጠየቁ ፣ በ admin@hulutera.com መልእክት ይላኩልን።',
-    'close acc email msg part3' => '\nከሰላምታ ጋር \nየሁሉተራ አስተዳደር\n',
+    'close acc email msg part3' => '<br>ከሰላምታ ጋር <br>የሁሉተራ አስተዳደር<br>',
     //User related
     'id' => 'መለያ ቁጥር',
     'your role' => 'የዕርስዎ ሀላፊነት ',
@@ -1133,16 +1133,19 @@ $user_specific_array = [
     'message' => [
         'activation' => [
             'subject' => 'የምዝገባ ማረጋገጫ እና ማስጀመሪያ',
-            'body' => 'እኛን ስለመረጡና ስለተመዘገቡ እናመሰናለን። ምዝገባውን ለማጠናቀቅ እና የሁሉተራን አገልግሎት መጠቀም እንዲጀምሩ ይሄንን መሲብ ይጫኑ።',
+            'body' => [
+                0 => 'እኛን ስለመረጡና ስለተመዘገቡ እናመሰናለን። ምዝገባውን ለማጠናቀቅ እና የሁሉተራን አገልግሎት መጠቀም እንዲጀምሩ ይሄንን መሲብ ይጫኑ።',
+                1 => "<br>ከሰላምታ ጋር<br>የሁሉተራ አስተዳደር"
+            ]
         ],
         'password-recovery' => [
             'subject' => 'አዲሱ የሚስጥር ቃል',
             'body' => [
-                0 => "ውድ ደንበኛችን፣\nአዲሲ የሚስጥር ቃል ለመቀየር ጠይቀውን ነበር። በዚህ መሰረት ከስር የሚያገኙት መሲብ በመጫን\nእና አዲሱን የሚስጥር ቃል በመጠቀም ከገቡ በኃላ የሚስጥር ቃል ለመቀየር የሚለውን መሲብ ተጠቅመው መቀየር ይችላሉ።\nይህ መልዕክት የተላከው ራስሰር(አውቶማቲክ) በሆነ የመልዕክት መላከያ መንገድ ስለሆነ የሚስጥር ቃሉን ለመቀየር የጠየቁ እርስዎ ካልሆኑ\nበዚህ የኢሜይል አድራሻ ይላኩልን admin@hulutera.com\n",
+                0 => "ውድ ደንበኛችን፣<br>አዲሲ የሚስጥር ቃል ለመቀየር ጠይቀውን ነበር። በዚህ መሰረት ከስር የሚያገኙት መሲብ በመጫን <br>እና አዲሱን የሚስጥር ቃል በመጠቀም ከገቡ በኃላ የሚስጥር ቃል ለመቀየር የሚለውን መሲብ ተጠቅመው መቀየር ይችላሉ።<br>ይህ መልዕክት የተላከው ራስሰር(አውቶማቲክ) በሆነ የመልዕክት መላከያ መንገድ ስለሆነ የሚስጥር ቃሉን ለመቀየር የጠየቁ እርስዎ ካልሆኑ<br>በዚህ የኢሜይል አድራሻ ይላኩልን admin@hulutera.com<br>",
                 1 => [
-                    "\nመሲብ:",
-                    "\nአዲሱ የሚስጥር ቃል:",
-                    "\nከሰላምታ ጋር\nየሁሉተራ አስተዳደር"
+                    "<br>መሲብ:",
+                    "<br>አዲሱ የሚስጥር ቃል:",
+                    "<br>ከሰላምታ ጋር<br>የሁሉተራ አስተዳደር"
                 ],
             ]
         ],
@@ -1157,18 +1160,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'እኛን ለማግኝት ላደረጉት ጥረት እናመሰግናለን',
             'body' => [
-                0 => "ሠላም! \n መልእክትዎ ደርሶናል። ስለፃፉልንም እናመሰግናለን፡፡ ጥያቄዎ አስቸኳይ ከሆነ እባክዎን ከዚህ በላይ የተዘረዘሩትን የስልክ ቁጥሮች ተጠቅመው በመደወል ከሠራተኞቻችን ውስጥ አንዱን ያነጋግሩ። \n
-                      ያለበለዚያ በተቻለን ፍጥነት በኢሜይል ምላሽ እንሰጣለን ፡፡ \n
-                      ከሰላምታ ጋር \n የሁሉተራ አስተዳደር \n"
+                0 => "ሠላም! <br> መልእክትዎ ደርሶናል። ስለፃፉልንም እናመሰግናለን፡፡ ጥያቄዎ አስቸኳይ ከሆነ እባክዎን ከዚህ በላይ የተዘረዘሩትን የስልክ ቁጥሮች ተጠቅመው በመደወል ከሠራተኞቻችን ውስጥ አንዱን ያነጋግሩ። <br>
+                      ያለበለዚያ በተቻለን ፍጥነት በኢሜይል ምላሽ እንሰጣለን ፡፡ <br>
+                      ከሰላምታ ጋር <br> የሁሉተራ አስተዳደር <br>"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
-                      hence, your account have been deactivated and your uploaded items will not be \r\n
-                      advertised on our website. Please reach out to us for more information through contact us. \r\n
-                      Sincerely, \r\n The Hulutera Admin \r\n"
+                0 => "We have found a problem with your account not complying to our Term & conditions <br>
+                      hence, your account have been deactivated and your uploaded items will not be <br>
+                      advertised on our website. Please reach out to us for more information through contact us. <br>
+                      Sincerely, <br> The Hulutera Admin <br>"
             ]
         ],
         'account-closed' => [

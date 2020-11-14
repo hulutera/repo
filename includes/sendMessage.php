@@ -15,20 +15,30 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 	send_mail($_GET['uemail'], $subject, $msg, $header);
 }
 
-function send_mail($to, $subject, $message, $header, $redirect_link = null) {
+function send_mail($to, $subject, $message, $header, $redirect_link = null, $activation_link=null)
+{
+	$html = '<html style="font-family:arial;"><body>';
+	$html .= $message;
+	$html .= '</body></html>';
 
-	// send email to the customer
-	$message = wordwrap($message, 70, "\n");
+	if (isset($GLOBALS['status'])) {
+		if ($GLOBALS['status'] = "deploy-release") {
+			// send email to the customer
 
-	// mail("To:email", "Subject", "Message", "Header:From")
-	$send = mail($to, $subject, $message, $header);
+			$message = wordwrap($html, 70, "\n");
 
-	if(!$send) {
-		die("Sending Email Failed. Please Contact Site Admin!");
-	} else {
-		header('Location: ' . $redirect_link);
+			// mail("To:email", "Subject", "Message", "Header:From")
+			$send = mail($to, $subject, $html, $header);
+
+			if (!$send) {
+				die("Sending Email Failed. Please Contact Site Admin!");
+			} else {
+				header('Location: ' . $redirect_link);
+			}
+		}
 	}
-
+	else{
+		echo $html;
+        echo '<br><a target="blank" href="' . $activation_link . '">' . $activation_link . '</a><br>';
+	}
 }
-
-?>

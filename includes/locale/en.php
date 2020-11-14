@@ -67,7 +67,7 @@ $lang = array(
     'Your e-mail address is invalid' => 'Your e-mail address is invalid.',
     'Please enter a subject' => 'Please enter a subject.',
     'Please state choose your purpose' => 'Please state choose your purpose.',
-    'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n' => 'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n',
+    'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br><br> Sincerely,Hulutera Admin<br><br>' => 'This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br><br> Sincerely,Hulutera Admin<br><br>',
     'Message' => 'Message',
     'Send' => 'Send',
     'Contact Us' => 'Contact Us',
@@ -215,8 +215,8 @@ $lang = array(
     'close acc msg part2' => 'Are you sure you want to close your account?',
     'email update succ' => 'your email has been updated.',
     'correct answer msg' => 'Please correct your answer',
-    'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com \n',
-    'close acc email msg part3' => '\n\nSincerely,\nThe hulutera Team\n',
+    'close acc email msg part2' => 'Please follow the link to terminate your account. If you did not request account termination then please contact us at admin@hulutera.com <br>',
+    'close acc email msg part3' => '<br><br>Sincerely,<br>The hulutera Team<br>',
     //User related
     'id' => 'ID',
     'your role' => 'YOUR ROLE ',
@@ -266,7 +266,7 @@ $lang = array(
     'password change success' => 'Your Password has been changed successfully.',
     'contact-us succeed message' => '<strong>We appreciate your taking the time to contact us.</strong><br><br>If your message require a response, we will get back to you as soon as we can. We do our best to answer e-mails within 1-2 business days (Monday-Friday).',
     'activation key expired' => 'Your activation key has expired. You can no longer use this registration. You may <a   href="../includes/register.php"> Register!</a> again!</br>',
-    'account termination message' => 'Information regarding Account Termination has now been sent to the e-mail associated with this user.\n Please follow instructions in the email.',
+    'account termination message' => 'Information regarding Account Termination has now been sent to the e-mail associated with this user.<br> Please follow instructions in the email.',
     //Miscellaneous
     'Invalid' => "Invalid",
     'unknown' => 'Unknown',
@@ -1117,18 +1117,21 @@ $user_specific_array = [
 
     'message' => [
         'activation' => [
-            'subject' => 'Confirmation of registration',
-            'body' => 'Thank you for registering. A confirmation mail has been sent to your email.
+            'subject' => 'Confirmation of Registration',
+            'body' => [
+                0 => 'Thank you for registering. A confirmation mail has been sent to your email.<br>
                        Please click on the activation link to activate your account.',
+                1 => "Sincerely,<br>The hulutera Team"
+            ]
         ],
         'password-recovery' => [
             'subject' => "Your New Password",
             'body' => [
-                0 => "Dear Customer,\nA password recovery was requested for your account. Please click on the following link below to recover your password.\nPlease remember that after you have logged in with this new password you can always change it using Change Password link.\nThis email was automatically generated. If you did not request a password recovery please contact the administrator\nusing email admin@hulutera.com \n",
+                0 => "Dear Customer,<br>A password recovery was requested for your account. Please click on the following link below to recover your password.<br>Please remember that after you have logged in with this new password you can always change it using Change Password link.<br>This email was automatically generated. If you did not request a password recovery please contact the administrator.<br>using email admin@hulutera.com <br>",
                 1 => [
-                    "\nRecovery Link:",
-                    "\nNew-password:",
-                    "\nSincerely,\nThe hulutera Team\n"
+                    "<br>Recovery Link:",
+                    "<br>New-password:",
+                    "<br>Sincerely,<br>The hulutera Team<br>"
                 ],
             ]
         ],
@@ -1143,17 +1146,17 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Thank you for contacting us',
             'body' => [
-                0 => "Hi! \n We have received your message and would like to thank you for writing to us. If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website. \n
-                      Otherwise, we will reply by email as fast as we can. \n Sincerely, \n The hulutera Team \n"
+                0 => "Hi! <br> We have received your message and would like to thank you for writing to us. If your inquiry is urgent then call us with the phone number which you can find on top-left side of our website. <br>
+                      Otherwise, we will reply by email as fast as we can. <br> Sincerely, <br> The hulutera Team <br>"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account has been deactivated',
             'body' => [
-                0 => "We have found a problem with your account not complying to our Term & conditions\n
-                       hence, your account have been deactivated and your uploaded items will not be\n
-                       advertised on our website. Please reach out to us for more information through contact us.\n
-                      Sincerely,\n The Hulutera Admin\n"
+                0 => "We have found a problem with your account not complying to our Term & conditions<br>
+                       hence, your account have been deactivated and your uploaded items will not be<br>
+                       advertised on our website. Please reach out to us for more information through contact us.<br>
+                      Sincerely,<br> The Hulutera Admin<br>"
             ]
         ],
         'account-closed' => [

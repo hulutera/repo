@@ -61,7 +61,7 @@ $lang = array(
     "Your e-mail address is invalid" => ' Imeelichi sirrii miti ',
     "Please enter a subject" => ' Maalloo kaaayyo dhaamsichaa galchaa ',
     "Please state choose your purpose" => ' Maloo waa’ee maalii argachuu barbaaaddan ',
-    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.\n\n Sincerely,Hulutera Admin\n\n" => ' Dhaamsi mirkaneessa kun kan isiniif ergame www.hulutera.com irraa dha, Nu argachuf yaalii gochuu keessaniif isin galatefanna. \n\n Bulchiinsa Hulluutaraa irraa ',
+    "This is a confirmation mail from www.hulutera.com. We appreciate you for taking time to contact us.<br><br> Sincerely,Hulutera Admin<br><br>" => ' Dhaamsi mirkaneessa kun kan isiniif ergame www.hulutera.com irraa dha, Nu argachuf yaalii gochuu keessaniif isin galatefanna. <br><br> Bulchiinsa Hulluutaraa irraa ',
     "Message" => ' Dhaamsa ',
     "Send" => ' Dhaamsa ergaa ',
     "Contact Us" => ' Nu gaafachuu barbaadduu ',
@@ -186,7 +186,7 @@ $lang = array(
     "email update succ" => ' imeeliin keessaa haala milka’in qabu jijjiirameera. ',
     "correct answer msg" => ' Maloo deebii keessan sirreessa. ',
     "close acc email msg part2" => ' Bu’uura miseensummaa Huluutaraa cufuuf gaaffataniin galmee tursiisu kana tuqun adeemsicha xumura. Akaawunticha cufuuf yoo isin gaafachubaattan dhaamsa admin@hulutera.com irratti nuuf erga. ',
-    "close acc email msg part3" => '\n Nagaa wajjin \n Bulchiinsa Hulluutaraa \n ',
+    "close acc email msg part3" => '<br> Nagaa wajjin <br> Bulchiinsa Hulluutaraa <br> ',
     "id" => ' Lakkoofsa addaa ',
     "your role" => ' Itti gaafatamummaan keessan ',
     "role" => ' Itti gaafatamummaa ',
@@ -1104,16 +1104,19 @@ $user_specific_array = [
     'message' => [
         'activation' => [
             'subject' => 'Mirkaneessaa galmeessa fi ittiin jalqabsiisan',
-            'body' => 'irratti Waan nu filattaniifi waan galmooftanii ni galateffanna. Galmeessichaa xumuruu fi tajaajila Hulluutaraatti fayyadamuu eegaluuf appiilicatiin kana tuqa.',
+            'body' => [
+                0 => 'irratti Waan nu filattaniifi waan galmooftanii ni galateffanna. Galmeessichaa xumuruu fi tajaajila Hulluutaraatti fayyadamuu eegaluuf appiilicatiin kana tuqa.',
+                1 =>  "<br>Sincerely,<br>The Hulutera Admin<br>"
+            ]
         ],
         'password-recovery' => [
             'subject' => 'Jecha icciitii haaraa galchaa',
             'body' => [
-                0 => "Kabajamoo maamile keenyaa, \n jechaa iciittii haaraa jijjiiruuf gaaffatani ture. \n Bu’uura kanaan appilication jala jiru tuquu fi jecha icciitii isa haaraati fayyadamun eega galtan booda isa jecha iciitii jijjiiruf jedhutti fayyadamun jijjiiru ni dandeessu. Dhaamsi kun kan ergame mata jalatti (awutomaatikii) kan ta’en karaa dhaamsa ittiin erganiin waan ta’eef jecha icciitiichaa geeddaruufkan gaafattaan yoo isin ta’ubaattan teessoo imeelii kana irratti nuuf erga. admin@hulutera.com\n",
+                0 => "Kabajamoo maamile keenyaa, <br> jechaa iciittii haaraa jijjiiruuf gaaffatani ture. <br> Bu’uura kanaan appilication jala jiru tuquu fi jecha icciitii isa haaraati fayyadamun eega galtan booda isa jecha iciitii jijjiiruf jedhutti fayyadamun jijjiiru ni dandeessu. Dhaamsi kun kan ergame mata jalatti (awutomaatikii) kan ta’en karaa dhaamsa ittiin erganiin waan ta’eef jecha icciitiichaa geeddaruufkan gaafattaan yoo isin ta’ubaattan teessoo imeelii kana irratti nuuf erga. admin@hulutera.com<br>",
                 1 => [
-                    "\nKomiif:",
-                    "\njechaa iciittii:",
-                    "\nSincerely,\nThe Hulutera Admin<br>"
+                    "<br>Komiif:",
+                    "<br>jechaa iciittii:",
+                    "<br>Sincerely,<br>The Hulutera Admin<br>"
                 ],
             ]
         ],
@@ -1126,18 +1129,18 @@ $user_specific_array = [
         'contact-us' => [
             'subject' => 'Nu argachuuf yaalii gootaniif ni galatefanna.',
             'body' => [
-                0 => "Haloo! \n Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. \n
+                0 => "Haloo! <br> Dhaamsi keessan nu gahe jira. Waa’ee nuuf bareesitaniif ni galatefanna. Gaaffin keessan ariifachiisaa yoo ta’e maaloo lakkoofsa bilbilaa kanaa olitti tarrefaman irratti bilbiluun hojjattoota keenya keessa isa tokko haasofsiisaa. <br>
                       Kanachii immoo ariitii danda’amen imeeliidhaan deebii ni kennina.
-                      \n Nagaa wajjin \n Bulchiinsa Hulluutaraa"
+                      <br> Nagaa wajjin <br> Bulchiinsa Hulluutaraa"
             ]
         ],
         'account-deactivation' => [
             'subject' => 'Your account have been deactivate',
             'body' => [
-                0 => "We have found a problem with your account not complying to our Term & conditions \r\n
-                      hence, your account have been deactivated and your uploaded items will not be \r\n
-                      advertised on our website. Please reach out to us for more information through contact us. \r\n
-                      Sincerely, \r\n The Hulutera Admin \r\n"
+                0 => "We have found a problem with your account not complying to our Term & conditions \r<br>
+                      hence, your account have been deactivated and your uploaded items will not be \r<br>
+                      advertised on our website. Please reach out to us for more information through contact us. \r<br>
+                      Sincerely, \r<br> The Hulutera Admin \r<br>"
             ]
         ],
         'account-closed' => [
@@ -1191,7 +1194,7 @@ $help = [
                 "2) " => "Unkaa ittiin galmaa’an irratti odeeffannnoowwan guutaa achi <button class=\"btn btn-primary\">galmaa’a</button> isaa jedhu tuqa.",
                 "3) " => "Unkaa ittiin galmaa’an haala milka’e yammuu ergitan, dhaamsa kana ni argattu.<strong> Waan galmooftaniif  galatooma. Imeeli mirkanessa isiniif ergine jirra. Akaawuntii keessa hojiirra olchuuf galmee hojiira ittiin oolchan tuqa.</strong> Galmeesicha xumuruuf garaisa itti aanutti deema.",
                 "4) " => "Imeelicha banaatii galmee hojiira ittiin oolchan imeeelii keenya irra tuqa Akaawuntiin keessan amma <strong>o ole jira </strong> Dhaamsa jedhu agartu. Kunis akaawuntii keessan hojjiiraoolcha kanaafuu galu ni dandeessu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
                          <video width="50%" id="vid-register" style="border: 2px black solid">
                          <source src="../videos/am/reg_am.mp4" type="video/mp4">
                          </video>
@@ -1211,7 +1214,7 @@ $help = [
             "body" => [
                 "1) " => "Unkaa ittiin seenan gaditti<strong> Password keessanii ni iraanfattanii?</strong> isa jedhu tuqa. Fuulli password ittiin yaadatan yammuu banamu maqaa ittiin fayyadamtan ykn imeelii keessa erga isa jedhu tuqa. Achis itti fufuun dhaamsa kana ni argitu<strong>Odeefannoo password ittiin jijjiiratan imeelii dhana isiniif ergine jirra.</strong>.qajeelfama imeelicha irra jiru sirriitti hordoofa. Adeemsa password jijjiiruu haal milk’aina qabun xumuruuf gara isa itti aanutii deema.",
                 "2) " => "Imeelii keessan banatii imeelii keenya isiniif ergame irratti password kan ittiin jijjiiran galmee tuqa password keessan kana isin ni beeksisa. Kana <strong>password fuulaakaawuntii keessan keessa seenatanii jijjiiru ni dandeessu</strong>።password keessan isa haara galchun haala milkaa’ina qabun ni xumurtu. Kanaafuu password isaa haaraa dhaan seenu ni dandeessu. ",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
                                 <video width="50%" id="vid-recovery" style="border: 2px black solid">
                                 <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
                                 </video>
@@ -1224,7 +1227,7 @@ $help = [
                 "1) " => "Qabeenya galchuuf jalqaba galu qabdu.",
                 "2) " => "Eega galtan booda gubbarra gama mirgaatiin kan jiru<strong>qabeenya galcha </strong>isa jedhu tuqa. Achii itti aansun qabeenya galchu barbaaddan filadhaa. ",
                 "3) " => 'Achi itti aansuun qabeenya galchu barbaaddan filadhaa. Unkaan qabeenya irratti galchan ni banama. Unkicha irratti waa’ee qabeenyaa odeefannoo hunda galchaa. Hanga isiniif danda’ametti suuraa bareeda galchuuf yoo dandeessan ija nama heedduu harkisuuf isn gargaara. Kana bira darbee haalaqabeenyichi irratti argamu ifatti agarsiisuuf ni gargaara. Hanga suura shan galchu ni dandeesssu. Egaa xumurtan booda <button class="btn btn-primary">erga, galchaa, tuqa </button> isa jedhu jedhu tuquun haalamilkaa’ina qabun xumura. Itti aansees<strong> qabeenyawwan keessan bifa milkaa’ina qabun gale jira. Tajaajila keenyatti waan itti fayyadamtaniif ni galatefanna.</strong>dhaamsa jedhu argitu.  Bu’uura kanaanis qabeenya isin galchitan qabeenya kiyya kan jedhu keessatti argattu. Qabeenyichi sa’aatii 24 keessatti hojiirra oolee nama hundaf kan mul’atu ta’a.',
-                         "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
                                 <video width="50%" id="vid-upload" style="border: 2px black solid">
                                 <source src="../videos/am/upload_am.mp4" type="video/mp4">
                                 </video>
@@ -1238,7 +1241,7 @@ $help = [
                 "1) " => "Website keenya gubbaa gama mirgaatiin ykn jala kan jiru<strong>gaafachu ni barbaadduu?</strong>isa jedhu tuqa.",
                 "2) " => "<strong>Dhaan sababii ittiin nu haasofsiisu barbaaddan</strong> tarreeffama irra sababii keessan yoo argachubattan, <strong>yaada waliigalaa</strong>isa jedhu filadhaa.Seentanii yoo ta’e odeefannon keessan matuma isatiin ni guuta. Yoo ta’ubaate odeefannicha gutaa.",
                 "3) " => "Unkaa eega guuttan booda  <button class=\"btn btn-primary\">erga </button> isa jedhu tuqa. Itti aansuun<strong> argachu waan barbaaddani  galtooma</strong> dhaamsa jedhu argattu.",
-                        "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
+                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
                                 <video width="50%" id="vid-contactus" style="border: 2px black solid">
                                 <source src="../videos/am/contact_am.mp4" type="video/mp4">
                                 </video>

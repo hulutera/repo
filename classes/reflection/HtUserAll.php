@@ -893,7 +893,7 @@ class HtUserAll extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO user_all
-            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation,field_account_status)
+            (field_user_name,field_first_name,field_last_name,field_email,field_phone_nr,field_address,field_password,field_privilege,field_contact_method,field_term_and_condition,field_register_date,field_new_password,field_activation,field_account_status,field_feature)
             VALUES(
 			{$this->parseValue($this->fieldUserName, 'notNumber')},
 			{$this->parseValue($this->fieldFirstName, 'notNumber')},
@@ -912,6 +912,7 @@ class HtUserAll extends MySqlRecord
             {$this->parseValue($this->fieldFeature, 'notNumber')})
 
 SQL;
+// echo $sql;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -1006,27 +1007,34 @@ SQL;
     }
 
     /*
-    ** Set the car element values
-    * $rows: it takes the array of one item row and it sets the values
+    *
     */
+    /**
+     * Facility to copy user from HtUserTemp to HtUserAll table
+     * @param object of HtUserTemp
+     * @category DML Helper
+     * @return mixed MySQLi update result
+     */
     public function setFieldValues($object)
     {
-        $this->id = (int) $object->getId();
-        $this->fieldUserName =  $object->getFieldUserName();
-        $this->fieldFirstName = $object->getFieldFirstName();
-        $this->fieldLastName =  $object->getFieldLastName();
-        $this->fieldEmail = $object->getFieldEmail();
-        $this->fieldPhoneNr = $object->getFieldPhoneNr();
-        $this->fieldAddress =  $object->getFieldAddress();
-        $this->fieldPassword = $object->getFieldPassword();
-        $this->fieldPrivilege =  $object->getFieldPrivilege();
-        $this->fieldContactMethod =  $object->getFieldContactMethod();
-        $this->fieldTermAndCondition =  $object->getFieldTermAndCondition();
-        $this->fieldRegisterDate = $object->getFieldRegisterDate();
-        $this->fieldNewPassword =  $object->getFieldNewPassword();
-        $this->fieldActivation =  $object->getFieldActivation();
-        $this->fieldAccountStatus =   $object->getFieldAccountStatus();
-        $this->fieldFeature =   $object->getFieldFeature();
+        if (isset($object)) {
+            $this->id = (int) $object->getId();
+            $this->fieldUserName =  $object->getFieldUserName();
+            $this->fieldFirstName = $object->getFieldFirstName();
+            $this->fieldLastName =  $object->getFieldLastName();
+            $this->fieldEmail = $object->getFieldEmail();
+            $this->fieldPhoneNr = $object->getFieldPhoneNr();
+            $this->fieldAddress =  $object->getFieldAddress();
+            $this->fieldPassword = $object->getFieldPassword();
+            $this->fieldPrivilege =  $object->getFieldPrivilege();
+            $this->fieldContactMethod =  $object->getFieldContactMethod();
+            $this->fieldTermAndCondition =  $object->getFieldTermAndCondition();
+            $this->fieldRegisterDate = $object->getFieldRegisterDate();
+            $this->fieldNewPassword =  $object->getFieldNewPassword();
+            $this->fieldActivation =  $object->getFieldActivation();
+            $this->fieldAccountStatus =   $object->getFieldAccountStatus();
+            $this->fieldFeature =   $object->getFieldFeature();
+        }
     }
 
     public function debugUser()
@@ -1140,7 +1148,7 @@ SQL;
         foreach ($fillableFields as $value) {
             ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
             ___open_div_("col-md-12 col-xs-12", '');
-               $this->insertFillable($value,  'user_specific_array', 'user');
+            $this->insertFillable($value,  'user_specific_array', 'user');
             ___close_div_(2);
         }
 
