@@ -17,7 +17,8 @@ if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && i
 
 function send_mail($to, $subject, $message, $header, $redirect_link = null, $activation_link=null)
 {
-	$html = '<html style="font-family:arial;"><body>';
+	$html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	<html style="font-family:arial;"><body>';
 	$html .= $message;
 	$html .= '</body></html>';
 
