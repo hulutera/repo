@@ -863,7 +863,6 @@ class HtItemCar extends MySqlRecord
 
         //create a folder for image upload
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
-        mkdir($directory, 0777, true);
         if (!file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
