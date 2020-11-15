@@ -221,6 +221,8 @@ class ValidateUser
                     if (strpos($key, 'field') === false) {
                         continue;
                     }
+                    /// remove white space
+                    $value = str_replace(' ', '', $value);
                     if ($value === '') {
                         $input = array($key => $GLOBALS['validate_specific_array'][1]);
                     } else {
@@ -238,6 +240,7 @@ class ValidateUser
                                 break;
                             case 'fieldFirstName':
                             case 'fieldLastName':
+
                                 if (in_array($_GET['lan'], $GLOBALS['GEEZ'])) {
                                     validateUtf8($key, $value, $err);
                                 } else {
