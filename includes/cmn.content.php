@@ -4,6 +4,13 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/sendMessage.php';
 
+
+if (isset($_GET['action_on_item']) && isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action'])) {
+	$ACTIVITY_ARRAY = $_GET;
+	$ACTIVITY_ARRAY["function"] = "yes";
+	action_on_item($ACTIVITY_ARRAY);
+}
+
 function countRow($status, $id)
 {
 	$record = new MySqlRecord();
@@ -659,60 +666,12 @@ function activityTable()
 	___open_div_('row', '');
 	___open_div_('col-xs-12 col-md-12');
 
-	/**
-	 * ACTION EXECUTIONS HERE
-	 */
+	action_on_item($ACTIVITY_ARRAY);
 	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
-		$id = $ACTIVITY_ARRAY['id'];
+		/// To activity table
 		$item = $ACTIVITY_ARRAY['type'];
 		$status = $ACTIVITY_ARRAY['status'];
-		$action = $ACTIVITY_ARRAY['action'];
-		$allUserAdvancedUserId = isset($ACTIVITY_ARRAY['allUserAdvancedUserId']) ? $ACTIVITY_ARRAY['allUserAdvancedUserId'] : 0;
-		if ($action == 'reported') {
-			/// take action on specific report type by removing from the list in field_report
-			if ($allUserAdvancedUserId !== 0) {
-			} else {
-				$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
-			}
-			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
-			if (isset($ACTIVITY_ARRAY['unreport'])) {
-				$clearSpecificReport = $ACTIVITY_ARRAY['unreport'];
-				$reportsArray = explode(',', $itemObject->getFieldReport());
-				foreach ($reportsArray as $key => $value) {
-					if ($value == $clearSpecificReport) {
-						unset($reportsArray[$key]); //remove the matching abuse type
-					}
-				}
-				/// rebuild the array and save to field_report , commad delimited
-				$newReportsArray = implode(',', $reportsArray);
-				$itemObject->setFieldReport($newReportsArray);
-			} else {
-				//clears all report types
-				$itemObject->setFieldReport(NULL);
-			}
-			/// finally update table with new data
-			$itemObject->updateCurrent();
-		} else {
-			/// Update user status of item
-			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
-			$object2 = ObjectPool::getInstance()->getObjectWithId("latest");
-			$object2->setFieldValues($id, $item);
-			if ($action == 'distroy') {
-				///here permanent damage, data unrecoverable!!
-				$object->delete($id);
-				$object2->delete();
-			} else {
-				///set new status and update table
-				$object->setFieldStatus($action);
-				$object->updateCurrent();
-				if ($action == "active") {
-					$object2->insert();
-				} else if ($action == "pending" or $action == "deleted") {
-					$object2->delete();
-				}
-			}
-		}
-		/// To activity table
+
 		$url = 'function=activity-table&type=' . $item . '&status=' . $status;
 		$urlEn  = $cryto->urlencode_base64_encode_encryptor($url);
 		header('Location: ./admin.php?activityTableId=' . $urlEn);
@@ -762,20 +721,22 @@ function activityTable()
 		}
 
 		/// use the first row for the table header
-		$header = $itemRawDataToTable[0];
+		/// $itemRawDataToTable[0];
+
 		/// start : table header
 		___open_div_('col-md-12');
 		echo '<table id="dtBasicExample" class="horizontal-scroll-except-first-column table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
 		echo '<thead><tr><th class="th-sm">    Action (Update user status)</th>';
-
-		foreach ($header as $k1 => $v1) {
-			$k11 = explode("_", $k1);
-			$final = "";
-			foreach ($k11 as $k111 => $v111) {
-				$final .= $v111[0][0];
+		if (sizeof($itemRawDataToTable) > 0) {
+			foreach ($itemRawDataToTable[0] as $k1 => $v1) {
+				$k11 = explode("_", $k1);
+				$final = "";
+				foreach ($k11 as $k111 => $v111) {
+					$final .= $v111[0][0];
+				}
+				echo '<th class="th-sm" title="' . $k1 . '">' . strtoupper($k1) . '</th>';
 			}
-			echo '<th class="th-sm" title="' . $k1 . '">' . strtoupper($k1) . '</th>';
-		}
+	    }
 		echo '</tr></thead>';
 		/// end : table header
 
@@ -801,7 +762,7 @@ function activityTable()
 				'btn-warning', // button style bts,
 				' style="color:black;margin-left:5px;font-weight:bold" ' // more style
 			],
-			'distroy' => [ // action to be taken
+			'destroy' => [ // action to be taken
 				'erase', // action button name
 				'btn-danger', // button style bts,
 				' style="color:yellow;margin-left:5px;font-weight:bold;background-color:red;" ' // more style
@@ -814,7 +775,7 @@ function activityTable()
 			'pending'  => $allActionButtons,
 			'reported' => $allActionButtons,
 			'deleted'  => $allActionButtons,
-			'distroy'  => $allActionButtons,
+			'destroy'  => $allActionButtons,
 		];
 
 
@@ -905,4 +866,62 @@ function activityTable()
 function getSessionId()
 {
 	return $_SESSION['uID'];
+}
+
+/**
+	* ACTION EXECUTIONS HERE
+*/
+
+function action_on_item($ACTIVITY_ARRAY) {
+	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
+		$id = $ACTIVITY_ARRAY['id'];
+		$item = $ACTIVITY_ARRAY['type'];
+		$action = $ACTIVITY_ARRAY['action'];
+		$allUserAdvancedUserId = isset($ACTIVITY_ARRAY['allUserAdvancedUserId']) ? $ACTIVITY_ARRAY['allUserAdvancedUserId'] : 0;
+		if ($action == 'reported') {
+			/// take action on specific report type by removing from the list in field_report
+			if ($allUserAdvancedUserId !== 0) {
+			} else {
+				$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			}
+			$itemObject = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			if (isset($ACTIVITY_ARRAY['unreport'])) {
+				$clearSpecificReport = $ACTIVITY_ARRAY['unreport'];
+				$reportsArray = explode(',', $itemObject->getFieldReport());
+				foreach ($reportsArray as $key => $value) {
+					if ($value == $clearSpecificReport) {
+						unset($reportsArray[$key]); //remove the matching abuse type
+					}
+				}
+				/// rebuild the array and save to field_report , commad delimited
+				$newReportsArray = implode(',', $reportsArray);
+				$itemObject->setFieldReport($newReportsArray);
+			} else {
+				//clears all report types
+				$itemObject->setFieldReport(NULL);
+			}
+			/// finally update table with new data
+			$itemObject->updateCurrent();
+		} else {
+			/// Update user status of item
+			$object = ObjectPool::getInstance()->getObjectWithId($item, $id);
+			$object2 = ObjectPool::getInstance()->getObjectWithId("latest");
+			$object2->setFieldValues($id, $item);
+			if ($action == 'destroy') {
+				///here permanent damage, data unrecoverable!!
+				$object->delete($id);
+				$object2->delete();
+			} else {
+				///set new status and update table
+				$object->setFieldStatus($action);
+				$object->updateCurrent();
+				if ($action == "active") {
+					$object2->insert();
+				} else if ($action == "pending" or $action == "deleted") {
+					$object2->delete();
+				}
+			}
+		}
+
+	}
 }

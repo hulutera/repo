@@ -315,3 +315,19 @@ function hideShowSingleDivs(hideDiv, showDiv) {
         $("." + showDiv).show();
     })
 }
+
+
+function item_action (uniqueId, itemNumb) {
+    combo = uniqueId.split("-");
+    itemName = combo[0];
+    id = combo[1];
+    alert("/includes/cmn.content.php?action_on_item=yes&id=" + id + "&type=" + itemName + "&action=deleted");
+    $(document).ready(function () {
+        $(".thumblist_" + itemName + "_" + itemNumb).hide();
+        $.ajax({
+            url: "/includes/cmn.content.php?action_on_item=yes&id=" + id + "&type=" + itemName + "&action=deleted",
+            method: "GET"
+        });
+    })
+
+}
