@@ -54,7 +54,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
     }
     ?>
     <script>
-        function myFunction() {
+        function showPassword() {
             var x1 = document.getElementById("fieldPassword");
             var x2 = document.getElementById("fieldPasswordRepeat");
             x1.type = (x1.type === "password") ? "text" : "password";
