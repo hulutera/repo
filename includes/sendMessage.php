@@ -19,6 +19,7 @@ function send_mail($to, $subject, $message, $header, $redirect_link = null, $act
 {
 	$html = '<html style="font-family:arial;"><body>';
 	$html .= $message;
+	$html .= '<div><img src="https://hulutera.com/images/icons/log-test-1.png" alt="Hulutera" /></div>';
 	$html .= '</body></html>';
 
 	if (isset($GLOBALS['status'])) {

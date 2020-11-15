@@ -56,6 +56,7 @@ if (!empty($err2)) {
 	} else {
 		//insert item
 		$_pItem->insertPost();
+		// exit;
 	}
 
 	// exit;

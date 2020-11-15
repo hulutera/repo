@@ -1653,7 +1653,8 @@ class HtItemCar extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        //echo $sql;
+        echo $sql;
+        // exit;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
