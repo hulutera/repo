@@ -565,9 +565,6 @@ class HtItemElectronic extends MySqlRecord
             mkdir($directory, 0777, true);
         }
 
-        //create a prefic for all images, with userId and item tempId
-        $imgPrefix = 'hulutera_user_id_' . $_userId . '_item_temp_id_' . $_itemTempId . '_';
-
         // initialize FileUploader
         $FileUploader = new FileUploader('files', array(
             'limit' => null,
@@ -576,7 +573,7 @@ class HtItemElectronic extends MySqlRecord
             'extensions' => null,
             'required' => true,
             'uploadDir' => $directory . '/',
-            'title' => 'hulutera',
+            'title' => 'name',
             'replace' => false,
             'editor' => array(
                 'maxWidth' => 640,
@@ -585,7 +582,7 @@ class HtItemElectronic extends MySqlRecord
             ),
             'listInput' => true,
             'files' => null,
-            'id' => $imgPrefix
+            'id' => null
         ));
 
         // unlink the files
