@@ -6,7 +6,13 @@ require_once $documnetRootPath . '/includes/sendMessage.php';
 
 
 if (isset($_GET['action_on_item']) && isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action'])) {
-	action_on_item($_GET);
+
+	$ACTIVITY_ARRAY = [];
+	$ACTIVITY_ARRAY["function"] = $_GET['function'];
+	$ACTIVITY_ARRAY["id"] = $_GET['id'];
+	$ACTIVITY_ARRAY["type"] = $_GET['type'];
+	$ACTIVITY_ARRAY["action"] = $_GET['action'];
+	action_on_item($ACTIVITY_ARRAY);
 }
 
 function countRow($status, $id)
