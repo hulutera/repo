@@ -16,11 +16,11 @@ function locale($current_link)
                 break;
             }
         }
-        $en = $current_link . 'lan=en';
-        $am = $current_link . 'lan=am';
-        $ao = $current_link . 'lan=ao';
-        $tg = $current_link . 'lan=tg';
-        $so = $current_link . 'lan=so';
+        $en = $current_link . '&lan=en';
+        $am = $current_link . '&lan=am';
+        $ao = $current_link . '&lan=ao';
+        $tg = $current_link . '&lan=tg';
+        $so = $current_link . '&lan=so';
     } else {
 
         if (strpos($current_link, "?")) {

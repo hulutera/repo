@@ -6,9 +6,7 @@ require_once $documnetRootPath . '/includes/sendMessage.php';
 
 
 if (isset($_GET['action_on_item']) && isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action'])) {
-	$ACTIVITY_ARRAY = $_GET;
-	$ACTIVITY_ARRAY["function"] = "yes";
-	action_on_item($ACTIVITY_ARRAY);
+	action_on_item($_GET);
 }
 
 function countRow($status, $id)
@@ -865,7 +863,9 @@ function activityTable()
 
 function getSessionId()
 {
-	return $_SESSION['uID'];
+	if(isset($_SESSION['uID'])) {
+		return $_SESSION['uID'];
+	}
 }
 
 /**

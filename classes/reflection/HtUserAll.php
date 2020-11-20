@@ -1207,7 +1207,6 @@ SQL;
         ___close_div_(1);
         ___close_div_(5);
 
-
         ___close_div_(2);
     }
 

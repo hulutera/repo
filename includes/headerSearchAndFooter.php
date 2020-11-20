@@ -497,7 +497,7 @@ function yourPage()
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4 col-xs-5">
-                                        <img src="../images/allitems.svg" style="width:100%;" />
+                                        <img src="../images/allItems.svg" style="width:100%;" />
                                     </div>
                                     <div class="col-md-8 col-xs-7">
                                         <div class="row">
