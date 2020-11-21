@@ -195,7 +195,6 @@ class MySqlRecord extends Model
                 $union = " ";
             }
             $sql .= 'SELECT ' . $value . '.id,' . $value . '.field_table_type, ' . $value . '.field_upload_date FROM ' . $value . ' WHERE field_status LIKE "' . $status . '"' . $withId . $union;
-
         }
         $sql .= ' ORDER BY field_upload_date DESC LIMIT ' . $start . ',' . $itemPerPage;
         return $this->fetch_all($sql);
@@ -311,7 +310,7 @@ EOD;
         }
 
         $image = $GLOBALS['upload_specific_array']['common']['Choose Images here'];
-        $preloadedFiles = isset($_SESSION['POST']['preloadedFiles']) ? " data-fileuploader-files=".$_SESSION['POST']['preloadedFiles'] : "";
+        $preloadedFiles = isset($_SESSION['POST']['preloadedFiles']) ? " data-fileuploader-files=" . $_SESSION['POST']['preloadedFiles'] : "";
         echo <<< EOD
         <div class="row upload {$errorClass}">
         <div class="form-group">
@@ -452,8 +451,7 @@ EOD;
         }
         echo '<select id="fieldColor" name="fieldColor" class="select form-control">';
 
-        if(isset($color))
-        {
+        if (isset($color)) {
             $theColor = $colors[$color];
             $v = 'value="' . $color . '" style="background-color:' . $theColor[0] . ';color:' . $theColor[1] . '"';
             $l = $GLOBALS['upload_specific_array']['common']['fieldColor'][2][$color];
@@ -684,9 +682,9 @@ EOD;
             ___open_div_("form-group upload", "");
             echo '<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">' . $GLOBALS['lang']['submit'] . '</button>';
             $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
-            echo '<a href="../../includes/mypage.php?'.$lang_sw.'" class="btn btn-danger btn-lg btn-block">' . $GLOBALS['lang']['cancel changes'] . '</a>';
+            echo '<a href="../../includes/mypage.php?' . $lang_sw . '" class="btn btn-danger btn-lg btn-block">' . $GLOBALS['lang']['cancel changes'] . '</a>';
             ___close_div_(3);
-        }else{
+        } else {
             ___open_div_("row", "");
             ___open_div_("col-md-12 upload", '" style="border:1px solid #c7c7c7;');
             ___open_div_("form-group upload", "");
@@ -718,15 +716,12 @@ EOD;
     {
         $maxPriceFilter = "";
         if ($maxPriceValue != "000") {
-            if($maxPriceValue == $limit)
-            {
+            if ($maxPriceValue == $limit) {
                 $maxPriceFilter = "field_price_sell LIKE '%'";
-            }
-            else{
+            } else {
                 $maxPriceFilter = "field_price_sell <= " .  (int) ($maxPriceValue);
             }
-        }
-        else{
+        } else {
             $maxPriceFilter = "(field_price_sell LIKE '%' OR field_price_sell is null)";
         }
 
@@ -764,101 +759,11 @@ EOD;
         }
     }
 
-    protected function prePostEdit()
+
+    protected function editUploadedImages()
     {
-        /// here get file from post fileuploader-list-files and creat
-        /// a new element ['POST']['files']
-        /// update session['POST'] new values from the validations
-
-        $_SESSION['POST']['files'] = $_POST['fileuploader-list-files'];
-        foreach ($_POST as $key => $value) {
-            if (array_key_exists($key, $_SESSION['POST'])) {
-                $_SESSION['POST'][$key] = $value;
-            }
-        }
-        /// make equal session POST and POST
-        $_POST = $_SESSION['POST'];
-
         // define uploads path
         $uploadDir = '..' . $_SESSION['POST']['uploadDirRel'];
-        $FileUploader = new FileUploader('files', array(
-            'limit' => null,
-            'maxSize' => null,
-            'fileMaxSize' => null,
-            'extensions' => null,
-            'required' => false,
-            'uploadDir' => $uploadDir,
-            'title' => 'name',
-            'replace' => false,
-            'editor' => array(
-                'maxWidth' => 640,
-                'maxHeight' => 480,
-                'quality' => 90
-            ),
-            'listInput' => true,
-            'files' => null
-        ));
-
-        //// find file in session from perloaded files
-        $sessionPostFiles = array_column(json_decode($_SESSION['POST']['preloadedFiles']), 'name');
-
-        /// find files in post file
-        $postFiles  = array_column(json_decode($_POST['files']), 'file');
-
-        /// remove the directory name from the postFiles
-        foreach ($postFiles as &$value) {
-            //$value = str_replace("../" . $_POST['uploadDir'], "", $value);
-        }
-        /// get the difference betrween array, to get the removed files
-        $postRemovedFiles = array_diff($sessionPostFiles, $postFiles);
-
-        //exit;
-        // remove the filed from the directory
-        foreach ($postRemovedFiles as $key => $value) {
-            unlink("../../.." . $_POST['uploadDir'] . $value);
-        }
-        //exit;
-        // call to upload the files
-        $FileUploader->upload();
-
-        return $postFiles;
-    }
-    /**
-     * Prepare session post variable
-     * @return mixed MySQL insert result
-     * @category DML
-     */
-    protected function preEdit($itemObject = null, $data = null)
-    {
-        ////------------------------------------------------------------------
-        /// add for decoding
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
-        $crypto = new Cryptor();
-        $dataStr = $crypto->urldecode_base64_decode_decryptor($data);
-        /// start fresh
-        unset($_SESSION['POST']);
-        $dataArray = explode("&", $dataStr);
-
-        /// prepare data and create a session variable
-        foreach ($dataArray as $key => $value) {
-            $temp = explode("=", $value);
-            // changes field_contact_method to fieldContactMethod
-            $postKey = lcfirst(implode('', array_map('ucfirst', explode('_', $temp[0])))); //$this->camelize($temp[0]);
-            $postValue = $temp[1];
-
-            if ($postKey == "idCategory") {
-                $postValue = $itemObject->category((int)$postValue);
-            }
-
-            $_SESSION['POST'][$postKey] = $postValue;
-        }
-
-        // define uploads path
-        $uploadDirRelative = '/upload/'.$itemObject->getTableName().'/user_id_' . $_SESSION['POST']['idUser'] . '/item_temp_id_' . $_SESSION['POST']['idTemp'] . '/';
-        $uploadDir = dirname(__FILE__, 3) . $uploadDirRelative;
-        $_SESSION['POST']['uploadDir'] = $uploadDirRelative;
-        $_SESSION['POST']['uploadDirX'] = $uploadDir; ///for removing files
-        $_SESSION['POST']['uploadDirRel'] = $uploadDirRelative;
 
         // create an empty array
         // we will add to this array the files from directory below
@@ -872,9 +777,106 @@ EOD;
         // made to use the correct structure of a file
         foreach ($uploadsFiles as $file) {
             // skip if directory
-            if (is_dir($uploadDirRelative . $file))
+            if (is_dir($uploadDir . $file)) {
                 continue;
+            }
+            var_dump($file);
+            // add file to our array
+            // !important please follow the structure below
+            $preloadedFiles[] = array(
+                "name" => $file,
+                "type" => FileUploader::mime_content_type($uploadDir . $file),
+                "size" => filesize($uploadDir . $file),
+                "file" => $uploadDir . $file,
+                "relative_file" => $uploadDir . $file
+            );
+        }
 
+        var_dump(($_POST['fileuploader-list-files']));
+        var_dump(explode(";", $_POST['fileuploader-list-files']));
+        // initialize FileUploader
+        $FileUploader = new FileUploader('files', array(
+            'limit' => null,
+            'maxSize' => null,
+            'extensions' => null,
+            'uploadDir' => $uploadDir,
+            'title' => 'name',
+            'files' => $preloadedFiles
+        ));
+
+        var_dump($FileUploader->getOptions());
+        // unlink the files
+        // !important only for preloaded files
+        // you will need to give the array with the preloaded files in 'files' option of the FileUploader
+        foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
+            $file = $uploadDir . $value['name'];
+            var_dump($file);
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+
+        // call to upload the files
+        $FileUploader->upload();
+        // get the fileList
+        $fileList = $FileUploader->getFileList("name");
+
+        var_dump($fileList);
+        var_dump($uploadDir);
+        var_dump($_SESSION['POST']);
+        var_dump($_POST);
+        $fileList = (string)json_encode($fileList);
+        return $fileList;
+    }
+
+    /**
+     * Prepare session post variable
+     * @return mixed MySQL insert result
+     * @category DML
+     */
+    protected function preEdit($itemObject = null, $data = null)
+    {
+        ////------------------------------------------------------------------
+        /// add for decoding
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
+        $crypto = new Cryptor();
+        $dataStr = urldecode($data);
+        /// start fresh
+        $_SESSION['POST'] = null;
+        unset($_SESSION['POST']);
+        $dataArray = explode("&", $dataStr);
+
+        /// prepare data and create a session variable
+        foreach ($dataArray as $key => $value) {
+            $temp = explode("=", $value);
+            // changes field_contact_method to fieldContactMethod
+            $postKey = lcfirst(implode('', array_map('ucfirst', explode('_', $temp[0])))); //$this->camelize($temp[0]);
+            $postValue = $temp[1];
+
+            if ($postKey == "idCategory") {
+                $postValue = $itemObject->category((int)$postValue);
+            }
+            $_SESSION['POST'][$postKey] = $postValue;
+        }
+
+        // define uploads path
+        $uploadDirRelative = '/upload/' . $itemObject->getTableName() . '/user_id_' . $_SESSION['POST']['idUser'] . '/item_temp_id_' . $_SESSION['POST']['idTemp'] .'/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $uploadDirRelative;
+        $_SESSION['POST']['uploadDirRel'] = $uploadDirRelative;
+
+        // create an empty array
+        // we will add to this array the files from directory below
+        // here you can also add files from MySQL database
+        $preloadedFiles = array();
+
+        // scan uploads directory
+        $uploadsFiles = array_diff(scandir($uploadDir), array('.', '..'));
+        // var_dump($uploadsFiles);
+        foreach($uploadsFiles as $file) {
+            // skip if directory
+            if(is_dir($uploadDir . $file))
+                continue;
+            // var_dump($file);
             // add file to our array
             // !important please follow the structure below
             $preloadedFiles[] = array(
@@ -882,17 +884,46 @@ EOD;
                 "type" => FileUploader::mime_content_type($uploadDir . $file),
                 "size" => filesize($uploadDir . $file),
                 "file" => $uploadDirRelative . $file,
-                "local" => '..' . $uploadDirRelative . $file, // same as in form_upload.php
-                "data" => array(
-                    "url" => null, //'/fileuploader/examples/preloaded-files/uploads/' . $file, // (optional)
-                    "thumbnail" => null, //file_exists($uploadDir . 'thumbs/' . $file) ? $uploadDir . 'thumbs/' . $file : null, // (optional)
-                    "readerForce" => true // (optional) prevent browser cache
-                ),
+                "local" => '..' . $uploadDirRelative . $file
             );
         }
 
-        // convert our array into json string
         $preloadedFiles = json_encode($preloadedFiles);
         $_SESSION['POST']['preloadedFiles'] = $preloadedFiles;
+        // var_dump($_SESSION['POST']['preloadedFiles']);
+    }
+
+    protected function loadImages($table, $idUser,$idTemp, &$imagesList)
+    {
+        //create a folder for image upload
+        $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
+        if (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        // initialize FileUploader
+        $FileUploader = new FileUploader('files', array(
+            'limit' => null,
+            'maxSize' => null,
+            'fileMaxSize' => null,
+            'extensions' => null,
+            'required' => true,
+            'uploadDir' => $directory . '/',
+            'title' => 'name',
+            'replace' => false,
+            'editor' => array(
+                'maxWidth' => 640,
+                'maxHeight' => 480,
+                'quality' => 90
+            ),
+            'listInput' => true,
+            'files' => null,
+            'id' => null
+        ));
+
+        // call to upload the files
+        $FileUploader->upload();
+        // get the fileList and encode in json
+        $imagesList = (string)json_encode($FileUploader->getFileList('name'));
     }
 }

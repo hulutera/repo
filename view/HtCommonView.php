@@ -21,9 +21,7 @@ class HtCommonView extends MySqlRecord
         $itemImageDir = "item_" . $this->_itemName;
         $userImageDir = "/user_id_" . $itemObj->getIdUser();
         $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
-        $realPath = (!strpos($_SERVER['PHP_SELF'], "index.php")) ? "../" : "";
-        $path = $realPath . "upload/";
-        $dir = $path . $itemImageDir . $userImageDir .  $tmpIdImageDir;
+        $dir = "../upload/" . $itemImageDir . $userImageDir .  $tmpIdImageDir;
         return $dir;
     }
 
@@ -258,20 +256,23 @@ class HtCommonView extends MySqlRecord
         echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
         echo "</div>";
     }
-    /*@ function to display image gallery
-	 * input: $objImg, $objDir, $image, $objItem, $itemId
-    * */
+
     public function displayGallery($dir, $imageNameArray, $numimage, $itemId, $itemName)
     {
-        $imageFileNameLarge = $imageNameArray[0];
+        // var_dump($dir);
+        // var_dump($imageNameArray);
+        // var_dump($numimage);
+        // var_dump($itemId);
+        // var_dump($itemName);
+
         $filterArr = array('"', '[', ']');
-        $fileNameLarge = str_replace($filterArr, '', $imageFileNameLarge);
+        $fileNameLarge = $imageNameArray[0];//str_replace($filterArr, '', $imageFileNameLarge);
         echo "<div class=\"featured_left_sideRemove col-xs-12 col-md-8\"  style=\"padding:0px;\">";
         if ($numimage == 0) {
-            $imageNotFound = $dir . $fileNameLarge;
+            $imageNotFound = $fileNameLarge;
             echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
         } else {
-            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1;height:500px\"><img class=\"largeImg\" style=\"max-height:100%;max-width:100%;object-fit: contain\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $dir . $fileNameLarge . "\"></div>";
+            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1;height:500px\"><img class=\"largeImg\" style=\"max-height:100%;max-width:100%;object-fit: contain\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $fileNameLarge . "\"></div>";
             echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
             for ($i = 0; $i < $numimage; $i++) {
                 $imageFileName = $imageNameArray[$i];
@@ -281,7 +282,7 @@ class HtCommonView extends MySqlRecord
                 echo "<div class=\"imagesGallery1 thumbnail\">";
                 echo "
 				<a   href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
-				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$dir$fileName\" />
+				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$fileName\" />
 				</a>
                 ";
                 echo "</div>";

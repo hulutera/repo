@@ -197,34 +197,23 @@ class HtMainView
         $itemName = $this->_runnerName;
         $uniqueId = $itemName . '-' . $id;
         $commonViewObj = new HtCommonView($itemName);
-        //image handler
-        $imageDir = $commonViewObj->getImageDir($this->_pItem);
-        $image = $this->_pItem->getFieldImage();
 
-        $uploadsFiles = null;
-        if (is_dir($imageDir)) { //check if directory exist
-            // scan uploads directory
-            $uploadsFiles = array_diff(scandir($imageDir), array('.', '..'));
-        }
 
-        if (empty($uploadsFiles) || !isset($image)) {
+        $imageArray = json_decode($this->_pItem->getFieldImage());
+        $imageDir = "";
+        if(isset($imageArray)){
+            $imageDir = $commonViewObj->getImageDir($this->_pItem);
+        }else{
             $imageDir = "../images/en/";
-            $numimage = 0;
-            $imageArr = ["en.svg"];
-        } else {
-            $imageArr = explode(',', $image);
-            $numimage = sizeof($imageArr);
+            $imageArray = ["../images/en/en.svg"];
+        }
+        //prepend with image directory
+        foreach ($imageArray as &$value1) {
+            $value1 = $imageDir . $value1;
         }
 
-        $jsImg = implode(',', $imageArr);
-        $strReplArr = array('[', ']', '"');
-        $imgString = str_replace($strReplArr, "", $jsImg);
-        $thmbnlImg  = $imageDir  . str_replace($strReplArr, "", $imageArr[0]);
-        if(!file_exists($thmbnlImg))
-        {
-            $thmbnlImg = "../images/en/en.svg";
-            $numimage = 0;
-        }
+        $numimage = sizeof($imageArray);
+        $thmbnlImg  = $imageArray[0];
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
@@ -245,7 +234,7 @@ class HtMainView
         echo '<div class="thumbnail thumbnail-property features" '. $style .'>';
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
-        echo '<div class="image-count"><i class="icon-image"></i><span>' . $numimage . '</span></div>';
+        echo '<div class="image-count"><i style="color:yellow;background-color:black" class="icon-image"></i><span style="color:yellow;background-color:black">' . $numimage . '</span></div>';
         echo '<img src="' . $thmbnlImg . '" alt="" />';
 
         echo "<a   href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
@@ -289,7 +278,7 @@ class HtMainView
                 }
                 $editLink = ltrim($editLink,'&');
                 $crypto = new Cryptor();
-                $editLinkCrypted = $crypto->urlencode_base64_encode_encryptor($editLink);
+                $editLinkCrypted = urlencode($editLink);
                 echo '<a href="../includes/template.upload.php?function=upload&type='.$itemName.'&action=edit&data='.$editLinkCrypted.$str_url.'"><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
                 echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-myItem-action', '". $uniqueId."-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
                 echo '</div>';
@@ -321,7 +310,7 @@ class HtMainView
         $commonViewObj->displayMailForm($uniqueId, $id, $itemName,  $this->_pItem->getIdUser());
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; // left side div end
-        $commonViewObj->displayGallery($imageDir, $imageArr, $numimage, $id, $itemName);
+        $commonViewObj->displayGallery($imageDir, $imageArray, $numimage, $id, $itemName);
         echo "</div>"; // .featured_detailed end
 
     }

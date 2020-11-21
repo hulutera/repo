@@ -20,8 +20,7 @@ function itemSelect() {
 
 function imgnumber(dir, file_name, id, item) {
     var i = "largeImg" + item + id;
-    var des = dir + file_name;
-    document.getElementById(i).src = des;
+    document.getElementById(i).src = file_name;
 }
 
 function swap(item, itemNumber) {

@@ -63,12 +63,12 @@ function accountLinks()
 		$id = $_SESSION['uID'];
 		echo "<div id=\"modnav\" ><div class=\"item-list-by-status\">";
 		echo "<a   ";
-		echo 'href="' . $url . '=active&id='.$id.'"> ';
+		echo 'href="' . $url . '=active&id=' . $id . '"> ';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['active'] . "(<span id=\"userActiveNumb\">$usersActiveItem</span>)</span></div></a>";
 
 		echo "<a   ";
-		echo 'href="' . $url . '=pending&id='.$id.'"> ';
+		echo 'href="' . $url . '=pending&id=' . $id . '"> ';
 		echo "<div class='item-list'>";
 		echo "<span>" . $lang['pending'] . "(<span id=\"userPendingNumb\">$usersPendingItem</span>)</span></div></a>";
 		echo "<a   ";
@@ -114,14 +114,14 @@ function userContent()
 			7 => 'other'
 		];
 		//echo '<div class="row items-board">';
-        /*START @ widget */
-        echo '<div class="widget-content properties-grid">';
-        /*START @ row*/
+		/*START @ widget */
+		echo '<div class="widget-content properties-grid">';
+		/*START @ row*/
 		echo '<div class="row items-board" >';
 		$item_order = 0;
 		foreach ($result as $key => $value) {
 			# code...
-			$item_order ++;
+			$item_order++;
 			$id = (int)$value['id'];
 			$itemName = $tableType2item[(int)$value['field_table_type']];
 			$view = (new HtMainView($itemName, $id, $status));
@@ -134,10 +134,9 @@ function userContent()
 		pagination('userActive', $totpage, $page, 0);
 	} elseif ($sum <= 0) {
 		echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
-        echo '<div id="spanMainColumnXRemove" style="color: red">';
-        echo $GLOBALS['general']['noItemToShow'];
-        echo '</div></div>';
-
+		echo '<div id="spanMainColumnXRemove" style="color: red">';
+		echo $GLOBALS['general']['noItemToShow'];
+		echo '</div></div>';
 	}
 	echo '<script type="text/javascript">$(document).ready(function (){$(".userActiveButton").show();});</script>';
 }
@@ -260,7 +259,6 @@ function allUsers()
 		listUsers($ACTIVITY_ARRAY);
 	}
 	___close_div_(3);
-
 }
 function listUsers(&$ACTIVITY_ARRAY)
 {
@@ -505,7 +503,6 @@ function listUsers(&$ACTIVITY_ARRAY)
         </div>
         </div>
         </div>';
-
 	}
 }
 
@@ -515,10 +512,9 @@ function adminWelcomePage()
 	$currentUser = new HtUserAll($sId);
 	$result = $currentUser->getResultSet();
 	$result->data_seek(0);
-	if ($currentUser->isUser()){
+	if ($currentUser->isUser()) {
 		header('Location: ../includes/mypage.php?lan=en');
-	}
-	else{
+	} else {
 		echo '<p class="h1">Welcome! Please take action on the left, (under construction)</p>';
 	}
 }
@@ -531,7 +527,7 @@ function activityTable()
 
 	/// decode Url
 	$actionId = isset($_GET['activityTableId']) ? $_GET['activityTableId'] : "";
-	if($actionId != "") {
+	if ($actionId != "") {
 		$actionIdDecode = $cryto->urldecode_base64_decode_decryptor($actionId);
 		/// extract content similar to $_GET action
 		$actionIdDecodeArr = explode("&", $actionIdDecode);
@@ -668,6 +664,9 @@ function activityTable()
 	___open_div_('row', '');
 	___open_div_('col-xs-12 col-md-12');
 
+	if (isset($ACTIVITY_ARRAY)) {
+		action_on_item($ACTIVITY_ARRAY);
+	}
 
 	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
 
@@ -741,7 +740,7 @@ function activityTable()
 				}
 				echo '<th class="th-sm" title="' . $k1 . '">' . strtoupper($k1) . '</th>';
 			}
-	    }
+		}
 		echo '</tr></thead>';
 		/// end : table header
 
@@ -876,12 +875,13 @@ function getSessionId()
 }
 
 /**
-	* ACTION EXECUTIONS HERE
-*/
+ * ACTION EXECUTIONS HERE
+ */
 
-function action_on_item($ACTIVITY_ARRAY) {
-	if ((isset($ACTIVITY_ARRAY['id']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) ||
-	     isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
+
+function action_on_item($ACTIVITY_ARRAY)
+{
+	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
 		$id = $ACTIVITY_ARRAY['id'];
 		$item = $ACTIVITY_ARRAY['type'];
 		$action = $ACTIVITY_ARRAY['action'];
@@ -930,6 +930,5 @@ function action_on_item($ACTIVITY_ARRAY) {
 				}
 			}
 		}
-
 	}
 }

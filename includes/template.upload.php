@@ -34,6 +34,26 @@ if (isset($_GET['lan'])) {
 		<div id="wrapper">
 			<div id="main_section">
 				<?php
+
+				$sessions = [
+					0 => 'upload_car',
+					1 => 'upload_other',
+					2 => 'upload_computer',
+					3 => 'upload_electronic',
+					4 => 'upload_house',
+					5 => 'upload_household',
+					6 => 'upload_phone',
+					7 => 'upload_electronics',
+					8 => 'upload_others'
+				];
+				for ($i=0; $i < 8; $i++) {
+					if (isset($_SESSION[$sessions[$i]])) {
+						$_SESSION[$sessions[$i]] = null;
+						unset($_SESSION[$sessions[$i]]);
+					}
+				}
+
+
 				if (
 					!isset($_GET['type']) or         // if type is not set clear error
 					($_GET['function'] !== 'upload' && $_GET['function'] !== 'edit') or   //if upload & edit clear error
@@ -64,6 +84,7 @@ if (isset($_GET['lan'])) {
 					$object = unserialize(base64_decode($_SESSION[$sessionName]));
 				}
 
+				// var_dump($_SESSION);
 				///route to edit or upload
 				$data = isset($_GET['action']) &&
 					($_GET['action'] == "edit") &&

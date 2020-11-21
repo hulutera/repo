@@ -537,79 +537,93 @@ class HtItemElectronic extends MySqlRecord
      * @param int $fieldTableType
      * @category Modifier
      */
+    // private function setFieldPost()
+    // {
+    //     $_item = $_GET['table'];
+    //     $_userId = $_SESSION['uID'];
+    //     $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
+    //     $_itemTempId = (int) $result->fetch_object()->id_temp + 1;
+    //     $this->setFieldLocation($_POST['fieldLocation']);
+    //     $this->setIdCategory($_POST['idCategory']);
+    //     $this->setIdUser($_userId);
+    //     $this->setIdTemp($_itemTempId);
+    //     $this->setFieldExtraInfo($_POST['fieldExtraInfo']);
+    //     $this->setFieldPriceSell($_POST['fieldPriceSell']);
+    //     $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
+    //     $this->setFieldPriceNego($_POST['fieldPriceNego']);
+    //     $this->setFieldTitle($_POST['fieldTitle']);
+    //     $this->setFieldContactMethod($_POST['fieldContactMethod']);
+    //     $this->setFieldImage($_POST['fileuploader-list-files']);
+    //     $this->setFieldUploadDate(date("Y-m-d H:i:s"));
+    //     $this->setFieldStatus("pending");
+    //     $this->setFieldMarketCategory('sell');
+    //     $this->setFieldTableType(5);
+
+    //     //create a folder for image upload
+    //     $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
+    //     if (!file_exists($directory)) {
+    //         mkdir($directory, 0777, true);
+    //     }
+
+    //     // initialize FileUploader
+    //     $FileUploader = new FileUploader('files', array(
+    //         'limit' => null,
+    //         'maxSize' => null,
+    //         'fileMaxSize' => null,
+    //         'extensions' => null,
+    //         'required' => true,
+    //         'uploadDir' => $directory . '/',
+    //         'title' => 'name',
+    //         'replace' => false,
+    //         'editor' => array(
+    //             'maxWidth' => 640,
+    //             'maxHeight' => 480,
+    //             'quality' => 90
+    //         ),
+    //         'listInput' => true,
+    //         'files' => null,
+    //         'id' => null
+    //     ));
+
+    //     // unlink the files
+    //     // !important only for preloaded files
+    //     // you will need to give the array with appendend files in 'files' option of the fileUploader
+    //     foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
+    //         unlink('../uploads/' . $value['name']);
+    //     }
+
+
+    //     // call to upload the files
+    //     $data = $FileUploader->upload();
+
+    //     // if uploaded and success
+    //     if ($data['isSuccess'] && count($data['files']) > 0) {
+    //         // get uploaded files
+    //         $uploadedFiles = $data['files'];
+    //     }
+    //     // if warnings
+    //     if ($data['hasWarnings']) {
+    //         $warnings = $data['warnings'];
+    //         header('Location: ../../template.upload.php?type=' . $this->getTableName() . '&=' . $warnings);
+    //     }
+
+    //     // get the fileList and encode in json
+    //     $fileList = json_encode($FileUploader->getFileList('name'));
+    //     $this->setFieldImage($fileList);
+    // }
     private function setFieldPost()
     {
-        $_item = $_GET['table'];
-        $_userId = $_SESSION['uID'];
-        $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
-        $_itemTempId = (int) $result->fetch_object()->id_temp + 1;
-        $this->setFieldLocation($_POST['fieldLocation']);
-        $this->setIdCategory($_POST['idCategory']);
-        $this->setIdUser($_userId);
-        $this->setIdTemp($_itemTempId);
-        $this->setFieldExtraInfo($_POST['fieldExtraInfo']);
-        $this->setFieldPriceSell($_POST['fieldPriceSell']);
-        $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
-        $this->setFieldPriceNego($_POST['fieldPriceNego']);
-        $this->setFieldTitle($_POST['fieldTitle']);
-        $this->setFieldContactMethod($_POST['fieldContactMethod']);
-        $this->setFieldImage($_POST['fileuploader-list-files']);
-        $this->setFieldUploadDate(date("Y-m-d H:i:s"));
-        $this->setFieldStatus("pending");
-        $this->setFieldMarketCategory('sell');
-        $this->setFieldTableType(5);
-
-        //create a folder for image upload
-        $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . $_userId . '/item_temp_id_' . $_itemTempId;
-        if (!file_exists($directory)) {
-            mkdir($directory, 0777, true);
+        $table = $_GET['table'];
+        $idUser = $_SESSION['uID'];
+        $result =  $this->query("SELECT id_temp FROM $table ORDER BY id DESC LIMIT 1");
+        if ($this->affected_rows == 0) {
+            $idTemp = 1;
+        } else {
+            $idTemp = (int) $result->fetch_object()->id_temp + 1;
         }
-
-        // initialize FileUploader
-        $FileUploader = new FileUploader('files', array(
-            'limit' => null,
-            'maxSize' => null,
-            'fileMaxSize' => null,
-            'extensions' => null,
-            'required' => true,
-            'uploadDir' => $directory . '/',
-            'title' => 'name',
-            'replace' => false,
-            'editor' => array(
-                'maxWidth' => 640,
-                'maxHeight' => 480,
-                'quality' => 90
-            ),
-            'listInput' => true,
-            'files' => null,
-            'id' => null
-        ));
-
-        // unlink the files
-        // !important only for preloaded files
-        // you will need to give the array with appendend files in 'files' option of the fileUploader
-        foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
-            unlink('../uploads/' . $value['name']);
-        }
-
-
-        // call to upload the files
-        $data = $FileUploader->upload();
-
-        // if uploaded and success
-        if ($data['isSuccess'] && count($data['files']) > 0) {
-            // get uploaded files
-            $uploadedFiles = $data['files'];
-        }
-        // if warnings
-        if ($data['hasWarnings']) {
-            $warnings = $data['warnings'];
-            header('Location: ../../template.upload.php?type=' . $this->getTableName() . '&=' . $warnings);
-        }
-
-        // get the fileList and encode in json
-        $fileList = json_encode($FileUploader->getFileList('name'));
-        $this->setFieldImage($fileList);
+        $imagesList = "";
+        $this->loadImages($table, $idUser, $idTemp, $imagesList);
+        $this->setFieldPostEdit($idUser, $idTemp, $imagesList);
     }
     /**
      * getId gets the class attribute id value
@@ -1343,12 +1357,13 @@ SQL;
      */
     public function uploadEdit()
     {
-        $this->setFieldPostEdit();
-        //exit;
-        $this->allowUpdate = true;
+        var_dump($_POST);
+        $idUser = (int)$_SESSION['POST']['idUser'];
+        $idTemp = (int)$_SESSION['POST']['idTemp'];
+        $imagesList = (string)$this->editUploadedImages();
+        $this->setFieldPostEdit($idUser, $idTemp, $imagesList);
         $this->updateCurrent();
-        ///final session
-        //unset($_SESSION['POST']);
+        unset($_SESSION['POST']);
     }
 
     /**
@@ -1356,27 +1371,24 @@ SQL;
      * @return mixed MySQL insert result
      * @category DML
      */
-    private function setFieldPostEdit()
+    private function setFieldPostEdit($idUser, $idTemp, $imagesList)
     {
-        $postFiles = $this->prePostEdit();
-        //----------------------------------
         $this->setFieldLocation($_POST['fieldLocation']);
         $this->setIdCategory($_POST['idCategory']);
-        $this->setIdUser((int)$_POST['idUser']);
-        $this->setIdTemp((int) $_POST['idTemp']);
-        //$this->setFieldExtraInfo($_POST['fieldExtraInfo']);
-        $this->setFieldPriceSell($_POST['fieldPriceSell']);
+        $this->setIdUser($idUser);
+        $this->setIdTemp($idTemp);
+        $this->setFieldPriceSell((int)$_POST['fieldPriceSell']);
         $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
         $this->setFieldPriceNego($_POST['fieldPriceNego']);
         $this->setFieldTitle($_POST['fieldTitle']);
         $this->setFieldContactMethod($_POST['fieldContactMethod']);
-        $this->setFieldImage(json_encode($postFiles));
+        $this->setFieldImage($imagesList);
         $this->setFieldUploadDate(date("Y-m-d H:i:s"));
         $this->setFieldStatus("pending");
-        $this->setFieldMarketCategory('sell');
+        $this->setFieldMarketCategory("sell");
         $this->setFieldTableType(5);
+        $this->allowUpdate = true;
     }
-
     /**
      * Display form for Edit with Session Data
      * @return mixed MySQL insert result

@@ -63,6 +63,9 @@ if (!empty($err2)) {
 	$_SESSION['POST'] = [];
 	$_SESSION['error']  = null;
 	$_SESSION['errorRaw']  = null;
+	unset($_SESSION['POST']);
+	unset($_SESSION['error']);
+	unset($_SESSION['errorRaw']);
 
 	//reset uploaded sessions per item
 	$items = new HtItemAll("*");

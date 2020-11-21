@@ -99,6 +99,7 @@ function headerAndSearchCode($item)
 	___open_div_('ht-left col-md-2', '');
 	___open_div_('logox', '');
 	logoImage();
+	echo '<a href="../includes/template.content.php?lan=en&status=pending&id=18" class="h1 text-info"><p>TEST18</p></a>';
 	___close_div_(2);
 
 	___open_div_('ht-right col-md-10', '');

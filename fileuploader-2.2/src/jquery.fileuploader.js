@@ -16,7 +16,7 @@
     }
 }(function($) {
     'use strict';
-	
+
     $.fn.fileuploader = function(q) {
         return this.each(function(t, r) {
 			var s = $(r), // input element
@@ -37,43 +37,43 @@
 						if (!s.closest('.fileuploader').length)
 							s.wrap('<div class="fileuploader"></div>');
 						p = s.closest('.fileuploader');
-                        
+
                         // extend captions object
 						f.set('language');
-						
+
 						// add, merge and apply input attributes with the options
 						// also define the defaults for some options
 						f.set('attrOpts');
-						
+
 						// check if the plugin is supported in current browser
 						if (!f.isSupported()) {
 							n.onSupportError && $.isFunction(n.onSupportError) ? n.onSupportError(p, s) : null;
 							return false;
 						}
-						
+
 						// before render callback
 						if (n.beforeRender && $.isFunction(n.beforeRender) && n.beforeRender(p, s) === false)
 							return false;
-						
+
 						// redesign the new input
 						f.redesign();
-						
+
 						// append files from options
                         if (n.files)
 						 	f.files.append(n.files);
-						
+
 						// after render callback
 						f.rendered = true;
 						n.afterRender && $.isFunction(n.afterRender) ? n.afterRender(l, p, o, s) : null;
-						
+
 						// bind events
 						if (!f.disabled)
 							f.bindUnbindEvents(true);
-						
+
 						if (!f._itFl.length)
 							f.reset();
 					},
-					
+
 					/**
 					 * bindUnbindEvents
 					 * bind or unbind events for input and new elements
@@ -85,14 +85,14 @@
 						// unbind events
 						if (bind)
 							f.bindUnbindEvents(false);
-						
+
 						// bind all input events
 						s[bind ? 'on' : 'off'](f._assets.getAllEvents(), f.onEvent);
-						
+
 						// bind click event for the new input
 						if (n.changeInput && o!==s)
 							o[bind ? 'on' : 'off']('click', f.clickHandler);
-						
+
 						// bind drag&drop events
                         if (n.dragDrop && n.dragDrop.container.length) {
                             n.dragDrop.container[bind ? 'on' : 'off']('drag dragstart dragend dragover dragenter dragleave drop', function(e) { e.preventDefault(); });
@@ -100,19 +100,19 @@
                             n.dragDrop.container[bind ? 'on' : 'off']('dragover', f.dragDrop.onDragEnter);
                             n.dragDrop.container[bind ? 'on' : 'off']('dragleave', f.dragDrop.onDragLeave);
                         }
-						
+
 						// bind the paste from clipboard event
                         if (f.isUploadMode() && n.clipboardPaste)
                             $(window)[bind ? 'on' : 'off']('paste', f.clipboard.paste);
-						
+
 						// bind sorter events
 						if (n.sorter && n.thumbnails && n.thumbnails._selectors.sorter)
 							f.sorter[bind ? 'init': 'destroy']();
-						
+
 						// bind the form reset
 						s.closest('form')[bind ? 'on' : 'off']('reset', f.reset);
 					},
-					
+
 					/**
 					 * redesign
 					 * create the new input and hide the standard one
@@ -122,18 +122,18 @@
 					redesign: function() {
 						// set as default
 						o = s;
-						
+
 						// add a class name with theme
 						if (n.theme)
 							p.addClass('fileuploader-theme-' + n.theme);
-						
+
 						// set new input html
 						if (n.changeInput) {
 							switch ((typeof n.changeInput + "").toLowerCase()) {
 								case 'boolean':
 									o = $('<div class="fileuploader-input">' +
-										  	'<div class="fileuploader-input-caption"><span>' + f._assets.textParse(n.captions.feedback) + '</span></div>' + 
-										  	'<button type="button" class="fileuploader-input-button"><span>' + f._assets.textParse(n.captions.button) + '</span></button>' + 
+										  	'<div class="fileuploader-input-caption"><span>' + f._assets.textParse(n.captions.feedback) + '</span></div>' +
+										  	'<button type="button" class="fileuploader-input-button"><span>' + f._assets.textParse(n.captions.button) + '</span></button>' +
 										  '</div>');
 									break;
 								case 'string':
@@ -147,10 +147,10 @@
 									o = $(n.changeInput(s, p, n, f._assets.textParse));
 									break;
 							}
-							
+
                             // add the new input after standard input
 							s.after(o);
-                            
+
                             // hide the standard input
 							s.css({
 								position: "absolute",
@@ -165,19 +165,19 @@
 								opacity: '0'
 							});
 						}
-						
-						
+
+
 						// create thumbnails list
 						if (n.thumbnails)
 							f.thumbnails.create();
-						
+
 						// set drag&drop container
 						if (n.dragDrop) {
 							n.dragDrop = typeof(n.dragDrop) != 'object' ? {container: null} : n.dragDrop;
 							n.dragDrop.container = n.dragDrop.container ? $(n.dragDrop.container) : o;
 						}
 					},
-					
+
 					/**
 					 * clickHandler
 					 * click event for new input
@@ -187,17 +187,17 @@
 					 */
 					clickHandler: function(e) {
 						e.preventDefault();
-                        
+
                         // clear clipboard pending
                         if (f.clipboard._timer) {
                             f.clipboard.clean();
                             return;
                         }
-						
+
 						// trigger input click
 						s.click();
 					},
-					
+
 					/**
 					 * onEvent
 					 * callbacks for each input event
@@ -217,12 +217,12 @@
 								f.onChange.call(this);
 								break;
 						}
-						
+
 						// listeners callback
 						n.listeners && $.isFunction(n.listeners[e.type]) ? n.listeners[e.type].call(s, p) : null;
 					},
-					
-					
+
+
 					/**
 					 * set
 					 * set properties
@@ -258,18 +258,18 @@
 									}
 									s.removeAttr(j);
 								}
-								
+
 								// set the plugin on disabled if the input has disabled attribute or limit is 0
 								if (s.attr('disabled') != null || s.attr('readonly') != null || n.limit === 0)
 									f.disabled = true;
-								
+
 								// set multiple attribute to the input
 								if (!n.limit || (n.limit && n.limit >= 2)) {
 									s.attr('multiple', 'multiple');
                                     // set brackets at the end of input name
 									n.inputNameBrackets && s.attr('name').slice(-2) != '[]' ? s.attr('name', s.attr('name') + '[]') : null;
 								}
-								
+
 								// set list input element
 								if (n.listInput === true) {
 									n.listInput = $('<input type="hidden" name="fileuploader-list-' + s.attr('name').replace('[]', '').split('[').pop().replace(']', '') + '">').insertBefore(s);
@@ -277,7 +277,7 @@
 								if (typeof n.listInput == "string" && $(n.listInput).length == 0) {
 									n.listInput = $('<input type="hidden" name="' + n.listInput + '">').insertBefore(s);
 								}
-								
+
 								// apply some defined options to plugin
 								f.set('disabled', f.disabled);
 								if (!n.fileMaxSize && n.maxSize)
@@ -286,7 +286,7 @@
                             // extend captions object
                             case 'language':
                                 var languages = $.fn.fileuploader.languages;
-                                
+
                                 if (typeof n.captions == 'string') {
                                     if (n.captions in languages)
                                         n.captions = languages[n.captions];
@@ -299,7 +299,7 @@
 								f.disabled = value;
 								p[f.disabled ? 'addClass' : 'removeClass']('fileuploader-disabled');
 								s[f.disabled ? 'attr' : 'removeAttr']('disabled', 'disabled');
-								
+
 								if (f.rendered)
 									f.bindUnbindEvents(!value);
 								break;
@@ -307,13 +307,13 @@
 							case 'feedback':
                                 if (!value)
                                     value = f._assets.textParse(f._itFl.length > 0 ? n.captions.feedback2 : n.captions.feedback, {length: f._itFl.length});
-                                
+
                                 $(!o.is(':file')) ? o.find('.fileuploader-input-caption span').html(value) : null;
                                 break;
 							// set file input value to empty
 							case 'input':
                                 var el = f._assets.copyAllAttributes($('<input type="file">'), s, true);
-                                
+
                                 f.bindUnbindEvents(false);
 								s.after(s = el).remove();
                                 f.bindUnbindEvents(true);
@@ -331,7 +331,7 @@
 							// set next input; only for addMore option
 							case 'nextInput':
 								var el = f._assets.copyAllAttributes($('<input type="file">'), s);
-                                
+
 								f.bindUnbindEvents(false);
 								if (sl.length > 0 && sl[sl.length - 1].get(0).files.length == 0) {
 									s = sl[sl.length - 1];
@@ -349,7 +349,7 @@
 								break;
 						}
 					},
-					
+
 					/**
 					 * onChange
 					 * on input change event
@@ -360,7 +360,7 @@
 					 */
 					onChange: function(e, fileList) {
 						var files = s.get(0).files;
-						
+
 						// drag&drop or clipboard paste
 						if (fileList) {
 							if (fileList.length) {
@@ -370,89 +370,89 @@
                                 f.files.clear();
                                 return false;
 							}
-							
+
 						}
-                        
+
                         // clean clipboard timer
                         // made only for safety
                         if (f.clipboard._timer)
                             f.clipboard.clean();
-						
+
 						// reset the input if default mode
 						if (f.isDefaultMode()) {
 							f.reset();
-							
+
 							if (files.length == 0)
 								return;
 						}
-						
+
 						// beforeSelect callback
 						if (n.beforeSelect && $.isFunction(n.beforeSelect) && n.beforeSelect(files, l, p, o, s) == false) {
                             return false;
                         }
-						
+
 						// files
                         var t = 0; // total processed files
 						for (var i = 0; i < files.length; i++ ) {
 							var file = files[i], // file
 								item = f._itFl[f.files.add(file, 'choosed')], // item
 								status = f.files.check(item, files, i == 0); // ["type", "message", "do not show the warning message", "do not check the next files"]
-                            
+
                             // process the warnings
 							if (status !== true) {
 								f.files.remove(item, true);
-								
+
 								if (!status[2]) {
 									if (f.isDefaultMode()) {
 										f.set('input', '');
 										f.reset();
 										status[3] = true;
 									}
-                                    
+
 									status[1] ? f._assets.dialogs.alert(status[1], item, l, p, o, s) : null;
 								}
-								
+
 								if (status[3]) {
 									break;
 								}
-								
+
 								continue;
 							}
-							
+
 							// file is valid
 							// create item html
 							if (n.thumbnails)
 								f.thumbnails.item(item);
-								
+
 							// create item ajax request
 							if (f.isUploadMode())
 								f.upload.prepare(item);
-							
+
 							// onSelect callback
 							n.onSelect && $.isFunction(n.onSelect) ? n.onSelect(item, l, p, o, s) : null;
-							
+
                             t++;
 						}
-						
+
                         // clear the input in uploadMode
                         if (f.isUploadMode() && t > 0)
                             f.set('input', '');
-						
+
 						// set feedback caption
 						f.set('feedback', null);
-						
+
 						// set nextInput for addMore option
 						if (f.isAddMoreMode() && t > 0) {
 							f.set('nextInput');
 						}
-						
+
                         // set listInput value
 						f.set('listInput', null);
-                        
+
 						// afterSelect callback
 						n.afterSelect && $.isFunction(n.afterSelect) ? n.afterSelect(l, p, o, s) : null;
 					},
-                    
+
 					/**
                      * @namespace thumbnails
                      */
@@ -467,19 +467,19 @@
 						create: function() {
 							// thumbnails.beforeShow callback
 							n.thumbnails.beforeShow != null && $.isFunction(n.thumbnails.beforeShow) ? n.thumbnails.beforeShow(p, o, s) : null;
-                            
+
 							// create item's list element
 							var box = $(f._assets.textParse(n.thumbnails.box)).appendTo(n.thumbnails.boxAppendTo ? n.thumbnails.boxAppendTo : p);
 							l = !box.is(n.thumbnails._selectors.list) ? box.find(n.thumbnails._selectors.list) : box;
-							
+
                             // bind item popup method to the selector
                             if (n.thumbnails._selectors.popup_open) {
                                 l.on('click', n.thumbnails._selectors.popup_open, function(e) {
                                     e.preventDefault();
-                                    
+
                                     var m = $(this).closest(n.thumbnails._selectors.item),
                                         item = f.files.find(m);
-                                    
+
                                     if (item && item.popup && item.html.hasClass('file-has-popup'))
                                         f.thumbnails.popup(item);
                                 });
@@ -488,13 +488,13 @@
                             if (f.isUploadMode() && n.thumbnails._selectors.start) {
                                 l.on('click', n.thumbnails._selectors.start, function(e) {
 									e.preventDefault();
-                                    
+
                                     if (f.locked)
                                         return false;
 
 									var m = $(this).closest(n.thumbnails._selectors.item),
                                         item = f.files.find(m);
-                                    
+
                                     if (item)
                                         f.upload.send(item, true);
 								});
@@ -503,13 +503,13 @@
                             if (f.isUploadMode() && n.thumbnails._selectors.retry) {
                                 l.on('click', n.thumbnails._selectors.retry, function(e) {
 									e.preventDefault();
-                                    
+
                                     if (f.locked)
                                         return false;
 
 									var m = $(this).closest(n.thumbnails._selectors.item),
                                         item = f.files.find(m);
-                                    
+
                                     if (item)
                                         f.upload.retry(item);
 								});
@@ -518,13 +518,13 @@
                             if (n.thumbnails._selectors.rotate) {
                                 l.on('click', n.thumbnails._selectors.rotate, function(e) {
 									e.preventDefault();
-                                    
+
                                     if (f.locked)
                                         return false;
 
 									var m = $(this).closest(n.thumbnails._selectors.item),
                                         item = f.files.find(m);
-                                    
+
                                     if (item && item.editor) {
                                         item.editor.rotate();
                                         item.editor.save();
@@ -535,7 +535,7 @@
 							if (n.thumbnails._selectors.remove) {
 								l.on('click', n.thumbnails._selectors.remove, function(e) {
 									e.preventDefault();
-                                    
+
                                     if (f.locked)
                                         return false;
 
@@ -544,7 +544,7 @@
 										c = function(a) {
 											f.files.remove(item);
 										};
-                                    
+
                                     if (item) {
                                         if (item.upload && item.upload.status != 'successful') {
                                             f.upload.cancel(item);
@@ -585,16 +585,16 @@
 							item.progressBar = f.isUploadMode() ? '<div class="fileuploader-progressbar"><div class="bar"></div></div>' : '';
 							item.html = $(f._assets.textParse(item.appended && n.thumbnails.item2 ? n.thumbnails.item2 : n.thumbnails.item, item));
 							item.progressBar = item.html.find('.fileuploader-progressbar');
-                            
+
                             // add class with file extension and file format to item html
                             item.html.addClass('file-type-' + (item.format ? item.format : 'no') + ' file-ext-' + (item.extension ? item.extension : 'no') + '');
-                            
+
 							// add item html to list element
                             if (replaceHtml)
                                 replaceHtml.replaceWith(item.html);
                             else
                                 item.html[n.thumbnails.itemPrepend ? 'prependTo' : 'appendTo'](l);
-                            
+
 							// add popup option
 							if (n.thumbnails.popup && item.data.popup !== false) {
 								item.html.addClass('file-has-popup');
@@ -602,7 +602,7 @@
                                     open: function() { f.thumbnails.popup(item); }
                                 };
 							}
-							
+
 							// render the image thumbnail
                             f.thumbnails.renderThumbnail(item);
 							item.renderThumbnail = function(src) {
@@ -612,7 +612,7 @@
                                 }
                                 f.thumbnails.renderThumbnail(item, true, src);
                             };
-							
+
 							// thumbnails.onItemShow callback
 							n.thumbnails.onItemShow != null && $.isFunction(n.thumbnails.onItemShow) ? n.thumbnails.onItemShow(item, l, p, o, s) : null;
 						},
@@ -627,7 +627,7 @@
                          */
 						generateFileIcon: function(format, extension) {
                             var el = '<div style="${style}" class="fileuploader-item-icon' + '${class}"><i>' + (extension ? extension : '') + '</i></div>';
-							
+
 							// set generated color to icon background
                             var bgColor = f._assets.textToColor(extension);
 							if (bgColor) {
@@ -636,7 +636,7 @@
 									el = el.replace('${class}', ' is-bright-color');
 								el = el.replace('${style}', 'background-color: ' + bgColor);
 							}
-							
+
                             return el.replace('${style}', '').replace('${class}', '');
 						},
 						/**
@@ -655,30 +655,30 @@
 								readerSkip = item.data && (item.data.readerSkip || item.data.thumbnail === false),
 								setImageThumb = function(img) {
 									var $img = $(img);
-									
+
 									// add $img to html
 									m.removeClass('fileuploader-no-thumbnail fileuploader-loading').html($img);
 									if (item.html.hasClass('file-will-popup')) item.html.removeClass('file-will-popup').addClass('file-has-popup');
-									
+
 									// add onImageLoaded callback
                                     if ($img.is('img'))
                                         $img.attr('draggable', 'false').on('load error', function(e) {
                                             if (e.type == 'error')
                                                 setIconThumb();
                                         });
-									
+
                                     n.thumbnails.onImageLoaded != null && $.isFunction(n.thumbnails.onImageLoaded) ? n.thumbnails.onImageLoaded(item, l, p, o, s) : null;
 								},
 								setIconThumb = function() {
 									m.addClass('fileuploader-no-thumbnail');
 									m.removeClass('fileuploader-loading').html(item.icon);
 									if (item.html.hasClass('file-will-popup')) item.html.removeClass('file-will-popup').addClass('file-has-popup');
-								
+
 									n.thumbnails.onImageLoaded != null && $.isFunction(n.thumbnails.onImageLoaded) ? n.thumbnails.onImageLoaded(item, l, p, o, s) : null;
 								},
 								renderNextItem = function() {
 									var i = 0;
-									
+
 									if (item && f._pfrL.indexOf(item) > -1) {
 										f._pfrL.splice(f._pfrL.indexOf(item), 1);
 										while (i < f._pfrL.length) {
@@ -694,22 +694,22 @@
 										}
 									}
 								};
-							
+
 							// skip this function if there is no place for image
 							if (!m.length) {
 								renderNextItem();
 								return;
 							}
-							
+
 							// set item.image to jQuery element
 							item.image = m.html('').addClass('fileuploader-loading');
-							
+
 							// create an image thumbnail only if file is an image and if FileReader is supported
 							if ((['image', 'video', 'audio', 'astext'].indexOf(item.format) > -1 || item.data.thumbnail) && f.isFileReaderSupported() && !readerSkip && (item.appended || n.thumbnails.startImageRenderer || forceRender)) {
 								// prevent popup before loading
 								if (item.html.hasClass('file-has-popup'))
 									item.html.removeClass('file-has-popup').addClass('file-will-popup');
-								
+
 								// check pending list
 								if (n.thumbnails.synchronImages) {
 									f._pfrL.indexOf(item) == -1 && !forceRender ? f._pfrL.push(item) : null;
@@ -717,7 +717,7 @@
 										return;
 									}
 								}
-								
+
 								// create thumbnail
                                 var process = function(data, fromReader) {
 									var isIMG = data && data.nodeName && data.nodeName.toLowerCase() == 'img',
@@ -726,7 +726,7 @@
                                         onload = function() {
                                             if (n.thumbnails.canvasImage) {
                                                 var canvas = document.createElement('canvas');
-                                                
+
                                                 // resize canvas
                                                 f.editor.resize(this, canvas, n.thumbnails.canvasImage.width ? n.thumbnails.canvasImage.width : m.width(), n.thumbnails.canvasImage.height ? n.thumbnails.canvasImage.height : m.height(), false, true);
 
@@ -739,7 +739,7 @@
                                             } else {
                                                 setImageThumb(this);
                                             }
-                                            
+
                                             // render the next pending item
                                             renderNextItem();
                                         },
@@ -748,19 +748,19 @@
                                             setIconThumb();
                                             renderNextItem();
                                         };
-                                    
+
                                     // do not create an empty image element
                                     if (!data)
                                         return onerror();
-                                    
+
                                     // do not create another image element
                                     if (fromReader && item.format == 'image' && item.reader.node)
                                         return onload.call(item.reader.node);
-                                    
+
                                     // if image node
                                     if (isIMG)
                                         return onload.call(data);
-                                    
+
                                     // create image element
                                     img = new Image();
                                     img.onload = onload;
@@ -769,7 +769,7 @@
                                         img.setAttribute('crossOrigin', item.data.readerCrossOrigin);
                                     img.src = src;
                                 };
-								
+
                                 // choose thumbnail source
                                 if (typeof src == 'string' || typeof src == 'object')
                                     return process(src);
@@ -778,7 +778,7 @@
                                         process(item.frame || (item.reader.node && item.reader.node.nodeName.toLowerCase() == 'img') ? item.reader.frame || item.reader.src : null, true);
                                     }, null, src, true);
 							}
-							
+
 							setIconThumb();
 						},
                         /**
@@ -795,7 +795,7 @@
                         popup: function(item, isByActions) {
                             if (f.locked || !n.thumbnails.popup || !n.thumbnails._selectors.popup)
                                 return;
-                            
+
                             var container = $(n.thumbnails.popup.container),
                                 box = container.find('.fileuploader-popup'),
                                 hasArrowsClass = 'fileuploader-popup-has-arrows',
@@ -830,9 +830,9 @@
                                         var itemIndex = f._itFl.indexOf(item),
                                             nextItem = null,
                                             itL = false;
-										
+
 										to = n.thumbnails.itemPrepend ? to == 'prev' ? 'next' : 'prev' : to;
-										
+
                                         if (to == 'prev') {
                                             for (var i = itemIndex; i>=0; i--) {
                                                 var a = f._itFl[i];
@@ -880,7 +880,7 @@
                                         // hide the cropper
                                         if (item.popup.editor && item.popup.editor.cropper)
                                             item.popup.editor.cropper.hide();
-                                        
+
                                         // hide the zoomer
                                         if (item.popup.zoomer)
                                             item.popup.zoomer.hide();
@@ -917,18 +917,18 @@
                                         overflow: 'hidden',
                                         width: container.innerWidth()
                                     });
-                                    
+
                                     // popup arrows
                                     item.popup.html.find('[data-action="prev"], [data-action="next"]').removeAttr('style');
                                     item.popup.html[f._itFl.length == 1 || !n.thumbnails.popup.arrows ? 'removeClass' : 'addClass'](hasArrowsClass);
-                                    
+
                                     if (!n.thumbnails.popup.loop) {
                                         if (f._itFl.indexOf(item) == 0)
                                             item.popup.html.find('[data-action="prev"]').hide();
                                         if (f._itFl.indexOf(item) == f._itFl.length-1)
                                             item.popup.html.find('[data-action="next"]').hide();
                                     }
-                                    
+
                                     // popup zoomer
                                     if (popupIsNew && item.popup.zoomer)
                                         item.popup.zoomer = null;
@@ -938,7 +938,7 @@
                                     if (item.editor) {
                                         if (!item.popup.editor)
                                             item.popup.editor = {};
-                                        
+
                                         // set saved rotation
                                         f.editor.rotate(item, item.editor.rotation || 0, true);
 
@@ -950,7 +950,7 @@
                                             }, 100);
                                         }
                                     }
-                                    
+
                                     // bind actions
                                     item.popup.html.on('click', '[data-action="prev"]', function(e) {
                                         item.popup.move('prev');
@@ -969,24 +969,24 @@
                                         if (item.popup.zoomer)
                                             item.popup.zoomer.zoomOut();
                                     });
-                                    
+
                                     // thumbnails.popup.onShow callback
                                     n.thumbnails.popup.onShow && $.isFunction(n.thumbnails.popup.onShow) ? n.thumbnails.popup.onShow(item, l, p, o, s) : null;
                                 };
-                            
+
                             if (box.length == 0)
                                 box = $('<div class="fileuploader-popup"></div>').appendTo(container);
-                            
+
                             box.fadeIn(400).addClass('loading');
-                            
+
                             if ((['image', 'video', 'audio', 'astext'].indexOf(item.format) > -1 || ['application/pdf'].indexOf(item.type) > -1) && !item.popup.html) {
                                 f.files.read(item, function() {
                                     if (item.reader.node)
                                         item.popup.node = item.reader.node;
-                                    
+
                                     if (item.format == 'image' && item.reader.node) {
                                         item.popup.node = item.reader.node.cloneNode();
-                                        
+
                                         if (item.popup.node.complete) {
                                             renderPopup();
                                         } else {
@@ -1003,7 +1003,7 @@
                             }
                         }
 					},
-					
+
 					/**
                      * @namespace editor
                      */
@@ -1021,24 +1021,24 @@
                          */
 						rotate: function(item, degrees, force) {
 							var inPopup = item.popup && item.popup.html && $('html').find(item.popup.html).length;
-							
+
 							if (!inPopup) {
 								var rotation = item.editor.rotation || 0,
                                     deg = degrees ? degrees : rotation + 90;
-                                
+
                                 if (deg >= 360)
                                     deg = 0;
-                                
+
                                 if (item.popup.editor)
                                     item.popup.editor.rotation = deg;
-								
+
 								return item.editor.rotation = deg;
 							} else if (item.popup.node) {
 								// prevent animation issues
 								if (item.popup.editor.isAnimating)
 									return;
 								item.popup.editor.isAnimating = true;
-								
+
 								var $popup = item.popup.html,
                                     $node = $popup.find('.fileuploader-popup-node'),
 									$readerNode = $node.find('.reader-node'),
@@ -1049,11 +1049,11 @@
 										rotation: rotation,
 										scale: scale
 									};
-                                
+
 								// hide cropper
 								if (item.popup.editor.cropper)
 									item.popup.editor.cropper.$template.hide();
-                                
+
 								// change values
 								item.popup.editor.rotation = force ? degrees : rotation + 90;
 								item.popup.editor.scale = ($readerNode.height() / $imageEl[[90,270].indexOf(item.popup.editor.rotation) > -1 ? 'width' : 'height']()).toFixed(3);
@@ -1061,7 +1061,7 @@
 									item.popup.editor.scale = $readerNode.height() / $imageEl.width();
 								if (item.popup.editor.scale > 1)
 									item.popup.editor.scale = 1;
-								
+
 								// animate
 								$(animationObj).stop().animate({
 									rotation: item.popup.editor.rotation,
@@ -1074,7 +1074,7 @@
 											rotation = 0,
 											scale = 1,
 											prop = fx.prop;
-										
+
 										// get css matrix
 										if (matrix !== 'none') {
 											var values = matrix.split('(')[1].split(')')[0].split(','),
@@ -1084,7 +1084,7 @@
 											rotation = prop == 'rotation' ? now : Math.round(Math.atan2(b, a) * (180/Math.PI));
 											scale = prop == 'scale' ? now : Math.round(Math.sqrt(a*a + b*b) * 10) / 10;
 										}
-										
+
 										// set $imageEl css
 										$imageEl.css({
 											'-webkit-transform': 'rotate('+ rotation +'deg) scale('+ scale +')',
@@ -1094,25 +1094,25 @@
 									},
 									always: function() {
 										delete item.popup.editor.isAnimating;
-										
+
 										// re-draw the cropper if exists
 										if (item.popup.editor.cropper && !force) {
 											item.popup.editor.cropper.setDefaultData();
 											item.popup.editor.cropper.init('rotation');
 										}
 									}
-								}); 
-								
+								});
+
 								// check if rotation no greater than 360 degrees
 								if (item.popup.editor.rotation >= 360)
 									item.popup.editor.rotation = 0;
-								
+
 								// register as change
 								if (item.popup.editor.rotation != item.editor.rotation)
 									item.popup.editor.hasChanges = true;
 							}
 						},
-						
+
 						/**
                          * crop
                          * crop image action
@@ -1125,7 +1125,7 @@
                          */
 						crop: function(item, data) {
 							var inPopup = item.popup && item.popup.html && $('html').find(item.popup.html).length;
-							
+
 							if (!inPopup) {
 								return item.editor.crop = data || item.editor.crop;
 							} else if (item.popup.node) {
@@ -1149,7 +1149,7 @@
 										$imageEl = $popup.find('.fileuploader-popup-node .reader-node > img'),
 										$template = $(template),
 										$editor = $template.find('.fileuploader-cropper-area');
-									
+
 									// define popup cropper tool
 									item.popup.editor.cropper = {
 										$imageEl: $imageEl,
@@ -1164,14 +1164,14 @@
 												height = cropper.$imageEl[0].getBoundingClientRect().height,
 												isInverted = item.popup.editor.rotation && [90,270].indexOf(item.popup.editor.rotation) > -1,
 												scale = isInverted ? item.popup.editor.scale : 1;
-											
+
 											// unbind all events
 											cropper.hide();
-											
+
 											// set default data
 											if (!cropper.crop)
 												cropper.setDefaultData();
-											
+
 											// hide if image not visible
 											if (width == 0 || height == 0)
 												return cropper.hide(true);
@@ -1193,9 +1193,9 @@
 											clearTimeout(cropper._editorAnimationTimeout);
 											cropper._editorAnimationTimeout = setTimeout(function() {
 												delete cropper._editorAnimationTimeout;
-												
+
 												cropper.$editor.fadeIn(250);
-												
+
 												// update data with cf and scale
 												if (item.editor.crop && $.isPlainObject(data)) {
 													cropper.resize();
@@ -1204,20 +1204,20 @@
 													cropper.crop.top = cropper.crop.top * cropper.crop.cfHeight * scale;
 													cropper.crop.height = cropper.crop.height * cropper.crop.cfHeight * scale;
 												}
-                                                
+
                                                 // maxWidth on open
                                                 if (n.editor.cropper && (n.editor.cropper.maxWidth || n.editor.cropper.maxHeight)) {
                                                     if (n.editor.cropper.maxWidth)
                                                         cropper.crop.width = Math.min(n.editor.cropper.maxWidth * cropper.crop.cfWidth, cropper.crop.width);
                                                     if (n.editor.cropper.maxHeight)
                                                         cropper.crop.height = Math.min(n.editor.cropper.maxHeight * cropper.crop.cfHeight, cropper.crop.height);
-                                                    
+
                                                     if ((!item.editor.crop || data == 'rotation') && data != 'resize') {
                                                         cropper.crop.left = (cropper.$template.width() - cropper.crop.width) / 2;
                                                         cropper.crop.top = (cropper.$template.height() - cropper.crop.height) / 2;
                                                     }
                                                 }
-												
+
 												// ratio on open
 												if ((!item.editor.crop || data == 'rotation') && (n.editor.cropper && n.editor.cropper.ratio && data != 'resize')) {
 													var ratio = n.editor.cropper.ratio,
@@ -1230,7 +1230,7 @@
 														cropper.crop.top = (cropper.$template.height() - cropper.crop.height) / 2;
 													}
 												}
-                                                
+
 												// draw editor
 												cropper.drawPlaceHolder(cropper.crop);
 											}, 400);
@@ -1253,7 +1253,7 @@
 												height = $imageEl.height(),
 												isInverted = item.popup.editor.rotation && [90,270].indexOf(item.popup.editor.rotation) > -1,
 												scale = item.popup.editor.scale || 1;
-											
+
 											// set default data
 											cropper.crop = {
 												left: 0,
@@ -1263,18 +1263,18 @@
 												cfWidth: width / item.reader.width,
 												cfHeight: height / item.reader.height
 											};
-											
+
 											return null;
 										},
 										hide: function(force) {
 											var cropper = item.popup.editor.cropper;
-											
+
 											// hide editor on force
 											if (force) {
 												cropper.$template.hide();
 												cropper.$editor.hide();
 											}
-											
+
 											// stop and unbind events
 											cropper.$imageEl.attr('draggable', '');
 											cropper.$template.off('mousedown touchstart', cropper.mousedown);
@@ -1283,7 +1283,7 @@
 										resize: function(e) {
 											var cropper = item.popup.editor.cropper,
 												$imageEl = cropper.$imageEl;
-											
+
 											// only when image is visible
 											if ($imageEl.width() > 0) {
 												if (!e) {
@@ -1298,14 +1298,14 @@
 														delete cropper._resizeTimeout;
 														var cfWidth = $imageEl.width() / item.reader.width,
 															cfHeight = $imageEl.height() / item.reader.height;
-														
+
 														cropper.crop.left = cropper.crop.left / cropper.crop.cfWidth * cfWidth;
 														cropper.crop.width = cropper.crop.width / cropper.crop.cfWidth * cfWidth;
 														cropper.crop.top = cropper.crop.top / cropper.crop.cfHeight * cfHeight;
 														cropper.crop.height = cropper.crop.height / cropper.crop.cfHeight * cfHeight;
 														cropper.crop.cfWidth = cfWidth;
 														cropper.crop.cfHeight = cfHeight;
-														
+
 														cropper.init('resize');
 													}, 500);
 												}
@@ -1319,14 +1319,14 @@
 
 											if (!css)
 												return;
-											
+
 											// create new object
 											css = $.extend({}, css);
-											
+
 											// edit width, height and translate values by rotation
 											if (rotation)
 												translate = [rotation == 180 || rotation == 270 ? -100 : 0, rotation == 90 || rotation == 180 ? -100 : 0];
-                                            
+
 											// draw cropping-area
 											cropper.$editor.css(css);
                                             cropper.setAreaInfo();
@@ -1335,7 +1335,7 @@
 												height: cropper.$imageEl.height(),
 												left: cropper.$editor.position().left * -1,
 												top: cropper.$editor.position().top * -1,
-												
+
 												'-webkit-transform': 'rotate('+ rotation +'deg) scale('+ scale +') translateX('+ translate[0] +'%) translateY('+ translate[1] +'%)',
 												'-moz-transform': 'rotate('+ rotation +'deg) scale('+ scale +') translateX('+ translate[0] +'%) translateY('+ translate[1] +'%)',
 												'transform': 'rotate('+ rotation +'deg) scale('+ scale +') translateX('+ translate[0] +'%) translateY('+ translate[1] +'%)'
@@ -1344,7 +1344,7 @@
                                         setAreaInfo: function(type) {
                                             var cropper = item.popup.editor.cropper,
                                                 scale = item.popup.editor.scale || 1;
-                                            
+
                                             cropper.$editor.find('.area-info').html((cropper.isResizing || type == 'size' ? [
                                                 'W: ' + Math.round(cropper.crop.width / cropper.crop.cfWidth / scale) + 'px',
                                                 ' ',
@@ -1374,7 +1374,7 @@
 														width: cropper.crop.width,
 														height: cropper.crop.height
 													};
-													
+
 													// start cropping event
 													if (cropper.isMoving || cropper.isResizing) {
                                                         cropper.setAreaInfo('size');
@@ -1390,10 +1390,10 @@
 														$(document).on('mousemove touchmove', cropper.mousemove);
 													}
 												};
-                                            
+
                                             if (item.popup.zoomer && item.popup.zoomer.hasSpacePressed)
                                                 return;
-                                            
+
                                             // determinate cropping type
                                             cropper.isMoving = $target.is('.area-move');
                                             cropper.isResizing = $target.is('.point');
@@ -1403,7 +1403,7 @@
 												// bind cropping start event
 												callback();
 											}
-                                            
+
 											// touchstart event
 											if (eventType == 'touchstart' && e.originalEvent.touches.length == 1) {
                                                 if (cropper.isMoving || cropper.isResizing)
@@ -1430,10 +1430,10 @@
 													x: (eventType == 'mousedown' ? e.pageX : e.originalEvent.touches[0].pageX) - cropper.$template.offset().left,
 													y: (eventType == 'mousedown' ? e.pageY : e.originalEvent.touches[0].pageY) - cropper.$template.offset().top
 												};
-                                            
+
                                             if (e.originalEvent.touches && e.originalEvent.touches.length != 1)
                                                 return cropper.mouseup(e);
-                                            
+
 											// move
 											if (cropper.isMoving) {
 												var left = points.x - cropper.pointData.xEditor,
@@ -1471,7 +1471,7 @@
 													minWidth = cropper.$template.width();
 												if (minHeight > cropper.$template.height())
 													minHeight = cropper.$template.height();
-                                                
+
 												// set maxWidth if greater than image
 												if (maxWidth > cropper.$template.width())
 													maxWidth = cropper.$template.width();
@@ -1500,15 +1500,15 @@
 														cropper.crop.top = lastHeight - maxHeight;
 														cropper.crop.height = maxHeight;
 													}
-													
+
 													// ratio
 													ratioPx = ratio ? f._assets.ratioToPx(cropper.crop.width, cropper.crop.height, ratio) : null;
 													if (ratioPx) {
 														cropper.crop.width = ratioPx[0];
-														
+
 														if (point == 'a' || point == 'b')
 															cropper.crop.left = Math.max(0, cropper.pointData.left + ((cropper.pointData.width - cropper.crop.width) / (point == 'b' ? 2 : 1)));
-														
+
 														// check
 														if (cropper.crop.left + cropper.crop.width > cropper.$template.width()) {
 															var newWidth = cropper.$template.width() - cropper.crop.left;
@@ -1530,15 +1530,15 @@
                                                     // maxHeight
 													if (cropper.crop.height > maxHeight)
 														cropper.crop.height = maxHeight;
-													
+
 													// ratio
 													ratioPx = ratio ? f._assets.ratioToPx(cropper.crop.width, cropper.crop.height, ratio) : null;
 													if (ratioPx) {
 														cropper.crop.width = ratioPx[0];
-														
+
 														if (point == 'f' || point == 'g')
 															cropper.crop.left = Math.max(0, cropper.pointData.left + ((cropper.pointData.width - cropper.crop.width) / (point == 'f' ? 2 : 1)));
-														
+
 														// check
 														if (cropper.crop.left + cropper.crop.width > cropper.$template.width()) {
 															var newWidth = cropper.$template.width() - cropper.crop.left;
@@ -1559,19 +1559,19 @@
                                                     // maxWidth
 													if (cropper.crop.width > maxWidth)
 														cropper.crop.width = maxWidth;
-													
+
 													// ratio
 													ratioPx = ratio ? f._assets.ratioToPx(cropper.crop.width, cropper.crop.height, ratio) : null;
 													if (ratioPx) {
 														cropper.crop.height = ratioPx[1];
-														
+
 														if (point == 'c' || point == 'd')
 															cropper.crop.top = Math.max(0, cropper.pointData.top + ((cropper.pointData.height - cropper.crop.height) / (point == 'd' ? 2 : 1)));
-														
+
 														// check
 														if (cropper.crop.top + cropper.crop.height > cropper.$template.height()) {
 															var newHeight = cropper.$template.height() - cropper.crop.top;
-															
+
 															cropper.crop.height = newHeight;
 															cropper.crop.width = newHeight / ratioPx[3] * ratioPx[2];
 														}
@@ -1600,19 +1600,19 @@
 														cropper.crop.left = lastWidth - maxWidth;
 														cropper.crop.width = maxWidth;
 													}
-													
+
 													// ratio
 													ratioPx = ratio ? f._assets.ratioToPx(cropper.crop.width, cropper.crop.height, ratio) : null;
 													if (ratioPx) {
 														cropper.crop.height = ratioPx[1];
-														
+
 														if (point == 'a' || point == 'h')
 															cropper.crop.top = Math.max(0, cropper.pointData.top + ((cropper.pointData.height - cropper.crop.height) / (point == 'h' ? 2 : 1)));
-														
+
 														// check
 														if (cropper.crop.top + cropper.crop.height > cropper.$template.height()) {
 															var newHeight = cropper.$template.height() - cropper.crop.top;
-															
+
 															cropper.crop.height = newHeight;
 															cropper.crop.width = newHeight / ratioPx[3] * ratioPx[2];
 															cropper.crop.left = lastWidth - cropper.crop.width;
@@ -1648,7 +1648,7 @@
 											$(document).off('mouseup touchend', cropper.mouseup);
 										}
 									};
-									
+
 									// init cropper tool
 									item.popup.editor.cropper.init();
 								} else {
@@ -1656,9 +1656,9 @@
 										item.popup.editor.cropper.crop = data;
 									item.popup.editor.cropper.init(data);
 								}
-							}	
+							}
 						},
-						
+
 						/**
                          * resize
                          * resize a canvas image
@@ -1679,7 +1679,7 @@
 								ratio = img.width / img.height,
 								optimalWidth =  ratio >= 1 ? width : height * ratio,
 								optimalHeight = ratio < 1 ? height : width / ratio;
-                            
+
 							if (fixedSize && optimalWidth < width) {
 								optimalHeight = optimalHeight * (width/optimalWidth);
 								optimalWidth = width;
@@ -1688,11 +1688,11 @@
 								optimalWidth = optimalWidth * (height/optimalHeight);
 								optimalHeight = height;
 							}
-							
+
 							var steps = Math.min(Math.ceil(Math.log(img.width / optimalWidth) / Math.log(2)), 12);
 							canvas.width = optimalWidth;
 							canvas.height = optimalHeight;
-                            
+
 							// if image is smaller than canvas or there are no resizing steps
 							if (img.width < canvas.width || img.height < canvas.height || steps < 2) {
 								// set canvas size as image size if size is not fixed
@@ -1700,23 +1700,23 @@
 									canvas.width = Math.min(img.width, canvas.width);
 									canvas.height = Math.min(img.height, canvas.height);
 								}
-								
+
 								// alight image to center
 								var x = img.width < canvas.width ? (canvas.width - img.width)/2 : 0,
 									y = img.height < canvas.height ? (canvas.height - img.height)/2 : 0;
-								
+
 								// draw image
 								if (!alpha) {
 									context.fillStyle = "#fff";
 									context.fillRect(0, 0, canvas.width, canvas.height);
 								}
-                                
+
 								context.drawImage(img, x, y, Math.min(img.width, canvas.width), Math.min(img.height, canvas.height));
 							} else {
 								var oc = document.createElement('canvas'),
 									octx = oc.getContext('2d'),
 									factor = 2;
-                                
+
 								// smooth resize
 								oc.width = img.width/factor;
 								oc.height = img.height/factor;
@@ -1728,46 +1728,46 @@
 									var factor2 = factor + 2,
 										widthFactor = img.width/factor,
 										heightFactor = img.height/factor;
-									
+
 									if (widthFactor > oc.width)
 										widthFactor = oc.width;
 									if (heightFactor > oc.height)
 										heightFactor = oc.height;
-									
+
                                     octx.imageSmoothingEnabled = true;
 									octx.drawImage(oc, 0, 0, widthFactor, heightFactor, 0, 0, img.width/factor2, img.height/factor2);
 									factor = factor2;
 									steps--;
 								}
-								
+
 								// draw image
 								var widthFactor = img.width/factor,
 									heightFactor = img.height/factor;
-								
+
 								if (widthFactor > oc.width)
 									widthFactor = oc.width;
 								if (heightFactor > oc.height)
 									heightFactor = oc.height;
-                                
+
 								context.drawImage(oc, 0, 0, widthFactor, heightFactor, 0, 0, optimalWidth, optimalHeight);
 								oc = octx = null;
 							}
-							
+
 							context = null;
 						},
-                        
+
                         zoomer: function(item) {
                             var inPopup = item.popup && item.popup.html && $('html').find(item.popup.html).length;
-                            
+
                             if (!inPopup)
                                 return;
-                            
+
                             if (!item.popup.zoomer) {
                                 var $popup = item.popup.html,
                                     $node = $popup.find('.fileuploader-popup-node'),
                                     $readerNode = $node.find('.reader-node'),
                                     $imageEl = $readerNode.find('> img').attr('draggable', 'false').attr('ondragstart', 'return false;');
-                                
+
                                 item.popup.zoomer = {
                                     html: $popup.find('.fileuploader-popup-zoomer'),
                                     isActive: item.format == 'image' && item.popup.node && n.thumbnails.popup.zoomer,
@@ -1776,15 +1776,15 @@
 
                                     init: function() {
                                         var zoomer = this;
-                                        
+
                                         // disable plugin no images and IE
                                         if (!zoomer.isActive || f._assets.isIE() || f._assets.isMobile())
                                             return zoomer.html.hide() && $node.addClass('has-node-centered');
-                                        
+
                                         // init
                                         zoomer.hide();
                                         zoomer.resize();
-                                        
+
                                         $(window).on('resize', zoomer.resize);
                                         $(window).on('keyup keydown', zoomer.keyPress);
                                         zoomer.html.find('input').on('input change', zoomer.range);
@@ -1793,7 +1793,7 @@
                                     },
                                     hide: function() {
                                         var zoomer = this;
-                                        
+
                                         $(window).off('resize', zoomer.resize);
                                         $(window).off('keyup keydown', zoomer.keyPress);
                                         zoomer.html.find('input').off('input change', zoomer.range);
@@ -1804,22 +1804,22 @@
                                         var zoomer = this,
                                             left = 0,
                                             top = 0;
-                                        
+
                                         if (!prevDimensions) {
                                             left = Math.round(($node.width() - $readerNode.width()) / 2);
                                             top = Math.round(($node.height() - $readerNode.height()) / 2);
                                         } else {
                                             left = zoomer.left;
                                             top = zoomer.top;
-                                            
+
                                             left -= (($node.width() / 2 - zoomer.left) * (($readerNode.width()/prevDimensions[0])-1));
                                             top -= (($node.height() / 2 - zoomer.top) * (($readerNode.height()/prevDimensions[1])-1));
-                                            
+
                                             if ($readerNode.width() <= $node.width())
                                                 left = Math.round(($node.width() - $readerNode.width()) / 2);
                                             if ($readerNode.height() <= $node.height())
                                                 top = Math.round(($node.height() - $readerNode.height()) / 2);
-                                            
+
                                             if ($readerNode.width() > $node.width()) {
                                                 if (left > 0)
                                                     left = 0;
@@ -1832,10 +1832,10 @@
                                                 else if (top + $readerNode.height() < $node.height())
                                                     top = $node.height() - $readerNode.height();
                                             }
-                                            
+
                                             top = Math.min(top, 0);
                                         }
-                                        
+
                                         // set styles
                                         $readerNode.css({
                                             left: (zoomer.left = left) + 'px',
@@ -1846,7 +1846,7 @@
                                     },
                                     resize: function() {
                                         var zoomer = item.popup.zoomer;
-                                        
+
 										$node.removeClass('is-zoomed');
                                         $readerNode.removeAttr('style');
                                         zoomer.scale = zoomer.getImageScale();
@@ -1856,25 +1856,25 @@
                                         var zoomer = item.popup.zoomer,
                                             $input = $(this),
                                             val = parseFloat($input.val());
-                                        
+
                                         if (zoomer.scale >= 100) {
                                             e.preventDefault();
                                             $input.val(zoomer.scale);
                                             return;
                                         }
-                                        
+
                                         if (val < zoomer.scale) {
                                             e.preventDefault();
                                             val = zoomer.scale;
                                             $input.val(val);
                                         }
-                                        
+
                                         zoomer.updateView(val, true);
                                     },
                                     scroll: function(e) {
                                         var zoomer = item.popup.zoomer,
                                             delta = -100;
-                                        
+
                                         if (e.originalEvent) {
                                             if (e.originalEvent.wheelDelta)
                                                 delta = e.originalEvent.wheelDelta / -40;
@@ -1883,19 +1883,19 @@
                                             if (e.originalEvent.detail)
                                                 delta = e.originalEvent.detail;
                                         }
-                                        
+
                                         zoomer[delta < 0 ? 'zoomIn' : 'zoomOut'](3);
                                     },
                                     keyPress: function(e) {
                                         var zoomer = item.popup.zoomer,
                                             type = e.type,
                                             key = e.keyCode || e.which;
-                                        
+
                                         if (key != 32)
                                             return;
-                                        
+
                                         zoomer.hasSpacePressed = type == 'keydown';
-                                        
+
                                         if (zoomer.hasSpacePressed && zoomer.isZoomed())
                                             $readerNode.addClass('is-amoving');
                                         else
@@ -1917,26 +1917,26 @@
                                                     xTarget: points.x - zoomer.left,
                                                     yTarget: points.y - zoomer.top,
                                                 };
-                                                
+
                                                 $('body').css({
                                                     '-webkit-user-select': 'none',
                                                     '-moz-user-select': 'none',
                                                     '-ms-user-select': 'none',
                                                     'user-select': 'none'
                                                 });
-                                                
+
                                                 $readerNode.addClass('is-moving');
 
                                                 // bind window mousemove event
                                                 $(document).on('mousemove', zoomer.mousemove);
                                             };
-                                        
+
                                         if (e.which != 1)
                                             return;
-                                        
+
                                         if (zoomer.scale == 100 || zoomer.zoom == zoomer.scale)
                                             return;
-                                        
+
                                         // check e.target
                                         if (!zoomer.hasSpacePressed && $target[0] != $imageEl[0] && !$target.is('.fileuploader-cropper'))
                                             return;
@@ -1971,14 +1971,14 @@
                                             },
                                             left = points.x - zoomer.pointData.xTarget,
                                             top = points.y - zoomer.pointData.yTarget;
-                                        
+
                                         // fix the positon
                                         if (top > 0)
                                             top = 0;
                                         if (top < $node.height() - $readerNode.height())
                                             top = $node.height() - $readerNode.height();
                                         if ($readerNode.height() < $node.height()) {
-                                            top = $node.height()/2 - $readerNode.height()/2;   
+                                            top = $node.height()/2 - $readerNode.height()/2;
                                         }
                                         if ($readerNode.width() > $node.width()) {
                                             if (left > 0)
@@ -1988,7 +1988,7 @@
                                         } else {
                                             left = $node.width()/2 - $readerNode.width()/2;
                                         }
-                                        
+
                                         // set styles
                                         $readerNode.css({
                                             left: (zoomer.left = left) + 'px',
@@ -1997,7 +1997,7 @@
                                     },
                                     mouseup: function(e) {
                                         var zoomer = item.popup.zoomer;
-                                        
+
                                         delete zoomer.pointData;
                                         $('body').css({
                                             '-webkit-user-select': '',
@@ -2005,30 +2005,30 @@
                                             '-ms-user-select': '',
                                             'user-select': ''
                                         });
-                                        
+
                                         $readerNode.removeClass('is-moving');
-                                        
+
                                         $(document).off('mousemove', zoomer.mousemove);
                                         $(document).off('mouseup', zoomer.mouseup);
-                                        
+
                                     },
                                     zoomIn: function(val) {
                                         var zoomer = item.popup.zoomer,
                                             step = val || 20;
-                                        
+
                                         if (zoomer.zoom >= 100)
                                             return;
-                                        
+
                                         zoomer.zoom = Math.min(100, zoomer.zoom + step);
                                         zoomer.updateView(zoomer.zoom);
                                     },
                                     zoomOut: function(val) {
                                         var zoomer = item.popup.zoomer,
                                             step = val || 20;
-                                        
+
                                         if (zoomer.zoom <= zoomer.scale)
                                             return;
-                                        
+
                                         zoomer.zoom = Math.max(zoomer.scale, zoomer.zoom - step);
                                         zoomer.updateView(zoomer.zoom);
                                     },
@@ -2039,10 +2039,10 @@
                                             curWidth = $readerNode.width(),
                                             curHeight = $readerNode.height(),
                                             valueChanged = val && val != zoomer.scale;
-                                        
+
                                         if (!zoomer.isActive)
                                             return zoomer.center();
-                                        
+
                                         if (valueChanged) {
 											$node.addClass('is-zoomed');
                                             $readerNode.addClass('is-movable').css({
@@ -2055,26 +2055,26 @@
 											$node.removeClass('is-zoomed');
                                             $readerNode.removeClass('is-movable is-amoving').removeAttr('style');
 										}
-                                        
+
                                         zoomer.zoom = val || zoomer.scale;
                                         zoomer.center(valueChanged ? [curWidth, curHeight, zoomer.left, zoomer.top] : null);
-                                        
+
                                         zoomer.html.find('span').html(zoomer.zoom + '%');
-                                        
+
                                         if (!input)
                                             zoomer.html.find('input').val(zoomer.zoom);
-										
+
                                         if (val && item.popup.editor && item.popup.editor.cropper)
                                             item.popup.editor.cropper.resize(true);
                                     },
                                     isZoomed: function() {
                                         var zoomer = this;
-                                        
+
                                         return zoomer.zoom > zoomer.scale;
                                     },
                                     getImageSize: function() {
                                         var zoomer = this;
-                                        
+
                                         return {
                                             width: $imageEl.prop('naturalWidth'),
                                             height: $imageEl.prop('naturalHeight')
@@ -2082,15 +2082,15 @@
                                     },
                                     getImageScale: function() {
                                         var zoomer = this;
-                                        
+
                                         return Math.round(100 / ($imageEl.prop('naturalWidth') / $imageEl.width()));
                                     }
                                 };
                             }
-                            
+
                             item.popup.zoomer.init();
                         },
-						
+
 						/**
                          * save
                          * save edited image
@@ -2106,7 +2106,7 @@
                                 onload = function() {
 									if (!item.reader.node)
 										return;
-									
+
                                     // save
                                     var canvas = document.createElement('canvas'),
                                         ctx = canvas.getContext('2d'),
@@ -2116,20 +2116,20 @@
                                         quality = n.editor.quality || 90,
                                         nextStep = function(exportDataURI, img) {
                                             var data = exportDataURI;
-                                            
+
                                             if (toBlob) {
                                                 if (data)
                                                     data = f._assets.dataURItoBlob(data, type);
                                                 else
                                                     console.error('Error: Failed to execute \'toDataURL\' on \'HTMLCanvasElement\': Tainted canvases may not be exported.');
                                             }
-                                            
+
                                             !preventThumbnailRender && data ? f.thumbnails.renderThumbnail(item, true, img || exportDataURI) : null;
                                             callback ? callback(data, item, l, p, o, s) : null;
                                             n.editor.onSave != null && typeof n.editor.onSave == "function" ? n.editor.onSave(data, item, l, p, o, s) : null;
                                             f.set('listInput', null);
                                         };
-                                    
+
                                     try {
                                         // set canvas size and image
                                         canvas.width = item.reader.width;
@@ -2172,7 +2172,7 @@
                                         }
 
                                         var exportDataURI = canvas.toDataURL(type, quality/100);
-                                        
+
                                         // resize image if maxWidth
                                         if (n.editor.maxWidth || n.editor.maxHeight) {
                                             var img = new Image();
@@ -2198,24 +2198,24 @@
                                         nextStep(null);
                                     }
                                 };
-							
+
 							if (inPopup) {
 								if (!item.popup.editor.hasChanges)
 									return;
-								
+
 								var scale = item.popup.editor.scale || 1;
-								
+
 								item.editor.rotation = item.popup.editor.rotation || 0;
 								if (item.popup.editor.cropper) {
 									item.editor.crop = item.popup.editor.cropper.crop;
-									
+
 									item.editor.crop.width = item.editor.crop.width / item.popup.editor.cropper.crop.cfWidth / scale;
 									item.editor.crop.left = item.editor.crop.left / item.popup.editor.cropper.crop.cfWidth / scale;
 									item.editor.crop.height = item.editor.crop.height / item.popup.editor.cropper.crop.cfHeight / scale;
 									item.editor.crop.top = item.editor.crop.top / item.popup.editor.cropper.crop.cfHeight / scale;
 								}
 							}
-                            
+
                             if (f._assets.isMobile()) {
                                 image.onload = onload;
                                 image.src = item.reader.src;
@@ -2230,7 +2230,7 @@
 							}
 						}
 					},
-					
+
 					/**
                      * @namespace sorter
                      */
@@ -2245,17 +2245,17 @@
 							var sort = f.sorter.sort,
 								$list = sort.items.not(sort.item.html),
 								$item = null;
-							
+
 							$list.each(function(i, el) {
 								var $el = $(el);
-								
+
 								if (points.x > $el.offset().left && points.x < $el.offset().left + $el.outerWidth() &&
 								  points.y > $el.offset().top && points.y < $el.offset().top + $el.outerHeight()) {
 									$item = $el;
 									return false;
 								}
 							});
-							
+
 							return $item;
 						},
 						mousedown: function(e) {
@@ -2283,7 +2283,7 @@
 										height: $item.outerHeight(),
 										placeholder: n.sorter.placeholder ? $(n.sorter.placeholder) : $(item.html.get(0).cloneNode()).addClass('fileuploader-sorter-placeholder')
 									};
-									
+
 									// disable user-select
 									$('body').css({
 										'-webkit-user-select': 'none',
@@ -2295,21 +2295,21 @@
 									// bind window mousemove event
 									$(document).on('mousemove touchmove', f.sorter.mousemove);
 								};
-							
+
 							e.preventDefault();
-                            
+
                             // off
                             if (f.sorter.sort)
                                 f.sorter.mouseup();
-							
+
 							// prevent if there is no item
 							if (!item)
 								return;
-							
+
 							// prevent if target is selectorExclude
 							if (n.sorter.selectorExclude && ($target.is(n.sorter.selectorExclude) || $target.closest(n.sorter.selectorExclude).length))
 								return;
-							
+
 							// preventDefault();
 							$(n.thumbnails._selectors.sorter).on('click drop dragend dragleave dragover dragenter dragstart touchstart touchmove touchend touchcancel', function(e){ e.preventDefault(); });
 
@@ -2327,7 +2327,7 @@
 								setTimeout(function() {
 									if (!f.sorter.isTouchLongPress)
 										return;
-									
+
 									delete f.sorter.isTouchLongPress;
 									callback();
 								}, n.thumbnails.touchDelay ? n.thumbnails.touchDelay : 0);
@@ -2352,15 +2352,15 @@
 									x: eventType == 'mousedown' ? e.clientX : e.originalEvent.touches[0].clientX,
 									y: eventType == 'mousedown' ? e.clientY : e.originalEvent.touches[0].clientY
 								};
-							
+
 							e.preventDefault();
-							
+
 							// drag
 							var left = points.x - sort.xItem,
 								top = points.y - sort.yItem,
 								leftContainer = points.x - ($container.prop('offsetLeft') || 0),
 								topContainer = points.y - ($container.prop('offsetTop') || 0);
-							
+
 							// fix position
 							if (left + sort.xItem > $container.width())
 								left = $container.width() - sort.xItem;
@@ -2370,7 +2370,7 @@
 								top = $container.height() - sort.yItem;
 							if (top + sort.yItem < 0)
 								top = 0 - sort.yItem;
-							
+
 							// scroll
 							if (topContainer <= 0)
 								$container.scrollTop(scroll.containerTop - 10);
@@ -2380,7 +2380,7 @@
 								$container.scrollLeft(scroll.containerLeft - 10);
 							if (leftContainer > $container.width())
 								$container.scrollLeft(scroll.containerLeft + 10);
-                            
+
 							// set style
 							item.html.addClass('sorting').css({
                                 position: 'fixed',
@@ -2389,7 +2389,7 @@
 								width: f.sorter.sort.width,
 								height: f.sorter.sort.height
 							});
-							
+
 							// position placeholder
 							if (!l.find(sort.placeholder).length)
 								item.html.after(sort.placeholder);
@@ -2397,7 +2397,7 @@
 								width: f.sorter.sort.width,
 								height: f.sorter.sort.height,
 							});
-							
+
 							// set new position
 							var $hoverEl = f.sorter.findItemAtPos({x: left + sort.xItem + scroll.left, y: top + sort.yItem + scroll.top});
 							if ($hoverEl) {
@@ -2410,22 +2410,22 @@
 											return;
 										if (directionY && f.sorter.sort.lastHover.direction == 'after' && points.y > f.sorter.sort.lastHover.y)
 											return;
-                                        
+
                                         if (directionX && f.sorter.sort.lastHover.direction == 'before' && points.x < f.sorter.sort.lastHover.x)
 											return;
 										if (directionX && f.sorter.sort.lastHover.direction == 'after' && points.x > f.sorter.sort.lastHover.x)
 											return;
 									}
 								}
-								
+
                                 // insert element before/after in HTML
 								var index = $list.index(item.html),
 									hoverIndex = $list.index($hoverEl),
                                     direction = index > hoverIndex ? 'before' : 'after';
-								
+
 								$hoverEl[direction](sort.placeholder);
 								$hoverEl[direction](item.html);
-                                
+
                                 // save last hover data
 								f.sorter.sort.lastHover = {
 									el: $hoverEl[0],
@@ -2438,7 +2438,7 @@
 						mouseup: function() {
 							var sort = f.sorter.sort,
 								item = sort.item;
-							
+
 							// clear
 							$('body').css({
 								'-webkit-user-select': '',
@@ -2446,7 +2446,7 @@
 								'-ms-user-select': '',
 								'user-select': ''
 							});
-                            
+
                             item.html.removeClass('sorting').css({
                                 position: '',
                                 left: '',
@@ -2454,10 +2454,10 @@
                                 width: '',
                                 height: ''
                             });
-							
+
 							$(document).off('mousemove touchmove', f.sorter.mousemove);
 							$(document).off('mouseup touchend', f.sorter.mouseup);
-							
+
 							sort.placeholder.remove();
                             delete f.sorter.sort;
 							f.sorter.save();
@@ -2468,45 +2468,45 @@
 								cachedList = [],
 								items = isFromList ? f._itFl : (n.thumbnails.itemPrepend) ? l.children().get().reverse() : l.children(),
 								hasChanges;
-							
+
 							// set index for all files
 							$.each(items, function(i, el) {
 								var item = el.file ? el : f.files.find($(el));
-								
+
 								if (item) {
 									// continue if not uploaded
                                     if (item.upload && !item.uploaded)
                                         return;
-                                    
+
                                     // check for changes
 									if (f.rendered && item.index != index && ((f._itSl && f._itSl.indexOf(item.id) != index) || true))
 										hasChanges = true;
-									
+
 									item.index = index;
 									list.push(item);
 									cachedList.push(item.id);
 									index++;
 								}
 							});
-							
+
 							// check for changes
 							if (f._itSl && f._itSl.length != cachedList.length)
 								hasChanges = true;
 							f._itSl = cachedList;
-							
-							// replace list 
+
+							// replace list
 							if (hasChanges && list.length == f._itFl.length)
 								f._itFl = list;
-							
+
 							// update listInput
 							if (!isFromList)
 								f.set('listInput', 'ignoreSorter');
-							
+
 							// onSort callback
 							hasChanges && n.sorter.onSort != null && typeof n.sorter.onSort == "function" ? n.sorter.onSort(list, l, p, o, s) : null;
 						}
 					},
-                    
+
                     /**
                      * @namespace upload
                      */
@@ -2532,7 +2532,7 @@
                                 contentType: false,
                                 processData: false,
 								chunk: item.upload ? item.upload.chunk : null,
-                                
+
 								status: null,
                                 send: function() {
                                     f.upload.send(item, true);
@@ -2541,10 +2541,10 @@
                                     f.upload.cancel(item, isFromRemove);
                                 }
                             };
-							
+
                             // add file to formData
                             item.upload.formData.append(s.attr('name'), item.file, (item.name ? item.name : false));
-                            
+
                             if (n.upload.start || force_send)
                                 f.upload.send(item, force_send);
                         },
@@ -2562,14 +2562,14 @@
 							// only made for safety
                             if (!item.upload)
                                 return;
-							
+
 							var setItemUploadStatus = function(status) {
 									if (item.html)
 										item.html.removeClass('upload-pending upload-loading upload-cancelled upload-failed upload-successful').addClass('upload-' + (status || item.upload.status));
 								},
 								loadNextItem = function() {
 									var i = 0;
-									
+
 									if (f._pfuL.length > 0) {
 										f._pfuL.indexOf(item) > -1 ? f._pfuL.splice(f._pfuL.indexOf(item), 1) : null;
 										while (i < f._pfuL.length) {
@@ -2583,14 +2583,14 @@
 										}
 									}
 								};
-							
+
 							// synchron upload
                             if (n.upload.synchron && !item.upload.chunk) {
 								// add pending status to item
 								item.upload.status = 'pending';
 								if (item.html)
 									setItemUploadStatus();
-								
+
                             	// check pending list
 								if (force_send) {
 									f._pfuL.indexOf(item) > -1 ? f._pfuL.splice(f._pfuL.indexOf(item), 1) : null;
@@ -2601,12 +2601,12 @@
 									}
 								}
                             }
-                            
+
                             // chunk upload
 							if (n.upload.chunk && item.file.slice) {
 								var chunkSize = f._assets.toBytes(n.upload.chunk),
 									chunks = Math.ceil(item.size/chunkSize, chunkSize);
-								
+
 								if (chunks > 1 && !item.upload.chunk)
 									item.upload.chunk = {
 										name: item.name,
@@ -2614,12 +2614,12 @@
 										type: item.file.type,
 										chunkSize: chunkSize,
 										temp_name: item.name,
-										
+
                                         loaded: 0,
 										total: chunks,
 										i: -1
 									};
-								
+
 								if (item.upload.chunk) {
 									item.upload.chunk.i++;
 									delete item.upload.chunk.isFirst;
@@ -2628,11 +2628,11 @@
 										item.upload.chunk.isFirst = true;
 									if (item.upload.chunk.i == item.upload.chunk.total - 1)
 										item.upload.chunk.isLast = true;
-									
+
 									if (item.upload.chunk.i <= item.upload.chunk.total - 1) {
 										var offset = item.upload.chunk.i * item.upload.chunk.chunkSize,
 											filePart = item.file.slice(offset, offset + item.upload.chunk.chunkSize);
-										
+
 										item.upload.formData = new FormData();
 										item.upload.formData.append(s.attr('name'), filePart);
 										item.upload.data._chunkedd = JSON.stringify(item.upload.chunk);
@@ -2641,7 +2641,7 @@
 									}
 								}
 							}
-                            
+
                             // upload.beforeSend callback
 							if (n.upload.beforeSend && $.isFunction(n.upload.beforeSend) && n.upload.beforeSend(item, l, p, o, s) === false) {
                                 delete item.upload.chunk;
@@ -2649,10 +2649,10 @@
 								loadNextItem();
 								return;
 							}
-                            
+
 							// add uploading class to parent element
 							p.addClass('fileuploader-is-uploading');
-							
+
                             // add loading status to item
 							if (item.upload.$ajax)
 								item.upload.$ajax.abort();
@@ -2664,7 +2664,7 @@
                                     item.html.find(n.thumbnails._selectors.start).remove();
                                 setItemUploadStatus();
 							}
-							
+
                             // add upload data to formData
                             if (item.upload.data) {
                                 for (var k in item.upload.data) {
@@ -2673,7 +2673,7 @@
                                     item.upload.formData.append(k, item.upload.data[k]);
                                 }
                             }
-                            
+
                             item.upload.data = item.upload.formData;
                             item.upload.xhr = function() {
                                 var xhr = $.ajaxSettings.xhr(),
@@ -2694,7 +2694,7 @@
 								if (item.upload.chunk && !item.upload.chunk.isLast && textStatus == 'success')
 									return f.upload.prepare(item, true);
                                 loadNextItem();
-                                
+
                                 var g = true;
                                 $.each(f._itFl, function(i, a) {
                                     if (a.upload && a.upload.$ajax)
@@ -2709,7 +2709,7 @@
 								if (item.upload.chunk && !item.upload.chunk.isLast) {
 									try {
 										var json = JSON.parse(data);
-										
+
 										item.upload.chunk.temp_name = json.fileuploader.temp_name;
 									} catch (e) { }
 									return;
@@ -2719,10 +2719,10 @@
                                 item.uploaded = true;
                                 delete item.upload;
 								item.upload = {status: 'successful', resend: function() { f.upload.retry(item); }};
-                                
+
                                 if (item.html)
                                     setItemUploadStatus();
-								
+
                                 n.upload.onSuccess != null && $.isFunction(n.upload.onSuccess) ? n.upload.onSuccess(data, item, l, p, o, s, textStatus, jqXHR) : null;
                                 f.set('listInput', null);
                             };
@@ -2733,13 +2733,13 @@
 								item.upload.status = item.upload.status == 'cancelled' ? item.upload.status : 'failed';
 								item.upload.retry = function() { f.upload.retry(item); };
                                 delete item.upload.$ajax;
-								
+
                                 if (item.html)
                                     setItemUploadStatus();
-								
+
                                 n.upload.onError != null && $.isFunction(n.upload.onError) ? n.upload.onError(item, l, p, o, s, jqXHR, textStatus, errorThrown) : null;
                             };
-                            
+
                             // send
                             item.upload.$ajax = $.ajax(item.upload);
                         },
@@ -2768,11 +2768,11 @@
                          * @param {Object} item
                          * @void
                          */
-                        retry: function(item) { 
+                        retry: function(item) {
                             if (item && item.upload) {
                                 if (item.html && n.thumbnails._selectors.retry)
                                     item.html.find(n.thumbnails._selectors.retry).remove();
-								
+
                                 f.upload.prepare(item, true);
                             }
                         },
@@ -2790,7 +2790,7 @@
                         progressHandling: function(e, item, xhrStartedAt, isManual) {
 							if (!e && isManual && item.upload.$ajax)
 								e = {total: item.upload.$ajax.total, loaded: item.upload.$ajax.total, lengthComputable: true};
-							
+
                             if (e.lengthComputable) {
                                 var date = new Date(),
 									loaded = e.loaded + (item.upload.chunk ? item.upload.chunk.loaded : 0),
@@ -2816,23 +2816,23 @@
                                         secondsRemaining: secondsRemaining,
                                         secondsRemainingInFormat: f._assets.secondsToText(secondsRemaining, true)
                                     };
-								
+
 								if (item.upload.chunk) {
                                     if (item.upload.chunk.isFirst)
 										item.upload.chunk.xhrStartedAt = xhrStartedAt;
 									if (e.loaded == e.total && !item.upload.chunk.isLast)
 										item.upload.chunk.loaded += Math.max(e.total, item.upload.chunk.total/item.upload.chunk.chunkSize);
 								}
-                                
+
 								if (data.percentage > 99 && !isManual)
 									data.percentage = 99;
-								
+
 								// upload.onProgress callback
                                 n.upload.onProgress && $.isFunction(n.upload.onProgress) ? n.upload.onProgress(data, item, l, p, o, s) : null;
                             }
                         }
                     },
-					
+
                     /**
                      * @namespace dragDrop
                      */
@@ -2847,13 +2847,13 @@
                          */
 						onDragEnter: function(e) {
                             clearTimeout(f.dragDrop._timer);
-                            
+
 							// add dragging class to parent element
                             n.dragDrop.container.addClass('fileuploader-dragging');
-							
+
 							// set feedback caption
                             f.set('feedback', f._assets.textParse(n.captions.drop));
-                            
+
 							// dragDrop.onDragEnter callback
                             n.dragDrop.onDragEnter != null && $.isFunction(n.dragDrop.onDragEnter) ? n.dragDrop.onDragEnter(e, l, p, o, s) : null;
                         },
@@ -2867,19 +2867,19 @@
                          */
                         onDragLeave: function(e) {
                             clearTimeout(f.dragDrop._timer);
-                            
+
                             f.dragDrop._timer = setTimeout(function(e) {
 								// check if not the childNodes from dragging container are hovered
                                 if (!f.dragDrop._dragLeaveCheck(e)) {
                                     return false;
                                 }
-								
+
 								// remove dragging class from parent element
                                 n.dragDrop.container.removeClass('fileuploader-dragging');
-                                
+
 								// set feedback caption
 								f.set('feedback', null);
-                                
+
 								// dragDrop.onDragLeave callback
                                 n.dragDrop.onDragLeave != null && $.isFunction(n.dragDrop.onDragLeave) ? n.dragDrop.onDragLeave(e, l, p, o, s) : null;
                             }, 100, e);
@@ -2894,13 +2894,13 @@
                          */
                         onDrop: function(e) {
                             clearTimeout(f.dragDrop._timer);
-                            
+
 							// remove dragging class from parent element
                             n.dragDrop.container.removeClass('fileuploader-dragging');
-                            
-							// set feedback caption 
+
+							// set feedback caption
 							f.set('feedback', null);
-							
+
 							// check if event has dropped files and use them
                             if (e && e.originalEvent && e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files && e.originalEvent.dataTransfer.files.length) {
 								if (f.isUploadMode()) {
@@ -2909,7 +2909,7 @@
 									s.prop('files', e.originalEvent.dataTransfer.files).trigger('change');
 								}
                             }
-                            
+
 							// dragDrop.onDrop callback
                             n.dragDrop.onDrop != null && $.isFunction(n.dragDrop.onDrop) ? n.dragDrop.onDrop(e, l, p, o, s) : null;
                         },
@@ -2924,7 +2924,7 @@
                         _dragLeaveCheck: function(e) {
                             var related = $(e.currentTarget),
                                 insideEls;
-							
+
                             if (!related.is(n.dragDrop.container)) {
                                 insideEls = n.dragDrop.container.find(related);
 
@@ -2932,11 +2932,11 @@
                                     return false;
                                 }
                             }
-							
+
                             return true;
                         }
 					},
-                    
+
                     /**
                      * @namespace clipboard
                      */
@@ -2953,17 +2953,17 @@
                             // check if the input is into view and if clipboard is supported and if there are files in the clipboard
                             if (!f._assets.isIntoView(o) || !e.originalEvent.clipboardData || !e.originalEvent.clipboardData.items || !e.originalEvent.clipboardData.items.length)
                                 return;
-                            
+
                             var items = e.originalEvent.clipboardData.items;
-							
+
 							// extra clean
 							f.clipboard.clean();
-							
+
 							for (var i = 0; i < items.length; i++) {
 								if (items[i].type.indexOf("image") !== -1 || items[i].type.indexOf("text/uri-list") !== -1) {
 									var blob = items[i].getAsFile(),
 										ms = n.clipboardPaste > 1 ? n.clipboardPaste : 2000;
-									
+
 									if (blob) {
 										// create clipboard file name
 										blob._name = f._assets.generateFileName(blob.type.indexOf("/") != -1 ? blob.type.split("/")[1].toString().toLowerCase() : 'png', 'Clipboard ');
@@ -2989,13 +2989,13 @@
                             if (f.clipboard._timer) {
                                 clearTimeout(f.clipboard._timer);
 								delete f.clipboard._timer;
-								
+
 								// set feedback caption
                                 f.set('feedback', null);
                             }
                         }
                     },
-                    
+
                     /**
                      * @namespace files
                      */
@@ -3043,7 +3043,7 @@
                                     appended: prop == 'appended' || prop == 'updated',
                                     uploaded: prop == 'uploaded'
                                 };
-                            
+
                             if (prop != 'updated') {
 				                f._itFl.push(data);
                                 index = f._itFl.length - 1;
@@ -3052,11 +3052,11 @@
                                 index = f._itFl.indexOf(file);
                                 f._itFl[index] = item = data;
                             }
-							
+
 							item.remove = function() {
 								f.files.remove(item);
 							};
-							
+
 							if (n.editor && format == 'image')
 								item.editor = {
 									rotate: n.editor.rotation !== false ? function(deg) {
@@ -3069,10 +3069,10 @@
 										f.editor.save(item, toBlob, mimeType, callback, preventThumbnailRender);
 									}
 								};
-							
+
 							if (file.local)
 								item.local = file.local;
-							
+
 							return index;
 						},
                         /**
@@ -3095,49 +3095,49 @@
                                     useFile = typeof item.file != 'string',
                                     execute_callbacks = function() {
                                         var _callbacks = item.reader._callbacks || [];
-										
+
 										if (item.reader._timer) {
 											clearTimeout(item.reader._timer);
 											delete item.reader._timer;
 										}
-										
+
                                         delete item.reader._callbacks;
                                         delete item.reader._FileReader;
-                                        
+
                                         for(var i = 0; i<_callbacks.length; i++) {
                                             $.isFunction(_callbacks[i]) ? _callbacks[i](item, l, p, o, s) : null;
                                         }
-                                        
+
                                         n.onFileRead && $.isFunction(n.onFileRead) ? n.onFileRead(item, l, p, o, s) : null;
                                     };
-								
+
                                 if ((!item.reader.src && !item.reader._FileReader) || force)
                                     item.reader = {
                                         _FileReader: reader,
                                         _callbacks: [],
                                         read: item.reader.read
                                     };
-                                
+
                                 if (item.reader.src && !force)
                                     return callback && $.isFunction(callback) ? callback(item, l, p, o, s) : null;
-                                
+
                                 if (callback && item.reader._callbacks) {
                                     item.reader._callbacks.push(callback);
-                                    
+
                                     if (item.reader._callbacks.length > 1)
                                         return;
                                 }
-                                
+
 								if (item.format == 'astext') {
 									reader.onload = function(e) {
 										var node = document.createElement('div');
-										
+
 										item.reader.node = node;
           								item.reader.src = e.target.result;
 										item.reader.length = e.target.result.length;
-										
+
 										node.innerHTML = item.reader.src.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-										
+
 										execute_callbacks();
 									};
 									reader.onerror = function() {
@@ -3158,7 +3158,7 @@
 										});
 								} else if (item.format == 'image' || hasThumb) {
                                     var src;
-                                    
+
                                     reader.onload = function(e) {
                                         var node = new Image(),
                                             loadNode = function() {
@@ -3174,7 +3174,7 @@
                                                             rotation = Math.abs(item.reader.exifOrientation),
                                                             flip = item.reader.exifOrientation < 0 ? item.reader.exifOrientation : 0,
                                                             rotationCf = [0, 180];
-                                                        
+
                                                         // remove the rotaiton for flip -1
                                                         if (rotation == 1)
                                                             rotation = 0;
@@ -3212,13 +3212,13 @@
                                                         // draw image and reset transform
                                                         ctx.drawImage(image, 0, 0);
                                                         ctx.setTransform(1, 0, 0, 1, 0, 0);
-                                                        
+
                                                         node.src = canvas.toDataURL(item.type, 1);
 
                                                         delete item.reader.exifOrientation;
                                                         return;
                                                     }
-                                                    
+
                                                     item.reader.node = node;
                                                     item.reader.src = node.src;
                                                     item.reader.width = node.width;
@@ -3226,9 +3226,9 @@
                                                     item.reader.ratio = f._assets.pxToRatio(item.reader.width, item.reader.height);
                                                     if (src)
                                                         URL.revokeObjectURL(src);
-                                                    
+
                                                     execute_callbacks();
-                                                    
+
                                                     if (hasThumb)
                                                         item.reader = { read: item.reader.read };
                                                 };
@@ -3237,13 +3237,13 @@
                                                     item.reader = { read: item.reader.read };
                                                 };
                                             };
-                                        
+
                                         // exif rotation
                                         if (n.thumbnails.exif && item.choosed) {
                                             f._assets.getExifOrientation(item.file, function(orientation) {
                                                 if (orientation)
                                                     item.reader.exifOrientation = orientation;
-                                                
+
                                                 loadNode();
                                             });
                                         } else {
@@ -3254,10 +3254,10 @@
                                         execute_callbacks();
                                         item.reader = { read: item.reader.read };
                                     };
-									
+
 									if (!hasThumb && item.size > f._assets.toBytes(n.reader.maxSize))
 										return reader.onerror();
-                                    
+
                                     if (useFile) {
                                         if (n.thumbnails.useObjectUrl && n.thumbnails.canvasImage && URL)
                                             reader.onload({target: {result: src = URL.createObjectURL(item.file)}});
@@ -3270,13 +3270,13 @@
                                     var node = document.createElement(item.format),
                                         canPlay = node.canPlayType(item.type),
                                         src;
-                                    
+
                                     reader.onerror = function() {
                                         item.reader.node = null;
                                         execute_callbacks();
                                         item.reader = { read: item.reader.read };
                                     };
-                                    
+
                                     if (URL && canPlay !== '') {
                                         if (isThumb && !n.thumbnails.videoThumbnail) {
                                             item.reader.node = node;
@@ -3290,7 +3290,7 @@
                                             item.reader.src = node.src;
                                             item.reader.duration = node.duration;
                                             item.reader.duration2 = f._assets.secondsToText(node.duration);
-                                            
+
                                             if (item.format == 'video') {
                                                 item.reader.width = node.videoWidth;
                                                 item.reader.height = node.videoHeight;
@@ -3313,10 +3313,10 @@
 
                                                 canvas = context = null;
                                             }
-                                            
+
                                             execute_callbacks();
                                         };
-                                        
+
 										// dirty fix
                                         setTimeout(function() {
 											if (item.data && item.data.readerCrossOrigin)
@@ -3329,7 +3329,7 @@
                                 } else if (item.type == 'application/pdf' && n.thumbnails.pdf && !type) {
 									var node = document.createElement('iframe'),
 										src = useFile ? URL.createObjectURL(item.file) : (n.thumbnails.pdf.urlPrefix || '') + item.file;
-									
+
 									if (n.thumbnails.pdf.viewer || f._assets.hasPlugin('pdf')) {
 										node.onload = function() {
 											item.reader.node = node;
@@ -3347,7 +3347,7 @@
                                     reader.onload = function(e) {
                                         item.reader.src = e.target.result;
                                         item.reader.length = e.target.result.length;
-                                        
+
                                         execute_callbacks();
                                     };
 									reader.onerror = function(e) {
@@ -3356,14 +3356,14 @@
 									};
                                     useFile ? reader[type || 'readAsBinaryString'](item.file) : execute_callbacks();
                                 }
-                                
+
                                 item.reader._timer = setTimeout(reader.onerror, isThumb ? n.reader.thumbnailTimeout : n.reader.timeout);
                             } else {
                                 if (callback)
                                     callback(item, l, p, o, s);
                             }
-							
-                            
+
+
                             return null;
                         },
 						/**
@@ -3379,23 +3379,23 @@
                          */
 						list: function(toJson, customKey, triggered, additional) {
 							var files = [];
-							
+
 							// save sorter
 							if (n.sorter && !triggered && (!additional || additional != 'ignoreSorter'))
 								f.sorter.save(true);
-							
+
 							$.each(f._itFl, function(i, a) {
 								var file = a;
-								
+
 								if (file.upload && !file.uploaded)
 									return true;
-								
+
 								if (customKey || toJson)
 									file = (file.choosed && !file.uploaded ? '0:/' : '') + (customKey && f.files.getItemAttr(a, customKey) !== null ? f.files.getItemAttr(file, customKey) : (file.local || file[typeof file.file == "string" ? "file" : "name"]));
-								
+
 								if (toJson) {
 									file = {file: file};
-									
+
 									// editor properties
 									// add only if file was cropped or rotated
 									if (a.editor && (a.editor.crop || a.editor.rotation)) {
@@ -3405,12 +3405,12 @@
 										if (a.editor.crop)
 											file.editor.crop = a.editor.crop;
 									}
-									
+
 									// sorting property
 									if (typeof a.index !== 'undefined') {
 										file.index = a.index;
 									}
-									
+
 									// custom properties
 									if (a.data && a.data.listProps) {
 										for (var key in a.data.listProps) {
@@ -3418,12 +3418,12 @@
 										}
 									}
 								}
-								
+
 								files.push(file);
 							});
-                            
+
                             files = n.onListInput && $.isFunction(n.onListInput)? n.onListInput(files, f._itFl, n.listInput, l, p, o, s) : files;
-							
+
 							return !toJson ? files : JSON.stringify(files);
 						},
 						/**
@@ -3438,7 +3438,7 @@
                          */
 						check: function(item, files, fullCheck) {
 							var r = ["warning", null, false, false];
-							
+
 							if (n.limit != null && fullCheck && files.length + f._itFl.length - 1 > n.limit) {
                                 r[1] = f._assets.textParse(n.captions.errors.filesLimit);
                                 r[3] = true;
@@ -3488,27 +3488,27 @@
 							}
 							if (!n.skipFileNameCheck) {
 								var g = false;
-                                
+
 								$.each(f._itFl, function(i, a) {
 							  		if (a != item && a.choosed == true && a.file && a.name == item.name) {
 										g = true;
-                                        
+
                                         if (a.file.size == item.size && a.file.type == item.type && (item.file.lastModified && a.file.lastModified ? a.file.lastModified == item.file.lastModified : true) && files.length > 1) {
                                             r[2] = true;
                                         } else {
                                             r[1] = f._assets.textParse(n.captions.errors.fileName, item);
                                             r[2] = false;
                                         }
-                                        
+
 										return false;
 									}
 								});
-								
+
 								if (g) {
 									return r;
 								}
 							}
-							
+
 							return true;
 						},
 						/**
@@ -3521,28 +3521,28 @@
                          */
 						append: function(files) {
 							files = $.isArray(files) ? files : [files];
-							
+
 							if (files.length) {
 								var item;
 								for (var i = 0; i < files.length; i++) {
 									if (!f._assets.keyCompare(files[i], ['name', 'file', 'size', 'type'])) {
 										continue;
 									}
-									
+
 									item = f._itFl[f.files.add(files[i], 'appended')];
-									
+
 									n.thumbnails ? f.thumbnails.item(item) : null;
 								}
-								
+
 								// set feedback caption
 								f.set('feedback', null);
-								
+
 								// set listInput value
 								f.set('listInput', null);
-								
+
 								// afterSelect callback
 								n.afterSelect && $.isFunction(n.afterSelect) ? n.afterSelect(l, p, o, s) : null;
-								
+
 								return files.length == 1 ? item : true;
 							}
 						},
@@ -3558,11 +3558,11 @@
                         update: function(item, data) {
                             if (f._itFl.indexOf(item) == -1 || (item.upload && item.upload.$ajax))
                                 return;
-                            
+
                             var oldItem = item,
                                 index = f.files.add($.extend(item, data), 'updated'),
                                 item = f._itFl[index];
-                            
+
                             if (item.popup && item.popup.close)
                                 item.popup.close();
 
@@ -3581,14 +3581,14 @@
                          */
                         find: function(html) {
                             var item = null;
-                            
+
                             $.each(f._itFl, function(i, a) {
                                 if (a.html && a.html.is(html)) {
                                     item = a;
                                     return false;
                                 }
                             });
-                            
+
                             return item;
                         },
 						/**
@@ -3604,27 +3604,27 @@
 							// onRemove callback
 							if (!isFromCheck && n.onRemove && $.isFunction(n.onRemove) && n.onRemove(item, l, p, o, s) === false)
 								return;
-							
+
 							// thumbnails.onItemRemove callback
                             if (item.html)
                                 n.thumbnails.onItemRemove && $.isFunction(n.thumbnails.onItemRemove) && !isFromCheck ? n.thumbnails.onItemRemove(item.html, l, p, o, s) : item.html.remove();
-							
+
 							// cancel file upload
 							if (item.upload && item.upload.$ajax && item.upload.cancel)
 								item.upload.cancel(true);
-							
+
 							// remove popup
 							if (item.popup && item.popup.close) {
 								item.popup.node = null;
                                 item.popup.close();
                             }
-                            
+
                             // remove filereader
                             if (item.reader.src) {
                                 item.reader.node = null;
                                 URL.revokeObjectURL(item.reader.src);
                             }
-							
+
 							// check if any file is in the same input like item.input
 							if (item.input) {
 								var g = true;
@@ -3644,19 +3644,19 @@
 									}
 								}
 							}
-                            
+
 							// remove data from memory
                             f._pfrL.indexOf(item) > -1 ? f._pfrL.splice(f._pfrL.indexOf(item), 1) : null;
                             f._pfuL.indexOf(item) > -1 ? f._pfuL.splice(f._pfuL.indexOf(item), 1) : null;
                             f._itFl.indexOf(item) > -1 ? f._itFl.splice(f._itFl.indexOf(item), 1) : null;
                             item = null;
-							
+
 							// reset the plugin if there are no any files in the memory
 							f._itFl.length == 0 ? f.reset() : null;
-                            
+
 							// set feedback caption
 							f.set('feedback', null);
-							
+
 							// set listInput value
 							f.set('listInput', null);
 						},
@@ -3671,7 +3671,7 @@
                          */
 						getItemAttr: function(item, attr) {
 							var result = null;
-							
+
 							if (item) {
 								if (typeof item[attr] != "undefined") {
 									result = item[attr];
@@ -3679,7 +3679,7 @@
 									result = item.data[attr];
 								}
 							}
-							
+
 							return result;
 						},
 						/**
@@ -3693,35 +3693,35 @@
                          */
 						clear: function(all) {
 							var i = 0;
-							
+
 							while (i < f._itFl.length) {
 								var a = f._itFl[i];
-								
+
 								if (!all && a.appended) {
 									i++;
 									continue;
 								}
-								
+
 								if (a.html)
 									a.html ? f._itFl[i].html.remove() : null;
-								
+
 								if (a.upload && a.upload.$ajax)
 									f.upload.cancel(a);
-								
+
 								f._itFl.splice(i, 1);
 							}
-							
+
 							// set feedback caption
 							f.set('feedback', null);
-                            
+
                             // set listInput value
                             f.set('listInput', null);
-							
+
 							// onEmpty callback
 							f._itFl.length == 0 && n.onEmpty && $.isFunction(n.onEmpty) ? n.onEmpty(l, p, o, s) : null;
 						}
 					},
-					
+
 					/**
 					 * reset
 					 * reset the plugin
@@ -3733,7 +3733,7 @@
 						if (all) {
 							if (f.clipboard._timer)
 								f.clipboard.clean();
-							
+
 							$.each(sl, function(i, a) {
 								if (i < sl.length)
 									a.remove();
@@ -3741,7 +3741,7 @@
 							sl = [];
                             f.set('input', '');
 						}
-						
+
 						f._itRl = [];
                         f._pfuL = [];
                         f._pfrL = [];
@@ -3762,9 +3762,9 @@
 						p.remove();
 						p = o = l = null;
 					},
-                    
+
                     /**
-                     * @namespace _assets 
+                     * @namespace _assets
                      */
 					_assets: {
 						toBytes: function(mb) {
@@ -3776,29 +3776,29 @@
                             var k = 1024,
 								sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 								i = Math.floor(Math.log(bytes) / Math.log(k));
-							
+
                             return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
                         },
 						escape: function(str) {
-							return ('' + str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")	
+							return ('' + str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
 						},
                         secondsToText: function(seconds, textFormat) {
                             seconds = parseInt(Math.round(seconds), 10);
-                            
+
                             var hours   = Math.floor(seconds / 3600),
                                 minutes = Math.floor((seconds - (hours * 3600)) / 60),
                                 seconds = seconds - (hours * 3600) - (minutes * 60),
                                 result = "";
-                            
+
                             if (hours > 0 || !textFormat) {
                                 result += (hours < 10 ? "0" : "") + hours + (textFormat ? "h " : ":");
                             }
                             if (minutes > 0 || !textFormat) {
                                 result += (minutes < 10 && !textFormat ? "0" : "") + minutes + (textFormat ? "m " : ":");
                             }
-                            
+
                             result += (seconds < 10 && !textFormat ? "0" : "") + seconds + (textFormat ? "s" : "");
-                            
+
                             return result;
                         },
 						pxToRatio: function(width, height) {
@@ -3806,24 +3806,24 @@
 									return (b == 0) ? a : gcd (b, a%b);
 								},
 								r = gcd(width, height);
-							
+
 							return [width/r, height/r];
 						},
 						ratioToPx: function(width, height, ratio) {
 							ratio = (ratio+'').split(':');
-							
+
 							if (ratio.length < 2)
 								return null;
-							
+
 							var rWidth = height / ratio[1] * ratio[0],
 								rHeight = width / ratio[0] * ratio[1];
-							
+
 							return [rWidth, rHeight, ratio[0], ratio[1]];
 						},
                         hasAttr: function(attr, el) {
                             var el = !el ? s : el,
                                 a = el.attr(attr);
-							
+
                             if (!a || typeof a == 'undefined') {
                                 return false;
                             } else {
@@ -3835,26 +3835,26 @@
 								if (this.name == 'required' || this.name == 'type') return;
 								newEl.attr(this.name, this.value);
 							});
-                            
+
                             if (oldEl.get(0).FileUploader)
                                 newEl.get(0).FileUploader = oldEl.get(0).FileUploader;
-							
+
 							return newEl;
 						},
 						getAllEvents: function(el) {
 							var el = !el ? s : el,
 								result = [];
-							
+
 							el = el.get ? el.get(0) : el;
 							for (var key in el) {
 								if (key.indexOf('on') === 0) {
 									result.push(key.slice(2));
 								}
 							}
-							
+
 							if (result.indexOf('change') == -1)
 								result.push('change');
-							
+
 							return result.join(' ');
 						},
                         isIntoView: function(el) {
@@ -3868,14 +3868,14 @@
 						isBlankCanvas: function(canvas) {
 							var blank = document.createElement('canvas'),
 								result = false;
-							
+
 							blank.width = canvas.width;
 							blank.height = canvas.height;
                             try {
 				                result = canvas.toDataURL() == blank.toDataURL();
                             } catch(e) {}
 							blank = null;
-							
+
 							return result;
 						},
                         generateFileName: function(extension, prefix) {
@@ -3888,17 +3888,17 @@
 								},
 								prefix = prefix ? prefix : '',
 								extension = extension ? '.' + extension : '';
-							
+
 							return prefix + date.getFullYear() + '-' + addZero(date.getMonth()+1) + '-' + addZero(date.getDate()) + ' ' + addZero(date.getHours()) + '-' + addZero(date.getMinutes()) + '-' + addZero(date.getSeconds()) + extension;
 						},
                         arrayBufferToBase64: function(buffer) {
                             var binary = '',
                                 bytes = new Uint8Array(buffer);
-                            
+
                             for (var i = 0; i < bytes.byteLength; i++) {
                                 binary += String.fromCharCode(bytes[i]);
                             }
-                            
+
                             return window.btoa(binary);
                         },
 						dataURItoBlob: function(dataURI, type) {
@@ -3906,14 +3906,14 @@
 								mimeType = dataURI.split(',')[0].split(':')[1].split(';')[0],
 								arrayBuffer = new ArrayBuffer(byteString.length),
 								_ia = new Uint8Array(arrayBuffer);
-							
+
 							for (var i = 0; i < byteString.length; i++) {
 								_ia[i] = byteString.charCodeAt(i);
 							}
 
 							var dataView = new DataView(arrayBuffer),
 								blob = new Blob([dataView.buffer], { type: type || mimeType });
-                            
+
 							return blob;
 						},
                         getExifOrientation: function(file, callback) {
@@ -3932,29 +3932,29 @@
                             reader.onload = function(e) {
                                 var scanner = new DataView(e.target.result),
                                     val = 1;
-                                
+
                                 if (scanner.byteLength && scanner.getUint16(0, false) == 0xFFD8) {
                                     var length = scanner.byteLength,
                                         offset = 2;
-                                    
+
                                     while (offset < length) {
                                         if (scanner.getUint16(offset + 2, false) <= 8)
                                             break;
-                                        
+
                                         var uint16 = scanner.getUint16(offset, false);
                                         offset += 2;
-                                        
+
                                         if (uint16 == 0xFFE1) {
                                             if (scanner.getUint32(offset += 2, false) != 0x45786966)
                                                 break;
 
                                             var little = scanner.getUint16(offset += 6, false) == 0x4949,
                                                 tags;
-                                            
+
                                             offset += scanner.getUint32(offset + 4, little);
                                             tags = scanner.getUint16(offset, little);
                                             offset += 2;
-                                            
+
                                             for (var i = 0; i < tags; i++) {
                                                 if (scanner.getUint16(offset + (i * 12), little) == 0x0112) {
                                                     val = scanner.getUint16(offset + (i * 12) + 8, little);
@@ -3969,7 +3969,7 @@
                                         }
                                     }
                                 }
-                                
+
                                 callback ? callback(rotation[val] || 0) : null;
                             };
                             reader.onerror = function() {
@@ -3985,25 +3985,25 @@
 								extensions: n.extensions ? n.extensions.join(', ') : null,
 								captions: n.captions
 							}, opts);
-							
+
                             switch (typeof(text)) {
                                 case 'string':
 									for (var key in opts) {
 										if (['name', 'file', 'type', 'size'].indexOf(key) > -1)
 											opts[key] = f._assets.escape(opts[key]);
 									}
-									
+
                                     text = text.replace(/\$\{(.*?)\}/g, function(match, a) {
                                         var a = a.replace(/ /g, ''),
                                             r = typeof opts[a] != "undefined" && opts[a] != null ? opts[a] : '';
-                                        
+
                                         if (['reader.node'].indexOf(a) > -1)
                                             return match;
-                                        
+
                                         if (a.indexOf('.') > -1 || a.indexOf('[]') > -1) {
                                             var x = a.substr(0, a.indexOf('.') > -1 ? a.indexOf('.') : a.indexOf('[') > -1 ? a.indexOf('[') : a.length),
                                                 y = a.substring(x.length);
-                                            
+
                                             if (opts[x]) {
                                                 try {
                                                     r = eval('opts["' + x + '"]' + y);
@@ -4012,9 +4012,9 @@
                                                 }
                                             }
                                         }
-                                        
+
 										r = $.isFunction(r) ? f._assets.textParse(r) : r;
-                                        
+
                                         return r || '';
                                     });
                                     break;
@@ -4022,14 +4022,14 @@
                                     text = f._assets.textParse(text(opts, l, p, o, s, f._assets.textParse), opts, noOptions);
                                     break;
                             }
-							
+
 							opts = null;
 							return text;
                         },
                         textToColor: function(str) {
                             if (!str || str.length == 0)
 								return false;
-							
+
                             for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
                             for (var i = 0, colour = '#'; i < 3; colour += ('00' + ((hash >> i++ * 2) & 0xFF)
                                     .toString(16))
@@ -4052,7 +4052,7 @@
 									if (!rgb) return null;
 									return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
 								};
-							
+
 							return luminance_get(color) > 194;
 						},
 						keyCompare: function(obj, structure) {
@@ -4061,7 +4061,7 @@
 									throw new Error('Could not find valid *strict* attribute "'+ structure[i] +'" in ' + JSON.stringify(obj, null, 4));
 								}
 							}
-							
+
 							return true;
 						},
 						dialogs: {
@@ -4074,7 +4074,7 @@
 									if (navigator.plugins[key].name.toLowerCase().indexOf(name) > -1)
 										return true;
 								}
-							
+
 							return false;
 						},
                         isIE: function() {
@@ -4084,7 +4084,7 @@
                             return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
                         }
                     },
-					
+
 					isSupported: function() {
 						return s && s.get(0).files;
 					},
@@ -4100,26 +4100,26 @@
 					isUploadMode: function() {
 						return n.upload;
 					},
-					
+
 					// fileuploader file list
                     _itFl: [],
-					
+
 					// fileuploader file upload pending list
 					_pfuL: [],
-					
+
 					// fileuploader file render pending list
 					_pfrL: [],
-					
+
 					// disabled
 					disabled: false,
-                    
+
                     // locked
                     locked: false,
-					
+
 					// rendered
 					rendered: false
 				};
-			
+
 			// set FileUploader property to the input
             if (n.enableApi) {
                 s.get(0).FileUploader = {
@@ -4167,7 +4167,7 @@
                     },
 					updateFileList: function() {
 						f.set('listInput', null);
-						
+
 						return true;
 					},
                     setOption: function(option, value) {
@@ -4181,19 +4181,19 @@
                     add: function(data, type, name) {
                         if (!f.isUploadMode())
                             return false;
-						
+
                         var blob;
 						if (data instanceof Blob) {
 							blob = data;
 						} else {
 							var dataURI = /data:[a-z]+\/[a-z]+\;base64\,/.test(data) ? data : 'data:' + type + ';base64,' + btoa(data);
-							
+
 							blob = f._assets.dataURItoBlob(dataURI, type);
 						}
 						blob._name = name || f._assets.generateFileName(blob.type.indexOf("/") != -1 ? blob.type.split("/")[1].toString().toLowerCase() : 'File ');
-						
+
 						f.onChange(null, [blob]);
-                        
+
                         return true;
 					},
                     append: function(files) {
@@ -4214,7 +4214,7 @@
                     },
 					uploadStart: function() {
 						var choosedFiles = this.getChoosedFiles() || [];
-						
+
 						if (f.isUploadMode() && choosedFiles.length > 0 && !choosedFiles[0].uploaded) {
 							for(var i = 0; i<choosedFiles.length; i++) {
 								f.upload.send(choosedFiles[i]);
@@ -4241,7 +4241,7 @@
                         return true;
                     },
                     isEmpty: function() {
-                        return f._itFl.length == 0; 
+                        return f._itFl.length == 0;
                     },
                     isDisabled: function() {
                         return f.disabled;
@@ -4262,22 +4262,22 @@
                     }
                 };
             }
-            
+
             // initialize the plugin
 			f.init();
-            
+
 			return this;
 		});
     };
-	
+
 	$.fileuploader = {
         getInstance: function(input) {
             var $input = input.prop ? input : $(input);
-			
+
 			return $input.length ? $input.get(0).FileUploader : null;
         }
     };
-    
+
     $.fn.fileuploader.languages = {
         cz: {
             button: function(options) {
@@ -4805,7 +4805,7 @@
             }
         }
     };
-	
+
 	$.fn.fileuploader.defaults = {
         limit: null,
         maxSize: null,
