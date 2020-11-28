@@ -322,7 +322,7 @@ function item_action (uniqueId, itemNumb) {
     $(document).ready(function () {
         $(".thumblist_" + itemName + "_" + itemNumb).hide();
         $.ajax({
-            url: "/includes/cmn.content.php?id=" + id + "&type=" + itemName + "&action=deleted",
+            url: "/includes/cmn.content.php?action_on_item=yes&id=" + id + "&type=" + itemName + "&action=deleted",
             method: "GET"
         });
     })

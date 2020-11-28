@@ -5,11 +5,9 @@ require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/sendMessage.php';
 
 
-if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action'])) {
+if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action']) && isset($_GET) && isset($_GET['action_on_item'])) {
 	$ACTIVITY_ARRAY = [];
-	$ACTIVITY_ARRAY["id"] = $_GET['id'];
-	$ACTIVITY_ARRAY["type"] = $_GET['type'];
-	$ACTIVITY_ARRAY["action"] = $_GET['action'];
+	$ACTIVITY_ARRAY = array("id" => $_GET['id'], "type" => $_GET['type'], "action" => $_GET['action']);
 	action_on_item($ACTIVITY_ARRAY);
 }
 
@@ -664,9 +662,6 @@ function activityTable()
 	___open_div_('row', '');
 	___open_div_('col-xs-12 col-md-12');
 
-	if (isset($ACTIVITY_ARRAY)) {
-		action_on_item($ACTIVITY_ARRAY);
-	}
 
 	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
 
@@ -877,11 +872,8 @@ function getSessionId()
 /**
  * ACTION EXECUTIONS HERE
  */
-
-
-function action_on_item($ACTIVITY_ARRAY)
-{
-	if (isset($ACTIVITY_ARRAY['function']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
+function action_on_item($ACTIVITY_ARRAY) {
+	if (isset($ACTIVITY_ARRAY['id']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
 		$id = $ACTIVITY_ARRAY['id'];
 		$item = $ACTIVITY_ARRAY['type'];
 		$action = $ACTIVITY_ARRAY['action'];
@@ -921,7 +913,7 @@ function action_on_item($ACTIVITY_ARRAY)
 				$object2->delete();
 			} else {
 				///set new status and update table
-				$object->setFieldStatus($action);
+				$object->setFieldStatus("$action");
 				$object->updateCurrent();
 				if ($action == "active") {
 					$object2->insert();
