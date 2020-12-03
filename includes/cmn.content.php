@@ -3,9 +3,10 @@ ob_start();
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/sendMessage.php';
+require_once $documnetRootPath . '/classes/objectPool.php';
 
 
-if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action']) && isset($_GET) && isset($_GET['action_on_item'])) {
+if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action']) && isset($_GET['action_on_item'])) {
 	$ACTIVITY_ARRAY = [];
 	$ACTIVITY_ARRAY = array("id" => $_GET['id'], "type" => $_GET['type'], "action" => $_GET['action']);
 	action_on_item($ACTIVITY_ARRAY);
