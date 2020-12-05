@@ -756,6 +756,8 @@ EOD;
             } else if ($_POST['rentOrSell'] == "both") {
                 return 'rent and sell';
             }
+        }else{
+            return 'sell';
         }
     }
 

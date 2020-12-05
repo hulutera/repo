@@ -1088,8 +1088,8 @@ class HtItemOther extends MySqlRecord
 			{$this->parseValue($this->fieldMarketCategory, 'notNumber')},
 			{$this->parseValue($this->fieldTableType)})
 SQL;
-        // echo $sql;
-        // exit;
+         //echo $sql;
+         //exit;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -1335,6 +1335,7 @@ SQL;
         echo '<form class="form-horizontal" action="../../includes/form_upload.php?table=' . $this->getTableName() . '&function=edit' . $lang_sw . '" method="post" enctype="multipart/form-data">';
         echo '<!-- file input -->';
         $itemName = $this->getTableNameShort();
+        $_SESSION['POST']['rentOrSell'] = $this->priceTypeGetter();
         $this->insertAllField($itemName, 6);
         echo '</form>';
     }
