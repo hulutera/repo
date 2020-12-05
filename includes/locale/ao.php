@@ -212,7 +212,7 @@ $lang = array(
     ',
     "My Items" => ' Qabeenyawwan koo ',
     "promp msg for uploading more items" => ' Qabeenya dabalataa galchuu yoo barbaaddan<a href="../includes/upload.php?lan=ao"> kana tuqaa...</a> ',
-    "to main page prompt msg" => ' <a href="../index.php?lan=ao">Gara fuula muummeetti...</a>',
+    "to main page prompt msg" => 'Gara fuula muummeetti ...',
     "prompt msg for a wrong access to upload" => ' Qabeenya galchuuf dursitanii <a href="../includes/login.php?lan=ao">galu qabdu...</a>',
     "Back to Post Item" => ' Gara fuula qabeenya galchitaniitti ',
     "password change success" => ' Jechi icciitiichaa haala milka’en jijjirame jira. ',

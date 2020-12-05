@@ -238,7 +238,7 @@ $lang = array(
     'My Items' => 'የኔ ንብረቶች',
     //Upload prompt related
     'promp msg for uploading more items' => 'ተጨማሪ ንብረት ማስገባት ከፈለጉ <a   href="../includes/upload.php' . $lang_url . '">ይህንን ይጫኑ...</a>',
-    'to main page prompt msg' => '<a   href="../index.php' . $lang_url . '">ወደ ፊት ገጽ ... </a>',
+    'to main page prompt msg' => 'ወደ ፊት ገጽ ...',
     'prompt msg for a wrong access to upload' => 'ንብረት ለማስገባት በቅድምያ <a   href="../includes/login.php' . $lang_url . '">መግባት</a> ይኖርቦታል...',
     'Back to Post Item' => "ወደ ንብረት ያስገቡ ገጽ",
     'password change success' => 'የምስጢር ቃልዎ በጥሩ ሁኔታ ተቀይሯል።',

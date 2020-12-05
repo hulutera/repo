@@ -211,7 +211,7 @@ $lang = array(
     ',
     "My Items" => ' Hantidayda ',
     "promp msg for uploading more items" => ' Haddii aad doonaysid in hanti dheeraad ah galisid <a href="../includes/upload.php?lan=so"> kan riix... </a> ',
-    "to main page prompt msg" => ' <a href="../index.php?lan=so"> Ku-noqo bogga weyn ... </a> ',
+    "to main page prompt msg" => 'Ku-noqo bogga weyn ...',
     "prompt msg for a wrong access to upload" => ' Si aad hanti u galisid waa inaad marka hore <a href="../includes/login.php?lan=so"> gashid... </a> ',
     "Back to Post Item" => ' Dib ugu-noqo bogga galinta hantida ',
     "password change success" => ' Waa lagu-guulaystay baddalidda ereyga qarsoodiga. ',

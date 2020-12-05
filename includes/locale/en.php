@@ -240,7 +240,7 @@ $lang = array(
     'My Items' => 'Your Items',
     //Upload prompt related
     'prompt msg for uploading more items' => 'If you wish to upload more item, you can <a   href="../includes/upload.php' . $lang_url . '"> click this... </a>',
-    'to main page prompt msg' => '<a   href="../../index.php' . $lang_url . '">To Home Page ... </a>',
+    'to main page prompt msg' => 'To Home Page ...',
     'prompt msg for a wrong access to upload' => ' You need to <a   href="../includes/login.php' . $lang_url . '"> login </a> in order to upload an item.</br>',
     'Back to Post Item' => "Back to Post Item",
     //Search related

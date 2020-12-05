@@ -73,6 +73,9 @@ function createMessage($type)
 			case 25:
 				$message = $lang['prompt code 25'];
 				break;
+			case 26:
+				$message = $lang['my page'];
+				break;
 			case 404:
 				$message = "Oops! Bad Operation.";
 				break;
@@ -96,11 +99,39 @@ function createMessage($type)
 	<?php
 	headerAndSearchCode(""); ?>
 	<div id="outer">
-		<div class="alert alert-success" id="inner" style="font-size:17px;width:35%">
-			<?php createMessage($type); ?>
-		</div> </br>
-		<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
-			<?php createMessage(23); ?>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-success" id="inner" style="font-size:17px;width:35%">
+					<p class="h2">
+						<?php
+						echo '<i class="fa fa-thumbs-o-up"></i> ';
+						createMessage($type); ?>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
+
+					<?php
+					echo '<a class="h3" href="../index.php' . $lang_url . '"><i class="fa fa-home"></i> ';
+					createMessage(23);
+					echo '</a>'
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
+
+					<?php
+					echo '<a class="h3" href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
+					createMessage(26);
+					echo '</a>' ?>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>

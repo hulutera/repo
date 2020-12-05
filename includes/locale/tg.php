@@ -209,7 +209,7 @@ $lang = array(
     "no users found" => ' በዚ ሓበሬታ ዝፍለጥ ተጠቃሚ የለን፡፡ ',
     "My Items" => ' ተወሳኺ ንጽል ንምርካብ እንተ ድኣ ደሊኩም እዚ ይጻኣኑ ',
     "promp msg for uploading more items" => ' ተወሳኪ ንብረት ንምልጣፍ እንተደተልዮም <a href="../includes/upload.php' . $lang_url . '"> እዚ ይጠውቁ …. </a> ',
-    "to main page prompt msg" => ' <a href="../index.php' . $lang_url . '">ናብ ዋና ገፅ …</a> ',
+    "to main page prompt msg" => 'ናብ ዋና ገፅ …',
     "prompt msg for a wrong access to upload" => ' ንብረት ንምልጣፍ ፈለማ ይመዝገቡ ',
     "Back to Post Item" => ' ናብ ዝተጠቅዑ ንብረታት ተመለስ ',
     "password change success" => 'ይሕለፍ ቃል ለውጢ::',
