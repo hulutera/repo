@@ -1010,6 +1010,7 @@ $abuse_type_lang_arr = [
         'Sex Abuse' => 'ጾታዊ ጥቃት',
         'Sexual Content' => 'ወሲባዊ ይዘት ያለው',
         'Religious violence' => 'የሃይማኖት ሁከት ፈጣሪ',
+        'Age Abuse' => 'ዕድሜ ተኮር ጥቃት',
         'Other' => 'ሌላ'
     ],
     1 => [

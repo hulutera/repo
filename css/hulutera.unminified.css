@@ -278,7 +278,7 @@ form.signin input.button {
 }
 
 .miniSearch {
-	width:75%;
+	width:100%;
 	text-align: center;
 	padding: 10px;
 	background: #333;
@@ -316,9 +316,10 @@ form.signin input.button {
 }
 
 .miniSearch {
-	width: 75%;
+	width: 100%;
 	padding: 10px;
 	margin: auto;
+	margin-top:10px;
 }
 .searchfield {
 	width: 40%;
@@ -2049,7 +2050,7 @@ th {
   ##Device = Laptops, Desktops
 */
 @media (min-width: 1025px) and (max-width: 1440px) {
-	.sidelist-container,.ht-search,.top-links {
+	.sidelist-container {
 		width: 100%;
 		text-align: right;
 	}
@@ -2067,11 +2068,11 @@ th {
 	.ht-left {
 		width: 20%;
 	}
-	.ht-search {
-		width: 100%;
+	.search-header {
+		/*width: 100%;*/
 	}
-	.ht-right {
-		width: 80%;
+	.language-header {
+		/*width: 80%;*/
 	}
 	.logo_img {
 		width: 100%;
@@ -2082,6 +2083,7 @@ th {
 		width: 100%;
 		padding: 10px;
 		margin: auto;
+		margin-top:10px;
 	}
 	.searchfield {
 		width: 40%;
@@ -2249,11 +2251,11 @@ th {
 	.ht-left {
 		width: 20%;
 	}
-	.ht-search {
+	.search-header {
 		width: 100%;
 		padding:0;
 	}
-	.ht-right {
+	.language-header {
 		width: 80%;
 	}
 	.logo_img {
@@ -2345,11 +2347,11 @@ th {
 	.ht-left {
 		width: 30%;
 	}
-	.ht-search {
+	.search-header {
 		width: 100%;
 		padding:0;
 	}
-	.ht-right {
+	.language-header {
 		width: 70%;
 	}
 	.logo_img {
@@ -2365,7 +2367,7 @@ th {
 		width: 100%;
 	}
 	.miniSearch {
-		width: 70%;
+		width: 100%;
 		padding: 10px;
 		margin: auto;
 	}
@@ -2549,11 +2551,11 @@ th {
 	.ht-left {
 		width: 40%;
 	}
-	.ht-search {
+	.search-header {
 		width: 100%;
 		padding:0;
 	}
-	.ht-right {
+	.language-header {
 		width: 60%;
 	}
 	.logo_img {
@@ -2839,12 +2841,12 @@ th {
 	float: left;
 }
 
-.header-top .ht-right {
+.header-top .language-header {
 	float: right;
 	padding: 0px;
 }
 
-.header-top .ht-search {
+.header-top .search-header {
 	display: inline-block;
 	margin: 0 auto;
 }
@@ -2878,12 +2880,12 @@ th {
 	/*#252525;*/
 }
 
-.header-top .ht-right .lan-selector {
+.header-top .language-header .lan-selector {
 	float: right;
 	margin-top: 5px;
 }
 
-.ht-right .lan-selector {
+.language-header .lan-selector {
 	cursor: pointer;
 	display: inline-block;
 	/* position: relative; */
@@ -2901,7 +2903,7 @@ th {
 }
 
 
-.header-top .ht-right .top-links, .top-links {
+.header-top .language-header .top-links, .top-links {
 	float: right;
 	/* padding-right: 20px; */
 	/* padding-top: 15px; */
@@ -2909,7 +2911,7 @@ th {
 	/*#252525;*/
 }
 
-.header-top .ht-right .top-links a, .top-links a {
+.header-top .language-header .top-links a, .top-links a {
 	/*#252525;*/
 	font-size: 14px;
 	display: inline-block;
@@ -2917,7 +2919,7 @@ th {
 	color: white;
 }
 
-.ht-right .lan-selector .ddcommon {
+.language-header .lan-selector .ddcommon {
 	max-width: 142px;
 	-webkit-box-shadow: none!important;
 	box-shadow: none!important;

@@ -996,6 +996,7 @@ $abuse_type_lang_arr = [
         'Sex Abuse' => 'Sex Abuse',
         'Sexual Content' => 'Sexual Content',
         'Religious violence' => 'Religious violence',
+        'Age Abuse' => 'Age Abuse',
         'Other' => 'Other'
     ],
     1 => [

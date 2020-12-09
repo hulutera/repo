@@ -96,26 +96,27 @@ function headerAndSearchCode($item)
 	echo '<header class="header-section">';
 	___open_div_('header-top', '');
 	___open_div_('col-xs-12 col-md-12', ' "style="padding:0px');
-	___open_div_('ht-left col-md-2', '');
-	___open_div_('logox', '');
-	logoImage();
-	___close_div_(2);
-
-	___open_div_('ht-right col-md-10', '');
-	___open_div_('row', '" style="text-align:right;margin:0px');
-	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	locale($current_link);
-	___close_div_(2); //ht-right, row
-
-	___open_div_('row', '" style="margin:0px');
-	topRightLinks();
+	___open_div_('logo-header col-md-2', '');
+	   logoImage();
 	___close_div_(1);
 
-	___open_div_('ht-search col-md-12', '');
+	___open_div_('search-header col-md-7', '');
 	miniSearch();
 	___close_div_(1);
 
-	___close_div_(2); //ht-search = 1 , header-top =1 , col-xs-12 col-md-12 = 1
+	___open_div_('language-header col-md-3', '');
+	___open_div_('row', '" style="text-align:right;margin:0px');
+	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	locale($current_link);
+	___close_div_(1); //language-header, row
+
+	___open_div_('top-right-links col-xs-12 col-md-12', '" style="margin:0px');
+	topRightLinks();
+	___close_div_(2);
+
+
+
+	___close_div_(2); //search-header = 1 , header-top =1 , col-xs-12 col-md-12 = 1
 
 	////
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');

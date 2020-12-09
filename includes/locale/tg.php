@@ -973,6 +973,7 @@ $abuse_type_lang_arr = [
         "Sex Abuse" => ' ፆታዊ ዓመፅ ',
         "Sexual Content" => ' ፆታዊ ርክብ ዝምልተክ ትሕዝቶ ዘለዎም ',
         "Religious violence" => ' ሃይማኖታዊ ዓመፅ ',
+        "Age Abuse" => 'ዕድሜ ተኮር ጥቃት',
         "Other" => ' ካልእ '
     ],
     1 => [

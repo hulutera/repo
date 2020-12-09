@@ -981,6 +981,7 @@ $abuse_type_lang_arr = [
         "Sex Abuse" => ' Miidhaa saalaa   ',
         "Sexual Content" => ' Qabiyee saala kan qabu  ',
         "Religious violence" => ' Jeequmsa amantii kan uumu  ',
+        "Age Abuse" => 'Miidhaa umrii',
         "Other" => ' Kan biraa   '
     ],
     1 => [
