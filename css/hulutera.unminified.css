@@ -2822,15 +2822,16 @@ th {
 */
 
 .header-section {
-	background-color: #f3df39;
+	/* background-color: #f3df39; */
 }
 
 .header-top {
 	display: flex;
 	padding: 0%;
 	/* border-bottom: 1px solid #e5e5e5; */
-	background: black;
-	/* rgb(240, 240, 240); */
+	/* background: black; */
+	background-color: rgb(64, 65, 66);
+	 /* background-color:#ff6f00; */
 }
 
 .header-top .container {
@@ -2992,6 +2993,7 @@ th {
 	display: -ms-flexbox;
 	display: flex;
 	color: black;
+	/* background-color: #FFE0B2; */
 }
 
 .nav-item .nav-depart .depart-btn {
