@@ -54,7 +54,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 					<div class="mobile-main-view col-xs-12">
 						<?php
 						echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
-						echo '<img src="../images/icons/item_latest.png"/>';
+						echo '<img src="../images/icons/items/latest.png"/>';
 						echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p></a>';
 						?>
 					</div>
