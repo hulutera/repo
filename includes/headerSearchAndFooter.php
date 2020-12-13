@@ -99,19 +99,19 @@ function headerAndSearchCode($item)
 	___open_div_('row', '');
     /////////////////////////////
 
-	___open_div_('col-md-2', '');
+	___open_div_('logo-header col-md-2', '');
 	logoImage();
 	___close_div_(1);
-	___open_div_('col-md-7', '');
+	___open_div_('search-header col-md-7', '');
 	miniSearch();
 	___close_div_(1);
-	___open_div_('col-md-3', '');
+	___open_div_('language-header col-md-3', '');
 
 	___open_div_('row', '" style="text-align:right');
 	locale("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 	___close_div_(1);
 
-	___open_div_('row', '');
+	___open_div_('top-right-links col-xs-12 col-md-12', '');
 	topRightLinks();
 	___close_div_(1);
 
@@ -120,7 +120,7 @@ function headerAndSearchCode($item)
 	////////////////////////////
 	___close_div_(3);
 	___open_div_('nav-item', '" style="margin-bottom: 5px;');
-	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto');
+	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto;border-bottom:2px solid #ccc');
 	sidelist($item);
 	___close_div_(2);
 	echo '</header>';
