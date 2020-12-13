@@ -339,7 +339,7 @@ function sidelist($item)
 	echo '<div id="sidelist" class="col-xs-12 col-md-12 ">
 			<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
 		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
-				<i class="glyphicon glyphicon-menu-hamburger" style="color:white"></i></a></span>
+				<i class="glyphicon glyphicon-menu-hamburger" style="color:gray;margin-top:5px;font-size:20px"></i></a></span>
 			</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
