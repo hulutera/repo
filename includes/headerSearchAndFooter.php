@@ -107,7 +107,7 @@ function headerAndSearchCode($item)
 	___close_div_(1);
 	___open_div_('language-header col-md-3', '');
 
-	___open_div_('row', '" style="text-align:right');
+	___open_div_('row', '" style="margin-left:0px;margin-right:0px');
 	locale("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 	___close_div_(1);
 

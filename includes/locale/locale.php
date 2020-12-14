@@ -43,7 +43,7 @@ function locale($current_link)
         $tg => ["ትግርኛ", "ትግ"],
         $so => ["SOMALI", "SO"]
     ];
-    ___open_div_('col-md-12', '" style="padding:0px;');
+    ___open_div_('col-md-12', '');
     echo '<ul class="lan-selector">';
 
     foreach ($language as $key => $value) {
