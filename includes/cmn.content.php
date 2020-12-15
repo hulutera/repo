@@ -236,6 +236,7 @@ function allUsers()
 				echo '<td>' . $value . '</td>';
 			}
 		}
+		echo '<td></td>';
 		echo '</tr>';
 	}
 
