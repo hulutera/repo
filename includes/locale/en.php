@@ -14,6 +14,7 @@ $lang = array(
     'Contact method' => 'Contact Method',
     'change contact method' => 'Change contact method',
     'change your email' => 'Change email',
+    'change language' => 'Change Language',
     'e-mail' => 'e-mail',
     'new e-mail' => 'New e-mail',
     'save' => 'Save',

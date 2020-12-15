@@ -13,6 +13,7 @@ $lang = array(
     'Contact' => 'ባለንብረትን ማግኘት',
     'Contact method' => 'የመገናኛ መንገድ',
     'change contact method' => 'የመገኛመንገድ ለመቀየር',
+    'change language' => 'ቋንቋ ለመቀየር',
     'change your email' => 'ኢሜይል ለመቀየር',
     'e-mail' => 'ኢሜይል',
     'new e-mail' => 'አዲስ ኢሜይል',
@@ -872,8 +873,8 @@ $upload_specific_array = [
             ]
         ],
         'fieldPriceSell' => [
-            0 => 'የመሽጭያ ዋጋ',
-            1 => 'የመሽጭያ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም',
+            0 => 'የመሽጫ ዋጋ',
+            1 => 'የመሽጫ ዋጋ እዚህ ይጻፉ, 0 አይቀበልም',
             2 => 'አይሸጥም',
             3 => 'የግዢ ጣርያ ይምረጡ',
             4 => 'የግዢ ጣርያ  (ብር)',

@@ -193,7 +193,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/ht-logo.png"></a></div>';
+	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/ht-logo-4.svg"></a></div>';
 }
 function logoText()
 {

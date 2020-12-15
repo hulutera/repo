@@ -45,7 +45,7 @@ function locale($current_link)
     ];
     ___open_div_('col-md-12', '');
     echo '<ul class="lan-selector">';
-
+    echo '<span style="color:white; padding:5px;font-weight:bold;">'.$GLOBALS['lang']['change language'].' <i class="fa fa-arrow-right"></i></span>';
     foreach ($language as $key => $value) {
         $id = substr($key, -2);
         if(isset($_GET['lan']) && $_GET['lan'] == $id)

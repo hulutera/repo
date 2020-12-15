@@ -11,6 +11,7 @@ $lang = array(
     "Contact method" => ' መራኸቢ መንገዲ ',
     "change contact method" => ' መራኸቢ መንገዲ ንምቕያር ',
     "change your email" => ' ኢሜይል ንምቕያር ',
+    'change language' => 'ቋንቋ ንምቕያር',
     "e-mail" => ' ኢሜይል ',
     "new e-mail" => ' ሓዱሽ ኢሜይል ',
     "save" => ' ይቀየር ',

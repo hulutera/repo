@@ -11,6 +11,7 @@ $lang = array(
     "Contact method" => 'Habka xidhiidhka ',
     "change contact method" => 'Si aad habka xidhiidhka u badashid ',
     "change your email" => ' Si aad email-ka u badashid ',
+    'change language' => 'Luuqadda u badashid',
     "e-mail" => ' Email ',
     "new e-mail" => 'Email cusub ',
     "save" => 'Ha-labaddalo ',

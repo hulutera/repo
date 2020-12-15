@@ -733,7 +733,7 @@ li .col2 {
 #divCommon .thumbnail p {
 	margin: 0px;
 	font-size: 15px;
-	font-family: Snell Roundhand, cursive;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	text-align: center;
 }
 
@@ -2624,7 +2624,7 @@ th {
 		width: 50%;
 	}
 	.mob-menu-txt {
-		float: left;
+		float: right;
 		padding: 0px;
 		line-height: 30px;
 		vertical-align: middle;

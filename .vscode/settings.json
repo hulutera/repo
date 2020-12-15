@@ -1,5 +1,6 @@
 {
     "files.trimTrailingWhitespace": true,
     "formatFiles.excludePattern": "**/node_modules,**/.vscode,**/dist/**,**/.chrome,**/.git,*.css,**/css,**/js,**/images,*.js,**html*, **svg*, **txt**, **.css*, **css*,*.svg,*.png,*.jpg,*.txt,**db/,**new_layout_template/fonts/**",
-    "formatFiles.extensionsToInclude": "**php"
+    "formatFiles.extensionsToInclude": "**php",
+    "liveServer.settings.port": 5501
 }
