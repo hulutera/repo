@@ -244,7 +244,7 @@ function topRightLinks($style = null)
 		echo '</a>';
 
 		echo '<a href="../../includes/mypage.php' . $lang_url . '">
-		<div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span><span> ' . $user->getFieldUserName() . '<br>' . $user->getFieldPrivilege() . '</span></div></a>';
+		<div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span><span> ' . $user->getFieldFirstName() . '<br>' . $user->getFieldPrivilege() . '</span></div></a>';
 	}
 	___close_div_(1);
 }

@@ -1127,10 +1127,10 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", $style . 'padding-top: 10px;');
         ___open_div_("form-group", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-8 col-xs-12", '" style="margin-bottom:10px');
-        ___open_div_("col-md-12 col-xs-12", '');
-        $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
-        ___close_div_(2);
+        // ___open_div_("col-md-8 col-xs-12", '" style="margin-bottom:10px');
+        // ___open_div_("col-md-12 col-xs-12", '');
+        // $this->insertFillable('fieldUserName',  'user_specific_array', 'user');
+        // ___close_div_(2);
         $fillableFields = ['fieldFirstName', 'fieldLastName'];
         foreach ($fillableFields as $value) {
             ___open_div_("col-md-6 col-xs-12", '" style="margin-bottom:10px');
@@ -1418,7 +1418,7 @@ SQL;
             $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
             $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
 
-            send_mail($this->field_email, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
+            send_mail($this->fieldEmail, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         } else {
             header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         }
@@ -1437,7 +1437,7 @@ SQL;
         $fields = [
             'fieldName' => $this->getFieldFirstName() . ' ' . $this->getFieldLastName(),
             'fieldEmail' => $this->getFieldEmail(),
-            'fieldUserName' => $this->getFieldUserName(),
+            // 'fieldUserName' => $this->getFieldUserName(),
             'fieldPhoneNr' => $this->getFieldPhoneNr(),
             'fieldPassword' => $this->getFieldPassword(),
             'fieldContactMethod' => $this->getFieldContactMethod(),

@@ -917,7 +917,7 @@ SQL;
         $crypto = new Cryptor();
         $cryptoPassword = base64_encode($crypto->encryptor($password));
         $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
-        $this->setFieldUserName($_POST['fieldUserName']);
+        $this->setFieldUserName($email);
         $this->setFieldEmail($email);
         $this->setFieldFirstName($_POST['fieldFirstName']);
         $this->setFieldLastName($_POST['fieldLastName']);
