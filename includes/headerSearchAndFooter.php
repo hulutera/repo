@@ -99,13 +99,11 @@ function headerAndSearchCode($item)
 	___open_div_('row', '');
     /////////////////////////////
 
-	___open_div_('logo-header col-md-2', '');
+	___open_div_('logo-header col-md-4', '');
 	logoImage();
 	___close_div_(1);
-	___open_div_('search-header col-md-7', '');
-	miniSearch();
-	___close_div_(1);
-	___open_div_('language-header col-md-3', '');
+
+	___open_div_('language-header col-md-8', '');
 
 	___open_div_('row', '" style="margin-left:0px;margin-right:0px');
 	locale("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -113,6 +111,12 @@ function headerAndSearchCode($item)
 
 	___open_div_('top-right-links col-xs-12 col-md-12', '');
 	topRightLinks();
+	___close_div_(1);
+	___close_div_(1);
+	___close_div_(1);
+	___open_div_('row', '');
+	___open_div_('search-header col-md-12', '');
+	miniSearch();
 	___close_div_(1);
 
 	___close_div_(1); //col-md-2
@@ -193,7 +197,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a   href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/ht-logo-4.svg"></a></div>';
+	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/ht-logo-4.svg"></a></div>';
 }
 function logoText()
 {
@@ -339,7 +343,7 @@ function sidelist($item)
 	echo '<div id="sidelist" class="col-xs-12 col-md-12 ">
 			<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
 		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
-				<i class="glyphicon glyphicon-menu-hamburger" style="color:gray;margin-top:5px;font-size:20px"></i></a></span>
+				 <i class="fa fa-bars" style="text-align:middle; color:rgb(64,65,66);margin-top:5px;font-size:20px"></i></a></span>
 			</div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
