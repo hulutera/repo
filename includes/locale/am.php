@@ -261,7 +261,7 @@ $lang = array(
     'More Detailed Info' => 'የበለጠ ዝርዝር  ለማስገባት',
     //Prompt
     'pass-recovery success' => 'አዲስ የምስጢር ቃል በኢሜይሎት ልከንልዎታል።እባክዎን ኢሜይሉ ላይ ያለውን መመሪያ ይከተሉ። አዲሱን የምስጢር ቃል አካውንቶ ውስጥ በመግባት መቀየር ይችላሉ።',
-    'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a   href="../includes/login.php">መግባት</a> ይችላሉ።</br> የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
+    'account activated message' => 'አካውንትዎ ገቢራዊ ስለሆነ <a href="../includes/login.php">መግባት</a> ይችላሉ። የአካውንቶ ገጽ ውስጥ የአካውንት መረጃ መቀየር፣ ንብረት ማስገባት እና ያስገቡትን ንብረት መቆጣጠር ይችላሉ።',
     'registration succeded message' => 'ስለተመዘገቡ እናመሰግናለን። መመዝገብዎን የሚያመለክት ኢሜይል ልከንልዎታል። እባክዎን የላክንልዎት ኢሜይል ላይ ያለውን ሊንክ ተጭነው አካውንትዎን ገቢራዊ ያድርጉ።',
     'email adress or username has already used' => 'የመጠቀምያው ስሙ ወይም ኢሜይሉ ተይዟል፣ ሌላ ይሞክሩ።',
     'password change success' => 'የሚስጥር ቃሉ በተሳካ ሁኔታ ተቀይሯል።',

@@ -1,7 +1,7 @@
 <?php
 $lang = array(
     //Header related
-    'LANGUAGE' => 'LANGUAGE',
+    'LANGUAGE' => 'Language',
     'HULUTERA_TEXT_LOGO' => '<span style="color:orange">HULU</span><span style="color:#050598a6">TERA</span>',
     'HULUTERA_TEXT_LOGO2' => '<span style="color:white">HULUTERA</span>',
     'Post Items' => 'Post Items',
@@ -261,7 +261,7 @@ $lang = array(
     'More Detailed Info' => 'More Detailed Info',
     //Prompt
     'pass-recovery success' => 'Password recovery information has now been sent to the e-mail associated with this user.<br> Please follow instructions in the email.',
-    'account activated message' => 'Your account is now active. You may now <a   href="../includes/login.php">Log In</a></br> In your account page, you can update your account informations, post Items and manage the items you posted.',
+    'account activated message' => 'Your account is now active. You may now <a href="../includes/login.php">Log In</a> to your account. In your page, you can update your account informations, post Items and manage the items you posted.',
     'registration succeded message' => 'Thank you for registering. A confirmation mail has been sent to your email. Please click on the activation link to activate your account.',
     'email adress or username has already used' => 'The Email or Username has already been used, try another.',
     'password change success' => 'Your Password has been changed successfully.',

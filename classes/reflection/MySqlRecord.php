@@ -508,7 +508,7 @@ EOD;
         ___open_div_("form-group", "");
         echo <<< EOD
             <label for="{$marketType}">{$label}</label> {$errorMsg}
-                <input id="{$marketType}" name="{$marketType}" type="text"  value="{$value}" placeholder="{$placeholder}" class="form-control">
+                <input id="{$marketType}" name="{$marketType}" type="number"  value="{$value}" placeholder="{$placeholder}" class="form-control">
 EOD;
         ___close_div_(3);
     }

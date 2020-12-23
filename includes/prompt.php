@@ -122,6 +122,7 @@ function createMessage($type)
 				</div>
 			</div>
 		</div>
+	<?php if (isset($_SESSION['uID'])) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
@@ -133,6 +134,7 @@ function createMessage($type)
 				</div>
 			</div>
 		</div>
+	<?php } ?>
 	</div>
 	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>
 	<?php footerCode();

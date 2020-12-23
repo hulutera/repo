@@ -97,36 +97,27 @@ function headerAndSearchCode($item)
 	___open_div_('header-top', '');
 	___open_div_('container', '');
 	___open_div_('row', '');
-    /////////////////////////////
-
-	___open_div_('logo-header col-md-4', '');
+	___open_div_('col-xs-12 col-md-12', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px');
+	___open_div_('language-header-container col-xs-12 col-md-6', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;padding-top:10px');
+	___open_div_('language_header col-xs-12 col-md-12', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;');
+	locale("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+	___close_div_(2);
+	___open_div_('top-rirgt-container col-xs-12 col-md-6', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px');
+	___open_div_('top-right-links', '');
+	topRightLinks();
+	___close_div_(6);
+	___open_div_('col-xs-12 col-md-12', '');
+	___open_div_('header-middle col-xs-12 col-md-10', '" style="margin-bottom:1px;border-bottom:2px solid rgb(64, 65, 66)');
+	___open_div_('logo-header col-xs-3 col-md-2', '" style="padding-right:0px');
 	logoImage();
 	___close_div_(1);
-
-	___open_div_('language-header col-md-8', '');
-
-	___open_div_('row', '" style="margin-left:0px;margin-right:0px');
-	locale("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-	___close_div_(1);
-
-	___open_div_('top-right-links col-xs-12 col-md-12', '');
-	topRightLinks();
-	___close_div_(1);
-	___close_div_(1);
-	___close_div_(1);
-	___open_div_('row', '');
-	___open_div_('search-header col-md-12', '');
+	___open_div_('search-header col-xs-9 col-md-10', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px');
 	miniSearch();
 	___close_div_(1);
-
-	___close_div_(1); //col-md-2
-
-	////////////////////////////
-	___close_div_(3);
-	___open_div_('nav-item', '" style="margin-bottom: 5px;');
-	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto;border-bottom:2px solid #ccc');
+	___open_div_('nav-item col-xs-12 col-md-12', '');
+	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto;');
 	sidelist($item);
-	___close_div_(2);
+	___close_div_(4);
 	echo '</header>';
 	echo '<div class="edge" style="">
 	</div>';
@@ -197,7 +188,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/ht-logo-4.svg"></a></div>';
+	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img class="logo_img" src="../../images/icons/new_temp_logo.png"></a></div>';
 }
 function logoText()
 {
@@ -248,7 +239,7 @@ function topRightLinks($style = null)
 		echo '</a>';
 
 		echo '<a href="../../includes/mypage.php' . $lang_url . '">
-		<div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span><span> ' . $user->getFieldFirstName() . '<br>' . $user->getFieldPrivilege() . '</span></div></a>';
+		<div id=""><span class="glyphicon glyphicon-user" style="font-size:20px"></span><span><br>' . $user->getFieldFirstName() . '</span></div></a>';
 	}
 	___close_div_(1);
 }
@@ -341,10 +332,9 @@ function sidelist($item)
 	];
 	//// TODO:use language to add new classes and use media-query
 	echo '<div id="sidelist" class="col-xs-12 col-md-12 ">
-			<div id="menu_mobile" class="col-xs-12"><span class="mob-menu-txt">' . $lang['MENU'] .
-		'</span><span class="mob-menu-img"><a   href="javascript:void(0)" onClick="mobSidelist()">
-				 <i class="fa fa-bars" style="text-align:middle; color:rgb(64,65,66);margin-top:5px;font-size:20px"></i></a></span>
-			</div><ul>';
+			<div id="menu_mobile" class="col-xs-12"><div class="mobile_inner_div" style="float:right"><a   href="javascript:void(0)" onClick="mobSidelist()"><span class="mob-menu-txt">' . $lang['MENU'] .
+		'</span><span class="mob-menu-img"><i class="fa fa-bars" style="text-align:middle; color:rgb(64,65,66);margin-top:5px;font-size:20px"></i></a></span>
+			</div></div><ul>';
 	echo '<li>';
 	echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
 	echo '<img class="latest-img" src="../images/icons/items/latest.png"/>';

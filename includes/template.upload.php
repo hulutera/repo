@@ -28,8 +28,7 @@ if (isset($_GET['lan'])) {
 </head>
 
 <body>
-	<?php headerAndSearchCode("upload");
-	uploadListNav($lang_sw); ?>
+	<?php headerAndSearchCode("upload"); ?>
 	<div id="whole">
 		<div id="wrapper">
 			<div id="main_section">
