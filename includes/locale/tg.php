@@ -243,7 +243,7 @@ $lang = array(
     "item specification" => ' ዝርዝር መለክዒ ',
     "Enter your message" => ' መልእክቶም ኣብዚ የእትዉ …',
     "contact owner" => ' በዓል ዋና ይርከቡ ',
-    "You forgort to enter your name, email address and Message" => ' ስሞም፣ ኤሜይሎምን መልእክቶምን ከእትዉ ይግባእ ',
+    "You forgot to enter your name, email address and Message" => ' ስሞም፣ ኤሜይሎምን መልእክቶምን ከእትዉ ይግባእ ',
     "Login" => ' እቶ ',
     "Logout" => ' መውፅኢ ',
     "e.g" => ' ንኣብነት ',
@@ -268,8 +268,8 @@ $lang = array(
     'N.B' => 'ምልክታ',
     'msg from' => ' መልእኽቲ  ካብ',
     'item link' => 'item link',
-    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።' //needs update
-
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።', //needs update
+    'related items' => "ተመሳሳሊ ንብረታት",
 );
 
 $city_lang_arr = array(

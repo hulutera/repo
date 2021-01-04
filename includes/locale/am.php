@@ -278,7 +278,7 @@ $lang = array(
     'item specification' => 'ንጥል ዝርዝር',
     'Enter your message' => 'መልዕክቱን እዚህ ላይ ይጻፉ ...',
     'contact owner' => 'ለባለንብረቱ መልዕክት ይላኩ',
-    'You forgort to enter your name, email address and Message' => 'ስምዎን ፣ ኢሜልዎን እና ምልዕክትዎን ማስገባት ይኖርቦታል።',
+    'You forgot to enter your name, email address and Message' => 'ስምዎን ፣ ኢሜልዎን እና ምልዕክትዎን ማስገባት ይኖርቦታል።',
     'Login' => 'ይግቡ',
     'Logout' => 'መዉጣት',
     'e.g' => 'ለምሳሌ',
@@ -303,8 +303,8 @@ $lang = array(
     'N.B' => 'ማሳሰቢያ',
     'msg from' => 'መልዕክት ከ',
     'item link' => 'የንብረቱ መሲብ',
-    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል፣ መልዕክቱን ከታች ያገኛሉ።'
-
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል፣ መልዕክቱን ከታች ያገኛሉ።',
+    'related items' => "ተዛማጅ ንብረቶች"
 );
 
 $city_lang_arr = array(

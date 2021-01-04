@@ -1704,7 +1704,10 @@ SQL;
     public function display()
     {
         echo '<div>';
-        echo "<p class=\"bg-success\"><a   href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\" style=\"background-color:#337ab7;color:white\"></i></a><a   href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none;background-color:#337ab7;color:white\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '<div class="fdl_title">';
+        echo "<p class=\"\"><a   href=\"javascript:void(0)\" onclick=\"hidespec('" . $this->getTableNameShort() .
+        "', '" . $this->getId() . "')\"><i id=\"spec_up_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-up\" style=\"background-color:#BB86FC;color:white\"></i></a><a   href=\"javascript:void(0)\" onclick=\"showspec('" . $this->getTableNameShort() . "', '" . $this->getId() . "')\"><i id=\"spec_down_" . $this->getTableNameShort() . $this->getId() . "\" class=\"glyphicon glyphicon-chevron-down\" style=\"display:none;background-color:##BB86FC;color:white\"></i></a> <strong>" . $GLOBALS['lang']['item specification'] . "</strong></p>";
+        echo '</div>';
         echo '<div id="spec_' . $this->getTableNameShort() . $this->getId() . '" class="itemSpecDiv col-xs-12 col-md-12">';
 
         if ($this->getidCategory() != null) {
@@ -1734,7 +1737,6 @@ SQL;
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
 
     private $uploadOption = array(

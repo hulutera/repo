@@ -1183,8 +1183,6 @@ SQL;
             }
         }
         echo '</div>';
-
-        echo '<div class="priceDivTitle col-xs-12 col-md-12"><p class="bg-success"><strong>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</strong></p></div>';
     }
 
     /**

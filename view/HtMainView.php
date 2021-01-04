@@ -51,13 +51,13 @@ class HtMainView
      *
      * @param resolved by construtor
      */
-    public function show($filter = null)
+    public function show($filter = null, $skipPagination=null, $skipId=null)
     {
         if ($this->_runnerName == 'search') {
             $this->displaySearch();
         } else {
             if ($filter != null) {
-                $this->showItem($filter);
+                $this->showItem($filter, $skipPagination, $skipId);
             }
         }
     }
@@ -121,7 +121,7 @@ class HtMainView
      *  (new HtMainView("car",null))->showItem();  //select * item
      * @param resolved by construtor
      */
-    public function showItem($filter)
+    public function showItem($filter, $skipPagination = null, $skipId=null)
     {
         $ab = ObjectPool::getInstance();
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
@@ -136,7 +136,46 @@ class HtMainView
             echo '<div class="row items-board">';
             $number = 0;
             while ($row = $result->fetch_assoc()) {
-                // check if the user is alos active fetching
+                // check if the user is also active fetching
+                $user = new HtUserAll($row['id_user']);
+                if ($filter == 'active' && !$user->isAccountStatusActive()) {
+                    continue;
+                }
+                if ($skipId == (int)$row['id']) {
+                    continue;
+                }
+                $number++;
+                //item count
+                $this->_itemNumber = $number;
+                $this->showItemWithId($row);
+            }
+            echo '</div>';
+            if (!isset($skipPagination)) {
+                if (empty($dataOnly) && empty($this->_runnerId)) {
+                    pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
+                }
+            }
+        } else {
+            $this->itemNotFound();
+        }
+    }
+
+    public function listRelatedItem($filter)
+    {
+        $ab = ObjectPool::getInstance();
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
+        // Send query to the main item class
+        $condition = "WHERE field_status = '$filter'";
+        $rows = $this->_pItem->runQuery($condition);
+        if ($rows > 0) {
+            $calculatePageArray = calculatePage($rows);
+            $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
+            $res = $this->_pItem->runQuery($condition, $start, $GLOBALS['general']['itemPerPage']);
+            $result = $this->_pItem->getResultSet();
+            echo '<div class="row items-board">';
+            $number = 0;
+            while ($row = $result->fetch_assoc()) {
+                // check if the user is also active fetching
                 $user = new HtUserAll($row['id_user']);
                 if ($filter == 'active' && !$user->isAccountStatusActive()) {
                     continue;
@@ -147,14 +186,128 @@ class HtMainView
                 $this->showItemWithId($row);
             }
             echo '</div>';
-            if (empty($dataOnly) && empty($this->_runnerId)) {
-                pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
-            }
+
         } else {
             $this->itemNotFound();
         }
     }
 
+    public function thumbNail($row)
+    {
+
+
+        if (isset($_SESSION['uID'])) {
+            $user = new HtUserAll($_SESSION['uID']);
+        }
+        global $documnetRootPath, $lang_url;
+        $itemNumber = $this->_itemNumber;
+        $this->_pItem->setFieldValues($row);
+        $id =  $this->_pItem->getId();
+        $itemName = $this->_runnerName;
+        $uniqueId = $itemName . '-' . $id;
+        $commonViewObj = new HtCommonView($itemName);
+
+
+        $imageArray = json_decode($this->_pItem->getFieldImage());
+        $imageDir = "";
+        if (isset($imageArray)) {
+            $imageDir = $commonViewObj->getImageDir($this->_pItem);
+        } else {
+            $imageDir = "../images/en/";
+            $imageArray = ["../images/en/en.svg"];
+        }
+        //prepend with image directory
+        foreach ($imageArray as &$value1) {
+            $value1 = $imageDir . $value1;
+        }
+
+        $numimage = sizeof($imageArray);
+        $thmbnlImg  = $imageArray[0];
+
+        //---------------------------------------------------------
+        /*START @ divCommon col-md-4 col-sm-6*/
+        if (isset($_GET['status']) and isset($_GET['id'])) {
+            if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
+                $style = "style=\"height:480px\"";
+            } else {
+                $style = "style=\"height:380px\"";
+            }
+        } else {
+            $style = "style=\"height:380px\"";
+        }
+        $url = $_SERVER['REQUEST_URI'];
+        if(basename(parse_url($url)['path']) == "detail.php")
+        $size = "col-xs-12 col-md-12 col-sm-6";
+        else
+        $size = "col-xs-12 col-md-4 col-sm-6";
+
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . $size."\">";
+
+        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
+        /*START @ thumbnail thumbnail-property features*/
+        echo '<div class="thumbnail thumbnail-property features" ' . $style . '>';
+        /*START @ property-image object-fit-container compat-object-fit*/
+        echo '<div class="property-image object-fit-container compat-object-fit">';
+        echo '<div class="image-count"><i style="color:yellow;background-color:black" class="icon-image"></i><span style="color:yellow;background-color:black">' . $numimage . '</span></div>';
+        echo '<img src="' . $thmbnlImg . '" alt="" />';
+
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
+        echo '<span class="property-im-m property-im-m-lt"></span>
+             <span class="property-im-m property-im-m-lb"></span>
+             <span class="property-im-m property-im-m-rt"></span>
+             <span class="property-im-m property-im-m-rb"></span>
+         </a>';
+        echo  '</div>';
+        echo '<p style="background-color:#19D9FD;margin-top:1px;color:black;text-align:center">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+        /*END @property-image object-fit-container compat-object-fit*/
+
+        /*START @ Caption*/
+        echo '<div class="caption">';
+        echo '<h3 class="property-title">';
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
+        echo $commonViewObj->displayTitle($this->_pItem);
+        echo "</a>";
+        echo '</h3>';
+
+        echo '<p class="property-description"></p>';
+        $commonViewObj->displayLocation($this->_pItem);
+        $commonViewObj->displayUpldTime($this->_pItem);
+        echo '<span class="property-field">';
+        $commonViewObj->displayPrice($this->_pItem);
+        global $str_url;
+        if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
+            if ($row['id_user'] == $user->getId()) {
+                echo '<div class="' . $uniqueId . '-rem-msg col-xs-12 col-md-12 rem-action-div" style="border:1px solid black;color:color">';
+                echo '<p style="color:red">' . $GLOBALS['lang']['item remove confirmation msg'] . '</p>';
+                echo "</br></br><button type=\"button\" class=\"btn btn-success\" onclick=\"item_action('$uniqueId', $itemNumber)\">" . $GLOBALS['lang']['yes'] . "</button> &nbsp;&nbsp; <button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-rem-msg', '" . $uniqueId . "-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button>";
+                echo '</div>';
+                echo '<div class="' . $uniqueId . '-myItem-action">';
+                $editLink = "";
+                foreach ($row as $key => $value) {
+                    $temp = "&" . $key . "=" . $value;
+                    $editLink .= $temp;
+                }
+                $editLink = ltrim($editLink, '&');
+                $crypto = new Cryptor();
+                $editLinkCrypted = urlencode($editLink);
+                echo '<a href="../includes/template.upload.php?function=upload&type=' . $itemName . '&action=edit&data=' . $editLinkCrypted . $str_url . '"><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
+                echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-myItem-action', '" . $uniqueId . "-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
+                echo '</div>';
+            }
+        }
+        echo '</span>';
+        if (isset($user) && ($user->isWebMaster() || $user->isAdmin())) {
+            echo '<p class="h4">' . $uniqueId . '</p>';
+        }
+        echo '</div>';
+        /*END @Caption*/
+        echo '</div>';
+        echo '</div>';
+        echo  "</div>"; // #divCommon end
+        echo "</a>";
+        //---------------------------------------------------------
+    }
     /**
      *
      */
@@ -165,11 +318,66 @@ class HtMainView
         $result = $this->_pItem->getResultSet();
         $sql =  $this->_pItem->lastSql();
         $result = $this->_pItem->query($sql);
+        var_dump($sql);
         $result->data_seek(0);
 
         while ($row = $result->fetch_assoc()) {
             $this->showItemWithId($row);
         }
+    }
+
+    public function showOneItemDetailed($item_order = null)
+    {
+        $this->_itemNumber = $item_order;
+        $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName, $this->_runnerId, $this->_runnerStatus);
+        $result = $this->_pItem->getResultSet();
+        $sql =  $this->_pItem->lastSql();
+        $result = $this->_pItem->query($sql);
+        // var_dump($sql);
+        $result->data_seek(0);
+
+        while ($row = $result->fetch_assoc()) {
+            $this->showItemWithDetailId($row);
+        }
+    }
+    public function showItemWithDetailId($row)
+    {
+        $this->_itemNumber = (int)$row['id'];
+        $id = $itemNumber = $this->_itemNumber;
+        $this->_pItem->setFieldValues($row);
+        $itemName = $this->_runnerName;
+        $uniqueId = $itemName . '-' . $itemNumber;
+        $commonViewObj = new HtCommonView($itemName);
+        $imageArray = json_decode($this->_pItem->getFieldImage());
+        $imageDir = "";
+        if (isset($imageArray)) {
+            $imageDir = $commonViewObj->getImageDir($this->_pItem);
+        } else {
+            $imageDir = "../images/en/";
+            $imageArray = ["../images/en/en.svg"];
+        }
+        //prepend with image directory
+        foreach ($imageArray as &$value1) {
+            $value1 = $imageDir . $value1;
+        }
+        $numimage = sizeof($imageArray);
+        echo '<div class="featured_detailed col-xs-12 col-sm-12 col-md-12" id="divDetail_'.$itemName.'_' . $itemNumber . '">'; // .featured_detailed2 start
+        echo '<div class="featured_detailed_left col-xs-12 col-md-4 align-center">';    // start div for the left side of the item detailed section
+        $commonViewObj->displayTitle($this->_pItem);
+        // echo '<div class="fdl_spec">';    // start div for the left side of the item detailed section
+        $this->_pItem->display();
+        // echo "</div>"; // .fdl_spec end
+        $commonViewObj->displayPrice($this->_pItem);
+        $commonViewObj->displayContactMethod($uniqueId,  $this->_pItem, $itemName);
+        $commonViewObj->displayMailCfrm($uniqueId, $id, $itemName);
+        $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
+        $commonViewObj->displayMailForm($uniqueId, $id, $itemName,  $this->_pItem->getIdUser());
+        $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
+        echo "</div>"; // featured_detailed_left end
+        echo '<div class="featured_detailed_right col-xs-12 col-md-8">';
+        $commonViewObj->displayGallery($imageArray);
+        echo "</div>"; // .featured_detailed_right end
+        echo "</div>"; // .featured_detailed end
     }
 
     private function dumpData()
@@ -187,133 +395,9 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
-        if (isset($_SESSION['uID'])) {
-            $user = new HtUserAll($_SESSION['uID']);
-        }
-        global $documnetRootPath, $lang_url;
-        $itemNumber = $this->_itemNumber;
-        $this->_pItem->setFieldValues($row);
-        $id =  $this->_pItem->getId();
-        $itemName = $this->_runnerName;
-        $uniqueId = $itemName . '-' . $id;
-        $commonViewObj = new HtCommonView($itemName);
-
-
-        $imageArray = json_decode($this->_pItem->getFieldImage());
-        $imageDir = "";
-        if(isset($imageArray)){
-            $imageDir = $commonViewObj->getImageDir($this->_pItem);
-        }else{
-            $imageDir = "../images/en/";
-            $imageArray = ["../images/en/en.svg"];
-        }
-        //prepend with image directory
-        foreach ($imageArray as &$value1) {
-            $value1 = $imageDir . $value1;
-        }
-
-        $numimage = sizeof($imageArray);
-        $thmbnlImg  = $imageArray[0];
-
-        //---------------------------------------------------------
-        /*START @ divCommon col-md-4 col-sm-6*/
-        if(isset($_GET['status']) and isset($_GET['id'])) {
-            if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
-                $style = "style=\"height:480px\"";
-            } else {
-                $style = "style=\"height:380px\"";
-            }
-        } else {
-            $style = "style=\"height:380px\"";
-        }
-
-        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " col-xs-12 col-md-4 col-sm-6\">";
-
-        echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
-        /*START @ thumbnail thumbnail-property features*/
-        echo '<div class="thumbnail thumbnail-property features" '. $style .'>';
-        /*START @ property-image object-fit-container compat-object-fit*/
-        echo '<div class="property-image object-fit-container compat-object-fit">';
-        echo '<div class="image-count"><i style="color:yellow;background-color:black" class="icon-image"></i><span style="color:yellow;background-color:black">' . $numimage . '</span></div>';
-        echo '<img src="' . $thmbnlImg . '" alt="" />';
-
-        echo "<a   href=\"javascript:void(0)\"  class=\"property-image-hover\" onclick=\"swap('$itemName', " . $itemNumber . ")\" id=\"thumbnail_" . $itemName . "_" . $itemNumber . "\">";
-
-        echo '<span class="property-im-m property-im-m-lt"></span>
-             <span class="property-im-m property-im-m-lb"></span>
-             <span class="property-im-m property-im-m-rt"></span>
-             <span class="property-im-m property-im-m-rb"></span>
-         </a>';
-         echo  '</div>';
-         echo '<p style="background-color:#19D9FD;margin-top:1px;color:black;text-align:center">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
-        /*END @property-image object-fit-container compat-object-fit*/
-
-        /*START @ Caption*/
-        echo '<div class="caption">';
-
-        echo '<h3 class="property-title">';
-        echo "<a   href=\"javascript:void(0)\"
-        onclick=\"swap('$itemName', " . $itemNumber . ")\">";
-        echo $commonViewObj->displayTitle($this->_pItem);
-        echo "</a>";
-        echo '</h3>';
-
-        echo '<p class="property-description"></p>';
-        $commonViewObj->displayLocation($this->_pItem);
-        $commonViewObj->displayUpldTime($this->_pItem);
-        echo '<span class="property-field">';
-        $commonViewObj->displayPrice($this->_pItem);
-        global $str_url;
-        if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
-            if ($row['id_user'] == $user->getId()) {
-                echo '<div class="' . $uniqueId .'-rem-msg col-xs-12 col-md-12 rem-action-div" style="border:1px solid black;color:color">';
-                    echo '<p style="color:red">'. $GLOBALS['lang']['item remove confirmation msg'] . '</p>';
-                    echo "</br></br><button type=\"button\" class=\"btn btn-success\" onclick=\"item_action('$uniqueId', $itemNumber)\">" . $GLOBALS['lang']['yes'] . "</button> &nbsp;&nbsp; <button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-rem-msg', '". $uniqueId."-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button>";
-                echo '</div>';
-                echo '<div class="' . $uniqueId .'-myItem-action">';
-                $editLink = "";
-                foreach ($row as $key => $value) {
-                    $temp = "&" .$key ."=" .$value;
-                    $editLink .= $temp;
-                }
-                $editLink = ltrim($editLink,'&');
-                $crypto = new Cryptor();
-                $editLinkCrypted = urlencode($editLink);
-                echo '<a href="../includes/template.upload.php?function=upload&type='.$itemName.'&action=edit&data='.$editLinkCrypted.$str_url.'"><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
-                echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('". $uniqueId."-myItem-action', '". $uniqueId."-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
-                echo '</div>';
-            }
-        }
-        echo '</span>';
-        if (isset($user) && ($user->isWebMaster() || $user->isAdmin())) {
-            echo '<p class="h4">' . $uniqueId . '</p>';
-        }
-        echo '</div>';
-        /*END @Caption*/
-        echo '</div>';
-        echo '</div>';
-        /*END @thumbnail thumbnail-property features*/
-        echo  "</div>"; // #divCommon end
-        //---------------------------------------------------------
-
-        echo "<div style =\"display:none;\" class=\"featured_detailed col-xs-12 col-sm-12 col-md-12\" id=\"divDetail_$itemName" . "_" . $itemNumber . "\">"; // .featured_detailed2 start
-        echo "<div id=\"featured_right_sideRemove\" class=\"col-xs-12 col-md-4 align-center\">";    // start div for the left side of the item detailed section
-        echo "<div class=\"showbutton_hideRemove  bg-success col-xs-12 col-md-12\" style=\"margin-bottom:5px;margin-top:5px\" >
-		<input class=\"hide-detailRemove btn btn-primary btn-xs\" style=\"width:100%\" type=\"button\"  onclick=\"swapback('$itemName', " . $itemNumber . ")\"
-		value=\"" . $GLOBALS['lang']['Hide Detail'] . "\"/></div>";
-        $commonViewObj->displayTitle($this->_pItem);
-        $this->_pItem->display();
-        $commonViewObj->displayPrice($this->_pItem);
-        $commonViewObj->displayContactMethod($uniqueId,  $this->_pItem, $itemName);
-        $commonViewObj->displayMailCfrm($uniqueId, $id, $itemName);
-        $commonViewObj->displayReportReq($uniqueId, $id, $itemName);
-        $commonViewObj->displayMailForm($uniqueId, $id, $itemName,  $this->_pItem->getIdUser());
-        $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
-        echo "</div>"; // left side div end
-        $commonViewObj->displayGallery($imageDir, $imageArray, $numimage, $id, $itemName);
-        echo "</div>"; // .featured_detailed end
-
+        $this->thumbNail($row);
     }
+
 
     /**
      * Main interface to display item for upload

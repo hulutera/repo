@@ -194,10 +194,10 @@ class HtCommonView extends MySqlRecord
         $userObj = new HtUserAll($userId);
         $email = $userObj->getFieldEmail();
         $language = isset($_GET['lan']) ? $_GET['lan'] : 'en';
-        echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\">";
-        echo "<form class=\"msgcontainerRemove thumbnail\" method=\"post\">";
+        echo "<div style=\"display:none;\" class=\"message_$uniqueId col-xs-12 col-md-12\" style=\"margin:0;padding:0px;\">";
+        echo "<form class=\"msgcontainerRemove thumbnail-message\" method=\"post\" >";
         echo "<div style=\"display:none;\" class=\"error_1$uniqueId form-group\">
-             <p class=\"bg-danger\">" . $GLOBALS['lang']['You forgort to enter your name, email address and Message'] . "
+             <p class=\"bg-danger\">" . $GLOBALS['lang']['You forgot to enter your name, email address and Message'] . "
              </div>";
         echo "<div style=\"display:none;\" class=\"error_2$uniqueId form-group\">
              <p class=\"bg-danger\">" . $GLOBALS['lang']['Your e-mail address is invalid'] . "
@@ -206,15 +206,15 @@ class HtCommonView extends MySqlRecord
         echo '<p>' . $GLOBALS["lang"]["contact owner"] . '</p>';
         echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"name\">" . $GLOBALS['lang']['Your name'] . "</label></br>";
-        echo '<input type="text" style="width:90%" id="name_' . $uniqueId . '" name="name"/>';
+        echo '<input type="text" id="name_' . $uniqueId . '" name="name" class="thumbnail-message-text"/>';
         echo "</div>"; //end_field
         echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"email\">" . $GLOBALS['lang']['Email'] . "</label></br>";
-        echo '<input style="text-transform:lowercase;width:90%" type="email"  id="email_' . $uniqueId . '" name="email"/>';
+        echo '<input class="thumbnail-message-email" type="email"  id="email_' . $uniqueId . '" name="email"/>';
         echo "</div>"; //end_field
         echo "<div class=\"fieldRemove form-group\">";
         echo "<label for=\"description\">" . $GLOBALS['lang']['Message'] . "</label>";
-        echo '<textarea name="description" id="description_' . $uniqueId . '" style="height:50px;width:100%" placeholder="' . $GLOBALS['lang']['Enter your message'] . '"></textarea>';
+        echo '<textarea class="thumbnail-message-textarea" name="description" id="description_' . $uniqueId . '"  placeholder="' . $GLOBALS['lang']['Enter your message'] . '"></textarea>';
         echo "</div>"; //end_field
         echo "<div class=\"messageRouter1 form-group\">";
         echo "<input class=\"sendRemove btn btn-primary btn-sm\" type=\"button\" style=\"margin: 0px 10px\" onclick=\"swapmailback($itemId, '$email','$itemName', '$language')\" value=\"" . $GLOBALS['lang']['Send'] . "\" />";
@@ -239,63 +239,70 @@ class HtCommonView extends MySqlRecord
         $userName = $userObj->getFieldFirstName();
 
         echo "<div id=\"mail_reportRemove\" style=\"margin-top:20px\" class=\"contact_$uniqueId \">";
-        echo '<div class="headerRemove"><p class="bg-success"><strong>' . $GLOBALS["lang"]["Contact method"] . '</strong></p></div>';
-        if ($contactType == "email" or $contactType == "both") {
-            if ($email != "" or $email != NULL) {
-                echo "<div class=\"email\">
-                <p><i class=\"glyphicon glyphicon-envelope\" style=\"color:cornflowerblue\"></i>&nbsp<a  href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
-            }
-        }
+        echo '<div class="headerRemove h2 fdl_title"><p>' . $GLOBALS["lang"]["Contact method"] . '</p></div>';
         if ($contactType == "phone" or $contactType == "both") {
             if ($phone != "" or $phone != NULL) {
-                echo "<div class=\"phone\">
-                <p><i class=\"glyphicon glyphicon-phone-alt\"  style=\"color:cornflowerblue\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
+                echo "<div class=\"phone fdl_contact\">
+                <p><i class=\"glyphicon glyphicon-phone-alt\"></i>&nbsp" . $userName . ": " . $phone . "</p></div>";
+            }
+        }
+        if ($contactType == "email" or $contactType == "both") {
+            if ($email != "" or $email != NULL) {
+                echo "<div class=\"email fdl_contact\">
+                <p><i class=\"glyphicon glyphicon-envelope\"></i>&nbsp<a href=\"javascript:void(0)\" onclick=\"swapmail($itemId,'$itemName')\">" . $GLOBALS['lang']['Send a message'] . "</a></p></div>";
             }
         }
 
-        echo "<div class=\"abuse\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i><a  href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
+        echo "<div class=\"abuse fdl_contact\" style=\"color:#0d6aac\"><i class=\"glyphicon glyphicon-alert\" style=\"color:red\"></i>&nbsp<a href=\"javascript:void(0)\" onclick=\"swapabuse($itemId,'$itemName')\">" . $GLOBALS['lang']['Report Abuse'] . "</a></div>";
         echo "</div>";
     }
 
-    public function displayGallery($dir, $imageNameArray, $numimage, $itemId, $itemName)
+    public function displayGallery($imageNameArray)
     {
-        // var_dump($dir);
-        // var_dump($imageNameArray);
-        // var_dump($numimage);
-        // var_dump($itemId);
-        // var_dump($itemName);
-
+        $image_count = 0;
+        $button_html = '';
+        $slider_html = '';
+        $thumb_html = '';
         $filterArr = array('"', '[', ']');
-        $fileNameLarge = $imageNameArray[0];//str_replace($filterArr, '', $imageFileNameLarge);
-        echo "<div class=\"featured_left_sideRemove col-xs-12 col-md-8\"  style=\"padding:0px;\">";
-        if ($numimage == 0) {
-            $imageNotFound = $fileNameLarge;
-            echo '<div id="featured_left_side_bigImageOnlyRemove" class="col-xs-12 col-md-12"><img class="largeImg" style="background-color:white" src="' . $imageNotFound . '" ></div>';
-        } else {
-            echo "<div id=\"featured_left_side_bigImageRemove\" class=\"largeImg1 col-xs-12 col-md-12\" style=\"background-color:#ebf0f1;height:500px\"><img class=\"largeImg\" style=\"max-height:100%;max-width:100%;object-fit: contain\"  id=\"largeImg" . $itemName . $itemId . "\" src=\"" . $fileNameLarge . "\"></div>";
-            echo '<div class="col-xs-12 col-md-12" style="padding:0px; background-color:beige;border:2px solid black">';
-            for ($i = 0; $i < $numimage; $i++) {
-                $imageFileName = $imageNameArray[$i];
-                $fileName = str_replace($filterArr, '', $imageFileName);
-                $divName = $fileName . $i;
-                echo "<div id=\"featured_buttom1\" class=\"col-xs-3 col-md-2\" style=\"padding:0px\">";
-                echo "<div class=\"imagesGallery1 thumbnail\">";
-                echo "
-				<a   href=\"javascript:void(0)\" onclick=\"imgnumber('$dir','$fileName',$itemId, '$itemName')\"\">
-				<img class=\"featured_buttom_img1\"  id=\"$divName\" src=\"$fileName\" />
-				</a>
-                ";
-                echo "</div>";
-                echo "</div>";
+        for ($i = 0; $i < sizeof($imageNameArray); $i++) {
+            $active_class = "";
+            if (!$image_count) {
+                $active_class = 'active';
+                $image_count = 1;
             }
-            echo "</div>";
+            $image_count++;
+            $imageFileName = $imageNameArray[$i];
+            $fileName = str_replace($filterArr, '', $imageFileName);
+            $thumb_image = $imageFileName;//"nature_thumb_" . $itemId . ".jpg";
+            // slider image html
+            $slider_html .= "<div class='item " . $active_class . "'>";
+            $slider_html .= "<img src='" . $fileName . "' alt='1.jpg' class='img-responsive' style='margin:auto; display: block;'>";
+            $slider_html .= "<div class='carousel-caption'></div></div>";
+            // Thumbnail html
+            $thumb_html .= "<li><img style=\"max-height:100px\" src='" . $thumb_image . "' alt='".$thumb_image."'></li>";
+            // Button html
+            $button_html .= "<li data-target='#carousel-example-generic' data-slide-to='" . $image_count . "' class='" . $active_class . "'></li>";
         }
-        echo "</div>";
+        echo '
+	<div id="carousel-example-generic"  class="carousel slide" data-ride="carousel" data-interval="false" style="height:500px;" >
+
+		<div class="carousel-inner" style="margin:0;">' . $slider_html . '</div>
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+
+	</div>
+    <ul class="thumbnails-carousel clearfix">' . $thumb_html . '</ul>
+        ';
     }
 
     public function displayPrice($itemObj)
     {
-        echo "<div class=\"price\">";
+        echo '<div class="fdl_title col-xs-12 col-md-12"><p>' . $GLOBALS["upload_specific_array"]["common"]["rentOrSell"][3] . '</p></div>';
+        echo "<div class=\"fdl_price_value\">";
         switch ($this->_itemName) {
             case "car":
             case "house":

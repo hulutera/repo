@@ -278,7 +278,7 @@ $lang = array(
     'item specification' => 'Specification',
     'Enter your message' => 'Enter your message here ....',
     'contact owner' => 'Contact the owner',
-    'You forgort to enter your name, email address and Message' => 'You need to enter your name, email and message.',
+    'You forgot to enter your name, email address and Message' => 'You need to enter your name, email and message.',
     'Login' => 'Login',
     'Logout' => 'Logout',
     'e.g' => 'e.g',
@@ -303,8 +303,8 @@ $lang = array(
     'N.B' => 'Notice',
     'msg from' => 'Message from',
     'item link' => 'Item Link',
-    'mail introduction' => 'Hi! We at Hulutera.com appreciate your engagement with our website. One user showed an interest in your item and sent you a message. You can find the user information below.'
-
+    'mail introduction' => 'Hi! We at Hulutera.com appreciate your engagement with our website. One user showed an interest in your item and sent you a message. You can find the user information below.',
+    'related items' => "Related Items"
 );
 
 $city_lang_arr = array(

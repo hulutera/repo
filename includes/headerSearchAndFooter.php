@@ -53,11 +53,15 @@ function commonHeaderJs()
 		echo '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
 	} else {
 		//use local
-		echo '<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>';
-		echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
+
+		echo '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+		echo "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>";
+		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+
 	}
 }
 function commonHeader()

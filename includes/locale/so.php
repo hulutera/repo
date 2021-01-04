@@ -247,7 +247,7 @@ $lang = array(
     "item specification" => ' Sharraxaad faah-faahsan ',
     "Enter your message" => ' Farriintaada meeshan ku-qor ... ',
     "contact owner" => ' Mulkiilaha farriin udir ',
-    "You forgort to enter your name, email address and Message" => ' Waxaa lagagaaga baahan-yahay in aad galisid magacaaga, email-kaaga iyo farrintaada. ',
+    "You forgot to enter your name, email address and Message" => ' Waxaa lagagaaga baahan-yahay in aad galisid magacaaga, email-kaaga iyo farrintaada. ',
     "Login" => ' Gal ',
     "Logout" => ' Ka-bixid ',
     "e.g" => ' Tusaale ',
@@ -272,7 +272,8 @@ $lang = array(
     'N.B' => 'ogeysiis',
     'msg from' => 'Fariin ka',
     'item link' => 'Item link',
-    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።' //needs update
+    'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።', //needs update
+    'related items' => "ተዛማጅ ንብረቶች"
 
 );
 
