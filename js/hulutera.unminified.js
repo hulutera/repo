@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 
+
 function itemSelect() {
     $(document).ready(function () {
         item = $("#item").val();

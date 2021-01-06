@@ -396,7 +396,7 @@ class ValidateUser
                 array_push($err, $input);
                 header("Location: ../../includes/form_user.php?function=login" . $str_url);
             }
-        } elseif ($function == 'password-recovery') {
+        } else if ($function == 'password-recovery') {
             $email = $_POST['fieldEmail'];
             $sql =  array('sql' => "SELECT DISTINCT * FROM user_all WHERE field_email = \"$email\"");
 
@@ -409,10 +409,10 @@ class ValidateUser
             } else {
                 $userAll->recoverPassword();
             }
-        } elseif ($function == 'edit-profile') {
+        } else if ($function == 'edit-profile') {
             $userAll = new HtUserAll($_SESSION['uID']);
             $userAll->finalizeEditProfile();
-        } elseif ($function == 'contact-us') {
+        } else if ($function == 'contact-us') {
             $object = new HtUtilContactUs();
             $object->finalizeContactUs();
         }

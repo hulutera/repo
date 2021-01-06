@@ -898,9 +898,12 @@ EOD;
     protected function loadImages($table, $idUser,$idTemp, &$imagesList)
     {
         //create a folder for image upload
-        $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
+        $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp . '/';
+        $dir_thumbnail_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp . '/thumbnail';
+
         if (!file_exists($directory)) {
-            mkdir($directory, 0777, true);
+            mkdir($dir_img, 0777, true);
+            mkdir($dir_thumbnail_img, 0777, true);
         }
 
         // initialize FileUploader
@@ -910,13 +913,13 @@ EOD;
             'fileMaxSize' => null,
             'extensions' => null,
             'required' => true,
-            'uploadDir' => $directory . '/',
+            'uploadDir' => $dir_img,
             'title' => 'name',
             'replace' => false,
             'editor' => array(
-                'maxWidth' => 640,
-                'maxHeight' => 480,
-                'quality' => 90
+                'maxWidth' => 800,
+                'maxHeight' => 800,
+                'quality' => 95
             ),
             'listInput' => true,
             'files' => null,
@@ -924,8 +927,22 @@ EOD;
         ));
 
         // call to upload the files
-        $FileUploader->upload();
+        $data = $FileUploader->upload();
+
+        shell_exec("cp -r $dir_img $dir_thumbnail_img");
+        // if uploaded and success
+        if ($data['isSuccess'] && count($data['files']) > 0) {
+            // get uploaded files
+            $uploadedFiles = $data['files'];
+            // create thumbnails
+            foreach($uploadedFiles as $item) {
+                FileUploader::resize($filename = $item['file'], $width = 250, $height = null, $destination = $dir_thumbnail_img . '/'. $item['name'], $crop = false, $quality = 95);
+            }
+        }
+
         // get the fileList and encode in json
         $imagesList = (string)json_encode($FileUploader->getFileList('name'));
+
+
     }
 }

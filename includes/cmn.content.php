@@ -128,9 +128,8 @@ function userContent()
 		}
 		echo '</div>';
 		echo '</div>';
-		//echo '</div>';
 
-		pagination('userActive', $totpage, $page, 0);
+		pagination('userActive', $totpage, $page);
 	} elseif ($sum <= 0) {
 		echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
 		echo '<div id="spanMainColumnXRemove" style="color: red">';

@@ -16,7 +16,6 @@ if (!empty($err2)) {
 
 	var_dump($err2);
 	var_dump($_SESSION['POST']);
-
 	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
 		$redirectLink = $_SERVER['HTTP_REFERER'];
 	} else {
@@ -24,7 +23,6 @@ if (!empty($err2)) {
 		$lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
 		$redirectLink = './template.upload.php?function=upload&type=' . $itemName . $lang_sw;
 	}
-
 	$_SESSION['OPTIONS'] = $validate->getDefaultOptions();
 	$input = implode('', array_map(
 		function ($v) {

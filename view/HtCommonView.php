@@ -273,7 +273,7 @@ class HtCommonView extends MySqlRecord
             $image_count++;
             $imageFileName = $imageNameArray[$i];
             $fileName = str_replace($filterArr, '', $imageFileName);
-            $thumb_image = $imageFileName;//"nature_thumb_" . $itemId . ".jpg";
+            $thumb_image = $imageFileName;
             // slider image html
             $slider_html .= "<div class='item " . $active_class . "'>";
             $slider_html .= "<img src='" . $fileName . "' alt='1.jpg' class='img-responsive' style='margin:auto; display: block;'>";

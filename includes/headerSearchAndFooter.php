@@ -6,6 +6,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/classes/reflection/class.config.php';
+
+
 if (isset($_GET['lan'])) {
 	global $language;
 	$language = $_GET['lan'];
@@ -27,7 +29,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/global.variable.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sendMessage.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/map.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/search.php';
-
 
 function commonHeaderCssMeta()
 {
@@ -268,7 +269,7 @@ function miniSearch()
 	item();
 	city();
 	echo '<button type="submit button" class="search-btn btn btn-warning"  onclick="itemSelect()"><i class="search">' . $GLOBALS['lang']['search-button'] . '</i></button>';
-	echo '</div>';
+	echo '<div id="suggesstion-box"></div></div>';
 	carSearch();
 	houseSearch();
 	computerSearch();
@@ -578,4 +579,8 @@ function Redirect($url, $permanent = false)
 
 	exit();
 }
+
 ?>
+
+
+

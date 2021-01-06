@@ -95,7 +95,8 @@ class HtMainView
                 }
             }
             echo '</div>';
-            search_pagination($calculatePageArray[0], $calculatePageArray[1], "", "All", "All");
+            $get_array = $_GET;
+            search_item_pagination($calculatePageArray[0], $calculatePageArray[1], $get_array);
         } else {
             $this->itemNotFound();
         }
@@ -150,10 +151,8 @@ class HtMainView
                 $this->showItemWithId($row);
             }
             echo '</div>';
-            if (!isset($skipPagination)) {
-                if (empty($dataOnly) && empty($this->_runnerId)) {
-                    pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0], 0);
-                }
+            if (empty($dataOnly) && empty($this->_runnerId)) {
+                pagination($this->_runnerName, $calculatePageArray[1], $calculatePageArray[0]);
             }
         } else {
             $this->itemNotFound();
@@ -207,7 +206,6 @@ class HtMainView
         $uniqueId = $itemName . '-' . $id;
         $commonViewObj = new HtCommonView($itemName);
 
-
         $imageArray = json_decode($this->_pItem->getFieldImage());
         $imageDir = "";
         if (isset($imageArray)) {
@@ -218,7 +216,7 @@ class HtMainView
         }
         //prepend with image directory
         foreach ($imageArray as &$value1) {
-            $value1 = $imageDir . $value1;
+            $value1 = $imageDir . "/thumbnail/" . $value1;
         }
 
         $numimage = sizeof($imageArray);
@@ -318,9 +316,7 @@ class HtMainView
         $result = $this->_pItem->getResultSet();
         $sql =  $this->_pItem->lastSql();
         $result = $this->_pItem->query($sql);
-        var_dump($sql);
         $result->data_seek(0);
-
         while ($row = $result->fetch_assoc()) {
             $this->showItemWithId($row);
         }
@@ -333,7 +329,6 @@ class HtMainView
         $result = $this->_pItem->getResultSet();
         $sql =  $this->_pItem->lastSql();
         $result = $this->_pItem->query($sql);
-        // var_dump($sql);
         $result->data_seek(0);
 
         while ($row = $result->fetch_assoc()) {
@@ -382,10 +377,12 @@ class HtMainView
 
     private function dumpData()
     {
+        /*
         var_dump($this->_runnerName);
         var_dump($this->_runnerId);
         var_dump($this->_runnerStatus);
         var_dump($this->_pItem->lastSql());
+        */
     }
     /**
      * Alternative interface to display item with id
