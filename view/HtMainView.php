@@ -191,7 +191,7 @@ class HtMainView
         }
     }
 
-    public function thumbNail($row)
+    public function thumbnail($row)
     {
 
 
@@ -235,12 +235,12 @@ class HtMainView
         }
         $url = $_SERVER['REQUEST_URI'];
         if(basename(parse_url($url)['path']) == "detail.php")
-        $size = "col-xs-12 col-md-12 col-sm-6";
+        $class_name = "col-xs-12 col-md-12 col-sm-6";
         else
-        $size = "col-xs-12 col-md-4 col-sm-6";
+        $class_name = "col-xs-12 col-md-4 col-sm-6";
 
         echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
-        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . $size."\">";
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " " . $class_name . "\">";
 
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         /*START @ thumbnail thumbnail-property features*/
@@ -248,7 +248,7 @@ class HtMainView
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
         echo '<div class="image-count"><i style="color:yellow;background-color:black" class="icon-image"></i><span style="color:yellow;background-color:black">' . $numimage . '</span></div>';
-        echo '<img src="' . $thmbnlImg . '" alt="" />';
+        echo '<img src="' . $thmbnlImg . '" width="100%" alt="" />';
 
         echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
         echo '<span class="property-im-m property-im-m-lt"></span>
@@ -392,7 +392,7 @@ class HtMainView
      */
     public function showItemWithId($row)
     {
-        $this->thumbNail($row);
+        $this->thumbnail($row);
     }
 
 
