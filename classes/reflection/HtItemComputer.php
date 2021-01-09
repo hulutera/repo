@@ -733,65 +733,18 @@ class HtItemComputer extends MySqlRecord
      */
     private function setFieldPost()
     {
-        $_item = $_GET['table'];
+        $table = $_GET['table'];
         $idUser = (int)$_SESSION['uID'];
-        $result =  $this->query("SELECT id_temp FROM $_item ORDER BY id DESC LIMIT 1");
+        $result =  $this->query("SELECT id_temp FROM $table ORDER BY id DESC LIMIT 1");
         if ($this->affected_rows == 0) {
             $idTemp = 1;
         } else {
             $idTemp = (int) $result->fetch_object()->id_temp + 1;
         }
 
-        //create a folder for image upload
-        $directory = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $_item . '/user_id_' . (string)$idUser . '/item_temp_id_' . (string)$idTemp;
-        if (!file_exists($directory)) {
-            mkdir($directory, 0777, true);
-        }
-
-        // initialize FileUploader
-        $FileUploader = new FileUploader('files', array(
-            'limit' => null,
-            'maxSize' => null,
-            'fileMaxSize' => null,
-            'extensions' => null,
-            'required' => true,
-            'uploadDir' => $directory . '/',
-            'title' => 'name',
-            'replace' => false,
-            'editor' => array(
-                'maxWidth' => 640,
-                'maxHeight' => 480,
-                'quality' => 90
-            ),
-            'listInput' => true,
-            'files' => null,
-            'id' => null
-        ));
-
-        // unlink the files
-        // !important only for preloaded files
-        // you will need to give the array with appendend files in 'files' option of the fileUploader
-        foreach ($FileUploader->getRemovedFiles('file') as $key => $value) {
-            unlink('../uploads/' . $value['name']);
-        }
-
-
-        // call to upload the files
-        $data = $FileUploader->upload();
-
-        // if uploaded and success
-        if ($data['isSuccess'] && count($data['files']) > 0) {
-            // get uploaded files
-            $uploadedFiles = $data['files'];
-        }
-        // if warnings
-        if ($data['hasWarnings']) {
-            $warnings = $data['warnings'];
-            header('Location: ../../template.upload.php?type=' . $this->getTableName() . '&=' . $warnings);
-        }
-
         // get the fileList and encode in json
-        $imagesList = (string)json_encode($FileUploader->getFileList('name'));
+        $imagesList = "";
+        $this->loadImages($table, $idUser, $idTemp, $imagesList);
         $this->setFieldPostEdit($idUser, $idTemp, $imagesList);
     }
     /**

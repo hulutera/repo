@@ -898,8 +898,8 @@ EOD;
     protected function loadImages($table, $idUser,$idTemp, &$imagesList)
     {
         //create a folder for image upload
-        $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp . '/';
-        $dir_thumbnail_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp . '/thumbnail';
+        $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
+        $dir_thumbnail_img = $dir_img . '/thumbnail';
 
         if (!file_exists($directory)) {
             mkdir($dir_img, 0777, true);
@@ -913,7 +913,7 @@ EOD;
             'fileMaxSize' => null,
             'extensions' => null,
             'required' => true,
-            'uploadDir' => $dir_img,
+            'uploadDir' => $dir_img . '/',
             'title' => 'name',
             'replace' => false,
             'editor' => array(

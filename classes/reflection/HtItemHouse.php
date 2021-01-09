@@ -851,6 +851,7 @@ class HtItemHouse extends MySqlRecord
         $this->setFieldPostEdit($idUser, $idTemp, $imagesList);
     }
 
+
     /**
      * getId gets the class attribute id value
      *

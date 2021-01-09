@@ -388,10 +388,13 @@ function footerCode()
 	echo '<div id="followUs_fo" >
 		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>
 		        <ul>
-					<a   class="fb" href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><li class ="fb_icon_class" style="width:100%"><span class="fa fa-facebook-square" style="font-size:25px"></span></li></a>
-					<a   class="tw" href="https://twitter.com/hulutera" target="_blank"><li class ="tw_icon_class" style="width:100%"><span class="fa fa-twitter-square" style="font-size:25px"></span></li></a>
-					<a   class="pInt" href="https://www.pinterest.se/hulutera/" target="_blank"><li class ="pint_icon_class" style="width:100%"><span class="fa fa-pinterest-square" style="font-size:25px"></span></li></a>
-					<a   class="youtube" href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><li class ="youtube_icon_class" style="width:100%"><span class="fa fa-youtube-square" style="font-size:25px"></span></li></a>
+					<li style="width:50%;text-align:right"><a href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><span class="fa fa-facebook-square fb_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:left"><a href="https://twitter.com/hulutera" target="_blank"><span class="fa fa-twitter-square tw_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:right"><a href="" target="_blank"><span class="fa fa-whatsapp whatsapp_icon_class" style="font-size:25px"></span></a></li>
+				    <li style="width:50%;text-align:left"><a href="" target="_blank"><span class="fa fa-telegram telegram_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:right"><a href="https://www.pinterest.se/hulutera/" target="_blank"><span class="fa fa-pinterest-square pint_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:left"><a href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><span class="fa fa-youtube-square youtube_icon_class" style="font-size:25px"></span></a></li>
+
 				</ul>
            </div>';
 	echo '</div>';

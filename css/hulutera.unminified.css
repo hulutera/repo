@@ -610,7 +610,6 @@ body, html {
 #footer li a {
 	display: inline-block;
 	text-decoration: none;
-	color: #fff;
 }
 
 #footer li {
@@ -627,9 +626,10 @@ body, html {
 	display: inline-block;
 	display: inline;
 	text-align: center;
+	padding:5px;
 }
 
-#footerLinks p a {
+#footerLinks a {
 	color: #b2b2b2;
 	font-weight: normal;
 }
@@ -637,8 +637,6 @@ body, html {
 #followUs_fo li {
 	list-style: none;
 	float: left;
-	border-radius: 100%;
-	margin: 5px;
 	color: #b2b2b2;
 }
 
@@ -663,6 +661,16 @@ body, html {
 
 #followUs_fo .youtube_icon_class:hover {
 	color: #bb0000;
+	border: none;
+}
+
+#followUs_fo .whatsapp_icon_class:hover {
+	color: #56f573;
+	border: none;
+}
+
+#followUs_fo .telegram_icon_class:hover {
+	color: #139bd0;
 	border: none;
 }
 

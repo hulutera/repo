@@ -18,11 +18,11 @@ class HtCommonView extends MySqlRecord
      * */
     public function getImageDir($itemObj)
     {
-        $itemImageDir = "item_" . $this->_itemName;
-        $userImageDir = "/user_id_" . $itemObj->getIdUser();
-        $tmpIdImageDir = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
-        $dir = "../upload/" . $itemImageDir . $userImageDir .  $tmpIdImageDir;
-        return $dir;
+        $itemCat = "item_" . $this->_itemName;
+        $userCat = "/user_id_" . $itemObj->getIdUser();
+        $itemTmpIdCat = "/item_temp_id_" . $itemObj->getIdTemp() . "/";
+        $imageDir = "../upload/" . $itemCat . $userCat .  $itemTmpIdCat;
+        return $imageDir;
     }
 
 
