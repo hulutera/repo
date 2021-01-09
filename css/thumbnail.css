@@ -26,7 +26,7 @@
 
 .thumbnail-property.features .thumbnail-property-footer:before,
 .thumbnail-property.features .caption:before {
-    background: #008ac3;
+    /* background: #008ac3; */
     content: '';
     height: 100%;
     left: 0;
