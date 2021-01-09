@@ -234,9 +234,9 @@ class HtMainView
         }
         $url = $_SERVER['REQUEST_URI'];
         if (basename(parse_url($url)['path']) == "detail.php")
-            $size = "col-xs-12 col-md-12 col-sm-6";
+            $size = " col-xs-12 col-md-12 col-sm-6";
         else
-            $size = "col-xs-12 col-md-4 col-sm-6";
+            $size = " col-xs-12 col-md-4 col-sm-6";
 
         echo '<a href="../includes/detail.php?type=' . $itemName . '&status=' . $this->_runnerStatus . '&id=' . $id .'">';
         echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . $size . "\">";
