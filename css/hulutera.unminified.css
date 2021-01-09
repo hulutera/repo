@@ -2642,6 +2642,9 @@ th {
 	.searchfield {
 		width: 100%;
 	}
+	.map{
+		display: none;
+	}
 	.mobile-main-view {
 		display: block;
 		margin-left: auto;

@@ -21,7 +21,8 @@ class HtMainView
         'electronic' => 5,
         'household' => 6,
         'other' => 7,
-        'search' => 8
+        'search' => 8,
+        'latest'=>9
     ];
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
@@ -55,6 +56,9 @@ class HtMainView
     {
         if ($this->_runnerName == 'search') {
             $this->displaySearch();
+        }
+        else if ($this->_runnerName == 'latest') {
+            $this->showLatest();
         } else {
             if ($filter != null) {
                 $this->showItem($filter, $skipPagination, $skipId);

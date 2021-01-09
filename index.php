@@ -52,17 +52,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 				<div class="col-xs-12 col-md-8 latest-button-mob">
 
 					<div class="mobile-main-view col-xs-12">
-						<?php
-						echo '<a href="../includes/adverts.php?item=All&search_text=&cities=All' . $str_url . '">';
-						echo '<img src="../images/icons/items/latest.png"/>';
-						echo '<p class="text-dark">' . $GLOBALS['lang']['latest items'] . '</p></a>';
-						?>
+						<?php (new HtMainView("latest"))->show(); ?>
 					</div>
 
-					<div id="mainColumn-index" class="col-xs-12 col-md-12" style="padding:0px">
+					<div id="mainColumn-index" class="col-xs-12 col-md-12 map" style="padding:0px">
 						<!!----#mainColumn start-------!!>
 							<?php showMap(); ?>
-
 					</div>
 				</div>
 
