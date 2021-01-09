@@ -24,13 +24,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 	<div id="whole" style="width:100%;margin-left:0px;margin-right:0px">
 		<div id="wrapper" style="width:100%">
 			<div class="leftNav-index col-xs-2 col-md-2">
-			<img src="./images/advertise-with-us.png" alt="" width="100%">
+				<!-- <img src="./images/advertise-with-us.png" alt="" width="100%"> -->
 			</div>
 			<!!----#leftNav end-------!!>
 
 				<div class="col-xs-12 col-md-8 latest-button-mob">
 
-					<div class="items-list col-md-2">
+					<div id="mainColumn-index" class="items-list col-md-2">
 						<?php
 						echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
 						echo '<div class="col-md-12" style=" background-color:#333; color: white;padding:5px;text-align:center;border:2px solid #333">';
@@ -62,7 +62,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 							<?php showMap(); ?>
 					</div>
 
-					<div class="city-list col-md-2">
+					<div id="mainColumn-index" class="city-list col-md-2">
 						<?php
 						echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
 						echo '<div style="background-color:#333;color:white;padding:5px;text-align:center;width:100%">';
@@ -94,7 +94,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 
 					<div class="rightNav-index col-md-2 col-xs-12">
 						<!!----#rightNav starts-------!!>
-						<img src="./images/advertise-with-us.png" alt="" width="100%">
+							<!-- <img src="./images/advertise-with-us.png" alt="" width="100%"> -->
 					</div>
 					<!!----#rightNav ends-------!!>
 		</div>
