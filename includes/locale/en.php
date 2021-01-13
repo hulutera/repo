@@ -946,9 +946,9 @@ $upload_specific_array = [
             1 => 'Write title here'
         ],
         'marketType' => [
-            'rent' => 'rent',
-            'sell' => 'sell',
-            'rent and sell' => 'rent or sell'
+            'rent' => 'Rent',
+            'sell' => 'Sell',
+            'rent and sell' => 'Rent or Sell'
         ],
         'Extra Info' => 'Extra Info',
         'fieldContactMethod' => [

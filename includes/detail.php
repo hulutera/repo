@@ -28,7 +28,8 @@ global $lang;
                                                 <?php
                                                 $item = $_GET['type'];
                                                 $id = (int)$_GET['id'];
-                                                (new  HtMainView($item, $id, 'active'))->showOneItemDetailed();
+                                                $status = $_GET['status'];
+                                                (new  HtMainView($item, $id, $status))->showOneItemDetailed();
                                                 ?>
                                             </div>
                                         </div>
@@ -42,8 +43,9 @@ global $lang;
                                                 <?php
                                                 $item = $_GET['type'];
                                                 $skipId = (int)$_GET['id'];
+                                                $status = $_GET['status'];
                                                 $skipPagination = true;
-                                                (new HtMainView($item))->listRelatedItem('active');
+                                                (new HtMainView($item))->listRelatedItem($status);
                                                 ?>
                                             </div>
                                         </div>

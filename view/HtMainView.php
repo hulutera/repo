@@ -21,14 +21,15 @@ class HtMainView
         'electronic' => 5,
         'household' => 6,
         'other' => 7,
-        'search' => 8
+        'search' => 8,
+        'latest'=>9
     ];
 
     function __construct($newRunnerName, $newRunnerId = null, $newRunnerStatus = null)
     {
         $this->_runnerName = $newRunnerName;
         $this->_runnerId = $newRunnerId;
-        $this->_runnerStatus = $newRunnerStatus;
+        $this->_runnerStatus = $newRunnerStatus == null ? 'active' : $newRunnerStatus;
         $this->_itemNumber = 100 * $this->_runnerId + $this->_itemName2Id[$this->_runnerName];
     }
 
@@ -51,10 +52,13 @@ class HtMainView
      *
      * @param resolved by construtor
      */
-    public function show($filter = null, $skipPagination=null, $skipId=null)
+    public function show($filter = null, $skipPagination = null, $skipId = null)
     {
         if ($this->_runnerName == 'search') {
             $this->displaySearch();
+        }
+        else if ($this->_runnerName == 'latest') {
+            $this->showLatest();
         } else {
             if ($filter != null) {
                 $this->showItem($filter, $skipPagination, $skipId);
@@ -122,7 +126,7 @@ class HtMainView
      *  (new HtMainView("car",null))->showItem();  //select * item
      * @param resolved by construtor
      */
-    public function showItem($filter, $skipPagination = null, $skipId=null)
+    public function showItem($filter, $skipPagination = null, $skipId = null)
     {
         $ab = ObjectPool::getInstance();
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
@@ -164,28 +168,25 @@ class HtMainView
         $ab = ObjectPool::getInstance();
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
-        $condition = "WHERE field_status = '$filter'";
+        $condition = "WHERE field_status = '$filter' LIMIT 5";
         $rows = $this->_pItem->runQuery($condition);
         if ($rows > 0) {
-            $calculatePageArray = calculatePage($rows);
-            $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
-            $res = $this->_pItem->runQuery($condition, $start, $GLOBALS['general']['itemPerPage']);
             $result = $this->_pItem->getResultSet();
             echo '<div class="row items-board">';
-            $number = 0;
             while ($row = $result->fetch_assoc()) {
-                // check if the user is also active fetching
                 $user = new HtUserAll($row['id_user']);
+                if((int)$_GET['id']==(int)$row['id'])
+                {
+                    continue;
+                }
                 if ($filter == 'active' && !$user->isAccountStatusActive()) {
                     continue;
                 }
-                $number++;
                 //item count
-                $this->_itemNumber = $number;
+                $this->_itemNumber++;
                 $this->showItemWithId($row);
             }
             echo '</div>';
-
         } else {
             $this->itemNotFound();
         }
@@ -193,8 +194,6 @@ class HtMainView
 
     public function thumbnail($row)
     {
-
-
         if (isset($_SESSION['uID'])) {
             $user = new HtUserAll($_SESSION['uID']);
         }
@@ -234,38 +233,37 @@ class HtMainView
             $style = "style=\"height:380px\"";
         }
         $url = $_SERVER['REQUEST_URI'];
-        if(basename(parse_url($url)['path']) == "detail.php")
-        $class_name = "col-xs-12 col-md-12 col-sm-6";
+        if (basename(parse_url($url)['path']) == "detail.php")
+            $size = " col-xs-12 col-md-12 col-sm-6";
         else
-        $class_name = "col-xs-12 col-md-4 col-sm-6";
+            $size = " col-xs-12 col-md-4 col-sm-6";
 
-        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
-        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . " " . $class_name . "\">";
-
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&status=' . $this->_runnerStatus . '&id=' . $id .'">';
+        echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . $size . "\">";
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         /*START @ thumbnail thumbnail-property features*/
         echo '<div class="thumbnail thumbnail-property features" ' . $style . '>';
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
-        echo '<div class="image-count"><i style="color:yellow;background-color:black" class="icon-image"></i><span style="color:yellow;background-color:black">' . $numimage . '</span></div>';
-        echo '<img src="' . $thmbnlImg . '" width="100%" alt="" />';
+        echo '<div class="image-count"><i style="color:;font-size:16px;background-color:#333" class="icon-image"></i><span style="color:black;font-size:16px;">' . $numimage . '</span></div>';
+        echo '<img src="' . $thmbnlImg . '" alt="" />';
 
-        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
         echo '<span class="property-im-m property-im-m-lt"></span>
              <span class="property-im-m property-im-m-lb"></span>
              <span class="property-im-m property-im-m-rt"></span>
-             <span class="property-im-m property-im-m-rb"></span>
-         </a>';
+             <span class="property-im-m property-im-m-rb"></span>';
         echo  '</div>';
-        echo '<p style="background-color:#19D9FD;margin-top:1px;color:black;text-align:center">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+        echo '<div class="market-category">';
+        echo '<p >' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+        echo  '</div>';
         /*END @property-image object-fit-container compat-object-fit*/
 
         /*START @ Caption*/
         echo '<div class="caption">';
         echo '<h3 class="property-title">';
-        echo '<a href="../includes/detail.php?type=' . $itemName . '&id=' . $id . '">';
+
         echo $commonViewObj->displayTitle($this->_pItem);
-        echo "</a>";
+
         echo '</h3>';
 
         echo '<p class="property-description"></p>';
@@ -306,6 +304,7 @@ class HtMainView
         echo "</a>";
         //---------------------------------------------------------
     }
+
     /**
      *
      */
@@ -335,6 +334,7 @@ class HtMainView
             $this->showItemWithDetailId($row);
         }
     }
+
     public function showItemWithDetailId($row)
     {
         $this->_itemNumber = (int)$row['id'];
@@ -363,7 +363,7 @@ class HtMainView
         }
 
         $numimage = sizeof($imageArray);
-        echo '<div class="featured_detailed col-xs-12 col-sm-12 col-md-12" id="divDetail_'.$itemName.'_' . $itemNumber . '">'; // .featured_detailed2 start
+        echo '<div class="featured_detailed col-xs-12 col-sm-12 col-md-12" id="divDetail_' . $itemName . '_' . $itemNumber . '">'; // .featured_detailed2 start
         echo '<div class="featured_detailed_left col-xs-12 col-md-4 align-center">';    // start div for the left side of the item detailed section
         $commonViewObj->displayTitle($this->_pItem);
         // echo '<div class="fdl_spec">';    // start div for the left side of the item detailed section
