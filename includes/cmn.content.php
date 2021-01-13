@@ -267,13 +267,13 @@ function listUsers(&$ACTIVITY_ARRAY)
 	///
 	$allItems = [
 		'X' => ['X', 'X'],
-		'car' => ['../images/uploads/icons/car_dark.svg', 'item_car'],
-		'house' => ['../images/uploads/icons/house_dark.svg', 'item_house'],
-		'computer' => ['../images/uploads/icons/computer_dark.svg', 'item_computer'],
-		'electronic' => ['../images/uploads/icons/electronic_dark.svg', 'item_electronic'],
-		'phone' => ['../images/uploads/icons/phone_dark.svg', 'item_phone'],
-		'household' => ['../images/uploads/icons/household_dark.svg', 'item_household'],
-		'other' => ['../images/uploads/icons/other_dark.svg', 'item_other'],
+		'car' => ['../images/icons/items/car_dark.svg', 'item_car'],
+		'house' => ['../images/icons/items/house_dark.svg', 'item_house'],
+		'computer' => ['../images/icons/items/computer_dark.svg', 'item_computer'],
+		'electronic' => ['../images/icons/items/electronic_dark.svg', 'item_electronic'],
+		'phone' => ['../images/icons/items/phone_dark.svg', 'item_phone'],
+		'household' => ['../images/icons/items/household_dark.svg', 'item_household'],
+		'other' => ['../images/icons/items/other_dark.svg', 'item_other'],
 	];
 
 	$userId = $ACTIVITY_ARRAY['userId'];

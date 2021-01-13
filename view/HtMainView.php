@@ -216,7 +216,7 @@ class HtMainView
         }
         //prepend with image directory
         foreach ($imageArray as &$value1) {
-            $value1 = $imageDir . "/thumbnail/" . $value1;
+            $value1 = $imageDir . "thumbnail/" . $value1;
         }
 
         $numimage = sizeof($imageArray);
@@ -344,9 +344,11 @@ class HtMainView
         $uniqueId = $itemName . '-' . $itemNumber;
         $commonViewObj = new HtCommonView($itemName);
         $imageArray = json_decode($this->_pItem->getFieldImage());
+        $thumbImgArray = $imageArray;
         $imageDir = "";
         if (isset($imageArray)) {
             $imageDir = $commonViewObj->getImageDir($this->_pItem);
+            $thumbnailImageDir = $imageDir . "thumbnail/";
         } else {
             $imageDir = "../images/en/";
             $imageArray = ["../images/en/en.svg"];
@@ -355,6 +357,11 @@ class HtMainView
         foreach ($imageArray as &$value1) {
             $value1 = $imageDir . $value1;
         }
+
+        foreach ($thumbImgArray as &$value1) {
+            $value1 = $thumbnailImageDir . $value1;
+        }
+
         $numimage = sizeof($imageArray);
         echo '<div class="featured_detailed col-xs-12 col-sm-12 col-md-12" id="divDetail_'.$itemName.'_' . $itemNumber . '">'; // .featured_detailed2 start
         echo '<div class="featured_detailed_left col-xs-12 col-md-4 align-center">';    // start div for the left side of the item detailed section
@@ -370,7 +377,7 @@ class HtMainView
         $commonViewObj->displayReportCfrm($uniqueId, $id, $itemName);
         echo "</div>"; // featured_detailed_left end
         echo '<div class="featured_detailed_right col-xs-12 col-md-8">';
-        $commonViewObj->displayGallery($imageArray);
+        $commonViewObj->displayGallery($imageArray, $thumbImgArray);
         echo "</div>"; // .featured_detailed_right end
         echo "</div>"; // .featured_detailed end
     }

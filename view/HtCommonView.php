@@ -257,14 +257,25 @@ class HtCommonView extends MySqlRecord
         echo "</div>";
     }
 
-    public function displayGallery($imageNameArray)
+    public function displayGallery($imageNameArray, $thumbImgArray)
     {
         $image_count = 0;
         $button_html = '';
         $slider_html = '';
         $thumb_html = '';
         $filterArr = array('"', '[', ']');
-        for ($i = 0; $i < sizeof($imageNameArray); $i++) {
+        $bigImageFile = $imageNameArray[0];
+        for ($i = 0; $i < sizeof($thumbImgArray); $i++) {
+            $imageFileName = $thumbImgArray[$i];
+            $fileName = str_replace($filterArr, '', $imageFileName);
+            $thumb_image = $fileName;
+
+            // Thumbnail html
+            $thumb_html .= "<li><img style=\"max-height:100px\" src='" . $thumb_image . "'></li>";
+
+        }
+
+        for ($i = 0; $i < sizeof($imageNameArray); $i++){
             $active_class = "";
             if (!$image_count) {
                 $active_class = 'active';
@@ -273,15 +284,16 @@ class HtCommonView extends MySqlRecord
             $image_count++;
             $imageFileName = $imageNameArray[$i];
             $fileName = str_replace($filterArr, '', $imageFileName);
-            $thumb_image = $imageFileName;
+            $bigImage =  $fileName;
+
             // slider image html
             $slider_html .= "<div class='item " . $active_class . "'>";
-            $slider_html .= "<img src='" . $fileName . "' alt='1.jpg' class='img-responsive' style='margin:auto; display: block;'>";
+            $slider_html .= "<img src='" . $bigImage . "' class='img-responsive' style='margin:auto; display: block;'>";
             $slider_html .= "<div class='carousel-caption'></div></div>";
-            // Thumbnail html
-            $thumb_html .= "<li><img style=\"max-height:100px\" src='" . $thumb_image . "' alt='".$thumb_image."'></li>";
+
             // Button html
             $button_html .= "<li data-target='#carousel-example-generic' data-slide-to='" . $image_count . "' class='" . $active_class . "'></li>";
+
         }
         echo '
 	<div id="carousel-example-generic"  class="carousel slide" data-ride="carousel" data-interval="false" style="height:500px;" >

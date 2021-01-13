@@ -899,7 +899,7 @@ EOD;
     {
         //create a folder for image upload
         $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
-        $dir_thumbnail_img = $dir_img . '/thumbnail';
+        $dir_thumbnail_img = $dir_img . 'thumbnail';
 
         if (!file_exists($directory)) {
             mkdir($dir_img, 0777, true);
@@ -936,7 +936,7 @@ EOD;
             $uploadedFiles = $data['files'];
             // create thumbnails
             foreach($uploadedFiles as $item) {
-                FileUploader::resize($filename = $item['file'], $width = 250, $height = null, $destination = $dir_thumbnail_img . '/'. $item['name'], $crop = false, $quality = 95);
+                FileUploader::resize($filename = $item['file'], $width = 150, $height = null, $destination = $dir_thumbnail_img . '/'. $item['name'], $crop = false, $quality = 95);
             }
         }
 

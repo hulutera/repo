@@ -153,7 +153,7 @@ function uploadListMain($lang_sw)
 		echo <<< EOD
         <li class="list-group-item image-container" style="border-radius:4px; width:160px;height:160px;text-align:center"><div class="md-v-line ">
         <a   href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 18px;color: #000000;">
-        <img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
+        <img id="" src="../images/icons/items/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
 EOD;
 	}
@@ -182,7 +182,7 @@ function uploadListNav($lang_sw)
 		echo <<< EOD
         <li class="list-group-item image-container" style="{$style}" ><div class="md-v-line ">
         <a   href="../includes/template.upload.php?function=upload&type={$value}{$lang_sw}" style="font-size: 16px;color: #000000;">
-        <img id="" src="../images/uploads/icons/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
+        <img id="" src="../images/icons/items/{$value}_dark.svg" class="img-responsive" style="text-align:center" >{$itemName}</a><div></li>
 
 EOD;
 	}
@@ -319,7 +319,7 @@ function sidelist($item)
 		if ($type == "") {
 			echo '<p class="h2" style="text-align:center;">' . $GLOBALS['lang']['choose item to upload'] . '</p>';
 		} else {
-			echo '<p class="h2" style="text-align:center;">' . $GLOBALS['upload_specific_array'][$type]['Uploading'] . '</p>';
+			echo '<div class="h2" style="text-align:center;"><span ><img src="../images/icons/items/' . $type . '_dark.svg" width="50px" border="2px grey solid"/></span><span >' . $GLOBALS['upload_specific_array'][$type]['Uploading'] . '</span></div>';
 		}
 		___close_div_(1);
 		return;
