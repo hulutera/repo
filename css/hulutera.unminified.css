@@ -415,7 +415,7 @@ form.signin input.button {
 	font-family: sans-serif, Arial, Helvetica;
 	;
 	/* font-size: 17px; */
-	font-weight: 500;
+	font-weight: 600;
 }
 
 #pagination ul {
@@ -432,7 +432,7 @@ form.signin input.button {
 #pagination li a {
 	color: #0072C6;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 15px;
 	border: 1px solid #9aafe5;
 	padding: 1px 5px;
 }
@@ -444,8 +444,7 @@ form.signin input.button {
 	background: #0072C6;
 	padding: 2px 5px;
 	font-family: sans-serif, Arial, Helvetica;
-	;
-	font-size: 16px;
+	font-size: 20px;
 	border-radius: 43px;
 	text-align: center;
 }

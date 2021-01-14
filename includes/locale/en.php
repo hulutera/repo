@@ -75,7 +75,7 @@ $lang = array(
     //About Us related
     'about us page paragraph1 text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT properties. The properties can be used or new. hulutera is designed and developed for Ethiopian market with prosperity of large expansion. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items:',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT properties. The properties can be used or new. hulutera is designed and developed for Ethiopian market with a prosper of large expansion. On hulutera, You have a broad range of choice from a small personal item to a large property; currently you can trade the following items:',
     'aboutus page paragraph2 text'
     =>
     'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.',
@@ -131,7 +131,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT used and new properties. hulutera is designed and developed for Ethiopian market with prosperity of large expansion in Eastern Africa. On hulutera, You have a broad range of choices from a small personal item to a large property; currently you can trade the following items: cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT used and new properties. hulutera is designed and developed for Ethiopian market with a prosper of large expansion in Eastern Africa. On hulutera, you have a broad range of choice from a small personal item to a large property; currently you can trade the following items: cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',

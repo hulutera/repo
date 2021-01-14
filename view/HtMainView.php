@@ -444,12 +444,13 @@ class HtMainView
     public function displaySearch()
     {
         global $locationPerTable, $lang, $str_url, $lang_url;
+        //$GLOBALS['general']['itemPerPage']
 
         $searchWordSanitized = $_GET['search_text'];
         $city = $_GET['cities'];
         $item = $_GET['item'];
         $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-        $itemstart = ($page - 1) * $GLOBALS['general']['itemPerPage'];
+        $itemstart = ($page - 1) * 2;
 
         // To set value for item
         if ($item == "All" or $item == "000") {

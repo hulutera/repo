@@ -8,7 +8,7 @@ function pagination($item, $totpage, $page)
 	$previouspage = $page - 1;
 	if (isset($_GET['lan'])) {
 		$lang_url = "?&lan=" . $_GET['lan'];
-		$str_url = "&lan=" . $_GET['lan'];
+		$str_url = "lan=" . $_GET['lan'];
 	} else {
 		$lang_url = "";
 		$str_url = "";
@@ -50,7 +50,7 @@ function pagination($item, $totpage, $page)
 * * */
 function calculatePage($count)
 {
-	$totpage = ceil($count / $GLOBALS['general']['itemPerPage']);
+    $totpage = ceil($count / $GLOBALS['general']['itemPerPage']);
 	$page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
 
 	if ($page > $totpage) {
@@ -69,10 +69,11 @@ function search_item_pagination($page, $totpage, $get_array)
 	$pagerange = 4;
 	$nextpage = $page + 1;
 	$previouspage = $page - 1;
+	unset($get_array["page"]);
 	if( $totpage > 1) {
 		// Left side
 		if ($page > 1) {
-			echo '<li><a   href="?page=1';
+			echo '<li><a href="?page=1';
 			foreach ($get_array as $key => $value) {
 				echo '&' . $key . '=' . $value;
 			}
@@ -107,12 +108,12 @@ function search_item_pagination($page, $totpage, $get_array)
 			foreach ($get_array as $key => $value) {
 				echo '&' . $key . '=' . $value;
 			}
-			echo '"> > </a></li>';
+			echo '"> ' . $lang['next'] . ' </a></li>';
 			echo '<li><a   href="?page=' . $totpage;
 			foreach ($get_array as $key => $value) {
 				echo '&' . $key . '=' . $value;
 			}
-			echo '"> >> </a></li>';
+			echo '"> ' . $lang['last page'] . ' </a></li>';
 		}
     } else {
 		echo '<li><strong><a href="?page=1';
