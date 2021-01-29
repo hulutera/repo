@@ -4,7 +4,7 @@ $documnetRootPath = $_SERVER['DOCUMENT_ROOT'];
 require_once $documnetRootPath . '/includes/headerSearchAndFooter.php';
 require_once $documnetRootPath . '/includes/sendMessage.php';
 require_once $documnetRootPath . '/classes/objectPool.php';
-
+require_once $documnetRootPath . '/view/HtCommonView.php';
 
 if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action']) && isset($_GET['action_on_item'])) {
 	$ACTIVITY_ARRAY = [];
@@ -912,6 +912,9 @@ function action_on_item($ACTIVITY_ARRAY) {
 				///here permanent damage, data unrecoverable!!
 				$object->delete($id);
 				$object2->delete();
+				$commonViewObj = new HtCommonView($item);
+				$imageDir = $commonViewObj->getImageDir($object);
+				removeImageDir($imageDir);
 			} else {
 				///set new status and update table
 				$object->setFieldStatus("$action");
@@ -924,4 +927,17 @@ function action_on_item($ACTIVITY_ARRAY) {
 			}
 		}
 	}
+}
+
+function removeImageDir($str) {
+    if (is_file($str)) {
+        return @unlink($str);
+    }
+    elseif (is_dir($str)) {
+        $scan = glob(rtrim($str,'/').'/*');
+        foreach($scan as $index=>$path) {
+            removeImageDir($path);
+        }
+        return @rmdir($str);
+    }
 }

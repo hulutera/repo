@@ -899,7 +899,7 @@ EOD;
     {
         //create a folder for image upload
         $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
-        $dir_thumbnail_img = $dir_img . 'thumbnail';
+        $dir_thumbnail_img = $dir_img . '/thumbnail';
 
         if (!file_exists($directory)) {
             mkdir($dir_img, 0777, true);
