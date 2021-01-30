@@ -274,7 +274,8 @@ $lang = array(
     'msg from' => 'Ergaa irraa',
     'item link' => 'Mi´a liinkii',
     'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።',  //needs update
-    'related items' => "ተዛማጅ ንብረቶች"
+    'related items' => "ተዛማጅ ንብረቶች",
+    'database Error on upload' => 'የአስተያየት መስጫ ቅፁን ተጠቅመው፣ "ለማስተዋወቅ ስሞክር የቴክኒክ ችግር አጋጥሞኛል" የሚለውን መርጠው ይላኩለን።'
 
 );
 

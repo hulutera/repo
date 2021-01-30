@@ -1,8 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 $type = isset($_GET['type']) ? $_GET['type'] : 100;
+$msg = isset($_GET['msg']) ? $_GET['msg'] : "";
 
-function createMessage($type)
+function createMessage($type, $msg = null)
 {
 	global $lang;
 	if (is_numeric($type)) {
@@ -77,7 +78,13 @@ function createMessage($type)
 				$message = $lang['my page'];
 				break;
 			case 404:
-				$message = "Oops! Bad Operation.";
+				$message = "Oops! Bad Operation."; ///
+				break;
+			case 503:
+				$message = "Oops! Error found." . $msg; ///
+				break;
+			case 504:
+				$message = "Oops! Error have been found. <a href=\"./contact-us.php\">" . $GLOBALS['lang']['database error on upload'] . "</a>"; ///
 				break;
 			default:
 				$message = "Thank You. There is no message to display.";
@@ -101,13 +108,28 @@ function createMessage($type)
 	<div id="outer">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="alert alert-success" id="inner" style="font-size:17px;width:35%">
-					<p class="h2">
-						<?php
-						echo '<i class="fa fa-thumbs-o-up"></i> ';
-						createMessage($type); ?>
-					</p>
-				</div>
+
+				<?php
+
+				$alert = ' alert-success';
+				$thumb = ' fa-thumbs-o-up';
+				$style = ' font-size:17px;width:35%';
+				$errorTypes = [503, 504];
+				if (in_array($type, $errorTypes)) {
+					$alert = ' alert-danger';
+					$thumb = ' fa-thumbs-o-down';
+					$style = ' font-size:17px;width:100%';
+				}
+
+				echo '<div class="alert ' . $alert . '" id="inner" style="'.$style.'">
+						<p class="h2">';
+				echo '<i class="fa ' . $thumb . '"></i> ';
+				createMessage($type, $msg);
+				echo '</p>
+						</div>';
+				?>
+
+
 			</div>
 		</div>
 		<div class="row">
@@ -122,19 +144,19 @@ function createMessage($type)
 				</div>
 			</div>
 		</div>
-	<?php if (isset($_SESSION['uID'])) { ?>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
+		<?php if (isset($_SESSION['uID'])) { ?>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
 
-					<?php
-					echo '<a class="h3" href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
-					createMessage(26);
-					echo '</a>' ?>
+						<?php
+						echo '<a class="h3" href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
+						createMessage(26);
+						echo '</a>' ?>
+					</div>
 				</div>
 			</div>
-		</div>
-	<?php } ?>
+		<?php } ?>
 	</div>
 	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>
 	<?php footerCode();

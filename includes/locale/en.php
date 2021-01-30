@@ -304,7 +304,8 @@ $lang = array(
     'msg from' => 'Message from',
     'item link' => 'Item Link',
     'mail introduction' => 'Hi! We at Hulutera.com appreciate your engagement with our website. One user showed an interest in your item and sent you a message. You can find the user information below.',
-    'related items' => "Related Items"
+    'related items' => "Related Items",
+    'database error on upload' => 'Please use contact us form and choose "Technical Problem in Ads" to address the issue.'
 );
 
 $city_lang_arr = array(

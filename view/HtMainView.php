@@ -163,32 +163,30 @@ class HtMainView
         }
     }
 
-    public function listRelatedItem($filter)
+    public function listRelatedItem($status)
     {
-        $ab = ObjectPool::getInstance();
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
-        $condition = "WHERE field_status = '$filter' LIMIT 5";
+        $condition = "WHERE field_status = '$status' LIMIT 5";
         $rows = $this->_pItem->runQuery($condition);
-        if ($rows > 0) {
+        if ($rows > 1) {
+            echo '<p class="h3 text-info" style="text-align:center">' . $GLOBALS['lang']['related items'] . '</p>';
             $result = $this->_pItem->getResultSet();
-            echo '<div class="row items-board">';
             while ($row = $result->fetch_assoc()) {
                 $user = new HtUserAll($row['id_user']);
                 if((int)$_GET['id']==(int)$row['id'])
                 {
                     continue;
                 }
-                if ($filter == 'active' && !$user->isAccountStatusActive()) {
+                if ($status == 'active' && !$user->isAccountStatusActive()) {
                     continue;
                 }
                 //item count
                 $this->_itemNumber++;
+                echo '<div class="col-md-4">';
                 $this->showItemWithId($row);
+                echo '</div>';
             }
-            echo '</div>';
-        } else {
-            $this->itemNotFound();
         }
     }
 
@@ -223,15 +221,16 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
-        if (isset($_GET['status']) and isset($_GET['id'])) {
-            if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
-                $style = "style=\"height:480px\"";
-            } else {
-                $style = "style=\"height:380px\"";
-            }
-        } else {
-            $style = "style=\"height:380px\"";
-        }
+        // if (isset($_GET['status']) and isset($_GET['id'])) {
+        //     if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
+        //         $style = "style=\"height:480px\"";
+        //     } else {
+        //         $style = "style=\"height:380px\"";
+        //     }
+        // } else {
+        //     $style = "style=\"height:380px\"";
+        // }
+        $style = "style=\"height:380px\"";
         $url = $_SERVER['REQUEST_URI'];
         if (basename(parse_url($url)['path']) == "detail.php")
             $size = " col-xs-12 col-md-12 col-sm-6";

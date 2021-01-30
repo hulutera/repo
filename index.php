@@ -78,7 +78,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 									$rows = $value2->runQuery($condition);
 									$totalItems = $totalItems + $rows;
 								}
-								echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" style="color:black;">';
+								echo '<a href="../includes/adverts.php?item=All&cities=' . $key . $str_url . '&search_text=" class="city-links">';
 								echo '<li class="col-md-12 col-xs-4">(<span style="color:#F012BE;"><strong>' . $totalItems . '</strong></span>) ';
 
 								echo $value . '</li></a>';

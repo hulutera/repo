@@ -270,6 +270,7 @@ $lang = array(
     'item link' => 'item link',
     'mail introduction' => 'ሰላም! ሁሉተራን ስለሚጠቀሙ ምስጋናችን ላቅ ያለ ነው። አንድ ደንበኛችን እርስዎ እኛጋ ባስገቡት ንብረት ላይ ፍላጎት አሳይተዋል ፣ መልዕክቱን ከታች ያገኛሉ።', //needs update
     'related items' => "ተመሳሳሊ ንብረታት",
+    'database Error on upload' => 'የአስተያየት መስጫ ቅፁን ተጠቅመው፣ "ለማስተዋወቅ ስሞክር የቴክኒክ ችግር አጋጥሞኛል" የሚለውን መርጠው ይላኩለን።'
 );
 
 $city_lang_arr = array(

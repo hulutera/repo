@@ -44,7 +44,7 @@ if (!empty($err2)) {
 	/// get id if edit is running
 	$id = isset($_SESSION['POST']['id']) ? (int)$_SESSION['POST']['id'] : null;
 
-
+	var_dump($_SESSION['POST']);
 	//get item instance
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], $id);
 	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
@@ -54,7 +54,6 @@ if (!empty($err2)) {
 	} else {
 		//insert item
 		$_pItem->insertPost();
-		// exit;
 	}
 
 	// exit;
@@ -79,7 +78,23 @@ if (!empty($err2)) {
 		$lang_url = "";
 	}
 
-	//successfull
-	$link = "./prompt.php?type=10" . $lang_url;
-	header('Location: ' . $link);
+
+	if ($_pItem->lastSqlError() !== null) {
+		$user = new HtUserAll((int)$_SESSION['uID']);
+		var_dump($_SESSION['uID']);
+		var_dump($user->isWebMaster());
+		var_dump($user->isAdmin());
+		var_dump($_pItem->lastSql());
+		$data = trim(preg_replace('/\s\s+/', ' ', (string)$_pItem->lastSql()));
+		var_dump($data);
+		if ($user->isWebMaster() || $user->isAdmin()) {
+			header('Location: ./prompt.php?type=503&msg=' . $_pItem->lastSqlError() . ", SQL=" . $data);
+		} else {
+			header('Location: ./prompt.php?type=504');
+		}
+	} else //successfull
+	{
+		$link = "./prompt.php?type=10" . $lang_url;
+		header('Location: ' . $link);
+	}
 }
