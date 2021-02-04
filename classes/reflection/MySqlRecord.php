@@ -901,8 +901,11 @@ EOD;
         $dir_img = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $table  . '/user_id_' . $idUser . '/item_temp_id_' . $idTemp;
         $dir_thumbnail_img = $dir_img . '/thumbnail';
 
-        if (!file_exists($directory)) {
+        if (!file_exists($dir_img)) {
             mkdir($dir_img, 0777, true);
+        }
+
+        if (!file_exists($dir_thumbnail_img)) {
             mkdir($dir_thumbnail_img, 0777, true);
         }
 
@@ -929,7 +932,17 @@ EOD;
         // call to upload the files
         $data = $FileUploader->upload();
 
-        shell_exec("cp -r $dir_img $dir_thumbnail_img");
+        if (is_dir($dir_img)) {
+            $files = scandir($dir_img);
+            foreach ($files as $file)
+            {
+                if (!is_dir($file))
+                {
+                    copy($file, $dir_thumbnail_img);
+                }
+            }
+        }
+
         // if uploaded and success
         if ($data['isSuccess'] && count($data['files']) > 0) {
             // get uploaded files
