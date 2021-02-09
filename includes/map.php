@@ -4,11 +4,11 @@ function showMap()
 {
 	//918 800
 	echo '<!!----SVG for bigger screens----!!>
-		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-big-sc" width="918" height="800" viewbox="0 0 1471.67 1150.63">';
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-big-sc" width="777" height="700" viewbox="0 0 1471.67 1150.63">';
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for mid screens----!!>
-		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-mid-sc" width="800" height="700" viewbox="0 0 1500 1400">';
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-mid-sc" width="1000" height="900" viewbox="0 0 1500 1400">';
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for small screens----!!>
