@@ -288,22 +288,22 @@ class HtCommonView extends MySqlRecord
 
             // slider image html
             $slider_html .= "<div class='item " . $active_class . "'>";
-            $slider_html .= "<img src='" . $bigImage . "' class='img-responsive' style='margin:auto; display: block;'>";
+            $slider_html .= "<img src='" . $bigImage . "' class='img-responsive' style='margin:auto; max-height:400px;'>";
             $slider_html .= "<div class='carousel-caption'></div></div>";
 
             // Button html
-            $button_html .= "<li data-target='#carousel-example-generic' data-slide-to='" . $image_count . "' class='" . $active_class . "'></li>";
+            $button_html .= "<li data-target='#detailed-carousel' data-slide-to='" . $image_count . "' class='" . $active_class . "'></li>";
 
         }
         echo '
-	<div id="carousel-example-generic"  class="carousel slide" data-ride="carousel" data-interval="false" style="height:500px;" >
+	<div id="detailed-carousel"  class="carousel slide detailed-carousel" data-ride="carousel" data-interval="false">
 
 		<div class="carousel-inner" style="margin:0;">' . $slider_html . '</div>
-		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
+		<a class="left carousel-control" href="#detailed-carousel" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" style="color:black"></span>
 		</a>
-		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
+		<a class="right carousel-control" href="#detailed-carousel" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" style="color:black"></span>
 		</a>
 
 	</div>
@@ -338,7 +338,7 @@ class HtCommonView extends MySqlRecord
                 //display var
                 if ($rate != NULL) $rent_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0] . ':&nbsp' . $rentValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRate"][2][$rate] . '</p>';
                 $sell_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $sellValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . '</p>';
-                $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
+                $nego_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
                 //$not_for_sell =
                 $not_for_rent = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][0] . ':&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceRent"][2] . '</p>';
                 $not_for_sell = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][2] . '</p>';
@@ -358,7 +358,7 @@ class HtCommonView extends MySqlRecord
                 } else if ($sell) {
                     echo $sell_var . $nego_var . $not_for_rent;
                 } else if ($noprice) {
-                    echo "<p style=\"text-indent: 10px;\">No price information Available</p>";
+                    echo "<p>No price information Available</p>";
                 }
                 break;
             case "computer":
@@ -378,7 +378,7 @@ class HtCommonView extends MySqlRecord
 
                 //display var
                 $sell_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceSell"][0] . ':&nbsp' . $sellValue . ' ' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceCurrency"][2][$curr] . '</p>';
-                $nego_var = '<p>&nbsp&nbsp' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
+                $nego_var = '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldPriceNego"][2][$itemObj->getFieldPriceNego()] . '</p>';
 
                 if ($sellnego) {
                     echo $sell_var . $nego_var;

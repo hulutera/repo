@@ -170,7 +170,7 @@ class HtMainView
         $condition = "WHERE field_status = '$status' LIMIT 5";
         $rows = $this->_pItem->runQuery($condition);
         if ($rows > 1) {
-            echo '<p class="h3 text-info" style="text-align:center">' . $GLOBALS['lang']['related items'] . '</p>';
+            echo '<p class="h3 text-info">' . $GLOBALS['lang']['related items'] . '</p>';
             $result = $this->_pItem->getResultSet();
             while ($row = $result->fetch_assoc()) {
                 $user = new HtUserAll($row['id_user']);
@@ -221,16 +221,7 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
-        // if (isset($_GET['status']) and isset($_GET['id'])) {
-        //     if ($_GET['status'] != NULL and $_GET['id'] != NULL) {
-        //         $style = "style=\"height:480px\"";
-        //     } else {
-        //         $style = "style=\"height:380px\"";
-        //     }
-        // } else {
-        //     $style = "style=\"height:380px\"";
-        // }
-        $style = "style=\"height:380px\"";
+        $style = "style=\"height:450px\"";
         $url = $_SERVER['REQUEST_URI'];
         if (basename(parse_url($url)['path']) == "detail.php")
             $size = " col-xs-12 col-md-12 col-sm-6";
@@ -253,7 +244,7 @@ class HtMainView
              <span class="property-im-m property-im-m-rb"></span>';
         echo  '</div>';
         echo '<div class="market-category">';
-        echo '<p >' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+
         echo  '</div>';
         /*END @property-image object-fit-container compat-object-fit*/
 
@@ -268,15 +259,18 @@ class HtMainView
         echo '<p class="property-description"></p>';
         $commonViewObj->displayLocation($this->_pItem);
         $commonViewObj->displayUpldTime($this->_pItem);
-        echo '<span class="property-field">';
+        echo '<p>';
         $commonViewObj->displayPrice($this->_pItem);
         global $str_url;
         if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
             if ($row['id_user'] == $user->getId()) {
+                $actualLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 echo '<div class="' . $uniqueId . '-rem-msg col-xs-12 col-md-12 rem-action-div" style="border:1px solid black;color:color">';
                 echo '<p style="color:red">' . $GLOBALS['lang']['item remove confirmation msg'] . '</p>';
-                echo "</br></br><button type=\"button\" class=\"btn btn-success\" onclick=\"item_action('$uniqueId', $itemNumber)\">" . $GLOBALS['lang']['yes'] . "</button> &nbsp;&nbsp; <button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-rem-msg', '" . $uniqueId . "-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button>";
-                echo '</div>';
+                echo "<p><button style=\"margin:4px;\" type=\"button\" class=\"btn btn-success\" onclick=\"item_action('$uniqueId', $itemNumber, $actualLink)\">" . $GLOBALS['lang']['yes']. "</button>";
+                echo "<button style=\"margin:4px;\" type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-rem-msg', '" . $uniqueId . "-myItem-action')\">" . $GLOBALS['lang']['no'] . "</button>";
+                echo '</p></div>';
+
                 echo '<div class="' . $uniqueId . '-myItem-action">';
                 $editLink = "";
                 foreach ($row as $key => $value) {
@@ -284,17 +278,18 @@ class HtMainView
                     $editLink .= $temp;
                 }
                 $editLink = ltrim($editLink, '&');
-                $crypto = new Cryptor();
                 $editLinkCrypted = urlencode($editLink);
-                echo '<a href="../includes/template.upload.php?function=upload&type=' . $itemName . '&action=edit&data=' . $editLinkCrypted . $str_url . '"><button type="button" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</button></a>';
-                echo "</br></br><button type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-myItem-action', '" . $uniqueId . "-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
+
+                echo '<br><a href="../includes/template.upload.php?function=upload&type=' . $itemName . '&action=edit&data=' . $editLinkCrypted . $str_url . '" class="btn btn-primary" >' . $GLOBALS["lang"]["edit"] . '</a>';
+                echo "<button style=\"margin:4px;\" type=\"button\" class=\"btn btn-danger\" onclick=\"hideShowSingleDivs('" . $uniqueId . "-myItem-action', '" . $uniqueId . "-rem-msg')\">" . $GLOBALS['lang']['remove'] . "</button>";
+                if (isset($user) && ($user->isWebMaster() || $user->isAdmin())) {
+                    echo '<span style="font-weight: bold">'.$uniqueId .'</span>';
+                }
                 echo '</div>';
             }
         }
-        echo '</span>';
-        if (isset($user) && ($user->isWebMaster() || $user->isAdmin())) {
-            echo '<p class="h4">' . $uniqueId . '</p>';
-        }
+        echo '</p>';
+
         echo '</div>';
         /*END @Caption*/
         echo '</div>';

@@ -8,7 +8,12 @@ require_once $documnetRootPath . '/view/HtCommonView.php';
 
 if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['action']) && isset($_GET['action_on_item'])) {
 	$ACTIVITY_ARRAY = [];
-	$ACTIVITY_ARRAY = array("id" => $_GET['id'], "type" => $_GET['type'], "action" => $_GET['action']);
+	$ACTIVITY_ARRAY = array(
+		"id" => $_GET['id'],
+		"type" => $_GET['type'],
+		"action" => $_GET['action'],
+		"url" => $_GET['url']
+	);
 	action_on_item($ACTIVITY_ARRAY);
 }
 
@@ -865,7 +870,7 @@ function activityTable()
 
 function getSessionId()
 {
-	if(isset($_SESSION['uID'])) {
+	if (isset($_SESSION['uID'])) {
 		return $_SESSION['uID'];
 	}
 }
@@ -873,7 +878,8 @@ function getSessionId()
 /**
  * ACTION EXECUTIONS HERE
  */
-function action_on_item($ACTIVITY_ARRAY) {
+function action_on_item($ACTIVITY_ARRAY)
+{
 	if (isset($ACTIVITY_ARRAY['id']) && isset($ACTIVITY_ARRAY['type']) && isset($ACTIVITY_ARRAY['action'])) {
 		$id = $ACTIVITY_ARRAY['id'];
 		$item = $ACTIVITY_ARRAY['type'];
@@ -915,6 +921,8 @@ function action_on_item($ACTIVITY_ARRAY) {
 				$commonViewObj = new HtCommonView($item);
 				$imageDir = $commonViewObj->getImageDir($object);
 				removeImageDir($imageDir);
+				$url = $ACTIVITY_ARRAY['url'];
+				header('Location:' . $url);
 			} else {
 				///set new status and update table
 				$object->setFieldStatus("$action");
@@ -923,21 +931,23 @@ function action_on_item($ACTIVITY_ARRAY) {
 					$object2->insert();
 				} else if ($action == "pending" or $action == "deleted") {
 					$object2->delete();
+					$url = $ACTIVITY_ARRAY['url'];
+					header('Location:' . $url);
 				}
 			}
 		}
 	}
 }
 
-function removeImageDir($str) {
-    if (is_file($str)) {
-        return @unlink($str);
-    }
-    elseif (is_dir($str)) {
-        $scan = glob(rtrim($str,'/').'/*');
-        foreach($scan as $index=>$path) {
-            removeImageDir($path);
-        }
-        return @rmdir($str);
-    }
+function removeImageDir($str)
+{
+	if (is_file($str)) {
+		return @unlink($str);
+	} elseif (is_dir($str)) {
+		$scan = glob(rtrim($str, '/') . '/*');
+		foreach ($scan as $index => $path) {
+			removeImageDir($path);
+		}
+		return @rmdir($str);
+	}
 }

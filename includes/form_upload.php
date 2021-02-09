@@ -44,7 +44,6 @@ if (!empty($err2)) {
 	/// get id if edit is running
 	$id = isset($_SESSION['POST']['id']) ? (int)$_SESSION['POST']['id'] : null;
 
-	var_dump($_SESSION['POST']);
 	//get item instance
 	$_pItem = ObjectPool::getInstance()->getObjectWithId($_GET['table'], $id);
 	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
@@ -78,8 +77,7 @@ if (!empty($err2)) {
 		$lang_url = "";
 	}
 
-
-	if ($_pItem->lastSqlError() !== null) {
+	if ($_pItem->lastSqlError() !== '') {
 		$user = new HtUserAll((int)$_SESSION['uID']);
 		var_dump($_SESSION['uID']);
 		var_dump($user->isWebMaster());
