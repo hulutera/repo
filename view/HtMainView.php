@@ -237,23 +237,13 @@ class HtMainView
         echo '<div class="property-image object-fit-container compat-object-fit">';
         echo '<div class="image-count"><i style="color:;font-size:16px;background-color:#333" class="icon-image"></i><span style="color:black;font-size:16px;">' . $numimage . '</span></div>';
         echo '<img src="' . $thmbnlImg . '" alt="" />';
-
-        echo '<span class="property-im-m property-im-m-lt"></span>
-             <span class="property-im-m property-im-m-lb"></span>
-             <span class="property-im-m property-im-m-rt"></span>
-             <span class="property-im-m property-im-m-rb"></span>';
-        echo  '</div>';
-        echo '<div class="market-category">';
-
         echo  '</div>';
         /*END @property-image object-fit-container compat-object-fit*/
 
         /*START @ Caption*/
         echo '<div class="caption">';
         echo '<h3 class="property-title">';
-
         echo $commonViewObj->displayTitle($this->_pItem);
-
         echo '</h3>';
 
         echo '<p class="property-description"></p>';
@@ -261,6 +251,8 @@ class HtMainView
         $commonViewObj->displayUpldTime($this->_pItem);
         echo '<p>';
         $commonViewObj->displayPrice($this->_pItem);
+        echo '<br><p style="background-color:#e9ebee;text-align:center;border-radius:2px;padding:5px;">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+
         global $str_url;
         if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
             if ($row['id_user'] == $user->getId()) {
