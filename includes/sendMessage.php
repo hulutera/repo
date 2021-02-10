@@ -23,12 +23,11 @@ function send_mail($to, $subject, $message, $header, $redirect_link = null, $act
 	$html .= '</body></html>';
 
 	if (isset($GLOBALS['status'])) {
-
 		// send email to the customer
 		$message = wordwrap($html, 70, "\n");
 		$header .= "\r\n";
 		$header .= "MIME-Version: 1.0\r\n";
-		$header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		$header .= "Content-Type: text/html\r\n";
 
 		// mail("To:email", "Subject", "Message", "Header:From")
 		$send = mail($to, $subject, $html, $header);
@@ -38,7 +37,6 @@ function send_mail($to, $subject, $message, $header, $redirect_link = null, $act
 		} else {
 			die("Sending Email Failed. Please Contact Site Admin!");
 		}
-
 	}
 	else{
 		echo $html;
@@ -46,20 +44,4 @@ function send_mail($to, $subject, $message, $header, $redirect_link = null, $act
 	}
 }
 
-
-// separate mailing function for contactus in order to not conflict with other mail sending
-
-function send_contactus_mail($to, $subject, $message, $header, $redirect_link)
-{
-    // send email to the customer
-	$message = wordwrap($message, 70, "\r\n");
-	$header .= "MIME-Version: 1.0\r\n";
-	$header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-	$sent = mail($to, $subject, $message, $header);
-	if ($sent) {
-		header('Location: ' . $redirect_link);
-	} else {
-	    die("Sending Email Failed. Please Contact Site Admin!");
-	}
-}
 
