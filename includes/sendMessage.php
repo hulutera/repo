@@ -19,30 +19,47 @@ function send_mail($to, $subject, $message, $header, $redirect_link = null, $act
 {
 	$html = '<html style="font-family:arial;"><body>';
 	$html .= $message;
-	$html .= '<div><img style="width:10%" src="https://hulutera.com/images/icons/log-test-1.png" alt="Hulutera" /></div>';
+	$html .= '<div><img style="width:10%" src="https://hulutera.com/images/icons/new_temp_logo.png" alt="Hulutera" /></div>';
 	$html .= '</body></html>';
 
 	if (isset($GLOBALS['status'])) {
-		if ($GLOBALS['status'] = "deploy-release") {
-			// send email to the customer
 
-			$message = wordwrap($html, 70, "\n");
-			$header .= "\r\n";
-			$header .= "MIME-Version: 1.0\r\n";
-			$header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		// send email to the customer
+		$message = wordwrap($html, 70, "\n");
+		$header .= "\r\n";
+		$header .= "MIME-Version: 1.0\r\n";
+		$header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-			// mail("To:email", "Subject", "Message", "Header:From")
-			$send = mail($to, $subject, $html, $header);
+		// mail("To:email", "Subject", "Message", "Header:From")
+		$send = mail($to, $subject, $html, $header);
 
-			if (!$send) {
-				die("Sending Email Failed. Please Contact Site Admin!");
-			} else {
-				header('Location: ' . $redirect_link);
-			}
+		if ($send) {
+			header('Location: ' . $redirect_link);
+		} else {
+			die("Sending Email Failed. Please Contact Site Admin!");
 		}
+
 	}
 	else{
 		echo $html;
         echo '<br><a target="blank" href="' . $activation_link . '">' . $activation_link . '</a><br>';
 	}
 }
+
+
+// separate mailing function for contactus in order to not conflict with other mail sending
+
+function send_contactus_mail($to, $subject, $message, $header, $redirect_link)
+{
+    // send email to the customer
+	$message = wordwrap($message, 70, "\r\n");
+	$header .= "MIME-Version: 1.0\r\n";
+	$header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+	$sent = mail($to, $subject, $message, $header);
+	if ($sent) {
+		header('Location: ' . $redirect_link);
+	} else {
+	    die("Sending Email Failed. Please Contact Site Admin!");
+	}
+}
+
