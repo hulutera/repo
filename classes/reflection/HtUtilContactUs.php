@@ -629,10 +629,10 @@ class HtUtilContactUs extends MySqlRecord
         $this->fieldSubject = isset($_POST['fieldSubject']) ? $_POST['fieldSubject'] : $this->fieldSubject;
         $this->fieldPurpose = isset($_POST['fieldPurpose']) ? $_POST['fieldPurpose'] : $this->fieldPurpose;
         $this->fieldMessage = isset($_POST['fieldMessage']) ? $_POST['fieldMessage'] : $this->fieldMessage;
-        $msg1 = 'Name: ' . $this->fieldName . "\r\n";
-        $msg2 = 'Company: ' . $this->fieldCompany . "\r\n";
-        $msg3 = 'Purpose: ' . $this->fieldPurpose . "\r\n";
-        $msg4 = 'Message: ' . $this->fieldMessage . "\r\n";
+        $msg1 = "Name: " . $this->fieldName . "<BR>";
+        $msg2 = "Company: " . $this->fieldCompany . "<BR>";
+        $msg3 = "Purpose: " . $this->fieldPurpose . "<BR>";
+        $msg4 = "Message: " . $this->fieldMessage . "<BR>";
         $message = $msg1 . $msg2 . $msg3 .$msg4;
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
