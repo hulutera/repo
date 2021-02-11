@@ -17,9 +17,7 @@ if (!isset($_SESSION['uID'])) {
 
 <body>
     <?php headerAndSearchCode(""); ?>
-    <div class="row" style="text-align:start;width:100%;margin:10px;">
-        <?php yourPage();?>
-    </div>
+    <?php yourPage();?>
     <?php footerCode(); ?>
 </body>
 

@@ -69,8 +69,7 @@ function commonHeader()
 {
 	commonHeaderCssMeta();
 	commonHeaderJs();
-
-	//blockLogin();
+	echo '<link rel="shortcut icon" type="image/jpg" href="../images/icons/ht_icon.ico"/>';
 
 }
 
@@ -124,8 +123,7 @@ function headerAndSearchCode($item)
 	sidelist($item);
 	___close_div_(4);
 	echo '</header>';
-	echo '<div class="edge" style="">
-	</div>';
+	echo '<div style="clear:both"></div>';
 }
 
 function unsetSessionData()
@@ -510,10 +508,10 @@ function yourPage()
                                             </p>
                                         </div>
                                     <div class="row">
-                                    <p>
-                                        {$myItemMessage}
-                                    </p>
-                                </div>
+										<p>
+											{$myItemMessage}
+										</p>
+                                    </div>
                                         <div class="row">
 
 											<div class="col-md-12 btn2">
