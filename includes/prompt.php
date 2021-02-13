@@ -137,7 +137,7 @@ function createMessage($type, $msg = null)
 				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
 
 					<?php
-					echo '<a class="h3" href="../index.php' . $lang_url . '"><i class="fa fa-home"></i> ';
+					echo '<a href="../index.php' . $lang_url . '"><i class="fa fa-home"></i> ';
 					createMessage(23);
 					echo '</a>'
 					?>
@@ -150,7 +150,7 @@ function createMessage($type, $msg = null)
 					<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
 
 						<?php
-						echo '<a class="h3" href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
+						echo '<a href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
 						createMessage(26);
 						echo '</a>' ?>
 					</div>

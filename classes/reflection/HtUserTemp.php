@@ -953,7 +953,7 @@ SQL;
                 $body,
                 'From:noreply@hulutera.com',
                 '../includes/prompt.php?type=1' . $lang_sw,
-                "../includes/activate.php?function=register&id=" . $id . "&key=" . $activation
+                "../includes/activate.php?function=register&id=" . $id . $lang_sw . "&key=" . $activation
             );
         }
     }
