@@ -903,56 +903,58 @@ SQL;
         //user already exists
         if ($result->num_rows !== 0) {
             header('Location: ../../includes/prompt.php?type=2');
+        } else
+        {
+            //check user exists in user_temp, if so delete it
+            $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
+
+            $result = $this->query($sql);
+            while ($row = $result->fetch_array()) {
+                $this->delete($row['id']);
+            }
+
+            ////
+            $password = $_POST['fieldPassword'];
+            $crypto = new Cryptor();
+            $cryptoPassword = base64_encode($crypto->encryptor($password));
+            $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
+            $this->setFieldUserName($email);
+            $this->setFieldEmail($email);
+            $this->setFieldFirstName($_POST['fieldFirstName']);
+            $this->setFieldLastName($_POST['fieldLastName']);
+            $this->setFieldPhoneNr($_POST['fieldPhoneNr']);
+            $this->setFieldPassword($cryptoPassword);
+            $this->setFieldContactMethod($_POST['fieldContactMethod']);
+            $this->setFieldTermAndCondition($_POST['fieldTermAndCondition'] == 'Yes' ? 1 : 0);
+            $this->setFieldActivation($activation);
+            $this->setFieldPrivilege('user');
+            date_default_timezone_set('UTC');
+            $this->setFieldRegisterDate(date("Y-m-d H:i:s"));
+            $this->setFieldAccountStatus("inactive");
+            $this->insert();
+
+            $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
+            $result = $this->query($sql);
+            $id = 0;
+            while ($row = $result->fetch_array()) {
+                $id = $row['id'];
+            }
+            //Now send mail for Confirmation of registration
+            $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
+            $body = $GLOBALS['user_specific_array']['message']['activation']['body'][0] . '<br>';
+            $link = "https://www.hulutera.com/includes/activate.php?function=register&id=" . $id . "&key=" . $activation;
+            $body .= "<strong><a href=".$link.">".$link."</a></strong>";
+            $body .= "<p>".$GLOBALS['user_specific_array']['message']['activation']['body'][1] . '</p>';
+
+            //Check if mail Delivered or die
+            send_mail(
+                $email,
+                $subject,
+                $body,
+                'From:noreply@hulutera.com',
+                '../includes/prompt.php?type=1' . $lang_sw,
+                "../includes/activate.php?function=register&id=" . $id . "&key=" . $activation
+            );
         }
-        //check user exists in user_temp, if so delete it
-        $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
-
-        $result = $this->query($sql);
-        while ($row = $result->fetch_array()) {
-            $this->delete($row['id']);
-        }
-
-        ////
-        $password = $_POST['fieldPassword'];
-        $crypto = new Cryptor();
-        $cryptoPassword = base64_encode($crypto->encryptor($password));
-        $activation = sha1(mt_rand(10000, 99999) . time() . $email . $cryptoPassword);
-        $this->setFieldUserName($email);
-        $this->setFieldEmail($email);
-        $this->setFieldFirstName($_POST['fieldFirstName']);
-        $this->setFieldLastName($_POST['fieldLastName']);
-        $this->setFieldPhoneNr($_POST['fieldPhoneNr']);
-        $this->setFieldPassword($cryptoPassword);
-        $this->setFieldContactMethod($_POST['fieldContactMethod']);
-        $this->setFieldTermAndCondition($_POST['fieldTermAndCondition'] == 'Yes' ? 1 : 0);
-        $this->setFieldActivation($activation);
-        $this->setFieldPrivilege('user');
-        date_default_timezone_set('UTC');
-        $this->setFieldRegisterDate(date("Y-m-d H:i:s"));
-        $this->setFieldAccountStatus("inactive");
-        $this->insert();
-
-        $sql =  "SELECT * FROM user_temp WHERE field_email = \"$email\"";
-        $result = $this->query($sql);
-        $id = 0;
-        while ($row = $result->fetch_array()) {
-            $id = $row['id'];
-        }
-        //Now send mail for Confirmation of registration
-        $subject = $GLOBALS['user_specific_array']['message']['activation']['subject'];
-        $body = $GLOBALS['user_specific_array']['message']['activation']['body'][0] . '<br>';
-        $link = "https://www.hulutera.com/includes/activate.php?function=register&id=" . $id . "&key=" . $activation;
-        $body .= "<strong><a href=".$link.">".$link."</a></strong>";
-        $body .= "<p>".$GLOBALS['user_specific_array']['message']['activation']['body'][1] . '</p>';
-
-        //Check if mail Delivered or die
-        send_mail(
-            $email,
-            $subject,
-            $body,
-            'From:noreply@hulutera.com',
-            '../includes/prompt.php?type=1' . $lang_sw,
-            "../includes/activate.php?function=register&id=" . $id . "&key=" . $activation
-        );
     }
 }
