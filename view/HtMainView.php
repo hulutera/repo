@@ -251,7 +251,7 @@ class HtMainView
         $commonViewObj->displayUpldTime($this->_pItem);
         echo '<p>';
         $commonViewObj->displayPrice($this->_pItem);
-        echo '<br><p style="background-color:#e9ebee;text-align:center;border-radius:2px;padding:5px;">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
+        //echo '<br><p style="background-color:#e9ebee;text-align:center;border-radius:2px;padding:5px;">' . $commonViewObj->displayMarketTypeNoCss($this->_pItem) . '</p>';
 
         global $str_url;
         if ("template.content.php" == basename($_SERVER['PHP_SELF'])) {
