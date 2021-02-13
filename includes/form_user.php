@@ -30,13 +30,7 @@ if (!empty($errPre)) {
     if ($function == 'edit-profile') {
         $redirectLink = $_SERVER['HTTP_REFERER'];
     } else {
-        if ((isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') && $function == 'login') {
-            if (!isset($_SESSION['uID'])) {
-                header('Location: ../includes/login.php?release=beta' . $str_url);
-            }
-        } else {
-            $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
-        }
+        $redirectLink = './' . $function . '.php?function=' . $function . $lang_sw;
     }
     //exit;
     header('Location: ' . $redirectLink);
