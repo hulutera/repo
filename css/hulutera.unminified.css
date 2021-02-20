@@ -2318,17 +2318,24 @@ th {
 		margin-left: 6px;
 	}
 	.leftNav-index {
-		display: none;
+		display: block;
 	}
 	#mainColumn-index {
 		display: block;
-		width: 100%;
 	}
 	.rightNav-index {
 		display: block;
 		width: 90%;
 		margin-left: 5%;
 		margin-right: 5%;
+	}
+	.item-list-div a li {
+		width:100%;
+		clear:both;
+	}
+	.item-list-div a li{
+		width:100%;
+		clear:both;
 	}
 	.register-container, .contactus-container {
 		border: 1px solid #c7c7c7;
@@ -2551,15 +2558,35 @@ th {
 	}
 	#mainColumn-index {
 		display: block;
-		width: 80%;
+        width:80%;
 	}
 	.rightNav-index {
-		width: 90%;
-		margin-left: 5%;
-		margin-right: 5%;
+		display: none;
+	}
+	.items-list {
+		display:block;
+		width:100%;
+	}
+
+	.item-list-div {
+		width:100%;
+	}
+
+	.item-list-ul {
+		width:100%;
+	}
+	.item-list-div a li {
+		width:33%;
+		float:left;
 	}
 	.city-list {
-		width: 50%;
+		display: block;
+		width:100%
+	}
+
+	.item-list-div a li{
+		width:33%;
+		float:left;
 	}
 	.img-thumbnail {
 		width: auto;
@@ -2820,11 +2847,11 @@ th {
 	.latest-button-mob {
 		width: 100%;
 	}
-	.rightNav-index {
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
+	.city-list {
+		display:none;
+	}
+	.items-list {
+		display:none;
 	}
 	.upload-container {
 		width: 98%;

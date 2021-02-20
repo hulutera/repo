@@ -111,7 +111,7 @@ function headerAndSearchCode($item)
 	topRightLinks();
 	___close_div_(6);
 	___open_div_('col-xs-12 col-md-12', '');
-	___open_div_('header-middle col-xs-12 col-md-10', '" style="margin-bottom:1px;border-bottom:2px solid rgb(64, 65, 66)');
+	___open_div_('header-middle col-xs-12 col-md-10', '" style="margin-bottom:1px');
 	___open_div_('logo-header col-xs-3 col-md-2', '" style="padding-right:0px');
 	logoImage();
 	___close_div_(1);
