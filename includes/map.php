@@ -4,7 +4,7 @@ function showMap()
 {
 	//918 800
 	echo '<!!----SVG for bigger screens----!!>
-		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-big-sc" width="620" height="500" viewbox="0 0 1471.67 1150.63">';
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-big-sc" width="450" height="400" viewbox="0 0 1471.67 1150.63">';
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for mid screens----!!>
@@ -12,7 +12,7 @@ function showMap()
 	svgMapElement();
 	echo '</svg>';
 	echo '<!!----SVG for small screens----!!>
-		<svg xmlns="http//www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-small-sc" width="350" height="220" viewbox="0 0 3050 1950">';
+		<svg xmlns="http//www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-small-sc" width="350" height="220" viewbox="-850 0 3050 1950">';
 	svgMapElement();
 	echo '</svg>';
 }
@@ -23,7 +23,7 @@ function svgMapElement()
 	$base_link = '../includes/adverts.php?item=All&search_text=&cities=';
 	echo '
     <defs>
-        <style>.cls-1{fill:#f2e4df;stroke:#c49a6c;stroke-linecap:round;stroke-linejoin:round;}.cls-2{fill:#1c75bc;}.cls-3{font-size:31px;}.cls-3,.cls-6{font-family:ProximaNova-Extrabld, Proxima Nova;}.cls-4{fill:#be4652;}.cls-5{letter-spacing:-0.02em;}.cls-6{font-size:38px;}</style>
+        <style>.cls-1{fill:#f2e4df;stroke:#c49a6c;stroke-linecap:round;stroke-linejoin:round;}.cls-2{fill:#1c75bc;}.cls-3{font-size:40px;}.cls-3,.cls-6{font-family:ProximaNova-Extrabld, Proxima Nova;}.cls-4{fill:#be4652;}.cls-5{letter-spacing:-0.02em;}.cls-6{font-size:38px;}</style>
     </defs>
     <g id="Layer_2" data-name="Layer 2">
         <g id="ethiopia-border-final">

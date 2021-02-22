@@ -118,7 +118,7 @@ function headerAndSearchCode($item)
 	___open_div_('search-header col-xs-9 col-md-10', '" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px');
 	miniSearch();
 	___close_div_(1);
-	___open_div_('nav-item col-xs-12 col-md-12', '');
+	___open_div_('nav-item col-xs-12 col-md-12', '" style="border-bottom:2px black solid');
 	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto;');
 	sidelist($item);
 	___close_div_(4);

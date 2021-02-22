@@ -28,7 +28,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 			</div>
 			<!!----#leftNav end-------!!>
 
-			<div class="col-xs-8 col-md-8 latest-button-mob" style="border-top:2px solid black;padding:0px;padding-top:2px">
+			<div class="col-xs-8 col-md-8 latest-button-mob" style="padding:0px;padding-top:2px">
 
 				<div class="items-list col-xs-2 col-md-2" style="padding:0px">
 					<?php
