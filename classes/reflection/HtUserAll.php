@@ -1097,9 +1097,18 @@ SQL;
         $this->insertLoginField();
         echo '</form>';
 
-        echo '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
+        ___open_div_("container-fluid", '');
+        ___open_div_("col-md-4 col-xs-12 login-container", '');
+        $this->loginWithGoogle();
+        ___close_div_(2);
+
+
     }
 
+    public function  loginWithGoogle(){
+        echo '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
+        echo '<a href="#" onclick="signOut();">Sign out</a>';
+    }
     public function passwordRecovery()
     {
         if (isset($_GET['lan'])) {
