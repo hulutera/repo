@@ -1097,10 +1097,10 @@ SQL;
         $this->insertLoginField();
         echo '</form>';
 
-        ___open_div_("container-fluid", '');
-        ___open_div_("col-md-4 col-xs-12 login-container", '');
-        $this->loginWithGoogle();
-        ___close_div_(2);
+        // ___open_div_("container-fluid", '');
+        // ___open_div_("col-md-4 col-xs-12 login-container", '');
+        // $this->loginWithGoogle();
+        // ___close_div_(2);
 
 
     }
