@@ -40,10 +40,12 @@ function commonHeaderCssMeta()
 		//use google apis for production
 		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
 		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
+		echo '<meta name="google-signin-client_id" content="900551381277-vo2uu5g24qlirghhqoafnmud9visbep4.apps.googleusercontent.com">';
 	} else {
 		//use local
 		echo '<link href="../../css/bootstrap.min.css" rel="stylesheet">';
 		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
+		echo '<meta name="google-signin-client_id" content="900551381277-vo2uu5g24qlirghhqoafnmud9visbep4.apps.googleusercontent.com">';
 	}
 	echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
 }
@@ -55,6 +57,8 @@ function commonHeaderJs()
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
+		echo '<script src="https://apis.google.com/js/platform.js" async defer></script>';
+
 	} else {
 		//use local
 
@@ -62,6 +66,7 @@ function commonHeaderJs()
 		echo "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>";
 		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
+		echo '<script src="https://apis.google.com/js/platform.js" async defer></script>';
 
 	}
 }

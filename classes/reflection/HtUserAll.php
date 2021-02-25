@@ -1096,6 +1096,8 @@ SQL;
         echo '<form class="form-horizontal" action="../../includes/form_user.php?function=login' . $lang_url . '" method="post" enctype="multipart/form-data">';
         $this->insertLoginField();
         echo '</form>';
+
+        echo '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
     }
 
     public function passwordRecovery()
