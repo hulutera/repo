@@ -267,12 +267,13 @@ EOD;
             ___close_div_(1);
         } else {
             echo <<< EOD
-    <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control">
+    <input id="{$fieldName}" name="{$fieldName}" type="{$typetype}" placeholder="{$placeholder}" value="{$choose}" class="form-control" style="padding:10px">
 EOD;
         }
         if ($type === 'password') {
             if (strpos($fieldName, "fieldPasswordRepeat") === false) {
-                echo '<input type="checkbox" onclick="showPassword()">' . $GLOBALS[$globalArrayName][$item][$fieldName][2];
+
+                echo '<div style="padding:10px;font-size:16px;">&nbsp<input type="checkbox" onclick="showPassword()" style="padding:10px">' . $GLOBALS[$globalArrayName][$item][$fieldName][2] .'</div>';
             }
         }
         ___close_div_(3);

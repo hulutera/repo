@@ -1230,7 +1230,7 @@ SQL;
         }
         //unsetSessionData();
         ___open_div_("container-fluid", '');
-        ___open_div_("col-md-4 col-xs-12 login-container", '');
+        ___open_div_("col-md-6 col-xs-12 login-container", '');
 
         ////
         ___open_div_("row", "");
@@ -1259,20 +1259,20 @@ SQL;
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '" style="margin-top:10px;');
+        ___open_div_("col-md-12 col-xs-12", '" style="padding:10px;text-align:center');
         echo '<button name="submit" type="submit" value="submit" class="btn btn-primary btn-lg">' . $GLOBALS['lang']['Login'] . '</button>';
         ___close_div_(5);
 
         ////
-        ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
+        ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding:10px;');
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-top:10px');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;padding:10px;');
         echo '<a   class="forgot"  href="../includes/password-recovery.php' . $lang_url . '">' . $GLOBALS['lang']['Forgot your password'] . ' </a> ';
         ___close_div_(1);
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-top:10px');
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;padding:10px');
         echo '<a   class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
         ___close_div_(5);
