@@ -37,7 +37,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 					echo $GLOBALS['item_lang_arr']['All'];
 					echo '</div>';
 					echo '<div class="col-md-12 col-xs-2 item-list-div" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
-					echo "<ul>";
+					echo "<ul style='text-align:center'>";
 
 					foreach ($item_lang_arr as $key => $value) {
 

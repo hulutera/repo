@@ -61,7 +61,7 @@ require_once $documnetRootPath . '/includes/validate.php';
                         //remove from temp table
                         $userTemp->delete((int)$id);
                         //unset($userTemp);
-                        echo '<p class="h3 text-success">' . $GLOBALS['lang']['account activated message'] . '</p>';
+                        echo '<p class="h4 text-success">' . $GLOBALS['lang']['account activated message'] . '</p>';
                     } else { // for password recovery case
 
                         ///decrypt informations

@@ -96,7 +96,9 @@ class ValidateUpload
                 } else if (
                     $postValue === '' //Error if field is empty or not provided
                 ) {
-                    $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                    if ($key != "fieldModel") {
+                        $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                    }
                 }
                 array_push($err, $input);
             }
@@ -224,7 +226,9 @@ class ValidateUser
                     /// remove white space
                     $value = str_replace(' ', '', $value);
                     if ($value === '') {
-                        $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                        if ( $key != "fieldPhoneNr" and $key != "fieldCompany" and $key != "fieldMessage") {
+                            $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                        }
                     } else {
                         switch ($key) {
                             case 'fieldUserName':
@@ -301,10 +305,12 @@ class ValidateUser
                                 }
                                 break;
                             case 'fieldPhoneNr':
-                                if (!ctype_digit($value)) {
-                                    $input = array($key => $GLOBALS['validate_specific_array'][2]['isdigit']);
-                                } else if (strlen($value) < 10) {
-                                    $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                                if ($value != "") {
+                                    if (!ctype_digit($value)) {
+                                        $input = array($key => $GLOBALS['validate_specific_array'][2]['isdigit']);
+                                    } else if (strlen($value) < 10) {
+                                        $input = array($key => $GLOBALS['validate_specific_array'][1]);
+                                    }
                                 }
                                 break;
                             case 'fieldName':
