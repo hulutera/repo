@@ -35,7 +35,7 @@ if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
         var_dump($email);
         var_dump($name);
         var_dump($phone);
-        header('Location: ../includes/login.php?email=' . $email . '&name=' . $name . '&phone=' . $phone);
+        header('Location: ./includes/login.php?email=' . $email . '&name=' . $name . '&phone=' . $phone);
         // now you can use this profile info to create account in your website and make user logged in.
     } else {
         echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
