@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/redirect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
 ?>
@@ -49,6 +50,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                             $object = unserialize(base64_decode($_SESSION[$sessionName]));
                             $object->login();
                         }
+                        $email = loginWithGoogle();
+                        var_dump($email);
+
                         ?>
                     </div>
                 </div>
