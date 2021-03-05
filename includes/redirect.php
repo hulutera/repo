@@ -34,12 +34,12 @@ function  loginWithGoogle(){
             $name =  $google_account_info->phone;
         } else {
             echo '<div class="text-center social-btn">
-			<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block"><i class="fa fa-google" style="
+			<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block" style="
             width: 33%;
             margin-left: 33%;
             margin-top: 20px;
             margin-bottom: -30px;
-        "></i> Sign in with <b>Google</b></a>
+        "><i class="fa fa-google" ></i> Sign in with <b>Google</b></a>
         </div>';
         }
     }
