@@ -56,7 +56,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                                     header("Location: ../../includes/mypage.php" . $lang_url);
                             }
                             else{
-                                header('Location: ../../includes/register.php?email='.$email. $lang_url);
+                                header('Location: ../../includes/register.php?email='.$email. $str_url);
                             }
                         }
 
