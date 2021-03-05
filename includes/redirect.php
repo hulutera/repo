@@ -32,6 +32,10 @@ if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
         $email =  $google_account_info->email;
         $name =  $google_account_info->name;
 
+        var_dump($email);
+        var_dump($name);
+        var_dump($phone);
+
         // now you can use this profile info to create account in your website and make user logged in.
     } else {
         echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
