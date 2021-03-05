@@ -35,6 +35,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 
                         <?php
                         ///reset/cleanup session variables
+                        $email = loginWithGoogle();
+                        if (isset($email)) {
+                            header('Location: ../index.php');
+                        }
+
                         if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
                             unset($_SESSION['POST']);
                             unset($_SESSION['errorRaw']);
@@ -50,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                             $object = unserialize(base64_decode($_SESSION[$sessionName]));
                             $object->login();
                         }
-                        $email = loginWithGoogle();
+
                         var_dump($email);
 
                         ?>
