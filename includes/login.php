@@ -55,6 +55,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                                 else
                                     header("Location: ../../includes/mypage.php" . $lang_url);
                             }
+                            else{
+                                header('Location: ../../includes/register.php?email='.$email. $lang_url);
+                            }
                         }
 
                         if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
