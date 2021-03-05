@@ -37,6 +37,25 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                         ///reset/cleanup session variables
                         $email = loginWithGoogle();
                         if (isset($email)) {
+
+                            $sql =  array('sql' => "SELECT * FROM user_all WHERE field_email = \"$email\" ");
+
+                            $userAll = new HtUserAll($sql);
+                            $result = $userAll->getResultSet();
+                            if ($result->num_rows !== 0) {
+                                if (session_status() !== PHP_SESSION_ACTIVE) {
+                                    session_start();
+                                } else {
+                                    $_SESSION['uID'] = $userAll->getId();
+                                    $_SESSION['time'] = time();
+                                }
+
+                                if ($userAll->canUpdate())
+                                    header("Location: ../../index.php" . $lang_url);
+                                else
+                                    header("Location: ../../includes/mypage.php" . $lang_url);
+                            }
+
                             header('Location: ../index.php');
                         }
 
