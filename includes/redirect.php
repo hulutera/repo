@@ -39,7 +39,7 @@ function  loginWithGoogle(){
             margin-left: 33%;
             margin-top: 20px;
             margin-bottom: -30px;
-        }"></i> Sign in with <b>Google</b></a>
+        "></i> Sign in with <b>Google</b></a>
         </div>';
         }
     }
