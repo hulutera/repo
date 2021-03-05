@@ -3,7 +3,7 @@
 // $string = file_get_contents('../client_secret_900551381277-vo2uu5g24qlirghhqoafnmud9visbep4.apps.googleusercontent.com.json');
 
 if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
-    require_once '/home/hah3lga4knls/google-api-php-client--PHP7.0/vendor/google/auth/autoload.php';
+    require_once '/home/hah3lga4knls/google-api-php-client--PHP7.0/vendor/autoload.php';
     $config = file_get_contents('/home/hah3lga4knls/ht-google-api.json');
     $config_array = json_decode($config);
 
