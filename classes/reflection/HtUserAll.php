@@ -1099,15 +1099,50 @@ SQL;
 
         // ___open_div_("container-fluid", '');
         // ___open_div_("col-md-4 col-xs-12 login-container", '');
-        // $this->loginWithGoogle();
+        $this->loginWithGoogle();
         // ___close_div_(2);
 
 
     }
 
     public function  loginWithGoogle(){
-        echo '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
-        echo '<a href="#" onclick="signOut();">Sign out</a>';
+        if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
+            require_once '/home/hah3lga4knls/google-api-php-client--PHP7.0/vendor/autoload.php';
+            $config = file_get_contents('/home/hah3lga4knls/ht-google-api.json');
+            $config_array = json_decode($config);
+
+            // init configuration
+            $clientID = $config_array->web->client_id;
+            $clientSecret = $config_array->web->client_secret;
+            $redirectUri = $config_array->web->redirect_uris[2];
+
+            // create Client Request to access Google API
+            $client = new Google_Client();
+            $client->setClientId($clientID);
+            $client->setClientSecret($clientSecret);
+            $client->setRedirectUri($redirectUri);
+            $client->addScope("email");
+            $client->addScope("profile");
+            $client->addScope("phone");
+
+            // authenticate code from Google OAuth Flow
+            if (isset($_GET['code'])) {
+                $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+                $client->setAccessToken($token['access_token']);
+
+                // get profile info
+                $google_oauth = new Google_Service_Oauth2($client);
+                $google_account_info = $google_oauth->userinfo->get();
+                $email =  $google_account_info->email;
+                $name =  $google_account_info->name;
+
+
+                // now you can use this profile info to create account in your website and make user logged in.
+            } else {
+                echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
+            }
+        }
+
     }
     public function passwordRecovery()
     {
