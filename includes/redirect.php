@@ -19,6 +19,7 @@ if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
     $client->setRedirectUri($redirectUri);
     $client->addScope("email");
     $client->addScope("profile");
+    $client->addScope("phone");
 
     // authenticate code from Google OAuth Flow
     if (isset($_GET['code'])) {
