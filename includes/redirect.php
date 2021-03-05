@@ -32,11 +32,10 @@ function  loginWithGoogle(){
             $email =  $google_account_info->email;
             $name =  $google_account_info->name;
             $name =  $google_account_info->phone;
-
-            echo '<h1>'.$email.' --- '. $name.' ---- '.$phone.'</h1>';
-            // now you can use this profile info to create account in your website and make user logged in.
         } else {
-            echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
+            echo '<div class="text-center social-btn">
+			<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+        </div>';
         }
     }
     return $email;

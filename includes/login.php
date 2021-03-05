@@ -55,8 +55,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                                 else
                                     header("Location: ../../includes/mypage.php" . $lang_url);
                             }
-
-                            header('Location: ../index.php');
                         }
 
                         if (!isset($_GET['function']) or $_GET['function'] !== 'login' or $_SESSION['lan'] != $_GET['lan']) {
@@ -74,9 +72,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                             $object = unserialize(base64_decode($_SESSION[$sessionName]));
                             $object->login();
                         }
-
-                        var_dump($email);
-
                         ?>
                     </div>
                 </div>
