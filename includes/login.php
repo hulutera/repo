@@ -41,7 +41,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
                         $sessionName = 'login';
                         $_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
                         $_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
-
+                        var_dump($_GET['email']);
+                        var_dump($_GET['name']);
+                        var_dump($_GET['phone']);
                         if (!isset($_SESSION[$sessionName])) {
                             $object = new HtUserAll("*");
                             $object->login();
