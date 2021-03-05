@@ -10,7 +10,7 @@ if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
     // init configuration
     $clientID = $config_array->web->client_id;
     $clientSecret = $config_array->web->client_secret;
-    $redirectUri = $config_array->web->redirect_uris[1];
+    $redirectUri = $config_array->web->redirect_uris[2];
 
     // create Client Request to access Google API
     $client = new Google_Client();
