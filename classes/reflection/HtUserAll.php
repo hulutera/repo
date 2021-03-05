@@ -1137,9 +1137,7 @@ SQL;
                 $name =  $google_account_info->name;
                 $name =  $google_account_info->phone;
 
-                echo '<h1>'.$email.'</h1>';
-                echo '<h1>'.$name.'</h1>';
-                echo '<h1>'.$phone.'</h1>';
+                echo '<h1>'.$email.' --- '. $name.' ---- '.$phone.'</h1>';
                 // now you can use this profile info to create account in your website and make user logged in.
             } else {
                 echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
