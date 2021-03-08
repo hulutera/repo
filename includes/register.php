@@ -37,8 +37,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/validate.php';
 		$_SESSION['lan'] = isset($_GET['lan']) ? $_GET['lan'] : "en";
 		if(isset($_GET['email']))
 		{
-			echo '<p class="text-info">User with email <strong>'.$_GET['email'].'</strong> Not found, please continue to register here!</p>';
+			echo '<div class="alert alert-info" role="alert" style="margin-top:10px;">
+			<p class="text-danger h4"><i class="fa fa-hand-pointer-o"></i> Sorry we don\'t have user with email : <u>'.$_GET['email'].'</u> <br>Please continue to register here!</p>
+			</div>';
 		}
+
+
 		if (!isset($_SESSION[$sessionName])) {
 			$object = new HtUserAll("*");
 			$object->register();

@@ -912,7 +912,7 @@ class HtUserAll extends MySqlRecord
             {$this->parseValue($this->fieldFeature, 'notNumber')})
 
 SQL;
-// echo $sql;
+        // echo $sql;
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -1086,7 +1086,7 @@ SQL;
      * @category DML Helper
      * @return mixed MySQLi update result
      */
-    public function login()
+    public function loginWithOutSocialMedia()
     {
         if (isset($_GET['lan'])) {
             $lang_url = "&lan=" . $_GET['lan'];
@@ -1209,6 +1209,34 @@ SQL;
         ___close_div_(5);
 
         ___close_div_(2);
+    }
+
+    public function login()
+    {
+        if (isset($_GET['lan'])) {
+            $lang_url = "&lan=" . $_GET['lan'];
+        } else {
+            $lang_url = "";
+        }
+
+        echo '
+        <div class="or-seperator"><i>or</i></div>';
+        echo '<div style="font-size:16px;margin-bottom:20px;">';
+        $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
+        echo '</div>';
+        echo '<div style="font-size:16px;margin-bottom:20px;">';
+        $this->insertFillable('fieldPassword',  'user_specific_array', 'user', 'password');
+        echo '</div>';
+        echo '
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block login-btn">' . $GLOBALS['lang']['Login'] . '</button>
+        </div>';
+        echo '<br>';
+        echo '<div class="clearfix">
+            <a href="../includes/register.php' . $lang_url . '" class="text-success">' . $GLOBALS['lang']['Register'] . '</a>
+            <a href="../includes/password-recovery.php' . $lang_url . '" class="pull-right text-success">' . $GLOBALS['lang']['Forgot your password'] . '</a>
+        </div>';
+
     }
 
     public function insertLoginField()

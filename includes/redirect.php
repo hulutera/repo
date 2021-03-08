@@ -1,7 +1,21 @@
 <?php
 
 // $string = file_get_contents('../client_secret_900551381277-vo2uu5g24qlirghhqoafnmud9visbep4.apps.googleusercontent.com.json');
-function  loginWithGoogle(){
+function loginWithFacebook()
+{
+    $email = "";
+    echo '<a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Login with <b>Facebook</b></a>';
+    return $email;
+}
+function loginWithTwitter()
+{
+    $email = "";
+    echo '<a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i>Login with <b>Twitter</b></a>';
+    return $email;
+}
+function  loginWithGoogle()
+{
+    $email = "";
     if (file_exists('/home/hah3lga4knls/ht-google-api.json')) {
         require_once '/home/hah3lga4knls/google-api-php-client--PHP7.0/vendor/autoload.php';
         $config = file_get_contents('/home/hah3lga4knls/ht-google-api.json');
@@ -33,15 +47,26 @@ function  loginWithGoogle(){
             $name =  $google_account_info->name;
             $name =  $google_account_info->phone;
         } else {
-            echo '<div class="text-center social-btn">
-			<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block" style="
-            width: 33%;
-            margin-left: 33%;
-            margin-top: 20px;
-            margin-bottom: -30px;
-        "><i class="fa fa-google" ></i> Sign in with <b>Google</b></a>
-        </div>';
+            echo '<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with <b>Google</b></a>';
         }
+    } else {
+        echo '<a href="#" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with <b>Google</b></a>';
+    }
+    return $email;
+}
+
+function loginWithSocialMedia()
+{
+    $email = "";
+    $emailFacebook = loginWithFacebook();
+    $emailTwitter = loginWithTwitter();
+    $emailGoogle = loginWithGoogle();
+    if ($emailFacebook != "") {
+        $email = $emailTwitter;
+    } elseif ($emailTwitter != "") {
+        $email = $emailTwitter;
+    } elseif ($emailGoogle != "") {
+        $email = $emailGoogle;
     }
     return $email;
 }
