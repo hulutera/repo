@@ -1233,8 +1233,8 @@ SQL;
         </div>';
         echo '<br>';
         echo '<div class="clearfix">
-            <a href="../includes/register.php' . $lang_url . '" class="text-success">' . $GLOBALS['lang']['Register'] . '</a>
-            <a href="../includes/password-recovery.php' . $lang_url . '" class="pull-right text-success">' . $GLOBALS['lang']['Forgot your password'] . '</a>
+            <a href="../includes/register.php?' . $lang_url . '" class="text-success">' . $GLOBALS['lang']['Register'] . '</a>
+            <a href="../includes/password-recovery.php?' . $lang_url . '" class="pull-right text-success">' . $GLOBALS['lang']['Forgot your password'] . '</a>
         </div>';
 
     }
@@ -1330,32 +1330,25 @@ SQL;
         ___open_div_("col-md-12", $style);
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
         $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
-        ___close_div_(2);
         ///
         ___close_div_(4);
         ___open_div_("row", "");
-        ___open_div_("col-md-12", '');
+
         ___open_div_("form-group ", "");
         ___open_div_("col-md-12", '');
-        ___open_div_("col-md-12", '');
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-lg btn-primary">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button>';
-        ___close_div_(5);
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary" style="float:right; margin:5px;">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button><br>';
+        ___close_div_(3);
 
         ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
-        ___open_div_("col-md-12 col-xs-12", '');
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-12 col-xs-12", '');
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
-        echo '<a   class="forgot"  href="../includes/login.php' . $lang_url . '">' . $GLOBALS['lang']['Login'] . ' </a> ';
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-bottom:5px;');
+        echo '<a class="forgot"  href="../includes/login.php' . $lang_url . '">' . $GLOBALS['lang']['Login'] . ' </a> ';
         ___close_div_(1);
-        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;');
-        echo '<a   class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
+        ___open_div_("col-md-6 col-xs-12", '" style="text-align:center;margin-bottom:5px;');
+        echo '<a class="forgot"  href="../includes/register.php' . $lang_url . '">' . $GLOBALS['lang']['Register'] . '</a>';
         ___close_div_(1);
-        ___close_div_(5);
+        ___close_div_(2);
 
         ___close_div_(2);
     }
