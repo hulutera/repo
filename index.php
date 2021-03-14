@@ -30,16 +30,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 
 			<div class="col-xs-8 col-md-8 latest-button-mob" style="padding:0px;padding-top:2px">
 
-				<div class="items-list col-xs-2 col-md-2" style="padding:0px">
+
+
+			    <!-- ItemList Tobe Done later
+					<div class="items-list col-xs-2 col-md-2" style="padding:0px">
 					<?php
-					echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
+					/* echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
 					echo '<div class="col-md-12" style=" background-color:#333; color: white;padding:5px;text-align:center;border:2px solid #333">';
 					echo $GLOBALS['item_lang_arr']['All'];
 					echo '</div>';
 					echo '<div class="col-md-12 col-xs-2 item-list-div" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
-					echo "<ul style='text-align:center'>";
+					echo "<ul style='text-align:center'>"; */
 
-					foreach ($item_lang_arr as $key => $value) {
+					/* foreach ($item_lang_arr as $key => $value) {
 
 						if ($key != "000" && $key != "All") {
 							$item_obj = ObjectPool::getInstance()->getObjectWithId($key);
@@ -50,14 +53,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 							echo '</li></a>';
 						}
 					}
-					echo "</ul></div></div>";
+					echo "</ul></div></div>"; */
 					?>
-				</div>
+				</div> -->
+
+
+
 				<div class="mobile-main-view col-md-4 col-xs-12">
 					<?php (new HtMainView("latest"))->show(); ?>
 				</div>
 
-				<div id="mainColumn-index" class="col-xs-8 col-md-8 map" style="padding:0px">
+				<div id="mainColumn-index" class="col-xs-10 col-md-10 map" style="padding:0px">
 					<!!----#mainColumn start-------!!>
 						<?php showMap(); ?>
 				</div>
@@ -65,10 +71,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 				<div class="city-list col-xs-2 col-md-2" style="padding:0px">
 					<?php
 					echo '<div class="row" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;border:2px solid #333;">';
-					echo '<div style="background-color:#333;color:white;padding:5px;text-align:center;width:100%">';
+					echo '<div style="background-color:#333;color:white;padding:5px;text-align:center;width:100%;font-size:18px">';
 					echo $GLOBALS['city_lang_arr']['All'];
 					echo '</div>';
-					echo '<div class="col-md-12 col-xs-12 item-list-div" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;">';
+					echo '<div class="col-md-12 col-xs-12 item-list-div" style="background:rgb(240, 240, 240);border-radius:0 0 20px 20px;padding:5px;font-size:16px">';
 					$item_obj = ObjectPool::getInstance()->getObjectSpecial("all");
 					foreach ($city_lang_arr as $key => $value) {
 						$totalItems = 0;
