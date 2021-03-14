@@ -2062,8 +2062,9 @@ th {
 	display:none;
 }
 .image-slider-img img{
-	max-height: 100%;
-	max-width: 100%;
+	max-height: 500px;
+	width:auto;
+	max-width:100%;
 	position: absolute;
 	top: 0;
 	bottom: 0;

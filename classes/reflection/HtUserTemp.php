@@ -902,7 +902,7 @@ SQL;
 
         //user already exists
         if ($result->num_rows !== 0) {
-            header('Location: ../../includes/prompt.php?type=2');
+            header('Location: ../../includes/prompt.php?type=2' . $lang_sw);
         } else
         {
             //check user exists in user_temp, if so delete it

@@ -329,3 +329,45 @@ function item_action (uniqueId, itemNumb, url) {
     })
 
 }
+
+function slideLeft (totImage, div) {
+    $(document).ready(function () {
+        for (i=1; i <= totImage; i++ )
+        {
+            innerDiv = $('.' + div + ".img" + i).css('display');
+            if (innerDiv == 'block') {
+                if ( i <= 1) {
+                    $("." + div).hide();
+                    $("." + div +".img1").show();
+                } else {
+                    current = i - 1;
+                    $("." + div).hide();
+                    $("." + div + ".img" + current).show();
+                }
+                break;
+            }
+        }
+    })
+
+}
+
+function slideRight (totImage, div) {
+    $(document).ready(function () {
+        for (i=1; i <= totImage; i++)
+        {
+            innerDiv = $('.' + div + ".img" + i).css('display');
+            if (innerDiv == 'block') {
+                if ( i >= totImage) {
+                    $("." + div).hide();
+                    $("." + div +".img" + totImage).show();
+                } else {
+                    current = i + 1;
+                    $("." + div).hide();
+                    $("." + div +".img" + current).show();
+                }
+                break;
+            }
+        }
+
+    })
+}

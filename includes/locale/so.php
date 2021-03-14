@@ -1198,13 +1198,13 @@ $help = [
                         </a>
                         </div>
                         <div class="image-slider-img image-slider-img-reg-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_1_so.png" alt="First slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_1_so.PNG" alt="First slide">
                         </div>
                         <div class="image-slider-img image-slider-img-reg-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_2_so.png" alt="Second slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_2_so.PNG" alt="Second slide">
                         </div>
                         <div class="image-slider-img image-slider-img-reg-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_3_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_3_so.PNG" alt="Third slide">
                         </div>
                         <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                         <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-reg-so\')" style="padding:0px">
@@ -1230,16 +1230,16 @@ $help = [
                         </a>
                         </div>
                         <div class="image-slider-img image-slider-img-login-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_1_so.png" alt="First slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_1_so.PNG" alt="First slide">
                         </div>
                         <div class="image-slider-img image-slider-img-login-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_2_so.png" alt="Second slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_2_so.PNG" alt="Second slide">
                         </div>
                         <div class="image-slider-img image-slider-img-login-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_3_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_3_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-login-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_4_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_4_so.PNG" alt="Third slide">
                         </div>
                         <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                         <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-login-so\')" style="padding:0px">
@@ -1263,16 +1263,16 @@ $help = [
                         </a>
                         </div>
                         <div class="image-slider-img image-slider-img-rec-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_1_so.png" alt="First slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_1_so.PNG" alt="First slide">
                         </div>
                         <div class="image-slider-img image-slider-img-rec-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_2_so.png" alt="Second slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_2_so.PNG" alt="Second slide">
                         </div>
                         <div class="image-slider-img image-slider-img-rec-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_3_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_3_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-rec-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_4_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_4_so.PNG" alt="Third slide">
                         </div>
                         <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                         <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-rec-so\')" style="padding:0px">
@@ -1297,25 +1297,25 @@ $help = [
                         </a>
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_1_so.png" alt="First slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_1_so.PNG" alt="First slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_2_so.png" alt="Second slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_2_so.PNG" alt="Second slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_3_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_3_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_4_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_4_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img5 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_5_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_5_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img6 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_6_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_6_so.PNG" alt="Third slide">
                         </div>
                         <div class="image-slider-img image-slider-img-upload-so img7 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_7_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_7_so.PNG" alt="Third slide">
                         </div>
                         <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                         <a class="slide-right" href="javascript:void(0)" onclick="slideRight(7, \'image-slider-img-upload-so\')" style="padding:0px">
@@ -1341,13 +1341,13 @@ $help = [
                         </a>
                         </div>
                         <div class="image-slider-img image-slider-img-contact-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_1_so.png" alt="First slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_1_so.PNG" alt="First slide">
                         </div>
                         <div class="image-slider-img image-slider-img-contact-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_2_so.png" alt="Second slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_2_so.PNG" alt="Second slide">
                         </div>
                         <div class="image-slider-img image-slider-img-contact-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_3_so.png" alt="Third slide">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_3_so.PNG" alt="Third slide">
                         </div>
                         <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                         <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-contact-so\')" style="padding:0px">
@@ -1378,16 +1378,16 @@ $help = [
                     </a>
                     </div>
                     <div class="image-slider-img image-slider-img-search-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
-                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_1_so.png" alt="First slide">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_1_so.PNG" alt="First slide">
                     </div>
                     <div class="image-slider-img image-slider-img-search-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
-                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_2_so.png" alt="Second slide">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_2_so.PNG" alt="Second slide">
                     </div>
                     <div class="image-slider-img image-slider-img-search-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
-                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_3_so.png" alt="Third slide">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_3_so.PNG" alt="Third slide">
                     </div>
                     <div class="image-slider-img image-slider-img-search-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
-                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_4_so.png" alt="Third slide">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_4_so.PNG" alt="Third slide">
                     </div>
                     <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
                     <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-search-so\')" style="padding:0px">
