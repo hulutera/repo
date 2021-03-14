@@ -14,8 +14,6 @@ foreach ($err as $x) {
 
 if (!empty($err2)) {
 
-	var_dump($err2);
-	var_dump($_SESSION['POST']);
 	if (isset($_GET['function']) && ($_GET['function'] == 'edit')) {
 		$redirectLink = $_SERVER['HTTP_REFERER'];
 	} else {

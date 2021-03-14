@@ -1228,11 +1228,29 @@ $help = [
                 "ተ.ቁ. 2) " => "የመመዝገብያው ፎርሙ ላይ መረጃዎችን ይሙሉና <button class=\"btn btn-primary\">ይመዝገቡ</button> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 3) " => "የመመዝገብያ ቅጹን በተሳካ ሁኔታ ሲልኩ ፣ ይህንን መልዕክት ያገኛሉ <strong>ስለተመዘገቡ እናመሰግናለን። የማረጋገጫ ኢሜይል ልከንልዎታል ፣ አካውቶን ለማስተግበር እባክዎን የማስተግበሪያ መስቡን ይጫኑ።</strong> ምዝገባውን ለመጨረስ ወደሚቀጥ ይሂዱ።",
                 "ተ.ቁ. 4) " => "ኢሜይሎን ይክፈቱና ከእኛ የተላከው ኢሜይል ላይ ፣ የማስተግበሪያ መስቡን ይጫኑ። መስቡን ሲጫኑ <strong>አካውንቶ አሁን ተተግብሯል</strong> የሚለውን መልዕክት ይመለከታሉ። ይህም አካውንቶን ያስተገብራል እናም መግባት ይችላሉ።",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                               <video width="50%" id="vid-register" style="border: 2px black solid">
-                                <source src="../videos/am/reg_am.mp4" type="video/mp4">
-                                </video>
-                              </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-reg-am\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/Reg_1_am.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/Reg_2_am.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/Reg_3_am.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-reg-am\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
 
             ]
         ],
@@ -1241,6 +1259,33 @@ $help = [
             "body" => [
                 "ተ.ቁ. 1) " => "በድሕረገጻችን ከላይ በስተቀኝ በኩል ያለውን <strong>ይግቡ</strong> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 2) " => "በመግቢያ ፎርሙ ላይ ፣ ኢሜይሎን እና የምስጢር ቃልዎን ያስገቡ ከዛም በኃላ <button class=\"btn btn-primary\">ይግቡ</button> የሚለውን ይጫኑ። እኛጋ አካውንት ካለዎት ፣ <strong>የእርስዎ አካውንት</strong> ገጽ ውስጥ ይገባሉ።",
+                "" => '
+                        <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-login-am\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/sign_1_am.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/sign_2_am.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/sign_3_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-am img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/sign_4_am.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-login-am\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "recovery"    => [
@@ -1250,11 +1295,32 @@ $help = [
                              ከዛም በመቀጠል ይህንን መልዕክት ይመለከታሉ <strong>የምስጢር ቃል መቀየርያ መረጃ ኢሜይል ልከንልዎታል</strong>። ኢሜይሉ ላይ ያለውን መመሪያ በሚገባ ይከተሉ። የምስጢር መቀየር ሂደቱን በተሳካ መልኩ ለመጨረስ ወደሚቀጥለው ይሂዱ።",
                 "ተ.ቁ. 2) " => "ኢሜይሎን ይክፈቱና ከእኛ የተላከው ኢሜይል ላይ ፣ የምስጢር ቃል መቀየርያ መስቡን ይጫኑ። ይህም የምስጢር ቃልዎን ያስውቆታል። ይህንን <strong>ምስጢር ቃል የኣካውንት ገጽዎ ውስጥ ገብተው መቀየር ይችላሉ</strong>።
                              አዲሱን የምስጢር ቃልዎን በማስገባት በተሳካ መልኩ ይጨርሳሉ። ስለዚህም በአዲሱ ምስጢር ቃል መግባት ይችላሉ።",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                                <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                                <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
-                                </video>
-                              </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-rec-am\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/passRec_1_am.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/passRec_2_am.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/passRec_3_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-am img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/passRec_4_am.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-rec-am\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
             ]
         ],
         "upload"   => [
@@ -1264,12 +1330,41 @@ $help = [
                 "ተ.ቁ. 2) " => "ከገቡ በኃላ ከላይ በስተቀኝ በኩል ያለውን <strong>ንብረት ያስገቡ</strong> የሚለውን ይጫኑ። ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ።",
                 "ተ.ቁ. 3) " => 'ከዛም በመቀጠል ሊያስገቡ የፈለጉትን ንብረት ይምረጡ። የንብረት ማስገቢያ ቅፅ ይከፈታል ፣ ቅፁ ላይ ስለንብረቱ ሁሉንም መራጃ ያስገቡ። በተቻሎት አቅም ጥሩ ፎቶ ለማስገባት ቢችሉ የብዙ ሰው ዓይን ለመሳብ ይረዳዎታል ከዛም ባሻገር ንብረቱ ያለበትን ሁኔታ በግልጽ ለማሳየት ይረዳል። እስከ አምስት ፎቶዎች ማስገባት ይችላሉ።
                              ከጨረሱ በኃላ <button class="btn btn-primary">ይላኩ ፣ ያስገቡ ፣ ይጫኑ</button> የሚለውን ተጭነው በተሳካ መልኩ ያጠናቁ። ቀጥሎም <strong>ንብረቶ በተሳካ መልኩ ገብቷል። አገልግሎታችንን ስለተጠቀሙ እናመሰግናለን።</strong> የሚል መልዕክት ያያሉ። በዚህም መሰረት ያስገቡትን ንብረት የኔ ንብረት የሚለው ውስጥ ያገኛሉ። ንብረቱ በ24 ሰዓት ውስጥ ተተግብሮ ለሁሉም ሰው የሚታይ ይሆናል።',
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                                <video width="50%" id="vid-upload" style="border: 2px black solid">
-                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
-
+                "" =>  '<div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(7, \'image-slider-img-upload-am\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_1_am.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_2_am.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_3_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_4_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img5 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_5_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img6 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_6_am.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-am img7 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/upl_7_am.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(7, \'image-slider-img-upload-am\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
             ]
         ],
         "contactus"   => [
@@ -1278,27 +1373,72 @@ $help = [
                 "ተ.ቁ. 1) " => "በድሕረገጻችን ከላይ በስተግራ ወይም በግርጌ ላይ ያለውን <strong>ሊጠይቁን ይፈልጋሉ?</strong> የሚለውን ይጫኑ።",
                 "ተ.ቁ. 2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
                 "ተ.ቁ. 3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ለበለጠ ቪዲዮዉን ይመልከቱ</a></p>
-                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
-                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-am\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/conUs_1_am.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/conUs_2_am.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/am/conUs_3_am.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-contact-am\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "search"   => [
             "head" => "እንዴት ንብረት መፈለግ እንደሚችሉ",
             "body" => [
-                "" => "በድሕረ ገጻችን ላይ የፈለጉትን ንብረት በቀላሉ ማግኘት ይችላሉ ፣ ይህንንም በመፈለግያው ቅፅ ላይ መረጃዎት በማስገባት ማሳካት ይችላሉ።
-                             የመፈለግያ መተግብራችን ባስገቡት መረጃ መሰረት የተለያየ ውጤት ይሰጣል። ይህም እንደሚከተለው ይሆናል፥<br />
-                             1) <strong>የመፈለጊያ ቃል</strong> ካልገባ ፣ <strong>ሁሉም ንብረቶች</strong> እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class='btn btn-warning'>ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ላይ ያሉ ሁሉንም ተግባራዊ የሆኑ ንብረቶችን ያሳያል።<br />
-                             2) <strong>የመፈለጊያ ቃል</strong> ከገባ ፣ <strong>ሁሉም ንብረቶች</strong> እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class='btn btn-warning'>ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም በሁሉም ከተሞች እና ሁሉንም ዓይነት ንብረቶች ያጠቃልላል።<br />
-                             3) <strong>የመፈለጊያ ቃል</strong> ካልገባ ፣ <strong>መኪና/ኮምፒውተር/ኤሌክትሮኒክስ/ቤት/የቤት ዕቃዎች/ስልክ/ሌሎች</strong> በተጨማሪ የመረጡትን ንብረት በተመለከተ ተጨማሪ የመፈለጊያ መረጃ ከተመረጠ እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class='btn btn-warning'>ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም የመረጡትን ንብረት በሁሉም ከተሞች መፈለግ ያጠቃልላል።<br />
-                             4) <strong>የመፈለጊያ ቃል</strong> ከገባ ፣ <strong>መኪና/ኮምፒውተር/ኤሌክትሮኒክስ/ቤት/የቤት ዕቃዎች/ስልክ/ሌሎች</strong> በተጨማሪ የመረጡትን ንብረት በተመለከተ ተጨማሪ የመፈለጊያ መረጃ ከተመረጠ እና <strong>አንድ ከተማ ከተመረጠ</strong> ከተመረጠ። በመቀጠል <button class='btn btn-warning'>ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም የመረጡትን ንብረት በተመረጠው ከተማ መፈለግ ያጠቃልላል።<br />",
                 "ተ.ቁ. 1) " => "የመፈለጊያ ሣጥኑን በድሕረገጻችን ከላይ በስተቀኝ በኩል ይገኛል።",
                 "ተ.ቁ. 2) " => "ሁሉንም የመፈለጊያ መረጃዎችን ያገቡ",
                 "ተ.ቁ. 3) " => "በመቀጠል <button class='btn btn-warning'  type='button'>ይፈለግ</button> የሚለውን ይጫኑ",
                 "ማሳሰቢያ:" => "የመፈለጊያ ቃል ሲያስገቡ አጠር ያለቃል ቢጠቀሙ ተመራጭ ነው ፣ በዛያለ ንብረት የማግኘት እድሎት ሰፊ ነው። ለመሳሌ፥ ቀይ መኪና ለመፈለግ ፣ ቀይ ብለው ቢፅፋ ተመራጭ ነው። በተለያየ ቋንቋ መፈለግም ተጨማሪ ንብረቶችን ሊያሳይ ይችላል።",
                 "*" => "የተፈለገው ንብረት ካልተገኘ <strong>ንብረቱ አልተገኘም</strong> የሚል መልዕክት ይታያል።",
+                "" => 'በድሕረ ገጻችን ላይ የፈለጉትን ንብረት በቀላሉ ማግኘት ይችላሉ ፣ ይህንንም በመፈለግያው ቅፅ ላይ መረጃዎት በማስገባት ማሳካት ይችላሉ።
+                             የመፈለግያ መተግብራችን ባስገቡት መረጃ መሰረት የተለያየ ውጤት ይሰጣል። ይህም እንደሚከተለው ይሆናል፥<br />
+                             1) <strong>የመፈለጊያ ቃል</strong> ካልገባ ፣ <strong>ሁሉም ንብረቶች</strong> እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class="btn btn-warning">ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ላይ ያሉ ሁሉንም ተግባራዊ የሆኑ ንብረቶችን ያሳያል።<br />
+                             2) <strong>የመፈለጊያ ቃል</strong> ከገባ ፣ <strong>ሁሉም ንብረቶች</strong> እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class="btn btn-warning">ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም በሁሉም ከተሞች እና ሁሉንም ዓይነት ንብረቶች ያጠቃልላል።<br />
+                             3) <strong>የመፈለጊያ ቃል</strong> ካልገባ ፣ <strong>መኪና/ኮምፒውተር/ኤሌክትሮኒክስ/ቤት/የቤት ዕቃዎች/ስልክ/ሌሎች</strong> በተጨማሪ የመረጡትን ንብረት በተመለከተ ተጨማሪ የመፈለጊያ መረጃ ከተመረጠ እና <strong>ሁሉም ከተሞች</strong> ከተመረጠ። በመቀጠል <button class="btn btn-warning">ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም የመረጡትን ንብረት በሁሉም ከተሞች መፈለግ ያጠቃልላል።<br />
+                             4) <strong>የመፈለጊያ ቃል</strong> ከገባ ፣ <strong>መኪና/ኮምፒውተር/ኤሌክትሮኒክስ/ቤት/የቤት ዕቃዎች/ስልክ/ሌሎች</strong> በተጨማሪ የመረጡትን ንብረት በተመለከተ ተጨማሪ የመፈለጊያ መረጃ ከተመረጠ እና <strong>አንድ ከተማ ከተመረጠ</strong> ከተመረጠ። በመቀጠል <button class="btn btn-warning">ይፈለግ</button> የሚለውን ይጫኑ። በድሕረገጻችን ካሉ ንብረቶች እርሶ ያስገቡትን መረጃ የሚያሟሉትን ያሳያል። ይህም የመረጡትን ንብረት በተመረጠው ከተማ መፈለግ ያጠቃልላል።<br />
+                            <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                            <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                            <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                            <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-search-am\')">
+                                <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                            </a>
+                            </div>
+                            <div class="image-slider-img image-slider-img-search-am img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                            <img class="col-xs-12 col-md-12" src="../images/helpImages/am/search_1_am.png" alt="First slide">
+                            </div>
+                            <div class="image-slider-img image-slider-img-search-am img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                            <img class="col-xs-12 col-md-12" src="../images/helpImages/am/search_2_am.png" alt="Second slide">
+                            </div>
+                            <div class="image-slider-img image-slider-img-search-am img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                            <img class="col-xs-12 col-md-12" src="../images/helpImages/am/search_3_am.png" alt="Third slide">
+                            </div>
+                            <div class="image-slider-img image-slider-img-search-am img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                            <img class="col-xs-12 col-md-12" src="../images/helpImages/am/search_4_am.png" alt="Third slide">
+                            </div>
+                            <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                            <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-search-am\')" style="padding:0px">
+                                <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                            </a>
+                            </div>
+                            </div>
+                            </div>'
+
             ]
         ]
     ]

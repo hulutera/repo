@@ -1190,11 +1190,29 @@ $help = [
                 "2) " => "Xogta gali foomka diiwaangelinta oo <button class=\"btn btn-primary\"> riix is-diiwaangeli </button>.",
                 "3) " => "Markaad ku-gulaysatid diridda foomka la isku-diiwaangeliyo, farriintan ayaad helaysaa <strong> waad ku-mahadsantahay is-diiwaangelintaada.  Waxaanu kuu soo dirnay email-ka xaqiijinta, si aad akoonkaaga u hawlgelisid riix furaha ka-shaqaysiinaya. </strong> si aad diiwaangelinta u dhammaystirtid kan xiga ugudub.",
                 "4) " => "Fur email-ka aynu kuu soo dirnay oo riix furaha ka-shaqaynsiinta ee ku-jir email-ka aynu soo dirnay, riix furaha ka-shaqaysiinta.  Markaad furaha riixdid <strong> waxaad arkaysaa farriinta</strong> akoonkaaga imika waa la-fuliyey.  Kani akoonkaaga ayuu ka-shaqaysiinayaa waanad gali kartaa.",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
-                                <video width="50%" id="vid-register" style="border: 2px black solid">
-                                <source src="../videos/am/reg_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-reg-so\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/reg_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-reg-so\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
 
             ]
         ],
@@ -1203,6 +1221,33 @@ $help = [
             "body" => [
                 "1) " => "Dhinaca midigta ee shabakaddayada<strong> riix kan leh</strong> gal.",
                 "2) " => "Foomka galitaanka, gali email-kaaga iyo ereyga qarsoodiga, ka-dibna riix  <button class=\"btn btn-primary\"> gal </button>. Haddii meeshayada akoon ku-leedahay, <strong> waxaad galaysaa</strong> bogga akoonkaaga.",
+                "" => '
+                        <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-login-so\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/sign_4_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-login-so\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "recovery"    => [
@@ -1210,11 +1255,32 @@ $help = [
             "body" => [
                 "1) " => "Meesha ka-hoosaysa foomka galitaanka <strong> Riix qarsoodiga</strong> Miyaad ilawday ereygaaga. Marka la-furo bogga xusuusashada ereyga qarsoodiga, riix kan leh <button class=\"btn btn-primary\"> dir </button> magaca isticmaalaha ama email-kaaga. Ka-dibna waxaad arkaysaa farriinta ah <strong>waxaad arkaysaa waxaanu kuu soo dirnay xogta baddalidda ereyga qarsoodiga</strong>? Sida habboon ula-socoda tilmaanta email-ka ku-dhex-jirta. Si aad ugu-guulaysatid dhammaystiridda geeddi-socodka baddalidda ereyga qarsoodiga ugudub kan xiga.",
                 "2) " => "Email-ka fur oo riix furaha baddalidda ereyga qarsoodiga ah ee ku-dhex-jira emailka aynu kuu soo dirnay.  Kanina wuxuu kula-socodsiinayaa ereygaaga qarsoodiga. Ereygan qarsoodiga ah <strong> intaad boggaaga akoonka gashid ayaad baddali kartaa</strong>.  Intaad ereygaaga qarsoodiga ee cusub galisid ayaa si guul leh ku-dhammaynaysaa. Sidaas-awgeed waxaad ku-gali kartaa ereyga qarsoodiga ee cusub.",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
-                                <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                                <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-rec-so\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/passRec_4_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-rec-so\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "upload"   => [
@@ -1223,11 +1289,41 @@ $help = [
                 "1) " => "Si aad hanti ugalasid waa inaad marka hore gashid.",
                 "2) " => "Markaad gashid ka-dib kan dhinaca midigta ka-jira ee ah <strong>hantida gali</strong> riix. Ka-dibna dooro hantida aad doonaysid inaad galisid.",
                 "3) " => 'Ka-dibna dooro hantida aad doonaysid inaad galisid. Waxaa furmaya foomka hantida la-galinayo, foomka gali dhammaan xogta hantida ku-saabsan. Illaa xadka aad awoodi karaysid haddii aad sawir wanaagsan galisid waxay kaa caawinaysaa inaad dad badan indhahooda soo-jiidatid, wuxuuna kaa-caawinayaa inaad muujisid xaaladda ay hantidu ku-sugantahay. Waxaad galin kartaa illaa shan sawir. Markaad dhammaysid ka-dib riix <button class=\"btn btn-primary\"> dir, gali, riix </button> oo si guul leh ku soo gabagabee.  Ka-dibna <strong> waa lagu-guulaystay galinta hantidaada. Waad ku-mahadsantahay isticmaaliddada adeeggayaga. </strong> Farrintaas ayaad arkaysaa. Hantida inta laga-shaqeeyo ayey dhammaan dadku ku-arki karaan 24 saacadood gudahood.',
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
-                                <video width="50%" id="vid-upload" style="border: 2px black solid">
-                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" =>  '<div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(7, \'image-slider-img-upload-so\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_4_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img5 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_5_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img6 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_6_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-so img7 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/upl_7_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(7, \'image-slider-img-upload-so\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
 
             ]
         ],
@@ -1237,25 +1333,70 @@ $help = [
                 "1) " => "riix kan ay ku-qorantahay miyaad doonaysaa inaad na-waydiisid ee shabakaddayada ee leh <strong> ee ku-yaalla dhinaca kore ee bidixda ama dhinaca hoose </strong> ee shabakaddayada.",
                 "2) " => "Iyada oo <strong> sababta aad noola hadlaysid</strong> haddii sababtaadu liiska ka-dhex-waydid, <strong> dooro kan leh </strong> fikir guud. Haddii aad gashay xogtaadu iskeed ayey foomka u soo galaysaa, haddii ay noqon-waydo xogta gali.",
                 "3) " => "Ka-dib markaad xogta galisid riix <button class=\"btn btn-primary\"> dir </button>.  Ka-dib <strong> waxaad helaysaa farrin leh </strong> waad ku-mahadsantahay inaad doontid helitaankayaga.",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dheeraadka waxaad ka-eegtaa fiidhiyoowga</a></p>
-                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
-                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-so\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/conUs_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-contact-so\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "search"   => [
             "head" => "Sida aad ku-raadin karaysid",
             "body" => [
-                "" => "Hantida aad doonaysid si fudud ayaad shabakaddayada ugaga heli kartaa, intaad kan galisid foomka raadinta ayaa hirgelin kartaa. Ka-shaqaysiiyahayaga raadintu wuxuu soo-saarayaa natiijooyin kala-duwan oo ku-salaysan xogta aad galisay. Kaasina waa sida hoos ku-qoran, haddii la-doorto<br/>
-                       1) <strong>ereyga raadinta</strong> haddii aan la-galin, <strong> dhammaan hantida</strong> iyo <strong> dhammaan magaalooyinka</strong> haddii la-doorto. Ka-Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>.  Wuxuu muujinayaa dhammaan hantida laga-shaqeeyey ee shabakaddayada saaran.<br />
-                       2) <strong>Haddii la-doortay</strong> Haddii la-doortayከገባ ፣ <strong> haddii uu galay</strong> dhammaan hantidaእና <strong> iyo</strong> dhammaan magaalooyinka. Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>. Wuxuu muujinayaa hantida buuxinaya xogta aad galisay ee shabakaddayada ku-dhex-jira.  Kanina wuxuu hayaa hantida dhammaan magaalooyinka ka-jirta iyo dhammaan noocyada kala-duwan ee hantida. <br />
-                       3) <strong>Haddii la-doorto </strong> ereyga raadinta<strong>haddii aan la-galin</strong> gaadhi/koombiyuutar/elektirooniigsi/guri/saamaanta guriga/telefoon/kuwa kale<strong>waxaa intaa-dheer, haddii la-doorto xog dheeraad ah oo ku-saabsan hantida la-doortay iyo</strong> dhammaan magaalooyinka. Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>. Wuxuu muujinayaa dhammaan hantida laga-shaqeeyey ee shabakaddayada saaran. Waxaana kan ku-dhex-jira hantida aad dooratay oo laga-dhex-raadinayo dhammaan magaalooyinka.<br /> 4) <strong> Haddii la-doorto </strong> ereyga raadinta<strong>haddii aan la-galin</strong> gaadhi/koombiyuutar/elektirooniigsi/guri/saamaanta guriga/telefoon/kuwa kale<strong>waxaa intaa-dheer, haddii la-doorto xog dheeraad ah oo ku-saabsan hantida la-doortay iyo</strong> hal magaalo. Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>. Wuxuu muujinaya kuwa buuxinaya xogta aad galisay ee ka-tirsan hantida shabakaddayada saaran. Waxaana kan ku-dhex-jira magaalada la-doortay oo laga-dhex-raadinayo hantida aad dooratay.<br />",
                 "i) " => "Sanduuqa raadintu wuxuu ka-jira dhinaca kore ee midigta ee shabakaddayada.",
                 "ii) " => "Gali dhammaan xogta raadinta",
                 "iii) " => "Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>",
                 "*" => "Markaad ereyga raadinta galinaysid waxaa wanaagsan inaad erey gaaban doortid, waxay kordhinaysaa fursaddaada helidda hanti badan. Tusaale: haddii aad doonaysid gaadhi cas, waxaa wanaagsan in qortid casaan. Luuqado kala-duwan oo lagu-raadsadana waxay muujinaysaa hanti dheeraad ah.",
                 "**" => "Haddii hantida la-doonayo la-waayo <strong> waxaa soo-baxaysa farriin leh</strong> hantida lama helin.",
+                "" => 'Hantida aad doonaysid si fudud ayaad shabakaddayada ugaga heli kartaa, intaad kan galisid foomka raadinta ayaa hirgelin kartaa. Ka-shaqaysiiyahayaga raadintu wuxuu soo-saarayaa natiijooyin kala-duwan oo ku-salaysan xogta aad galisay. Kaasina waa sida hoos ku-qoran, haddii la-doorto<br/>
+                       1) <strong>ereyga raadinta</strong> haddii aan la-galin, <strong> dhammaan hantida</strong> iyo <strong> dhammaan magaalooyinka</strong> haddii la-doorto. Ka-Ka-dibna riix <button class="btn btn-warning"> ha la-raadiyo </button>.  Wuxuu muujinayaa dhammaan hantida laga-shaqeeyey ee shabakaddayada saaran.<br />
+                       2) <strong>Haddii la-doortay</strong> Haddii la-doortayከገባ ፣ <strong> haddii uu galay</strong> dhammaan hantidaእና <strong> iyo</strong> dhammaan magaalooyinka. Ka-dibna riix <button class="btn btn-warning"> ha la-raadiyo </button>. Wuxuu muujinayaa hantida buuxinaya xogta aad galisay ee shabakaddayada ku-dhex-jira.  Kanina wuxuu hayaa hantida dhammaan magaalooyinka ka-jirta iyo dhammaan noocyada kala-duwan ee hantida. <br />
+                       3) <strong>Haddii la-doorto </strong> ereyga raadinta<strong>haddii aan la-galin</strong> gaadhi/koombiyuutar/elektirooniigsi/guri/saamaanta guriga/telefoon/kuwa kale<strong>waxaa intaa-dheer, haddii la-doorto xog dheeraad ah oo ku-saabsan hantida la-doortay iyo</strong> dhammaan magaalooyinka. Ka-dibna riix <button class="btn btn-warning"> ha la-raadiyo </button>. Wuxuu muujinayaa dhammaan hantida laga-shaqeeyey ee shabakaddayada saaran. Waxaana kan ku-dhex-jira hantida aad dooratay oo laga-dhex-raadinayo dhammaan magaalooyinka.<br /> 4) <strong> Haddii la-doorto </strong> ereyga raadinta<strong>haddii aan la-galin</strong> gaadhi/koombiyuutar/elektirooniigsi/guri/saamaanta guriga/telefoon/kuwa kale<strong>waxaa intaa-dheer, haddii la-doorto xog dheeraad ah oo ku-saabsan hantida la-doortay iyo</strong> hal magaalo. Ka-dibna riix <button class=\"btn btn-warning\"> ha la-raadiyo </button>. Wuxuu muujinaya kuwa buuxinaya xogta aad galisay ee ka-tirsan hantida shabakaddayada saaran. Waxaana kan ku-dhex-jira magaalada la-doortay oo laga-dhex-raadinayo hantida aad dooratay.<br />
+                       <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                    <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                    <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                    <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-search-so\')">
+                        <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                    </a>
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-so img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_1_so.png" alt="First slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-so img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_2_so.png" alt="Second slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-so img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_3_so.png" alt="Third slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-so img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_4_so.png" alt="Third slide">
+                    </div>
+                    <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                    <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-search-so\')" style="padding:0px">
+                        <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                    </a>
+                    </div>
+                    </div>
+                    </div>'
+
             ]
         ]
     ]

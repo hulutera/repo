@@ -557,19 +557,19 @@ $upload_specific_array = [
             ]
         ],
         'fieldBathroom'   => [
-            0 => 'Baay’ina 196 9dhiqataa qabu',
+            0 => 'Baay’ina',
             1 => 'Mana itti dhiqatan filadhaa',
         ],
         'fieldToilet'   => [
             "0" => 'Baay’ina mana finii',
             "1" => 'Baay’ina filadhaa',
-            "2" => 'Gubbaa 100',
+            "2" => 'Gubbaa',
             "3" => 'Baay’ina mana fincaanii guddaa',
         ],
         'fieldNrBedroom' => [
             "0" => ' Baay’ina mana cisiichaa ',
             "1" => ' Baay’ina filadhaa   ',
-            "2" => ' Gubbaa 100    ',
+            "2" => ' Gubbaa',
             "3" => ' Baay’ina mana cisiichaa guddaa   '
         ],
         'fieldWater' => [
@@ -1197,11 +1197,29 @@ $help = [
                 "2) " => "Unkaa ittiin galmaa’an irratti odeeffannnoowwan guutaa achi <button class=\"btn btn-primary\">galmaa’a</button> isaa jedhu tuqa.",
                 "3) " => "Unkaa ittiin galmaa’an haala milka’e yammuu ergitan, dhaamsa kana ni argattu.<strong> Waan galmooftaniif  galatooma. Imeeli mirkanessa isiniif ergine jirra. Akaawuntii keessa hojiirra olchuuf galmee hojiira ittiin oolchan tuqa.</strong> Galmeesicha xumuruuf garaisa itti aanutti deema.",
                 "4) " => "Imeelicha banaatii galmee hojiira ittiin oolchan imeeelii keenya irra tuqa Akaawuntiin keessan amma <strong>o ole jira </strong> Dhaamsa jedhu agartu. Kunis akaawuntii keessan hojjiiraoolcha kanaafuu galu ni dandeessu.",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
-                         <video width="50%" id="vid-register" style="border: 2px black solid">
-                         <source src="../videos/am/reg_am.mp4" type="video/mp4">
-                         </video>
-                         </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-reg-ao\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/reg_1_or.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/reg_2_or.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/reg_3_or.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-reg-ao\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
 
             ]
         ],
@@ -1210,6 +1228,33 @@ $help = [
             "body" => [
                 "1) " => "Website keenya irratti gubbaa irra gama mirgaatti kan argamu <strong> Seena </strong> isa jedhu tuqa.",
                 "2) " => "Unkaa ittiin seenan irratti imeelii keessanii fi password keessan galcha. Achi booda  <button class=\"btn btn-primary\">seenaa</button> isa jedhu tuqa. Nu biraa akaawuntii yoo qabattan<strong> Akaawuntiin keessan</strong> fuula keessa ni seentu.",
+                "" => '
+                        <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-login-ao\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/sign_1_or.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/sign_2_or.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/sign_3_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-ao img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/sign_4_or.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-login-ao\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "recovery"    => [
@@ -1217,11 +1262,32 @@ $help = [
             "body" => [
                 "1) " => "Unkaa ittiin seenan gaditti<strong> Password keessanii ni iraanfattanii?</strong> isa jedhu tuqa. Fuulli password ittiin yaadatan yammuu banamu maqaa ittiin fayyadamtan ykn imeelii keessa erga isa jedhu tuqa. Achis itti fufuun dhaamsa kana ni argitu<strong>Odeefannoo password ittiin jijjiiratan imeelii dhana isiniif ergine jirra.</strong>.qajeelfama imeelicha irra jiru sirriitti hordoofa. Adeemsa password jijjiiruu haal milk’aina qabun xumuruuf gara isa itti aanutii deema.",
                 "2) " => "Imeelii keessan banatii imeelii keenya isiniif ergame irratti password kan ittiin jijjiiran galmee tuqa password keessan kana isin ni beeksisa. Kana <strong>password fuulaakaawuntii keessan keessa seenatanii jijjiiru ni dandeessu</strong>።password keessan isa haara galchun haala milkaa’ina qabun ni xumurtu. Kanaafuu password isaa haaraa dhaan seenu ni dandeessu. ",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
-                                <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                                <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
-                                </video>
-                              </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-rec-ao\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/passRec_1_or.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/passRec_2_or.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/passRec_3_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-ao img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/passRec_4_or.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-rec-ao\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "upload"   => [
@@ -1230,11 +1296,41 @@ $help = [
                 "1) " => "Qabeenya galchuuf jalqaba galu qabdu.",
                 "2) " => "Eega galtan booda gubbarra gama mirgaatiin kan jiru<strong>qabeenya galcha </strong>isa jedhu tuqa. Achii itti aansun qabeenya galchu barbaaddan filadhaa. ",
                 "3) " => 'Achi itti aansuun qabeenya galchu barbaaddan filadhaa. Unkaan qabeenya irratti galchan ni banama. Unkicha irratti waa’ee qabeenyaa odeefannoo hunda galchaa. Hanga isiniif danda’ametti suuraa bareeda galchuuf yoo dandeessan ija nama heedduu harkisuuf isn gargaara. Kana bira darbee haalaqabeenyichi irratti argamu ifatti agarsiisuuf ni gargaara. Hanga suura shan galchu ni dandeesssu. Egaa xumurtan booda <button class="btn btn-primary">erga, galchaa, tuqa </button> isa jedhu jedhu tuquun haalamilkaa’ina qabun xumura. Itti aansees<strong> qabeenyawwan keessan bifa milkaa’ina qabun gale jira. Tajaajila keenyatti waan itti fayyadamtaniif ni galatefanna.</strong>dhaamsa jedhu argitu.  Bu’uura kanaanis qabeenya isin galchitan qabeenya kiyya kan jedhu keessatti argattu. Qabeenyichi sa’aatii 24 keessatti hojiirra oolee nama hundaf kan mul’atu ta’a.',
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
-                                <video width="50%" id="vid-upload" style="border: 2px black solid">
-                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" =>  '<div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(7, \'image-slider-img-upload-ao\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_1_or.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_2_or.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_3_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_4_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img5 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_5_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img6 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_6_or.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-ao img7 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/upl_7_or.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(7, \'image-slider-img-upload-ao\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
 
             ]
         ],
@@ -1244,22 +1340,66 @@ $help = [
                 "1) " => "Website keenya gubbaa gama mirgaatiin ykn jala kan jiru<strong>gaafachu ni barbaadduu?</strong>isa jedhu tuqa.",
                 "2) " => "<strong>Dhaan sababii ittiin nu haasofsiisu barbaaddan</strong> tarreeffama irra sababii keessan yoo argachubattan, <strong>yaada waliigalaa</strong>isa jedhu filadhaa.Seentanii yoo ta’e odeefannon keessan matuma isatiin ni guuta. Yoo ta’ubaate odeefannicha gutaa.",
                 "3) " => "Unkaa eega guuttan booda  <button class=\"btn btn-primary\">erga </button> isa jedhu tuqa. Itti aansuun<strong> argachu waan barbaaddani  galtooma</strong> dhaamsa jedhu argattu.",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">Dabalataaf viidiyoo ilaala</a></p>
-                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
-                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-ao\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/conUs_1_or.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/conUs_2_or.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/or/conUs_3_or.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-contact-ao\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "search"   => [
             "head" => "Qabeenya akkamitti barbaachuu akka dandeessan",
             "body" => [
-                "" => "Website keenya irra qabeenya barbaaddan haala salphaan argachu ni dandeessu. Kanas unkaa ittiin barbaadan irratti odeefannoowwan galchuun milkaa’un ni dandeessu. Application keenya  ittiin hojiirra oolcha bu’uuraodeefannoo galchitaniin bu’a adda addaa ni kenna. Kunis akka armana gadii ta’a<br /> 1) <strong>gujecha ittiin barbaadan</strong>yoo galubaate<strong>qabeenyawwan hunda</strong>fi<strong>magaaloota hunda</strong>yoo filatame. Iti aansuun <button class='btn btn-warning'>Haa barbaadamu</button>isa jedhu tuqa.Qaneenyawwan hunda Website keenya irra jirankanneen hojiirra oolan ni agarsiisa.<br /> 2) <strong>Jecha ittiin barbaadan</strong>yoo gale, <strong>qabeenyawwan hunda </strong>fi<strong>magaaloota hunda</strong>yoo filatame. Itti aansuun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qbeenyawwan website keenya irra jiran odeefannoo isin galchitan kanneen guutan ni agarsiisa. Kunis magaaloota hundaa fi akaakuu qabeenyawwan hunda ni hammata. <br /> 3) <strong> jecha ittiin barbaadan</strong>Yoo galubaate,<strong>konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaalee manaa/bilbila/kanneen biroo</strong>qabeenya dabalatan filattan ilaalchisee odeefannon dabalataan ittiin barbaadan ilaalchisee yoo filatamee fi<strong>magaaloota hunda</strong>hun yoo filatame. Itti aansuun isa <button class=\"btn btn-warning\">haa barbaadamu</button> jedhu tuqa. Qabeenyawwan website keenya irra jiran odefannoo isin galchitan kaneen guutan ni agarsiisa. Kunis qabeenya barbaaddan hunda magaaloota hunda keessa barbaachu ni hammata.<br /> 4) <strong>jecha ittiin barbaadan</strong> Yoo gale <strong> konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaaleemanaa/bilbila/kanneen biroo</strong> Kana malees qabeenya filattan ilaalchisee odeefannoon ittiin barbaadamu yoo filatameefi<strong>magaalaan tokko yoo filatame</strong>yoo filatame, itti aansun <button class=\"btn btn-warning\">haa barbaadamu</button> isa jedhu tuqa. Qabeenyawwan website keenya irra jiran keessee kanneen  odeefannoo isin galchitan kan guutan ni agarsiisa. Kunis qabeenya isin filattan magalaaf latame keessaa filachu ni hammata.<br />",
                 "i) " => "Saanduqa ittiin barbaadan website keenya irra gubbaa gama mirgaatiin argama.",
                 "ii) " => "Odeefannoowwan ittiin barbaadan hunda galcha.",
                 "iii) " => "Itti aansuun haa barbaadamu isa jedhu tuqa",
                 "*" => "Yammuu jecha ittiin barbaadamu galchitan jecha gabaabaatti yoo fayyadamtan ni filatama. Qabeeenya achi jiru argachuuf carraan bal’dhaa dha. Fakeenyaaf konkoolaataa diimaa barbaaduuf, diimaa jettanii yoo barreesitan  filatama dha.Afaan adda addaatiin barbaadunis qabeenya dabalata agarsiisu ni danda’a. Afaan adda addaaatiin barbaachuunis qabeenyawwan dabalata agarsiisu ni danda’a.",
                 "**" => "Qabeenyi barbaadame yoo argamubaate<strong> qabeenyichi hin argamne</strong> dhaamsa kan jedhu ni mul’ata.",
+                "" => 'Website keenya irra qabeenya barbaaddan haala salphaan argachu ni dandeessu. Kanas unkaa ittiin barbaadan irratti odeefannoowwan galchuun milkaa’un ni dandeessu. Application keenya  ittiin hojiirra oolcha bu’uuraodeefannoo galchitaniin bu’a adda addaa ni kenna. Kunis akka armana gadii ta’a<br /> 1) <strong>gujecha ittiin barbaadan</strong>yoo galubaate<strong>qabeenyawwan hunda</strong>fi<strong>magaaloota hunda</strong>yoo filatame. Iti aansuun <button class="btn btn-warning">Haa barbaadamu</button>isa jedhu tuqa.Qaneenyawwan hunda Website keenya irra jirankanneen hojiirra oolan ni agarsiisa.<br /> 2) <strong>Jecha ittiin barbaadan</strong>yoo gale, <strong>qabeenyawwan hunda </strong>fi<strong>magaaloota hunda</strong>yoo filatame. Itti aansuun <button class="btn btn-warning">haa barbaadamu</button> isa jedhu tuqa. Qbeenyawwan website keenya irra jiran odeefannoo isin galchitan kanneen guutan ni agarsiisa. Kunis magaaloota hundaa fi akaakuu qabeenyawwan hunda ni hammata. <br /> 3) <strong> jecha ittiin barbaadan</strong>Yoo galubaate,<strong>konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaalee manaa/bilbila/kanneen biroo</strong>qabeenya dabalatan filattan ilaalchisee odeefannon dabalataan ittiin barbaadan ilaalchisee yoo filatamee fi<strong>magaaloota hunda</strong>hun yoo filatame. Itti aansuun isa <button class="btn btn-warning">haa barbaadamu</button> jedhu tuqa. Qabeenyawwan website keenya irra jiran odefannoo isin galchitan kaneen guutan ni agarsiisa. Kunis qabeenya barbaaddan hunda magaaloota hunda keessa barbaachu ni hammata.<br /> 4) <strong>jecha ittiin barbaadan</strong> Yoo gale <strong> konkolaataa/kompiyuutara/eelektoniksii/mana/meeshaaleemanaa/bilbila/kanneen biroo</strong> Kana malees qabeenya filattan ilaalchisee odeefannoon ittiin barbaadamu yoo filatameefi<strong>magaalaan tokko yoo filatame</strong>yoo filatame, itti aansun <button class="btn btn-warning">haa barbaadamu</button> isa jedhu tuqa. Qabeenyawwan website keenya irra jiran keessee kanneen  odeefannoo isin galchitan kan guutan ni agarsiisa. Kunis qabeenya isin filattan magalaaf latame keessaa filachu ni hammata.<br />
+                    <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                    <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                    <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                    <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-search-ao\')">
+                        <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                    </a>
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-ao img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/or/search_1_or.png" alt="First slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-ao img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/or/search_2_or.png" alt="Second slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-ao img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/or/search_3_or.png" alt="Third slide">
+                    </div>
+                    <div class="image-slider-img image-slider-img-search-ao img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                    <img class="col-xs-12 col-md-12" src="../images/helpImages/or/search_4_or.png" alt="Third slide">
+                    </div>
+                    <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                    <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-search-ao\')" style="padding:0px">
+                        <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                    </a>
+                    </div>
+                    </div>
+                    </div>'
             ]
         ]
     ]

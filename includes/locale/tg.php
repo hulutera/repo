@@ -1188,11 +1188,29 @@ $help = [
                 "2) " => "እቲ ዝተውሃበ ቅጥዒ ውልቃዊ ሓበሬታ ብምምላእ  ቀዳማይን <button class=\"btn btn-primary\">ይመዝገቡን</button> ዝብሉ ቁልፊታት ይጠውቁ፡፡",
                 "3) " => "ተመዝጊቦም ምስ ወድኡ ዕዉት ምዝገባ መረጋገፂ  መልእክቲ ክበፅሖም ዩ፡፡ ስለዝተመዝገቡ የቀንየልና፡፡ ምምዝጋቦም መረጋገፂ መልእክቲ ናብ ኢሜይሎም ተላኢኩ ኣሎ፡፡ በጅኦም እቲ መልዓሊ ጥብቆ ብምጥዋቅ ኣካውንቶም ስራሕ ንክጅምር ይግበሩ፡፡ ምዝገበኦም ንምጥንቃቅ ናብቲ ዝቅፅል ከይዲ ይሰጋገሩ፡፡",
                 "4) " => "ኣብቲ ቅጥዒ ዝመልእዎ ኢሜይሎም ብምክፋት ኣብቲ  ካብ ገፅና ዝተልኣከ ጥብቆ ይጠውቁ እዚ ከይዲ ኣካውንቶም ስርሑ ንክጅምር ይገብር፡፡ ሐዚ <strong> ኣካውንቶም ስርሑ ጀሚሩ ኣሎ</strong>  ዝብል  መልእክቲ ክበፅሖም ዩ፡፡ ሐዚ ና ኣካውንቶም ክኣትዉ ይክእሉ ዮም፡፡ ተመዝጊቦም ኣለዉ፡፡",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'register\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
-                               <video width="50%" id="vid-register" style="border: 2px black solid">
-                               <source src="../videos/am/reg_am.mp4" type="video/mp4">
-                               </video>
-                               </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-reg-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/reg_1_tg.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/reg_2_tg.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-reg-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/reg_3_tg.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-reg-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
 
             ]
         ],
@@ -1201,6 +1219,33 @@ $help = [
             "body" => [
                 "1) " => "ናብ ኣካውንቶም ይእተዉ ዝብል <strong>ይግቡ</strong> ኣብ ላዕለዋይ የማነይ ኩርናዕ ናይዚ ድሕረ ገፅ ዝርከብ ጥብቆ ይጠውቁ፡፡",
                 "2) " => "ኢሜይሎምን ናይ ይሕለፍ ቃሎምን ይእተው፡፡ ናብ ኣካውንቶም <button class=\"btn btn-primary\"> ይእተዉ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ኣብ ገፅና ኣካውንት እንተሃልይዎም ናብ ኣካውንት ገፆም ክንመርሖም ኢና፡፡",
+                "" => '
+                        <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-login-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/sign_1_tg.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/sign_2_tg.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/sign_3_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-login-tg img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/sign_4_tg.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-login-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "recovery"    => [
@@ -1208,11 +1253,32 @@ $help = [
             "body" => [
                 "1) " => "ኣብቲ ናይ መእተዊ ቅጥዒ <strong>ናይ ይሕለፍ ቃል ረሲዐ? </strong> ዝብል ጥብቆ ይጠውቁ፡፡ ብኢሜይል ወይ ስም ተጠቃሚ ኣቢሉ ናብ ዝምላእ ገፅ ምስ ወሰዶም መመለሲ ቁልፊ <button class=\"btn btn-primary\">ይልአኩ</button> ዝብል ይጠውቁ፡፡ ምስ ውልቀ ኣካውንቶም ዝተኣሳሰረ ኢሜይል ናይ <strong> ይሕለፍ ቃል መመለሲ ሓበሬታ ሐዚ ተላኢኩሎም ኣሎ </strong> ዝብል መልእክቲ ክመፅአሎም ዩ፡፡ በጅኦም ኣብቲ መልእክቲ ንዘሎ መምርሒ ይከተሉ፡፡  እቲ ናይ ምምላስ ከይዲ ንምጥንቃቅ ናብቲ ዝስዕብ ተግባር ይሕለፉ፡፡",
                 "2) " => "ኣብቲ ዝመልእዎ ቅጥዒ ዘሎ ኢሜይል ኣድራሻ ብምጥቃም ኢሜይሎም ብምክፋት ኣብቲ ዝለኣክናሎም ጥብቆ ይጠውቁ፡፡ እዚ ናይ ይሕለፍ ቃሎም ክምልሰሎም ዩ፡፡በጅኦም ሓደ ግዜ ናይ <strong> ይሕለፍ ቃሎም ምስመለሱ ካልእ ግዜ ኣብ ኣካውንት ገፆም ኣትዮም ምምላስ ይክእሉ ዮም </strong> ዝብል መልእክቲ ከም ዘበፅሖም ይዘክሩ፡፡ ሓዱሽ ናይ ይሕለፍ ቃል ምስ ኣእተዉ ከይዲ ምምላስ ናይ  ይሕለፍ ቃል ይክንበት ኢሉ ውን ተጠቃሚ ናብ ኣካውንት ገፆም ክኣትዉ ይክእሉ ዮም፡፡",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'recovery\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
-                                <video width="50%" id="vid-recovery" style="border: 2px black solid">
-                                <source src="../videos/am/pass_rec_am.mp4" type="video/mp4">
-                                </video>
-                              </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-rec-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/passRec_1_tg.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/passRec_2_tg.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/passRec_3_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-rec-tg img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/passRec_4_tg.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-rec-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "upload"   => [
@@ -1221,11 +1287,41 @@ $help = [
                 "1) " => "ንብረት ንምልጣፍ ፈለማ ናብ ውልቀ ኣካውንት ገፆም ይእተዉ፡፡",
                 "2) " => "ኣብ ላዕላይ የማናይ ኩርናዕ ናይ ገፆም <strong> ንብረት ይለጥፉ </strong> ዝብል ብምምራፅ ይጠውቁ፡፡ ከወዓውዕዎ ዝደልዩ ንብረት ይምረፁ፡፡",
                 "3) " => 'ንብረት ምልጣፍ ዘክእል ቅጥዒ ምስከፈተሎም ነቲ ቅጥዒ ብዝድለ ነቲ ንብረት ዝምልከት ሓበሬታ ይምልኡ፡፡ ናይቲ ዝልጥፍዎ ንብረት ስእሊ ፅሬቱ ዝሓለወ ብምግባር ንዓይኒ ማራኪ ኢሉ ውን ናይቲ ንብረት ህልዊ ኩነታት ብግልፂ ዘርኢ ክከውን ከምዘለዎ ማዕዳና ነቅርብ፡፡ ክሳብ ሓሙሽተ ዝኣክሉ ስእልታት ምልጣፍ ይከኣል ዩ፡፡ እዚ ምስገበሩ <button class="btn btn-primary"> ይልአኩ፣የእትኩ፤ይጽአኑ </button> ዝብል ቁልፊ ብምጥዋቅ ምውዕዋዖም ይዛዝሙ፡፡ንብረቶም ብዕዉት ኩነታት ተለጢፉ ኣሎ ዝብል መልእክቲ ክለኣከሎም ዩ፡፡ <strong> ናይ ኣገልግሎትና ተጠቃሚ ስለዝኮኑ ኣዚና ነመስግን፡፡ </strong> ኣብዚ ብርኪ ናይ ምልጣፍ ከይዶም ይክንበት፡፡ ዝለጠፍዎ ንብረት ንብረተይ ኣብ ዝብል ኣብ ከይዲ ዝርከብ ብዝብል ብርኪ ንብረት ይረኣዮምሞ እዚ ድሕሪ 24 ሰዓታት ብዕሊ ስርሑ ዝጅምር ይከውን፡፡',
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'upload\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
-                                <video width="50%" id="vid-upload" style="border: 2px black solid">
-                                <source src="../videos/am/upload_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" =>  '<div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(7, \'image-slider-img-upload-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_1_tg.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_2_tg.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_3_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_4_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img5 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_5_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img6 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_6_tg.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-upload-tg img7 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/upl_7_tg.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(7, \'image-slider-img-upload-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>',
 
             ]
         ],
@@ -1235,26 +1331,70 @@ $help = [
                 "1) " => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
                 "2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
                 "3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
-                "" => '<div class="help-video" style="width:100%"><p style="text-align:start"><a onclick="playVideo(\'contactus\')" href="javascript:void(0)">ንተወሳኪ ሓበሬታ ነቲ ተንቀሳቃሲ ምስሊ ይተዓዘቡ</a></p>
-                                <video width="50%" id="vid-contactus" style="border: 2px black solid">
-                                <source src="../videos/am/contact_am.mp4" type="video/mp4">
-                                </video>
-                                </div>',
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/conUs_1_tg.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/conUs_2_tg.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-contact-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/tg/conUs_3_tg.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(3, \'image-slider-img-contact-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
             ]
         ],
         "search"   => [
             "head" => "ከመይ ንብረታት ትእልሽ",
             "body" => [
-                "" => 'ሳንዱቅ መአለሺ እቲ ትደልይዎ ንብረት በቲ ዘእተኩሞ ሓበሬታ መሰረት ከመይ ትረክቡ ይሕግዘኩም፡፡ካብዚኦ እቶም ዝተወሰኑ ንምጥቃስ፡-  <br />
-                       1) <strong>ናይ ድልያ ቃል </strong> ኣትዎ ፣<strong> ኩሉ ንብረታት </strong> ክምኡዉን <strong> ኩሉ ከተማታት </strong> ምስ ተመረጸ። ቀጺሉ <button class="btn btn-warning"> ይእለሽ </button> ናይ ኣልሽ ተግባራት ነቲ ዘእተኩሞ ሓበሬታ መሰረት ገይሩ ዝተፈላለዩ ውፅኢታት ይህበኩም፡፡ </br>
-                       2) ናይዚ ውፅኢት ተዛመድቲ ንብረታትን ከተማታትን ይዝርዝር፡፡ ንኣብነት ‘’ቀይሕ’’ ዝብል ኩሎም ቀያሕቲ ንብረታት ኣብ ኩሎም ከተማታት ይእለሽ፡፡<strong>ናይ ድልያ ቃል </strong>ከገባ፣<strong> ኩሉ ንብረታት </strong> ኣትዎ <strong> ኩሉ ከተማታት </strong> ዝተመረጸ። ቀጺሉ ይትአለሽ ብል ይጽኣኑውን ። ብደረ ኑቅጣና ውሽፂ ዘላ ናጺ ንስኹም ምግባ ዘለዎም ሓበሬታ ይርዕይ እዚ ብኩሉ ከተማታት ውሽጢ ዘለው ኩሉ ናይ ንብረት ዓይነት ይጠቃልል፡፡<br />
-                       3) ዝኮነ ይኩን ፅሑፍ ኣብቲ ሳንዱቅ ኣየእትዉ፡፡ ‘’መኪና፣ ኮምፒዩተር፣ ኢሌክተሮኒክስ፣ ገዛ፣ ኣቁሑት ገዛ፣ ስልኪ፣ ካልእ ’’ ይምረፁ፣ ምስቲ ንብረት ዝዛመድ ሓበሬታ የእትዉ፣ ዝኮነ ኩሉ ከተማ ይምረፁ፡፡ ኣብ መወዳእታ  <button class="btn btn-warning"> ይእለሽ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ንኣብነት፡-  መኪና ይምረፁ፣ ምስ እዛ መኪና ዝዛመድ ሓበሬታ ይምረፁ፣  ኢሉ ውን ‘’አዲስ አበባ’’ ኢሎም ይምረፁ፡፡ </br>
-                       4) ቁልፊ ቃል ኣብቲ መፅሓፊ ሳንዱቅ የእትዉ፣‘’መኪና፣ ኮምፒዩተር፣ ኢሌክተሮኒክስ፣ ገዛ፣ ኣቁሑት ገዛ፣ ስልኪ፣ ካልእ ’’ ይምረፁ፣ ምስቲ ንብረት ዝዛመድ ሓበሬታ የእትዉ፣ ዝኮነ ከተማ ይምረፁ፡፡ ኣብ መወዳእታ  <button class="btn btn-warning"> ይእለሽ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ንኣብነት፡- ‘’ቀይሕ’’ ዝብል ቃል ኣብቲ ፅሑፍ መእተዊ ሳንዱቅ የእትዉ፣ መኪና ይምረፁ፣ ምስ እዛ መኪና ዝዛመድ ሓበሬታ ይምረፁ፣ ኢሉ ውን ‘’አዲስ አበባ ኢሎም ይምረፁ፡፡ ናይዚ ውፅኢት ኩሎም ተዛመድቲ ኣብ ኣዲስ አበባ ዘለዉ መካይን የርእየና፡፡ <br />',
                 "i)" => ' መኣለሺ ሳንዱቅ የማናይ ላዕለዋይ ኩርናዕ ክፍሊ ናይዚ ድሕረ ገፅ ትረክቦ',
                 "ii)" => ' መአለሺ ረቋሒታት መሪፆም የእትዉ',
                 "iii)" => ' <button class="btn btn-warning" type="button">ይእለሽ</button> ዝብል ቁልፊ ይጠውቁ',
                 "ምልክታ:" => ' ቀያሕ መኪና ንምእላሽ ‘’ቀይሕ’’ ዝብል ቃል ጥራሕ ብምፅሓፍ ብርክት ዝበሉ ተዛመድቲ ምህርትታት ንምእላሽ ይሕግዘኩም፡፡ ቶዮታ መኪና ንምእላሽ ‘’ቶዮታ’’ ዝብል ቃል ጥራሕ ብምፅሓፍ ብዙሓት ተዛመድቲ ውፅኢታት ይረክቡ፡፡ ሳምሰንግ ሞባይል ስልኪ ንምእላሽ ‘’ሳምሰንግ’’ ጥራሕ ብምፅሓፍ ብርክት ዝበሉ ተዛመድቲ ምህርትታት ንምእላሽ ይሕግዘኩም፡፡ ወ.ዘተ….',
-                "*" => ' ተዛመድቲ ንብረታት <strong> እንተዘይሃልዮም እቲ ዝግባእ ዘይምህላዉ ዘርኢ </strong> መልእክቲ የርእዮም፡፡'
+                "*" => ' ተዛመድቲ ንብረታት <strong> እንተዘይሃልዮም እቲ ዝግባእ ዘይምህላዉ ዘርኢ </strong> መልእክቲ የርእዮም፡፡',
+                "" => 'ሳንዱቅ መአለሺ እቲ ትደልይዎ ንብረት በቲ ዘእተኩሞ ሓበሬታ መሰረት ከመይ ትረክቡ ይሕግዘኩም፡፡ካብዚኦ እቶም ዝተወሰኑ ንምጥቃስ፡-  <br />
+                       1) <strong>ናይ ድልያ ቃል </strong> ኣትዎ ፣<strong> ኩሉ ንብረታት </strong> ክምኡዉን <strong> ኩሉ ከተማታት </strong> ምስ ተመረጸ። ቀጺሉ <button class="btn btn-warning"> ይእለሽ </button> ናይ ኣልሽ ተግባራት ነቲ ዘእተኩሞ ሓበሬታ መሰረት ገይሩ ዝተፈላለዩ ውፅኢታት ይህበኩም፡፡ </br>
+                       2) ናይዚ ውፅኢት ተዛመድቲ ንብረታትን ከተማታትን ይዝርዝር፡፡ ንኣብነት ‘’ቀይሕ’’ ዝብል ኩሎም ቀያሕቲ ንብረታት ኣብ ኩሎም ከተማታት ይእለሽ፡፡<strong>ናይ ድልያ ቃል </strong>ከገባ፣<strong> ኩሉ ንብረታት </strong> ኣትዎ <strong> ኩሉ ከተማታት </strong> ዝተመረጸ። ቀጺሉ ይትአለሽ ብል ይጽኣኑውን ። ብደረ ኑቅጣና ውሽፂ ዘላ ናጺ ንስኹም ምግባ ዘለዎም ሓበሬታ ይርዕይ እዚ ብኩሉ ከተማታት ውሽጢ ዘለው ኩሉ ናይ ንብረት ዓይነት ይጠቃልል፡፡<br />
+                       3) ዝኮነ ይኩን ፅሑፍ ኣብቲ ሳንዱቅ ኣየእትዉ፡፡ ‘’መኪና፣ ኮምፒዩተር፣ ኢሌክተሮኒክስ፣ ገዛ፣ ኣቁሑት ገዛ፣ ስልኪ፣ ካልእ ’’ ይምረፁ፣ ምስቲ ንብረት ዝዛመድ ሓበሬታ የእትዉ፣ ዝኮነ ኩሉ ከተማ ይምረፁ፡፡ ኣብ መወዳእታ  <button class="btn btn-warning"> ይእለሽ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ንኣብነት፡-  መኪና ይምረፁ፣ ምስ እዛ መኪና ዝዛመድ ሓበሬታ ይምረፁ፣  ኢሉ ውን ‘’አዲስ አበባ’’ ኢሎም ይምረፁ፡፡ </br>
+                       4) ቁልፊ ቃል ኣብቲ መፅሓፊ ሳንዱቅ የእትዉ፣‘’መኪና፣ ኮምፒዩተር፣ ኢሌክተሮኒክስ፣ ገዛ፣ ኣቁሑት ገዛ፣ ስልኪ፣ ካልእ ’’ ይምረፁ፣ ምስቲ ንብረት ዝዛመድ ሓበሬታ የእትዉ፣ ዝኮነ ከተማ ይምረፁ፡፡ ኣብ መወዳእታ  <button class="btn btn-warning"> ይእለሽ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ንኣብነት፡- ‘’ቀይሕ’’ ዝብል ቃል ኣብቲ ፅሑፍ መእተዊ ሳንዱቅ የእትዉ፣ መኪና ይምረፁ፣ ምስ እዛ መኪና ዝዛመድ ሓበሬታ ይምረፁ፣ ኢሉ ውን ‘’አዲስ አበባ ኢሎም ይምረፁ፡፡ ናይዚ ውፅኢት ኩሎም ተዛመድቲ ኣብ ኣዲስ አበባ ዘለዉ መካይን የርእየና፡፡ <br />
+                        <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
+                        <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
+                        <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(4, \'image-slider-img-search-tg\')">
+                            <span class="glyphicon glyphicon-chevron-left" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        <div class="image-slider-img image-slider-img-search-tg img1 col-xs-10 col-md-10" style="display:block;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_1_so.png" alt="First slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-search-tg img2 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_2_so.png" alt="Second slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-search-tg img3 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_3_so.png" alt="Third slide">
+                        </div>
+                        <div class="image-slider-img image-slider-img-search-tg img4 col-xs-10 col-md-10" style="display:none;padding:0px">
+                        <img class="col-xs-12 col-md-12" src="../images/helpImages/so/search_4_so.png" alt="Third slide">
+                        </div>
+                        <div class="col-xs-1 col-md-1 slide-right" style="padding:0px">
+                        <a class="slide-right" href="javascript:void(0)" onclick="slideRight(4, \'image-slider-img-search-tg\')" style="padding:0px">
+                            <span class="glyphicon glyphicon-chevron-right" style="color:black;font-size:20px"></span>
+                        </a>
+                        </div>
+                        </div>
+                        </div>'
+
 
 
             ]

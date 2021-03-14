@@ -1872,14 +1872,12 @@ th {
 
 .svg-big-sc {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	float:left;
 }
 
 .svg-mid-sc {
 	display: none;
-	margin-left: auto;
-	margin-right: auto;
+	float:left;
 }
 
 .svg-small-sc {
@@ -2044,6 +2042,36 @@ th {
 	background-image: none;
 }
 
+.slide-left, .slide-right {
+	cursor: pointer;
+	top: 50%;
+	padding: 16px;
+	color: white;
+	text-align:center;
+	margin-top:250px;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+.image-slider-img{
+	height: 500px;
+	position: relative;
+	display:none;
+}
+.image-slider-img img{
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
 /*
   ##Device = Laptops, Desktops
 */
@@ -2062,6 +2090,14 @@ th {
 
 @media (min-width: 1025px) and (max-width: 1200px) {
 	/* Shall be saved and used when necessary*/
+	.city-list {
+		width:100%;
+		margin-top:20px;
+	}
+	.item-list-div a li {
+		width:33%;
+		float:left;
+	}
 }
 
 /*
@@ -2254,6 +2290,14 @@ th {
 	.show-latest-mob-container {
 		display: none;
 	}
+	.city-list {
+		width:100%;
+		margin-top:20px;
+	}
+	.item-list-div a li {
+		width:33%;
+		float:left;
+	}
 }
 
 /* */
@@ -2330,13 +2374,13 @@ th {
 		margin-left: 5%;
 		margin-right: 5%;
 	}
-	.item-list-div a li {
+	.city-list {
 		width:100%;
-		clear:both;
+		margin-top:20px;
 	}
-	.item-list-div a li{
-		width:100%;
-		clear:both;
+	.item-list-div a li {
+		width:33%;
+		float:left;
 	}
 	.register-container, .contactus-container {
 		border: 1px solid #c7c7c7;
@@ -2555,14 +2599,14 @@ th {
 		margin-right: auto;
 	}
 	.leftNav-index {
-		display: none;
+		display: block;
 	}
 	#mainColumn-index {
 		display: block;
-        width:80%;
+
 	}
 	.rightNav-index {
-		display: none;
+		display: block;
 	}
 	.items-list {
 		display:block;
