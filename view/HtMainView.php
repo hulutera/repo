@@ -128,7 +128,6 @@ class HtMainView
      */
     public function showItem($filter, $skipPagination = null, $skipId = null)
     {
-        $ab = ObjectPool::getInstance();
         $this->_pItem = ObjectPool::getInstance()->getObjectWithId($this->_runnerName);
         // Send query to the main item class
         $condition = "WHERE field_status = '$filter'";
@@ -192,6 +191,7 @@ class HtMainView
 
     public function thumbnail($row)
     {
+        $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         if (isset($_SESSION['uID'])) {
             $user = new HtUserAll($_SESSION['uID']);
         }
@@ -228,7 +228,6 @@ class HtMainView
         else
             $size = " col-xs-12 col-md-4 col-sm-6";
 
-        echo '<a href="../includes/detail.php?type=' . $itemName . '&status=' . $this->_runnerStatus . '&id=' . $id .'">';
         echo "<div id =\"divCommon\" class=\"thumblist_$itemName" . "_" . $itemNumber . $size . "\">";
         echo "<div class=\"thumbnail tn_$itemName" . "_" . $itemNumber . "\">";  // .thumbnail starts
         /*START @ thumbnail thumbnail-property features*/
@@ -236,15 +235,19 @@ class HtMainView
         /*START @ property-image object-fit-container compat-object-fit*/
         echo '<div class="property-image object-fit-container compat-object-fit">';
         echo '<div class="image-count"><i style="color:;font-size:16px;background-color:#333" class="icon-image"></i><span style="color:black;font-size:16px;">' . $numimage . '</span></div>';
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&status=' . $this->_runnerStatus . '&id=' . $id . $lang_sw . '">';
         echo '<img src="' . $thmbnlImg . '" alt="" />';
-        echo  '</div>';
+        echo '</a>';
+        echo '</div>';
         /*END @property-image object-fit-container compat-object-fit*/
 
         /*START @ Caption*/
         echo '<div class="caption">';
+        echo '<a href="../includes/detail.php?type=' . $itemName . '&status=' . $this->_runnerStatus . '&id=' . $id . $lang_sw . '">';
         echo '<h3 class="property-title">';
         echo $commonViewObj->displayTitle($this->_pItem);
-        echo '</h3>';
+        echo '</h3></a>';
+
 
         echo '<p class="property-description"></p>';
         $commonViewObj->displayLocation($this->_pItem);
@@ -287,7 +290,6 @@ class HtMainView
         echo '</div>';
         echo '</div>';
         echo  "</div>"; // #divCommon end
-        echo "</a>";
         //---------------------------------------------------------
     }
 
