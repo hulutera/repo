@@ -242,10 +242,7 @@ form.signin input.button {
 	width: 100px;
 }
 
-.login-container, .pass-recovery-container {
-	border: 1px solid #c7c7c7;
-	margin: 5% 25% 0 25%;
-}
+
 
 
 #wrapper #main_section {
@@ -1381,10 +1378,7 @@ div.clear {
 	background-color: #89c403;
 }
 
-#outer {
-	width: 100%;
-	text-align: center;
-}
+
 
 #inner {
 	display: inline-block;
@@ -1432,6 +1426,9 @@ div.clear {
 .register-container, .contactus-container {
 	border: 1px solid #c7c7c7;
 	margin: 20px 25%;
+	background: #f7f7f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
 }
 
 .field {
@@ -2230,7 +2227,7 @@ th {
 	#modnav ul li {
 		width: 50%;
 	}
-	.login-container, .pass-recovery-container {
+	.login-container{
 		border: 1px solid #c7c7c7;
 		clear: both;
 		width: 50%;
@@ -2389,7 +2386,7 @@ th {
 		width: 70%;
 		margin: 20px 15%;
 	}
-	.login-container, .pass-recovery-container {
+	.login-container {
 		border: 1px solid #c7c7c7;
 		clear: both;
 		width: 50%;
@@ -2567,7 +2564,7 @@ th {
 	#modnav ul li {
 		width: 50%;
 	}
-	.login-container, .pass-recovery-container {
+	.login-container {
 		border: 1px solid #c7c7c7;
 		clear: both;
 		width: 80%;
@@ -2842,7 +2839,7 @@ th {
 	#modnav ul li {
 		width: 50%;
 	}
-	.login-container, .pass-recovery-container {
+	.login-container{
 		border: 1px solid #c7c7c7;
 		clear: both;
 		margin: 20px 5px;
@@ -3298,4 +3295,13 @@ ul.thumbnails-carousel li {
 	float: left;
 	margin: 4px 15px 0 5px;
 	min-width: 15px;
+}
+
+.pass-recovery-container {
+	width: 380px;
+	margin: 30px auto;
+	border: 1px solid #c7c7c7;
+	background: #f7f7f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
 }

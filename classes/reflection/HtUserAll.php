@@ -1314,7 +1314,7 @@ SQL;
         global $lang_url;
         //unsetSessionData();
         ___open_div_("container-fluid", '');
-        ___open_div_("col-md-4 col-xs-12 pass-recovery-container", '');
+        ___open_div_("pass-recovery-container", '');
         ////
 
         ///

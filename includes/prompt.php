@@ -106,57 +106,58 @@ function createMessage($type, $msg = null)
 	<?php
 	headerAndSearchCode(""); ?>
 	<div id="outer">
-		<div class="row">
-			<div class="col-md-12">
+
+		<div class="">
+			<div class="h3" style="width:80%;text-align:left;margin-left:15%;">
 
 				<?php
-
-				$alert = ' alert-success';
-				$thumb = ' fa-thumbs-o-up';
-				$style = ' font-size:17px;width:35%';
-				$errorTypes = [503, 504];
-				if (in_array($type, $errorTypes)) {
-					$alert = ' alert-danger';
-					$thumb = ' fa-thumbs-o-down';
-					$style = ' font-size:17px;width:100%';
-				}
-
-				echo '<div class="alert ' . $alert . '" id="inner" style="'.$style.'">
-						<p class="h2">';
-				echo '<i class="fa ' . $thumb . '"></i> ';
-				createMessage($type, $msg);
-				echo '</p>
-						</div>';
+				echo '<a href="../index.php' . $lang_url . '"><i class="fa fa-home"></i> ';
+				createMessage(23);
+				echo '</a>'
 				?>
-
-
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
+		<div class="">
 
-					<?php
-					echo '<a href="../index.php' . $lang_url . '"><i class="fa fa-home"></i> ';
-					createMessage(23);
-					echo '</a>'
-					?>
-				</div>
+			<?php
+
+			$alert = ' alert-success';
+			$thumb = ' fa-thumbs-o-up';
+			$style = ' ';
+			$errorTypes = [503, 504];
+			if (in_array($type, $errorTypes)) {
+				$alert = ' alert-danger';
+				$thumb = ' fa-thumbs-o-down';
+				$style = ' width:100%';
+			}
+
+			echo '<div class="alert ' . $alert . '" id="inner" style="' . $style . '">
+						<p class="h3">';
+			echo '<i class="fa ' . $thumb . '"></i> ';
+			createMessage($type, $msg);
+			echo '</p>
+						</div>';
+			?>
+
+
+		</div>
+
+
+
+	</div>
+	<?php if (isset($_SESSION['uID'])) { ?>
+
+		<div class="">
+			<div class="alert alert-info">
+
+				<?php
+				echo '<a href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
+				createMessage(26);
+				echo '</a>' ?>
 			</div>
 		</div>
-		<?php if (isset($_SESSION['uID'])) { ?>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="alert alert-info" id="inner" style="font-size:17px;width:35%">
 
-						<?php
-						echo '<a href="mypage.php' . $lang_url . '"><i class="fa fa-user"></i> ';
-						createMessage(26);
-						echo '</a>' ?>
-					</div>
-				</div>
-			</div>
-		<?php } ?>
+	<?php } ?>
 	</div>
 	<div style="position:relative;bottom:0px;height:50%;width:100%"></div>
 	<?php footerCode();

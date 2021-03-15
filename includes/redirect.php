@@ -1,16 +1,14 @@
 <?php
-
-// $string = file_get_contents('../client_secret_900551381277-vo2uu5g24qlirghhqoafnmud9visbep4.apps.googleusercontent.com.json');
 function loginWithFacebook()
 {
     $email = "";
-    echo '<a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Login with <b>Facebook</b></a>';
+    echo '<a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> '.$GLOBALS['lang']['Login'].' <b>Facebook</b></a>';
     return $email;
 }
 function loginWithTwitter()
 {
     $email = "";
-    echo '<a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i>Login with <b>Twitter</b></a>';
+    echo '<a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i>'.$GLOBALS['lang']['Login'].' <b>Twitter</b></a>';
     return $email;
 }
 function  loginWithGoogle()
@@ -47,10 +45,10 @@ function  loginWithGoogle()
             $name =  $google_account_info->name;
             $name =  $google_account_info->phone;
         } else {
-            echo '<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with <b>Google</b></a>';
+            echo '<a href="' . $client->createAuthUrl() . '" class="btn btn-danger btn-block"><i class="fa fa-google"></i> '.$GLOBALS['lang']['Login'].' <b>Google</b></a>';
         }
     } else {
-        echo '<a href="#" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with <b>Google</b></a>';
+        echo '<a href="#" class="btn btn-danger btn-block"><i class="fa fa-google"></i> '.$GLOBALS['lang']['Login'].' <b>Google</b></a>';
     }
     return $email;
 }
