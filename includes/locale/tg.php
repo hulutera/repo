@@ -3,7 +3,7 @@ $lang = array(
     "LANGUAGE" => ' ቋንቋ ',
     'HULUTERA_TEXT_LOGO' => '<span style="color:orange">ሁሉ</span><span style="color:#050598a6">ተራ</span>',
     'HULUTERA_TEXT_LOGO2' => '<span style="color:white">ሁሉተራ</span>',
-    "Post Items" => ' ንብረት ኣታዊ ዝገበሩ ',
+    "Post Items" => 'ንብረት ኣታዊ ይግበሩ',
     "Help" => ' ሓበሬታ ',
     "Show Detail" => ' ዝርዝር ንምርኣይ ',
     "Hide Detail" => ' ዝርዝር ንምሽፋን ',
@@ -41,7 +41,7 @@ $lang = array(
     "click to see" => ' ንምርኣይ ኣብዚ ይጠውቁ ',
     "Register" => ' ይመዝገቡ ',
     "Join to hulutera" => ' ናብ hulutera ይፀምበሩ ',
-    "submit" => ' ይልኣኹ፣ ይመዝገቡ፣ ይጠውቑ ',
+    "submit" => ' ይልአኩ፣ የእትው፤ ይፅዓኑ',
     "privacy policy paragraph1 text" => ' ብመሰረት ናይ ውልቀ መረዳእታ አተሓላልዋ ፖሊሲ ተገልጋሊ ነዚ ገፅ ኣብ ዝጥቀመሉ ጊዜ ሁሉተራ ካብ ተገልጋሊ ዝቅበሎም ኩሎም ውልቃዊ ሓበሬታታት ከመይ ይጥቀመሎምን ካብ ሳልሳይ ኣካል ከመይ ብምስጢር ከም ዝዕቅቦምን ግልፂ ይገብር፡፡ ውልቃዊ ነፃነትኩም ዝተሓለወ ንምግባር ዘይተሓለለ ፃዕሪ ንገብር፡፡ ',
     "privacy policy paragraph2 text" => ' ናይ ውልቀ መረዳእታ ንሳልሳይ ኣካል ኣሕሊፍና ኣይንሸጥን፣ ኣይንብንን ኢሉ ‘ውን ውልቀ መረዳእታ ካብ ፍቃዶም ወፃኢ ንሳልሳይ ኣካል ኣይነካፍልን ኮይኑ ግን ብሕጊ እንተተሓቲትና ናይ ምሃብ ግዴታ ይህልወና፡፡ እዚ ገፅ ኣብ እትጥቀምሉ ጊዜ መትከል ውልቃዊ ሓበሬታ ነፃነት ተግባራዊነቱ ንምርግጋፅ መታን ክከኣል ንስኹም ምኳንኩም ንምርግጋፅ ዘኽእሉ መለለይ ሕቶታት ዝኾኑ ዝተወሰኑ ሓበሬታት ንኽህቡና ክንሓቶም ‘ዶ፡፡ ሁሉተራ ምስ ምምሕያሽ እዚ ገፅ ተኣሳሲሩ ነዚ ናይ ፖሊሲ ውልቃዊ መረዳእታ ነፃነት ካብ ጊዜ ናብ ጊዜ ከመሓይሾ ይኽእል ‘ዩ፡፡ እቶም እንገብሮም ለውጥታት ዝሕጎሱሎም ምኳኖም ንምርግጋፅ ኩሉ ጊዜ ገፅና ምርኣይ የድልዮም፡፡',
     "What we collect" => '  ዝድለ ሓበሬታ',
@@ -328,8 +328,8 @@ $item_lang_arr = array(
     "computer" => ' ኮምፕዩተር ',
     "phone" => 'ተሌፎን ',
     "electronic" => 'ኤሌክትሮኒክ',
-    "household" => ' ሓዳር ',
-    "other" => ' ዝተሓዋወሰ'
+    "household" => 'ናይ ገዛ ኣቁሑ ',
+    "other" => ' ካልኦትን'
 );
 
 $upload_specific_array = [
@@ -986,7 +986,7 @@ $abuse_type_lang_arr = [
 
 $user_specific_array = [
     'user' =>    [
-        'registeration' => 'ምዝገባ ተጠቃሚ',
+        'registeration' => 'መእተዊ ቅጥዒ',
         'login' => 'መእተዊ ተጠቃሚ',
         'contactus' => 'ይርከቡና',
         'activate' => 'ይጀምሩ',
@@ -1217,7 +1217,7 @@ $help = [
         "logIn"    => [
             "head" => "ከመይ ናብ ኣካውንቶም ከምዝኣትዉ",
             "body" => [
-                "1) " => "ናብ ኣካውንቶም ይእተዉ ዝብል <strong>ይግቡ</strong> ኣብ ላዕለዋይ የማነይ ኩርናዕ ናይዚ ድሕረ ገፅ ዝርከብ ጥብቆ ይጠውቁ፡፡",
+                "1) " => "ናብ ኣካውንቶም ይእተዉ ዝብል <strong>እቶ</strong> ኣብ ላዕለዋይ የማነይ ኩርናዕ ናይዚ ድሕረ ገፅ ዝርከብ ጥብቆ ይጠውቁ፡፡",
                 "2) " => "ኢሜይሎምን ናይ ይሕለፍ ቃሎምን ይእተው፡፡ ናብ ኣካውንቶም <button class=\"btn btn-primary\"> ይእተዉ </button> ዝብል ቁልፊ ይጠውቁ፡፡ ኣብ ገፅና ኣካውንት እንተሃልይዎም ናብ ኣካውንት ገፆም ክንመርሖም ኢና፡፡",
                 "" => '
                         <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
@@ -1286,7 +1286,7 @@ $help = [
             "body" => [
                 "1) " => "ንብረት ንምልጣፍ ፈለማ ናብ ውልቀ ኣካውንት ገፆም ይእተዉ፡፡",
                 "2) " => "ኣብ ላዕላይ የማናይ ኩርናዕ ናይ ገፆም <strong> ንብረት ይለጥፉ </strong> ዝብል ብምምራፅ ይጠውቁ፡፡ ከወዓውዕዎ ዝደልዩ ንብረት ይምረፁ፡፡",
-                "3) " => 'ንብረት ምልጣፍ ዘክእል ቅጥዒ ምስከፈተሎም ነቲ ቅጥዒ ብዝድለ ነቲ ንብረት ዝምልከት ሓበሬታ ይምልኡ፡፡ ናይቲ ዝልጥፍዎ ንብረት ስእሊ ፅሬቱ ዝሓለወ ብምግባር ንዓይኒ ማራኪ ኢሉ ውን ናይቲ ንብረት ህልዊ ኩነታት ብግልፂ ዘርኢ ክከውን ከምዘለዎ ማዕዳና ነቅርብ፡፡ ክሳብ ሓሙሽተ ዝኣክሉ ስእልታት ምልጣፍ ይከኣል ዩ፡፡ እዚ ምስገበሩ <button class="btn btn-primary"> ይልአኩ፣የእትኩ፤ይጽአኑ </button> ዝብል ቁልፊ ብምጥዋቅ ምውዕዋዖም ይዛዝሙ፡፡ንብረቶም ብዕዉት ኩነታት ተለጢፉ ኣሎ ዝብል መልእክቲ ክለኣከሎም ዩ፡፡ <strong> ናይ ኣገልግሎትና ተጠቃሚ ስለዝኮኑ ኣዚና ነመስግን፡፡ </strong> ኣብዚ ብርኪ ናይ ምልጣፍ ከይዶም ይክንበት፡፡ ዝለጠፍዎ ንብረት ንብረተይ ኣብ ዝብል ኣብ ከይዲ ዝርከብ ብዝብል ብርኪ ንብረት ይረኣዮምሞ እዚ ድሕሪ 24 ሰዓታት ብዕሊ ስርሑ ዝጅምር ይከውን፡፡',
+                "3) " => 'ንብረት ምልጣፍ ዘክእል ቅጥዒ ምስከፈተሎም ነቲ ቅጥዒ ብዝድለ ነቲ ንብረት ዝምልከት ሓበሬታ ይምልኡ፡፡ ናይቲ ዝልጥፍዎ ንብረት ስእሊ ፅሬቱ ዝሓለወ ብምግባር ንዓይኒ ማራኪ ኢሉ ውን ናይቲ ንብረት ህልዊ ኩነታት ብግልፂ ዘርኢ ክከውን ከምዘለዎ ማዕዳና ነቅርብ፡፡ ክሳብ ሓሙሽተ ዝኣክሉ ስእልታት ምልጣፍ ይከኣል ዩ፡፡ እዚ ምስገበሩ <button class="btn btn-primary">ይልአኩ፣የእትው፤ይፅዓኑ</button> ዝብል ቁልፊ ብምጥዋቅ ምውዕዋዖም ይዛዝሙ፡፡ንብረቶም ብዕዉት ኩነታት ተለጢፉ ኣሎ ዝብል መልእክቲ ክለኣከሎም ዩ፡፡ <strong> ናይ ኣገልግሎትና ተጠቃሚ ስለዝኮኑ ኣዚና ነመስግን፡፡ </strong> ኣብዚ ብርኪ ናይ ምልጣፍ ከይዶም ይክንበት፡፡ ዝለጠፍዎ ንብረት ንብረተይ ኣብ ዝብል ኣብ ከይዲ ዝርከብ ብዝብል ብርኪ ንብረት ይረኣዮምሞ እዚ ድሕሪ 24 ሰዓታት ብዕሊ ስርሑ ዝጅምር ይከውን፡፡',
                 "" =>  '<div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
                         <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
                         <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
@@ -1328,10 +1328,8 @@ $help = [
         "contactus"   => [
             "head" => "ከመይ ከም ዝረክቡና",
             "body" => [
-                "1) " => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
-                "2) " => "በ <strong>ሊያናግሩን የፈለጉበት ምክንያት</strong> ዝርዝር ላይ የርሶን ምክንያት ካላገኙ ፣ <strong>አጠቃላይ አስተያየት</strong> የሚለውን ይምረጡ። ገብተው ከሆነ የርሶ መረጃ ቅፁ ላይ በራሱ ይሞላል ካልሆነ መረጃውን ይሙሉ። ",
-                "3) " => "ቅፁን ከሞሉ በኃላ <button class='btn btn-primary'>ይላኩ</button> የሚለውን ይጫኑ። በመቀጠል <strong>ሊያገኙን ስለፈለጉ እናመሰግናለን</strong> የሚል መልዕክት ያገኛሉ።",
-                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                "1)" => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
+                 "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
                         <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
                         <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
                         <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-tg\')">

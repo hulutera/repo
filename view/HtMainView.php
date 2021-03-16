@@ -194,6 +194,9 @@ class HtMainView
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         if (isset($_SESSION['uID'])) {
             $user = new HtUserAll($_SESSION['uID']);
+            $style = "style=\"height:450px\"";
+        } else {
+            $style = "style=\"height:400px\"";
         }
         global $documnetRootPath, $lang_url;
         $itemNumber = $this->_itemNumber;
@@ -221,7 +224,6 @@ class HtMainView
 
         //---------------------------------------------------------
         /*START @ divCommon col-md-4 col-sm-6*/
-        $style = "style=\"height:450px\"";
         $url = $_SERVER['REQUEST_URI'];
         if (basename(parse_url($url)['path']) == "detail.php")
             $size = " col-xs-12 col-md-12 col-sm-6";
