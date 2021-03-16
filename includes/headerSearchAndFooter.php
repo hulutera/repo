@@ -124,7 +124,7 @@ function headerAndSearchCode($item)
 	miniSearch();
 	___close_div_(1);
 	___open_div_('nav-item col-xs-12 col-md-12', '" style="border-bottom:2px black solid');
-	___open_div_('sidelist-container col-xs-12 col-md-8', '" style="margin-right: auto;margin-left: auto;');
+	___open_div_('sidelist-container col-xs-12 col-md-10', '" style="margin-right: auto;margin-left: auto;');
 	sidelist($item);
 	___close_div_(4);
 	echo '</header>';

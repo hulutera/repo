@@ -68,7 +68,7 @@ $lang = array(
     "Contact Us" => 'Miyaad doonaysaa inaad na-waydiisid ',
     "about us page paragraph1 text" => 'Hulutera waa shabakad sayladeed oo aad hantid kala-duwan ku-iibsan, ku-iibin kuna kirayn kartid. Waxaad shabakadda ka-heli kartaa hanti cusub iyo mid la-isticmaalayba. Hulutera waxaa ka-jiraa fursado badan oo wax lagu-kala-iibsado, waxaana ugu-waaweyn kuwa hoos ku-qoran. ',
     "aboutus page paragraph2 text" => 'Hulutera waa shabakad loo-sameeyey si wax-loogaga-qabto baahida bulshadayada. Isticmaalkeedu wuu fududyahay waxaanad u isticmaali kartaa nooca kolba nooca aad doonaysid. Haddii aad damacsantahay in aad hanti galisid, marka hore waa in aad is-diiwaangelisid, si fududbaad isku-diiwaangelin kartaa. Galinta hantida, iyo dabagalidda hantida aad galisay aadbay u fududdahay. Haddii aad u baahantahay faah-faahin balaadhan oo habka isticmaalka ku-saabsan, waxaad ka-heli karta meesha ay “xog” ku-qorantahay. ',
-    "aboutus page paragraph3 text" => 'Inkasta oo aad imika shabakadda ku-arki karaysid luuqadaha Ingiriisiga, Amxaariga, Afaan-Oromo, Tigreega, Af-Soomaaliga, Siidaamaha, Guraageega, mustaqbalka waxaanu ku-dari doonnaa luuqadaha qowmiyado kala-duwan. Shabakaddan waxaa isticmaali kara dadka ku-nool dhammaan deegaanada. Iyada oo ayna cidna idinkala-soo-dhexgalayn ayaad mulkiilaha mulkilaha ka-wadahadli kartaan arrimaha hantida ku-saabsan adiga oo farriin u diraya ama telefoon u garaacaya. ',
+    "aboutus page paragraph3 text" => 'Inkasta oo aad imika shabakadda ku-arki karaysid luuqadaha Ingiriisiga, Amxaariga, Afaan-Oromoo, Tigreega, Af-Soomaaliga mustaqbalka waxaanu ku-dari doonnaa luuqadaha qowmiyado kala-duwan. Shabakaddan waxaa isticmaali kara dadka ku-nool dhammaan deegaanada. Iyada oo ayna cidna idinkala-soo-dhexgalayn ayaad mulkiilaha mulkilaha ka-wadahadli kartaan arrimaha hantida ku-saabsan adiga oo farriin u diraya ama telefoon u garaacaya. ',
     "aboutus page paragraph4 text" => ' Hulutera illaa xadka ay awoodi karto ayey ku-dadaalaysaa ilaalinta amniga hantiyada aad ogaysiisay. Waxaad na-waydiin kartaa nooc-kasta oo su’aalo ah oo shabakadda ku-saabsan, su’aalahana si degdeg ah ayaanu ugaga-jawaabaynaa, si ay tan nooga caawiso ',
     "For any compliant , improvements or other issues you can use" => ' Kan riix si aad noo soo-gaadhsiisid cabasho, fikiradaha wax lagu-wanaajinayo iyo tilmaamo kale ',
     "For inappropriate items you can Report" => ' Riix “warbixin” oo noo soo sheeg muuqaalada iyo sharraxaadyada sida aan munaasibka ahayn u soo galay ',
@@ -333,7 +333,7 @@ $item_lang_arr = array(
     "computer" => ' Koombiyuutar ',
     "phone" => ' Telefoon ',
     "electronic" => 'Elektirooniigsi ',
-    "household" => ' Saamaanta guriga ',
+    "household" => ' Guriga ',
     "other" => ' Kuwa kale'
 );
 

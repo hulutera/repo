@@ -78,7 +78,7 @@ $lang = array(
     'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT properties. The properties can be used or new. hulutera is designed and developed for Ethiopian market with a prosper of large expansion. On hulutera, You have a broad range of choice from a small personal item to a large property; currently you can trade the following items:',
     'aboutus page paragraph2 text'
     =>
-    'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you with a quick and easy-to-use help to guide you through. At the moment, we support two languages; English and Amharic, However our goal in the future is to continue to add more native languages in Ethiopia.',
+    'hulutera is designed to fit the needs of the society that we grow up with. It also considers website usability principles. It is SIMPLE to register, to Post Items and to control your posted items. Moreover, we provide you a help guide which you can refer to. At the moment, we support English, Amharic, Afaan Oromoo, Tigrigna and Somali languages. However, our goal is to support more native languages in Ethiopia.',
     'aboutus page paragraph3 text'
     =>
     'This page is available in English, Amharic, Afaan Oromoo, Tigrigna and Somali languages. You can post items from ANY REGIONS in Ethiopia. To contact owner of the item, you can use email or phone calls to make your own one-to-one deal directly without the involvement of us or other third party.',

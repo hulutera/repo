@@ -1327,17 +1327,17 @@ SQL;
         $style = '" style="text-align: left;font-size:18px;';
 
         ___open_div_("row", '" style="padding:20px;');
-        ___open_div_("col-md-12", $style);
+        ___open_div_("col-md-12 col-xs-12", $style);
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
+        ___open_div_("col-md-12 col-xs-12", '');
         $this->insertFillable('fieldEmail',  'user_specific_array', 'user');
         ///
         ___close_div_(4);
         ___open_div_("row", "");
 
         ___open_div_("form-group ", "");
-        ___open_div_("col-md-12", '');
-        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary" style="float:right; margin:5px;">' . $GLOBALS['user_specific_array']['user']['passwordRecovery'][1] . '</button><br>';
+        ___open_div_("col-md-12 col-xs-12", '" style="display:flex;justify-content:center');
+        echo '<button name="submit" type="submit" value="submit" class="btn btn-primary" style="margin-bottom:5px">' . $GLOBALS['lang']['Send'] . '</button><br>';
         ___close_div_(3);
 
         ___open_div_("row", '" style="border-top:0.8px solid #c7c7c7;padding-top:10px;margin:0 2% 0 2%;');
