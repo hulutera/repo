@@ -74,7 +74,7 @@ function commonHeader()
 {
 	commonHeaderCssMeta();
 	commonHeaderJs();
-	echo '<link rel="shortcut icon" type="image/jpg" href="../images/icons/ht_icon.ico"/>';
+	echo '<link rel="shortcut icon" type="image/x-icon"giy href="../images/icons/ht_icon.ico"/>';
 
 }
 
