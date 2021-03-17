@@ -1328,8 +1328,10 @@ $help = [
         "contactus"   => [
             "head" => "ከመይ ከም ዝረክቡና",
             "body" => [
-                "1)" => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
-                 "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
+                "1) " => "<strong>ይርከቡና</strong> ዝብል ኣብ ላዕለዋይ ፀጋማይ ኩርናዕ ናይዚ ድሕረ ገፅ ዘሎ ቁልፊ ይጠውቁ፡፡",
+                "2) " => "<strong>ከዘራሩበና ዝደልይዎ ምክንያት</strong> አብታ ቅጥዒ እንተ ዘይረኸብክምዎ <strong>ሓፈሻዊ ረኢቶ </strong> ዝብል ይምረፁ። እንተ ዳኣ ኣትዩም ኮይኖም ናቡ ናቶም ሓበሬታ ቅጥዒ ብባዕሉ ይመፅእ እዩ። እንተዘይኮይኑ ሓበሬተኦም ባዕሎም ይምልኡ።",
+                "3) " => "እቲ ቅጥዒ <button class='btn btn-primary'> ምስመልአኩም </button> መልአኩ ዝብል ይጠውቁ። ብምቅፃል <strong>ክረከብና ስለዝደለዩ የቀንየልና </strong>ዝብል መልእክቲ ይልአኩ።",
+                "" => ' <div class="image-slider col-xs-12 col-md-12" style="height:500px;background-color:white;padding:0px">
                         <div class="image-slider-inner col-xs-12 col-md-12" style="margin:0;padding:0px">
                         <div class="col-xs-1 col-md-1 slide-left" style="padding:0px">
                         <a class="slide-left" href="javascript:void(0)" onclick="slideLeft(3, \'image-slider-img-contact-tg\')">
