@@ -36,7 +36,7 @@ function commonHeaderCssMeta()
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8 ">';
 	if (isset($GLOBALS['status']) && $GLOBALS['status'] == 'deploy-release') {
 		echo '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">';
-		echo '<link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
+		echo '<link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">';
 		//use google apis for production
 		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
 		echo '<link rel="stylesheet" href="../../css/hulutera.unminified.css">';
@@ -391,12 +391,12 @@ function footerCode()
 	echo '<div id="followUs_fo" >
 		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>
 		        <ul>
-					<li style="width:50%;text-align:right"><a href="https://www.facebook.com/Hulutera-123294222578640" target="_blank"><span class="fa fa-facebook-square fb_icon_class" style="font-size:25px"></span></a></li>
-					<li style="width:50%;text-align:left"><a href="https://twitter.com/hulutera" target="_blank"><span class="fa fa-twitter-square tw_icon_class" style="font-size:25px"></span></a></li>
-					<li style="width:50%;text-align:right"><a href="" target="_blank"><span class="fa fa-whatsapp whatsapp_icon_class" style="font-size:25px"></span></a></li>
-				    <li style="width:50%;text-align:left"><a href="" target="_blank"><span class="fa fa-telegram telegram_icon_class" style="font-size:25px"></span></a></li>
-					<li style="width:50%;text-align:right"><a href="https://www.pinterest.se/hulutera/" target="_blank"><span class="fa fa-pinterest-square pint_icon_class" style="font-size:25px"></span></a></li>
-					<li style="width:50%;text-align:left"><a href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" target="_blank"><span class="fa fa-youtube-square youtube_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:right"><a href="https://www.facebook.com/Hulutera-123294222578640" rel="noreferrer" target="_blank"><span class="fa fa-facebook-square fb_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:left"><a href="https://twitter.com/hulutera" rel="noreferrer" target="_blank"><span class="fa fa-twitter-square tw_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:right"><a href="" rel="noreferrer" target="_blank"><span class="fa fa-whatsapp whatsapp_icon_class" style="font-size:25px"></span></a></li>
+				    <li style="width:50%;text-align:left"><a href="" rel="noreferrer" target="_blank"><span class="fa fa-telegram telegram_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:right"><a href="https://www.pinterest.se/hulutera/" rel="noreferrer" target="_blank"><span class="fa fa-pinterest-square pint_icon_class" style="font-size:25px"></span></a></li>
+					<li style="width:50%;text-align:left"><a href="https://www.youtube.com/channel/UCJMGzyuRvzg9molYtggzuDA" rel="noreferrer" target="_blank"><span class="fa fa-youtube-square youtube_icon_class" style="font-size:25px"></span></a></li>
 
 				</ul>
            </div>';
