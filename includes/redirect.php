@@ -56,8 +56,8 @@ function  loginWithGoogle()
 function loginWithSocialMedia()
 {
     $email = "";
-    $emailFacebook = loginWithFacebook();
-    $emailTwitter = loginWithTwitter();
+    $emailFacebook = '';//loginWithFacebook();
+    $emailTwitter = '';//loginWithTwitter();
     $emailGoogle = loginWithGoogle();
     if ($emailFacebook != "") {
         $email = $emailTwitter;
