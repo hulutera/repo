@@ -140,7 +140,7 @@ $lang = array(
     'twitter' => 'witter',
     'pintrest' => 'intrest',
     'youtube' => ' YouTube',
-    '2020 hulutera. All Rights Reserved.' => '2020 hulutera. All Rights Reserved.',
+    '2021 hulutera. All Rights Reserved.' => '2021 hulutera. All Rights Reserved.',
     'hulutera' => 'Hulutera',
     //
     'missing email msg' => 'Please enter your e-mail.',

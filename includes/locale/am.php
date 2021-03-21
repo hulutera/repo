@@ -139,7 +139,7 @@ $lang = array(
     'twitter' => 'ትዊተር',
     'pintrest' => 'ፒኢንትረስት',
     'youtube' => '<p>ዩትዩብ',
-    '2020 hulutera. All Rights Reserved.' => '2013 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።',
+    '2021 hulutera. All Rights Reserved.' => '2013 ሁሉተራ መብቱ በህግ የተጠበቀ ነው።',
     'hulutera' => 'ሁሉተራ',
     //
     'missing email msg' => 'እባክዎ የኢሜይል አድራሻ ያስገቡ።',

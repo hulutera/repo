@@ -409,7 +409,7 @@ function footerCode()
     <div class="row">
     <div class="col-lg-12">
     <div class="copyright-text">
-    Copyright ©' . $lang['2020 hulutera. All Rights Reserved.'] . '
+    Copyright ©' . $lang['2021 hulutera. All Rights Reserved.'] . '
 
     </div>
     </div>
