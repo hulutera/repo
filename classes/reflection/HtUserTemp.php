@@ -952,7 +952,7 @@ SQL;
                 $email,
                 $subject,
                 $body,
-                'From:admin@hulutera.com',
+                'From:Hulutera<admin@hulutera.com>',
                 '../includes/prompt.php?type=1' . $lang_sw,
                 "../includes/activate.php?function=register&id=" . $id . $lang_sw . "&key=" . $activation
             );
