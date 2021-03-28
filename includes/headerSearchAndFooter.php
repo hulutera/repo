@@ -466,7 +466,7 @@ function yourPage()
                                         >{$toMyProfileButton}</a>
 				</div>
 				<div class="col-xs-12 mobile-item-btn">
-                                    <a   href="../..//includes/template.content.php?type=userActive{$str_url}" type="button" class="btn btn-primary btn-lg active"
+                                    <a   href="../../includes/template.content.php?status=active&id={$id}{$str_url}" type="button" class="btn btn-primary btn-lg active"
 									>{$toMyItemsButton}</a>
                 </div>
 				<div class="col-md-12 your-page-inner">
