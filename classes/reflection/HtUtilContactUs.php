@@ -640,10 +640,10 @@ class HtUtilContactUs extends MySqlRecord
         $body = $GLOBALS['user_specific_array']['message']['contact-us']['body'][0];
 
         // send mail to customer
-        send_mail($this->fieldEmail, $subject, $body, 'From:info@hulutera.com', '../includes/prompt.php?type=7'.$lang_sw);
+        send_mail($this->fieldEmail, $subject, $body, 'From:Hulutera<info@hulutera.com>', '../includes/prompt.php?type=7'.$lang_sw);
 
         // send mail to HT webmail
-        send_mail('info@hulutera.com', $this->fieldSubject, $message, 'From:'. $this->fieldEmail .'', '../includes/prompt.php?type=7'.$lang_sw);
+        send_mail('info@hulutera.com', $this->fieldSubject, $message, 'From:Hulutera<'. $this->fieldEmail .'>', '../includes/prompt.php?type=7'.$lang_sw);
 
     }
 }

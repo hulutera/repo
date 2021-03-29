@@ -1385,7 +1385,7 @@ SQL;
 
         if (isset($GLOBALS['status'])) {
             if ($GLOBALS['status'] = "deploy-release") {
-                send_mail($email, $subject, $body, 'From:admin@hulutera.com', '../includes/prompt.php?type=4' . $lang_sw);
+                send_mail($email, $subject, $body, 'From:Hulutera<admin@hulutera.com>', '../includes/prompt.php?type=4' . $lang_sw);
             }
         } else {
             echo $body;
@@ -1440,7 +1440,7 @@ SQL;
             $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
             $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
 
-            send_mail($this->fieldEmail, $subject, $body, 'From:admin@hulutera.com', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
+            send_mail($this->fieldEmail, $subject, $body, 'From:Hulutera<admin@hulutera.com>', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         } else {
             header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         }

@@ -348,7 +348,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 						$subject = $GLOBALS['user_specific_array']['message']['account-deactivation']['subject'];
 						$body = $GLOBALS['user_specific_array']['message']['account-deactivation']['body'][0] . "<br><br>";
 
-						send_mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
+						send_mail($user->getFieldEmail(), $subject, $body, 'From:Hulutera<admin@hulutera.com>');
 					}
 					header("Refresh:0");
 				} else if ($accountStatus == 'erase') { //close account
@@ -374,7 +374,7 @@ function listUsers(&$ACTIVITY_ARRAY)
 						$body = $GLOBALS['user_specific_array']['message']['account-closed']['body'][0] . "<br><br>";
 
 						/// temporary disable for message sending
-						send_mail($user->getFieldEmail(), $subject, $body, 'From:admin@hulutera.com');
+						send_mail($user->getFieldEmail(), $subject, $body, 'From:Hulutera<admin@hulutera.com>');
 					}
 					header("Refresh:0");
 				}
