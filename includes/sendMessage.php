@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 
 if (isset($_GET['itemid']) && isset($_GET['name']) && isset($_GET['email']) && isset($_GET['msg']) && isset($_GET['uemail']) && isset($_GET['itemtype']) && isset($_GET['lan'])) {
 	$subject = $GLOBALS['lang']['msg from'] . " " . $_GET['name'];
-	$header = "From: nonreply@hulutera.com";
+	$header = "From: Hulutera<noreply@hulutera.com>";
 	$item_link = "https://www.hulutera.com/includes/template.item.php?type=" . $_GET['itemtype'] . "&status=active&id=" . $_GET['itemid'] . "&function=single-item&lan=" . $_GET['lan'];
 	$msg = $GLOBALS['lang']['mail introduction'] . "\n\n";
 	$msg .= "Hulutera.com" . "\n\n";
