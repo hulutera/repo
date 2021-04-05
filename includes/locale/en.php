@@ -131,7 +131,7 @@ $lang = array(
     //Footer related
     'about us on footer text'
     =>
-    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT used and new properties. hulutera is designed and developed for Ethiopian market with a prosper of large expansion in Eastern Africa. On hulutera, you have a broad range of choice from a small personal item to a large property; currently you can trade the following items: cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
+    'hulutera.com is a FREE online trading website where one can SELL, BUY or RENT used and new properties. Hulutera is designed for the Ethiopian market with a prosper of large expansion in whole Eastern Africa. On Hulutera, you have a broad range of choice from a small personal item to a large property; currently you can trade the following items: cars, houses, computers, phones, electronics, household and others. Click <a   href="../includes/template.proxy.php?type=help' . $str_url . '" style="color:#97caf0;font-weight:bold" target="_blank">here</a> to know more about hulutera.com.',
     'ABOUT US' => 'ABOUT US',
     'INFORMATION' => 'INFORMATION',
     'Privacy Policy' => 'Privacy Policy',

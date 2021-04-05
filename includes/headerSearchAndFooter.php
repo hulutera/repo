@@ -57,7 +57,7 @@ function commonHeaderJs()
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
 		echo '<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
 		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
-		echo '<script src="https://apis.google.com/js/platform.js" async defer></script>';
+		echo '<script src="https://apis.google.com/js/platform.js" ></script>';
 
 	} else {
 		//use local
@@ -66,7 +66,7 @@ function commonHeaderJs()
 		echo "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>";
 		echo '<script type="text/javascript" src="../../js/carousel-slider.js"></script>';
 		echo '<script type="text/javascript" src="../../js/hulutera.unminified.js"></script>';
-		echo '<script src="https://apis.google.com/js/platform.js" async defer></script>';
+		echo '<script src="https://apis.google.com/js/platform.js" ></script>';
 
 	}
 }
