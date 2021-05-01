@@ -387,6 +387,7 @@ function footerCode()
         <p style="margin-bottom:5px"><a   href="../../includes/contact-us.php?function=contact-us' . $str_url . '">' . $lang['Contact Us'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=help' . $str_url . '" target="_blank">' . $lang['Help'] . '</a></p>
 		<p style="margin-bottom:5px"><a   href="../includes/template.proxy.php?type=about' . $str_url . '" target="_blank">' . $lang['About Us'] . '</a></p>
+        <p style="margin-top:1px">' . $lang['Phone'] . ': +251969127299</p>
 		</div>';
 	echo '<div id="followUs_fo" >
 		  		<p class="h4">' . $lang['FOLLOW US'] . '</p>
@@ -409,8 +410,7 @@ function footerCode()
     <div class="row">
     <div class="col-lg-12">
     <div class="copyright-text">
-    Copyright ©' . $lang['2021 hulutera. All Rights Reserved.'] . '
-
+    Copyright ©' . $lang["2021 hulutera. All Rights Reserved."] . '
     </div>
     </div>
     </div>
