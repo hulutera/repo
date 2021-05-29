@@ -190,6 +190,10 @@ class HtItemPhone extends MySqlRecord
      */
     private $fieldCamera;
 
+    private $fieldStorage;
+
+    private $fieldColor;
+
     /**
      * Class attribute for mapping table field field_image
      *
@@ -512,6 +516,18 @@ class HtItemPhone extends MySqlRecord
         $this->fieldCamera = (string) $fieldCamera;
     }
 
+    /**Storage***/
+    public function setFieldStorage($fieldStorage)
+    {
+        $this->fieldStorage = (string) $fieldStorage;
+    }
+
+    /**color**/
+    public function setFieldColor($fieldColor)
+    {
+        $this->fieldColor = (string) $fieldColor;
+    }
+
     /**
      * setFieldImage Sets the class attribute fieldImage with a given value
      *
@@ -818,6 +834,18 @@ class HtItemPhone extends MySqlRecord
     public function getFieldCamera()
     {
         return $this->fieldCamera;
+    }
+
+    /**Storage */
+    public function getFieldStorage()
+    {
+        return $this->fieldStorage;
+    }
+
+    /** Color **/
+    public function getFieldColor()
+    {
+        return $this->fieldColor;
     }
 
     /**
@@ -1170,6 +1198,8 @@ class HtItemPhone extends MySqlRecord
         @$this->fieldModel = $this->replaceAposBackSlash($rowObject->field_model);
         @$this->fieldOs = $this->replaceAposBackSlash($rowObject->field_os);
         @$this->fieldCamera = $this->replaceAposBackSlash($rowObject->field_camera);
+        @$this->fieldStorage = $this->replaceAposBackSlash($rowObject->field_storage);
+        @$this->fieldColor = $this->replaceAposBackSlash($rowObject->field_color);
         @$this->fieldImage = $this->replaceAposBackSlash($rowObject->field_image);
         @$this->fieldLocation = $this->replaceAposBackSlash($rowObject->field_location);
         @$this->fieldExtraInfo = $this->replaceAposBackSlash($rowObject->field_extra_info);
@@ -1228,8 +1258,8 @@ class HtItemPhone extends MySqlRecord
      */
     public function insertPost()
     {
-        $this->setFieldPost();
-        $this->insert();
+       $this->setFieldPost();
+       $this->insert();
     }
 
     public function insert()
@@ -1240,7 +1270,7 @@ class HtItemPhone extends MySqlRecord
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO item_phone
-            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera,field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
+            (id_temp,id_user,id_category,field_contact_method,field_price_sell,field_price_nego,field_price_currency,field_make,field_model,field_os,field_camera, field_storage, field_color, field_image,field_location,field_extra_info,field_title,field_upload_date,field_total_view,field_status,field_report,field_market_category,field_table_type)
             VALUES(
 			{$this->parseValue($this->idTemp)},
 			{$this->parseValue($this->idUser)},
@@ -1253,6 +1283,8 @@ class HtItemPhone extends MySqlRecord
 			{$this->parseValue($this->fieldModel, 'notNumber')},
 			{$this->parseValue($this->fieldOs, 'notNumber')},
 			{$this->parseValue($this->fieldCamera, 'notNumber')},
+            {$this->parseValue($this->fieldStorage, 'notNumber')},
+            {$this->parseValue($this->fieldColor, 'notNumber')},
 			{$this->parseValue($this->fieldImage, 'notNumber')},
 			{$this->parseValue($this->fieldLocation, 'notNumber')},
 			{$this->parseValue($this->fieldExtraInfo, 'notNumber')},
@@ -1306,6 +1338,8 @@ SQL;
 				field_model={$this->parseValue($this->fieldModel, 'notNumber')},
 				field_os={$this->parseValue($this->fieldOs, 'notNumber')},
 				field_camera={$this->parseValue($this->fieldCamera, 'notNumber')},
+                field_storage={$this->parseValue($this->fieldStorage, 'notNumber')},
+                field_color={$this->parseValue($this->fieldColor, 'notNumber')},
 				field_image={$this->parseValue($this->fieldImage, 'notNumber')},
 				field_location={$this->parseValue($this->fieldLocation, 'notNumber')},
 				field_extra_info={$this->parseValue($this->fieldExtraInfo, 'notNumber')},
@@ -1373,6 +1407,8 @@ SQL;
         }
 
         echo $this->getFieldCamera() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldCamera"][2][$this->getFieldCamera()] . '</strong></p>' : "";
+        echo $this->getFieldStorage() != null  ? '<p>' . $GLOBALS["upload_specific_array"]["phone"]["fieldStorage"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["phone"]["fieldStorage"][2][$this->getFieldStorage()] . '</strong></p>' : "";
+        echo $this->getFieldColor() != null    ? '<p>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][0] . ':&nbsp<strong>' . $GLOBALS["upload_specific_array"]["common"]["fieldColor"][2][$this->getFieldColor()] . '</strong></p>' : "";
         //echo $this->getFieldExtraInfo() != null   ? "<p><p><strong>Extra Info:</strong></p><p style=\"border:1px solid darkkhaki;overflow:scroll;height:70px; width:100%;\">" . $this->getFieldExtraInfo() . "</p>" : "";
         echo '</div>';
         echo '</div>';
@@ -1461,7 +1497,7 @@ SQL;
         echo '</form>';
     }
 
-    protected function insertAllField($itemName, $skipRow = NULL)
+    protected function insertAllField($itemName, $skipRow = NULL, $color = null)
     {
         ___open_div_("col-md-8 col-xs-12 upload-container", '');
         $this->insertHeader($itemName);
@@ -1491,6 +1527,12 @@ SQL;
         ___close_div_(1);
         ___open_div_("col-md-6", '');
         $this->insertSelectable('fieldCamera', 'upload_specific_array', $itemName);
+        ___close_div_(1);
+        ___open_div_("col-md-6", '');
+        $this->insertSelectable('fieldStorage', 'upload_specific_array', $itemName);
+        ___close_div_(1);
+        ___open_div_("col-md-6", '');
+        $this->insertFieldColor((string)$color);
         ___close_div_(1);
         ___close_div_(3);
         ////
@@ -1572,6 +1614,8 @@ SQL;
         $this->setFieldModel($_POST['fieldModel']);
         $this->setFieldOs($_POST['fieldOs']);
         $this->setFieldCamera($_POST['fieldCamera']);
+        $this->setFieldStorage($_POST['fieldStorage']);
+        $this->setFieldColor($_POST['fieldColor']);
         $this->setFieldPriceSell($_POST['fieldPriceSell']);
         $this->setFieldPriceCurrency($_POST['fieldPriceCurrency']);
         $this->setFieldPriceNego($_POST['fieldPriceNego']);

@@ -764,6 +764,21 @@ $upload_specific_array = [
                 'unknown' => 'unknown'
             ]
         ],
+        'fieldStorage'   => [
+            0 => 'Storage (GB)',
+            1 => 'Choose Storage',
+            2 => [
+                "more than 516GB" => "more than 516GB",
+                "516GB" => "516GB",
+                "256GB" => "256GB",
+                "128GB" => "128GB",
+                "64GB" => "64GB",
+                "32GB" => "32GB",
+                "16GB" => "16GB",
+                '8GB' => '8GB',
+                "under 8GB" => "under 8GB"
+            ]
+        ],
         'fieldOs'   => [
             0 => 'Operating System',
             1 => 'Choose OS',

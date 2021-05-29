@@ -1357,6 +1357,7 @@ class HtItemHouse extends MySqlRecord
         $this->resultSet = $result;
         $this->lastSql = $sql;
         return $this->affected_rows;
+
     }
 
     /**

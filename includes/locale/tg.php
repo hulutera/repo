@@ -8,6 +8,7 @@ $lang = array(
     "Show Detail" => ' ዝርዝር ንምርኣይ ',
     "Hide Detail" => ' ዝርዝር ንምሽፋን ',
     "Contact" => ' በዓልዋና ንምርካብ ',
+    "Contact footer" => 'በዓልዋና ንምርካብ',
     "Contact method" => ' መራኸቢ መንገዲ ',
     "change contact method" => ' መራኸቢ መንገዲ ንምቕያር ',
     "change your email" => ' ኢሜይል ንምቕያር ',
@@ -742,6 +743,21 @@ $upload_specific_array = [
                 "1.0 - 3.9 MP" => "1.0 - 3.9",
                 "Under 1 MP" => "ትሕቲ 1.0",
                 'unknown' => 'ዘይተገልፀ'
+            ]
+        ],
+        'fieldStorage'   => [
+            0 => 'ሜሞሪ (GB)',
+            1 => 'ሜሞሪ ይምረፁ',
+            2 => [
+                "more than 516GB" => "ልዕሊ 516GB",
+                "516GB" => "516GB",
+                "256GB" => "256GB",
+                "128GB" => "128GB",
+                "64GB" => "64GB",
+                "32GB" => "32GB",
+                "16GB" => "16GB",
+                '8GB' => '8GB',
+                "under 8GB" => "ትሕቲ 8GB"
             ]
         ],
         'fieldOs'   => [

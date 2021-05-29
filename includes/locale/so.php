@@ -8,6 +8,7 @@ $lang = array(
     "Show Detail" => 'Si aad faah-faahinta u aragtid ',
     "Hide Detail" => 'Si aad faah-faahinta u dabooshid ',
     "Contact" => 'Si aad mulkiilaha u heshid ',
+    "Contact footer" => 'SI AAD MULKIILAHA U HESHID',
     "Contact method" => 'Habka xidhiidhka ',
     "change contact method" => 'Si aad habka xidhiidhka u badashid ',
     "change your email" => ' Si aad email-ka u badashid ',
@@ -749,6 +750,21 @@ $upload_specific_array = [
                 "1.0 - 3.9 MP" => "1.0 - 3.9",
                 "Under 1 MP" => "In ka-yar 1.0",
                 'unknown' => 'Lama-garanayo'
+            ]
+        ],
+        'fieldStorage'   => [
+            0 => 'Storage (GB)',
+            1 => 'dooro Storage',
+            2 => [
+                "more than 516GB" => "In ka-badan 516GB",
+                "516GB" => "516GB",
+                "256GB" => "256GB",
+                "128GB" => "128GB",
+                "64GB" => "64GB",
+                "32GB" => "32GB",
+                "16GB" => "16GB",
+                '8GB' => '8GB',
+                "under 8GB" => "In ka-yar 8GB"
             ]
         ],
         'fieldOs'   => [

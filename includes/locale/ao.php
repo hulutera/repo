@@ -8,6 +8,7 @@ $lang = array(
     "Show Detail" => 'Tarreefamicha ilaaluf ',
     "Hide Detail" => ' Tarreefamicha aguguuf ',
     "Contact" => 'Qunamu ',
+    "Contact footer" => 'QUNAMU ',
     "Contact method" => ' Haala itti qunnaman ',
     "'change contact method'" => 'Haala ittiin qunnaman jijjiiruf ',
     "change your email" => ' Imeelii jijjiiruuf ',
@@ -750,6 +751,21 @@ $upload_specific_array = [
                 "1.0 - 3.9 MP" => '1.0 - 3.9     ',
                 "Under 1 MP" => ' 1.0 gadii     ',
                 "unknown" => ' Hin beekamu   '
+            ]
+        ],
+        'fieldStorage'   => [
+            0 => 'Storage (GB)',
+            1 => 'filadhaa Storage',
+            2 => [
+                "more than 516GB" => "Gubbaa 516GB",
+                "516GB" => "516GB",
+                "256GB" => "256GB",
+                "128GB" => "128GB",
+                "64GB" => "64GB",
+                "32GB" => "32GB",
+                "16GB" => "16GB",
+                '8GB' => '8GB',
+                "under 8GB" => "8GB gadii"
             ]
         ],
         'fieldOs'   => [
