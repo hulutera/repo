@@ -482,13 +482,13 @@ class HtMainView
             uasort($elements_array, array($this, 'date_compare'));
 
             // descending order
-            array_reverse($elements_array);
+            $reversed_element_array = array_reverse($elements_array);
 
             $calculatePageArray = calculatePage($rows);
             $start = ($calculatePageArray[0] - 1) * $GLOBALS['general']['itemPerPage'];
 
             // fetched elements per page
-            $elm_rows = array_slice($elements_array,  $start,  $GLOBALS['general']['itemPerPage']);
+            $elm_rows = array_slice($reversed_element_array,  $start,  $GLOBALS['general']['itemPerPage']);
 
             echo '<div class="row items-board">';
             $number = 0;
