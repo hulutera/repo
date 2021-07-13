@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/objectPool.php';
 
 
 if (isset($_SESSION["uID"]) || ((isset($_GET["itemid"])) && (isset($_GET["itemtype"])) && (isset($_GET["selected"])))) {
