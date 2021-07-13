@@ -1,7 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/headerSearchAndFooter.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/reflection/class.config.php';
 
-if (!isset($_SESSION["uID"]) || !(isset($_GET["itemid"]) && isset($_GET["itemtype"]) && isset($_GET["selected"]))) {
+
+if (isset($_SESSION["uID"]) || ((isset($_GET["itemid"])) && (isset($_GET["itemtype"])) && (isset($_GET["selected"])))) {
 	header("Location: ../index.php");
 }
 
