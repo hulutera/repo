@@ -580,7 +580,7 @@ function activityTable()
 				'item' => $allItems,
 				'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-trash']
 			],
-			'total' => [
+			'total items' => [
 				'item' => $allItems,
 				'style' => ['text' => 'text-muted bg-dark text-center', 'fas' => 'fas fa-plus']
 			]
@@ -598,8 +598,8 @@ function activityTable()
 		}
 		echo '</tr></thead><tbody id="activity-table">';
 
-		$totalItem  = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
-		$grandTotal = $totalActive  = $totalPending = $totalReported =    $totalDeleted = 0;
+		$totalItem = $totalActivePerItem = $totalPendingPerItem = $totalReportedPerItem = $totalDeletedPerItem = 0;
+		$grandTotal = $totalActive = $totalPending = $totalReported = $totalDeleted = 0;
 
 
 		// displays main activity table with some statistics
@@ -610,7 +610,7 @@ function activityTable()
 
 			$totalActivePerItem   = allItemOfStatus($table_name, 'active');
 			$totalPendingPerItem  = allItemOfStatus($table_name, 'pending');
-			$totalReportedPerItem = getItemWithStatusReported($table_name)[0];
+			$totalReportedPerItem = getItemWithStatusReported($table_name);
 			$totalDeletedPerItem  = allItemOfStatus($table_name, 'deleted');
 
 			$totalActive    +=  $totalActivePerItem;
@@ -618,8 +618,9 @@ function activityTable()
 			$totalReported  +=  $totalReportedPerItem;
 			$totalDeleted   +=  $totalDeletedPerItem;
 
-			$grandTotal   = $totalActive + $totalPending  + $totalReported + $totalDeleted;
+			$grandTotal   = $totalActive + $totalPending  + $totalDeleted;
 			if ($table_name == "total") {
+				$exclude_reported_items = 0;
 				$totalArray = [
 					'totalActive' => $totalActive,
 					'totalPending' => $totalPending,
@@ -655,7 +656,7 @@ function activityTable()
 						echo '<td style="font-size:18px;" ><a   href="./admin.php?activityTableId=' . $urlEn . '">' . $totalStatusSum  . '</td>';
 					}
 				}
-				$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalReportedPerItem + $totalDeletedPerItem;
+				$totalItem = $totalActivePerItem  + $totalPendingPerItem + $totalDeletedPerItem;
 				echo '<td style="font-size:18px;" >' . $totalItem . '</td>';
 				echo '</tr>';
 			}

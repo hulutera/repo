@@ -163,7 +163,8 @@ class MySqlRecord extends Model
     {
         $sql = 'SELECT * FROM ' . $item . ' WHERE field_report IS NOT NULL';
         $result = $this->query($sql);
-        return [$this->affected_rows, $result];
+        $count = $this->affected_rows;
+        return $count < 0 ? 0 : $count;
     }
 
     public function getItemPerUser($item, $userId, $status = null)
