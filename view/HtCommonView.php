@@ -151,7 +151,7 @@ class HtCommonView extends MySqlRecord
         echo "<p style=\"background-color: #FFBABA; color: #D8000C;\">" . $GLOBALS["abuse_type_lang_arr"][1]['You forgort to choose the Report type'] . "</p></div>";
         echo "<div id=\"reportbox\" class=\"reportbox_$uniqueId\">";
         echo "<p>" . $GLOBALS['lang']['Report Abuse'] . "</p>";
-        echo "<select id=\"selectabuse_$uniqueId\">";
+        echo "<select id=\"selectabuse_$uniqueId\" name=\"select_abuse\">";
         foreach ($GLOBALS["abuse_type_lang_arr"][0] as $key => $value) {
             echo "<option value=\"$key\">" . $value . "</option>";
         }

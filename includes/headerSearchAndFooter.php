@@ -196,7 +196,7 @@ EOD;
 function logoImage()
 {
 	global $lang_url;
-	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img class="logo_img" style="display:none" src="../../images/icons/ht-logo-1.png"><img class="logo_img" src="../../images/icons/ht-logo-v2.png"></a></div>';
+	echo '<div class ="logo"><a href="../../index.php' . $lang_url . '"><img style="display:none" src="../../images/icons/ht-logo-1.png"><img class="logo_img" src="../../images/icons/ht-logo-v2.png"></a></div>';
 }
 function logoText()
 {
@@ -216,7 +216,7 @@ function topRightLinks($style = null)
 	if (!isset($_SESSION['uID'])) {
 
 		echo '<a href="../../includes/register.php' . $lang_url . '">';
-		echo '<div id=""><span class="glyphicon glyphicon-plus" style="font-size:20px;"></span><br/>' . $lang['Register'] . '</div>';
+		echo '<div><span class="glyphicon glyphicon-plus register-link-txt" style="font-size:20px;"></span><br/>' . $lang['Register'] . '</div>';
 		echo '</a>';
 
 		echo '<a   href="../../includes/login.php' . $lang_url . '" >';
@@ -355,7 +355,7 @@ function sidelist($item)
 			echo "class=\"active\"";
 		}
 		echo 'href="../../includes/template.item.php?type=' . $value . $str_url . '" style="text-align:center">';
-		echo '<img src="../images/icons/items/' . $value . '.png"/>';
+		echo '<img src="../images/icons/items/' . $value . '.png" class="sidelist-' . $value . '"/>';
 		echo '<p class="text-dark">' . $GLOBALS['item_lang_arr'][$value] . '</p>';
 		echo '</a></li>';
 	}

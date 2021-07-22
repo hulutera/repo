@@ -571,7 +571,7 @@ class HtMainView
         $searchWordSanitized = isset($_GET['search_text']) ? (!empty($_GET['search_text'])) ?  "*" . $_GET['search_text'] . "*" : "" : "";
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
-        echo '<div id="spanMainColumnXRemove" style="color: red;font-size:17px">';
+        echo '<div id="search_failed" style="color: red;font-size:17px">';
         echo  '<span style="color:black">' . $searchWordSanitized . '</span><br />';
         echo $GLOBALS['lang']['full no match msg'];
         echo '</div></div>';
@@ -581,7 +581,7 @@ class HtMainView
     {
         echo '<div id="spanMainColumnXRemove" class="jumbotron divItemNotFind">';
         echo '<p class="col-xs-12 col-md-12 bg-primary">' . $GLOBALS["lang"]["search res"] . '</p>';
-        echo '<div id="spanMainColumnXRemove" style="color: red;font-size:17px">';
+        echo '<div id="search_failed" style="color: red;font-size:17px">';
         echo $GLOBALS['lang']['failed search'];
         echo '</div></div>';
     }
