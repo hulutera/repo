@@ -1417,7 +1417,7 @@ SQL;
         $this->fieldAddress  = isset($_POST['fieldAddress']) ? $_POST['fieldAddress'] : $this->fieldAddress;
         $this->fieldPassword      = isset($_POST['fieldPassword']) ? $_POST['fieldPassword'] : $this->fieldPassword;
         $this->fieldContactMethod = isset($_POST['fieldContactMethod']) ? $_POST['fieldContactMethod'] : $this->fieldContactMethod;
-        $this->fieldNewPassword   = isset($_POST['fieldNewPassword']) ? $_POST['fieldNewPassword'] : $this->fieldNewPassword;
+        $this->fieldNewPassword   = isset($_POST['fieldPasswordRepeat']) ? $_POST['fieldPasswordRepeat'] : $this->fieldNewPassword;
         $this->fieldTermAndCondition = isset($_POST['fieldTermAndCondition']) ? $_POST['fieldTermAndCondition'] : $this->fieldTermAndCondition;
         $fieldAfter = [
             $this->fieldUserName,
@@ -1434,12 +1434,11 @@ SQL;
 
         $lang_sw = isset($_GET['lan']) ? "&lan=" . $_GET['lan'] : "";
         if ($fieldBefore !== $fieldAfter) {
-
+            $crypto = new Cryptor();
+            $this->fieldPassword = isset($_POST['fieldPasswordRepeat']) ? base64_encode($crypto->encryptor($_POST['fieldPasswordRepeat'])) : $this->fieldPassword;
             $this->update($_SESSION['uID']);
-
             $subject = $GLOBALS['user_specific_array']['message']['edit-profile']['subject'];
             $body = $GLOBALS['user_specific_array']['message']['edit-profile']['body'][0] . "<br><br>";
-
             send_mail($this->fieldEmail, $subject, $body, 'From:Hulutera<admin@hulutera.com>', '../includes/edit-profile.php?function=edit-profile' . $lang_sw);
         } else {
             header('Location: ../includes/edit-profile.php?function=edit-profile' . $lang_sw);
