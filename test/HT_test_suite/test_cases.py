@@ -99,13 +99,13 @@ class Basic(unittest.TestCase):
     def test_pass_recovery(self):
         print ("TC13: Password Recovery")
         self.pass_recovery()
-        print ("TC13: End")		
+        print ("TC13: End")
 
-		
+
     def top_header(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
+
 	    ##### Assert the Language tabs
 		# Check all languages
         print("####language verification starts")
@@ -129,16 +129,16 @@ class Basic(unittest.TestCase):
         self.clickButton(By.LINK_TEXT, "Post Items")
         self.URL = self.driver.current_url
         self.assertIn("prompt.php?type=9", self.URL)
-        		
+
     def search(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
+
         # search without an input
         print ("####search without an input")
         self.clickButton(By.CLASS_NAME, "search-btn")
         self.text_compare(how=By.ID, what="search_failed", expected_txt="Please enter the search word or any other search options")
-        		
+
 		# search with only keyword
         print ("####search with only keyword")
         self.clearTextBox(By.NAME, "search_text")
@@ -169,7 +169,7 @@ class Basic(unittest.TestCase):
         Select(self.driver.find_element_by_css_selector("select[name=\"cities\"]")).select_by_value("All")
         self.clickButton(By.CLASS_NAME, "search-btn")
         self.text_compare(how=By.ID, what="divCommon", expected_txt="Price Details")
-        
+
 		# search items
         print ("####search items")
         item_list = ("car", "computer", "house", "electronic", "household", "phone", "other")
@@ -181,7 +181,7 @@ class Basic(unittest.TestCase):
             self.text_compare(how=By.ID, what="divCommon", expected_txt="Price Details")
             time.sleep(1)
 
-		
+
     def maintab(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
@@ -198,17 +198,17 @@ class Basic(unittest.TestCase):
     def index(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-				
-        # right nav		
+
+        # right nav
         time.sleep(5)
         self.clickButton(By.PARTIAL_LINK_TEXT , "Adama")
-        self.text_compare(how=By.ID, what="divCommon", expected_txt="Price Details")        
-		
+        self.text_compare(how=By.ID, what="divCommon", expected_txt="Price Details")
+
     def item_view(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
-		### Car item tab		
+
+		### Car item tab
 		# Show Item Detail by clicking title link
         print ("####Verify car item view")
         self.clickButton(By.CLASS_NAME, "sidelist-car")
@@ -223,11 +223,11 @@ class Basic(unittest.TestCase):
         self.driver.execute_script("arguments[0].scrollIntoView()", msg_get)
         self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/div[1]/div/div/div[1]/a/img")
         self.text_compare(how=By.CLASS_NAME, what="featured_detailed_left", expected_txt="Specification")
-				
+
         # Report abuse
         print ("####Verify report abuse")
         self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/div/div[1]/div[4]/div[3]/a")
-        Select(self.driver.find_element_by_css_selector("select[name=\"select_abuse\"]")).select_by_value("Other")        
+        Select(self.driver.find_element_by_css_selector("select[name=\"select_abuse\"]")).select_by_value("Other")
         self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/div/div[1]/div[6]/div[2]/input[1]")
         self.text_compare(how=By.CLASS_NAME, what="featured_detailed_left", expected_txt="You successfully reported the item!")
 
@@ -244,7 +244,7 @@ class Basic(unittest.TestCase):
             self.clickButton(By.XPATH, footer_dict[key])
             self.URL = self.driver.current_url
             self.assertIn(key, self.URL)
-		
+
 
     def register(self):
         # Reset the page
@@ -280,7 +280,7 @@ class Basic(unittest.TestCase):
         self.login_form()
         self.URL = self.driver.current_url
         self.assertIn("mypage", self.URL)
-		
+
 		# Logout
         self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
         self.URL = self.driver.current_url
@@ -293,10 +293,10 @@ class Basic(unittest.TestCase):
         self.clearTextBox(By.ID, "fieldEmail")
         self.enterValue(By.ID, "fieldEmail", config.test_user_email_existing)
         self.clearTextBox(By.ID, "fieldPassword")
-        self.enterValue(By.ID, "fieldPassword", config.test_user_password) 
-        self.clickButton(By.CLASS_NAME, "login-btn")       		
-		
-		
+        self.enterValue(By.ID, "fieldPassword", config.test_user_password)
+        self.clickButton(By.CLASS_NAME, "login-btn")
+
+
     def contactUs(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
@@ -346,7 +346,7 @@ class Basic(unittest.TestCase):
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldNoOfSeat\"]")).select_by_value("5")
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldColor\"]")).select_by_value("black")
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldPriceCurrency\"]")).select_by_value("ETB")
-        Select(self.driver.find_element_by_css_selector("select[name=\"rentOrSell\"]")).select_by_value("fieldPriceSell") 
+        Select(self.driver.find_element_by_css_selector("select[name=\"rentOrSell\"]")).select_by_value("fieldPriceSell")
         self.clearTextBox(By.ID, "fieldPriceSell")
         self.enterValue(By.ID, "fieldPriceSell", "500 000")
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldPriceNego\"]")).select_by_value("Yes")
@@ -431,7 +431,7 @@ class Basic(unittest.TestCase):
         Select(self.driver.find_element_by_css_selector("select[name=\"rentOrSell\"]")).select_by_value("fieldPriceRent")
         self.clearTextBox(By.ID, "fieldPriceRent")
         self.enterValue(By.ID, "fieldPriceRent", "10000")
-        Select(self.driver.find_element_by_css_selector("select[name=\"fieldPriceRate\"]")).select_by_value("monthly")        
+        Select(self.driver.find_element_by_css_selector("select[name=\"fieldPriceRate\"]")).select_by_value("monthly")
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldPriceNego\"]")).select_by_value("Yes")
         Select(self.driver.find_element_by_css_selector("select[name=\"fieldContactMethod\"]")).select_by_value("phone")
         msg_get = self.driver.find_element(by=By.CLASS_NAME, value="fileuploader-thumbnails-input-inner")
@@ -488,7 +488,7 @@ class Basic(unittest.TestCase):
         self.driver.find_element_by_name("files[]").send_keys(config.phone_img)
         self.clickButton(By.NAME, "submit")
         self.text_compare(how=By.ID, what="inner", expected_txt="Thank you for using our service!")
-		
+
         # Others
         print ("####Verify Others upload####")
         self.clickButton(By.CLASS_NAME, "glyphicon-upload")
@@ -509,14 +509,14 @@ class Basic(unittest.TestCase):
         self.driver.find_element_by_name("files[]").send_keys(config.other_img)
         self.clickButton(By.NAME, "submit")
         self.text_compare(how=By.ID, what="inner", expected_txt="Thank you for using our service!")
-		
+
 		# Logout
         self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
 
     def edit_profile(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
+
 		# Login
         self.login_form()
 
@@ -528,35 +528,35 @@ class Basic(unittest.TestCase):
         self.clearTextBox(By.ID, "fieldFirstName")
         self.enterValue(By.ID, "fieldFirstName", config.user_first_name)
         self.clearTextBox(By.ID, "fieldLastName")
-        self.enterValue(By.ID, "fieldLastName", config.user_last_name) 
+        self.enterValue(By.ID, "fieldLastName", config.user_last_name)
         self.clickButton(By.CLASS_NAME, "btn-block")
         self.text_compare(how=By.XPATH, what="/html/body/header/div[1]/div/div/div/div[2]/div/div/a[4]/div/span[2]", expected_txt="tester")
 
         # Change password
-        # self.clickButton(By.CLASS_NAME, "glyphicon-home")
-        # self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div/div[2]/div[3]/div/a")
-        # self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div[5]/div/div/p/a")
-        # self.clearTextBox(By.ID, "fieldPassword")
-        # self.enterValue(By.ID, "fieldPassword", config.test_user_password)
-        # self.clearTextBox(By.ID, "fieldPasswordRepeat")
-        # self.enterValue(By.ID, "fieldPasswordRepeat", config.test_user_new_password)
-        # self.clearTextBox(By.ID, "fieldPasswordRepeat2")
-        # self.enterValue(By.ID, "fieldPasswordRepeat2", config.test_user_new_password)		
-        # self.clickButton(By.CLASS_NAME, "btn-block")
-        # self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
-		# # Login
-        # self.login_form()        
-		
+        self.clickButton(By.CLASS_NAME, "glyphicon-home")
+        self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div/div[2]/div[3]/div/a")
+        self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div[5]/div/div/p/a")
+        self.clearTextBox(By.ID, "fieldPassword")
+        self.enterValue(By.ID, "fieldPassword", config.test_user_password)
+        self.clearTextBox(By.ID, "fieldPasswordRepeat")
+        self.enterValue(By.ID, "fieldPasswordRepeat", config.test_user_new_password)
+        self.clearTextBox(By.ID, "fieldPasswordRepeat2")
+        self.enterValue(By.ID, "fieldPasswordRepeat2", config.test_user_new_password)
+        self.clickButton(By.CLASS_NAME, "btn-block")
+        self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
+		## Login
+        self.login_form()
+
 		# Logout
         self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
 
     def your_item(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
+
 		# Login
         self.login_form()
-        
+
 		### your item
 		# Active and pending items
         print ("####Verify your time page####")
@@ -584,7 +584,7 @@ class Basic(unittest.TestCase):
                 time.sleep(2)
                 self.clickButton(By.NAME, "submit")
                 self.text_compare(how=By.ID, what="inner", expected_txt="Thank you for using our service!")
-				
+
             elif element_number_dict[key] > 0 and key == "userPendingNumb":
                 self.clickButton(By.ID, "userPendingNumb")
                 self.text_compare(how=By.ID, what="divCommon", expected_txt="Price Details")
@@ -594,54 +594,54 @@ class Basic(unittest.TestCase):
         self.clickButton(By.CLASS_NAME, "glyphicon-home")
         self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[3]/div[2]/div/div/div/div[2]/div[3]/div/a")
         self.clickButton(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/div/a[3]/div/span")
-        self.text_compare(how=By.ID, what="sidelist", expected_txt="Choose Item to upload")            			
-	    
+        self.text_compare(how=By.ID, what="sidelist", expected_txt="Choose Item to upload")
+
 		# Logout
         self.clickButton(By.CLASS_NAME, "glyphicon-log-out")
-		
+
     def pass_recovery(self):
         # Reset the page
         self.clickButton(By.CLASS_NAME, "logo_img")
-		
+
         # Login success
         print ("####Verify password recovery####")
         self.clickButton(By.CLASS_NAME, "glyphicon-log-in")
         self.clickButton(By.CLASS_NAME, "pull-right")
         self.clearTextBox(By.ID, "fieldEmail")
-        self.enterValue(By.ID, "fieldEmail", config.test_user_email_existing) 
+        self.enterValue(By.ID, "fieldEmail", config.test_user_email_existing)
         self.clickButton(By.NAME, "submit")
-        self.text_compare(how=By.ID, what="inner", expected_txt="Password recovery information has now been sent to the e-mail associated with this user.")		
-        		
+        self.text_compare(how=By.ID, what="inner", expected_txt="Password recovery information has now been sent to the e-mail associated with this user.")
+
     def text_compare(self, how, what, expected_txt):
         msg_get = self.driver.find_element(by=how, value=what).text
-        self.assertIn(expected_txt, msg_get)	    
-			
+        self.assertIn(expected_txt, msg_get)
+
     def find_el(self, how, what):
         try: h = self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
         return h
-		
+
     def enterValue(self, how, what, enter):
         find_el_var = self.find_el(how, what)
         if not find_el_var:
             self.assertTrue(find_el_var)
         else:
             find_el_var.send_keys(enter)
-			
+
     def clickButton(self, by, what):
         find_el_var = self.find_el(by, what)
         if not find_el_var:
             self.assertTrue(find_el_var)
         else:
             find_el_var.click()
-	
+
     def clearTextBox(self, by, what):
         find_el_var = self.find_el(by, what)
         if not find_el_var:
             self.assertTrue(find_el_var)
         else:
             find_el_var.clear()
-			
+
     def tearDown(self):
         time.sleep(5)
         self.driver.quit()
@@ -649,4 +649,4 @@ class Basic(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-	
+
