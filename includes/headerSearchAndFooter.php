@@ -402,6 +402,8 @@ function footerCode()
 				</ul>
            </div>';
 	echo '</div>';
+	echo '<div id="app_logos"><a href="https://play.google.com/store/apps/details?id=appPackage.hulutera&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img class="play_store_logo" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"/></a></div>';
+
 	echo '</div>';
 	echo '</div>';
 
@@ -548,12 +550,12 @@ function editProfile()
 	$sessionName = 'edit-profile';
 	$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
 	$_SESSION['lan'] = $_GET['lan'];
+	$object = new HtUserAll($_SESSION['uID']);
 	if (!isset($_SESSION[$sessionName])) {
-		$object = new HtUserAll($_SESSION['uID']);
 		$object->updateProfile();
 		$_SESSION[$sessionName] = base64_encode(serialize($object));
 	} else {
-		$object = unserialize(base64_decode($_SESSION[$sessionName]));
+		//$_SESSION[$sessionName] = base64_decode($_SESSION[$sessionName]);
 		//$object->updateProfile();
 		if (isset($_GET['function'])) {
 			$function = $_GET['function'];
