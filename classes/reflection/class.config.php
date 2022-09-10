@@ -3,8 +3,8 @@
 /**
  * Defines the constants for MySQL database connection parameters used by a Hulutera.
  */
-if (file_exists('/home/hah3lga4knls/db.ini')) {
-    $config = parse_ini_file('/home/hah3lga4knls/db.ini');
+if (file_exists('/home/s25la3lysvyo/db.ini')) {
+    $config = parse_ini_file('/home/s25la3lysvyo/db.ini');
     define("DBHOST", $config["DBHOST"]);
     define("DBUSER", $config["DBUSER"]);
     define("DBPASSWORD", $config["DBPASSWORD"]);
